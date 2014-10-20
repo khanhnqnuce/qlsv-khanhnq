@@ -42,3 +42,15 @@ D:\HocTap\DoAnTN\QLSV\QLSV.Data\bin\Debug\Iesi.Collections.xml
 D:\HocTap\DoAnTN\QLSV\QLSV.Data\obj\Debug\QLSV.Data.csprojResolveAssemblyReference.cache
 D:\HocTap\DoAnTN\QLSV\QLSV.Data\obj\Debug\QLSV.Data.dll
 D:\HocTap\DoAnTN\QLSV\QLSV.Data\obj\Debug\QLSV.Data.pdb
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\QLSV.Data.dll
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\QLSV.Data.pdb
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\QLSV.Core.dll
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\NHibernate.dll
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\Iesi.Collections.dll
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\QLSV.Core.pdb
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\NHibernate.pdb
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\NHibernate.xml
+D:\HocTap\QLSV\QLSV.Data\bin\Debug\Iesi.Collections.xml
+D:\HocTap\QLSV\QLSV.Data\obj\Debug\QLSV.Data.csprojResolveAssemblyReference.cache
+D:\HocTap\QLSV\QLSV.Data\obj\Debug\QLSV.Data.dll
+D:\HocTap\QLSV\QLSV.Data\obj\Debug\QLSV.Data.pdb

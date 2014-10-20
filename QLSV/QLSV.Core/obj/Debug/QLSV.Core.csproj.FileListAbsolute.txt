@@ -36,3 +36,13 @@ D:\HocTap\DoAnTN\QLSV\QLSV.Core\bin\Debug\NHibernate.xml
 D:\HocTap\DoAnTN\QLSV\QLSV.Core\obj\Debug\QLSV.Core.csprojResolveAssemblyReference.cache
 D:\HocTap\DoAnTN\QLSV\QLSV.Core\obj\Debug\QLSV.Core.dll
 D:\HocTap\DoAnTN\QLSV\QLSV.Core\obj\Debug\QLSV.Core.pdb
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\QLSV.Core.dll
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\QLSV.Core.pdb
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\Iesi.Collections.dll
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\NHibernate.dll
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\Iesi.Collections.xml
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\NHibernate.pdb
+D:\HocTap\QLSV\QLSV.Core\bin\Debug\NHibernate.xml
+D:\HocTap\QLSV\QLSV.Core\obj\Debug\QLSV.Core.csprojResolveAssemblyReference.cache
+D:\HocTap\QLSV\QLSV.Core\obj\Debug\QLSV.Core.dll
+D:\HocTap\QLSV\QLSV.Core\obj\Debug\QLSV.Core.pdb
