@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="QLSV.Core" namespace="QLSV.Core.Domain">
+  <class name="QLSV.Core.Domain.Khoa, QLSV.Core" table="Khoa">
+    <id name="ID" column="ID" type="Int32" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+    <property name="MaKhoa" column="MaKhoa"  type="string" length="255" />
+    <property name="TenKhoa" column="TenKhoa"  type="string" length="255" />
+  </class>
+</hibernate-mapping>

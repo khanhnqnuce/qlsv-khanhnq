@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C6FC2DFA-29B4-4332-9EB4-5E8F83B4D24F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QLSV.Frm</RootNamespace>
+    <AssemblyName>QLSV.Frm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\Lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.Misc.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NPOI">
+      <HintPath>..\Lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\FunctionControlHasGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\FunctionControlHasGrid.Designer.cs">
+      <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="FormResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmChonChucNang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmChonChucNang.Designer.cs">
+      <DependentUpon>FrmChonChucNang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDangNhap.Designer.cs">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmDanhmuckhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDanhmuckhoa.Designer.cs">
+      <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmDanhmuclop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDanhmuclop.Designer.cs">
+      <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmDanhsachphongthi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDanhsachphongthi.Designer.cs">
+      <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmNapDuLieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmNapDuLieu.Designer.cs">
+      <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmQuanLyKyThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmQuanLyKyThi.Designer.cs">
+      <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmQuanLyNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmQuanLyNguoiDung.Designer.cs">
+      <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmSinhVien.Designer.cs">
+      <DependentUpon>FrmSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
+      <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
+      <DependentUpon>FrmChonChucNang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDangNhap.resx">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDanhmuckhoa.resx">
+      <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDanhmuclop.resx">
+      <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDanhsachphongthi.resx">
+      <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmNapDuLieu.resx">
+      <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmQuanLyKyThi.resx">
+      <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmQuanLyNguoiDung.resx">
+      <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmSinhVien.resx">
+      <DependentUpon>FrmSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\101.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thong-tin-tai-khoan2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QLSV.Core\QLSV.Core.csproj">
+      <Project>{5A9A9CF1-649A-4787-9B02-261E78A8AC04}</Project>
+      <Name>QLSV.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLSV.Data\QLSV.Data.csproj">
+      <Project>{0E243190-859E-4479-97F8-0E97D2889D5F}</Project>
+      <Name>QLSV.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dangxuat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lấy lại mật khẩu nhận thông báo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Đăng-ký-BHXH-tự-nguyện.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thu-BHXH,-BHYT-bắt-buộc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thẻ-BHYT-HSSV-khác.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trả-thẻ-BHYT,-sổ-BHXH-theo-phiếu-yêu-cầu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Đăng-ký-ngưng,-chuyển-địa-bàn,-giải-thể.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
