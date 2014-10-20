@@ -1,0 +1,111 @@
+09:33:21 The following types may not be used as proxies:
+QLSV.Core.Domain.Taikhoan: method get_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+QLSV.Core.Domain.Taikhoan: method set_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+NHibernate
+   at NHibernate.Cfg.Configuration.ValidateEntities()
+   at NHibernate.Cfg.Configuration.Validate()
+   at NHibernate.Cfg.Configuration.BuildSessionFactory()
+   at QLSV.Core.Service.TaiKhoanService.OpenSession() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 22
+   at QLSV.Core.Service.TaiKhoanService.LayThongTinTaiKhoan() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 31Void ValidateEntities()
+09:33:24 Object reference not set to an instance of an object.
+QLSV.Frm
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadGrid() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 44Void LoadGrid()
+09:33:29 Not enough context to add a new row. Either a row in this band or the parent band has to be active to provide for enough context.
+Infragistics2.Win.UltraWinGrid.v12.1
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNewHelper(RowsCollection rows)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew(Boolean calledFromAddNew)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew()
+   at QLSV.Frm.Base.FunctionControlHasGrid.InsertRow(UltraGrid grid, String column1, String column2) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Base\FunctionControlHasGrid.cs:line 20
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.InsertRow() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 70
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadForm() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 64
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung..ctor() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 22
+   at QLSV.Frm.FrmMain.ChonChucNang(String strChucNang) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\frmMain.cs:line 48Infragistics.Win.UltraWinGrid.UltraGridRow AddNewHelper(Infragistics.Win.UltraWinGrid.RowsCollection)
+09:33:49 The following types may not be used as proxies:
+QLSV.Core.Domain.Taikhoan: method get_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+QLSV.Core.Domain.Taikhoan: method set_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+NHibernate
+   at NHibernate.Cfg.Configuration.ValidateEntities()
+   at NHibernate.Cfg.Configuration.Validate()
+   at NHibernate.Cfg.Configuration.BuildSessionFactory()
+   at QLSV.Core.Service.TaiKhoanService.OpenSession() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 22
+   at QLSV.Core.Service.TaiKhoanService.KiemTraTaiKhoan(String id, String pass) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 49Void ValidateEntities()
+09:35:28 The following types may not be used as proxies:
+QLSV.Core.Domain.Taikhoan: method get_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+QLSV.Core.Domain.Taikhoan: method set_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+NHibernate
+   at NHibernate.Cfg.Configuration.ValidateEntities()
+   at NHibernate.Cfg.Configuration.Validate()
+   at NHibernate.Cfg.Configuration.BuildSessionFactory()
+   at QLSV.Core.Service.TaiKhoanService.OpenSession() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 22
+   at QLSV.Core.Service.TaiKhoanService.LayThongTinTaiKhoan() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 31Void ValidateEntities()
+09:35:29 Object reference not set to an instance of an object.
+QLSV.Frm
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadGrid() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 44Void LoadGrid()
+09:35:30 Not enough context to add a new row. Either a row in this band or the parent band has to be active to provide for enough context.
+Infragistics2.Win.UltraWinGrid.v12.1
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNewHelper(RowsCollection rows)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew(Boolean calledFromAddNew)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew()
+   at QLSV.Frm.Base.FunctionControlHasGrid.InsertRow(UltraGrid grid, String column1, String column2) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Base\FunctionControlHasGrid.cs:line 20
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.InsertRow() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 70
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadForm() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 64
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung..ctor() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 22
+   at QLSV.Frm.FrmMain.ChonChucNang(String strChucNang) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\frmMain.cs:line 48Infragistics.Win.UltraWinGrid.UltraGridRow AddNewHelper(Infragistics.Win.UltraWinGrid.RowsCollection)
+09:35:38 The following types may not be used as proxies:
+QLSV.Core.Domain.Taikhoan: method get_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+QLSV.Core.Domain.Taikhoan: method set_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+NHibernate
+   at NHibernate.Cfg.Configuration.ValidateEntities()
+   at NHibernate.Cfg.Configuration.Validate()
+   at NHibernate.Cfg.Configuration.BuildSessionFactory()
+   at QLSV.Core.Service.TaiKhoanService.OpenSession() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 22
+   at QLSV.Core.Service.TaiKhoanService.LayThongTinTaiKhoan() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 31Void ValidateEntities()
+09:35:40 Object reference not set to an instance of an object.
+QLSV.Frm
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadGrid() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 44Void LoadGrid()
+09:35:41 Not enough context to add a new row. Either a row in this band or the parent band has to be active to provide for enough context.
+Infragistics2.Win.UltraWinGrid.v12.1
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNewHelper(RowsCollection rows)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew(Boolean calledFromAddNew)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew()
+   at QLSV.Frm.Base.FunctionControlHasGrid.InsertRow(UltraGrid grid, String column1, String column2) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Base\FunctionControlHasGrid.cs:line 20
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.InsertRow() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 70
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadForm() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 64
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung..ctor() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 22
+   at QLSV.Frm.FrmMain.ChonChucNang(String strChucNang) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\frmMain.cs:line 48Infragistics.Win.UltraWinGrid.UltraGridRow AddNewHelper(Infragistics.Win.UltraWinGrid.RowsCollection)
+09:39:37 The following types may not be used as proxies:
+QLSV.Core.Domain.Taikhoan: method get_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+QLSV.Core.Domain.Taikhoan: method set_Quyen should be 'public/protected virtual' or 'protected internal virtual'
+NHibernate
+   at NHibernate.Cfg.Configuration.ValidateEntities()
+   at NHibernate.Cfg.Configuration.Validate()
+   at NHibernate.Cfg.Configuration.BuildSessionFactory()
+   at QLSV.Core.Service.TaiKhoanService.OpenSession() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 22
+   at QLSV.Core.Service.TaiKhoanService.LayThongTinTaiKhoan() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Core\Service\TaiKhoanService.cs:line 31Void ValidateEntities()
+09:39:38 Object reference not set to an instance of an object.
+QLSV.Frm
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadGrid() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 45Void LoadGrid()
+09:39:41 Not enough context to add a new row. Either a row in this band or the parent band has to be active to provide for enough context.
+Infragistics2.Win.UltraWinGrid.v12.1
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNewHelper(RowsCollection rows)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew(Boolean calledFromAddNew)
+   at Infragistics.Win.UltraWinGrid.UltraGridBand.AddNew()
+   at QLSV.Frm.Base.FunctionControlHasGrid.InsertRow(UltraGrid grid, String column1, String column2) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Base\FunctionControlHasGrid.cs:line 20
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.InsertRow() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 71
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.LoadForm() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 65
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung..ctor() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 22
+   at QLSV.Frm.FrmMain.ChonChucNang(String strChucNang) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\frmMain.cs:line 48Infragistics.Win.UltraWinGrid.UltraGridRow AddNewHelper(Infragistics.Win.UltraWinGrid.RowsCollection)
+19:20:03 Key not found
+Parameter name: key
+Infragistics2.Shared.v12.1
+   at Infragistics.Shared.KeyedSubObjectsCollectionBase.GetItem(String key)
+   at Infragistics.Win.UltraWinGrid.ColumnsCollection.get_Item(String key)
+   at Infragistics.Win.UltraWinGrid.CellsCollection.GetItem(String key)
+   at Infragistics.Win.UltraWinGrid.CellsCollection.get_Item(String key)
+   at QLSV.Frm.Frm.FrmQuanLyKyThi.Save() in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyKyThi.cs:line 101Infragistics.Shared.IKeyedSubObject GetItem(System.String)
+19:46:49 Key not found
+Parameter name: key
+Infragistics2.Shared.v12.1
+   at Infragistics.Shared.KeyedSubObjectsCollectionBase.GetItem(String key)
+   at Infragistics.Win.UltraWinGrid.ColumnsCollection.get_Item(String key)
+   at QLSV.Frm.Frm.FrmQuanLyNguoiDung.uG_DanhSach_InitializeLayout(Object sender, InitializeLayoutEventArgs e) in D:\HocTap\Project_GoogleCode\QLSV\QLSV.Frm\Frm\FrmQuanLyNguoiDung.cs:line 219Infragistics.Shared.IKeyedSubObject GetItem(System.String)
