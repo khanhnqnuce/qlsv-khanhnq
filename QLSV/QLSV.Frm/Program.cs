@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using QLSV.Frm.Frm;
+
 namespace QLSV.Frm
 {
     static class Program

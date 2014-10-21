@@ -7,8 +7,8 @@ using System.Windows.Forms;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using OfficeOpenXml;
-using QLSV.Core.Utils;
-using QLSV.Data.Utils;
+using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 
 namespace QLSV.Frm.Frm
 {

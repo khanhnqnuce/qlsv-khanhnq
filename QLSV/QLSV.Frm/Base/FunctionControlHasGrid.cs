@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
-using QLSV.Core.Domain;
 
 namespace QLSV.Frm.Base
 {

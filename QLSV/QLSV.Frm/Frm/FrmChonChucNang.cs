@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 
 namespace QLSV.Frm.Frm
 {

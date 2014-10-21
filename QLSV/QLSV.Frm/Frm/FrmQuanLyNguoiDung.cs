@@ -8,9 +8,9 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
-using QLSV.Data.Utils;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm

@@ -103,7 +103,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(990, 425);
+            this.panel2.Size = new System.Drawing.Size(859, 425);
             this.panel2.TabIndex = 9;
             // 
             // uG_DanhSach
@@ -119,7 +119,7 @@
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(990, 425);
+            this.uG_DanhSach.Size = new System.Drawing.Size(859, 425);
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
@@ -129,7 +129,7 @@
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(755, 19);
+            this.btnXoa.Location = new System.Drawing.Point(624, 19);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(89, 29);
@@ -143,7 +143,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHuy.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnHuy.Location = new System.Drawing.Point(642, 19);
+            this.btnHuy.Location = new System.Drawing.Point(511, 19);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(89, 29);
             this.btnHuy.TabIndex = 24;
@@ -164,7 +164,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 425);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(990, 69);
+            this.panel1.Size = new System.Drawing.Size(859, 69);
             this.panel1.TabIndex = 8;
             // 
             // btnGhi
@@ -172,7 +172,7 @@
             this.btnGhi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGhi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGhi.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGhi.Location = new System.Drawing.Point(529, 19);
+            this.btnGhi.Location = new System.Drawing.Point(398, 19);
             this.btnGhi.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(89, 29);
@@ -186,7 +186,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDong.Location = new System.Drawing.Point(868, 19);
+            this.btnDong.Location = new System.Drawing.Point(737, 19);
             this.btnDong.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(89, 28);
@@ -224,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(990, 494);
+            this.ClientSize = new System.Drawing.Size(859, 494);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));

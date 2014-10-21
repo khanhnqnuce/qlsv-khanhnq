@@ -6,6 +6,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.Service
 {

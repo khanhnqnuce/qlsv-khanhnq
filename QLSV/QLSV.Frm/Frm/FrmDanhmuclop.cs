@@ -8,8 +8,9 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.Frm
 {
@@ -103,7 +104,7 @@ namespace QLSV.Frm.Frm
                     var hs = new Lop
                     {
                         MaLop = row.Cells["MaLop"].Text,
-                        MaKhoa = row.Cells["MaKhoa"].Text,
+                        MaKhoa = row.Cells["MaKhoa"].Value.ToString(),
                         GhiChu = row.Cells["GhiChu"].Text
                     };
                     if (string.IsNullOrEmpty(id))
@@ -194,7 +195,7 @@ namespace QLSV.Frm.Frm
                     foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                     {
                         item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
-                        item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
+                        item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString();
                         item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                         return;
                     }
@@ -202,7 +203,7 @@ namespace QLSV.Frm.Frm
                     {
                         ID = int.Parse(id),
                         MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
-                        MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
+                        MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString(),
                         GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
                     };
                     _listUpdate.Add(hs);
@@ -225,14 +226,15 @@ namespace QLSV.Frm.Frm
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].MaxWidth = 100;
+                band.Columns["MaLop"].MaxWidth = 200;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-
+                band.Columns["MaKhoa"].Loadcbokhoa();
                 #region Caption
 
                 band.Columns["MaLop"].Header.Caption = @"Mã lớp";
-                band.Columns["MaKhoa"].Header.Caption = @"Mã khoa";
+                band.Columns["MaKhoa"].Header.Caption = @"Tên khoa";
                 band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
 
                 #endregion

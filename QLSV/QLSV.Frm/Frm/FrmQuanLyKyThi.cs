@@ -8,8 +8,9 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Ultis.Frm;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm
@@ -243,12 +244,9 @@ namespace QLSV.Frm.Frm
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["ThoiGianLamBai"].MaskInput = @"{LOC}nnnn";
-                band.Columns["ThoiGianLamBai"].PromptChar = ' ';
-                band.Columns["ThoiGianBatDau"].Style = ColumnStyle.Time;
-                band.Columns["ThoiGianBatDau"].MaskInput = @"hh:mm";
-                band.Columns["ThoiGianKetThuc"].Style = ColumnStyle.Time;
-                band.Columns["ThoiGianKetThuc"].MaskInput = @"hh:mm";
+                band.Columns["ThoiGianLamBai"].FormatNumberic();
+                band.Columns["ThoiGianBatDau"].FormatTime();
+                band.Columns["ThoiGianKetThuc"].FormatTime();
 
                 #region Caption
 

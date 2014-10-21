@@ -8,7 +8,7 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 
 namespace QLSV.Frm.Frm

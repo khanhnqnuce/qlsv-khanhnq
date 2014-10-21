@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
 using QLSV.Core.Domain;
-using QLSV.Data.Utils;
+using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 
 namespace QLSV.Frm.Frm
 {

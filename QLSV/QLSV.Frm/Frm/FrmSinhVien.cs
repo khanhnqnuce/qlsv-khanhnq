@@ -8,8 +8,9 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.Frm
 {
@@ -26,7 +27,7 @@ namespace QLSV.Frm.Frm
             LoadForm();
         }
 
-        #region LoadForm
+      #region Exit
 
         protected override DataTable GetTable()
         {
@@ -74,10 +75,6 @@ namespace QLSV.Frm.Frm
             _listUpdate.Clear();
             IdDelete.Clear();
         }
-
-        #endregion
-
-        #region Exit
 
         protected override void InsertRow()
         {
@@ -178,6 +175,10 @@ namespace QLSV.Frm.Frm
                 band.Columns["STT"].MaxWidth = 70;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+                band.Columns["MaKhoa"].Loadcbokhoa();
+                band.Columns["MaSinhVien"].MaxWidth = 150;
+                band.Columns["HoSinhVien"].MaxWidth = 200;
+                band.Columns["TenSinhVien"].MaxWidth = 150;
 
                 #region Caption
 

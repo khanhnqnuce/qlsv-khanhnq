@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\ConvertProcess.cs" />
-    <Compile Include="Utils\MaHoaMD5.cs" />
-    <Compile Include="Utils\ThreadProcess.cs" />
+    <Compile Include="Utils.Data\ConvertProcess.cs" />
+    <Compile Include="Utils.Data\MaHoaMD5.cs" />
+    <Compile Include="Utils.Data\ThreadProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QLSV.Core\QLSV.Core.csproj">

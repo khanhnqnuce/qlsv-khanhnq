@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Frm;
 
 namespace QLSV.Frm

@@ -55,9 +55,10 @@
     <Compile Include="Domain\SinhVien.cs" />
     <Compile Include="Domain\Taikhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\KhoaService.cs" />
     <Compile Include="Service\QueryStringSerice.cs" />
     <Compile Include="Service\TaiKhoanService.cs" />
-    <Compile Include="Utils\log2File.cs" />
+    <Compile Include="Utils.Core\log2File.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\Taikhoan.hbm.xml" />

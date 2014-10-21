@@ -8,7 +8,7 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
-using QLSV.Core.Utils;
+using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 
 namespace QLSV.Frm.Frm
@@ -177,6 +177,20 @@ namespace QLSV.Frm.Frm
         private void btnGhi_Click(object sender, EventArgs e)
         {
             Save();
+        }
+
+        private void btnInds_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         #endregion

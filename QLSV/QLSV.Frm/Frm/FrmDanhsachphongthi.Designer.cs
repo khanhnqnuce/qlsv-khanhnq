@@ -44,6 +44,8 @@
             this.lbInsert = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.btnInds = new System.Windows.Forms.Button();
+            this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             this.menu_ug.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,7 +57,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHuy.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnHuy.Location = new System.Drawing.Point(685, 19);
+            this.btnHuy.Location = new System.Drawing.Point(696, 19);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(89, 29);
             this.btnHuy.TabIndex = 24;
@@ -72,46 +74,47 @@
             this.menuStrip_Huy,
             this.menuStrip_dong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 136);
+            this.menu_ug.Size = new System.Drawing.Size(137, 114);
             // 
             // menuStrip_themdong
             // 
             this.menuStrip_themdong.Name = "menuStrip_themdong";
-            this.menuStrip_themdong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_themdong.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_themdong.Text = "Thêm dòng";
             this.menuStrip_themdong.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // menuStrip_xoadong
             // 
             this.menuStrip_xoadong.Name = "menuStrip_xoadong";
-            this.menuStrip_xoadong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_xoadong.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_xoadong.Text = "Xóa dòng";
             this.menuStrip_xoadong.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
             // 
             // menuStrip_luulai
             // 
             this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_luulai.Text = "Lưu lại";
             this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // menuStrip_dong
             // 
             this.menuStrip_dong.Name = "menuStrip_dong";
-            this.menuStrip_dong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_dong.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_dong.Text = "Đóng";
             this.menuStrip_dong.Click += new System.EventHandler(this.menuStrip_dong_Click);
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnInds);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnGhi);
@@ -130,7 +133,7 @@
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(575, 19);
+            this.btnXoa.Location = new System.Drawing.Point(591, 19);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(89, 29);
@@ -144,7 +147,7 @@
             this.btnGhi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGhi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGhi.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGhi.Location = new System.Drawing.Point(455, 19);
+            this.btnGhi.Location = new System.Drawing.Point(486, 19);
             this.btnGhi.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(89, 29);
@@ -158,7 +161,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDong.Location = new System.Drawing.Point(794, 19);
+            this.btnDong.Location = new System.Drawing.Point(801, 19);
             this.btnDong.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(89, 28);
@@ -219,6 +222,20 @@
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
             // 
+            // btnInds
+            // 
+            this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInds.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInds.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnInds.Location = new System.Drawing.Point(381, 19);
+            this.btnInds.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnInds.Name = "btnInds";
+            this.btnInds.Size = new System.Drawing.Size(89, 29);
+            this.btnInds.TabIndex = 25;
+            this.btnInds.Text = "In (F10)";
+            this.btnInds.UseVisualStyleBackColor = true;
+            this.btnInds.Click += new System.EventHandler(this.btnInds_Click);
+            // 
             // FrmDanhsachphongthi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -257,5 +274,7 @@
         private System.Windows.Forms.Label lbInsert;
         private System.Windows.Forms.Panel panel2;
         private Infragistics.Win.UltraWinGrid.UltraGrid uG_DanhSach;
+        private System.Windows.Forms.Button btnInds;
+        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter;
     }
 }

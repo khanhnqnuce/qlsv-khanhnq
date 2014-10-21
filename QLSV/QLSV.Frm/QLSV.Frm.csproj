@@ -69,6 +69,8 @@
     <Compile Include="Base\FunctionControlHasGrid.Designer.cs">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ultis.Frm\ConvertProcess.cs" />
+    <Compile Include="Ultis.Frm\FormatProcess.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="FormResource.Designer.cs">
       <AutoGen>True</AutoGen>
