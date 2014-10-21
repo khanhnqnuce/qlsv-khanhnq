@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -184,7 +186,13 @@ namespace QLSV.Frm.Frm
             try
             {
                 ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
-                
+
+                var mydoc = new Process();
+                if (File.Exists(Application.StartupPath + @"Data\DanhSachPhongThi.xls"))
+                {
+                    mydoc.StartInfo.FileName = Application.StartupPath + @"Data\DanhSachPhongThi.xls";
+                    mydoc.Start();
+                }
             }
             catch (Exception ex)
             {
