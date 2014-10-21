@@ -12,6 +12,7 @@ using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.Frm
 {
@@ -185,12 +186,21 @@ namespace QLSV.Frm.Frm
         {
             try
             {
+                if (Kiemtrafile())
+                {
+                    MessageBox.Show(@"Đóng File đang mở.", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (!Directory.Exists("Data"))
+                    Directory.CreateDirectory("Data");
+
                 ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
 
                 var mydoc = new Process();
-                if (File.Exists(Application.StartupPath + @"Data\DanhSachPhongThi.xls"))
+                if (File.Exists(Application.StartupPath + @"\Data\DanhSachPhongThi.xls"))
                 {
-                    mydoc.StartInfo.FileName = Application.StartupPath + @"Data\DanhSachPhongThi.xls";
+                    mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachPhongThi.xls";
                     mydoc.Start();
                 }
             }
@@ -198,6 +208,21 @@ namespace QLSV.Frm.Frm
             {
                 MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public bool Kiemtrafile()
+        {
+            try
+            {
+                if (!File.Exists(Application.StartupPath + @"\Data\DanhSachPhongThi.xls")) return false;
+                var f = new FileStream(Application.StartupPath + @"\Data\DanhSachPhongThi.xls", FileMode.Open);
+                     f.Dispose();
+           return false;
+            }
+            catch (Exception)
+            {
+                return true;
             }
         }
 
@@ -250,8 +275,8 @@ namespace QLSV.Frm.Frm
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["SucChua"].MaskInput = @"{LOC}nnnn";
-                band.Columns["SucChua"].PromptChar = ' ';
+                band.Columns["SucChua"].FormatNumberic();
+                
 
                 #region Caption
 
