@@ -51,7 +51,7 @@ namespace QLSV.Frm.Frm
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
-                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien,"",hs.MaLop);
+                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien,"",hs.Lop.MaLop);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -108,7 +108,7 @@ namespace QLSV.Frm.Frm
                         MaSinhVien = row.Cells["MaSinhVien"].Text,
                         HoSinhVien = row.Cells["HoSinhVien"].Text,
                         TenSinhVien = row.Cells["TenSinhVien"].Text,
-                        MaLop = row.Cells["MaLop"].Text,
+                        IdLop = (int)row.Cells["MaLop"].Value,
                     };
                     if (string.IsNullOrEmpty(id))
                     {
@@ -246,27 +246,23 @@ namespace QLSV.Frm.Frm
             try
             {
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                var ma = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
-                var ho = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
-                var ten = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
-                var lop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
                 if (!string.IsNullOrEmpty(id))
                 {
                     foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                     {
-                        item.MaSinhVien = ma;
-                        item.TenSinhVien = ten;
-                        item.HoSinhVien = ho;
-                        item.MaLop = lop;
+                        item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
+                        item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
+                        item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
+                        item.IdLop = (int)uG_DanhSach.ActiveRow.Cells["MaLop"].Value;
                         return;
                     }
                     var hs = new SinhVien
                     {
                         ID = int.Parse(id),
-                        MaSinhVien = ma,
-                        HoSinhVien = ho,
-                        TenSinhVien = ten,
-                        MaLop = lop
+                        MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
+                        HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
+                        TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
+                        IdLop = (int)uG_DanhSach.ActiveRow.Cells["MaLop"].Value
                     };
                     _listUpdate.Add(hs);
                 }

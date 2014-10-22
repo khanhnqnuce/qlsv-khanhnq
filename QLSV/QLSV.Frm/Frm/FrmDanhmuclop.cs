@@ -49,7 +49,7 @@ namespace QLSV.Frm.Frm
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
-                    table.Rows.Add(hs.ID, stt, hs.MaLop, hs.MaKhoa,hs.GhiChu);
+                    table.Rows.Add(hs.ID, stt, hs.MaLop, hs.Khoa.ID,hs.GhiChu);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -101,11 +101,12 @@ namespace QLSV.Frm.Frm
                 foreach (var row in uG_DanhSach.Rows)
                 {
                     var id = row.Cells["ID"].Value.ToString();
+
                     var hs = new Lop
                     {
                         MaLop = row.Cells["MaLop"].Text,
-                        MaKhoa = row.Cells["MaKhoa"].Value.ToString(),
-                        GhiChu = row.Cells["GhiChu"].Text
+                        GhiChu = row.Cells["GhiChu"].Text,
+                        IdKhoa = int.Parse(row.Cells["MaKhoa"].Value.ToString())
                     };
                     if (string.IsNullOrEmpty(id))
                     {
@@ -195,7 +196,7 @@ namespace QLSV.Frm.Frm
                     foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                     {
                         item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
-                        item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString();
+                        item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString());
                         item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                         return;
                     }
@@ -203,7 +204,7 @@ namespace QLSV.Frm.Frm
                     {
                         ID = int.Parse(id),
                         MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
-                        MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString(),
+                        IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString()),
                         GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
                     };
                     _listUpdate.Add(hs);

@@ -5,7 +5,8 @@
       <generator class="identity" />
     </id>
     <property name="MaLop" column="MaLop"  type="string" length="255" />
-    <property name="MaKhoa" column="MaKhoa"  type="string" length="255" />
     <property name="GhiChu" column="GhiChu"  type="string" length="255" />
+    <property name="IdKhoa" column="IdKhoa"  type="int" />
+    <many-to-one class="Khoa" name="Khoa" column="IdKhoa" cascade="all" lazy="false" insert="false" update="false"/>
   </class>
 </hibernate-mapping>
