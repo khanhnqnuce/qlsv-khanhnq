@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -17,28 +19,30 @@ namespace QLSV.Frm.Frm
     public partial class FrmSinhVien : FunctionControlHasGrid
     {
         #region Create
+
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
 
         #endregion
+
         public FrmSinhVien()
         {
             InitializeComponent();
             LoadForm();
         }
 
-      #region Exit
+        #region Exit
 
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSinhVien", typeof(string));
-            table.Columns.Add("HoSinhVien", typeof(string));
-            table.Columns.Add("TenSinhVien", typeof(string));
-            table.Columns.Add("MaKhoa", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("ID", typeof (int));
+            table.Columns.Add("STT", typeof (int));
+            table.Columns.Add("MaSinhVien", typeof (string));
+            table.Columns.Add("HoSinhVien", typeof (string));
+            table.Columns.Add("TenSinhVien", typeof (string));
+            table.Columns.Add("MaKhoa", typeof (string));
+            table.Columns.Add("MaLop", typeof (string));
             return table;
         }
 
@@ -51,7 +55,7 @@ namespace QLSV.Frm.Frm
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
-                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien,"",hs.Lop.MaLop);
+                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.Lop.IdKhoa, hs.Lop.ID);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -108,7 +112,7 @@ namespace QLSV.Frm.Frm
                         MaSinhVien = row.Cells["MaSinhVien"].Text,
                         HoSinhVien = row.Cells["HoSinhVien"].Text,
                         TenSinhVien = row.Cells["TenSinhVien"].Text,
-                        IdLop = (int)row.Cells["MaLop"].Value,
+                        IdLop = int.Parse(row.Cells["MaLop"].Value.ToString()),
                     };
                     if (string.IsNullOrEmpty(id))
                     {
@@ -117,7 +121,7 @@ namespace QLSV.Frm.Frm
                 }
                 QuanlysinhvienSevice.Them(_listAdd);
                 QuanlysinhvienSevice.Sua(_listUpdate);
-                QuanlysinhvienSevice.Xoa(IdDelete,"SinhVien");
+                QuanlysinhvienSevice.Xoa(IdDelete, "SinhVien");
 
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -176,9 +180,11 @@ namespace QLSV.Frm.Frm
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["MaKhoa"].Loadcbokhoa();
+                band.Columns["MaLop"].LoadcboLop();
                 band.Columns["MaSinhVien"].MaxWidth = 150;
                 band.Columns["HoSinhVien"].MaxWidth = 200;
                 band.Columns["TenSinhVien"].MaxWidth = 150;
+                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 
@@ -253,7 +259,7 @@ namespace QLSV.Frm.Frm
                         item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
                         item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
                         item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
-                        item.IdLop = (int)uG_DanhSach.ActiveRow.Cells["MaLop"].Value;
+                        item.IdLop = int.Parse(uG_DanhSach.ActiveRow.Cells["MaLop"].Value.ToString());
                         return;
                     }
                     var hs = new SinhVien
@@ -262,10 +268,21 @@ namespace QLSV.Frm.Frm
                         MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
                         HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
                         TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
-                        IdLop = (int)uG_DanhSach.ActiveRow.Cells["MaLop"].Value
+                        IdLop = int.Parse(uG_DanhSach.ActiveRow.Cells["MaLop"].Value.ToString())
                     };
                     _listUpdate.Add(hs);
                 }
+                //if (uG_DanhSach.ActiveCell.Column.Key != "MaKhoa") return;
+                //var a = (UltraCombo)uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
+                //if (!string.IsNullOrEmpty(uG_DanhSach.ActiveCell.Value.ToString()))
+                //{
+                //    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                //    a.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, uG_DanhSach.ActiveCell.Value);
+                //}
+                //else
+                //{
+                //    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                //}
             }
             catch (Exception ex)
             {
@@ -290,12 +307,57 @@ namespace QLSV.Frm.Frm
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-            Dispose();
+            Close();
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
             LoadForm();
+        }
+
+        private void btnInds_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Kiemtrafile())
+                {
+                    MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (!Directory.Exists("Data"))
+                    Directory.CreateDirectory("Data");
+
+                ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachSinhVien.xls");
+
+                var mydoc = new Process();
+                if (File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls"))
+                {
+                    mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachSinhVien.xls";
+                    mydoc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public bool Kiemtrafile()
+        {
+            try
+            {
+                if (!File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls")) return false;
+                var f = new FileStream(Application.StartupPath + @"\Data\DanhSachSinhVien.xls", FileMode.Open);
+                f.Dispose();
+                return false;
+            }
+            catch (Exception)
+            {
+                return true;
+            }
         }
 
         #endregion
@@ -356,6 +418,28 @@ namespace QLSV.Frm.Frm
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void uG_DanhSach_BeforeCellActivate(object sender, CancelableCellEventArgs e)
+        {
+            try
+            {
+                if (e.Cell.Column.Key != "MaLop") return;
+                var a = (UltraCombo) uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
+                if (string.IsNullOrEmpty(e.Cell.Row.Cells["MaKhoa"].Value.ToString()))
+                {
+                    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                    return;
+                }
+                a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                a.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals,
+                e.Cell.Row.Cells["MaKhoa"].Value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
     }

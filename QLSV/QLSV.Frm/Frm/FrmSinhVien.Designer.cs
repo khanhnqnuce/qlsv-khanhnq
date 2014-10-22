@@ -43,7 +43,9 @@
             this.btnGhi = new System.Windows.Forms.Button();
             this.lbXoadong = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnInds = new System.Windows.Forms.Button();
             this.lbInsert = new System.Windows.Forms.Label();
+            this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,6 +81,7 @@
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.uG_DanhSach.BeforeCellActivate += new Infragistics.Win.UltraWinGrid.CancelableCellEventHandler(this.uG_DanhSach_BeforeCellActivate);
             this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
             this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
             // 
@@ -96,35 +99,35 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem1.Text = "Thêm dòng";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem2.Text = "Xóa dòng";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
             // 
             // menuStrip_luulai
             // 
             this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_luulai.Text = "Lưu lại";
             this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // menuStrip_dong
             // 
             this.menuStrip_dong.Name = "menuStrip_dong";
-            this.menuStrip_dong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_dong.Size = new System.Drawing.Size(136, 22);
             this.menuStrip_dong.Text = "Đóng";
             this.menuStrip_dong.Click += new System.EventHandler(this.menuStrip_dong_Click);
             // 
@@ -195,6 +198,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnInds);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnXoa);
             this.panel1.Controls.Add(this.btnGhi);
@@ -207,6 +211,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1079, 64);
             this.panel1.TabIndex = 5;
+            // 
+            // btnInds
+            // 
+            this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInds.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInds.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnInds.Location = new System.Drawing.Point(478, 16);
+            this.btnInds.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnInds.Name = "btnInds";
+            this.btnInds.Size = new System.Drawing.Size(100, 30);
+            this.btnInds.TabIndex = 26;
+            this.btnInds.Text = "In (F10)";
+            this.btnInds.UseVisualStyleBackColor = true;
+            this.btnInds.Click += new System.EventHandler(this.btnInds_Click);
             // 
             // lbInsert
             // 
@@ -259,5 +277,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
+        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter;
+        private System.Windows.Forms.Button btnInds;
     }
 }
