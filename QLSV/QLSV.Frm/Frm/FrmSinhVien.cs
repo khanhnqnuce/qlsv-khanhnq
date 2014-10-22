@@ -272,17 +272,28 @@ namespace QLSV.Frm.Frm
                     };
                     _listUpdate.Add(hs);
                 }
-                //if (uG_DanhSach.ActiveCell.Column.Key != "MaKhoa") return;
-                //var a = (UltraCombo)uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
-                //if (!string.IsNullOrEmpty(uG_DanhSach.ActiveCell.Value.ToString()))
-                //{
-                //    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                //    a.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, uG_DanhSach.ActiveCell.Value);
-                //}
-                //else
-                //{
-                //    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void uG_DanhSach_BeforeCellActivate(object sender, CancelableCellEventArgs e)
+        {
+            try
+            {
+                if (e.Cell.Column.Key != "MaLop") return;
+                var cbo = (UltraCombo)uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
+                if (string.IsNullOrEmpty(e.Cell.Row.Cells["MaKhoa"].Value.ToString()))
+                {
+                    cbo.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                    return;
+                }
+                cbo.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
+                cbo.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals,
+                e.Cell.Row.Cells["MaKhoa"].Value);
             }
             catch (Exception ex)
             {
@@ -420,26 +431,12 @@ namespace QLSV.Frm.Frm
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void uG_DanhSach_BeforeCellActivate(object sender, CancelableCellEventArgs e)
+        private void btnNapDuLieu_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (e.Cell.Column.Key != "MaLop") return;
-                var a = (UltraCombo) uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
-                if (string.IsNullOrEmpty(e.Cell.Row.Cells["MaKhoa"].Value.ToString()))
-                {
-                    a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                    return;
-                }
-                a.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                a.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals,
-                e.Cell.Row.Cells["MaKhoa"].Value);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
+            var frmNapDuLieu = new FrmNapDuLieu(6);
+            frmNapDuLieu.ShowDialog();
+            var b = frmNapDuLieu.ResultValue;
+            
         }
 
     }

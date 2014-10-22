@@ -14,24 +14,17 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmNapDuLieu : Form
     {
-        public bool RadioXoavathem = false;
-        public int ViTriHeader = 2;
-        public bool Checkclose = false;
-        public static List<InputParamExcel> ListInput = new List<InputParamExcel>();
-        public static DataTable ResultValue = new DataTable();
+        public DataTable ResultValue = new DataTable();
         private readonly bool _multiSheet;
-        public int FormYeuCau { get; set; }
-        public DataSet OutPut = new DataSet();
         private Thread _threadLoad;
-
-        public FrmNapDuLieu(List<InputParamExcel> lstInput1)
+        readonly int _socot;
+        public FrmNapDuLieu(int count)
         {
             try
             {
                 InitializeComponent();
-                ListInput = lstInput1;
-                ViTriHeader = 2;
                 _multiSheet = false;
+                _socot = count;
             }
             catch (Exception ex)
             {
@@ -52,13 +45,13 @@ namespace QLSV.Frm.Frm
                 if (Path.GetExtension(txtTenFile.Text) == ".xlsx")
                 {
                     if (!_multiSheet)
-                        Read_2007or2010(ViTriHeader, ListInput);
+                        Read_2007or2010(_socot);
                     Invoke((MethodInvoker)Close);
                 }
                 else
                 {
                     if (!_multiSheet)
-                        Read_2003(ViTriHeader, ListInput);
+                        Read_2003(_socot);
                     Invoke((MethodInvoker)Close);
                 }
             }
@@ -74,7 +67,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void Read_2003(int positionHeader, List<InputParamExcel> inputCot)
+        private void Read_2003(int count)
         {
             try
             {
@@ -98,43 +91,17 @@ namespace QLSV.Frm.Frm
 
                 #region Khởi tạo datatable
                 var result = new DataTable();
-                foreach (var item in inputCot)
-                {
-                    switch (item.ThuocTinh)
-                    {
-                        case InputTypeExcel.Double:
-                            result.Columns.Add(item.Ten, typeof(double));
-                            break;
-                        case InputTypeExcel.Integer:
-                            result.Columns.Add(item.Ten, typeof(int));
-                            break;
-                        case InputTypeExcel.String:
-                            result.Columns.Add(item.Ten, typeof(string));
-                            break;
-                        case InputTypeExcel.DateTime:
-                            result.Columns.Add(item.Ten, typeof(DateTime));
-                            break;
-                        case InputTypeExcel.Boolean:
-                            result.Columns.Add(item.Ten, typeof(bool));
-                            break;
-                    }
-                }
                 #endregion
 
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 100;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 var listHeader = new List<string>();
-                var listCheckColumn = new List<bool>();
-                for (var i = 0; i < inputCot.Count; i++)
-                {
-                    listCheckColumn.Add(false);
-                }
+
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    var indexColumnInput = 0;
                     var row = sheet.GetRow(i);
-                    if (i == startRows + positionHeader - 1)
+                    if (i == 0)
                     {
                         startCol = row.FirstCellNum;
                         endCol = row.LastCellNum;
@@ -144,73 +111,26 @@ namespace QLSV.Frm.Frm
                     for (var j = startCol; j < endCol; j++)
                     {
                         var cell = row.GetCell(j);
-                        if (i < startRows + positionHeader - 1) continue;
-                        if (i == startRows + positionHeader - 1)
+                        if (i == 0)
                         {
+                            if (string.IsNullOrEmpty(cell.ToString())) continue;
                             listHeader.Add(cell.ToString());
+                            result.Columns.Add(cell.ToString(), typeof(string));
                         }
                         else
                         {
                             isHeader = false;
-                            if (listHeader[j] == inputCot[indexColumnInput].Ten)
+                            if (!string.IsNullOrEmpty(cell.ToString()))
                             {
-                                listCheckColumn[indexColumnInput] = true;
-                                try
-                                {
-                                    switch (inputCot[indexColumnInput].ThuocTinh)
-                                    {
-                                        #region Get data
-                                        case InputTypeExcel.Double:
-                                            destRow[inputCot[indexColumnInput].Ten] = cell.CellType == CellType.Numeric
-                                                ? cell.NumericCellValue
-                                                : double.Parse(cell.ToString());
-                                            break;
-                                        case InputTypeExcel.Integer:
-                                            destRow[inputCot[indexColumnInput].Ten] = cell.CellType == CellType.Numeric
-                                                ? (int)cell.NumericCellValue
-                                                : int.Parse(cell.ToString());
-                                            break;
-                                        case InputTypeExcel.String:
-                                            destRow[inputCot[indexColumnInput].Ten] = cell == null ? "" : cell.ToString();
-                                            break;
-                                        case InputTypeExcel.DateTime:
-                                            if (cell.CellType == CellType.Numeric)
-                                            {
-                                                destRow[inputCot[indexColumnInput].Ten] = cell.DateCellValue;
-                                            }
-                                            else
-                                            {
-                                                var date = cell.ToString().Split('/');
-                                                destRow[inputCot[indexColumnInput].Ten] = new DateTime(int.Parse(date[2]),
-                                                    int.Parse(date[1]), int.Parse(date[0]));
-                                            }
-                                            break;
-                                        case InputTypeExcel.Boolean:
-                                            var strBoolean = cell.ToString();
-                                            if (cell.CellType == CellType.Boolean)
-                                                destRow[inputCot[indexColumnInput].Ten] = cell.BooleanCellValue;
-                                            else if (!string.IsNullOrEmpty(strBoolean)
-                                                && strBoolean.ToLower() == "x")
-                                                destRow[inputCot[indexColumnInput].Ten] = true;
-                                            else
-                                                destRow[inputCot[indexColumnInput].Ten] = false;
-                                            break;
-                                        #endregion
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    ResultValue = null;
-                                    throw new Exception(FormResource.msgSaiDuLieuTrongFile, ex);
-                                }
-                                indexColumnInput += 1;
+                                destRow[listHeader[j]] = cell.ToString();
                             }
+                            else destRow[listHeader[j]] = "";
                         }
                     }
                     if (!isHeader)
                     {
                         result.Rows.Add(destRow);
-                        if (endCol - startCol < inputCot.Count || listCheckColumn.Contains(false))
+                        if (endCol - startCol < count)
                         {
                             MessageBox.Show(FormResource.msgThieuCotTrongFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ResultValue = null;
@@ -235,7 +155,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void Read_2007or2010(int positionHeader, List<InputParamExcel> inputCot)
+        private void Read_2007or2010(int count)
         {
             try
             {
@@ -255,115 +175,39 @@ namespace QLSV.Frm.Frm
                 stream.Close();
                 var oSheet = excelPkg.Workbook.Worksheets[1];
                 var startRows = oSheet.Dimension.Start.Row;
-                var startCols = oSheet.Dimension.Start.Column;
                 var endRows = oSheet.Dimension.End.Row;
+                var startCols = oSheet.Dimension.Start.Column;
                 var endCols = oSheet.Dimension.End.Column;
-
-                #region Khởi tạo datatable
                 var result = new DataTable();
-                foreach (var item in inputCot)
-                {
-                    switch (item.ThuocTinh)
-                    {
-                        case InputTypeExcel.Double:
-                            result.Columns.Add(item.Ten, typeof(double));
-                            break;
-                        case InputTypeExcel.Integer:
-                            result.Columns.Add(item.Ten, typeof(int));
-                            break;
-                        case InputTypeExcel.String:
-                            result.Columns.Add(item.Ten, typeof(string));
-                            break;
-                        case InputTypeExcel.DateTime:
-                            result.Columns.Add(item.Ten, typeof(DateTime));
-                            break;
-                        case InputTypeExcel.Boolean:
-                            result.Columns.Add(item.Ten, typeof(bool));
-                            break;
-                    }
-                }
-                #endregion
 
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 100;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 var listHeader = new List<string>();
-                var listCheckColumn = new List<bool>();
-                for (var i = 0; i < inputCot.Count; i++)
-                {
-                    listCheckColumn.Add(false);
-                }
+                
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    var indexColumnInput = 0;
                     var destRow = result.NewRow();
                     var isHeader = true;
                     for (var j = startCols; j <= endCols; j++)
                     {
-                        if (i < startRows + positionHeader - 1) continue;
-                        if (i == startRows + positionHeader - 1)
+                        if (i == 1)
                         {
+
+                            if (string.IsNullOrEmpty(oSheet.Cells[i, j].GetValue<string>())) continue;
                             listHeader.Add(oSheet.Cells[i, j].GetValue<string>());
+                            result.Columns.Add(oSheet.Cells[i, j].GetValue<string>(), typeof(string));
                         }
                         else
                         {
                             isHeader = false;
-                            if (listHeader[j - startCols] == inputCot[indexColumnInput].Ten)
-                            {
-                                listCheckColumn[indexColumnInput] = true;
-                                try
-                                {
-                                    switch (inputCot[indexColumnInput].ThuocTinh)
-                                    {
-                                        #region Get data
-                                        case InputTypeExcel.Double:
-                                            destRow[inputCot[indexColumnInput].Ten] = oSheet.Cells[i, j].GetValue<double>();
-                                            break;
-                                        case InputTypeExcel.Integer:
-                                            //destRow[inputCot[indexColumnInput].Ten] = oSheet.Cells[i, j].GetValue<int>();
-                                            destRow[inputCot[indexColumnInput].Ten] = int.Parse(oSheet.Cells[i, j].Value.ToString());
-                                            break;
-                                        case InputTypeExcel.String:
-                                            destRow[inputCot[indexColumnInput].Ten] = oSheet.Cells[i, j].GetValue<string>();
-                                            break;
-                                        case InputTypeExcel.DateTime:
-                                            var typeCell = oSheet.Cells[i, j].Value.GetType().FullName;
-                                            if (typeCell.Equals("System.Double") || typeCell.Equals("System.DateTime"))
-                                            {
-                                                destRow[inputCot[indexColumnInput].Ten] = oSheet.Cells[i, j].GetValue<DateTime>();
-                                            }
-                                            else
-                                            {
-                                                var date = oSheet.Cells[i, j].GetValue<string>().Split('/');
-                                                destRow[inputCot[indexColumnInput].Ten] = new DateTime(int.Parse(date[2]),
-                                                    int.Parse(date[1]), int.Parse(date[0]));
-                                            }
-                                            break;
-                                        case InputTypeExcel.Boolean:
-                                            var strBoolean = oSheet.Cells[i, j].GetValue<string>();
-                                            if (!string.IsNullOrEmpty(strBoolean)
-                                                && strBoolean.ToLower() == "x")
-                                                destRow[inputCot[indexColumnInput].Ten] = true;
-                                            else
-                                                destRow[inputCot[indexColumnInput].Ten] = oSheet.Cells[i, j].GetValue<bool>();
-                                            break;
-                                        #endregion
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    MessageBox.Show(FormResource.msgSaiDuLieuTrongFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    ResultValue = null;
-                                    return;
-                                }
-                                indexColumnInput += 1;
-                            }
+                            destRow[listHeader[j-1]] = oSheet.Cells[i, j].GetValue<string>();
                         }
                     }
                     if (!isHeader)
                     {
                         result.Rows.Add(destRow);
-                        if (endCols - startCols + 1 < inputCot.Count || listCheckColumn.Contains(false))
+                        if (endCols - startCols + 1 < count)
                         {
                             MessageBox.Show(FormResource.msgThieuCotTrongFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ResultValue = null;
@@ -483,7 +327,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                Checkclose = true;
                 ResultValue = null;
                 Close();
             }

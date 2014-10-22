@@ -46,6 +46,8 @@
             this.btnInds = new System.Windows.Forms.Button();
             this.lbInsert = new System.Windows.Forms.Label();
             this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
+            this.btnNapDuLieu = new System.Windows.Forms.Button();
+            this.sfdFileMau = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -198,6 +200,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnNapDuLieu);
             this.panel1.Controls.Add(this.btnInds);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnXoa);
@@ -237,6 +240,18 @@
             this.lbInsert.Size = new System.Drawing.Size(137, 15);
             this.lbInsert.TabIndex = 18;
             this.lbInsert.Text = "Nhấn Insert: Thêm dòng";
+            // 
+            // btnNapDuLieu
+            // 
+            this.btnNapDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNapDuLieu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNapDuLieu.Location = new System.Drawing.Point(360, 16);
+            this.btnNapDuLieu.Name = "btnNapDuLieu";
+            this.btnNapDuLieu.Size = new System.Drawing.Size(100, 30);
+            this.btnNapDuLieu.TabIndex = 27;
+            this.btnNapDuLieu.Text = "Nạp dữ liệu (F8)";
+            this.btnNapDuLieu.UseVisualStyleBackColor = true;
+            this.btnNapDuLieu.Click += new System.EventHandler(this.btnNapDuLieu_Click);
             // 
             // FrmSinhVien
             // 
@@ -279,5 +294,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
         private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter;
         private System.Windows.Forms.Button btnInds;
+        private System.Windows.Forms.Button btnNapDuLieu;
+        private System.Windows.Forms.SaveFileDialog sfdFileMau;
     }
 }
