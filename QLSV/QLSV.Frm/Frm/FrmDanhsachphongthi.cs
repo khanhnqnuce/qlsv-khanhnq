@@ -188,7 +188,7 @@ namespace QLSV.Frm.Frm
             {
                 if (Kiemtrafile())
                 {
-                    MessageBox.Show(@"Đóng File đang mở.", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
