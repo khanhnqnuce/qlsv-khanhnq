@@ -156,7 +156,7 @@ namespace QLSV.Frm.Frm
                         _listAdd.Add(hs);
                     }
                 }
-                QuanlysinhvienSevice.Them(_listAdd);
+                QuanlysinhvienSevice.ThemAll(_listAdd);
                 QuanlysinhvienSevice.SuaTaiKhoan(_listUpdate);
                 QuanlysinhvienSevice.SuaMatKhau(_listUpdatepass);
                 QuanlysinhvienSevice.Xoa(IdDelete,"Taikhoan");

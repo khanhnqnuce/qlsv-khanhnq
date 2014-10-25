@@ -43,11 +43,12 @@
             this.btnGhi = new System.Windows.Forms.Button();
             this.lbXoadong = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNapDuLieu = new System.Windows.Forms.Button();
             this.btnInds = new System.Windows.Forms.Button();
             this.lbInsert = new System.Windows.Forms.Label();
             this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
-            this.btnNapDuLieu = new System.Windows.Forms.Button();
             this.sfdFileMau = new System.Windows.Forms.SaveFileDialog();
+            this.napDữLiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,7 +70,7 @@
             // uG_DanhSach
             // 
             this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
-            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
             this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -83,53 +84,53 @@
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
-            this.uG_DanhSach.BeforeCellActivate += new Infragistics.Win.UltraWinGrid.CancelableCellEventHandler(this.uG_DanhSach_BeforeCellActivate);
             this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
             this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
             // 
             // menu_ug
             // 
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.napDữLiệuToolStripMenuItem,
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
             this.menuStrip_luulai,
             this.menuStrip_Huy,
             this.menuStrip_dong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(137, 114);
+            this.menu_ug.Size = new System.Drawing.Size(153, 158);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Thêm dòng";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Xóa dòng";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
             // 
             // menuStrip_luulai
             // 
             this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_luulai.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_luulai.Text = "Lưu lại";
             this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // menuStrip_dong
             // 
             this.menuStrip_dong.Name = "menuStrip_dong";
-            this.menuStrip_dong.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_dong.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_dong.Text = "Đóng";
             this.menuStrip_dong.Click += new System.EventHandler(this.menuStrip_dong_Click);
             // 
@@ -215,6 +216,18 @@
             this.panel1.Size = new System.Drawing.Size(1079, 64);
             this.panel1.TabIndex = 5;
             // 
+            // btnNapDuLieu
+            // 
+            this.btnNapDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNapDuLieu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNapDuLieu.Location = new System.Drawing.Point(360, 16);
+            this.btnNapDuLieu.Name = "btnNapDuLieu";
+            this.btnNapDuLieu.Size = new System.Drawing.Size(100, 30);
+            this.btnNapDuLieu.TabIndex = 27;
+            this.btnNapDuLieu.Text = "Nạp dữ liệu (F8)";
+            this.btnNapDuLieu.UseVisualStyleBackColor = true;
+            this.btnNapDuLieu.Click += new System.EventHandler(this.btnNapDuLieu_Click);
+            // 
             // btnInds
             // 
             this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -241,17 +254,12 @@
             this.lbInsert.TabIndex = 18;
             this.lbInsert.Text = "Nhấn Insert: Thêm dòng";
             // 
-            // btnNapDuLieu
+            // napDữLiệuToolStripMenuItem
             // 
-            this.btnNapDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNapDuLieu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNapDuLieu.Location = new System.Drawing.Point(360, 16);
-            this.btnNapDuLieu.Name = "btnNapDuLieu";
-            this.btnNapDuLieu.Size = new System.Drawing.Size(100, 30);
-            this.btnNapDuLieu.TabIndex = 27;
-            this.btnNapDuLieu.Text = "Nạp dữ liệu (F8)";
-            this.btnNapDuLieu.UseVisualStyleBackColor = true;
-            this.btnNapDuLieu.Click += new System.EventHandler(this.btnNapDuLieu_Click);
+            this.napDữLiệuToolStripMenuItem.Name = "napDữLiệuToolStripMenuItem";
+            this.napDữLiệuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.napDữLiệuToolStripMenuItem.Text = "Nap dữ liệu";
+            this.napDữLiệuToolStripMenuItem.Click += new System.EventHandler(this.napDữLiệuToolStripMenuItem_Click);
             // 
             // FrmSinhVien
             // 
@@ -266,6 +274,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmSinhVien";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -296,5 +305,6 @@
         private System.Windows.Forms.Button btnInds;
         private System.Windows.Forms.Button btnNapDuLieu;
         private System.Windows.Forms.SaveFileDialog sfdFileMau;
+        private System.Windows.Forms.ToolStripMenuItem napDữLiệuToolStripMenuItem;
     }
 }

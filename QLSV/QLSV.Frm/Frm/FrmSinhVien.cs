@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
@@ -37,12 +38,14 @@ namespace QLSV.Frm.Frm
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof (int));
-            table.Columns.Add("STT", typeof (int));
+            table.Columns.Add("STT", typeof (string));
             table.Columns.Add("MaSinhVien", typeof (string));
             table.Columns.Add("HoSinhVien", typeof (string));
             table.Columns.Add("TenSinhVien", typeof (string));
+            table.Columns.Add("NgaySinh", typeof(string));
+            table.Columns.Add("MaLop", typeof(string));
             table.Columns.Add("MaKhoa", typeof (string));
-            table.Columns.Add("MaLop", typeof (string));
+            
             return table;
         }
 
@@ -50,12 +53,30 @@ namespace QLSV.Frm.Frm
         {
             try
             {
+                var listLop = QuanlysinhvienSevice.Load<Lop>();
+                var listKhoa = QuanlysinhvienSevice.Load<Khoa>();
+                var malop = "";
+                var idKhoa = 0;
+                var makhoa = "";
                 var table = GetTable();
                 var danhsach = QuanlysinhvienSevice.Load<SinhVien>();
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
-                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.Lop.IdKhoa, hs.Lop.ID);
+                    foreach (var item in listLop.Where(item => hs.Lop.ID == item.ID))
+                    {
+                        malop = item.MaLop;
+                        idKhoa = item.IdKhoa;
+                        goto add1;
+                    }
+                    add1:
+                    foreach (var item in listKhoa.Where(item => item.ID == idKhoa))
+                    {
+                        makhoa = item.TenKhoa;
+                        goto add2;
+                    }
+                    add2:
+                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, malop,makhoa);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -107,19 +128,21 @@ namespace QLSV.Frm.Frm
                 foreach (var row in uG_DanhSach.Rows)
                 {
                     var id = row.Cells["ID"].Value.ToString();
+                    if (!string.IsNullOrEmpty(id)) continue;
                     var hs = new SinhVien
                     {
                         MaSinhVien = row.Cells["MaSinhVien"].Text,
                         HoSinhVien = row.Cells["HoSinhVien"].Text,
                         TenSinhVien = row.Cells["TenSinhVien"].Text,
-                        IdLop = int.Parse(row.Cells["MaLop"].Value.ToString()),
+                        NgaySinh = row.Cells["NgaySinh"].Text,
+                        IdLop = SinhVienSql.LoadLop(row.Cells["MaLop"].Text).ID,
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        _listAdd.Add(hs);
-                    }
+                    _listAdd.Add(hs);
                 }
-                QuanlysinhvienSevice.Them(_listAdd);
+                var a = DateTime.Now.Minute;
+                var v = DateTime.Now.Second;
+                SinhVienSql.ThemSinhVien(_listAdd);
+                MessageBox.Show((DateTime.Now.Minute - a) + ":" + (DateTime.Now.Second - v));
                 QuanlysinhvienSevice.Sua(_listUpdate);
                 QuanlysinhvienSevice.Xoa(IdDelete, "SinhVien");
 
@@ -163,6 +186,20 @@ namespace QLSV.Frm.Frm
             }
         }
 
+        private void Napdulieu()
+        {
+            var stt = uG_DanhSach.Rows.Count;
+            var frmNapDuLieu = new FrmNapDuLieu(stt);
+            frmNapDuLieu.ShowDialog();
+            var a = DateTime.Now.Minute;
+            var v = DateTime.Now.Second;
+            var b = frmNapDuLieu.ResultValue;
+            var table = (DataTable)uG_DanhSach.DataSource;
+            table.Merge(b);
+            uG_DanhSach.DataSource = table;
+            MessageBox.Show((DateTime.Now.Minute - a) + @":" + (DateTime.Now.Second - v));
+        }
+
         #endregion
 
         #region Event uG
@@ -179,11 +216,10 @@ namespace QLSV.Frm.Frm
                 band.Columns["STT"].MaxWidth = 70;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["MaKhoa"].Loadcbokhoa();
-                band.Columns["MaLop"].LoadcboLop();
                 band.Columns["MaSinhVien"].MaxWidth = 150;
                 band.Columns["HoSinhVien"].MaxWidth = 200;
                 band.Columns["TenSinhVien"].MaxWidth = 150;
+                //band.Columns["NgaySinh"].MaskInput = @"dd/mm/yyyy";
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
@@ -191,6 +227,7 @@ namespace QLSV.Frm.Frm
                 band.Columns["MaSinhVien"].Header.Caption = FormResource.txtMasinhvien;
                 band.Columns["HoSinhVien"].Header.Caption = FormResource.txtHosinhvien;
                 band.Columns["TenSinhVien"].Header.Caption = FormResource.txtTensinhvien;
+                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
                 band.Columns["MaKhoa"].Header.Caption = FormResource.txtKhoaquanly;
                 band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;
 
@@ -259,7 +296,8 @@ namespace QLSV.Frm.Frm
                         item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
                         item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
                         item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
-                        item.IdLop = int.Parse(uG_DanhSach.ActiveRow.Cells["MaLop"].Value.ToString());
+                        item.NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text;
+                        item.IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID;
                         return;
                     }
                     var hs = new SinhVien
@@ -268,7 +306,8 @@ namespace QLSV.Frm.Frm
                         MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
                         HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
                         TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
-                        IdLop = int.Parse(uG_DanhSach.ActiveRow.Cells["MaLop"].Value.ToString())
+                        NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text,
+                        IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID
                     };
                     _listUpdate.Add(hs);
                 }
@@ -280,31 +319,14 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void uG_DanhSach_BeforeCellActivate(object sender, CancelableCellEventArgs e)
-        {
-            try
-            {
-                if (e.Cell.Column.Key != "MaLop") return;
-                var cbo = (UltraCombo)uG_DanhSach.DisplayLayout.Bands[0].Columns["MaLop"].EditorComponent;
-                if (string.IsNullOrEmpty(e.Cell.Row.Cells["MaKhoa"].Value.ToString()))
-                {
-                    cbo.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                    return;
-                }
-                cbo.DisplayLayout.Bands[0].ColumnFilters.ClearAllFilters();
-                cbo.DisplayLayout.Bands[0].ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals,
-                e.Cell.Row.Cells["MaKhoa"].Value);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
         #endregion
 
         #region Button
+
+        private void btnNapDuLieu_Click(object sender, EventArgs e)
+        {
+            Napdulieu();
+        }
 
         private void btnGhi_Click(object sender, EventArgs e)
         {
@@ -401,6 +423,11 @@ namespace QLSV.Frm.Frm
             Save();
         }
 
+        private void napDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Napdulieu();
+        }
+
         #endregion
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -430,14 +457,8 @@ namespace QLSV.Frm.Frm
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        private void btnNapDuLieu_Click(object sender, EventArgs e)
-        {
-            var frmNapDuLieu = new FrmNapDuLieu(6);
-            frmNapDuLieu.ShowDialog();
-            var b = frmNapDuLieu.ResultValue;
-            
-        }
-
+        
     }
+
 }
+

@@ -6,7 +6,7 @@
     </id>
     <property name="MaKyThi" column="MaKyThi"  type="string" length="255" />
     <property name="TenKyThi" column="TenKyThi"  type="string" length="255" />
-    <property name="NgayThi" column="NgayThi"  type="DateTime" />
+    <property name="NgayThi" column="NgayThi"  type="string" length="50" />
     <property name="ThoiGianLamBai" column="ThoiGianLamBai"  type="int" />
     <property name="ThoiGianBatDau" column="ThoiGianBatDau"  type="string" length="255" />
     <property name="ThoiGianKetThuc" column="ThoiGianKetThuc"  type="string" length="255" />

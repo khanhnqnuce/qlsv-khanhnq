@@ -17,14 +17,14 @@ namespace QLSV.Frm.Frm
         public DataTable ResultValue = new DataTable();
         private readonly bool _multiSheet;
         private Thread _threadLoad;
-        readonly int _socot;
-        public FrmNapDuLieu(int count)
+        private int _stt;
+        public FrmNapDuLieu(int stt)
         {
             try
             {
                 InitializeComponent();
                 _multiSheet = false;
-                _socot = count;
+                _stt = stt;
             }
             catch (Exception ex)
             {
@@ -37,6 +37,20 @@ namespace QLSV.Frm.Frm
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        private DataTable GetTable()
+        {
+            var table = new DataTable();
+            table.Columns.Add("STT", typeof(string));
+            table.Columns.Add("MaSinhVien", typeof(string));
+            table.Columns.Add("HoSinhVien", typeof(string));
+            table.Columns.Add("TenSinhVien", typeof(string));
+            table.Columns.Add("NgaySinh", typeof(string));
+            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("MaKhoa", typeof(string));
+            return table;
+        }
+
         private void LoadData(object obj)
         {
             try
@@ -45,14 +59,14 @@ namespace QLSV.Frm.Frm
                 if (Path.GetExtension(txtTenFile.Text) == ".xlsx")
                 {
                     if (!_multiSheet)
-                        Read_2007or2010(_socot);
-                    Invoke((MethodInvoker)Close);
+                        Read_2007or2010();
+                    Invoke((MethodInvoker) Close);
                 }
                 else
                 {
                     if (!_multiSheet)
-                        Read_2003(_socot);
-                    Invoke((MethodInvoker)Close);
+                        Read_2003();
+                    Invoke((MethodInvoker) Close);
                 }
             }
             catch (Exception ex)
@@ -67,7 +81,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void Read_2003(int count)
+        private void Read_2003()
         {
             try
             {
@@ -78,7 +92,8 @@ namespace QLSV.Frm.Frm
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(FormResource.msgKiemTraFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(FormResource.msgKiemTraFile, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     ResultValue = null;
                     return;
                 }
@@ -87,59 +102,18 @@ namespace QLSV.Frm.Frm
                 var sheet = excel.GetSheetAt(0);
                 var startRows = sheet.FirstRowNum;
                 var endRows = sheet.LastRowNum;
-                int startCol = 0, endCol = 0;
-
-                #region Khởi tạo datatable
-                var result = new DataTable();
-                #endregion
-
-                var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 100;
-                upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
-                var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
-                var listHeader = new List<string>();
-
+                var result = GetTable();
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    var row = sheet.GetRow(i);
-                    if (i == 0)
-                    {
-                        startCol = row.FirstCellNum;
-                        endCol = row.LastCellNum;
-                    }
-                    var destRow = result.NewRow();
-                    var isHeader = true;
-                    for (var j = startCol; j < endCol; j++)
-                    {
-                        var cell = row.GetCell(j);
-                        if (i == 0)
-                        {
-                            if (string.IsNullOrEmpty(cell.ToString())) continue;
-                            listHeader.Add(cell.ToString());
-                            result.Columns.Add(cell.ToString(), typeof(string));
-                        }
-                        else
-                        {
-                            isHeader = false;
-                            if (!string.IsNullOrEmpty(cell.ToString()))
-                            {
-                                destRow[listHeader[j]] = cell.ToString();
-                            }
-                            else destRow[listHeader[j]] = "";
-                        }
-                    }
-                    if (!isHeader)
-                    {
-                        result.Rows.Add(destRow);
-                        if (endCol - startCol < count)
-                        {
-                            MessageBox.Show(FormResource.msgThieuCotTrongFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ResultValue = null;
-                            return;
-                        }
-                    }
-                    upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
+                    if (i == 0) continue;
+                    result.Rows.Add(_stt++,
+                        sheet.GetRow(i).GetCell(0).ToString(),
+                        sheet.GetRow(i).GetCell(1).ToString(),
+                        sheet.GetRow(i).GetCell(2).ToString(),
+                        sheet.GetRow(i).GetCell(3).ToString(),
+                        sheet.GetRow(i).GetCell(4).ToString(),
+                        sheet.GetRow(i).GetCell(5).ToString());
                 }
-                upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
                 ResultValue = result;
             }
             catch (Exception ex)
@@ -155,7 +129,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void Read_2007or2010(int count)
+        private void Read_2007or2010()
         {
             try
             {
@@ -166,7 +140,8 @@ namespace QLSV.Frm.Frm
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(FormResource.msgKiemTraFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(FormResource.msgKiemTraFile, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     ResultValue = null;
                     return;
                 }
@@ -176,47 +151,18 @@ namespace QLSV.Frm.Frm
                 var oSheet = excelPkg.Workbook.Worksheets[1];
                 var startRows = oSheet.Dimension.Start.Row;
                 var endRows = oSheet.Dimension.End.Row;
-                var startCols = oSheet.Dimension.Start.Column;
-                var endCols = oSheet.Dimension.End.Column;
-                var result = new DataTable();
-
-                var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 100;
-                upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
-                var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
-                var listHeader = new List<string>();
-                
+                var result = GetTable();
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    var destRow = result.NewRow();
-                    var isHeader = true;
-                    for (var j = startCols; j <= endCols; j++)
-                    {
-                        if (i == 1)
-                        {
-
-                            if (string.IsNullOrEmpty(oSheet.Cells[i, j].GetValue<string>())) continue;
-                            listHeader.Add(oSheet.Cells[i, j].GetValue<string>());
-                            result.Columns.Add(oSheet.Cells[i, j].GetValue<string>(), typeof(string));
-                        }
-                        else
-                        {
-                            isHeader = false;
-                            destRow[listHeader[j-1]] = oSheet.Cells[i, j].GetValue<string>();
-                        }
-                    }
-                    if (!isHeader)
-                    {
-                        result.Rows.Add(destRow);
-                        if (endCols - startCols + 1 < count)
-                        {
-                            MessageBox.Show(FormResource.msgThieuCotTrongFile, FormResource.MsgCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ResultValue = null;
-                            return;
-                        }
-                    }
-                    upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
+                    if (i == 1) continue;
+                    result.Rows.Add(_stt++,
+                        oSheet.Cells[i, 1].GetValue<string>(),
+                        oSheet.Cells[i, 2].GetValue<string>(),
+                        oSheet.Cells[i, 3].GetValue<string>(),
+                        oSheet.Cells[i, 4].GetValue<string>(),
+                        oSheet.Cells[i, 5].GetValue<string>(),
+                        oSheet.Cells[i, 6].GetValue<string>());
                 }
-                upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
                 ResultValue = result;
             }
             catch (Exception ex)
@@ -257,7 +203,7 @@ namespace QLSV.Frm.Frm
                         _threadLoad.Start();
                     }
                     else if (_threadLoad.ThreadState == ThreadState.Aborted
-                        || _threadLoad.ThreadState == ThreadState.Stopped)
+                             || _threadLoad.ThreadState == ThreadState.Stopped)
                     {
                         _threadLoad = new Thread(LoadData)
                         {

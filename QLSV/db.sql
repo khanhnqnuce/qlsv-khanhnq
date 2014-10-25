@@ -38,9 +38,8 @@ go
 Create table Khoa
 (
 	ID int identity(1,1),
-	MaKhoa nvarchar(50) not null,
-	TenKhoa nvarchar(255) not null,	
-	constraint UQ_MaKhoa unique(MaKhoa),
+	MaKhoa nvarchar(50),
+	TenKhoa nvarchar(255) not null,
 	CONSTRAINT PK_Khoa  primary key(ID),
 )
 go
@@ -66,4 +65,5 @@ Create table SinhVien
 	CONSTRAINT UQ_MaSinhVien unique(MaSinhVien),
 	CONSTRAINT FK_SinhVien_Lop FOREIGN KEY (IdLop) REFERENCES Lop(ID)
 )
+-- TRUNCATE TABLE SinhVien
 --ALTER TABLE DiemSV ADD CONSTRAINT Ma FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)

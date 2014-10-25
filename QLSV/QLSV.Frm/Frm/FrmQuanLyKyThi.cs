@@ -11,7 +11,6 @@ using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
-using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm
 {
@@ -110,7 +109,7 @@ namespace QLSV.Frm.Frm
                     {
                         MaKyThi = row.Cells["MaKyThi"].Text,
                         TenKyThi = row.Cells["TenKyThi"].Text,
-                        NgayThi = (DateTime) row.Cells["NgayThi"].Value,
+                        NgayThi = row.Cells["NgayThi"].Text,
                         ThoiGianLamBai = int.Parse(row.Cells["ThoiGianLamBai"].Text),
                         ThoiGianBatDau = row.Cells["ThoiGianBatDau"].Text,
                         ThoiGianKetThuc = row.Cells["ThoiGianKetThuc"].Text,
@@ -120,7 +119,7 @@ namespace QLSV.Frm.Frm
                         _listAdd.Add(hs);
                     }
                 }
-                QuanlysinhvienSevice.Them(_listAdd);
+                QuanlysinhvienSevice.ThemAll(_listAdd);
                 QuanlysinhvienSevice.Sua(_listUpdate);
                 QuanlysinhvienSevice.Xoa(IdDelete, "Kythi");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
@@ -204,7 +203,7 @@ namespace QLSV.Frm.Frm
                     {
                         item.MaKyThi = uG_DanhSach.ActiveRow.Cells["MaKyThi"].Text;
                         item.TenKyThi = uG_DanhSach.ActiveRow.Cells["TenKyThi"].Text;
-                        item.NgayThi = (DateTime) uG_DanhSach.ActiveRow.Cells["NgayThi"].Value;
+                        item.NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text;
                         item.ThoiGianLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["ThoiGianLamBai"].Text);
                         item.ThoiGianBatDau = uG_DanhSach.ActiveRow.Cells["ThoiGianBatDau"].Text;
                         item.ThoiGianKetThuc = uG_DanhSach.ActiveRow.Cells["ThoiGianKetThuc"].Text;
@@ -215,7 +214,7 @@ namespace QLSV.Frm.Frm
                         ID = int.Parse(id),
                         MaKyThi = uG_DanhSach.ActiveRow.Cells["MaKyThi"].Text,
                         TenKyThi = uG_DanhSach.ActiveRow.Cells["TenKyThi"].Text,
-                        NgayThi = (DateTime) uG_DanhSach.ActiveRow.Cells["NgayThi"].Value,
+                        NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text,
                         ThoiGianLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["ThoiGianLamBai"].Text),
                         ThoiGianBatDau = uG_DanhSach.ActiveRow.Cells["ThoiGianBatDau"].Text,
                         ThoiGianKetThuc = uG_DanhSach.ActiveRow.Cells["ThoiGianKetThuc"].Text,

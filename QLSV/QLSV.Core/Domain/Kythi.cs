@@ -10,13 +10,7 @@ namespace QLSV.Core.Domain
 
         public virtual string TenKyThi { get; set; }
 
-        private DateTime _NgayThi;
-
-        public virtual DateTime NgayThi
-        {
-            get { return _NgayThi; }
-            set { _NgayThi = value; }
-        }
+        public virtual string NgayThi { get; set; }
 
         public virtual int ThoiGianLamBai { get; set; }
 

@@ -41,7 +41,7 @@ namespace QLSV.Core.Service
             }
         }
 
-        public static void Them<T>(IEnumerable<T> list)
+        public static void ThemAll<T>(IList<T> list)
         {
             try
             {
@@ -57,6 +57,24 @@ namespace QLSV.Core.Service
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static int Them<T>(T item)
+        {
+            try
+            {
+                using (var mySession = OpenSession())
+                {
+                    var id = (int)mySession.Save(item);
+                    mySession.Flush();
+                    return id;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return 0;
             }
         }
 

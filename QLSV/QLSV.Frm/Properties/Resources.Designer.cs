@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace QLSV.Frm.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -123,6 +126,16 @@ namespace QLSV.Frm.Properties {
         internal static System.Drawing.Bitmap logo1 {
             get {
                 object obj = ResourceManager.GetObject("logo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_loading {
+            get {
+                object obj = ResourceManager.GetObject("metro-loading", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

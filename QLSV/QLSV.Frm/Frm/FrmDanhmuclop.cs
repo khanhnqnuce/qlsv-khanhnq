@@ -113,7 +113,7 @@ namespace QLSV.Frm.Frm
                         _listAdd.Add(hs);
                     }
                 }
-                QuanlysinhvienSevice.Them(_listAdd);
+                QuanlysinhvienSevice.ThemAll(_listAdd);
                 QuanlysinhvienSevice.Sua(_listUpdate);
                 QuanlysinhvienSevice.Xoa(IdDelete, "Lop");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,

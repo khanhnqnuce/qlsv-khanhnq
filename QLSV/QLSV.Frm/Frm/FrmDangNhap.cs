@@ -90,6 +90,8 @@ namespace QLSV.Frm.Frm
                 }
                 else
                 {
+                    errormatkhau.SetError(txtMatKhau, "Sai tài khoảng hoặc mật khẩu");
+                    txtMatKhau.Clear();
                     CheckDangNhap(this, false, null);
                 }
             }

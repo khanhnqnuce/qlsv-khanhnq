@@ -129,8 +129,12 @@ namespace QLSV.Frm
 
         private void CheckDangNhap(object sender, bool checkState, Taikhoan hs)
         {
+            if (hs == null)
+            {
+                LoadDefaul(null);
+                return;
+            }
             LoadDefaul(hs.Quyen);
-            //if (hs == null) return;
             lbusername.Text = hs.HoTen;
         }
 
@@ -206,16 +210,16 @@ namespace QLSV.Frm
 
         #endregion
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (DateTime.Now.Hour > 12)
-            {
-                lbdatetime.Text = DateTime.Now.ToString();
-            }
-            else
-            {
-                lbdatetime.Text = DateTime.Now.ToString();
-            }
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    if (DateTime.Now.Hour > 12)
+        //    {
+        //        lbdatetime.Text = DateTime.Now.ToString();
+        //    }
+        //    else
+        //    {
+        //        lbdatetime.Text = DateTime.Now.ToString();
+        //    }
+        //}
     }
 }
