@@ -46,7 +46,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 var table = GetTable();
-                var danhsach = QuanlysinhvienSevice.Load<Taikhoan>();
+                var danhsach = QlsvSevice.Load<Taikhoan>();
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
@@ -156,10 +156,10 @@ namespace QLSV.Frm.Frm
                         _listAdd.Add(hs);
                     }
                 }
-                QuanlysinhvienSevice.ThemAll(_listAdd);
-                QuanlysinhvienSevice.SuaTaiKhoan(_listUpdate);
-                QuanlysinhvienSevice.SuaMatKhau(_listUpdatepass);
-                QuanlysinhvienSevice.Xoa(IdDelete,"Taikhoan");
+                QlsvSevice.ThemAll(_listAdd);
+                QlsvSevice.SuaTaiKhoan(_listUpdate);
+                QlsvSevice.SuaMatKhau(_listUpdatepass);
+                QlsvSevice.Xoa(IdDelete,"Taikhoan");
 
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -185,7 +185,7 @@ namespace QLSV.Frm.Frm
                     MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question))
                 {
-                    QuanlysinhvienSevice.XoaTaiKhoan();
+                    QlsvSevice.XoaTaiKhoan();
                     LoadForm();
                 }
             }

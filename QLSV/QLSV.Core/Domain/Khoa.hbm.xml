@@ -7,11 +7,6 @@
     <property name="MaKhoa" column="MaKhoa"  type="string" length="255" />
     <property name="TenKhoa" column="TenKhoa"  type="string" length="255" />
     
-    <set name="SinhVien" table="SinhVien" inverse="true" cascade="all" >
-      <key column="ID" not-null="true"/>
-      <one-to-many class="SinhVien"/>
-    </set>
-    
     <set name="Lop" table="Lop" inverse="true" cascade="all" >
       <key column="ID" not-null="true"/>
       <one-to-many class="Lop"/>

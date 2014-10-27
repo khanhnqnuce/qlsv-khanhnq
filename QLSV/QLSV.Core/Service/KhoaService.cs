@@ -4,7 +4,7 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.Service
 {
-    public partial class QuanlysinhvienSevice
+    public partial class QlsvSevice
     {
         public static Lop LoadLop(string ma)
         {

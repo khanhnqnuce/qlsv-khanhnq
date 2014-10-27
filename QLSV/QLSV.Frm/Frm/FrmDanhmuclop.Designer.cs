@@ -129,12 +129,12 @@
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(624, 19);
+            this.btnXoa.Location = new System.Drawing.Point(634, 19);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(89, 29);
+            this.btnXoa.Size = new System.Drawing.Size(101, 29);
             this.btnXoa.TabIndex = 20;
-            this.btnXoa.Text = "Xóa (F3)";
+            this.btnXoa.Text = "Xóa dòng (F11)";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
@@ -143,7 +143,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHuy.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnHuy.Location = new System.Drawing.Point(511, 19);
+            this.btnHuy.Location = new System.Drawing.Point(529, 19);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(89, 29);
             this.btnHuy.TabIndex = 24;
@@ -172,7 +172,7 @@
             this.btnGhi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGhi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGhi.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGhi.Location = new System.Drawing.Point(398, 19);
+            this.btnGhi.Location = new System.Drawing.Point(424, 19);
             this.btnGhi.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(89, 29);
@@ -186,7 +186,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDong.Location = new System.Drawing.Point(737, 19);
+            this.btnDong.Location = new System.Drawing.Point(751, 19);
             this.btnDong.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(89, 28);
@@ -203,9 +203,9 @@
             this.lbXoadong.Location = new System.Drawing.Point(15, 37);
             this.lbXoadong.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbXoadong.Name = "lbXoadong";
-            this.lbXoadong.Size = new System.Drawing.Size(117, 15);
+            this.lbXoadong.Size = new System.Drawing.Size(112, 15);
             this.lbXoadong.TabIndex = 19;
-            this.lbXoadong.Text = "Nhấn F11: Xóa dòng";
+            this.lbXoadong.Text = "Nhấn F3: Xóa tất cả";
             // 
             // lbInsert
             // 

@@ -181,12 +181,12 @@ namespace QLSV.Frm
 
         private void cboChonKyThi_Click(object sender, EventArgs e)
         {
-            new QuanlysinhvienSevice();
+            new QlsvSevice();
 
             var tb = new DataTable();
             tb.Columns.Add("Mã kỳ thi", typeof (string));
             tb.Columns.Add("Tên kỳ thi", typeof (string));
-            foreach (var item in QuanlysinhvienSevice.Load<Kythi>())
+            foreach (var item in QlsvSevice.Load<Kythi>())
             {
                 tb.Rows.Add(item.MaKyThi, item.TenKyThi);
             }

@@ -10,7 +10,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmDangNhap : Form
     {
-        private readonly QuanlysinhvienSevice _taikhoanSrv;
+        private readonly QlsvSevice _taikhoanSrv;
         private IList<Taikhoan> _listCheck = new List<Taikhoan>();
 
         public delegate void CustomHandler(object sender, bool checkState, Taikhoan hs);
@@ -20,7 +20,7 @@ namespace QLSV.Frm.Frm
         public FrmDangNhap()
         {
             InitializeComponent();
-            _taikhoanSrv = new QuanlysinhvienSevice();
+            _taikhoanSrv = new QlsvSevice();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                _listCheck = QuanlysinhvienSevice.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
+                _listCheck = QlsvSevice.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
                 if (_listCheck.Count > 0)
                 {
                     CheckDangNhap(this, true, _listCheck[0]);

@@ -47,7 +47,7 @@ namespace QLSV.Frm.Frm
                 _listAdd.Clear();
                 _listUpdate.Clear();
                 var table = GetTable();
-                var danhsach = QuanlysinhvienSevice.Load<PhongThi>();
+                var danhsach = QlsvSevice.Load<PhongThi>();
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
@@ -114,9 +114,9 @@ namespace QLSV.Frm.Frm
                         _listAdd.Add(hs);
                     }
                 }
-                QuanlysinhvienSevice.ThemAll(_listAdd);
-                QuanlysinhvienSevice.Sua(_listUpdate);
-                QuanlysinhvienSevice.Xoa(IdDelete, "PhongThi");
+                QlsvSevice.ThemAll(_listAdd);
+                QlsvSevice.Sua(_listUpdate);
+                QlsvSevice.Xoa(IdDelete, "PhongThi");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadForm();
@@ -142,7 +142,7 @@ namespace QLSV.Frm.Frm
                     MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question))
                 {
-                    QuanlysinhvienSevice.Xoa("PhongThi");
+                    QlsvSevice.Xoa("PhongThi");
                     LoadForm();
                 }
             }
@@ -164,7 +164,7 @@ namespace QLSV.Frm.Frm
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            Xoa();
+           DeleteRow();
         }
 
         private void btnDong_Click(object sender, EventArgs e)

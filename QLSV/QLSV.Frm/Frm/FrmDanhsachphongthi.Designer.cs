@@ -37,6 +37,7 @@
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnInds = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnGhi = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.lbInsert = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.btnInds = new System.Windows.Forms.Button();
             this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             this.menu_ug.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -57,7 +57,7 @@
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHuy.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnHuy.Location = new System.Drawing.Point(696, 19);
+            this.btnHuy.Location = new System.Drawing.Point(707, 19);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(89, 29);
             this.btnHuy.TabIndex = 24;
@@ -128,17 +128,31 @@
             this.panel1.Size = new System.Drawing.Size(916, 69);
             this.panel1.TabIndex = 10;
             // 
+            // btnInds
+            // 
+            this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInds.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnInds.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnInds.Location = new System.Drawing.Point(392, 19);
+            this.btnInds.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnInds.Name = "btnInds";
+            this.btnInds.Size = new System.Drawing.Size(89, 29);
+            this.btnInds.TabIndex = 25;
+            this.btnInds.Text = "In (F10)";
+            this.btnInds.UseVisualStyleBackColor = true;
+            this.btnInds.Click += new System.EventHandler(this.btnInds_Click);
+            // 
             // btnXoa
             // 
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(591, 19);
+            this.btnXoa.Location = new System.Drawing.Point(602, 19);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(89, 29);
             this.btnXoa.TabIndex = 20;
-            this.btnXoa.Text = "Xóa (F3)";
+            this.btnXoa.Text = "Xóa dòng (F3)";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
@@ -147,7 +161,7 @@
             this.btnGhi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGhi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGhi.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGhi.Location = new System.Drawing.Point(486, 19);
+            this.btnGhi.Location = new System.Drawing.Point(497, 19);
             this.btnGhi.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(89, 29);
@@ -161,7 +175,7 @@
             this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDong.Location = new System.Drawing.Point(801, 19);
+            this.btnDong.Location = new System.Drawing.Point(812, 19);
             this.btnDong.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(89, 28);
@@ -178,9 +192,9 @@
             this.lbXoadong.Location = new System.Drawing.Point(15, 37);
             this.lbXoadong.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbXoadong.Name = "lbXoadong";
-            this.lbXoadong.Size = new System.Drawing.Size(117, 15);
+            this.lbXoadong.Size = new System.Drawing.Size(112, 15);
             this.lbXoadong.TabIndex = 19;
-            this.lbXoadong.Text = "Nhấn F11: Xóa dòng";
+            this.lbXoadong.Text = "Nhấn F3: Xóa tất cả";
             // 
             // lbInsert
             // 
@@ -221,20 +235,6 @@
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
-            // 
-            // btnInds
-            // 
-            this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInds.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInds.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnInds.Location = new System.Drawing.Point(381, 19);
-            this.btnInds.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnInds.Name = "btnInds";
-            this.btnInds.Size = new System.Drawing.Size(89, 29);
-            this.btnInds.TabIndex = 25;
-            this.btnInds.Text = "In (F10)";
-            this.btnInds.UseVisualStyleBackColor = true;
-            this.btnInds.Click += new System.EventHandler(this.btnInds_Click);
             // 
             // FrmDanhsachphongthi
             // 

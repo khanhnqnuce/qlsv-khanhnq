@@ -7,7 +7,7 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.Service
 {
-    public partial class QuanlysinhvienSevice
+    public partial class QlsvSevice
     {
         static ISessionFactory _mySecsionFactory;
 
@@ -23,7 +23,7 @@ namespace QLSV.Core.Service
             return _mySecsionFactory.OpenSession();
         }
 
-        public static IEnumerable<T> Load<T>() where T : class
+        public static IList<T> Load<T>() where T : class
         {
             try
             {
@@ -125,8 +125,8 @@ namespace QLSV.Core.Service
                         mySession.CreateQuery("DELETE FROM "+table+" tb WHERE tb.ID = :id")
                             .SetParameter("id", item)
                             .ExecuteUpdate();
-                        mySession.Flush();
                     }
+                    mySession.Flush();
                 }
             }
             catch (Exception ex)
