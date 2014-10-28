@@ -57,7 +57,7 @@ namespace QLSV.Frm.Base
                     && string.IsNullOrEmpty(grid.ActiveRow.Cells[columnId].Text))
                 {
                     grid.ActiveRow.Delete(false);
-                    Stt(grid, "STT");
+                    //Stt(grid, "STT");
                     if (id <= 0) return;
                     grid.Rows[id - 1].Cells[2].Activate();
                     grid.PerformAction(UltraGridAction.EnterEditMode);
@@ -71,7 +71,7 @@ namespace QLSV.Frm.Base
                     if (!string.IsNullOrEmpty(idStr))
                         IdDelete.Add(int.Parse(idStr));
                     grid.ActiveRow.Delete(false);
-                    Stt(grid, "STT");
+                    //Stt(grid, "STT");
                     if (id <= 0) return;
                     grid.Rows[id - 1].Cells[2].Activate();
                     grid.PerformAction(UltraGridAction.EnterEditMode);
@@ -83,15 +83,12 @@ namespace QLSV.Frm.Base
 
         protected virtual void Xoa() {}
 
-        protected void Stt(UltraGrid grid, string columnname)
+        private static void Stt(UltraGrid grid, string columnname)
         {
-            var i = 1;
-            foreach (var row in grid.Rows)
+            for (var i = 0; i < grid.Rows.Count; i++)
             {
-                row.Cells[columnname].Value = i;
-                i += 1;
+                grid.Rows[i].Cells[columnname].Value = i + 1;
             }
         }
-
     }
 }

@@ -71,6 +71,18 @@
     <Compile Include="Base\FunctionControlHasGrid.Designer.cs">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmThemsinhvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmThemsinhvien.Designer.cs">
+      <DependentUpon>FrmThemsinhvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmTimkiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmTimkiem.Designer.cs">
+      <DependentUpon>FrmTimkiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ultis.Frm\ConvertProcess.cs" />
     <Compile Include="Ultis.Frm\FormatProcess.cs" />
     <Compile Include="EnumHelper.cs" />
@@ -177,6 +189,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmSinhVien.resx">
       <DependentUpon>FrmSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmThemsinhvien.resx">
+      <DependentUpon>FrmThemsinhvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmTimkiem.resx">
+      <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
