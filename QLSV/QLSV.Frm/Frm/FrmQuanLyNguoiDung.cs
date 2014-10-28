@@ -127,7 +127,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "TaiKhoan");
-
+                STT();
             }
             catch (Exception ex)
             {
@@ -198,6 +198,14 @@ namespace QLSV.Frm.Frm
                 else
                     MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void STT()
+        {
+            for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
+            {
+                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
             }
         }
 

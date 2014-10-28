@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.SS.Formula.Functions;
 using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
@@ -110,7 +111,6 @@ namespace QLSV.Frm.Frm
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "MaSinhVien");
-
             }
             catch (Exception ex)
             {
@@ -126,51 +126,64 @@ namespace QLSV.Frm.Frm
                 btnGhi.Focus();
                 var a = DateTime.Now.Minute;
                 var v = DateTime.Now.Second;
+                var listLop = QlsvSevice.Load<Lop>();
+                var listKhoa = QlsvSevice.Load<Khoa>();
                 var tb = (DataTable) uG_DanhSach.DataSource;
                 foreach (DataRow row in tb.Rows)
                 {
-                    var malop = "";
-                    var makhoa = "";
+                    var checkmalop = "";
+                    var checkmakhoa = "";
+                    var tenkhoa = row["MaKhoa"].ToString();
+                    var malop = row["MaLop"].ToString();
                     if (row["ID"].ToString()!="") continue;
-                    foreach (var hs in from lop in QlsvSevice.Load<Lop>()
-                        where row["MaLop"].ToString() == lop.MaLop
-                        select new SinhVien
+                    // Kiểm tra lớp đã tồn tại chưa
+                    foreach (var lop in listLop.Where(lop => lop.MaLop == malop))
+                    {
+                        var hs = new SinhVien
                         {
                             MaSinhVien = row["MaSinhVien"].ToString(),
                             HoSinhVien = row["HoSinhVien"].ToString(),
                             TenSinhVien = row["TenSinhVien"].ToString(),
                             NgaySinh = row["NgaySinh"].ToString(),
                             IdLop = lop.ID,
-                        })
-                    {
-                        malop = row["MaLop"].ToString();
+                        };
+                        checkmalop = malop;
                         _listAdd.Add(hs);
                     }
-                    if (malop != "") continue;
-                    foreach (var hs in from khoa in QlsvSevice.Load<Khoa>()
-                        where row["MaKhoa"].ToString() == khoa.TenKhoa
-                        select new SinhVien
+                    if (checkmalop != "") continue;
+                    //Kiểm tra khoa đã tồn tại chưa
+                    foreach (var khoa in listKhoa.Where(khoa => khoa.TenKhoa == tenkhoa))
+                    {
+                        var newLop1 = SinhVienSql.ThemLop(malop, khoa.ID);
+                        checkmakhoa = newLop1.MaLop;
+                        var hs = new SinhVien
                         {
                             MaSinhVien = row["MaSinhVien"].ToString(),
                             HoSinhVien = row["HoSinhVien"].ToString(),
                             TenSinhVien = row["TenSinhVien"].ToString(),
                             NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = SinhVienSql.ThemLop(row["MaLop"].ToString(), khoa.ID),
-                        })
-                    {
-                        makhoa = row["MaSinhVien"].ToString();
+                            IdLop = newLop1.ID,
+                        };
                         _listAdd.Add(hs);
+                        listLop.Add(newLop1);
                     }
-                    if (makhoa != "") continue;
+                    if (checkmakhoa != "") continue;
+
+                    // Chưa có khoa lớp thì thêm mới
+                    var newkhoa = SinhVienSql.ThemKhoa(tenkhoa);
+                    var newLop3 = SinhVienSql.ThemLop(malop, newkhoa.ID);
                     var hs1 = new SinhVien
                     {
                         MaSinhVien = row["MaSinhVien"].ToString(),
                         HoSinhVien = row["HoSinhVien"].ToString(),
                         TenSinhVien = row["TenSinhVien"].ToString(),
                         NgaySinh = row["NgaySinh"].ToString(),
-                        IdLop = SinhVienSql.ThemLop(row["MaLop"].ToString(), SinhVienSql.ThemKhoa(row["MaKhoa"].ToString())),
+                        IdLop = newLop3.ID
                     };
+                    
                     _listAdd.Add(hs1);
+                    listLop.Add(newLop3);
+                    listKhoa.Add(newkhoa);
                 }
                 SinhVienSql.ThemSinhVien(_listAdd);
                 MessageBox.Show((DateTime.Now.Minute - a) + ":" + (DateTime.Now.Second - v));
