@@ -44,12 +44,12 @@
             this.btnGhi = new System.Windows.Forms.Button();
             this.lbXoadong = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnthemmoi = new System.Windows.Forms.Button();
             this.btnNapDuLieu = new System.Windows.Forms.Button();
             this.btnInds = new System.Windows.Forms.Button();
             this.lbInsert = new System.Windows.Forms.Label();
             this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             this.sfdFileMau = new System.Windows.Forms.SaveFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,7 +98,7 @@
             this.menuStrip_Huy,
             this.menuStrip_dong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(146, 136);
+            this.menu_ug.Size = new System.Drawing.Size(153, 158);
             // 
             // menuStrip_Inport
             // 
@@ -111,7 +111,7 @@
             // 
             this.menuStrip_Themdong.Name = "menuStrip_Themdong";
             this.menuStrip_Themdong.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_Themdong.Text = "Thêm dòng";
+            this.menuStrip_Themdong.Text = "Thêm mới";
             this.menuStrip_Themdong.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // toolStripMenuItem2
@@ -209,7 +209,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnthemmoi);
             this.panel1.Controls.Add(this.btnNapDuLieu);
             this.panel1.Controls.Add(this.btnInds);
             this.panel1.Controls.Add(this.btnHuy);
@@ -224,6 +224,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1215, 64);
             this.panel1.TabIndex = 5;
+            // 
+            // btnthemmoi
+            // 
+            this.btnthemmoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnthemmoi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnthemmoi.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnthemmoi.Location = new System.Drawing.Point(632, 16);
+            this.btnthemmoi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnthemmoi.Name = "btnthemmoi";
+            this.btnthemmoi.Size = new System.Drawing.Size(100, 30);
+            this.btnthemmoi.TabIndex = 28;
+            this.btnthemmoi.Text = "Thêm mới";
+            this.btnthemmoi.UseVisualStyleBackColor = true;
+            this.btnthemmoi.Click += new System.EventHandler(this.btnthemmoi_Click);
             // 
             // btnNapDuLieu
             // 
@@ -262,19 +276,6 @@
             this.lbInsert.Size = new System.Drawing.Size(128, 15);
             this.lbInsert.TabIndex = 18;
             this.lbInsert.Text = "Nhấn Insert: Thêm mới";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(632, 16);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Thêm mới";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // FrmSinhVien
             // 
@@ -321,6 +322,6 @@
         private System.Windows.Forms.Button btnNapDuLieu;
         private System.Windows.Forms.SaveFileDialog sfdFileMau;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Inport;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnthemmoi;
     }
 }

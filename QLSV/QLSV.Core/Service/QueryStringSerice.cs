@@ -60,7 +60,7 @@ namespace QLSV.Core.Service
             }
         }
 
-        public static int Them<T>(T item)
+        public static void Them<T>(T item)
         {
             try
             {
@@ -68,13 +68,11 @@ namespace QLSV.Core.Service
                 {
                     var id = (int)mySession.Save(item);
                     mySession.Flush();
-                    return id;
                 }
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return 0;
             }
         }
 
@@ -114,7 +112,7 @@ namespace QLSV.Core.Service
             }
         }
 
-        public static void Xoa(IEnumerable<int> list, string table)
+        public static void Xoa(IList<int> list, string table)
         {
             try
             {
@@ -122,7 +120,7 @@ namespace QLSV.Core.Service
                 {
                     foreach (var item in list)
                     {
-                        mySession.CreateQuery("DELETE FROM "+table+" tb WHERE tb.ID = :id")
+                        mySession.CreateQuery("DELETE FROM " + table + " tb WHERE tb.ID = :id")
                             .SetParameter("id", item)
                             .ExecuteUpdate();
                     }

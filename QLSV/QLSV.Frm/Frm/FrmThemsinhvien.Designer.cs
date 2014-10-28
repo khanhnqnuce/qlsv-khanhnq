@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -58,6 +59,7 @@
             Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmThemsinhvien));
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
             this.ultraLabel2 = new Infragistics.Win.Misc.UltraLabel();
             this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
@@ -67,18 +69,30 @@
             this.txtmasinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txthotendem = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txttensinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
-            this.ultraDateTimeEditor1 = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
-            this.ultraCombo1 = new Infragistics.Win.UltraWinGrid.UltraCombo();
-            this.ultraCombo2 = new Infragistics.Win.UltraWinGrid.UltraCombo();
+            this.cbongaysinh = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
+            this.cbokhoa = new Infragistics.Win.UltraWinGrid.UltraCombo();
+            this.cbolop = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.btnthem = new System.Windows.Forms.Button();
             this.btnhuy = new System.Windows.Forms.Button();
             this.btnthoat = new System.Windows.Forms.Button();
+            this.errormasinhvien = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorhodem = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errortensinhvien = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorngaysinh = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorkhoa = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorlop = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraDateTimeEditor1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCombo1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCombo2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbongaysinh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbokhoa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbolop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errormasinhvien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorhodem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errortensinhvien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorngaysinh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorkhoa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorlop)).BeginInit();
             this.SuspendLayout();
             // 
             // ultraLabel1
@@ -87,7 +101,7 @@
             appearance1.TextVAlignAsString = "Middle";
             this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel1.Location = new System.Drawing.Point(58, 37);
+            this.ultraLabel1.Location = new System.Drawing.Point(62, 36);
             this.ultraLabel1.Name = "ultraLabel1";
             this.ultraLabel1.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel1.TabIndex = 0;
@@ -99,7 +113,7 @@
             appearance2.TextVAlignAsString = "Middle";
             this.ultraLabel2.Appearance = appearance2;
             this.ultraLabel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel2.Location = new System.Drawing.Point(58, 84);
+            this.ultraLabel2.Location = new System.Drawing.Point(62, 83);
             this.ultraLabel2.Name = "ultraLabel2";
             this.ultraLabel2.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel2.TabIndex = 1;
@@ -111,7 +125,7 @@
             appearance3.TextVAlignAsString = "Middle";
             this.ultraLabel3.Appearance = appearance3;
             this.ultraLabel3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel3.Location = new System.Drawing.Point(58, 131);
+            this.ultraLabel3.Location = new System.Drawing.Point(62, 130);
             this.ultraLabel3.Name = "ultraLabel3";
             this.ultraLabel3.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel3.TabIndex = 2;
@@ -123,7 +137,7 @@
             appearance4.TextVAlignAsString = "Middle";
             this.ultraLabel4.Appearance = appearance4;
             this.ultraLabel4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel4.Location = new System.Drawing.Point(58, 178);
+            this.ultraLabel4.Location = new System.Drawing.Point(62, 177);
             this.ultraLabel4.Name = "ultraLabel4";
             this.ultraLabel4.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel4.TabIndex = 3;
@@ -135,7 +149,7 @@
             appearance5.TextVAlignAsString = "Middle";
             this.ultraLabel5.Appearance = appearance5;
             this.ultraLabel5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel5.Location = new System.Drawing.Point(58, 272);
+            this.ultraLabel5.Location = new System.Drawing.Point(62, 271);
             this.ultraLabel5.Name = "ultraLabel5";
             this.ultraLabel5.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel5.TabIndex = 4;
@@ -147,7 +161,7 @@
             appearance6.TextVAlignAsString = "Middle";
             this.ultraLabel6.Appearance = appearance6;
             this.ultraLabel6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel6.Location = new System.Drawing.Point(58, 225);
+            this.ultraLabel6.Location = new System.Drawing.Point(62, 224);
             this.ultraLabel6.Name = "ultraLabel6";
             this.ultraLabel6.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel6.TabIndex = 5;
@@ -156,7 +170,7 @@
             // txtmasinhvien
             // 
             this.txtmasinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtmasinhvien.Location = new System.Drawing.Point(182, 33);
+            this.txtmasinhvien.Location = new System.Drawing.Point(178, 34);
             this.txtmasinhvien.Name = "txtmasinhvien";
             this.txtmasinhvien.Size = new System.Drawing.Size(161, 26);
             this.txtmasinhvien.TabIndex = 6;
@@ -164,7 +178,7 @@
             // txthotendem
             // 
             this.txthotendem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txthotendem.Location = new System.Drawing.Point(182, 81);
+            this.txthotendem.Location = new System.Drawing.Point(178, 81);
             this.txthotendem.Name = "txthotendem";
             this.txthotendem.Size = new System.Drawing.Size(161, 26);
             this.txthotendem.TabIndex = 7;
@@ -172,171 +186,204 @@
             // txttensinhvien
             // 
             this.txttensinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txttensinhvien.Location = new System.Drawing.Point(182, 129);
+            this.txttensinhvien.Location = new System.Drawing.Point(178, 128);
             this.txttensinhvien.Name = "txttensinhvien";
             this.txttensinhvien.Size = new System.Drawing.Size(161, 26);
             this.txttensinhvien.TabIndex = 8;
             // 
-            // ultraDateTimeEditor1
+            // cbongaysinh
             // 
-            this.ultraDateTimeEditor1.Location = new System.Drawing.Point(182, 176);
-            this.ultraDateTimeEditor1.MaskInput = "{LOC}dd/mm/yyyy";
-            this.ultraDateTimeEditor1.Name = "ultraDateTimeEditor1";
-            this.ultraDateTimeEditor1.Size = new System.Drawing.Size(161, 24);
-            this.ultraDateTimeEditor1.TabIndex = 9;
-            this.ultraDateTimeEditor1.Value = null;
+            this.cbongaysinh.Location = new System.Drawing.Point(178, 176);
+            this.cbongaysinh.MaskInput = "{LOC}dd/mm/yyyy";
+            this.cbongaysinh.Name = "cbongaysinh";
+            this.cbongaysinh.Size = new System.Drawing.Size(161, 24);
+            this.cbongaysinh.TabIndex = 9;
+            this.cbongaysinh.Value = null;
             // 
-            // ultraCombo1
+            // cbokhoa
             // 
             appearance7.BackColor = System.Drawing.SystemColors.Window;
             appearance7.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ultraCombo1.DisplayLayout.Appearance = appearance7;
-            this.ultraCombo1.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.ultraCombo1.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.cbokhoa.DisplayLayout.Appearance = appearance7;
+            this.cbokhoa.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.cbokhoa.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             appearance8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance8.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance8.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
             appearance8.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo1.DisplayLayout.GroupByBox.Appearance = appearance8;
+            this.cbokhoa.DisplayLayout.GroupByBox.Appearance = appearance8;
             appearance9.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraCombo1.DisplayLayout.GroupByBox.BandLabelAppearance = appearance9;
-            this.ultraCombo1.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.cbokhoa.DisplayLayout.GroupByBox.BandLabelAppearance = appearance9;
+            this.cbokhoa.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             appearance10.BackColor = System.Drawing.SystemColors.ControlLightLight;
             appearance10.BackColor2 = System.Drawing.SystemColors.Control;
             appearance10.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraCombo1.DisplayLayout.GroupByBox.PromptAppearance = appearance10;
-            this.ultraCombo1.DisplayLayout.MaxColScrollRegions = 1;
-            this.ultraCombo1.DisplayLayout.MaxRowScrollRegions = 1;
+            this.cbokhoa.DisplayLayout.GroupByBox.PromptAppearance = appearance10;
+            this.cbokhoa.DisplayLayout.MaxColScrollRegions = 1;
+            this.cbokhoa.DisplayLayout.MaxRowScrollRegions = 1;
             appearance11.BackColor = System.Drawing.SystemColors.Window;
             appearance11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ultraCombo1.DisplayLayout.Override.ActiveCellAppearance = appearance11;
+            this.cbokhoa.DisplayLayout.Override.ActiveCellAppearance = appearance11;
             appearance12.BackColor = System.Drawing.SystemColors.Highlight;
             appearance12.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraCombo1.DisplayLayout.Override.ActiveRowAppearance = appearance12;
-            this.ultraCombo1.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.ultraCombo1.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.cbokhoa.DisplayLayout.Override.ActiveRowAppearance = appearance12;
+            this.cbokhoa.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.cbokhoa.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance13.BackColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo1.DisplayLayout.Override.CardAreaAppearance = appearance13;
+            this.cbokhoa.DisplayLayout.Override.CardAreaAppearance = appearance13;
             appearance14.BorderColor = System.Drawing.Color.Silver;
             appearance14.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.ultraCombo1.DisplayLayout.Override.CellAppearance = appearance14;
-            this.ultraCombo1.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.ultraCombo1.DisplayLayout.Override.CellPadding = 0;
+            this.cbokhoa.DisplayLayout.Override.CellAppearance = appearance14;
+            this.cbokhoa.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.cbokhoa.DisplayLayout.Override.CellPadding = 0;
             appearance15.BackColor = System.Drawing.SystemColors.Control;
             appearance15.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance15.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
             appearance15.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance15.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo1.DisplayLayout.Override.GroupByRowAppearance = appearance15;
+            this.cbokhoa.DisplayLayout.Override.GroupByRowAppearance = appearance15;
             appearance16.TextHAlignAsString = "Left";
-            this.ultraCombo1.DisplayLayout.Override.HeaderAppearance = appearance16;
-            this.ultraCombo1.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.ultraCombo1.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            this.cbokhoa.DisplayLayout.Override.HeaderAppearance = appearance16;
+            this.cbokhoa.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.cbokhoa.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
             appearance17.BackColor = System.Drawing.SystemColors.Window;
             appearance17.BorderColor = System.Drawing.Color.Silver;
-            this.ultraCombo1.DisplayLayout.Override.RowAppearance = appearance17;
-            this.ultraCombo1.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            this.cbokhoa.DisplayLayout.Override.RowAppearance = appearance17;
+            this.cbokhoa.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
             appearance18.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ultraCombo1.DisplayLayout.Override.TemplateAddRowAppearance = appearance18;
-            this.ultraCombo1.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.ultraCombo1.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.ultraCombo1.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.ultraCombo1.Location = new System.Drawing.Point(182, 223);
-            this.ultraCombo1.Name = "ultraCombo1";
-            this.ultraCombo1.Size = new System.Drawing.Size(161, 25);
-            this.ultraCombo1.TabIndex = 10;
+            this.cbokhoa.DisplayLayout.Override.TemplateAddRowAppearance = appearance18;
+            this.cbokhoa.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.cbokhoa.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.cbokhoa.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.cbokhoa.Location = new System.Drawing.Point(178, 223);
+            this.cbokhoa.Name = "cbokhoa";
+            this.cbokhoa.Size = new System.Drawing.Size(161, 25);
+            this.cbokhoa.TabIndex = 10;
             // 
-            // ultraCombo2
+            // cbolop
             // 
             appearance19.BackColor = System.Drawing.SystemColors.Window;
             appearance19.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ultraCombo2.DisplayLayout.Appearance = appearance19;
-            this.ultraCombo2.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.ultraCombo2.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.cbolop.DisplayLayout.Appearance = appearance19;
+            this.cbolop.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.cbolop.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             appearance20.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance20.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance20.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
             appearance20.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo2.DisplayLayout.GroupByBox.Appearance = appearance20;
+            this.cbolop.DisplayLayout.GroupByBox.Appearance = appearance20;
             appearance21.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraCombo2.DisplayLayout.GroupByBox.BandLabelAppearance = appearance21;
-            this.ultraCombo2.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.cbolop.DisplayLayout.GroupByBox.BandLabelAppearance = appearance21;
+            this.cbolop.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             appearance22.BackColor = System.Drawing.SystemColors.ControlLightLight;
             appearance22.BackColor2 = System.Drawing.SystemColors.Control;
             appearance22.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance22.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ultraCombo2.DisplayLayout.GroupByBox.PromptAppearance = appearance22;
-            this.ultraCombo2.DisplayLayout.MaxColScrollRegions = 1;
-            this.ultraCombo2.DisplayLayout.MaxRowScrollRegions = 1;
+            this.cbolop.DisplayLayout.GroupByBox.PromptAppearance = appearance22;
+            this.cbolop.DisplayLayout.MaxColScrollRegions = 1;
+            this.cbolop.DisplayLayout.MaxRowScrollRegions = 1;
             appearance23.BackColor = System.Drawing.SystemColors.Window;
             appearance23.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ultraCombo2.DisplayLayout.Override.ActiveCellAppearance = appearance23;
+            this.cbolop.DisplayLayout.Override.ActiveCellAppearance = appearance23;
             appearance24.BackColor = System.Drawing.SystemColors.Highlight;
             appearance24.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraCombo2.DisplayLayout.Override.ActiveRowAppearance = appearance24;
-            this.ultraCombo2.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.ultraCombo2.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.cbolop.DisplayLayout.Override.ActiveRowAppearance = appearance24;
+            this.cbolop.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.cbolop.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
             appearance25.BackColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo2.DisplayLayout.Override.CardAreaAppearance = appearance25;
+            this.cbolop.DisplayLayout.Override.CardAreaAppearance = appearance25;
             appearance26.BorderColor = System.Drawing.Color.Silver;
             appearance26.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.ultraCombo2.DisplayLayout.Override.CellAppearance = appearance26;
-            this.ultraCombo2.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.ultraCombo2.DisplayLayout.Override.CellPadding = 0;
+            this.cbolop.DisplayLayout.Override.CellAppearance = appearance26;
+            this.cbolop.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.cbolop.DisplayLayout.Override.CellPadding = 0;
             appearance27.BackColor = System.Drawing.SystemColors.Control;
             appearance27.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance27.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
             appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
             appearance27.BorderColor = System.Drawing.SystemColors.Window;
-            this.ultraCombo2.DisplayLayout.Override.GroupByRowAppearance = appearance27;
+            this.cbolop.DisplayLayout.Override.GroupByRowAppearance = appearance27;
             appearance28.TextHAlignAsString = "Left";
-            this.ultraCombo2.DisplayLayout.Override.HeaderAppearance = appearance28;
-            this.ultraCombo2.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.ultraCombo2.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            this.cbolop.DisplayLayout.Override.HeaderAppearance = appearance28;
+            this.cbolop.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.cbolop.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
             appearance29.BackColor = System.Drawing.SystemColors.Window;
             appearance29.BorderColor = System.Drawing.Color.Silver;
-            this.ultraCombo2.DisplayLayout.Override.RowAppearance = appearance29;
-            this.ultraCombo2.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            this.cbolop.DisplayLayout.Override.RowAppearance = appearance29;
+            this.cbolop.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
             appearance30.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ultraCombo2.DisplayLayout.Override.TemplateAddRowAppearance = appearance30;
-            this.ultraCombo2.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.ultraCombo2.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.ultraCombo2.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.ultraCombo2.Location = new System.Drawing.Point(182, 275);
-            this.ultraCombo2.Name = "ultraCombo2";
-            this.ultraCombo2.Size = new System.Drawing.Size(161, 25);
-            this.ultraCombo2.TabIndex = 11;
+            this.cbolop.DisplayLayout.Override.TemplateAddRowAppearance = appearance30;
+            this.cbolop.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.cbolop.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.cbolop.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.cbolop.Location = new System.Drawing.Point(178, 270);
+            this.cbolop.Name = "cbolop";
+            this.cbolop.Size = new System.Drawing.Size(161, 25);
+            this.cbolop.TabIndex = 11;
             // 
             // btnthem
             // 
             this.btnthem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnthem.Location = new System.Drawing.Point(73, 339);
+            this.btnthem.Location = new System.Drawing.Point(77, 338);
             this.btnthem.Name = "btnthem";
             this.btnthem.Size = new System.Drawing.Size(75, 27);
             this.btnthem.TabIndex = 12;
             this.btnthem.Text = "Thêm";
             this.btnthem.UseVisualStyleBackColor = true;
+            this.btnthem.Click += new System.EventHandler(this.btnthem_Click);
             // 
             // btnhuy
             // 
             this.btnhuy.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnhuy.Location = new System.Drawing.Point(164, 339);
+            this.btnhuy.Location = new System.Drawing.Point(168, 338);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(75, 27);
             this.btnhuy.TabIndex = 13;
             this.btnhuy.Text = "Hủy";
             this.btnhuy.UseVisualStyleBackColor = true;
+            this.btnhuy.Click += new System.EventHandler(this.btnhuy_Click);
             // 
             // btnthoat
             // 
             this.btnthoat.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnthoat.Location = new System.Drawing.Point(255, 339);
+            this.btnthoat.Location = new System.Drawing.Point(259, 338);
             this.btnthoat.Name = "btnthoat";
             this.btnthoat.Size = new System.Drawing.Size(75, 27);
             this.btnthoat.TabIndex = 14;
             this.btnthoat.Text = "Thoát";
             this.btnthoat.UseVisualStyleBackColor = true;
+            this.btnthoat.Click += new System.EventHandler(this.btnthoat_Click);
+            // 
+            // errormasinhvien
+            // 
+            this.errormasinhvien.ContainerControl = this;
+            this.errormasinhvien.Icon = ((System.Drawing.Icon)(resources.GetObject("errormasinhvien.Icon")));
+            // 
+            // errorhodem
+            // 
+            this.errorhodem.ContainerControl = this;
+            this.errorhodem.Icon = ((System.Drawing.Icon)(resources.GetObject("errorhodem.Icon")));
+            // 
+            // errortensinhvien
+            // 
+            this.errortensinhvien.ContainerControl = this;
+            this.errortensinhvien.Icon = ((System.Drawing.Icon)(resources.GetObject("errortensinhvien.Icon")));
+            // 
+            // errorngaysinh
+            // 
+            this.errorngaysinh.ContainerControl = this;
+            this.errorngaysinh.Icon = ((System.Drawing.Icon)(resources.GetObject("errorngaysinh.Icon")));
+            // 
+            // errorkhoa
+            // 
+            this.errorkhoa.ContainerControl = this;
+            this.errorkhoa.Icon = ((System.Drawing.Icon)(resources.GetObject("errorkhoa.Icon")));
+            // 
+            // errorlop
+            // 
+            this.errorlop.ContainerControl = this;
+            this.errorlop.Icon = ((System.Drawing.Icon)(resources.GetObject("errorlop.Icon")));
             // 
             // FrmThemsinhvien
             // 
@@ -346,9 +393,9 @@
             this.Controls.Add(this.btnthoat);
             this.Controls.Add(this.btnhuy);
             this.Controls.Add(this.btnthem);
-            this.Controls.Add(this.ultraCombo2);
-            this.Controls.Add(this.ultraCombo1);
-            this.Controls.Add(this.ultraDateTimeEditor1);
+            this.Controls.Add(this.cbolop);
+            this.Controls.Add(this.cbokhoa);
+            this.Controls.Add(this.cbongaysinh);
             this.Controls.Add(this.txttensinhvien);
             this.Controls.Add(this.txthotendem);
             this.Controls.Add(this.txtmasinhvien);
@@ -361,13 +408,21 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmThemsinhvien";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm sinh viên";
+            this.Load += new System.EventHandler(this.FrmThemsinhvien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraDateTimeEditor1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCombo1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraCombo2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbongaysinh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbokhoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbolop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errormasinhvien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorhodem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errortensinhvien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorngaysinh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorkhoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorlop)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,11 +439,17 @@
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txtmasinhvien;
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txthotendem;
         private Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
-        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor ultraDateTimeEditor1;
-        private Infragistics.Win.UltraWinGrid.UltraCombo ultraCombo1;
-        private Infragistics.Win.UltraWinGrid.UltraCombo ultraCombo2;
+        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor cbongaysinh;
+        private Infragistics.Win.UltraWinGrid.UltraCombo cbokhoa;
+        private Infragistics.Win.UltraWinGrid.UltraCombo cbolop;
         private System.Windows.Forms.Button btnthem;
         private System.Windows.Forms.Button btnhuy;
         private System.Windows.Forms.Button btnthoat;
+        private System.Windows.Forms.ErrorProvider errormasinhvien;
+        private System.Windows.Forms.ErrorProvider errorhodem;
+        private System.Windows.Forms.ErrorProvider errortensinhvien;
+        private System.Windows.Forms.ErrorProvider errorngaysinh;
+        private System.Windows.Forms.ErrorProvider errorkhoa;
+        private System.Windows.Forms.ErrorProvider errorlop;
     }
 }

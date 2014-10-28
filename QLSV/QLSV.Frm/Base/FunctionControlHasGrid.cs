@@ -7,7 +7,7 @@ namespace QLSV.Frm.Base
 {
     public partial class FunctionControlHasGrid : Form
     {
-        protected List<int> IdDelete = new List<int>();
+        protected IList<int> IdDelete = new List<int>();
 
         protected virtual void InsertRow() { }
 

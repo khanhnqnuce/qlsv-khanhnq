@@ -8,7 +8,6 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using NPOI.SS.Formula.Functions;
 using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
@@ -124,8 +123,6 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                var a = DateTime.Now.Minute;
-                var v = DateTime.Now.Second;
                 var listLop = QlsvSevice.Load<Lop>();
                 var listKhoa = QlsvSevice.Load<Khoa>();
                 var tb = (DataTable) uG_DanhSach.DataSource;
@@ -186,7 +183,6 @@ namespace QLSV.Frm.Frm
                     listKhoa.Add(newkhoa);
                 }
                 SinhVienSql.ThemSinhVien(_listAdd);
-                MessageBox.Show((DateTime.Now.Minute - a) + ":" + (DateTime.Now.Second - v));
                 QlsvSevice.Sua(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "SinhVien");
 
@@ -235,14 +231,11 @@ namespace QLSV.Frm.Frm
             var stt = uG_DanhSach.Rows.Count;
             var frmNapDuLieu = new FrmNapDuLieu(stt);
             frmNapDuLieu.ShowDialog();
-            var a = DateTime.Now.Minute;
-            var v = DateTime.Now.Second;
             var b = frmNapDuLieu.ResultValue;
             if(b == null || b.Rows.Count == 0) return;
             var table = (DataTable)uG_DanhSach.DataSource;
             table.Merge(b);
             uG_DanhSach.DataSource = table;
-            MessageBox.Show((DateTime.Now.Minute - a) + @":" + (DateTime.Now.Second - v));
         }
 
         #endregion
@@ -445,7 +438,8 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_themdong_Click(object sender, EventArgs e)
         {
-            InsertRow();
+            var frm = new FrmThemsinhvien();
+            frm.ShowDialog();
         }
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
@@ -502,6 +496,12 @@ namespace QLSV.Frm.Frm
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnthemmoi_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmThemsinhvien();
+            frm.ShowDialog();
         }
         
     }

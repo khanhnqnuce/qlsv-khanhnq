@@ -50,8 +50,8 @@ namespace QLSV.Frm.Frm
 
         private void txtMaChucNang_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-                e.SuppressKeyPress = true;
+            //if (e.KeyCode == Keys.Enter)
+            //    e.SuppressKeyPress = true;
         }
     }
 }
