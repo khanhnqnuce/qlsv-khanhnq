@@ -22,12 +22,14 @@ namespace QLSV.Frm.Frm
 
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
-
+        private FrmTimkiem _frmTimkiem;
         #endregion
 
         public FrmSinhVien()
         {
             InitializeComponent();
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
             LoadForm();
         }
 
@@ -361,6 +363,12 @@ namespace QLSV.Frm.Frm
 
         #region Button
 
+        private void btnthemmoi_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmThemsinhvien();
+            frm.ShowDialog();
+        }
+
         private void btnNapDuLieu_Click(object sender, EventArgs e)
         {
             Napdulieu();
@@ -470,6 +478,11 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -493,18 +506,14 @@ namespace QLSV.Frm.Frm
                 case (Keys.Insert):
                     InsertRow();
                     break;
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        private void btnthemmoi_Click(object sender, EventArgs e)
-        {
-            var frm = new FrmThemsinhvien();
-            frm.ShowDialog();
-        }
         
     }
-
 }
 
