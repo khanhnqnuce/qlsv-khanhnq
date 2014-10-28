@@ -22,7 +22,8 @@ namespace QLSV.Frm.Frm
 
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
-        private FrmTimkiem _frmTimkiem;
+        private readonly FrmTimkiem _frmTimkiem;
+        private readonly FrmThemsinhvien _frmThemsinhvien;
         #endregion
 
         public FrmSinhVien()
@@ -30,6 +31,8 @@ namespace QLSV.Frm.Frm
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
+            _frmThemsinhvien = new FrmThemsinhvien();
+            _frmThemsinhvien.Themmoisinhvien += Themmoisinhvien;
             LoadForm();
         }
 
@@ -365,8 +368,7 @@ namespace QLSV.Frm.Frm
 
         private void btnthemmoi_Click(object sender, EventArgs e)
         {
-            var frm = new FrmThemsinhvien();
-            frm.ShowDialog();
+            _frmThemsinhvien.ShowDialog();
         }
 
         private void btnNapDuLieu_Click(object sender, EventArgs e)
@@ -425,7 +427,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        public bool Kiemtrafile()
+        private static bool Kiemtrafile()
         {
             try
             {
@@ -446,8 +448,7 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_themdong_Click(object sender, EventArgs e)
         {
-            var frm = new FrmThemsinhvien();
-            frm.ShowDialog();
+            _frmThemsinhvien.ShowDialog();
         }
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
@@ -478,11 +479,15 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        private void Timkiemsinhvien(object sender, string masinhvien)
+        private static void Timkiemsinhvien(object sender, string masinhvien)
         {
             
         }
 
+        private static void Themmoisinhvien(object sender, SinhVien hs)
+        {
+            
+        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)

@@ -10,6 +10,10 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmThemsinhvien : Form
     {
+        public delegate void CustomHandler(object sender, SinhVien hs);
+
+        public event CustomHandler Themmoisinhvien;
+
         public FrmThemsinhvien()
         {
             InitializeComponent();
@@ -70,6 +74,7 @@ namespace QLSV.Frm.Frm
                             IdLop = lop.ID,
                         };
                         QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs);
                         MessageBox.Show(@"Ghi thành công");
                         return;
                     }
@@ -85,6 +90,7 @@ namespace QLSV.Frm.Frm
                             IdLop = newLop1.ID
                         };
                         QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs);
                         MessageBox.Show(@"Ghi thành công");
                         return;
                     }
@@ -99,6 +105,7 @@ namespace QLSV.Frm.Frm
                         IdLop = newLop3.ID
                     };
                     QlsvSevice.Them(hs1);
+                    Themmoisinhvien(sender, hs1);
                     MessageBox.Show(@"Ghi thành công");
                 }
             }

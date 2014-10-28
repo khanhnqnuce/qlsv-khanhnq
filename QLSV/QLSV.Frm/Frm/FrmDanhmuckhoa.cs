@@ -96,18 +96,14 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                foreach (var row in uG_DanhSach.Rows)
+                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
-                    var id = row.Cells["ID"].Value.ToString();
                     var hs = new Khoa
                     {
                         MaKhoa = row.Cells["MaKhoa"].Text,
                         TenKhoa = row.Cells["TenKhoa"].Text
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
                         _listAdd.Add(hs);
-                    }
                 }
                 QlsvSevice.ThemAll(_listAdd);
                 QlsvSevice.Sua(_listUpdate);
@@ -195,22 +191,20 @@ namespace QLSV.Frm.Frm
             {
                 btnGhi.Focus();
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (!string.IsNullOrEmpty(id))
+                if (string.IsNullOrEmpty(id)) return;
+                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                 {
-                    foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                    {
-                        item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
-                        item.TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
-                        return;
-                    }
-                    var hs = new Khoa
-                    {
-                        ID = int.Parse(id),
-                        MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
-                        TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
-                    };
-                    _listUpdate.Add(hs);
+                    item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
+                    item.TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
+                    return;
                 }
+                var hs = new Khoa
+                {
+                    ID = int.Parse(id),
+                    MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
+                    TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
+                };
+                _listUpdate.Add(hs);
             }
             catch (Exception ex)
             {

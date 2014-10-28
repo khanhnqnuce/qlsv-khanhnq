@@ -98,20 +98,15 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                foreach (var row in uG_DanhSach.Rows)
+                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
-                    var id = row.Cells["ID"].Value.ToString();
-
                     var hs = new Lop
                     {
                         MaLop = row.Cells["MaLop"].Text,
                         GhiChu = row.Cells["GhiChu"].Text,
                         IdKhoa = int.Parse(row.Cells["MaKhoa"].Value.ToString())
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        _listAdd.Add(hs);
-                    }
+                    _listAdd.Add(hs);
                 }
                 QlsvSevice.ThemAll(_listAdd);
                 QlsvSevice.Sua(_listUpdate);
