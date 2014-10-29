@@ -47,7 +47,7 @@ namespace QLSV.Frm.Frm
             table.Columns.Add("TenSinhVien", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("MaKhoa", typeof(string));
+            table.Columns.Add("TenKhoa", typeof(string));
             return table;
         }
 
@@ -106,7 +106,7 @@ namespace QLSV.Frm.Frm
                 for (var i = startRows; i <= endRows; i++)
                 {
                     if (i == 0) continue;
-                    result.Rows.Add(_stt++,
+                    result.Rows.Add(++_stt,
                         sheet.GetRow(i).GetCell(0).ToString(),
                         sheet.GetRow(i).GetCell(1).ToString(),
                         sheet.GetRow(i).GetCell(2).ToString(),
@@ -155,7 +155,7 @@ namespace QLSV.Frm.Frm
                 for (var i = startRows; i <= endRows; i++)
                 {
                     if (i == 1) continue;
-                    result.Rows.Add(_stt++,
+                    result.Rows.Add(++_stt,
                         oSheet.Cells[i, 1].GetValue<string>(),
                         oSheet.Cells[i, 2].GetValue<string>(),
                         oSheet.Cells[i, 3].GetValue<string>(),
