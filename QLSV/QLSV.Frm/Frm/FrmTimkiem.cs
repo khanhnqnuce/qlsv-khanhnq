@@ -24,7 +24,7 @@ namespace QLSV.Frm.Frm
                         Timkiemsinhvien(sender,txtmasinhvien.Text);
                         break;
                     case Keys.Escape:
-                        Dispose();
+                        Close();
                         break;
                 }
             }
@@ -33,6 +33,11 @@ namespace QLSV.Frm.Frm
                 MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void FrmTimkiem_Load(object sender, EventArgs e)
+        {
+            txtmasinhvien.Clear();
         }
     }
 }

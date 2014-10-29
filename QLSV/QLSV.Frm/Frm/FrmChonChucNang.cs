@@ -37,7 +37,7 @@ namespace QLSV.Frm.Frm
                         Dispose();
                         break;
                     case Keys.Escape:
-                        Dispose();
+                        Close();
                         break;
                 }
             }

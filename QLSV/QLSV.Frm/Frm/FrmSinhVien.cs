@@ -10,6 +10,7 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
@@ -24,6 +25,11 @@ namespace QLSV.Frm.Frm
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
         private readonly FrmTimkiem _frmTimkiem;
         private readonly FrmThemsinhvien _frmThemsinhvien;
+        private readonly IList<Lop> _listLop = QlsvSevice.Load<Lop>();
+        private readonly IList<Khoa> _listKhoa = QlsvSevice.Load<Khoa>();
+        private readonly IList<SinhVien> _danhsach = QlsvSevice.Load<SinhVien>();
+        private UltraGridRow _newRow = null;
+
         #endregion
 
         public FrmSinhVien()
@@ -46,10 +52,10 @@ namespace QLSV.Frm.Frm
             table.Columns.Add("MaSinhVien", typeof (string));
             table.Columns.Add("HoSinhVien", typeof (string));
             table.Columns.Add("TenSinhVien", typeof (string));
-            table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("NgaySinh", typeof (string));
+            table.Columns.Add("MaLop", typeof (string));
             table.Columns.Add("MaKhoa", typeof (string));
-            
+
             return table;
         }
 
@@ -57,30 +63,27 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var listLop = QlsvSevice.Load<Lop>();
-                var listKhoa = QlsvSevice.Load<Khoa>();
                 var malop = "";
                 var idKhoa = 0;
                 var makhoa = "";
                 var table = GetTable();
-                var danhsach = QlsvSevice.Load<SinhVien>();
                 var stt = 1;
-                foreach (var hs in danhsach)
+                foreach (var hs in _danhsach)
                 {
-                    foreach (var item in listLop.Where(item => hs.Lop.ID == item.ID))
+                    foreach (var item in _listLop.Where(item => hs.Lop.ID == item.ID))
                     {
                         malop = item.MaLop;
                         idKhoa = item.IdKhoa;
                         goto add1;
                     }
                     add1:
-                    foreach (var item in listKhoa.Where(item => item.ID == idKhoa))
+                    foreach (var item in _listKhoa.Where(item => item.ID == idKhoa))
                     {
                         makhoa = item.TenKhoa;
                         goto add2;
                     }
                     add2:
-                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, malop,makhoa);
+                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, malop, makhoa);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -128,8 +131,6 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                var listLop = QlsvSevice.Load<Lop>();
-                var listKhoa = QlsvSevice.Load<Khoa>();
                 var tb = (DataTable) uG_DanhSach.DataSource;
                 foreach (DataRow row in tb.Rows)
                 {
@@ -137,9 +138,9 @@ namespace QLSV.Frm.Frm
                     var checkmakhoa = "";
                     var tenkhoa = row["MaKhoa"].ToString();
                     var malop = row["MaLop"].ToString();
-                    if (row["ID"].ToString()!="") continue;
+                    if (row["ID"].ToString() != "") continue;
                     // Kiểm tra lớp đã tồn tại chưa
-                    foreach (var lop in listLop.Where(lop => lop.MaLop == malop))
+                    foreach (var lop in _listLop.Where(lop => lop.MaLop == malop))
                     {
                         var hs = new SinhVien
                         {
@@ -154,7 +155,7 @@ namespace QLSV.Frm.Frm
                     }
                     if (checkmalop != "") continue;
                     //Kiểm tra khoa đã tồn tại chưa
-                    foreach (var khoa in listKhoa.Where(khoa => khoa.TenKhoa == tenkhoa))
+                    foreach (var khoa in _listKhoa.Where(khoa => khoa.TenKhoa == tenkhoa))
                     {
                         var newLop1 = SinhVienSql.ThemLop(malop, khoa.ID);
                         checkmakhoa = newLop1.MaLop;
@@ -167,7 +168,7 @@ namespace QLSV.Frm.Frm
                             IdLop = newLop1.ID,
                         };
                         _listAdd.Add(hs);
-                        listLop.Add(newLop1);
+                        _listLop.Add(newLop1);
                     }
                     if (checkmakhoa != "") continue;
 
@@ -182,10 +183,10 @@ namespace QLSV.Frm.Frm
                         NgaySinh = row["NgaySinh"].ToString(),
                         IdLop = newLop3.ID
                     };
-                    
+
                     _listAdd.Add(hs1);
-                    listLop.Add(newLop3);
-                    listKhoa.Add(newkhoa);
+                    _listLop.Add(newLop3);
+                    _listKhoa.Add(newkhoa);
                 }
                 SinhVienSql.ThemSinhVien(_listAdd);
                 QlsvSevice.Sua(_listUpdate);
@@ -237,10 +238,43 @@ namespace QLSV.Frm.Frm
             var frmNapDuLieu = new FrmNapDuLieu(stt);
             frmNapDuLieu.ShowDialog();
             var b = frmNapDuLieu.ResultValue;
-            if(b == null || b.Rows.Count == 0) return;
-            var table = (DataTable)uG_DanhSach.DataSource;
+            if (b == null || b.Rows.Count == 0) return;
+            var table = (DataTable) uG_DanhSach.DataSource;
             table.Merge(b);
             uG_DanhSach.DataSource = table;
+        }
+
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            if (_newRow != null) _newRow.Selected = false;
+            var tb = (DataTable) uG_DanhSach.DataSource;
+            foreach (var row in uG_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+            {
+                uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                row.Selected = true;
+                _newRow = row;
+            }
+        }
+
+        private void Themmoisinhvien(object sender, SinhVien hs, string tenkhoa)
+        {
+            var listLop = QlsvSevice.Load<Lop>();
+            var malop = "";
+            foreach (var item in listLop.Where(item => item.ID == hs.IdLop))
+            {
+                malop = item.MaLop;
+            }
+            var row = uG_DanhSach.DisplayLayout.Bands[0].AddNew();
+            var stt = uG_DanhSach.Rows.Count;
+            row.Cells["ID"].Value = hs.ID;
+            row.Cells["STT"].Value = stt;
+            row.Cells["MaSinhVien"].Value = hs.MaSinhVien;
+            row.Cells["HoSinhVien"].Value = hs.HoSinhVien;
+            row.Cells["TenSinhVien"].Value = hs.TenSinhVien;
+            row.Cells["NgaySinh"].Value = hs.NgaySinh;
+            row.Cells["MaLop"].Value = malop;
+            row.Cells["MaKhoa"].Value = tenkhoa;
+            row.Cells["MaSinhVien"].Activate();
         }
 
         #endregion
@@ -479,15 +513,131 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        private static void Timkiemsinhvien(object sender, string masinhvien)
+        #region Loadcombobox
+
+        private void Timkiemtheokhoa()
         {
-            
+            if (string.IsNullOrEmpty(cbokhoa.Text))
+            {
+                LoadForm();
+                return;
+            }
+            var idkhoa = 0;
+            var stt = 1;
+            var table = GetTable();
+            var tenkhoa = "";
+            IDictionary<int, string> listlop = new Dictionary<int, string>();
+            foreach (var item in _listKhoa.Where(item => item.ID.ToString() == cbokhoa.Value.ToString()))
+            {
+                idkhoa = item.ID;
+                tenkhoa = item.TenKhoa;
+            }
+            if (idkhoa == 0) return;
+            foreach (var item in _listLop.Where(item => item.IdKhoa == idkhoa))
+            {
+                listlop.Add(item.ID, item.MaLop);
+            }
+            foreach (var L in listlop)
+            {
+                foreach (var hs in _danhsach.Where(hs => hs.IdLop == L.Key))
+                {
+
+                    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, L.Value,
+                        tenkhoa);
+                    stt++;
+                }
+            }
+            if (table.Rows.Count == 0) return;
+            uG_DanhSach.DataSource = table;
         }
 
-        private static void Themmoisinhvien(object sender, SinhVien hs)
+        private void Timkiemtheolop()
         {
-            
+            if (string.IsNullOrEmpty(cbolop.Text))
+            {
+                Timkiemtheokhoa();
+                return;
+            }
+            var stt = 1;
+            var table = GetTable();
+            var tenkhoa = "";
+            if (!string.IsNullOrEmpty(cbokhoa.Text)) tenkhoa = cbokhoa.Text;
+            else
+            {
+                var idkhoa = SinhVienSql.LoadLop(cbolop.Text).IdKhoa;
+                foreach (var hs in _listKhoa.Where(hs => hs.ID == idkhoa))
+                {
+                    tenkhoa = hs.TenKhoa;
+                }
+            }
+
+            foreach (var hs in _danhsach.Where(hs => hs.IdLop.ToString() == cbolop.Value.ToString()))
+            {
+
+                table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, cbolop.Text, tenkhoa);
+                stt++;
+            }
+            if (table.Rows.Count == 0) return;
+            uG_DanhSach.DataSource = table;
         }
+
+        private void cbokhoa_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    Timkiemtheokhoa();
+                    break;
+            }
+        }
+
+        private void cbolop_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    Timkiemtheolop();
+                    break;
+            }
+        }
+
+        private void cbokhoa_ValueChanged(object sender, EventArgs e)
+        {
+            Timkiemtheokhoa();
+            var rootBand = cbolop.DisplayLayout.Bands[0];
+            rootBand.ColumnFilters.ClearAllFilters();
+            if (string.IsNullOrEmpty(cbokhoa.Text)) return;
+            rootBand.ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, cbokhoa.Value);
+        }
+
+        private void cbolop_ValueChanged(object sender, EventArgs e)
+        {
+            Timkiemtheolop();
+        }
+
+        #endregion
+
+        private void FrmSinhVien_Load(object sender, EventArgs e)
+        {
+            cbokhoa.DataSource = QlsvSevice.Load<Khoa>();
+            cbokhoa.ValueMember = "ID";
+            cbokhoa.DisplayMember = "TenKhoa";
+            cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
+            cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
+            cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
+            cbokhoa.Rows.Band.ColHeadersVisible = false;
+
+            cbolop.DataSource = QlsvSevice.Load<Lop>();
+            cbolop.ValueMember = "ID";
+            cbolop.DisplayMember = "MaLop";
+            cbolop.Rows.Band.Columns["ID"].Hidden = true;
+            cbolop.Rows.Band.Columns["IdKhoa"].Hidden = true;
+            cbolop.Rows.Band.Columns["Khoa"].Hidden = true;
+            cbolop.Rows.Band.Columns["GhiChu"].Hidden = true;
+            cbolop.Rows.Band.ColHeadersVisible = false;
+            cbolop.DropDownWidth = 0;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -509,7 +659,7 @@ namespace QLSV.Frm.Frm
                     Close();
                     break;
                 case (Keys.Insert):
-                    InsertRow();
+                    _frmThemsinhvien.ShowDialog();
                     break;
                 case (Keys.Control | Keys.S):
                     _frmTimkiem.ShowDialog();
@@ -518,7 +668,6 @@ namespace QLSV.Frm.Frm
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        
     }
 }
 

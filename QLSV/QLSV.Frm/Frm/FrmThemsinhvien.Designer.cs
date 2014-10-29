@@ -325,6 +325,7 @@
             // btnthem
             // 
             this.btnthem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnthem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.btnthem.Location = new System.Drawing.Point(77, 338);
             this.btnthem.Name = "btnthem";
             this.btnthem.Size = new System.Drawing.Size(75, 27);
@@ -336,6 +337,7 @@
             // btnhuy
             // 
             this.btnhuy.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnhuy.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.btnhuy.Location = new System.Drawing.Point(168, 338);
             this.btnhuy.Name = "btnhuy";
             this.btnhuy.Size = new System.Drawing.Size(75, 27);
@@ -347,6 +349,7 @@
             // btnthoat
             // 
             this.btnthoat.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnthoat.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.btnthoat.Location = new System.Drawing.Point(259, 338);
             this.btnthoat.Name = "btnthoat";
             this.btnthoat.Size = new System.Drawing.Size(75, 27);

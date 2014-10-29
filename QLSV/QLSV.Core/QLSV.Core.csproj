@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataConnection\SinhVienSql.cs" />
-    <Compile Include="DataConnection\Connect.cs" />
+    <Compile Include="LINQ\SinhVienSql.cs" />
+    <Compile Include="LINQ\Connect.cs" />
     <Compile Include="Domain\Khoa.cs" />
     <Compile Include="Domain\Kythi.cs" />
     <Compile Include="Domain\Lop.cs" />

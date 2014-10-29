@@ -66,7 +66,9 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmTimkiem";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm kiếm";
+            this.Load += new System.EventHandler(this.FrmTimkiem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
