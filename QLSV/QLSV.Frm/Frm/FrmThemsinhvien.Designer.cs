@@ -330,7 +330,7 @@
             this.btnthem.Name = "btnthem";
             this.btnthem.Size = new System.Drawing.Size(75, 27);
             this.btnthem.TabIndex = 12;
-            this.btnthem.Text = "Thêm";
+            this.btnthem.Text = "Lưu";
             this.btnthem.UseVisualStyleBackColor = true;
             this.btnthem.Click += new System.EventHandler(this.btnthem_Click);
             // 
@@ -439,12 +439,12 @@
         private Infragistics.Win.Misc.UltraLabel ultraLabel4;
         private Infragistics.Win.Misc.UltraLabel ultraLabel5;
         private Infragistics.Win.Misc.UltraLabel ultraLabel6;
-        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtmasinhvien;
-        private Infragistics.Win.UltraWinEditors.UltraTextEditor txthotendem;
-        private Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
-        private Infragistics.Win.UltraWinEditors.UltraDateTimeEditor cbongaysinh;
-        private Infragistics.Win.UltraWinGrid.UltraCombo cbokhoa;
-        private Infragistics.Win.UltraWinGrid.UltraCombo cbolop;
+        public Infragistics.Win.UltraWinEditors.UltraTextEditor txtmasinhvien;
+        public Infragistics.Win.UltraWinEditors.UltraTextEditor txthotendem;
+        public Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
+        public Infragistics.Win.UltraWinEditors.UltraDateTimeEditor cbongaysinh;
+        public Infragistics.Win.UltraWinGrid.UltraCombo cbokhoa;
+        public Infragistics.Win.UltraWinGrid.UltraCombo cbolop;
         private System.Windows.Forms.Button btnthem;
         private System.Windows.Forms.Button btnhuy;
         private System.Windows.Forms.Button btnthoat;

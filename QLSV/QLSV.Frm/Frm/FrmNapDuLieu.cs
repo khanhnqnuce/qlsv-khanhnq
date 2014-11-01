@@ -38,7 +38,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private DataTable GetTable()
+        private static DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("STT", typeof(string));
@@ -105,7 +105,6 @@ namespace QLSV.Frm.Frm
                 var result = GetTable();
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    if (i == 0) continue;
                     result.Rows.Add(++_stt,
                         sheet.GetRow(i).GetCell(0).ToString(),
                         sheet.GetRow(i).GetCell(1).ToString(),
@@ -154,7 +153,6 @@ namespace QLSV.Frm.Frm
                 var result = GetTable();
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    if (i == 1) continue;
                     result.Rows.Add(++_stt,
                         oSheet.Cells[i, 1].GetValue<string>(),
                         oSheet.Cells[i, 2].GetValue<string>(),

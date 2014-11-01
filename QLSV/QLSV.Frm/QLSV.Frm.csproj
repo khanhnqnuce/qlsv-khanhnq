@@ -35,12 +35,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Docking, Version=7.1.1.18, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=7.1.1.18, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=7.1.1.18, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=7.1.1.18, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
+    <Reference Include="ComponentFactory.Krypton.Workspace, Version=7.1.1.18, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="EPPlus">
       <HintPath>..\Lib\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="Infragistics2.Documents.Reports.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Shared.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Win.Misc.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinGrid.DocumentExport.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics2.Win.UltraWinStatusBar.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Win.UltraWinTabControl.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
@@ -48,12 +57,22 @@
     <Reference Include="Infragistics2.Win.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics3.Documents.Excel.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics3.Win.UltraWinGrid.ExcelExport.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="itextsharp, Version=4.1.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NPOI">
       <HintPath>..\Lib\NPOI.dll</HintPath>
     </Reference>
+    <Reference Include="PerpetuumSoft.Charts, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5" />
+    <Reference Include="PerpetuumSoft.Framework, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5" />
+    <Reference Include="PerpetuumSoft.Framework.Model, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5" />
+    <Reference Include="PerpetuumSoft.Instrumentation, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5" />
+    <Reference Include="PerpetuumSoft.Reporting, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5, processorArchitecture=MSIL" />
+    <Reference Include="PerpetuumSoft.Reporting.Export.OpenXML, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5, processorArchitecture=MSIL" />
+    <Reference Include="PerpetuumSoft.Reporting.Export.Pdf, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +89,24 @@
     </Compile>
     <Compile Include="Base\FunctionControlHasGrid.Designer.cs">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmInportSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmInportSinhVien.Designer.cs">
+      <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmThemsinhvien.cs">
       <SubType>Form</SubType>
@@ -156,12 +193,18 @@
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FormResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
@@ -177,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDanhsachphongthi.resx">
       <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmInportSinhVien.resx">
+      <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNapDuLieu.resx">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
@@ -219,6 +265,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Reports\danhsachsinhvien.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\logo1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +316,7 @@
   <ItemGroup>
     <None Include="Resources\metro-loading.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

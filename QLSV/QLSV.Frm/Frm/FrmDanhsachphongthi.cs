@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using Infragistics.Win.UltraWinGrid.DocumentExport;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
@@ -66,14 +67,23 @@ namespace QLSV.Frm.Frm
 
         private void LoadForm()
         {
-            LoadGrid();
-            if (uG_DanhSach.Rows.Count == 0)
+            try
             {
-                InsertRow();
+                LoadGrid();
+                if (uG_DanhSach.Rows.Count == 0)
+                {
+                    InsertRow();
+                }
+                _listUpdate.Clear();
+                _listAdd.Clear();
+                IdDelete.Clear();
             }
-            _listUpdate.Clear();
-            _listAdd.Clear();
-            IdDelete.Clear();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+
+            }
         }
 
         protected override void InsertRow()
@@ -100,19 +110,15 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                foreach (var row in uG_DanhSach.Rows)
+                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
-                    var id = row.Cells["ID"].Value.ToString();
                     var hs = new PhongThi
                     {
                         TenPhong = row.Cells["TenPhong"].Text,
                         SucChua = int.Parse(row.Cells["SucChua"].Text),
                         GhiChu = row.Cells["GhiChu"].Text
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        _listAdd.Add(hs);
-                    }
+                    _listAdd.Add(hs);
                 }
                 QlsvSevice.ThemAll(_listAdd);
                 QlsvSevice.Sua(_listUpdate);
@@ -203,7 +209,7 @@ namespace QLSV.Frm.Frm
                 if (!Directory.Exists("Data"))
                     Directory.CreateDirectory("Data");
 
-                ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
+                exportExcel.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
 
                 var mydoc = new Process();
                 if (File.Exists(Application.StartupPath + @"\Data\DanhSachPhongThi.xls"))
@@ -301,6 +307,45 @@ namespace QLSV.Frm.Frm
             }
         }
 
+        private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Up:
+                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        uG_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
+                        e.Handled = true;
+                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Down:
+                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        uG_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
+                        e.Handled = true;
+                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Right:
+                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        uG_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
+                        e.Handled = true;
+                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Left:
+                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        uG_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
+                        e.Handled = true;
+                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         #endregion
 
         #region MenuStrip
@@ -356,6 +401,17 @@ namespace QLSV.Frm.Frm
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void btnpdf_Click(object sender, EventArgs e)
+        {
+            var mydoc = new Process();
+            ultraGridDocumentExporter1.Export(uG_DanhSach, "grid.pdf", GridExportFileFormat.PDF);
+            if (File.Exists(Application.StartupPath + @"\grid.pdf"))
+            {
+                mydoc.StartInfo.FileName = Application.StartupPath + @"\grid.pdf";
+                mydoc.Start();
+            }
         }
 
     }

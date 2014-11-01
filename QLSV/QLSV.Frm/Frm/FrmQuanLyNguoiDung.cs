@@ -141,20 +141,16 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                foreach (var row in uG_DanhSach.Rows)
+                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
-                    var id = row.Cells["ID"].Value.ToString();
                     var hs = new Taikhoan
                     {
                         TaiKhoan = row.Cells["TaiKhoan"].Value.ToString(),
                         HoTen = row.Cells["HoTen"].Value.ToString(),
-                        Quyen = row.Cells["Quyen"].Value.ToString()
+                        Quyen = row.Cells["Quyen"].Value.ToString(),
+                        MatKhau = MaHoaMd5.Md5(row.Cells["MatKhau"].Value.ToString())
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        hs.MatKhau = MaHoaMd5.Md5(row.Cells["MatKhau"].Value.ToString());
-                        _listAdd.Add(hs);
-                    }
+                    _listAdd.Add(hs);
                 }
                 QlsvSevice.ThemAll(_listAdd);
                 QlsvSevice.SuaTaiKhoan(_listUpdate);

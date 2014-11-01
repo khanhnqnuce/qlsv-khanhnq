@@ -15,6 +15,8 @@ namespace QLSV.Frm.Frm
 
         public event CustomHandler Themmoisinhvien;
 
+        public int Id = 0;
+
         public FrmThemsinhvien()
         {
             InitializeComponent();
@@ -61,58 +63,67 @@ namespace QLSV.Frm.Frm
             try
             {
                 if (!Checkghi()) return;
-                var listLop = QlsvSevice.Load<Lop>();
-                var listKhoa = QlsvSevice.Load<Khoa>();
-                var listSinhVien = QlsvSevice.Load<SinhVien>();
-                foreach (var sv in listSinhVien.Where(sv => sv.MaSinhVien == txtmasinhvien.Text))
+                if (Id == 0)
                 {
-                    MessageBox.Show(@"Mã sinh viên đã tồn tại");
-                    return;
-                }
-                foreach (var lop in listLop.Where(lop => lop.ID.ToString() == cbolop.Value.ToString()))
-                {
-                    var hs = new SinhVien
+                    var listLop = QlsvSevice.Load<Lop>();
+                    var listKhoa = QlsvSevice.Load<Khoa>();
+                    var listSinhVien = QlsvSevice.Load<SinhVien>();
+                    foreach (var sv in listSinhVien.Where(sv => sv.MaSinhVien == txtmasinhvien.Text))
+                    {
+                        MessageBox.Show(@"Mã sinh viên đã tồn tại");
+                        return;
+                    }
+                    foreach (var lop in listLop.Where(lop => lop.ID.ToString() == cbolop.Value.ToString()))
+                    {
+                        var hs = new SinhVien
+                        {
+                            MaSinhVien = txtmasinhvien.Text,
+                            HoSinhVien = txthotendem.Text,
+                            TenSinhVien = txttensinhvien.Text,
+                            NgaySinh = cbongaysinh.Text,
+                            IdLop = lop.ID,
+                        };
+                        QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs, cbokhoa.Text);
+                        MessageBox.Show(@"Ghi thành công");
+                        return;
+                    }
+                    foreach (var khoa in listKhoa.Where(khoa => khoa.ID.ToString() == cbokhoa.Value.ToString()))
+                    {
+                        var newLop1 = SinhVienSql.ThemLop(cbolop.Text, khoa.ID);
+                        var hs = new SinhVien
+                        {
+                            MaSinhVien = txtmasinhvien.Text,
+                            HoSinhVien = txthotendem.Text,
+                            TenSinhVien = txttensinhvien.Text,
+                            NgaySinh = cbongaysinh.Text,
+                            IdLop = newLop1.ID
+                        };
+                        QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs, cbokhoa.Text);
+                        MessageBox.Show(@"Ghi thành công");
+                        return;
+                    }
+                    var newkhoa = SinhVienSql.ThemKhoa(cbokhoa.Text);
+                    var newLop3 = SinhVienSql.ThemLop(cbolop.Text, newkhoa.ID);
+                    var hs1 = new SinhVien
                     {
                         MaSinhVien = txtmasinhvien.Text,
                         HoSinhVien = txthotendem.Text,
                         TenSinhVien = txttensinhvien.Text,
                         NgaySinh = cbongaysinh.Text,
-                        IdLop = lop.ID,
+                        IdLop = newLop3.ID
                     };
-                    QlsvSevice.Them(hs);
-                    Themmoisinhvien(sender, hs, cbokhoa.Text);
+                    QlsvSevice.Them(hs1);
+                    Themmoisinhvien(sender, hs1, cbokhoa.Text);
                     MessageBox.Show(@"Ghi thành công");
-                    return;
                 }
-                foreach (var khoa in listKhoa.Where(khoa => khoa.ID.ToString() == cbokhoa.Value.ToString()))
+                else
                 {
-                    var newLop1 = SinhVienSql.ThemLop(cbolop.Text, khoa.ID);
-                    var hs = new SinhVien
-                    {
-                        MaSinhVien = txtmasinhvien.Text,
-                        HoSinhVien = txthotendem.Text,
-                        TenSinhVien = txttensinhvien.Text,
-                        NgaySinh = cbongaysinh.Text,
-                        IdLop = newLop1.ID
-                    };
-                    QlsvSevice.Them(hs);
-                    Themmoisinhvien(sender, hs,cbokhoa.Text);
-                    MessageBox.Show(@"Ghi thành công");
-                    return;
+                    
+                    MessageBox.Show(@"Sửa thành công");
+                    Close();
                 }
-                var newkhoa = SinhVienSql.ThemKhoa(cbokhoa.Text);
-                var newLop3 = SinhVienSql.ThemLop(cbolop.Text, newkhoa.ID);
-                var hs1 = new SinhVien
-                {
-                    MaSinhVien = txtmasinhvien.Text,
-                    HoSinhVien = txthotendem.Text,
-                    TenSinhVien = txttensinhvien.Text,
-                    NgaySinh = cbongaysinh.Text,
-                    IdLop = newLop3.ID
-                };
-                QlsvSevice.Them(hs1);
-                Themmoisinhvien(sender, hs1,cbokhoa.Text);
-                MessageBox.Show(@"Ghi thành công");
             }
             catch (Exception ex)
             {

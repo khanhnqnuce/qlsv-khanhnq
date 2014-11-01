@@ -55,126 +55,87 @@
             Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbolop = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.cbokhoa = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.ultraLabel2 = new Infragistics.Win.Misc.UltraLabel();
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.btnGhi = new System.Windows.Forms.Button();
-            this.lbXoadong = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnthemmoi = new System.Windows.Forms.Button();
-            this.btnNapDuLieu = new System.Windows.Forms.Button();
-            this.btnInds = new System.Windows.Forms.Button();
+            this.btnchinhsua = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            this.lbXoadong = new System.Windows.Forms.Label();
             this.lbInsert = new System.Windows.Forms.Label();
-            this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
-            this.sfdFileMau = new System.Windows.Forms.SaveFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
+            this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
+            this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
+            this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
+            this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbokhoa)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnHuy
-            // 
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHuy.Location = new System.Drawing.Point(980, 16);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(100, 30);
-            this.btnHuy.TabIndex = 24;
-            this.btnHuy.Text = "Hủy (F12)";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // uG_DanhSach
-            // 
-            this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
-            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
-            this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
-            this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.uG_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
-            this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(4);
-            this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(1215, 467);
-            this.uG_DanhSach.TabIndex = 25;
-            this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
-            this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
-            this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
-            this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
-            // 
             // menu_ug
             // 
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Inport,
             this.menuStrip_Themdong,
+            this.menuStrip_Inport,
             this.toolStripMenuItem2,
-            this.menuStrip_luulai,
             this.menuStrip_Huy,
             this.menuStrip_dong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(146, 136);
-            // 
-            // menuStrip_Inport
-            // 
-            this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(145, 22);
-            this.menuStrip_Inport.Text = "Inport dữ liệu";
-            this.menuStrip_Inport.Click += new System.EventHandler(this.napDữLiệuToolStripMenuItem_Click);
+            this.menu_ug.Size = new System.Drawing.Size(130, 114);
             // 
             // menuStrip_Themdong
             // 
             this.menuStrip_Themdong.Name = "menuStrip_Themdong";
-            this.menuStrip_Themdong.Size = new System.Drawing.Size(145, 22);
+            this.menuStrip_Themdong.Size = new System.Drawing.Size(129, 22);
             this.menuStrip_Themdong.Text = "Thêm mới";
             this.menuStrip_Themdong.Click += new System.EventHandler(this.menuStrip_themdong_Click);
+            // 
+            // menuStrip_Inport
+            // 
+            this.menuStrip_Inport.Name = "menuStrip_Inport";
+            this.menuStrip_Inport.Size = new System.Drawing.Size(129, 22);
+            this.menuStrip_Inport.Text = "Chỉnh sửa";
+            this.menuStrip_Inport.Click += new System.EventHandler(this.napDữLiệuToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
             this.toolStripMenuItem2.Text = "Xóa dòng";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
-            // 
-            // menuStrip_luulai
-            // 
-            this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(145, 22);
-            this.menuStrip_luulai.Text = "Lưu lại";
-            this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(145, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(129, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // menuStrip_dong
             // 
             this.menuStrip_dong.Name = "menuStrip_dong";
-            this.menuStrip_dong.Size = new System.Drawing.Size(145, 22);
+            this.menuStrip_dong.Size = new System.Drawing.Size(129, 22);
             this.menuStrip_dong.Text = "Đóng";
             this.menuStrip_dong.Click += new System.EventHandler(this.menuStrip_dong_Click);
             // 
@@ -197,6 +158,27 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1215, 467);
             this.panel4.TabIndex = 27;
+            // 
+            // uG_DanhSach
+            // 
+            this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
+            this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
+            this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.uG_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
+            this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(4);
+            this.uG_DanhSach.Name = "uG_DanhSach";
+            this.uG_DanhSach.Size = new System.Drawing.Size(1215, 467);
+            this.uG_DanhSach.TabIndex = 25;
+            this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
+            this.uG_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.uG_DanhSach_DoubleClickCell);
+            this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
             // 
             // panel3
             // 
@@ -358,69 +340,13 @@
             this.ultraLabel1.TabIndex = 0;
             this.ultraLabel1.Text = "Chọn Khoa :";
             // 
-            // btnXoa
-            // 
-            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(748, 16);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(4);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(100, 30);
-            this.btnXoa.TabIndex = 20;
-            this.btnXoa.Text = "Xóa dòng (F11)";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnDong
-            // 
-            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDong.Location = new System.Drawing.Point(1096, 16);
-            this.btnDong.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(108, 30);
-            this.btnDong.TabIndex = 22;
-            this.btnDong.Text = "Đóng (Esc)";
-            this.btnDong.UseVisualStyleBackColor = true;
-            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
-            // 
-            // btnGhi
-            // 
-            this.btnGhi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGhi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGhi.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnGhi.Location = new System.Drawing.Point(864, 16);
-            this.btnGhi.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGhi.Name = "btnGhi";
-            this.btnGhi.Size = new System.Drawing.Size(100, 30);
-            this.btnGhi.TabIndex = 21;
-            this.btnGhi.Text = "Lưu (F5)";
-            this.btnGhi.UseVisualStyleBackColor = true;
-            this.btnGhi.Click += new System.EventHandler(this.btnGhi_Click);
-            // 
-            // lbXoadong
-            // 
-            this.lbXoadong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbXoadong.AutoSize = true;
-            this.lbXoadong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbXoadong.Location = new System.Drawing.Point(12, 37);
-            this.lbXoadong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbXoadong.Name = "lbXoadong";
-            this.lbXoadong.Size = new System.Drawing.Size(100, 15);
-            this.lbXoadong.TabIndex = 19;
-            this.lbXoadong.Text = "Nhấn F3: Xóa hết";
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnthemmoi);
-            this.panel1.Controls.Add(this.btnNapDuLieu);
-            this.panel1.Controls.Add(this.btnInds);
+            this.panel1.Controls.Add(this.btnchinhsua);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnXoa);
-            this.panel1.Controls.Add(this.btnGhi);
             this.panel1.Controls.Add(this.btnDong);
             this.panel1.Controls.Add(this.lbXoadong);
             this.panel1.Controls.Add(this.lbInsert);
@@ -436,7 +362,7 @@
             this.btnthemmoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnthemmoi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnthemmoi.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnthemmoi.Location = new System.Drawing.Point(632, 16);
+            this.btnthemmoi.Location = new System.Drawing.Point(745, 16);
             this.btnthemmoi.Margin = new System.Windows.Forms.Padding(4);
             this.btnthemmoi.Name = "btnthemmoi";
             this.btnthemmoi.Size = new System.Drawing.Size(100, 30);
@@ -445,31 +371,69 @@
             this.btnthemmoi.UseVisualStyleBackColor = true;
             this.btnthemmoi.Click += new System.EventHandler(this.btnthemmoi_Click);
             // 
-            // btnNapDuLieu
+            // btnchinhsua
             // 
-            this.btnNapDuLieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNapDuLieu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNapDuLieu.Location = new System.Drawing.Point(389, 16);
-            this.btnNapDuLieu.Name = "btnNapDuLieu";
-            this.btnNapDuLieu.Size = new System.Drawing.Size(111, 30);
-            this.btnNapDuLieu.TabIndex = 27;
-            this.btnNapDuLieu.Text = "Inport dữ liệu (F8)";
-            this.btnNapDuLieu.UseVisualStyleBackColor = true;
-            this.btnNapDuLieu.Click += new System.EventHandler(this.btnNapDuLieu_Click);
+            this.btnchinhsua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnchinhsua.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnchinhsua.Location = new System.Drawing.Point(618, 16);
+            this.btnchinhsua.Name = "btnchinhsua";
+            this.btnchinhsua.Size = new System.Drawing.Size(111, 30);
+            this.btnchinhsua.TabIndex = 27;
+            this.btnchinhsua.Text = "Chỉnh sửa";
+            this.btnchinhsua.UseVisualStyleBackColor = true;
+            this.btnchinhsua.Click += new System.EventHandler(this.btnNapDuLieu_Click);
             // 
-            // btnInds
+            // btnHuy
             // 
-            this.btnInds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInds.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnInds.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnInds.Location = new System.Drawing.Point(516, 16);
-            this.btnInds.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnInds.Name = "btnInds";
-            this.btnInds.Size = new System.Drawing.Size(100, 30);
-            this.btnInds.TabIndex = 26;
-            this.btnInds.Text = "In (F10)";
-            this.btnInds.UseVisualStyleBackColor = true;
-            this.btnInds.Click += new System.EventHandler(this.btnInds_Click);
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHuy.Location = new System.Drawing.Point(977, 16);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(100, 30);
+            this.btnHuy.TabIndex = 24;
+            this.btnHuy.Text = "Hủy (F12)";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXoa.Location = new System.Drawing.Point(861, 16);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(100, 30);
+            this.btnXoa.TabIndex = 20;
+            this.btnXoa.Text = "Xóa dòng (F11)";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnDong
+            // 
+            this.btnDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDong.Location = new System.Drawing.Point(1093, 16);
+            this.btnDong.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(108, 30);
+            this.btnDong.TabIndex = 22;
+            this.btnDong.Text = "Đóng (Esc)";
+            this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
+            // 
+            // lbXoadong
+            // 
+            this.lbXoadong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbXoadong.AutoSize = true;
+            this.lbXoadong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbXoadong.Location = new System.Drawing.Point(12, 37);
+            this.lbXoadong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbXoadong.Name = "lbXoadong";
+            this.lbXoadong.Size = new System.Drawing.Size(100, 15);
+            this.lbXoadong.TabIndex = 19;
+            this.lbXoadong.Text = "Nhấn F3: Xóa hết";
             // 
             // lbInsert
             // 
@@ -482,6 +446,33 @@
             this.lbInsert.Size = new System.Drawing.Size(128, 15);
             this.lbInsert.TabIndex = 18;
             this.lbInsert.Text = "Nhấn Insert: Thêm mới";
+            // 
+            // pdfExportFilter1
+            // 
+            this.pdfExportFilter1.ChangePermissionsPassword = null;
+            this.pdfExportFilter1.Compress = true;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.UserPassword = null;
+            // 
+            // excelExportFilter1
+            // 
+            this.excelExportFilter1.ExportInLargePage = true;
+            this.excelExportFilter1.ExportInOnePage = true;
+            this.excelExportFilter1.ExportWithoutPageDelimeters = true;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            // 
+            // reportManager1
+            // 
+            this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
+            this.reportManager1.OwnerForm = this;
+            this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
+            this.rptdanhsachsinhvien});
+            // 
+            // rptdanhsachsinhvien
+            // 
+            this.rptdanhsachsinhvien.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachsinhvien.rst";
+            this.rptdanhsachsinhvien.ReportName = "";
+            this.rptdanhsachsinhvien.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // FrmSinhVien
             // 
@@ -498,10 +489,10 @@
             this.Text = "Quản lý Sinh viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).EndInit();
@@ -519,20 +510,15 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.Button btnGhi;
         private System.Windows.Forms.Label lbXoadong;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbInsert;
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Themdong;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
-        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter;
-        private System.Windows.Forms.Button btnInds;
-        private System.Windows.Forms.Button btnNapDuLieu;
-        private System.Windows.Forms.SaveFileDialog sfdFileMau;
+        private System.Windows.Forms.Button btnchinhsua;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Inport;
         private System.Windows.Forms.Button btnthemmoi;
         private System.Windows.Forms.Panel panel3;
@@ -541,5 +527,9 @@
         private Infragistics.Win.UltraWinGrid.UltraCombo cbokhoa;
         private Infragistics.Win.Misc.UltraLabel ultraLabel2;
         private Infragistics.Win.Misc.UltraLabel ultraLabel1;
+        private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
+        private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
+        private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
     }
 }

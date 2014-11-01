@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using Infragistics.Win.UltraWinGrid.DocumentExport;
 using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -42,7 +43,6 @@ namespace QLSV.Frm.Frm
             _frmThemsinhvien.Themmoisinhvien += Themmoisinhvien;
             _listLop = QlsvSevice.Load<Lop>();
             _listKhoa = QlsvSevice.Load<Khoa>();
-            //_danhsach = QlsvSevice.Load<SinhVien>();
             LoadForm();
         }
 
@@ -69,14 +69,6 @@ namespace QLSV.Frm.Frm
             {
                 var table = GetTable();
                 var stt = 1;
-                //foreach (var hs in _danhsach)
-                //{
-                //    foreach (var item in _listLop.Where(item => item.ID == hs.IdLop))
-                //    {
-                //        table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, hs.Lop.MaLop, item.Khoa.TenKhoa);
-                //        stt++;
-                //    }
-                //}
                 table.Merge(SinhVienSql.LoadSinhVien());
                 foreach (DataRow row in table.Rows)
                 {
@@ -128,7 +120,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                btnGhi.Focus();
                 if (_danhsach == null || _danhsach.Rows.Count == 0) goto abc;
                 foreach (DataRow row in _danhsach.Rows)
                 {
@@ -222,7 +213,7 @@ namespace QLSV.Frm.Frm
                     LoadForm();
                     _listLop = QlsvSevice.Load<Lop>();
                     _listKhoa = QlsvSevice.Load<Khoa>();
-                    //_danhsach = QlsvSevice.Load<SinhVien>();
+                    _danhsach.Clear();
                 }
             }
             catch (Exception ex)
@@ -239,27 +230,12 @@ namespace QLSV.Frm.Frm
 
         private void Huy()
         {
-            LoadForm();
-            cbokhoa.Value = null;
-            cbolop.Value = null;
-            _danhsach.Clear();
-        }
-
-        private void Napdulieu()
-        {
             try
             {
-                if (_danhsach == null || _danhsach.Rows.Count == 0) _danhsach = GetTable();
-                var stt = uG_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNapDuLieu(stt);
-                frmNapDuLieu.ShowDialog();
-                var b = frmNapDuLieu.ResultValue;
-                _danhsach.Merge(b);
-                if (b == null || b.Rows.Count == 0) return;
-                var table = (DataTable) uG_DanhSach.DataSource;
-
-                table.Merge(b);
-                uG_DanhSach.DataSource = table;
+                LoadForm();
+                cbokhoa.Value = null;
+                cbolop.Value = null;
+                _danhsach.Clear();
             }
             catch (Exception ex)
             {
@@ -268,51 +244,99 @@ namespace QLSV.Frm.Frm
                     MessageBox.Show(FormResource.txtLoiDB);
                 }
                 else
-                    Log2File.LogExceptionToFile(ex);
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
+        //private void Napdulieu()
+        //{
+        //    try
+        //    {
+        //        if (_danhsach == null || _danhsach.Rows.Count == 0) _danhsach = GetTable();
+        //        var stt = uG_DanhSach.Rows.Count;
+        //        var frmNapDuLieu = new FrmNapDuLieu(stt);
+        //        frmNapDuLieu.ShowDialog();
+        //        var b = frmNapDuLieu.ResultValue;
+        //        _danhsach.Merge(b);
+        //        if (b == null || b.Rows.Count == 0) return;
+        //        var table = (DataTable) uG_DanhSach.DataSource;
+
+        //        table.Merge(b);
+        //        uG_DanhSach.DataSource = table;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (ex.Message.Contains(FormResource.msgLostConnect))
+        //        {
+        //            MessageBox.Show(FormResource.txtLoiDB);
+        //        }
+        //        else
+        //            Log2File.LogExceptionToFile(ex);
+        //    }
+        //}
+
         private void Timkiemsinhvien(object sender, string masinhvien)
         {
-            if (_newRow != null) _newRow.Selected = false;
-            var tb = (DataTable) uG_DanhSach.DataSource;
-            foreach (var row in uG_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+            try
             {
-                uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
-                row.Selected = true;
-                _newRow = row;
+                if (_newRow != null) _newRow.Selected = false;
+                var tb = (DataTable) uG_DanhSach.DataSource;
+                foreach (
+                    var row in uG_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+                {
+                    uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
         private void Themmoisinhvien(object sender, SinhVien hs, string tenkhoa)
         {
-            var listLop = QlsvSevice.Load<Lop>();
-            var malop = "";
-            foreach (var item in listLop.Where(item => item.ID == hs.IdLop))
-            {
-                malop = item.MaLop;
-            }
-            var row = uG_DanhSach.DisplayLayout.Bands[0].AddNew();
-            var stt = uG_DanhSach.Rows.Count;
-            row.Cells["ID"].Value = hs.ID;
-            row.Cells["STT"].Value = stt;
-            row.Cells["MaSinhVien"].Value = hs.MaSinhVien;
-            row.Cells["HoSinhVien"].Value = hs.HoSinhVien;
-            row.Cells["TenSinhVien"].Value = hs.TenSinhVien;
-            row.Cells["NgaySinh"].Value = hs.NgaySinh;
-            row.Cells["MaLop"].Value = malop;
-            row.Cells["TenKhoa"].Value = tenkhoa;
-            row.Cells["MaSinhVien"].Activate();
-        }
+            try
 
-        private void STT()
-        {
-            for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                var listLop = QlsvSevice.Load<Lop>();
+                var malop = "";
+                foreach (var item in listLop.Where(item => item.ID == hs.IdLop))
+                {
+                    malop = item.MaLop;
+                }
+                var row = uG_DanhSach.DisplayLayout.Bands[0].AddNew();
+                var stt = uG_DanhSach.Rows.Count;
+                row.Cells["ID"].Value = hs.ID;
+                row.Cells["STT"].Value = stt;
+                row.Cells["MaSinhVien"].Value = hs.MaSinhVien;
+                row.Cells["HoSinhVien"].Value = hs.HoSinhVien;
+                row.Cells["TenSinhVien"].Value = hs.TenSinhVien;
+                row.Cells["NgaySinh"].Value = hs.NgaySinh;
+                row.Cells["MaLop"].Value = malop;
+                row.Cells["TenKhoa"].Value = tenkhoa;
+                row.Cells["MaSinhVien"].Activate();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
             }
         }
-
+        
         #endregion
 
         #region Event uG
@@ -323,8 +347,15 @@ namespace QLSV.Frm.Frm
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
+                //band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["HoSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["TenSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
+                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
+                band.Columns["TenKhoa"].CellActivation = Activation.NoEdit;
+
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].MaxWidth = 70;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
@@ -398,35 +429,35 @@ namespace QLSV.Frm.Frm
 
         private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
         {
-            try
-            {
-                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
-                    item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
-                    item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
-                    item.NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text;
-                    item.IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID;
-                    return;
-                }
-                var hs = new SinhVien
-                {
-                    ID = int.Parse(id),
-                    MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
-                    HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
-                    TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
-                    NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text,
-                    IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID
-                };
-                _listUpdate.Add(hs);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
+            //try
+            //{
+            //    var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+            //    if (string.IsNullOrEmpty(id)) return;
+            //    foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
+            //    {
+            //        item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
+            //        item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
+            //        item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
+            //        item.NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text;
+            //        item.IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID;
+            //        return;
+            //    }
+            //    var hs = new SinhVien
+            //    {
+            //        ID = int.Parse(id),
+            //        MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
+            //        HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
+            //        TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
+            //        NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text,
+            //        IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID
+            //    };
+            //    _listUpdate.Add(hs);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    Log2File.LogExceptionToFile(ex);
+            //}
         }
 
         #endregion
@@ -440,17 +471,11 @@ namespace QLSV.Frm.Frm
 
         private void btnNapDuLieu_Click(object sender, EventArgs e)
         {
-            Napdulieu();
-        }
-
-        private void btnGhi_Click(object sender, EventArgs e)
-        {
-            Save();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            btnGhi.Focus();
+            btnHuy.Focus();
             DeleteRow();
         }
 
@@ -466,32 +491,32 @@ namespace QLSV.Frm.Frm
 
         private void btnInds_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (Kiemtrafile())
-                {
-                    MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    return;
-                }
+            //try
+            //{
+            //    if (Kiemtrafile())
+            //    {
+            //        MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
+            //            MessageBoxIcon.Information);
+            //        return;
+            //    }
 
-                if (!Directory.Exists("Data"))
-                    Directory.CreateDirectory("Data");
+            //    if (!Directory.Exists("Data"))
+            //        Directory.CreateDirectory("Data");
 
-                ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachSinhVien.xls");
+            //    ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachSinhVien.xls");
 
-                var mydoc = new Process();
-                if (File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls"))
-                {
-                    mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachSinhVien.xls";
-                    mydoc.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
+            //    var mydoc = new Process();
+            //    if (File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls"))
+            //    {
+            //        mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachSinhVien.xls";
+            //        mydoc.Start();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    Log2File.LogExceptionToFile(ex);
+            //}
         }
 
         private static bool Kiemtrafile()
@@ -520,7 +545,7 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
         {
-            btnGhi.Focus();
+            btnHuy.Focus();
             DeleteRow();
         }
 
@@ -534,14 +559,11 @@ namespace QLSV.Frm.Frm
             Close();
         }
 
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-
         private void napDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Napdulieu();
+            var frm = new FrmInportSinhVien();
+            frm.ShowDialog();
+            LoadForm();
         }
 
         #endregion
@@ -549,85 +571,59 @@ namespace QLSV.Frm.Frm
         #region Loadcombobox
 
         private void Timkiemtheokhoa()
-       {
-            if (string.IsNullOrEmpty(cbokhoa.Text)) return;
-            var b = IsNumber(cbokhoa.Value.ToString());
-            if(!b) return;
-            var table = GetTable();
-            table.Merge(SinhVienSql.Timkiemtheokhoa(int.Parse(cbokhoa.Value.ToString())));
-            var stt = 1;
-            foreach (DataRow row in table.Rows)
+        {
+            try
             {
-                row["STT"] = stt++;
+                if (string.IsNullOrEmpty(cbokhoa.Text)) return;
+                var b = IsNumber(cbokhoa.Value.ToString());
+                if (!b) return;
+                var table = GetTable();
+                table.Merge(SinhVienSql.Timkiemtheokhoa(int.Parse(cbokhoa.Value.ToString())));
+                var stt = 1;
+                foreach (DataRow row in table.Rows)
+                {
+                    row["STT"] = stt++;
+                }
+                uG_DanhSach.DataSource = table;
             }
-            uG_DanhSach.DataSource = table;
-
-            //var idkhoa = 0;
-            //var stt = 1;
-            //var table = GetTable();
-            //var tenkhoa = "";
-            //IDictionary<int, string> listlop = new Dictionary<int, string>();
-            //foreach (var item in _listKhoa.Where(item => item.ID.ToString() == cbokhoa.Value.ToString()))
-            //{
-            //    idkhoa = item.ID;
-            //    tenkhoa = item.TenKhoa;
-            //}
-            //if (idkhoa == 0) return;
-            //foreach (var item in _listLop.Where(item => item.IdKhoa == idkhoa))
-            //{
-            //    listlop.Add(item.ID, item.MaLop);
-            //}
-            //foreach (var L in listlop)
-            //{
-            //    foreach (var hs in _danhsach.Where(hs => hs.IdLop == L.Key))
-            //    {
-
-            //        table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, L.Value,
-            //            tenkhoa);
-            //        stt++;
-            //    }
-            //}
-            //if (table.Rows.Count == 0) return;
-            //uG_DanhSach.DataSource = table;
-       }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
 
         private void Timkiemtheolop()
         {
-            if (string.IsNullOrEmpty(cbolop.Text)) return;
-            var b = IsNumber(cbolop.Value.ToString());
-            if (!b) return;
-            var table = GetTable();
-            table.Merge(SinhVienSql.Timkiemtheolop(int.Parse(cbolop.Value.ToString())));
-            var stt = 1;
-            foreach (DataRow row in table.Rows)
+            try
             {
-                row["STT"] = stt++;
+                if (string.IsNullOrEmpty(cbolop.Text)) return;
+                var b = IsNumber(cbolop.Value.ToString());
+                if (!b) return;
+                var table = GetTable();
+                table.Merge(SinhVienSql.Timkiemtheolop(int.Parse(cbolop.Value.ToString())));
+                var stt = 1;
+                foreach (DataRow row in table.Rows)
+                {
+                    row["STT"] = stt++;
+                }
+                uG_DanhSach.DataSource = table;
             }
-            uG_DanhSach.DataSource = table;
-
-            //if (string.IsNullOrEmpty(cbolop.Text))return;
-            //var stt = 1;
-            //var table = GetTable();
-            //var tenkhoa = "";
-            
-            //if (!string.IsNullOrEmpty(cbokhoa.Text)) tenkhoa = cbokhoa.Text;
-            //else
-            //{
-            //    var idkhoa = SinhVienSql.LoadLop(cbolop.Text).IdKhoa;
-            //    foreach (var hs in _listKhoa.Where(hs => hs.ID == idkhoa))
-            //    {
-            //        tenkhoa = hs.TenKhoa;
-            //    }
-            //}
-
-            //foreach (var hs in _danhsach.Where(hs => hs.IdLop.ToString() == cbolop.Value.ToString()))
-            //{
-
-            //    table.Rows.Add(hs.ID, stt, hs.MaSinhVien, hs.HoSinhVien, hs.TenSinhVien, hs.NgaySinh, cbolop.Text, tenkhoa);
-            //    stt++;
-            //}
-            //if (table.Rows.Count == 0) return;
-            //uG_DanhSach.DataSource = table;
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void cbokhoa_KeyUp(object sender, KeyEventArgs e)
@@ -652,11 +648,24 @@ namespace QLSV.Frm.Frm
 
         private void cbokhoa_ValueChanged(object sender, EventArgs e)
         {
-            Timkiemtheokhoa();
-            var rootBand = cbolop.DisplayLayout.Bands[0];
-            rootBand.ColumnFilters.ClearAllFilters();
-            if (string.IsNullOrEmpty(cbokhoa.Text)) return;
-            rootBand.ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, cbokhoa.Value);
+            try
+            {
+                Timkiemtheokhoa();
+                var rootBand = cbolop.DisplayLayout.Bands[0];
+                rootBand.ColumnFilters.ClearAllFilters();
+                if (string.IsNullOrEmpty(cbokhoa.Text)) return;
+                rootBand.ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, cbokhoa.Value);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void cbolop_ValueChanged(object sender, EventArgs e)
@@ -674,23 +683,35 @@ namespace QLSV.Frm.Frm
 
         private void FrmSinhVien_Load(object sender, EventArgs e)
         {
-            cbokhoa.DataSource = SinhVienSql.LoadKhoa();
-            cbokhoa.ValueMember = "ID";
-            cbokhoa.DisplayMember = "TenKhoa";
-            cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
-            cbokhoa.Rows.Band.ColHeadersVisible = false;
+            try
+            {
+                cbokhoa.DataSource = SinhVienSql.LoadKhoa();
+                cbokhoa.ValueMember = "ID";
+                cbokhoa.DisplayMember = "TenKhoa";
+                cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
+                cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
+                cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
+                cbokhoa.Rows.Band.ColHeadersVisible = false;
 
-            cbolop.DataSource = SinhVienSql.LoadLop();
-            cbolop.ValueMember = "ID";
-            cbolop.DisplayMember = "MaLop";
-            cbolop.Rows.Band.Columns["ID"].Hidden = true;
-            cbolop.Rows.Band.Columns["IdKhoa"].Hidden = true;
-            //cbolop.Rows.Band.Columns["Khoa"].Hidden = true;
-            cbolop.Rows.Band.Columns["GhiChu"].Hidden = true;
-            cbolop.Rows.Band.ColHeadersVisible = false;
-            cbolop.DropDownWidth = 0;
+                cbolop.DataSource = SinhVienSql.LoadLop();
+                cbolop.ValueMember = "ID";
+                cbolop.DisplayMember = "MaLop";
+                cbolop.Rows.Band.Columns["ID"].Hidden = true;
+                cbolop.Rows.Band.Columns["IdKhoa"].Hidden = true;
+                cbolop.Rows.Band.Columns["GhiChu"].Hidden = true;
+                cbolop.Rows.Band.ColHeadersVisible = false;
+                cbolop.DropDownWidth = 0;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -701,10 +722,11 @@ namespace QLSV.Frm.Frm
                     Xoa();
                     break;
                 case (Keys.F5):
-                    Save();
+                    break;
+                case (Keys.F8):
                     break;
                 case (Keys.F11):
-                    btnGhi.Focus();
+                    btnHuy.Focus();
                     DeleteRow();
                     break;
                 case (Keys.F12):
@@ -720,8 +742,52 @@ namespace QLSV.Frm.Frm
                     _frmTimkiem.ShowDialog();
                     break;
             }
-
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        //private void btnpdf_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (Kiemtrafile())
+        //        {
+        //            MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
+        //                MessageBoxIcon.Information);
+        //            return;
+        //        }
+
+        //        if (!Directory.Exists("Data"))
+        //            Directory.CreateDirectory("Data");
+
+        //        ultraGridDocumentExporter1.Export(uG_DanhSach, Application.StartupPath + @"\Data\grid.pdf", GridExportFileFormat.PDF);
+
+        //        var mydoc = new Process();
+        //        if (File.Exists(Application.StartupPath + @"\Data\grid.pdf"))
+        //        {
+        //            mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\grid.pdf";
+        //            mydoc.Start();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //        Log2File.LogExceptionToFile(ex);
+        //    }
+        //}
+
+        private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
+        {
+            var index = e.Cell.Row.Index;
+            var obj = new FrmThemsinhvien();
+            obj.Id = int.Parse(e.Cell.Row.Cells["ID"].Value.ToString());
+            obj.txtmasinhvien.Text = e.Cell.Row.Cells["MaSinhVien"].Value.ToString();
+            obj.txtmasinhvien.ReadOnly = true;
+            obj.txthotendem.Text = e.Cell.Row.Cells["HoSinhVien"].Value.ToString();
+            obj.txttensinhvien.Text = e.Cell.Row.Cells["TenSinhVien"].Value.ToString();
+            obj.cbongaysinh.Text = e.Cell.Row.Cells["NgaySinh"].Value.ToString();
+            obj.cbolop.Text = e.Cell.Row.Cells["MaLop"].Value.ToString();
+            obj.cbokhoa.Text = e.Cell.Row.Cells["TenKhoa"].Value.ToString();
+            obj.ShowDialog();
         }
     }
 }

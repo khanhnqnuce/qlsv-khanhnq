@@ -102,9 +102,8 @@ namespace QLSV.Frm.Frm
             try
             {
                 btnGhi.Focus();
-                foreach (var row in uG_DanhSach.Rows)
+                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
-                    var id = row.Cells["ID"].Value.ToString();
                     var hs = new Kythi
                     {
                         MaKyThi = row.Cells["MaKyThi"].Text,
@@ -114,10 +113,7 @@ namespace QLSV.Frm.Frm
                         ThoiGianBatDau = row.Cells["ThoiGianBatDau"].Text,
                         ThoiGianKetThuc = row.Cells["ThoiGianKetThuc"].Text,
                     };
-                    if (string.IsNullOrEmpty(id))
-                    {
-                        _listAdd.Add(hs);
-                    }
+                    _listAdd.Add(hs);
                 }
                 QlsvSevice.ThemAll(_listAdd);
                 QlsvSevice.Sua(_listUpdate);

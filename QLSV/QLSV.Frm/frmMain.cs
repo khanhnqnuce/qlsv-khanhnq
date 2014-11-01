@@ -17,6 +17,7 @@ namespace QLSV.Frm
         private static FrmDanhmuckhoa _frmDanhmuckhoa;
         private static FrmDanhmuclop _frmDanhmuclop;
         private static FrmDanhsachphongthi _frmDanhsachphongthi;
+        private static FrmInportSinhVien _frmInportSinhVien;
 
         public FrmMain()
         {
@@ -39,6 +40,7 @@ namespace QLSV.Frm
                     MenuBar.Tools["104"].SharedProps.Enabled = true;
                     MenuBar.Tools["105"].SharedProps.Enabled = true;
                     MenuBar.Tools["106"].SharedProps.Enabled = true;
+                    MenuBar.Tools["107"].SharedProps.Enabled = true;
                     panel_footer.Enabled = true;
                     _frmDangNhap.Close();
                     break;
@@ -52,6 +54,7 @@ namespace QLSV.Frm
                     MenuBar.Tools["104"].SharedProps.Enabled = true;
                     MenuBar.Tools["105"].SharedProps.Enabled = true;
                     MenuBar.Tools["106"].SharedProps.Enabled = true;
+                    MenuBar.Tools["107"].SharedProps.Enabled = true;
                     panel_footer.Enabled = true;
                     _frmDangNhap.Close();
                     break;
@@ -65,6 +68,7 @@ namespace QLSV.Frm
                     MenuBar.Tools["104"].SharedProps.Enabled = false;
                     MenuBar.Tools["105"].SharedProps.Enabled = false;
                     MenuBar.Tools["106"].SharedProps.Enabled = false;
+                    MenuBar.Tools["107"].SharedProps.Enabled = false;
                     panel_footer.Enabled = false;
                     break;
             }
@@ -109,6 +113,10 @@ namespace QLSV.Frm
                     case "106":
                         _frmDanhsachphongthi = new FrmDanhsachphongthi();
                         _frmDanhsachphongthi.ShowDialog();
+                        break;
+                    case "107":
+                        _frmInportSinhVien = new FrmInportSinhVien();
+                        _frmInportSinhVien.ShowDialog();
                         break;
                     case "thoat":
                         if (DialogResult.Yes ==
@@ -163,8 +171,8 @@ namespace QLSV.Frm
         {
             try
             {
-                LoadDefaul(null);
-                _frmDangNhap.ShowDialog();
+                //LoadDefaul(null);
+                //_frmDangNhap.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -181,8 +189,6 @@ namespace QLSV.Frm
 
         private void cboChonKyThi_Click(object sender, EventArgs e)
         {
-            new QlsvSevice();
-
             var tb = new DataTable();
             tb.Columns.Add("Mã kỳ thi", typeof (string));
             tb.Columns.Add("Tên kỳ thi", typeof (string));
@@ -209,6 +215,12 @@ namespace QLSV.Frm
         }
 
         #endregion
+
+        private void report_Click(object sender, EventArgs e)
+        {
+            var frm = new Form1();
+            frm.ShowDialog();
+        }
 
         //private void timer1_Tick(object sender, EventArgs e)
         //{

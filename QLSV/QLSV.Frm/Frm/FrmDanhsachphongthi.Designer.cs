@@ -37,6 +37,7 @@
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnpdf = new System.Windows.Forms.Button();
             this.btnInds = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnGhi = new System.Windows.Forms.Button();
@@ -45,7 +46,8 @@
             this.lbInsert = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.ultraGridExcelExporter = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
+            this.exportExcel = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
+            this.ultraGridDocumentExporter1 = new Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter(this.components);
             this.menu_ug.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -114,6 +116,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnpdf);
             this.panel1.Controls.Add(this.btnInds);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnXoa);
@@ -127,6 +130,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(916, 69);
             this.panel1.TabIndex = 10;
+            // 
+            // btnpdf
+            // 
+            this.btnpdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnpdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnpdf.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnpdf.Location = new System.Drawing.Point(291, 19);
+            this.btnpdf.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnpdf.Name = "btnpdf";
+            this.btnpdf.Size = new System.Drawing.Size(89, 29);
+            this.btnpdf.TabIndex = 26;
+            this.btnpdf.Text = "pdf";
+            this.btnpdf.UseVisualStyleBackColor = true;
+            this.btnpdf.Click += new System.EventHandler(this.btnpdf_Click);
             // 
             // btnInds
             // 
@@ -227,7 +244,7 @@
             this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.uG_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.uG_DanhSach.Name = "uG_DanhSach";
@@ -235,6 +252,11 @@
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
+            // 
+            // ultraGridDocumentExporter1
+            // 
+            this.ultraGridDocumentExporter1.AutoSize = Infragistics.Win.UltraWinGrid.DocumentExport.AutoSize.None;
             // 
             // FrmDanhsachphongthi
             // 
@@ -275,6 +297,8 @@
         private System.Windows.Forms.Panel panel2;
         private Infragistics.Win.UltraWinGrid.UltraGrid uG_DanhSach;
         private System.Windows.Forms.Button btnInds;
-        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter ultraGridExcelExporter;
+        private Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter exportExcel;
+        private Infragistics.Win.UltraWinGrid.DocumentExport.UltraGridDocumentExporter ultraGridDocumentExporter1;
+        private System.Windows.Forms.Button btnpdf;
     }
 }
