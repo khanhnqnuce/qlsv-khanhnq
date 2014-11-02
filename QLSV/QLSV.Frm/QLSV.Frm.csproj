@@ -120,6 +120,11 @@
     <Compile Include="Frm\FrmTimkiem.Designer.cs">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ultis.Frm\ConvertProcess.cs" />
     <Compile Include="Ultis.Frm\FormatProcess.cs" />
     <Compile Include="EnumHelper.cs" />
@@ -245,14 +250,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,16 +268,6 @@
     <Content Include="Reports\danhsachsinhvien.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\logo1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\101.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thong-tin-tai-khoan2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\error.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QLSV.Core\QLSV.Core.csproj">
@@ -288,33 +278,6 @@
       <Project>{0E243190-859E-4479-97F8-0E97D2889D5F}</Project>
       <Name>QLSV.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dangxuat.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lấy lại mật khẩu nhận thông báo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Đăng-ký-BHXH-tự-nguyện.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Thu-BHXH,-BHYT-bắt-buộc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Thẻ-BHYT-HSSV-khác.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Trả-thẻ-BHYT,-sổ-BHXH-theo-phiếu-yêu-cầu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Đăng-ký-ngưng,-chuyển-địa-bàn,-giải-thể.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\metro-loading.gif" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

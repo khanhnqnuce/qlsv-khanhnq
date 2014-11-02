@@ -13,7 +13,7 @@ namespace QLSV.Frm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            Application.Run(new FormMain());
         }
     }
 }
