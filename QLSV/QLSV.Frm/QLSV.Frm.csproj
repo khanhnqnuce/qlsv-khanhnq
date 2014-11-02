@@ -120,6 +120,12 @@
     <Compile Include="Frm\FrmTimkiem.Designer.cs">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmSapxepphongthi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmSapxepphongthi.Designer.cs">
+      <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmTimkiem.resx">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmSapxepphongthi.resx">
+      <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

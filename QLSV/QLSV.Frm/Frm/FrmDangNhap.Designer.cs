@@ -150,6 +150,7 @@
             // pictureBox_Logo
             // 
             this.pictureBox_Logo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox_Logo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Logo.Image")));
             this.pictureBox_Logo.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_Logo.Name = "pictureBox_Logo";
             this.pictureBox_Logo.Size = new System.Drawing.Size(205, 211);
