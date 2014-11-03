@@ -13,19 +13,6 @@ namespace QLSV.Frm.Frm
 
         public string StrChucNang = "";
 
-        private void txtMaChucNang_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                //e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
         private void txtMaChucNang_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -34,7 +21,7 @@ namespace QLSV.Frm.Frm
                 {
                     case Keys.Enter:
                         StrChucNang = txtMaChucNang.Text;
-                        Dispose();
+                        Close();
                         break;
                     case Keys.Escape:
                         Close();
@@ -48,10 +35,15 @@ namespace QLSV.Frm.Frm
             }
         }
 
+        /// <summary>
+        /// Tắt âm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtMaChucNang_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode == Keys.Enter)
-            //    e.SuppressKeyPress = true;
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true;
         }
     }
 }

@@ -7,9 +7,14 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Frm.Base
 {
-    public partial class FunctionControlHasGrid : Form
+    public partial class FunctionControlHasGrid : UserControl
     {
         protected IList<int> IdDelete = new List<int>();
+
+        public void uG_InsertRow()
+        {
+            InsertRow();
+        }
 
         protected virtual void InsertRow() { }
 
@@ -42,6 +47,11 @@ namespace QLSV.Frm.Base
         }
 
         protected virtual void LoadGrid(){}
+
+        public void uG_DeleteRow()
+        {
+            DeleteRow();
+        }
 
         protected virtual void DeleteRow(){}
 
@@ -104,9 +114,19 @@ namespace QLSV.Frm.Base
             }
         }
 
-        protected virtual void Save(){}
+        public void Save()
+        {
+            SaveDetail();
+        }
 
-        protected virtual void Xoa() {}
+        protected virtual void SaveDetail(){}
+
+        public void Xoa()
+        {
+            XoaDetail();
+        }
+
+        protected virtual void XoaDetail() {}
 
         private static void Stt(UltraGrid grid, string columnname)
         {

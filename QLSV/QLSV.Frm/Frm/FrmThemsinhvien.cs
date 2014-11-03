@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using QLSV.Core.DataConnection;
+using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Service;
@@ -20,9 +21,10 @@ namespace QLSV.Frm.Frm
         public FrmThemsinhvien()
         {
             InitializeComponent();
+            Load();
         }
 
-        private void FrmThemsinhvien_Load(object sender, EventArgs e)
+        private new void Load()
         {
             cbokhoa.DataSource = QlsvSevice.Load<Khoa>();
             cbokhoa.ValueMember = "ID";
@@ -50,7 +52,6 @@ namespace QLSV.Frm.Frm
 
         private void btnhuy_Click(object sender, EventArgs e)
         {
-            txtmasinhvien.Clear();
             txttensinhvien.Clear();
             txthotendem.Clear();
             cbongaysinh.Value = null;
@@ -88,7 +89,10 @@ namespace QLSV.Frm.Frm
                         MessageBox.Show(@"Ghi thành công");
                         return;
                     }
-                    foreach (var khoa in listKhoa.Where(khoa => khoa.ID.ToString() == cbokhoa.Value.ToString()))
+                    foreach (
+                        var khoa in
+                            listKhoa.Where(
+                                khoa => khoa.ID.ToString(CultureInfo.InvariantCulture) == cbokhoa.Value.ToString()))
                     {
                         var newLop1 = SinhVienSql.ThemLop(cbolop.Text, khoa.ID);
                         var hs = new SinhVien
@@ -120,8 +124,18 @@ namespace QLSV.Frm.Frm
                 }
                 else
                 {
-                    
+                    var hs1 = new SinhVien
+                    {
+                        ID = Id,
+                        MaSinhVien = txtmasinhvien.Text,
+                        HoSinhVien = txthotendem.Text,
+                        TenSinhVien = txttensinhvien.Text,
+                        NgaySinh = cbongaysinh.Text,
+                        IdLop = int.Parse(cbolop.Value.ToString())
+                    };
+                    QlsvSevice.Sua(hs1);
                     MessageBox.Show(@"Sửa thành công");
+                    Id = 0;
                     Close();
                 }
             }
@@ -196,6 +210,27 @@ namespace QLSV.Frm.Frm
             {
                 Log2File.LogExceptionToFile(ex);
                 return false;
+            }
+        }
+
+        private void cbokhoa_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var rootBand = cbolop.DisplayLayout.Bands[0];
+                rootBand.ColumnFilters.ClearAllFilters();
+                if (string.IsNullOrEmpty(cbokhoa.Text)) return;
+                rootBand.ColumnFilters["IdKhoa"].FilterConditions.Add(FilterComparisionOperator.Equals, cbokhoa.Value);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
             }
         }
     }

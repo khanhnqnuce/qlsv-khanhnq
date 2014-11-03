@@ -22,7 +22,6 @@ namespace QLSV.Frm.Frm
         public FrmQuanLyKyThi()
         {
             InitializeComponent();
-            LoadForm();
         }
 
         #region Exit
@@ -97,7 +96,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        protected override void Save()
+        protected override void SaveDetail()
         {
             try
             {
@@ -116,7 +115,7 @@ namespace QLSV.Frm.Frm
                     _listAdd.Add(hs);
                 }
                 QlsvSevice.ThemAll(_listAdd);
-                QlsvSevice.Sua(_listUpdate);
+                QlsvSevice.SuaAll(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "Kythi");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -135,7 +134,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        protected override void Xoa()
+        protected override void XoaDetail()
         {
             try
             {
@@ -178,7 +177,7 @@ namespace QLSV.Frm.Frm
 
         private void btnDong_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -188,7 +187,7 @@ namespace QLSV.Frm.Frm
 
         private void btnGhi_Click(object sender, EventArgs e)
         {
-            Save();
+            SaveDetail();
         }
 
         #endregion
@@ -296,12 +295,12 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_dong_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
         }
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)
         {
-            Save();
+            SaveDetail();
         }
 
         #endregion
@@ -311,10 +310,10 @@ namespace QLSV.Frm.Frm
             switch (keyData)
             {
                 case (Keys.F3):
-                    Xoa();
+                    XoaDetail();
                     break;
                 case (Keys.F5):
-                    Save();
+                    SaveDetail();
                     break;
                 case (Keys.F11):
                     DeleteRow();
@@ -323,13 +322,18 @@ namespace QLSV.Frm.Frm
                     LoadForm();
                     break;
                 case (Keys.Escape):
-                    Close();
+                    //Close();
                     break;
                 case (Keys.Insert):
                     InsertRow();
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void FrmQuanLyKyThi_Load(object sender, EventArgs e)
+        {
+            LoadForm();
         }
     }
 }

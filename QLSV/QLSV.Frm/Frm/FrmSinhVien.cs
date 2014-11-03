@@ -26,7 +26,7 @@ namespace QLSV.Frm.Frm
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
         private readonly FrmTimkiem _frmTimkiem;
-        private readonly FrmThemsinhvien _frmThemsinhvien;
+        private FrmThemsinhvien _frmThemsinhvien;
         private IList<Lop> _listLop;
         private IList<Khoa> _listKhoa;
         private DataTable _danhsach = new DataTable();
@@ -39,11 +39,8 @@ namespace QLSV.Frm.Frm
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
-            _frmThemsinhvien = new FrmThemsinhvien();
-            _frmThemsinhvien.Themmoisinhvien += Themmoisinhvien;
             _listLop = QlsvSevice.Load<Lop>();
             _listKhoa = QlsvSevice.Load<Khoa>();
-            LoadForm();
         }
 
         #region Exit
@@ -84,7 +81,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void LoadForm()
+        public void LoadForm()
         {
             try
             {
@@ -116,7 +113,7 @@ namespace QLSV.Frm.Frm
             DeleteRowGrid(uG_DanhSach, "ID", "MaSinhVien");
         }
 
-        protected override void Save()
+        protected override void SaveDetail()
         {
             try
             {
@@ -182,7 +179,7 @@ namespace QLSV.Frm.Frm
                 SinhVienSql.ThemSinhVien(_listAdd);
                 _danhsach.Clear();
                 abc:
-                QlsvSevice.Sua(_listUpdate);
+                QlsvSevice.SuaAll(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "SinhVien");
 
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
@@ -201,7 +198,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        protected override void Xoa()
+        protected override void XoaDetail()
         {
             try
             {
@@ -224,6 +221,51 @@ namespace QLSV.Frm.Frm
                 }
                 else
                     MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Themmoi()
+        {
+            _frmThemsinhvien = new FrmThemsinhvien();
+            _frmThemsinhvien.Themmoisinhvien += Themmoisinhvien;
+            _frmThemsinhvien.ShowDialog();
+        }
+
+        private void Sua()
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(uG_DanhSach.ActiveRow.Cells["ID"].Text)) return;
+                var lopnew = new Lop();
+                foreach (var lop in _listLop.Where(lop => lop.MaLop == uG_DanhSach.ActiveRow.Cells["MaLop"].Text))
+                {
+                    lopnew = lop;
+                }
+                var frm = new FrmThemsinhvien
+                {
+                    Id = int.Parse(uG_DanhSach.ActiveRow.Cells["ID"].Text),
+                    txtmasinhvien = {Text = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text, ReadOnly = true},
+                    txthotendem = {Text = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
+                    txttensinhvien = {Text = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
+                    cbongaysinh = {Text = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                };
+
+                frm.cbolop.Value = lopnew.ID;
+                frm.cbokhoa.Value = lopnew.IdKhoa;
+                frm.ShowDialog();
+                if (frm.Id == 0)
+                {
+                    uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Value = frm.txthotendem.Text;
+                    uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Value = frm.txttensinhvien.Text;
+                    uG_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
+                    uG_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
+                    uG_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -460,64 +502,12 @@ namespace QLSV.Frm.Frm
             //}
         }
 
+        private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
+        {
+            Sua();
+        }
+
         #endregion
-
-        #region Button
-
-        private void btnthemmoi_Click(object sender, EventArgs e)
-        {
-            _frmThemsinhvien.ShowDialog();
-        }
-
-        private void btnNapDuLieu_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            btnHuy.Focus();
-            DeleteRow();
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            Huy();
-        }
-
-        private void btnInds_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (Kiemtrafile())
-            //    {
-            //        MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
-            //            MessageBoxIcon.Information);
-            //        return;
-            //    }
-
-            //    if (!Directory.Exists("Data"))
-            //        Directory.CreateDirectory("Data");
-
-            //    ultraGridExcelExporter.Export(uG_DanhSach, @"Data\DanhSachSinhVien.xls");
-
-            //    var mydoc = new Process();
-            //    if (File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls"))
-            //    {
-            //        mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachSinhVien.xls";
-            //        mydoc.Start();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    Log2File.LogExceptionToFile(ex);
-            //}
-        }
 
         private static bool Kiemtrafile()
         {
@@ -534,18 +524,15 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        #endregion
-
         #region MenuStrip
 
         private void menuStrip_themdong_Click(object sender, EventArgs e)
         {
-            _frmThemsinhvien.ShowDialog();
+            Themmoi();
         }
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
         {
-            btnHuy.Focus();
             DeleteRow();
         }
 
@@ -556,14 +543,12 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_dong_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
         }
 
-        private void napDữLiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuStrip_Sua_Click(object sender, EventArgs e)
         {
-            var frm = new FrmInportSinhVien();
-            frm.ShowDialog();
-            LoadForm();
+           Sua();
         }
 
         #endregion
@@ -701,6 +686,8 @@ namespace QLSV.Frm.Frm
                 cbolop.Rows.Band.Columns["GhiChu"].Hidden = true;
                 cbolop.Rows.Band.ColHeadersVisible = false;
                 cbolop.DropDownWidth = 0;
+
+                LoadForm();
             }
             catch (Exception ex)
             {
@@ -718,26 +705,6 @@ namespace QLSV.Frm.Frm
         {
             switch (keyData)
             {
-                case (Keys.F3):
-                    Xoa();
-                    break;
-                case (Keys.F5):
-                    break;
-                case (Keys.F8):
-                    break;
-                case (Keys.F11):
-                    btnHuy.Focus();
-                    DeleteRow();
-                    break;
-                case (Keys.F12):
-                    Huy();
-                    break;
-                case (Keys.Escape):
-                    Close();
-                    break;
-                case (Keys.Insert):
-                    _frmThemsinhvien.ShowDialog();
-                    break;
                 case (Keys.Control | Keys.S):
                     _frmTimkiem.ShowDialog();
                     break;
@@ -774,21 +741,6 @@ namespace QLSV.Frm.Frm
         //        Log2File.LogExceptionToFile(ex);
         //    }
         //}
-
-        private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
-        {
-            var index = e.Cell.Row.Index;
-            var obj = new FrmThemsinhvien();
-            obj.Id = int.Parse(e.Cell.Row.Cells["ID"].Value.ToString());
-            obj.txtmasinhvien.Text = e.Cell.Row.Cells["MaSinhVien"].Value.ToString();
-            obj.txtmasinhvien.ReadOnly = true;
-            obj.txthotendem.Text = e.Cell.Row.Cells["HoSinhVien"].Value.ToString();
-            obj.txttensinhvien.Text = e.Cell.Row.Cells["TenSinhVien"].Value.ToString();
-            obj.cbongaysinh.Text = e.Cell.Row.Cells["NgaySinh"].Value.ToString();
-            obj.cbolop.Text = e.Cell.Row.Cells["MaLop"].Value.ToString();
-            obj.cbokhoa.Text = e.Cell.Row.Cells["TenKhoa"].Value.ToString();
-            obj.ShowDialog();
-        }
     }
 }
 

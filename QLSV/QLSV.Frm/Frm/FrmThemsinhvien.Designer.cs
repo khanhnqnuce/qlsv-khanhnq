@@ -260,6 +260,7 @@
             this.cbokhoa.Name = "cbokhoa";
             this.cbokhoa.Size = new System.Drawing.Size(161, 25);
             this.cbokhoa.TabIndex = 10;
+            this.cbokhoa.ValueChanged += new System.EventHandler(this.cbokhoa_ValueChanged);
             // 
             // cbolop
             // 
@@ -412,8 +413,7 @@
             this.Name = "FrmThemsinhvien";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thêm sinh viên";
-            this.Load += new System.EventHandler(this.FrmThemsinhvien_Load);
+            this.Text = "Sinh Viên";
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();

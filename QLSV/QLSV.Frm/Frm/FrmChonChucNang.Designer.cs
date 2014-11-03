@@ -75,7 +75,6 @@
             this.txtMaChucNang.Size = new System.Drawing.Size(95, 22);
             this.txtMaChucNang.TabIndex = 6;
             this.txtMaChucNang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyDown);
-            this.txtMaChucNang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMaChucNang_KeyPress);
             this.txtMaChucNang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyUp);
             // 
             // panel2

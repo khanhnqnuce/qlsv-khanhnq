@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\FunctionControlHasGrid.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Base\FunctionControlHasGrid.Designer.cs">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
@@ -103,7 +103,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmInportSinhVien.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmInportSinhVien.Designer.cs">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
@@ -158,19 +158,19 @@
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmDanhmuckhoa.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmDanhmuckhoa.Designer.cs">
       <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmDanhmuclop.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmDanhmuclop.Designer.cs">
       <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmDanhsachphongthi.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmDanhsachphongthi.Designer.cs">
       <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
@@ -182,19 +182,19 @@
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmQuanLyKyThi.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmQuanLyKyThi.Designer.cs">
       <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmQuanLyNguoiDung.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmQuanLyNguoiDung.Designer.cs">
       <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmSinhVien.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm\FrmSinhVien.Designer.cs">
       <DependentUpon>FrmSinhVien.cs</DependentUpon>

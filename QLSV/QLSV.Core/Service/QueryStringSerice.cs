@@ -76,7 +76,7 @@ namespace QLSV.Core.Service
             }
         }
 
-        public static void Sua<T>(IEnumerable<T> list)
+        public static void SuaAll<T>(IEnumerable<T> list)
         {
             try
             {
@@ -86,6 +86,23 @@ namespace QLSV.Core.Service
                     {
                         mySession.Update(item);
                     }
+                    mySession.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static void Sua<T>(T hs)
+        {
+            try
+            {
+                using (var mySession = OpenSession())
+                {
+
+                    mySession.Update(hs);
                     mySession.Flush();
                 }
             }
