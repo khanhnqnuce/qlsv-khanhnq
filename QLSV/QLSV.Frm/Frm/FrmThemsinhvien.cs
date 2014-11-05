@@ -52,6 +52,11 @@ namespace QLSV.Frm.Frm
 
         private void btnhuy_Click(object sender, EventArgs e)
         {
+            ClearAll();
+        }
+
+        private void ClearAll()
+        {
             txttensinhvien.Clear();
             txthotendem.Clear();
             cbongaysinh.Value = null;
@@ -71,7 +76,7 @@ namespace QLSV.Frm.Frm
                     var listSinhVien = QlsvSevice.Load<SinhVien>();
                     foreach (var sv in listSinhVien.Where(sv => sv.MaSinhVien == txtmasinhvien.Text))
                     {
-                        MessageBox.Show(@"Mã sinh viên đã tồn tại");
+                        MessageBox.Show(@"Sinh viên đã có trong CSDL");
                         return;
                     }
                     foreach (var lop in listLop.Where(lop => lop.ID.ToString() == cbolop.Value.ToString()))
@@ -86,7 +91,8 @@ namespace QLSV.Frm.Frm
                         };
                         QlsvSevice.Them(hs);
                         Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Ghi thành công");
+                        MessageBox.Show(@"Đã lưu vào CSDL");
+                        ClearAll();
                         return;
                     }
                     foreach (
@@ -105,7 +111,8 @@ namespace QLSV.Frm.Frm
                         };
                         QlsvSevice.Them(hs);
                         Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Ghi thành công");
+                        MessageBox.Show(@"Đã lưu vào CSDL");
+                        ClearAll();
                         return;
                     }
                     var newkhoa = SinhVienSql.ThemKhoa(cbokhoa.Text);
@@ -120,7 +127,8 @@ namespace QLSV.Frm.Frm
                     };
                     QlsvSevice.Them(hs1);
                     Themmoisinhvien(sender, hs1, cbokhoa.Text);
-                    MessageBox.Show(@"Ghi thành công");
+                    MessageBox.Show(@"Đã lưu vào CSDL");
+                    ClearAll();
                 }
                 else
                 {
@@ -134,7 +142,7 @@ namespace QLSV.Frm.Frm
                         IdLop = int.Parse(cbolop.Value.ToString())
                     };
                     QlsvSevice.Sua(hs1);
-                    MessageBox.Show(@"Sửa thành công");
+                    MessageBox.Show(@"Đã lưu vào CSDL");
                     Id = 0;
                     Close();
                 }

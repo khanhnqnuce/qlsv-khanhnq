@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using NHibernate;
 using NHibernate.Cfg;
+using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.Service
@@ -21,6 +22,23 @@ namespace QLSV.Core.Service
                 _mySecsionFactory = configuration.BuildSessionFactory();
             }
             return _mySecsionFactory.OpenSession();
+        }
+
+        public static IList<SinhVien> LoadSinhVien()
+        {
+            try
+            {
+                using (var mySession = OpenSession())
+                {
+                    var list = mySession.CreateQuery("FROM SinhVien s ORDER BY s.TenSinhVien").List<SinhVien>();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
         }
 
         public static IList<T> Load<T>() where T : class

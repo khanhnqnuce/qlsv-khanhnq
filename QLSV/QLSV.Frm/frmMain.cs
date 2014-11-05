@@ -216,12 +216,6 @@ namespace QLSV.Frm
 
         #endregion
 
-        private void report_Click(object sender, EventArgs e)
-        {
-            var frm = new Form1();
-            frm.ShowDialog();
-        }
-
         //private void timer1_Tick(object sender, EventArgs e)
         //{
         //    if (DateTime.Now.Hour > 12)

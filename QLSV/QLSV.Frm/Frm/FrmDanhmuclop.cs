@@ -61,7 +61,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void LoadForm()
+        public void LoadForm()
         {
             LoadGrid();
             if (uG_DanhSach.Rows.Count == 0)
@@ -96,7 +96,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                btnGhi.Focus();
                 foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new Lop
@@ -161,37 +160,12 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        #region Button
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            DeleteRow();
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            LoadForm();
-        }
-
-        private void btnGhi_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        #endregion
-
         #region Event_uG
 
         private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
         {
             try
             {
-                btnGhi.Focus();
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (!string.IsNullOrEmpty(id))
                 {
@@ -279,33 +253,7 @@ namespace QLSV.Frm.Frm
         }
 
         #endregion
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case (Keys.F3):
-                    XoaDetail();
-                    break;
-                case (Keys.F5):
-                    SaveDetail();
-                    break;
-                case (Keys.F11):
-                    DeleteRow();
-                    break;
-                case (Keys.F12):
-                    LoadForm();
-                    break;
-                case (Keys.Escape):
-                    //Close();
-                    break;
-                case (Keys.Insert):
-                    InsertRow();
-                    break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
+        
         private void FrmDanhmuclop_Load(object sender, EventArgs e)
         {
             LoadForm();

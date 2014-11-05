@@ -67,7 +67,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void LoadForm()
+        public void LoadForm()
         {
             LoadGrid();
             if (uG_DanhSach.Rows.Count == 0)
@@ -139,7 +139,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                btnGhi.Focus();
                 foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new Taikhoan
@@ -386,7 +385,6 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
         {
-            btnGhi.Focus();
             DeleteRow();
         }
 
@@ -411,34 +409,6 @@ namespace QLSV.Frm.Frm
         }
         
         #endregion
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case (Keys.F3):
-                    XoaDetail();
-                    break;
-                case (Keys.F5):
-                    SaveDetail();
-                    break;
-                case (Keys.F11):
-                    btnGhi.Focus();
-                    DeleteRow();
-                    break;
-                case (Keys.F12):
-                    LoadForm();
-                    break;
-                case (Keys.Escape):
-                    //Close();
-                    break;
-                case (Keys.Insert):
-                    InsertRow();
-                    break;
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
 
         private void FrmQuanLyNguoiDung_Load(object sender, EventArgs e)
         {

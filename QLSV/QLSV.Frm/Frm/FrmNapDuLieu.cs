@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using OfficeOpenXml;
+using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
+using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
 
@@ -18,6 +22,7 @@ namespace QLSV.Frm.Frm
         private readonly bool _multiSheet;
         private Thread _threadLoad;
         private int _stt;
+        //private readonly IList<SinhVien> _listSinhVien;
         public FrmNapDuLieu(int stt)
         {
             try
@@ -25,6 +30,7 @@ namespace QLSV.Frm.Frm
                 InitializeComponent();
                 _multiSheet = false;
                 _stt = stt;
+                //_listSinhVien = QlsvSevice.Load<SinhVien>();
             }
             catch (Exception ex)
             {
@@ -103,8 +109,16 @@ namespace QLSV.Frm.Frm
                 var startRows = sheet.FirstRowNum;
                 var endRows = sheet.LastRowNum;
                 var result = GetTable();
+                var tb = SinhVienSql.LoadMaSinhVien();
+                var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
+                upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
+                var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
+                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row[0].ToString()==sheet.GetRow(i).GetCell(0).ToString()))
+                    {
+                        goto a;
+                    }
                     result.Rows.Add(++_stt,
                         sheet.GetRow(i).GetCell(0).ToString(),
                         sheet.GetRow(i).GetCell(1).ToString(),
@@ -112,7 +126,10 @@ namespace QLSV.Frm.Frm
                         sheet.GetRow(i).GetCell(3).ToString(),
                         sheet.GetRow(i).GetCell(4).ToString(),
                         sheet.GetRow(i).GetCell(5).ToString());
+                    a:;
+                    upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
+                upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
                 ResultValue = result;
             }
             catch (Exception ex)

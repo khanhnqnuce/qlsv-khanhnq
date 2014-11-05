@@ -65,7 +65,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void LoadForm()
+        public void LoadForm()
         {
             LoadGrid();
             if (uG_DanhSach.Rows.Count == 0)
@@ -100,7 +100,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                btnGhi.Focus();
                 foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new Kythi
@@ -168,37 +167,12 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        #region Button
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            DeleteRow();
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            LoadForm();
-        }
-
-        private void btnGhi_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        #endregion
-
         #region Event_uG
 
         private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
         {
             try
             {
-                btnGhi.Focus();
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (!string.IsNullOrEmpty(id))
                 {
@@ -284,18 +258,12 @@ namespace QLSV.Frm.Frm
 
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
         {
-            btnGhi.Focus();
             DeleteRow();
         }
 
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
             LoadForm();
-        }
-
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            //Close();
         }
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)

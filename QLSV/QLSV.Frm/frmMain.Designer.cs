@@ -57,38 +57,28 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("101");
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("dangnhap");
-            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("dangxuat");
-            Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("thoat");
-            Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool10 = new Infragistics.Win.UltraWinToolbars.ButtonTool("doimatkhau");
-            Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool12 = new Infragistics.Win.UltraWinToolbars.ButtonTool("201");
-            Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool14 = new Infragistics.Win.UltraWinToolbars.ButtonTool("103");
-            Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool16 = new Infragistics.Win.UltraWinToolbars.ButtonTool("104");
-            Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool18 = new Infragistics.Win.UltraWinToolbars.ButtonTool("105");
-            Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool20 = new Infragistics.Win.UltraWinToolbars.ButtonTool("106");
-            Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool22 = new Infragistics.Win.UltraWinToolbars.ButtonTool("107");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel_footer = new System.Windows.Forms.Panel();
-            this.report = new System.Windows.Forms.Button();
             this.lbdatetime = new Infragistics.Win.Misc.UltraLabel();
             this.lbusername = new Infragistics.Win.Misc.UltraLabel();
             this.cboChonKyThi = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.btnkythi = new System.Windows.Forms.Button();
             this.panelDetail = new System.Windows.Forms.Panel();
             this._frmMain_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.MenuBar = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this._frmMain_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._frmMain_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._frmMain_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.MenuBar = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.panel_footer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonKyThi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
@@ -97,7 +87,6 @@
             // panel_footer
             // 
             this.panel_footer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_footer.Controls.Add(this.report);
             this.panel_footer.Controls.Add(this.lbdatetime);
             this.panel_footer.Controls.Add(this.lbusername);
             this.panel_footer.Controls.Add(this.cboChonKyThi);
@@ -107,17 +96,6 @@
             this.panel_footer.Name = "panel_footer";
             this.panel_footer.Size = new System.Drawing.Size(1165, 89);
             this.panel_footer.TabIndex = 10;
-            // 
-            // report
-            // 
-            this.report.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.report.Location = new System.Drawing.Point(848, 29);
-            this.report.Name = "report";
-            this.report.Size = new System.Drawing.Size(101, 29);
-            this.report.TabIndex = 7;
-            this.report.Text = "report";
-            this.report.UseVisualStyleBackColor = true;
-            this.report.Click += new System.EventHandler(this.report_Click);
             // 
             // lbdatetime
             // 
@@ -229,6 +207,77 @@
             this._frmMain_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(8, 448);
             this._frmMain_Toolbars_Dock_Area_Right.ToolbarsManager = this.MenuBar;
             // 
+            // MenuBar
+            // 
+            this.MenuBar.DesignerFlags = 1;
+            this.MenuBar.DockWithinContainer = this;
+            this.MenuBar.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
+            this.MenuBar.Ribbon.ApplicationMenu.ToolAreaLeft.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool2,
+            buttonTool5,
+            buttonTool9,
+            buttonTool7});
+            ribbonTab1.Caption = "Người dùng";
+            ribbonGroup1.Caption = "";
+            buttonTool1.InstanceProps.MinimumSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool1.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Normal;
+            buttonTool21.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool11.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool13.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool15.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool17.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            buttonTool19.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
+            ribbonGroup1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool1,
+            buttonTool21,
+            buttonTool11,
+            buttonTool13,
+            buttonTool15,
+            buttonTool17,
+            buttonTool19});
+            ribbonTab1.Groups.AddRange(new Infragistics.Win.UltraWinToolbars.RibbonGroup[] {
+            ribbonGroup1});
+            this.MenuBar.Ribbon.NonInheritedRibbonTabs.AddRange(new Infragistics.Win.UltraWinToolbars.RibbonTab[] {
+            ribbonTab1});
+            this.MenuBar.Ribbon.Visible = true;
+            this.MenuBar.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2010;
+            appearance13.Image = ((object)(resources.GetObject("appearance13.Image")));
+            buttonTool3.SharedPropsInternal.AppearancesSmall.Appearance = appearance13;
+            buttonTool3.SharedPropsInternal.Caption = "Quản lý người dùng";
+            buttonTool4.SharedPropsInternal.Caption = "Đăng nhập";
+            buttonTool4.SharedPropsInternal.CustomizerCaption = "Đăng Nhập";
+            buttonTool6.SharedPropsInternal.Caption = "Đăng xuất";
+            buttonTool6.SharedPropsInternal.CustomizerCaption = "Đăng xuất";
+            buttonTool8.SharedPropsInternal.Caption = "Thoát";
+            buttonTool8.SharedPropsInternal.CustomizerCaption = "Thoát";
+            buttonTool10.SharedPropsInternal.Caption = "Đổi mật khẩu";
+            buttonTool10.SharedPropsInternal.CustomizerCaption = "Đổi mật khẩu";
+            buttonTool12.SharedPropsInternal.Caption = "Quản lý sinh viên";
+            buttonTool12.SharedPropsInternal.CustomizerCaption = "Quản lý sinh viên";
+            buttonTool14.SharedPropsInternal.Caption = "Quản lý kỳ thi";
+            buttonTool14.SharedPropsInternal.CustomizerCaption = "Quản lý kỳ thi";
+            buttonTool16.SharedPropsInternal.Caption = "Quản lý danh mục Khoa";
+            buttonTool16.SharedPropsInternal.CustomizerCaption = "Quản lý danh mục Khoa";
+            buttonTool18.SharedPropsInternal.Caption = "Quản lý danh mục Lớp";
+            buttonTool18.SharedPropsInternal.CustomizerCaption = "Quản lý danh mục Lớp";
+            buttonTool20.SharedPropsInternal.Caption = "Danh sách phòng thi";
+            buttonTool20.SharedPropsInternal.CustomizerCaption = "Danh sách phòng thi";
+            buttonTool22.SharedPropsInternal.Caption = "Inport Sinh Viên";
+            buttonTool22.SharedPropsInternal.CustomizerCaption = "Inport Sinh Viên";
+            this.MenuBar.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            buttonTool3,
+            buttonTool4,
+            buttonTool6,
+            buttonTool8,
+            buttonTool10,
+            buttonTool12,
+            buttonTool14,
+            buttonTool16,
+            buttonTool18,
+            buttonTool20,
+            buttonTool22});
+            this.MenuBar.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.MenuBar_ToolClick);
+            // 
             // _frmMain_Toolbars_Dock_Area_Left
             // 
             this._frmMain_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -268,86 +317,6 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
-            // 
-            // MenuBar
-            // 
-            this.MenuBar.DesignerFlags = 1;
-            this.MenuBar.DockWithinContainer = this;
-            this.MenuBar.DockWithinContainerBaseType = typeof(System.Windows.Forms.Form);
-            this.MenuBar.Ribbon.ApplicationMenu.ToolAreaLeft.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool2,
-            buttonTool5,
-            buttonTool9,
-            buttonTool7});
-            ribbonTab1.Caption = "Người dùng";
-            ribbonGroup1.Caption = "";
-            buttonTool1.InstanceProps.MinimumSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool1.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Normal;
-            buttonTool21.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool11.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool13.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool15.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool17.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            buttonTool19.InstanceProps.PreferredSizeOnRibbon = Infragistics.Win.UltraWinToolbars.RibbonToolSize.Large;
-            ribbonGroup1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool1,
-            buttonTool21,
-            buttonTool11,
-            buttonTool13,
-            buttonTool15,
-            buttonTool17,
-            buttonTool19});
-            ribbonTab1.Groups.AddRange(new Infragistics.Win.UltraWinToolbars.RibbonGroup[] {
-            ribbonGroup1});
-            this.MenuBar.Ribbon.NonInheritedRibbonTabs.AddRange(new Infragistics.Win.UltraWinToolbars.RibbonTab[] {
-            ribbonTab1});
-            this.MenuBar.Ribbon.Visible = true;
-            this.MenuBar.Style = Infragistics.Win.UltraWinToolbars.ToolbarStyle.Office2010;
-            appearance13.Image = ((object)(resources.GetObject("appearance13.Image")));
-            buttonTool3.SharedPropsInternal.AppearancesSmall.Appearance = appearance13;
-            buttonTool3.SharedPropsInternal.Caption = "Quản lý người dùng";
-            buttonTool4.SharedPropsInternal.AppearancesSmall.Appearance = appearance14;
-            buttonTool4.SharedPropsInternal.Caption = "Đăng nhập";
-            buttonTool4.SharedPropsInternal.CustomizerCaption = "Đăng Nhập";
-            buttonTool6.SharedPropsInternal.AppearancesSmall.Appearance = appearance15;
-            buttonTool6.SharedPropsInternal.Caption = "Đăng xuất";
-            buttonTool6.SharedPropsInternal.CustomizerCaption = "Đăng xuất";
-            buttonTool8.SharedPropsInternal.AppearancesSmall.Appearance = appearance16;
-            buttonTool8.SharedPropsInternal.Caption = "Thoát";
-            buttonTool8.SharedPropsInternal.CustomizerCaption = "Thoát";
-            buttonTool10.SharedPropsInternal.AppearancesSmall.Appearance = appearance17;
-            buttonTool10.SharedPropsInternal.Caption = "Đổi mật khẩu";
-            buttonTool10.SharedPropsInternal.CustomizerCaption = "Đổi mật khẩu";
-            buttonTool12.SharedPropsInternal.AppearancesSmall.Appearance = appearance18;
-            buttonTool12.SharedPropsInternal.Caption = "Quản lý sinh viên";
-            buttonTool12.SharedPropsInternal.CustomizerCaption = "Quản lý sinh viên";
-            buttonTool14.SharedPropsInternal.AppearancesSmall.Appearance = appearance19;
-            buttonTool14.SharedPropsInternal.Caption = "Quản lý kỳ thi";
-            buttonTool14.SharedPropsInternal.CustomizerCaption = "Quản lý kỳ thi";
-            buttonTool16.SharedPropsInternal.AppearancesSmall.Appearance = appearance20;
-            buttonTool16.SharedPropsInternal.Caption = "Quản lý danh mục Khoa";
-            buttonTool16.SharedPropsInternal.CustomizerCaption = "Quản lý danh mục Khoa";
-            buttonTool18.SharedPropsInternal.AppearancesSmall.Appearance = appearance21;
-            buttonTool18.SharedPropsInternal.Caption = "Quản lý danh mục Lớp";
-            buttonTool18.SharedPropsInternal.CustomizerCaption = "Quản lý danh mục Lớp";
-            buttonTool20.SharedPropsInternal.AppearancesSmall.Appearance = appearance22;
-            buttonTool20.SharedPropsInternal.Caption = "Danh sách phòng thi";
-            buttonTool20.SharedPropsInternal.CustomizerCaption = "Danh sách phòng thi";
-            buttonTool22.SharedPropsInternal.Caption = "Inport Sinh Viên";
-            buttonTool22.SharedPropsInternal.CustomizerCaption = "Inport Sinh Viên";
-            this.MenuBar.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool3,
-            buttonTool4,
-            buttonTool6,
-            buttonTool8,
-            buttonTool10,
-            buttonTool12,
-            buttonTool14,
-            buttonTool16,
-            buttonTool18,
-            buttonTool20,
-            buttonTool22});
-            this.MenuBar.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.MenuBar_ToolClick);
             // 
             // FrmMain
             // 
@@ -389,6 +358,5 @@
         private Infragistics.Win.Misc.UltraLabel lbdatetime;
         private Infragistics.Win.Misc.UltraLabel lbusername;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button report;
     }
 }

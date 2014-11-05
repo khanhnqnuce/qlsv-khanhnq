@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using Infragistics.Win.UltraWinGrid.DocumentExport;
-using QLSV.Core.DataConnection;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Service;
@@ -28,9 +26,7 @@ namespace QLSV.Frm.Frm
         private readonly FrmTimkiem _frmTimkiem;
         private FrmThemsinhvien _frmThemsinhvien;
         private IList<Lop> _listLop;
-        private IList<Khoa> _listKhoa;
-        private DataTable _danhsach = new DataTable();
-        private UltraGridRow _newRow = null;
+        private UltraGridRow _newRow;
 
         #endregion
 
@@ -40,7 +36,7 @@ namespace QLSV.Frm.Frm
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
             _listLop = QlsvSevice.Load<Lop>();
-            _listKhoa = QlsvSevice.Load<Khoa>();
+            
         }
 
         #region Exit
@@ -81,7 +77,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        public void LoadForm()
+        private void LoadForm()
         {
             try
             {
@@ -92,12 +88,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -117,83 +108,14 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                if (_danhsach == null || _danhsach.Rows.Count == 0) goto abc;
-                foreach (DataRow row in _danhsach.Rows)
-                {
-                    var checkmalop = "";
-                    var checkmakhoa = "";
-                    var tenkhoa = row["TenKhoa"].ToString();
-                    var malop = row["MaLop"].ToString();                    
-                    // Kiểm tra lớp đã tồn tại chưa
-                    foreach (var lop in _listLop.Where(lop => lop.MaLop == malop))
-                    {
-                        var hs = new SinhVien
-                        {
-                            MaSinhVien = row["MaSinhVien"].ToString(),
-                            HoSinhVien = row["HoSinhVien"].ToString(),
-                            TenSinhVien = row["TenSinhVien"].ToString(),
-                            NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = lop.ID,
-                        };
-                        checkmalop = malop;
-                        _listAdd.Add(hs);
-                    }
-                    if (checkmalop != "") continue;
-                    //Kiểm tra khoa đã tồn tại chưa
-                    foreach (
-                        var khoa in
-                            _listKhoa.Where(khoa => khoa.TenKhoa.Equals(tenkhoa, StringComparison.OrdinalIgnoreCase))
-                        )
-                    {
-                        var newLop1 = SinhVienSql.ThemLop(malop, khoa.ID);
-                        checkmakhoa = newLop1.MaLop;
-                        var hs = new SinhVien
-                        {
-                            MaSinhVien = row["MaSinhVien"].ToString(),
-                            HoSinhVien = row["HoSinhVien"].ToString(),
-                            TenSinhVien = row["TenSinhVien"].ToString(),
-                            NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = newLop1.ID,
-                        };
-                        _listAdd.Add(hs);
-                        _listLop.Add(newLop1);
-                    }
-                    if (checkmakhoa != "") continue;
-
-                    // Chưa có khoa lớp thì thêm mới
-                    var newkhoa = SinhVienSql.ThemKhoa(tenkhoa);
-                    var newLop3 = SinhVienSql.ThemLop(malop, newkhoa.ID);
-                    var hs1 = new SinhVien
-                    {
-                        MaSinhVien = row["MaSinhVien"].ToString(),
-                        HoSinhVien = row["HoSinhVien"].ToString(),
-                        TenSinhVien = row["TenSinhVien"].ToString(),
-                        NgaySinh = row["NgaySinh"].ToString(),
-                        IdLop = newLop3.ID
-                    };
-
-                    _listAdd.Add(hs1);
-                    _listLop.Add(newLop3);
-                    _listKhoa.Add(newkhoa);
-                }
-                SinhVienSql.ThemSinhVien(_listAdd);
-                _danhsach.Clear();
-                abc:
-                QlsvSevice.SuaAll(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "SinhVien");
-
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadForm();
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -209,18 +131,11 @@ namespace QLSV.Frm.Frm
                     QlsvSevice.Xoa("SinhVien");
                     LoadForm();
                     _listLop = QlsvSevice.Load<Lop>();
-                    _listKhoa = QlsvSevice.Load<Khoa>();
-                    _danhsach.Clear();
                 }
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -270,60 +185,26 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void Huy()
+        public void Huy()
         {
             try
             {
                 LoadForm();
                 cbokhoa.Value = null;
                 cbolop.Value = null;
-                _danhsach.Clear();
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
-
-        //private void Napdulieu()
-        //{
-        //    try
-        //    {
-        //        if (_danhsach == null || _danhsach.Rows.Count == 0) _danhsach = GetTable();
-        //        var stt = uG_DanhSach.Rows.Count;
-        //        var frmNapDuLieu = new FrmNapDuLieu(stt);
-        //        frmNapDuLieu.ShowDialog();
-        //        var b = frmNapDuLieu.ResultValue;
-        //        _danhsach.Merge(b);
-        //        if (b == null || b.Rows.Count == 0) return;
-        //        var table = (DataTable) uG_DanhSach.DataSource;
-
-        //        table.Merge(b);
-        //        uG_DanhSach.DataSource = table;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (ex.Message.Contains(FormResource.msgLostConnect))
-        //        {
-        //            MessageBox.Show(FormResource.txtLoiDB);
-        //        }
-        //        else
-        //            Log2File.LogExceptionToFile(ex);
-        //    }
-        //}
 
         private void Timkiemsinhvien(object sender, string masinhvien)
         {
             try
             {
                 if (_newRow != null) _newRow.Selected = false;
-                var tb = (DataTable) uG_DanhSach.DataSource;
                 foreach (
                     var row in uG_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
                 {
@@ -334,12 +215,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -369,13 +245,21 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Rptdanhsach()
+        {
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
+            using (var previewForm = new PreviewForm(rptdanhsachsinhvien))
+            {
+                previewForm.WindowState = FormWindowState.Maximized;
+                rptdanhsachsinhvien.Prepare();
+                previewForm.ShowDialog();
             }
         }
         
@@ -509,21 +393,6 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        private static bool Kiemtrafile()
-        {
-            try
-            {
-                if (!File.Exists(Application.StartupPath + @"\Data\DanhSachSinhVien.xls")) return false;
-                var f = new FileStream(Application.StartupPath + @"\Data\DanhSachSinhVien.xls", FileMode.Open);
-                f.Dispose();
-                return false;
-            }
-            catch (Exception)
-            {
-                return true;
-            }
-        }
-
         #region MenuStrip
 
         private void menuStrip_themdong_Click(object sender, EventArgs e)
@@ -573,12 +442,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -601,12 +465,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -643,12 +502,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -691,12 +545,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

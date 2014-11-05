@@ -64,7 +64,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void LoadForm()
+        public void LoadForm()
         {
             try
             {
@@ -108,7 +108,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                btnGhi.Focus();
                 foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new PhongThi
@@ -173,81 +172,12 @@ namespace QLSV.Frm.Frm
 
         #endregion
 
-        #region Button
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-           DeleteRow();
-        }
-
-        private void btnDong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-            LoadForm();
-        }
-
-        private void btnGhi_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        private void btnInds_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Kiemtrafile())
-                {
-                    MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (!Directory.Exists("Data"))
-                    Directory.CreateDirectory("Data");
-
-                exportExcel.Export(uG_DanhSach, @"Data\DanhSachPhongThi.xls");
-
-                var mydoc = new Process();
-                if (File.Exists(Application.StartupPath + @"\Data\DanhSachPhongThi.xls"))
-                {
-                    mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\DanhSachPhongThi.xls";
-                    mydoc.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        public bool Kiemtrafile()
-        {
-            try
-            {
-                if (!File.Exists(Application.StartupPath + @"\Data\DanhSachPhongThi.xls")) return false;
-                var f = new FileStream(Application.StartupPath + @"\Data\DanhSachPhongThi.xls", FileMode.Open);
-                     f.Dispose();
-           return false;
-            }
-            catch (Exception)
-            {
-                return true;
-            }
-        }
-
-        #endregion
-
         #region Event_uG
 
         private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
         {
             try
             {
-                btnGhi.Focus();
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (!string.IsNullOrEmpty(id))
                 {
@@ -364,43 +294,12 @@ namespace QLSV.Frm.Frm
             LoadForm();
         }
 
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
-
         private void menuStrip_luulai_Click(object sender, EventArgs e)
         {
             SaveDetail();
         }
 
         #endregion
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case (Keys.F3):
-                    XoaDetail();
-                    break;
-                case (Keys.F5):
-                    SaveDetail();
-                    break;
-                case (Keys.F11):
-                    DeleteRow();
-                    break;
-                case (Keys.F12):
-                    LoadForm();
-                    break;
-                case (Keys.Escape):
-                    //Close();
-                    break;
-                case (Keys.Insert):
-                    InsertRow();
-                    break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
 
         private void btnpdf_Click(object sender, EventArgs e)
         {
