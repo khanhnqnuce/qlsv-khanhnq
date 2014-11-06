@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
@@ -159,6 +160,19 @@ namespace QLSV.Frm.Frm
             }
         }
 
+        public void Rptdanhsach()
+        {
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            rptdanhsachphongthi.FilePath = Application.StartupPath + @"\Reports\danhsachphongthi.rst";
+            using (var previewForm = new PreviewForm(rptdanhsachphongthi))
+            {
+                previewForm.WindowState = FormWindowState.Maximized;
+                rptdanhsachphongthi.Prepare();
+                previewForm.ShowDialog();
+            }
+        }
+
         private void Stt()
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
@@ -219,7 +233,6 @@ namespace QLSV.Frm.Frm
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["SucChua"].FormatNumberic();
-                
 
                 #region Caption
 
