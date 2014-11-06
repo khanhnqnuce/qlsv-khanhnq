@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using Infragistics.Win.UltraWinGrid.DocumentExport;
 using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
@@ -95,7 +92,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "TenPhong");
-                STT();
+                Stt();
             }
             catch (Exception ex)
             {
@@ -162,7 +159,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void STT()
+        private void Stt()
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
@@ -214,7 +211,10 @@ namespace QLSV.Frm.Frm
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 100;
+                band.Columns["STT"].Width = 50;
+                band.Columns["TenPhong"].Width = 150;
+                band.Columns["SucChua"].Width = 150;
+                band.Columns["GhiChu"].Width = 250;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
@@ -300,17 +300,6 @@ namespace QLSV.Frm.Frm
         }
 
         #endregion
-
-        private void btnpdf_Click(object sender, EventArgs e)
-        {
-            var mydoc = new Process();
-            ultraGridDocumentExporter1.Export(uG_DanhSach, "grid.pdf", GridExportFileFormat.PDF);
-            if (File.Exists(Application.StartupPath + @"\grid.pdf"))
-            {
-                mydoc.StartInfo.FileName = Application.StartupPath + @"\grid.pdf";
-                mydoc.Start();
-            }
-        }
 
         private void FrmDanhsachphongthi_Load(object sender, EventArgs e)
         {

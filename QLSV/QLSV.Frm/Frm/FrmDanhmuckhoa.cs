@@ -192,11 +192,13 @@ namespace QLSV.Frm.Frm
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaKhoa"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 100;
-                band.Columns["MaKhoa"].MaxWidth = 300;
+                band.Columns["STT"].Width = 50;
+                band.Columns["MaKhoa"].Width = 200;
+                band.Columns["TenKhoa"].Width = 400;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;

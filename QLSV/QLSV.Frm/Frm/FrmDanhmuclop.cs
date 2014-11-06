@@ -83,7 +83,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "MaLop");
-                STT();
+                Stt();
             }
             catch (Exception ex)
             {
@@ -116,12 +116,7 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -140,17 +135,12 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
 
-        private void STT()
+        private void Stt()
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
@@ -199,11 +189,14 @@ namespace QLSV.Frm.Frm
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 100;
-                band.Columns["MaLop"].MaxWidth = 200;
+                band.Columns["STT"].Width = 50;
+                band.Columns["MaLop"].Width = 200;
+                band.Columns["MaKhoa"].Width = 400;
+                band.Columns["GhiChu"].Width = 300;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
@@ -240,11 +233,6 @@ namespace QLSV.Frm.Frm
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
             LoadForm();
-        }
-
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            //Close();
         }
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)

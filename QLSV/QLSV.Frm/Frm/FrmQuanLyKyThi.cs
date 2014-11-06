@@ -212,10 +212,14 @@ namespace QLSV.Frm.Frm
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["ThoiGianLamBai"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["ThoiGianBatDau"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["ThoiGianKetThuc"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 100;
+                band.Columns["STT"].Width = 50;
+                band.Columns["TenKythi"].Width = 400;
                 band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
@@ -272,32 +276,6 @@ namespace QLSV.Frm.Frm
         }
 
         #endregion
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case (Keys.F3):
-                    XoaDetail();
-                    break;
-                case (Keys.F5):
-                    SaveDetail();
-                    break;
-                case (Keys.F11):
-                    DeleteRow();
-                    break;
-                case (Keys.F12):
-                    LoadForm();
-                    break;
-                case (Keys.Escape):
-                    //Close();
-                    break;
-                case (Keys.Insert):
-                    InsertRow();
-                    break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
 
         private void FrmQuanLyKyThi_Load(object sender, EventArgs e)
         {

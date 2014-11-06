@@ -272,24 +272,9 @@ namespace QLSV.Frm.Frm
             try
             {
                 var band = e.Layout.Bands[0];
-                band.Columns["ID"].Hidden = true;
-                //band.Override.CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
-                band.Columns["HoSinhVien"].CellActivation = Activation.NoEdit;
-                band.Columns["TenSinhVien"].CellActivation = Activation.NoEdit;
-                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
-                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
-                band.Columns["TenKhoa"].CellActivation = Activation.NoEdit;
-
-                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 70;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["MaSinhVien"].MaxWidth = 150;
-                band.Columns["HoSinhVien"].MaxWidth = 200;
-                band.Columns["TenSinhVien"].MaxWidth = 150;
-                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
 
                 #region Caption
 
@@ -301,6 +286,26 @@ namespace QLSV.Frm.Frm
                 band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;
 
                 #endregion
+                
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["HoSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["TenSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
+                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
+                band.Columns["TenKhoa"].CellActivation = Activation.NoEdit;
+
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+
+                band.Columns["ID"].Hidden = true;
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+                band.Columns["STT"].Width = 50;
+                band.Columns["HoSinhVien"].Width = 170;
+                band.Columns["TenSinhVien"].Width = 150;
+                band.Columns["TenKhoa"].Width = 310;
+                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
             {
@@ -351,39 +356,6 @@ namespace QLSV.Frm.Frm
                 Log2File.LogExceptionToFile(ex);
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-            //    if (string.IsNullOrEmpty(id)) return;
-            //    foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-            //    {
-            //        item.MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
-            //        item.HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text;
-            //        item.TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text;
-            //        item.NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text;
-            //        item.IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID;
-            //        return;
-            //    }
-            //    var hs = new SinhVien
-            //    {
-            //        ID = int.Parse(id),
-            //        MaSinhVien = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
-            //        HoSinhVien = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text,
-            //        TenSinhVien = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text,
-            //        NgaySinh = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text,
-            //        IdLop = SinhVienSql.LoadLop(uG_DanhSach.ActiveRow.Cells["MaLop"].Text).ID
-            //    };
-            //    _listUpdate.Add(hs);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    Log2File.LogExceptionToFile(ex);
-            //}
         }
 
         private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)

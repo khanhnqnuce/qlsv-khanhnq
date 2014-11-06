@@ -96,7 +96,7 @@ namespace QLSV.Frm.Frm
             ucQuyen.DisplayLayout.ScrollBounds = ScrollBounds.ScrollToFill;
             ucQuyen.DropDownWidth = 0;
             ucQuyen.Rows.Band.ColHeadersVisible = false;
-            ucQuyen.Rows.Band.Columns["Quyen"].Width = 180;
+            ucQuyen.Rows.Band.Columns["Quyen"].Width = 250;
             return ucQuyen;
         }
 
@@ -236,17 +236,8 @@ namespace QLSV.Frm.Frm
             try
             {
                 var band = e.Layout.Bands[0];
-                band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].MaxWidth = 70;
-                band.Columns["TaiKhoan"].MaxWidth = 250;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["Quyen"].MaxWidth = 200;
-                band.Columns["Quyen"].EditorComponent = CboQuyen();
-                band.Columns["Quyen"].Style = ColumnStyle.DropDownList;
 
                 #region Caption
 
@@ -256,6 +247,19 @@ namespace QLSV.Frm.Frm
                 band.Columns["Quyen"].Header.Caption = FormResource.txtQuyen;
 
                 #endregion
+
+                band.Columns["STT"].Width = 50;
+                band.Columns["MatKhau"].Width = 250;
+                band.Columns["HoTen"].Width = 250;
+                band.Columns["TaiKhoan"].Width = 250;
+                band.Columns["Quyen"].Width = 250;
+
+                band.Columns["ID"].Hidden = true;
+                band.Override.CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+                band.Columns["Quyen"].EditorComponent = CboQuyen();
+                band.Columns["Quyen"].Style = ColumnStyle.DropDownList;
             }
             catch (Exception ex)
             {
