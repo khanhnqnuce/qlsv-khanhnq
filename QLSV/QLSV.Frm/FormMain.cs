@@ -529,6 +529,7 @@ namespace QLSV.Frm
             }
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
+                _frmSapxepphongthi.Rptdanhsach();
             }
         }
 

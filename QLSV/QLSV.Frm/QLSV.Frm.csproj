@@ -275,6 +275,9 @@
     <Content Include="Reports\danhsachphongthi.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\danhsachduthi.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\danhsachsinhvien.rst">
