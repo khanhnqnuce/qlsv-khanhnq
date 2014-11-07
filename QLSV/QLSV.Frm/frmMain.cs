@@ -5,6 +5,7 @@ using QLSV.Core.Domain;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Frm;
+using QLSV.Frm.FrmUserControl;
 
 namespace QLSV.Frm
 {

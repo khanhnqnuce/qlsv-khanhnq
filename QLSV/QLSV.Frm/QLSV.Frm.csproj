@@ -96,10 +96,16 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmInportSinhVien.cs">
+    <Compile Include="Frm\FrmChonindssv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmChonindssv.Designer.cs">
+      <DependentUpon>FrmChonindssv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUserControl\FrmInportSinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmInportSinhVien.Designer.cs">
+    <Compile Include="FrmUserControl\FrmInportSinhVien.Designer.cs">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmThemsinhvien.cs">
@@ -114,10 +120,10 @@
     <Compile Include="Frm\FrmTimkiem.Designer.cs">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmSapxepphongthi.cs">
+    <Compile Include="FrmUserControl\FrmSapxepphongthi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmSapxepphongthi.Designer.cs">
+    <Compile Include="FrmUserControl\FrmSapxepphongthi.Designer.cs">
       <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmLoadding.cs">
@@ -157,22 +163,22 @@
     <Compile Include="Frm\FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmDanhmuckhoa.cs">
+    <Compile Include="FrmUserControl\FrmDanhmuckhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmDanhmuckhoa.Designer.cs">
+    <Compile Include="FrmUserControl\FrmDanhmuckhoa.Designer.cs">
       <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmDanhmuclop.cs">
+    <Compile Include="FrmUserControl\FrmDanhmuclop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmDanhmuclop.Designer.cs">
+    <Compile Include="FrmUserControl\FrmDanhmuclop.Designer.cs">
       <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmDanhsachphongthi.cs">
+    <Compile Include="FrmUserControl\FrmDanhsachphongthi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmDanhsachphongthi.Designer.cs">
+    <Compile Include="FrmUserControl\FrmDanhsachphongthi.Designer.cs">
       <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmNapDuLieu.cs">
@@ -181,22 +187,22 @@
     <Compile Include="Frm\FrmNapDuLieu.Designer.cs">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmQuanLyKyThi.cs">
+    <Compile Include="FrmUserControl\FrmQuanLyKyThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmQuanLyKyThi.Designer.cs">
+    <Compile Include="FrmUserControl\FrmQuanLyKyThi.Designer.cs">
       <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmQuanLyNguoiDung.cs">
+    <Compile Include="FrmUserControl\FrmQuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmQuanLyNguoiDung.Designer.cs">
+    <Compile Include="FrmUserControl\FrmQuanLyNguoiDung.Designer.cs">
       <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmSinhVien.cs">
+    <Compile Include="FrmUserControl\FrmSinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmSinhVien.Designer.cs">
+    <Compile Include="FrmUserControl\FrmSinhVien.Designer.cs">
       <DependentUpon>FrmSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -217,31 +223,34 @@
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmChonindssv.resx">
+      <DependentUpon>FrmChonindssv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmDanhmuckhoa.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmDanhmuckhoa.resx">
       <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmDanhmuclop.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmDanhmuclop.resx">
       <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmDanhsachphongthi.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmDanhsachphongthi.resx">
       <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmInportSinhVien.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmInportSinhVien.resx">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNapDuLieu.resx">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmQuanLyKyThi.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmQuanLyKyThi.resx">
       <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmQuanLyNguoiDung.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmQuanLyNguoiDung.resx">
       <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmSinhVien.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmSinhVien.resx">
       <DependentUpon>FrmSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmThemsinhvien.resx">
@@ -250,7 +259,7 @@
     <EmbeddedResource Include="Frm\FrmTimkiem.resx">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmSapxepphongthi.resx">
+    <EmbeddedResource Include="FrmUserControl\FrmSapxepphongthi.resx">
       <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmLoadding.resx">
@@ -276,6 +285,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\danhsachduthi.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\danhsachduthikhoa.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\danhsachduthilop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

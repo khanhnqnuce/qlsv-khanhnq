@@ -7,6 +7,7 @@ using QLSV.Core.Utils.Core;
 using Infragistics.Win.UltraWinExplorerBar;
 using QLSV.Frm.Frm;
 using Infragistics.Win.UltraWinTabControl;
+using QLSV.Frm.FrmUserControl;
 
 namespace QLSV.Frm
 {
@@ -529,7 +530,7 @@ namespace QLSV.Frm
             }
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
-                _frmSapxepphongthi.Rptdanhsach();
+                _frmSapxepphongthi.InDanhSach();
             }
         }
 
