@@ -40,11 +40,11 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            //table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof (string));
             table.Columns.Add("MaSinhVien", typeof (string));
             table.Columns.Add("HoSinhVien", typeof (string));
             table.Columns.Add("TenSinhVien", typeof (string));
+            table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof (string));
             table.Columns.Add("PhongThi", typeof (string));
             table.Columns.Add("MaKhoa", typeof (int));
@@ -74,24 +74,24 @@ namespace QLSV.Frm.FrmUserControl
                         for (var i = truoc; i < listsinhvien.Count; i++)
                         {
                             table.Rows.Add(stt++, listsinhvien[i].MaSinhVien, listsinhvien[i].HoSinhVien,
-                                listsinhvien[i].TenSinhVien, listsinhvien[i].Lop.MaLop, phongThi.TenPhong,
-                                listsinhvien[i].Lop.IdKhoa);
+                                listsinhvien[i].TenSinhVien, listsinhvien[i].NgaySinh, listsinhvien[i].Lop.MaLop,
+                                phongThi.TenPhong, listsinhvien[i].Lop.IdKhoa);
                         }
                         break;
                     }
                     for (var i = truoc; i < sau; i++)
                     {
                         table.Rows.Add(stt++, listsinhvien[i].MaSinhVien, listsinhvien[i].HoSinhVien,
-                                listsinhvien[i].TenSinhVien, listsinhvien[i].Lop.MaLop, phongThi.TenPhong,
-                                listsinhvien[i].Lop.IdKhoa);
+                                listsinhvien[i].TenSinhVien, listsinhvien[i].NgaySinh, listsinhvien[i].Lop.MaLop,
+                                phongThi.TenPhong, listsinhvien[i].Lop.IdKhoa);
                     }
                 }
                 if (sau < listsinhvien.Count)
-                    MessageBox.Show(
-                        @"Còn " + (listsinhvien.Count - sau - 1) + @" Sinh viên chưa được sắp xếp vào phòng thi",
-                        @"Thông báo");
-                else
-                    MessageBox.Show(@"Đã sắp xếp " + listsinhvien.Count + @" Sinh viên vào phòng thi", @"Thông báo");
+                {
+                    MessageBox.Show(@"Phòng thi không đủ để sắp xếp sinh viên, thêm phòng thi",@"Thông báo");
+                    return;
+                }
+                MessageBox.Show(@"Đã sắp xếp " + listsinhvien.Count + @" Sinh viên vào phòng thi", @"Thông báo");
                 uG_DanhSach.DataSource = table;
             }
             catch (Exception ex)
@@ -122,8 +122,21 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptPhongthi()
         {
+            var listphongthi = QlsvSevice.Load<PhongThi>();
+            var tb = GetTable();
+            tb.Merge((DataTable)uG_DanhSach.DataSource);
+            foreach (var phong in listphongthi)
+            {
+                var stt = 1;
+                var lopnew = phong;
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["PhongThi"].ToString() == lopnew.TenPhong))
+                {
+                    row["STT"] = stt++;
+                }
+            }
+
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthi.rst";
             using (var previewForm = new PreviewForm(rptdanhsachduthi))
             {
@@ -136,16 +149,20 @@ namespace QLSV.Frm.FrmUserControl
         private void RptKhoa()
         {
             var listkhoa = QlsvSevice.Load<Khoa>();
-            var tb = (DataTable) uG_DanhSach.DataSource;
+            var tb = GetTable(); 
+                tb.Merge((DataTable) uG_DanhSach.DataSource);
             tb.Columns.Add("TenKhoa", typeof (string));
-            foreach (DataRow row in tb.Rows)
+            foreach (var khoa in listkhoa)
             {
-                var row1 = row;
-                foreach (var khoa in listkhoa.Where(item=>item.ID == int.Parse(row1["MaKhoa"].ToString())))
+                var stt = 1;
+                var khoa1 = khoa;
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaKhoa"].ToString() == khoa1.ID.ToString()))
                 {
+                    row["STT"] = stt++;
                     row["TenKhoa"] = khoa.TenKhoa;
                 }
             }
+
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachkhoa.FilePath = Application.StartupPath + @"\Reports\danhsachduthikhoa.rst";
@@ -159,8 +176,20 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptLop()
         {
+            var listlop = QlsvSevice.Load<Lop>();
+            var tb = GetTable();
+            tb.Merge((DataTable)uG_DanhSach.DataSource);
+            foreach (var lop in listlop)
+            {
+                var stt = 1;
+                var lopnew = lop;
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString() == lopnew.MaLop))
+                {
+                    row["STT"] = stt++;
+                }
+            }
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachlop.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
             using (var previewForm = new PreviewForm(rptdanhsachlop))
             {
@@ -223,6 +252,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenSinhVien"].CellActivation = Activation.NoEdit;
                 band.Columns["MaLop"].CellActivation = Activation.NoEdit;
                 band.Columns["PhongThi"].CellActivation = Activation.NoEdit;
+                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
 
                 #endregion
 

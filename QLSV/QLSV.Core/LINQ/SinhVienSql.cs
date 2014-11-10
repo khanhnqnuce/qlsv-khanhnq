@@ -248,29 +248,22 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// Load danh sách lớp theo mã lớp
+        /// Load tổng sức chứa phòng thì
         /// </summary>
         /// <param name="ma"></param>
-        /// <returns>trả về 1 đối tượng lớp</returns>
-        public static Lop LoadLop(string ma)
+        /// <returns>tổng</returns>
+        public static int Loadsoluong(string ma)
         {
             try
             {
-                var sql = "select * from Lop where MaLop = '" + ma + "'";
+                const string sql = "SELECT SUM([SucChua])[soluong] FROM PhongThi";
                 var tb = Conn.getTable(sql);
-                var lop = new Lop();
-                foreach (DataRow row in tb.Rows)
-                {
-                    lop.ID = int.Parse(row["ID"].ToString());
-                    lop.MaLop = row["MaLop"].ToString();
-                    lop.IdKhoa = int.Parse(row["IdKhoa"].ToString());
-                }
-                return lop;
+                return int.Parse(tb.Rows[0]["soluong"].ToString());
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return null;
+                return 0;
             }
         }
 

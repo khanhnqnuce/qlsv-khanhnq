@@ -98,55 +98,84 @@ namespace QLSV.Frm
                         }
                         break;
                     case "101":
-                        TabPageControl.SelectedTab = Tabquanlynguoidung.Tab;
-                        if (Tabquanlynguoidung.Tab.Visible) return;
+                        if (Tabquanlynguoidung.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabquanlynguoidung.Tab;
+                            return;
+                        }
                         Tabquanlynguoidung.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabquanlynguoidung.Tab;
                         ShowControl(_frmQuanLyNguoiDung, pn_quanlynguoidung);
                         break;
                     case "102":
-                        TabPageControl.SelectedTab = Tabdanhmuckhoa.Tab;
-                        if (Tabdanhmuckhoa.Tab.Visible) return;
+                        if (Tabdanhmuckhoa.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabdanhmuckhoa.Tab;
+                            return;
+                        }
                         Tabdanhmuckhoa.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabdanhmuckhoa.Tab;
                         ShowControl(_frmDanhmuckhoa, pn_danhmuckhoa);
                         break;
                     case "103":
-                        TabPageControl.SelectedTab = Tabdanhmuclop.Tab;
-                        if (Tabdanhmuclop.Tab.Visible) return;
+                        if (Tabdanhmuclop.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabdanhmuclop.Tab;
+                            return;
+                        }
                         Tabdanhmuclop.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabdanhmuclop.Tab;
                         ShowControl(_frmDanhmuclop, pn_danhmuclop);
                         break;
                     case "104":
-                        TabPageControl.SelectedTab = TabInportsinhvien.Tab;
-                        if (TabInportsinhvien.Tab.Visible) return;
+                        if (TabInportsinhvien.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = TabInportsinhvien.Tab;
+                            return;
+                        }
                         TabInportsinhvien.Tab.Visible = true;
+                        TabPageControl.SelectedTab = TabInportsinhvien.Tab;
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
                     case "105":
-                        TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
-                        if (Tabquanlysinhvien.Tab.Visible) return;
+                        if (Tabquanlysinhvien.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
+                            return;
+                        }
                         Tabquanlysinhvien.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
                     case "106":
-                        TabPageControl.SelectedTab = Tabquanlykythi.Tab;
-                        if (Tabquanlykythi.Tab.Visible) return;
+                        if (Tabquanlykythi.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabquanlykythi.Tab;
+                            return;
+                        }
                         Tabquanlykythi.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabquanlykythi.Tab;
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);
                         break;
                     case "107":
-                        TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
-                        if (Tabdanhsachphongthi.Tab.Visible) return;
+                        if (Tabdanhsachphongthi.Tab.Visible)
+                        {
+                            TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
+                            return;
+                        }
                         Tabdanhsachphongthi.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
                         break;
                     case "108":
-                        TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         if (TabSapxepphongthi.Tab.Visible)
-                        {							
-							_frmSapxepphongthi.LoadForm();
+                        {
+                            _frmSapxepphongthi.LoadForm();
+                            TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                             return;
                         }
                         TabSapxepphongthi.Tab.Visible = true;
+                        TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         ShowControl(_frmSapxepphongthi, pn_sapxepphongthi);
                         break;
                 }
@@ -245,45 +274,98 @@ namespace QLSV.Frm
             try
             {
                 if (!_dangnhap) return;
+                var b = true;
                 pn_Button.Visible = true;
                 if (Tabquanlynguoidung.Tab.Visible && Tabquanlynguoidung.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (Tabdanhmuckhoa.Tab.Visible && Tabdanhmuckhoa.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (Tabdanhmuclop.Tab.Visible && Tabdanhmuclop.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
                 {
-                    _frmInportSinhVien.LoadForm();
                     btnNapDuLieu.Visible = true;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
                 {
-                    _frmQuanlySinhVien.Huy();
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (Tabquanlykythi.Tab.Visible && Tabquanlykythi.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
                 }
                 else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
                 {
                     btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                    b = false;
                 }
-                else
-                {
-                    pn_Button.Visible = false;
-                }
+                if(b == false) return;
+                pn_Button.Visible = false;
             }
             catch (Exception ex)
             {
