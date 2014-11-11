@@ -36,6 +36,10 @@ namespace QLSV.Frm.FrmUserControl
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
+        /// <summary>
+        /// khởi tạo table
+        /// </summary>
+        /// <returns>trả về 1 bảng sinh viên đển gán vào UltraGrid</returns>
         protected override DataTable GetTable()
         {
             var table = new DataTable();
@@ -69,6 +73,9 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        /// <summary>
+        /// Hàm lấy dữ liệu từ file excel
+        /// </summary>
         public void Napdulieu()
         {
             try
@@ -96,11 +103,17 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        /// <summary>
+        /// Thêm 1 dòng trên UltraGrid
+        /// </summary>
         protected override void InsertRow()
         {
             InsertRow(uG_DanhSach, "STT", "MaSinhVien");
         }
 
+        /// <summary>
+        /// Xóa 1 dồng trên UltraGrid
+        /// </summary>
         protected override void DeleteRow()
         {
             try
@@ -114,6 +127,9 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        /// <summary>
+        /// Lưu dữ liệu trên UltraGrid
+        /// </summary>
         private new void Save()
         {
             try
@@ -218,6 +234,40 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
+        #region MenuStrip của ultraGrid
+
+        private void menuStrip_themdong_Click(object sender, EventArgs e)
+        {
+            InsertRow();
+        }
+
+        private void menuStrip_xoadong_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
+        }
+
+        private void menuStrip_luulai_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void menuStrip_Huy_Click(object sender, EventArgs e)
+        {
+            LoadForm();
+        }
+
+        #endregion
+
+        private void FrmInportSinhVien_Load(object sender, EventArgs e)
+        {
+            LoadForm();
+        }
+
+        /// <summary>
+        /// Hàm khởi tạo của UltraGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uG_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             try
@@ -253,31 +303,6 @@ namespace QLSV.Frm.FrmUserControl
                 MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private void FrmInportSinhVien_Load(object sender, EventArgs e)
-        {
-            LoadForm();
-        }
-
-        private void menuStrip_themdong_Click(object sender, EventArgs e)
-        {
-            InsertRow();
-        }
-
-        private void menuStrip_xoadong_Click(object sender, EventArgs e)
-        {
-            DeleteRow();
-        }
-
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-
-        private void menuStrip_Huy_Click(object sender, EventArgs e)
-        {
-            LoadForm();
         }
     }
 }

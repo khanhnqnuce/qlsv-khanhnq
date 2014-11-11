@@ -56,8 +56,10 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -75,6 +77,9 @@
             this.TabInportsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_inportsinhvien = new System.Windows.Forms.Panel();
             this.Tabquanlysinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.Tabquanlykythi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlykythi = new System.Windows.Forms.Panel();
             this.Tabdanhsachphongthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -100,9 +105,6 @@
             this.TabPageControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -122,7 +124,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(977, 632);
             // 
@@ -184,9 +186,33 @@
             this.Tabquanlysinhvien.Controls.Add(this.pn_quanlysinhvien);
             this.Tabquanlysinhvien.Controls.Add(this.panel4);
             this.Tabquanlysinhvien.Controls.Add(this.panel3);
-            this.Tabquanlysinhvien.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlysinhvien.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlysinhvien.Name = "Tabquanlysinhvien";
             this.Tabquanlysinhvien.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pn_quanlysinhvien
+            // 
+            this.pn_quanlysinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn_quanlysinhvien.Location = new System.Drawing.Point(130, 0);
+            this.pn_quanlysinhvien.Name = "pn_quanlysinhvien";
+            this.pn_quanlysinhvien.Size = new System.Drawing.Size(717, 632);
+            this.pn_quanlysinhvien.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(847, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(130, 632);
+            this.panel4.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(130, 632);
+            this.panel3.TabIndex = 1;
             // 
             // Tabquanlykythi
             // 
@@ -304,6 +330,11 @@
             ultraExplorerBarItem11.Settings.MaxLines = 2;
             ultraExplorerBarItem11.Text = "Sắp xếp sinh viên vào phòng thi";
             ultraExplorerBarItem11.ToolTipText = "Sắp xếp sinh viên vào phòng thi";
+            ultraExplorerBarItem13.Key = "109";
+            appearance13.Image = ((object)(resources.GetObject("appearance13.Image")));
+            ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance13;
+            ultraExplorerBarItem13.Settings.MaxLines = 2;
+            ultraExplorerBarItem13.Text = "Danh sách sinh viên đã xếp phòng";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem4,
             ultraExplorerBarItem8,
@@ -312,7 +343,8 @@
             ultraExplorerBarItem6,
             ultraExplorerBarItem7,
             ultraExplorerBarItem10,
-            ultraExplorerBarItem11});
+            ultraExplorerBarItem11,
+            ultraExplorerBarItem13});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
             this.MenuBar.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
@@ -351,9 +383,9 @@
             // 
             // lbtime
             // 
-            appearance13.TextHAlignAsString = "Left";
-            appearance13.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance13;
+            appearance14.TextHAlignAsString = "Left";
+            appearance14.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance14;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -362,9 +394,9 @@
             // 
             // lbusername
             // 
-            appearance14.TextHAlignAsString = "Left";
-            appearance14.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance14;
+            appearance15.TextHAlignAsString = "Left";
+            appearance15.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance15;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -567,30 +599,6 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(130, 632);
-            this.panel3.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(847, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(130, 632);
-            this.panel4.TabIndex = 2;
-            // 
-            // pn_quanlysinhvien
-            // 
-            this.pn_quanlysinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_quanlysinhvien.Location = new System.Drawing.Point(130, 0);
-            this.pn_quanlysinhvien.Name = "pn_quanlysinhvien";
-            this.pn_quanlysinhvien.Size = new System.Drawing.Size(717, 632);
-            this.pn_quanlysinhvien.TabIndex = 3;
             // 
             // FormMain
             // 

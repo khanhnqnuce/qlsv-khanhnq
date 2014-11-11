@@ -6,6 +6,7 @@
     </id>
     <property name="TenPhong" column="TenPhong"  type="string" length="255" />
     <property name="SucChua" column="SucChua"  type="int"/>
+    <property name="SoLuong" column="SoLuong"  type="int"/>
     <property name="GhiChu" column="GhiChu"  type="string" length="255"/>
   </class>
 </hibernate-mapping>

@@ -30,8 +30,9 @@ Create table PhongThi
 	ID int identity(1,1),
 	TenPhong nvarchar(255) not null,
 	SucChua int not null,
+	SoLuong int,
 	GhiChu nvarchar(255),
-	constraint UQ_MaPhong unique (TenPhong),
+	--constraint UQ_MaPhong unique (TenPhong),
 	CONSTRAINT PK_PhongThi  primary key(ID),
 )
 go
@@ -65,5 +66,15 @@ Create table SinhVien
 	CONSTRAINT UQ_MaSinhVien unique(MaSinhVien),
 	CONSTRAINT FK_SinhVien_Lop FOREIGN KEY (IdLop) REFERENCES Lop(ID)
 )
+go
+Create table XepPhong
+(
+	IdSV int,	
+	IdPhong int not null,
+	CONSTRAINT PK_XepPhong  primary key(IdSV),
+	CONSTRAINT FK_XepPhong_SinhVien FOREIGN KEY (IdSV) REFERENCES SinhVien(ID),
+	CONSTRAINT FK_XepPhong_PhongThi FOREIGN KEY (IdPhong) REFERENCES PhongThi(ID)
+)
+
 TRUNCATE TABLE SinhVien
 --ALTER TABLE DiemSV ADD CONSTRAINT Ma FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)

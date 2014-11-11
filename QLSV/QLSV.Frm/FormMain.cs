@@ -40,10 +40,6 @@ namespace QLSV.Frm
             _frmQuanlySinhVien = new FrmSinhVien();
             _frmQuanLyKyThi = new FrmQuanLyKyThi();
             _frmDanhsachphongthi = new FrmDanhsachphongthi();
-
-            _frmSapxepphongthi = new FrmSapxepphongthi();
-            _frmSapxepphongthi.ShowDialog += ShowLoading;
-            _frmSapxepphongthi.CloseDialog += KillLoading;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -168,12 +164,16 @@ namespace QLSV.Frm
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
                         break;
                     case "108":
-                        if (TabSapxepphongthi.Tab.Visible)
-                        {
-                            _frmSapxepphongthi.LoadForm();
-                            TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
-                            return;
-                        }
+                        _frmSapxepphongthi = new FrmSapxepphongthi();
+                        _frmSapxepphongthi.ShowDialog += ShowLoading;
+                        _frmSapxepphongthi.CloseDialog += KillLoading;
+
+                        //if (TabSapxepphongthi.Tab.Visible)
+                        //{
+                        //    _frmSapxepphongthi.LoadForm();
+                        //    TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
+                        //    return;
+                        //}
                         TabSapxepphongthi.Tab.Visible = true;
                         TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         ShowControl(_frmSapxepphongthi, pn_sapxepphongthi);
@@ -359,7 +359,7 @@ namespace QLSV.Frm
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
-                    btnLuu.Visible = false;
+                    btnLuu.Visible = true;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
                     b = false;
@@ -480,7 +480,7 @@ namespace QLSV.Frm
             }
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
-
+                _frmSapxepphongthi.Ghi();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,7 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
@@ -19,35 +21,39 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmSapxepphongthi : FunctionControlHasGrid
     {
+        private IList<XepPhong> _listAdd = new List<XepPhong>();
+        private IList<PhongThi> _listAdd1 = new List<PhongThi>();
+        //_bgwLoad
         private readonly BackgroundWorker _bgwInsert = null;
-
+        private readonly BackgroundWorker _bgwLoad = null;
         public delegate void CustomHandler1(object sender);
-
         public event CustomHandler1 CloseDialog = null;
-
         public delegate void CustomHandler(object sender);
-
         public event CustomHandler ShowDialog = null;
 
         public FrmSapxepphongthi()
         {
             InitializeComponent();
+            _bgwLoad = new BackgroundWorker();
+            _bgwLoad.DoWork += BgwLoadDoWork;
+            _bgwLoad.RunWorkerCompleted += BgwLoadRunWorkerCompleted;
+
             _bgwInsert = new BackgroundWorker();
-            _bgwInsert.DoWork += bgwInsert_DoWork;
-            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+            _bgwInsert.DoWork += BgwInsertDoWork;
+            _bgwInsert.RunWorkerCompleted += BgwLoadRunWorkerCompleted;
         }
 
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("STT", typeof (string));
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaSinhVien", typeof (string));
             table.Columns.Add("HoSinhVien", typeof (string));
             table.Columns.Add("TenSinhVien", typeof (string));
             table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof (string));
             table.Columns.Add("PhongThi", typeof (string));
-            table.Columns.Add("MaKhoa", typeof (int));
 
             return table;
         }
@@ -56,43 +62,100 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var listsinhvien = QlsvSevice.LoadSinhVien();
-                var listphongthi = QlsvSevice.Load<PhongThi>();
-                if (listsinhvien == null || listsinhvien.Count == 0) return;
-                var truoc = 0;
-                var sau = 0;
-                var tg = 0;
+                _listAdd.Clear();
+                _listAdd1.Clear();
                 var table = GetTable();
+                var listSinhvien = QlsvSevice.LoadSvChuaXepPhong();
+                var listPhongthi = QlsvSevice.Load<PhongThi>();
+                var t = 0;
+                var s = 0;
+                var tg = 0;
                 var stt = 1;
-                foreach (var phongThi in listphongthi)
+                if (listSinhvien == null || listSinhvien.Count == 0)
                 {
-                    truoc = truoc + tg;
-                    sau = sau + phongThi.SucChua;
-                    tg = phongThi.SucChua;
-                    if (sau > listsinhvien.Count)
-                    {
-                        for (var i = truoc; i < listsinhvien.Count; i++)
-                        {
-                            table.Rows.Add(stt++, listsinhvien[i].MaSinhVien, listsinhvien[i].HoSinhVien,
-                                listsinhvien[i].TenSinhVien, listsinhvien[i].NgaySinh, listsinhvien[i].Lop.MaLop,
-                                phongThi.TenPhong, listsinhvien[i].Lop.IdKhoa);
-                        }
-                        break;
-                    }
-                    for (var i = truoc; i < sau; i++)
-                    {
-                        table.Rows.Add(stt++, listsinhvien[i].MaSinhVien, listsinhvien[i].HoSinhVien,
-                                listsinhvien[i].TenSinhVien, listsinhvien[i].NgaySinh, listsinhvien[i].Lop.MaLop,
-                                phongThi.TenPhong, listsinhvien[i].Lop.IdKhoa);
-                    }
-                }
-                if (sau < listsinhvien.Count)
-                {
-                    MessageBox.Show(@"Phòng thi không đủ để sắp xếp sinh viên, thêm phòng thi",@"Thông báo");
+                    MessageBox.Show(@"Tất cả sinh viên đã được xếp phòng");
                     return;
                 }
-                MessageBox.Show(@"Đã sắp xếp " + listsinhvien.Count + @" Sinh viên vào phòng thi", @"Thông báo");
-                uG_DanhSach.DataSource = table;
+                var frm = new FrmCheckXepPhong();
+                frm.ShowDialog();
+                if (frm.rdoall.Checked)
+                {
+                    foreach (var pt in listPhongthi.Where(pt=>pt.SoLuong<pt.SucChua))
+                    {
+                        var phong = new PhongThi
+                        {
+                            ID = pt.ID,
+                            SoLuong = pt.SoLuong
+                        };
+                        t = t + tg;
+                        tg = pt.SucChua - pt.SoLuong;
+                        s = s + tg;
+                        if (s<listSinhvien.Count)
+                        {
+                            for (var i = t; i < s; i++)
+                            {
+                                table.Rows.Add(listSinhvien[i].ID,
+                                    stt++,
+                                    listSinhvien[i].MaSinhVien,
+                                    listSinhvien[i].HoSinhVien,
+                                    listSinhvien[i].TenSinhVien,
+                                    listSinhvien[i].NgaySinh,
+                                    listSinhvien[i].Lop.MaLop,
+                                    pt.TenPhong);
+                                var hs = new XepPhong
+                                {
+                                    IdSV = listSinhvien[i].ID,
+                                    IdPhong = pt.ID
+                                };
+                                phong.SoLuong = phong.SoLuong + 1;
+                                _listAdd.Add(hs);
+                            }
+                            _listAdd1.Add(phong);
+                        }
+                        else
+                        {
+                            for (var i = t; i < listSinhvien.Count; i++)
+                            {
+                                table.Rows.Add(listSinhvien[i].ID,
+                                    stt++,
+                                    listSinhvien[i].MaSinhVien,
+                                    listSinhvien[i].HoSinhVien,
+                                    listSinhvien[i].TenSinhVien,
+                                    listSinhvien[i].NgaySinh,
+                                    listSinhvien[i].Lop.MaLop,
+                                    pt.TenPhong);
+                                var hs = new XepPhong
+                                {
+                                    IdSV = listSinhvien[i].ID,
+                                    IdPhong = pt.ID
+                                };
+                                phong.SoLuong = phong.SoLuong + 1;
+                                _listAdd.Add(hs);
+                            }
+                            _listAdd1.Add(phong);
+                            break;
+                        }
+
+                    }
+                    if (s < listSinhvien.Count)
+                        MessageBox.Show(@"Không đủ phòng thi để xếp sinh viên");
+                    else
+                        uG_DanhSach.DataSource = table;
+                    
+                }else if (frm.rdoone.Checked)
+                {
+                    foreach (var sv in listSinhvien)
+                    {
+                        table.Rows.Add(sv.ID,
+                            stt++,
+                            sv.MaSinhVien,
+                            sv.HoSinhVien,
+                            sv.TenSinhVien,
+                            sv.NgaySinh,
+                            sv.Lop.MaLop);
+                    }
+                    uG_DanhSach.DataSource = table;
+                }
             }
             catch (Exception ex)
             {
@@ -102,8 +165,36 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void LoadForm()
+        private void LoadForm()
         {
+            _bgwLoad.RunWorkerAsync();
+            ShowDialog(null);
+        }
+
+        /// <summary>
+        /// Lưu dữ liệu trên UltraGrid
+        /// </summary>
+        protected override void SaveDetail()
+        {
+            try
+            {
+                SinhVienSql.XepPhong(_listAdd);
+                SinhVienSql.UpdatePhongThi(_listAdd1);
+                _listAdd.Clear();
+                _listAdd1.Clear();
+                MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Ghi()
+        {
+            if (uG_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             ShowDialog(null);
         }
@@ -201,7 +292,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #region BackgroundWorker
 
-        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        private void BgwLoadDoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -213,7 +304,19 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BgwInsertDoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                Invoke((Action)(SaveDetail));
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void BgwLoadRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             CloseDialog(null);
         }
@@ -255,8 +358,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
 
                 #endregion
-
-                band.Columns["MaKhoa"].Hidden = true;
+                
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
@@ -266,6 +368,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].Width = 50;
                 band.Columns["HoSinhVien"].Width = 170;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
+                band.Columns["ID"].Hidden = true;
 
 
             }

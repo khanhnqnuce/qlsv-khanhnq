@@ -108,6 +108,12 @@
     <Compile Include="FrmUserControl\FrmInportSinhVien.Designer.cs">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmCheckXepPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmCheckXepPhong.Designer.cs">
+      <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmThemsinhvien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="Frm\FrmLoadding.Designer.cs">
       <DependentUpon>FrmLoadding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmXepPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmXepPhong.Designer.cs">
+      <DependentUpon>FrmXepPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -226,6 +238,9 @@
     <EmbeddedResource Include="Frm\FrmChonindssv.resx">
       <DependentUpon>FrmChonindssv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmCheckXepPhong.resx">
+      <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmLoadding.resx">
       <DependentUpon>FrmLoadding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmXepPhong.resx">
+      <DependentUpon>FrmXepPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

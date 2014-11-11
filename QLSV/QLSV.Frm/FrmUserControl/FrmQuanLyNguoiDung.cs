@@ -316,6 +316,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                if (b)
+                {
+                    b = false;
+                    return;
+                }
                 var indexcell = uG_DanhSach.ActiveCell.Column.Index;
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 var ht = uG_DanhSach.ActiveRow.Cells["HoTen"].Text;

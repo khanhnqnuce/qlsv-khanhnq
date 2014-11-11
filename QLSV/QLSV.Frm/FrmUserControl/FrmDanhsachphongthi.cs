@@ -34,6 +34,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("STT", typeof(int));
             table.Columns.Add("TenPhong", typeof(string));
             table.Columns.Add("SucChua", typeof(int));
+            table.Columns.Add("SoLuong", typeof(int));
             table.Columns.Add("GhiChu", typeof(string));
             return table;
         }
@@ -49,7 +50,7 @@ namespace QLSV.Frm.FrmUserControl
                 var stt = 1;
                 foreach (var hs in danhsach)
                 {
-                    table.Rows.Add(hs.ID, stt, hs.TenPhong, hs.SucChua, hs.GhiChu);
+                    table.Rows.Add(hs.ID, stt, hs.TenPhong, hs.SucChua, hs.SoLuong, hs.GhiChu);
                     stt++;
                 }
                 uG_DanhSach.DataSource = table;
@@ -189,25 +190,28 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (!string.IsNullOrEmpty(id))
+                if (b)
                 {
-                    foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                    {
-                        item.TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text;
-                        item.SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text);
-                        item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
-                        return;
-                    }
-                    var hs = new PhongThi
-                    {
-                        ID = int.Parse(id),
-                        TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text,
-                        SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text),
-                        GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
-                    };
-                    _listUpdate.Add(hs);
+                    b = false;
+                    return;
                 }
+                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+                if (string.IsNullOrEmpty(id)) return;
+                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
+                {
+                    item.TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text;
+                    item.SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text);
+                    item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
+                    return;
+                }
+                var hs = new PhongThi
+                {
+                    ID = int.Parse(id),
+                    TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text,
+                    SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text),
+                    GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
+                };
+                _listUpdate.Add(hs);
             }
             catch (Exception ex)
             {
@@ -224,10 +228,12 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["ID"].Hidden = true;
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["SoLuong"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].Width = 50;
                 band.Columns["TenPhong"].Width = 150;
                 band.Columns["SucChua"].Width = 150;
+                band.Columns["SoLuong"].Width = 150;
                 band.Columns["GhiChu"].Width = 250;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
@@ -238,6 +244,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 band.Columns["TenPhong"].Header.Caption = @"Tên phòng";
                 band.Columns["SucChua"].Header.Caption = @"Sức chứa";
+                band.Columns["SoLuong"].Header.Caption = @"Số Lượng";
                 band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
 
                 #endregion

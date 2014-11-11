@@ -5,6 +5,7 @@
         public virtual int ID { get; set; }
         public virtual string TenPhong { get; set; }
         public virtual int SucChua { get; set; }
+        public virtual int SoLuong { get; set; }
         public virtual string GhiChu { get; set; }
     }
 }

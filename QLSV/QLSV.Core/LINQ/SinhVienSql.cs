@@ -12,6 +12,8 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
+        #region Load dữ liệu từ CSDL
+
         /// <summary>
         /// Lấy ra thông tin của tất cả sinh viên
         /// </summary>
@@ -85,6 +87,70 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// lấy ra danh sách lớp thuộc khoa
+        /// </summary>
+        /// <returns>trả về bảng thông tin lop</returns>
+        public static DataTable LoadLopTheoKhoa(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str = "select * from Lop where IdKhoa = " + id;
+                    return Conn.getTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Load tổng sức chứa phòng thì
+        /// </summary>
+        /// <param name="ma"></param>
+        /// <returns>tổng</returns>
+        public static int Loadsoluong(string ma)
+        {
+            try
+            {
+                const string sql = "SELECT SUM([SucChua])[soluong] FROM PhongThi";
+                var tb = Conn.getTable(sql);
+                return int.Parse(tb.Rows[0]["soluong"].ToString());
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return 0;
+            }
+        }
+
+        public static DataTable LoadSvChuaXepphong()
+        {
+            try
+            {
+                const string str = "select Row_Number() OVER (ORDER BY s.ID) AS [STT], s.* from SinhVien s where not exists (select x.IdSV from XepPhong x where s.ID = x.IdSV)";
+                return Conn.getTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Tìm kiếm
+
+        /// <summary>
         /// Tìm kiếm sinh viên theo khoa
         /// </summary>
         /// <returns>trả về bảng sinh  viên</returns>
@@ -140,31 +206,9 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// lấy ra danh sách lớp thuộc khoa
-        /// </summary>
-        /// <returns>trả về bảng thông tin lop</returns>
-        public static DataTable LoadLopTheoKhoa(int id)
-        {
-            try
-            {
-                try
-                {
-                    var str = "select * from Lop where IdKhoa = " + id;
-                    return Conn.getTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return null;
-            }
-        }
+        #endregion
+
+        #region Thêm và Sửa dữ liệu
 
         /// <summary>
         /// Thêm mới sinh viên
@@ -183,6 +227,48 @@ namespace QLSV.Core.LINQ
                     Conn.ExcuteQuerySql(sql);
                 }
 
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// Thêm vào bảng xếp phòng
+        /// </summary>
+        /// <param name="list"></param>
+        public static void XepPhong(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (
+                    var sql in
+                        list.Select(
+                            item => "insert into XepPhong(IdSV,IdPhong) values(" + item.IdSV + "," + item.IdPhong + ")")
+                    )
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static void UpdatePhongThi(IList<PhongThi> list)
+        {
+            try
+            {
+                foreach (
+                    var sql in
+                        list.Select(
+                            item => "UPDATE PhongThi SET SoLuong = " + item.SoLuong + " WHERE ID = " + item.ID + ""))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
             }
             catch (Exception ex)
             {
@@ -247,26 +333,6 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// Load tổng sức chứa phòng thì
-        /// </summary>
-        /// <param name="ma"></param>
-        /// <returns>tổng</returns>
-        public static int Loadsoluong(string ma)
-        {
-            try
-            {
-                const string sql = "SELECT SUM([SucChua])[soluong] FROM PhongThi";
-                var tb = Conn.getTable(sql);
-                return int.Parse(tb.Rows[0]["soluong"].ToString());
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return 0;
-            }
-        }
-
         public static void SuaSinhVien(SinhVien hs)
         {
             try
@@ -281,5 +347,7 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        #endregion
     }
 }

@@ -10,6 +10,7 @@ namespace QLSV.Frm.Base
     public partial class FunctionControlHasGrid : UserControl
     {
         protected IList<int> IdDelete = new List<int>();
+        protected bool b = false;
 
         public void uG_InsertRow()
         {
@@ -82,6 +83,7 @@ namespace QLSV.Frm.Base
                     if (string.IsNullOrEmpty(grid.ActiveRow.Cells[columnname].Text)
                         && string.IsNullOrEmpty(grid.ActiveRow.Cells[columnId].Text))
                     {
+                        b = true;
                         grid.ActiveRow.Delete(false);
                         if (id <= 0) return;
                         grid.Rows[id - 1].Cells[2].Activate();
@@ -92,6 +94,7 @@ namespace QLSV.Frm.Base
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                     {
+                        b = true;
                         var idStr = grid.ActiveRow.Cells[columnId].Value.ToString();
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));

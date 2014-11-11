@@ -41,6 +41,23 @@ namespace QLSV.Core.Service
             }
         }
 
+        public static IList<SinhVien> LoadSvChuaXepPhong()
+        {
+            try
+            {
+                using (var mySession = OpenSession())
+                {
+                    var list = mySession.CreateQuery("From SinhVien s where not exists (select x.IdSV from XepPhong x where s.ID = x.IdSV)").List<SinhVien>();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
         public static IList<T> Load<T>() where T : class
         {
             try

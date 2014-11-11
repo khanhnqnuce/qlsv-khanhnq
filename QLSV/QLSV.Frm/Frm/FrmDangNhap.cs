@@ -84,7 +84,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 _listCheck = QlsvSevice.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
-                if (_listCheck.Count > 0)
+                if (_listCheck!= null && _listCheck.Count > 0)
                 {
                     CheckDangNhap(this, true, _listCheck[0]);
                 }

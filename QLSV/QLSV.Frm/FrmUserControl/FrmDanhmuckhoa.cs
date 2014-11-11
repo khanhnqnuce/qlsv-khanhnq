@@ -103,9 +103,9 @@ namespace QLSV.Frm.FrmUserControl
                     };
                         _listAdd.Add(hs);
                 }
-                QlsvSevice.ThemAll(_listAdd);
-                QlsvSevice.SuaAll(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "Khoa");
+                QlsvSevice.SuaAll(_listUpdate);
+                QlsvSevice.ThemAll(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadForm();
@@ -163,6 +163,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                if (b)
+                {
+                    b = false;
+                    return;
+                }
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (string.IsNullOrEmpty(id)) return;
                 foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))

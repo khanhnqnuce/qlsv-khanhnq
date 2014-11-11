@@ -173,6 +173,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                if (b)
+                {
+                    b = false;
+                    return;
+                }
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (!string.IsNullOrEmpty(id))
                 {
