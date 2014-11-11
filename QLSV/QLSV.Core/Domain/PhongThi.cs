@@ -1,4 +1,6 @@
-﻿namespace QLSV.Core.Domain
+﻿using System.Collections.Generic;
+
+namespace QLSV.Core.Domain
 {
     public class PhongThi
     {
@@ -7,5 +9,10 @@
         public virtual int SucChua { get; set; }
         public virtual int SoLuong { get; set; }
         public virtual string GhiChu { get; set; }
+        public virtual ISet<XepPhong> XepPhong { get; set; }
+        public PhongThi()
+        {
+            XepPhong = new HashSet<XepPhong>();
+        }
     }
 }

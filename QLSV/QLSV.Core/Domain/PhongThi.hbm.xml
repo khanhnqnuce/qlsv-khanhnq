@@ -8,5 +8,9 @@
     <property name="SucChua" column="SucChua"  type="int"/>
     <property name="SoLuong" column="SoLuong"  type="int"/>
     <property name="GhiChu" column="GhiChu"  type="string" length="255"/>
+    <set name="XepPhong" table="XepPhong" inverse="true" cascade="all" >
+      <key column="ID" not-null="true"/>
+      <one-to-many class="XepPhong"/>
+    </set>
   </class>
 </hibernate-mapping>

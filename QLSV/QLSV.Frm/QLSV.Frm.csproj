@@ -96,6 +96,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\FrmSinhVienPhongThi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\FrmSinhVienPhongThi.Designer.cs">
+      <DependentUpon>FrmSinhVienPhongThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\FrmSinhVienPhongThi.resx">
+      <DependentUpon>FrmSinhVienPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
