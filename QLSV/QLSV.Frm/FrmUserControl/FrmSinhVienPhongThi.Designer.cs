@@ -53,6 +53,7 @@
             this.uG_DanhSach.Name = "uG_DanhSach";
             this.uG_DanhSach.Size = new System.Drawing.Size(986, 589);
             this.uG_DanhSach.TabIndex = 27;
+            this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             // 
             // excelExportFilter1
             // 

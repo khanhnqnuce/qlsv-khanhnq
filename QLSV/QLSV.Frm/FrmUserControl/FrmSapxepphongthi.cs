@@ -23,7 +23,8 @@ namespace QLSV.Frm.FrmUserControl
     {
         private IList<XepPhong> _listAdd = new List<XepPhong>();
         private IList<PhongThi> _listAdd1 = new List<PhongThi>();
-        //_bgwLoad
+        private bool check = true;
+        
         private readonly BackgroundWorker _bgwInsert = null;
         private readonly BackgroundWorker _bgwLoad = null;
         public delegate void CustomHandler1(object sender);
@@ -80,6 +81,7 @@ namespace QLSV.Frm.FrmUserControl
                 frm.ShowDialog();
                 if (frm.rdoall.Checked)
                 {
+                    check = false;
                     foreach (var pt in listPhongthi.Where(pt=>pt.SoLuong<pt.SucChua))
                     {
                         var phong = new PhongThi
@@ -285,6 +287,22 @@ namespace QLSV.Frm.FrmUserControl
             {
                 MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
+        {
+            try
+            {
+                if (!check) return;
+                var frm = new FrmXepPhong();
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+
             }
         }
     }

@@ -45,6 +45,7 @@
             this.uG_DanhSach.Size = new System.Drawing.Size(892, 565);
             this.uG_DanhSach.TabIndex = 26;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.uG_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.uG_DanhSach_DoubleClickCell);
             // 
             // FrmSapxepphongthi
             // 

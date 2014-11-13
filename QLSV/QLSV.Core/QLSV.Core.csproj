@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\XepPhong.cs" />
+    <Compile Include="LINQ\LoadData.cs" />
     <Compile Include="LINQ\SinhVienSql.cs" />
     <Compile Include="LINQ\Connect.cs" />
     <Compile Include="Domain\Khoa.cs" />

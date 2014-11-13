@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Infragistics.Win;
+using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -23,7 +26,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
-            //table.Columns.Add("STT", typeof(int));
+            table.Columns.Add("STT", typeof(string));
             table.Columns.Add("MaSinhVien", typeof(string));
             table.Columns.Add("HoSinhVien", typeof(string));
             table.Columns.Add("TenSinhVien", typeof(string));
@@ -31,7 +34,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("MaLop", typeof(string));
             table.Columns.Add("PhongThi", typeof(string));
             table.Columns.Add("MaKhoa", typeof(string));
-
+            table.Columns.Add("TenKhoa", typeof(string));
             return table;
         }
 
@@ -39,9 +42,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var l = QlsvSevice.Load<XepPhong>();
-                var table = SinhVienSql.Load(5);
-                table.Merge(GetTable());
+                var table = LoadData.Load(7);
                 uG_DanhSach.DataSource = table;
             }
             catch (Exception ex)
@@ -146,6 +147,56 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmSinhVienPhongThi_Load(object sender, EventArgs e)
         {
             LoadGrid();
+        }
+
+        private void uG_DanhSach_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        {
+            try
+            {
+                var band = e.Layout.Bands[0];
+
+                #region Caption
+
+                band.Columns["MaSinhVien"].Header.Caption = @"Mã Sinh Viên";
+                band.Columns["HoSinhVien"].Header.Caption = @"Họ tên đệm";
+                band.Columns["TenSinhVien"].Header.Caption = @"Tên Sinh Viên";
+                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
+                band.Columns["MaLop"].Header.Caption = @"Lớp";
+                band.Columns["PhongThi"].Header.Caption = @"Phòng Thi";
+
+                #endregion
+
+                band.Columns["ID"].Hidden = true;
+                band.Columns["MaKhoa"].Hidden = true;
+                band.Columns["TenKhoa"].Hidden = true;
+
+                band.Columns["STT"].Width = 50;
+                band.Columns["HoSinhVien"].Width = 170;
+
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["HoSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["TenSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
+                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
+                band.Columns["PhongThi"].CellActivation = Activation.NoEdit;
+
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["PhongThi"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
+
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+                band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var table = GetTable();
                 var stt = 1;
-                table.Merge(SinhVienSql.Load(1));
+                table.Merge(LoadData.Load(1));
                 foreach (DataRow row in table.Rows)
                 {
                     row["STT"] = stt++;
@@ -496,7 +496,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                cbokhoa.DataSource = SinhVienSql.Load(3);
+                cbokhoa.DataSource = LoadData.Load(3);
                 cbokhoa.ValueMember = "ID";
                 cbokhoa.DisplayMember = "TenKhoa";
                 cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
@@ -504,7 +504,7 @@ namespace QLSV.Frm.FrmUserControl
                 cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
                 cbokhoa.Rows.Band.ColHeadersVisible = false;
 
-                cbolop.DataSource = SinhVienSql.Load(4);
+                cbolop.DataSource = LoadData.Load(4);
                 cbolop.ValueMember = "ID";
                 cbolop.DisplayMember = "MaLop";
                 cbolop.Rows.Band.Columns["ID"].Hidden = true;

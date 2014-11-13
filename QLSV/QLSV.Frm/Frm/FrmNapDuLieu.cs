@@ -109,7 +109,7 @@ namespace QLSV.Frm.Frm
                 var startRows = sheet.FirstRowNum;
                 var endRows = sheet.LastRowNum;
                 var result = GetTable();
-                var tb = SinhVienSql.Load(2);
+                var tb = Core.LINQ.LoadData.Load(2);
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);

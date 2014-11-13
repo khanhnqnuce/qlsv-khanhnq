@@ -12,63 +12,6 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
-        #region Khai báo chuỗi
-
-        const string Str1 = "select SinhVien.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh,MaLop,TenKhoa " +
-                            "from SinhVien,Lop,Khoa " +
-                            "where SinhVien.IdLop = Lop.ID and Lop.IdKhoa = Khoa.ID ORDER BY TenSinhVien";
-        const string Str2 = "select MaSinhVien from SinhVien ORDER BY TenSinhVien";
-        const string Str3 = "select * from Khoa";
-        const string Str4 = "select * from Lop";
-        const string Str5 = "select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
-                            "From SinhVien s,XepPhong x,PhongThi p,Lop l " +
-                            "where s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
-
-        #endregion
-
-        #region Load dữ liệu từ CSDL
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="chon"></param>
-        /// <returns>trả về 1 table</returns>
-        /// 1:trả về bảng thông tin sinh viên gồm lớp khoa
-        /// 2:Trả về bảng bao gồm mã sinh viên
-        /// 3: trả về bảng khoa
-        /// 4: trả về bảng lớp
-        public static DataTable Load(int chon)
-        {
-            try
-            {
-                var table = new DataTable();
-                switch (chon)
-                {
-                    case 1:
-                        table =  Conn.getTable(Str1);
-                        break;
-                    case 2:
-                        table = Conn.getTable(Str2);
-                        break;
-                    case 3:
-                        table = Conn.getTable(Str3);
-                        break;
-                    case 4:
-                        table = Conn.getTable(Str4);
-                        break;
-                    case 5:
-                        table = Conn.getTable(Str5);
-                        break;
-                }
-                return table;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return null;
-            }
-        }
-
         /// <summary>
         /// Lấy ra thông tin của tất cả sinh viên
         /// </summary>
@@ -200,8 +143,6 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
-
-        #endregion
 
         #region Tìm kiếm
 
