@@ -23,10 +23,6 @@ namespace QLSV.Frm.FrmUserControl
         private IList<Khoa> _listKhoa;
 
         private readonly BackgroundWorker _bgwInsert;
-        public delegate void CustomHandler1(object sender);
-        public event CustomHandler1 CloseDialog = null;
-        public delegate void CustomHandler(object sender);
-        public event CustomHandler ShowDialog = null;
 
         public FrmInportSinhVien()
         {
@@ -55,7 +51,7 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        public void LoadForm()
+        protected override void LoadForm()
         {
             try
             {
@@ -210,7 +206,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             if (uG_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
-            ShowDialog(null);
+            OnShowDialog("Đang lưu dữ liệu");
         }
 
         #region BackgroundWorker
@@ -229,7 +225,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            CloseDialog(null);
+            OnCloseDialog();
         }
 
         #endregion

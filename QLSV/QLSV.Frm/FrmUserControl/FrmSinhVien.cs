@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -67,7 +69,8 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     row["STT"] = stt++;
                 }
-                uG_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = table;
+                pnl_from.Visible = true;
             }
             catch (Exception ex)
             {
@@ -77,14 +80,21 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void LoadForm()
+        protected override void LoadForm()
         {
             try
             {
-                LoadGrid();
-                _listAdd.Clear();
-                _listUpdate.Clear();
-                IdDelete.Clear();
+                Thread.Sleep(1000);
+                Invoke((Action)(LoadGrid));
+                Invoke((Action)(()=>cbokhoa.Value = null));
+                Invoke((Action)(()=>cbolop.Value = null));
+                Invoke((Action)(()=>_listAdd.Clear()));
+                Invoke((Action)(()=>_listUpdate.Clear()));
+                Invoke((Action)(()=>IdDelete.Clear()));
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -95,13 +105,13 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "MaSinhVien");
+            InsertRow(dgv_DanhSach, "STT", "MaSinhVien");
         }
 
         protected override void DeleteRow()
         {
 
-            DeleteRowGrid(uG_DanhSach, "ID", "MaSinhVien");
+            DeleteRowGrid(dgv_DanhSach, "ID", "MaSinhVien");
         }
 
         protected override void SaveDetail()
@@ -151,19 +161,19 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if(string.IsNullOrEmpty(uG_DanhSach.ActiveRow.Cells["ID"].Text)) return;
+                if(string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["ID"].Text)) return;
                 var lopnew = new Lop();
-                foreach (var lop in _listLop.Where(lop => lop.MaLop == uG_DanhSach.ActiveRow.Cells["MaLop"].Text))
+                foreach (var lop in _listLop.Where(lop => lop.MaLop == dgv_DanhSach.ActiveRow.Cells["MaLop"].Text))
                 {
                     lopnew = lop;
                 }
                 var frm = new FrmThemsinhvien
                 {
-                    Id = int.Parse(uG_DanhSach.ActiveRow.Cells["ID"].Text),
-                    txtmasinhvien = {Text = uG_DanhSach.ActiveRow.Cells["MaSinhVien"].Text, ReadOnly = true},
-                    txthotendem = {Text = uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
-                    txttensinhvien = {Text = uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
-                    cbongaysinh = {Text = uG_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                    Id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                    txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text, ReadOnly = true},
+                    txthotendem = {Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
+                    txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
+                    cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                 };
 
                 frm.cbolop.Value = lopnew.ID;
@@ -171,11 +181,11 @@ namespace QLSV.Frm.FrmUserControl
                 frm.ShowDialog();
                 if (frm.Id == 0)
                 {
-                    uG_DanhSach.ActiveRow.Cells["HoSinhVien"].Value = frm.txthotendem.Text;
-                    uG_DanhSach.ActiveRow.Cells["TenSinhVien"].Value = frm.txttensinhvien.Text;
-                    uG_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
-                    uG_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
-                    uG_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
+                    dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Value = frm.txthotendem.Text;
+                    dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Value = frm.txttensinhvien.Text;
+                    dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
+                    dgv_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
+                    dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
                 }
             }
             catch (Exception ex)
@@ -189,9 +199,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                LoadForm();
-                cbokhoa.Value = null;
-                cbolop.Value = null;
+                var thread = new Thread(LoadForm) {IsBackground = true};
+                thread.Start();
+                OnShowDialog("Loading...");
             }
             catch (Exception ex)
             {
@@ -206,9 +216,9 @@ namespace QLSV.Frm.FrmUserControl
             {
                 if (_newRow != null) _newRow.Selected = false;
                 foreach (
-                    var row in uG_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
                 {
-                    uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
                     _newRow = row;
                 }
@@ -231,8 +241,8 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     malop = item.MaLop;
                 }
-                var row = uG_DanhSach.DisplayLayout.Bands[0].AddNew();
-                var stt = uG_DanhSach.Rows.Count;
+                var row = dgv_DanhSach.DisplayLayout.Bands[0].AddNew();
+                var stt = dgv_DanhSach.Rows.Count;
                 row.Cells["ID"].Value = hs.ID;
                 row.Cells["STT"].Value = stt;
                 row.Cells["MaSinhVien"].Value = hs.MaSinhVien;
@@ -253,7 +263,7 @@ namespace QLSV.Frm.FrmUserControl
         public void Rptdanhsach()
         {
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
             using (var previewForm = new PreviewForm(rptdanhsachsinhvien))
             {
@@ -326,28 +336,28 @@ namespace QLSV.Frm.FrmUserControl
                 switch (e.KeyCode)
                 {
                     case Keys.Up:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Down:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Right:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Left:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                 }
             }
@@ -410,7 +420,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     row["STT"] = stt++;
                 }
-                uG_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = table;
             }
             catch (Exception ex)
             {
@@ -433,7 +443,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     row["STT"] = stt++;
                 }
-                uG_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = table;
             }
             catch (Exception ex)
             {
@@ -513,7 +523,7 @@ namespace QLSV.Frm.FrmUserControl
                 cbolop.Rows.Band.ColHeadersVisible = false;
                 cbolop.DropDownWidth = 0;
 
-                LoadForm();
+                Huy();
             }
             catch (Exception ex)
             {

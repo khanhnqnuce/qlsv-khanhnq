@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Utils.Core;
@@ -10,7 +11,36 @@ namespace QLSV.Frm.Base
     public partial class FunctionControlHasGrid : UserControl
     {
         protected IList<int> IdDelete = new List<int>();
+        protected readonly object LockTotal = new object();
         protected bool b = false;
+
+        #region event delegate
+
+        public delegate void CustomHandler(object sender, string msg);
+        public event CustomHandler ShowDialog = null;
+        protected virtual void OnShowDialog(string msg)
+        {
+            var handler = ShowDialog;
+            if (handler != null) handler(this, msg);
+        }
+
+        public delegate void CustomHandler1(object sender);
+        public event CustomHandler1 CloseDialog = null;
+        protected virtual void OnCloseDialog()
+        {
+            var handler = CloseDialog;
+            if (handler != null) handler(this);
+        }
+
+        public delegate void CustomHandler2(object sender, string msg);
+        public event CustomHandler2 UpdateDialog = null;
+        protected virtual void OnUpdateDialog(string msg)
+        {
+            var handler = UpdateDialog;
+            if (handler != null) handler(this, msg);
+        }
+
+        #endregion
 
         public void uG_InsertRow()
         {
@@ -48,6 +78,8 @@ namespace QLSV.Frm.Base
         }
 
         protected virtual void LoadGrid(){}
+
+        protected virtual void LoadForm(){}
 
         public void uG_DeleteRow()
         {
@@ -119,7 +151,7 @@ namespace QLSV.Frm.Base
 
         public void Save()
         {
-            SaveDetail();
+            Invoke((Action)SaveDetail);
         }
 
         protected virtual void SaveDetail(){}

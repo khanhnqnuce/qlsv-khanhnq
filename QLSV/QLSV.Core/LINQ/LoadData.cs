@@ -19,7 +19,8 @@ namespace QLSV.Core.LINQ
         const string Str5 = "select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
                             "From SinhVien s,XepPhong x,PhongThi p,Lop l " +
                             "where s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
-        const string Str6 = "SELECT s.*,l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
+        const string Str6 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
+                            "s.TenSinhVien, s.NgaySinh, l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
                             "(SELECT x.IdSV FROM XepPhong x " +
                             "WHERE s.ID = x.IdSV) and s.IdLop = l.ID";
         const string Str7 = "select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +

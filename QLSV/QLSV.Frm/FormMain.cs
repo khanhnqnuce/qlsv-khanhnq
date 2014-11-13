@@ -125,6 +125,7 @@ namespace QLSV.Frm
                         _frmInportSinhVien = new FrmInportSinhVien();
                         _frmInportSinhVien.ShowDialog += ShowLoading;
                         _frmInportSinhVien.CloseDialog += KillLoading;
+                        _frmInportSinhVien.UpdateDialog += UpdateLoading;
                         TabInportsinhvien.Tab.Visible = true;
                         TabPageControl.SelectedTab = TabInportsinhvien.Tab;
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
@@ -136,6 +137,9 @@ namespace QLSV.Frm
                         //    return;
                         //}
                         _frmQuanlySinhVien = new FrmSinhVien();
+                        _frmQuanlySinhVien.ShowDialog += ShowLoading;
+                        _frmQuanlySinhVien.CloseDialog += KillLoading;
+                        _frmQuanlySinhVien.UpdateDialog += UpdateLoading;
                         Tabquanlysinhvien.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
@@ -166,7 +170,7 @@ namespace QLSV.Frm
                         _frmSapxepphongthi = new FrmSapxepphongthi();
                         _frmSapxepphongthi.ShowDialog += ShowLoading;
                         _frmSapxepphongthi.CloseDialog += KillLoading;
-
+                        _frmSapxepphongthi.UpdateDialog += UpdateLoading;
                         //if (TabSapxepphongthi.Tab.Visible)
                         //{
                         //    _frmSapxepphongthi.LoadForm();
@@ -179,6 +183,9 @@ namespace QLSV.Frm
                         break;
                     case "109":
                         _frmSinhVienPhongThi = new FrmSinhVienPhongThi();
+                        _frmSinhVienPhongThi.ShowDialog += ShowLoading;
+                        _frmSinhVienPhongThi.CloseDialog += KillLoading;
+                        _frmSinhVienPhongThi.UpdateDialog += UpdateLoading;
                         TabSapxepphongthi.Tab.Visible = true;
                         TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         ShowControl(_frmSinhVienPhongThi, pn_sapxepphongthi);
@@ -436,7 +443,7 @@ namespace QLSV.Frm
             }
             else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
             {
-                _frmInportSinhVien.LoadForm();
+                //_frmInportSinhVien.LoadForm();
             }
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
@@ -677,9 +684,10 @@ namespace QLSV.Frm
 
         private FrmLoadding _loading;
 
-        private void ShowLoading(object sender)
+        private void ShowLoading(object sender, string msg)
         {
             _loading = new FrmLoadding();
+            _loading.Update(msg);
             _loading.ShowDialog();
         }
 
@@ -690,13 +698,25 @@ namespace QLSV.Frm
                 if (_loading != null)
                 {
                     _loading.Invoke((Action)(() =>
-                    { if (_loading != null) _loading.Close(); }));
+                    {
+                        _loading.Close();
+                        _loading.Dispose();
+                        _loading = null;
+                    }));
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void UpdateLoading(object sender, string strInfo)
+        {
+            if (_loading != null)
+            {
+                _loading.Invoke((Action)(() => _loading.Update(strInfo)));
             }
         }
 

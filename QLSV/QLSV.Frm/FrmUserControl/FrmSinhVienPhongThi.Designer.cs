@@ -38,7 +38,9 @@
             this.rptdanhsachduthi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.rptdanhsachkhoa = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.rptdanhsachlop = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.pnl_form = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
+            this.pnl_form.SuspendLayout();
             this.SuspendLayout();
             // 
             // uG_DanhSach
@@ -51,7 +53,7 @@
             this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(986, 589);
+            this.uG_DanhSach.Size = new System.Drawing.Size(997, 589);
             this.uG_DanhSach.TabIndex = 27;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             // 
@@ -95,15 +97,26 @@
             this.rptdanhsachlop.ReportName = "";
             this.rptdanhsachlop.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
+            // pnl_form
+            // 
+            this.pnl_form.Controls.Add(this.uG_DanhSach);
+            this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_form.Location = new System.Drawing.Point(0, 0);
+            this.pnl_form.Name = "pnl_form";
+            this.pnl_form.Size = new System.Drawing.Size(997, 589);
+            this.pnl_form.TabIndex = 28;
+            this.pnl_form.Visible = false;
+            // 
             // FrmSinhVienPhongThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.uG_DanhSach);
+            this.Controls.Add(this.pnl_form);
             this.Name = "FrmSinhVienPhongThi";
-            this.Size = new System.Drawing.Size(986, 589);
+            this.Size = new System.Drawing.Size(997, 589);
             this.Load += new System.EventHandler(this.FrmSinhVienPhongThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
+            this.pnl_form.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -117,5 +130,6 @@
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachduthi;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachkhoa;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachlop;
+        private System.Windows.Forms.Panel pnl_form;
     }
 }

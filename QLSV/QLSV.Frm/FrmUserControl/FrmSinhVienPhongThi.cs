@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -44,6 +45,26 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var table = LoadData.Load(7);
                 uG_DanhSach.DataSource = table;
+                pnl_form.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+
+            }
+        }
+
+        protected override void LoadForm()
+        {
+            try
+            {
+                Thread.Sleep(1000);
+                Invoke((Action) LoadGrid);
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -146,10 +167,20 @@ namespace QLSV.Frm.FrmUserControl
 
         private void FrmSinhVienPhongThi_Load(object sender, EventArgs e)
         {
-            LoadGrid();
+            try
+            {
+                var thread = new Thread(LoadForm) { IsBackground = true };
+                thread.Start();
+                OnShowDialog("Loading...");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
-        private void uG_DanhSach_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void uG_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             try
             {

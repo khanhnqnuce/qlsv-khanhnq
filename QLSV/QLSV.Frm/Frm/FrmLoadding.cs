@@ -8,12 +8,16 @@ namespace QLSV.Frm.Frm
     {
         private bool _mouseDowned;
         private Point _positionMouse;
-        public event CancelLoading Cancel;
 
         public FrmLoadding()
         {
             InitializeComponent();
             _mouseDowned = false;
+        }
+
+        public void Update(string strInfo)
+        {
+            lblProcess.Text = strInfo;
         }
 
         private void MoveWindow_MouseUp(object sender, MouseEventArgs e)
