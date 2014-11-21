@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoadding));
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblProcess = new Infragistics.Win.Misc.UltraLabel();
@@ -38,7 +37,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::QLSV.Frm.Properties.Resources.loading1;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(143, 39);
@@ -58,15 +57,14 @@
             this.lblProcess.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblProcess.Location = new System.Drawing.Point(0, 39);
             this.lblProcess.Name = "lblProcess";
-            this.lblProcess.Size = new System.Drawing.Size(143, 35);
+            this.lblProcess.Size = new System.Drawing.Size(143, 26);
             this.lblProcess.TabIndex = 1;
-            this.lblProcess.Text = "Đang xử lý";
             // 
             // FrmLoadding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(143, 74);
+            this.ClientSize = new System.Drawing.Size(143, 65);
             this.ControlBox = false;
             this.Controls.Add(this.lblProcess);
             this.Controls.Add(this.pictureBox1);

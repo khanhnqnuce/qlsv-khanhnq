@@ -9,10 +9,10 @@ namespace QLSV.Core.Domain
         public virtual int SucChua { get; set; }
         public virtual int SoLuong { get; set; }
         public virtual string GhiChu { get; set; }
-        public virtual ISet<XepPhong> XepPhong { get; set; }
-        public PhongThi()
-        {
-            XepPhong = new HashSet<XepPhong>();
-        }
+        //public virtual ISet<XepPhong> XepPhong { get; set; }
+        //public PhongThi()
+        //{
+        //    XepPhong = new HashSet<XepPhong>();
+        //}
     }
 }

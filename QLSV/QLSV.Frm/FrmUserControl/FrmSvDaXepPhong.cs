@@ -19,7 +19,8 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmSvDaXepPhong : FunctionControlHasGrid
     {
-        private IList<PhongThi> _lisPhong = new List<PhongThi>(); 
+        private IList<PhongThi> _lisPhong = new List<PhongThi>();
+        private IList<XepPhong> m_IdDelete = new List<XepPhong>(); 
         public FrmSvDaXepPhong()
         {
             InitializeComponent();
@@ -79,7 +80,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                QlsvSevice.Xoa("XepPhong");
+                DeleteData.Xoa("XepPhong");
                 UpdateData.ResetPhongThi();
                 LoadFormDetail();
             }
@@ -92,7 +93,6 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void DeleteRow()
         {
-
             try
             {
                 if (dgv_DanhSach.Selected.Rows.Count > 0)
@@ -103,18 +103,21 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         foreach (var row in dgv_DanhSach.Selected.Rows)
                         {
-                            var b = true;
                             var id = row.Cells["ID"].Value.ToString();
                             if (!string.IsNullOrEmpty(id))
                             {
-                                IdDelete.Add(int.Parse(id));
+                                var hs = new XepPhong
+                                {
+                                    IdSV = int.Parse(id),
+                                    IdKyThi = int.Parse(row.Cells["IdKyThi"].Text),
+                                    IdPhong = int.Parse(row.Cells["IdPhong"].Text),
+                                };
+                                m_IdDelete.Add(hs);
                             }
                             foreach (var p in _lisPhong.Where(p => p.TenPhong == row.Cells["PhongThi"].Text))
                             {
-                                b = false;
                                 p.SoLuong = p.SoLuong + 1;
                             }
-                            if (!b) continue;
                             var phong = new PhongThi
                             {
                                 TenPhong = row.Cells["PhongThi"].Text,
@@ -131,16 +134,21 @@ namespace QLSV.Frm.FrmUserControl
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                     {
-                        b = true;
                         var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Value.ToString();
                         if (!string.IsNullOrEmpty(idStr))
-                            IdDelete.Add(int.Parse(idStr));
+                        {
+                            var hs = new XepPhong
+                            {
+                                IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                                IdKyThi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
+                                IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
+                            };
+                            m_IdDelete.Add(hs);
+                        }
                         foreach (var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
                         {
-                            b = false;
                             p.SoLuong = p.SoLuong + 1;
                         }
-                        if (!b) return;
                         var phong = new PhongThi
                         {
                             TenPhong = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text,
@@ -167,10 +175,10 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa(IdDelete, "XepPhong");
+                DeleteData.XoaXepPhong(m_IdDelete);
                 UpdateData.UpdateGiamPhongThi(_lisPhong);
                 _lisPhong.Clear();
-                IdDelete.Clear();
+                m_IdDelete.Clear();
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -192,9 +200,11 @@ namespace QLSV.Frm.FrmUserControl
                     txtmasinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text},
                     txthotendem = { Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
                     txttensinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
-                    cbongaysinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                    txtNgaySinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                     cbolop = { Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
                     cboPhongthi = { Text = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text},
+                    gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                    gb_iIdKythi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
                     gb_iIdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
                     gb_bUpdate = true
                 };
@@ -331,6 +341,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaKhoa"].Hidden = true;
                 band.Columns["TenKhoa"].Hidden = true;
                 band.Columns["IdPhong"].Hidden = true;
+                band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].Width = 50;
                 band.Columns["HoSinhVien"].Width = 170;

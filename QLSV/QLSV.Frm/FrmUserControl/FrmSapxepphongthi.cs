@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -23,7 +22,7 @@ namespace QLSV.Frm.FrmUserControl
         private IList<XepPhong> _lstAdd = new List<XepPhong>();
         private IList<PhongThi> _lstAdd1 = new List<PhongThi>();
         private bool _check = true;
-
+        private int m_iIdKythi;
         private readonly BackgroundWorker _bgwInsert = null;
 
         public FrmSapxepphongthi()
@@ -57,19 +56,20 @@ namespace QLSV.Frm.FrmUserControl
                 _lstAdd.Clear();
                 _lstAdd1.Clear();
                 var table = GetTable();
-                var listSinhvien = QlsvSevice.LoadSvChuaXepPhong();
+                var tbSinhVien = LoadData.Load(6);
                 var listPhongthi = QlsvSevice.Load<PhongThi>();
                 var t = 0;
                 var s = 0;
                 var tg = 0;
                 var stt = 1;
-                if (listSinhvien == null || listSinhvien.Count == 0)
+                if (tbSinhVien == null || tbSinhVien.Rows.Count == 0)
                 {
                     MessageBox.Show(FormResource.msgxepphong);
                     return;
                 }
                 var frm = new FrmCheckXepPhong();
                 frm.ShowDialog();
+                m_iIdKythi = frm.gb_iIdKythi;
                 if (frm.rdoall.Checked)
                 {
                     _check = false;
@@ -83,22 +83,23 @@ namespace QLSV.Frm.FrmUserControl
                         t = t + tg;
                         tg = pt.SucChua - pt.SoLuong;
                         s = s + tg;
-                        if (s < listSinhvien.Count)
+                        if (s < tbSinhVien.Rows.Count)
                         {
                             for (var i = t; i < s; i++)
                             {
-                                table.Rows.Add(listSinhvien[i].ID,
+                                table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
                                     stt++,
-                                    listSinhvien[i].MaSinhVien,
-                                    listSinhvien[i].HoSinhVien,
-                                    listSinhvien[i].TenSinhVien,
-                                    listSinhvien[i].NgaySinh,
-                                    listSinhvien[i].Lop.MaLop,
+                                    tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["NgaySinh"].ToString(),
+                                    tbSinhVien.Rows[i]["MaLop"].ToString(),
                                     pt.TenPhong);
                                 var hs = new XepPhong
                                 {
-                                    IdSV = listSinhvien[i].ID,
-                                    IdPhong = pt.ID
+                                    IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
+                                    IdPhong = pt.ID,
+                                    IdKyThi = m_iIdKythi
                                 };
                                 phong.SoLuong = phong.SoLuong + 1;
                                 _lstAdd.Add(hs);
@@ -107,20 +108,21 @@ namespace QLSV.Frm.FrmUserControl
                         }
                         else
                         {
-                            for (var i = t; i < listSinhvien.Count; i++)
+                            for (var i = t; i < tbSinhVien.Rows.Count; i++)
                             {
-                                table.Rows.Add(listSinhvien[i].ID,
+                                table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
                                     stt++,
-                                    listSinhvien[i].MaSinhVien,
-                                    listSinhvien[i].HoSinhVien,
-                                    listSinhvien[i].TenSinhVien,
-                                    listSinhvien[i].NgaySinh,
-                                    listSinhvien[i].Lop.MaLop,
+                                    tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
+                                    tbSinhVien.Rows[i]["NgaySinh"].ToString(),
+                                    tbSinhVien.Rows[i]["MaLop"].ToString(),
                                     pt.TenPhong);
                                 var hs = new XepPhong
                                 {
-                                    IdSV = listSinhvien[i].ID,
-                                    IdPhong = pt.ID
+                                    IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
+                                    IdPhong = pt.ID,
+                                    IdKyThi = m_iIdKythi
                                 };
                                 phong.SoLuong = phong.SoLuong + 1;
                                 _lstAdd.Add(hs);
@@ -130,7 +132,7 @@ namespace QLSV.Frm.FrmUserControl
                         }
 
                     }
-                    if (s < listSinhvien.Count)
+                    if (s < tbSinhVien.Rows.Count)
                         MessageBox.Show(@"Không đủ phòng thi để xếp sinh viên");
                     else
                         dgv_DanhSach.DataSource = table;
@@ -138,18 +140,17 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else if (frm.rdoone.Checked)
                 {
-                    foreach (var sv in listSinhvien)
+                    foreach (DataRow sv in tbSinhVien.Rows)
                     {
-                        table.Rows.Add(sv.ID,
+                        table.Rows.Add(sv["ID"].ToString(),
                             stt++,
-                            sv.MaSinhVien,
-                            sv.HoSinhVien,
-                            sv.TenSinhVien,
-                            sv.NgaySinh,
-                            sv.Lop.MaLop);
+                            sv["MaSinhVien"].ToString(),
+                            sv["HoSinhVien"].ToString(),
+                            sv["TenSinhVien"].ToString(),
+                            sv["NgaySinh"].ToString(),
+                            sv["MaLop"].ToString());
                     }
                     dgv_DanhSach.DataSource = table;
-
                 }
             }
             catch (Exception ex)
@@ -182,15 +183,15 @@ namespace QLSV.Frm.FrmUserControl
                     MessageBox.Show(@"Sinh viên đã được xếp phòng");
                     return;
                 }
-                var lopnew = new Lop();
                 var frm = new FrmXepPhong
                 {
                     txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text},
                     txthotendem = {Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
                     txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
-                    cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                    txtNgaySinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                     cbolop = {Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
-                    gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text)
+                    gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                    gb_iIdKythi = m_iIdKythi
                 };
                 frm.ShowDialog();
                 if(frm.gb_iIdsinhvien != 0) return;

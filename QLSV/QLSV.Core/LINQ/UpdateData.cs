@@ -56,11 +56,36 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static void UpdateGiamPhongThi(int i)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where ID = " +
+                                    i + ") - " + 1 + ") where ID = " + i +
+                                    "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         public static void ResetPhongThi()
         {
             try
             {
                 Conn.ExcuteQuerySql("update PhongThi set SoLuong = " + 0 + " ");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        public static void XepPhong(XepPhong hs)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update XepPhong set IdPhong = " + hs.IdPhong + " WHERE IdSV = "+hs.IdSV+" and IdKythi = "+hs.IdKyThi+"");
             }
             catch (Exception ex)
             {

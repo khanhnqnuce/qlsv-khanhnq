@@ -42,7 +42,7 @@ namespace QLSV.Core.LINQ
                 foreach (
                     var sql in
                         list.Select(
-                            item => "insert into XepPhong(IdSV,IdPhong) values(" + item.IdSV + "," + item.IdPhong + ")")
+                            item => "insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + item.IdSV + "," + item.IdPhong + ","+ item.IdKyThi +")")
                     )
                 {
                     Conn.ExcuteQuerySql(sql);
@@ -59,7 +59,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdPhong) values(" + hs.IdSV + "," + hs.IdPhong + ")");
+                Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + hs.IdSV + "," + hs.IdPhong +
+                                    "," + hs.IdKyThi + ")");
             }
             catch (Exception ex)
             {

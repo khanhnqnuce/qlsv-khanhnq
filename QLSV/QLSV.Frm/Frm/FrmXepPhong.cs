@@ -9,6 +9,7 @@ namespace QLSV.Frm.Frm
     {
         public int gb_iIdsinhvien = 0;
         public int gb_iIdPhong = 0;
+        public int gb_iIdKythi = 0;
         public bool gb_bUpdate = false;
 
         public FrmXepPhong()
@@ -59,14 +60,29 @@ namespace QLSV.Frm.Frm
                 errorPhongthi.SetError(cboPhongthi, "Chọn Phòng thi");
                 return;
             }
-            if (gb_iIdPhong != 0)return;
-            var hs = new XepPhong
+            if (gb_bUpdate)
+            {
+                var hs = new XepPhong
+                {
+                    IdSV = gb_iIdsinhvien,
+                    IdPhong = int.Parse(cboPhongthi.Value.ToString()),
+                    IdKyThi = gb_iIdKythi
+                };
+                UpdateData.XepPhong(hs);
+                UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
+                UpdateData.UpdatePhongThi(hs.IdPhong);
+                Close();
+                return;
+            }
+            var hs1 = new XepPhong
             {
                 IdSV = gb_iIdsinhvien,
-                IdPhong = int.Parse(cboPhongthi.Value.ToString())
+                IdPhong = int.Parse(cboPhongthi.Value.ToString()),
+                IdKyThi = gb_iIdKythi
+
             };
-            InsertData.XepPhong1(hs);
-            UpdateData.UpdatePhongThi(hs.IdPhong);
+            InsertData.XepPhong1(hs1);
+            UpdateData.UpdatePhongThi(hs1.IdPhong);
             gb_iIdsinhvien = 0;
             Close();
         }

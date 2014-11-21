@@ -65,8 +65,6 @@
             this.btnthem = new System.Windows.Forms.Button();
             this.cbolop = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.cboPhongthi = new Infragistics.Win.UltraWinGrid.UltraCombo();
-            this.cbongaysinh = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
-            this.txttensinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txthotendem = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txtmasinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.ultraLabel6 = new Infragistics.Win.Misc.UltraLabel();
@@ -75,13 +73,15 @@
             this.ultraLabel3 = new Infragistics.Win.Misc.UltraLabel();
             this.ultraLabel2 = new Infragistics.Win.Misc.UltraLabel();
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
+            this.txttensinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
+            this.txtNgaySinh = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             ((System.ComponentModel.ISupportInitialize)(this.errorPhongthi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongthi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbongaysinh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgaySinh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnthoat
@@ -236,25 +236,6 @@
             this.cboPhongthi.Size = new System.Drawing.Size(161, 22);
             this.cboPhongthi.TabIndex = 25;
             // 
-            // cbongaysinh
-            // 
-            this.cbongaysinh.Location = new System.Drawing.Point(170, 182);
-            this.cbongaysinh.MaskInput = "{LOC}dd/mm/yyyy";
-            this.cbongaysinh.Name = "cbongaysinh";
-            this.cbongaysinh.ReadOnly = true;
-            this.cbongaysinh.Size = new System.Drawing.Size(161, 21);
-            this.cbongaysinh.TabIndex = 24;
-            this.cbongaysinh.Value = null;
-            // 
-            // txttensinhvien
-            // 
-            this.txttensinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txttensinhvien.Location = new System.Drawing.Point(170, 134);
-            this.txttensinhvien.Name = "txttensinhvien";
-            this.txttensinhvien.ReadOnly = true;
-            this.txttensinhvien.Size = new System.Drawing.Size(161, 26);
-            this.txttensinhvien.TabIndex = 23;
-            // 
             // txthotendem
             // 
             this.txthotendem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -345,16 +326,34 @@
             this.ultraLabel1.TabIndex = 15;
             this.ultraLabel1.Text = "Mã sinh viên:";
             // 
+            // txttensinhvien
+            // 
+            this.txttensinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txttensinhvien.Location = new System.Drawing.Point(170, 134);
+            this.txttensinhvien.Name = "txttensinhvien";
+            this.txttensinhvien.ReadOnly = true;
+            this.txttensinhvien.Size = new System.Drawing.Size(161, 26);
+            this.txttensinhvien.TabIndex = 23;
+            // 
+            // txtNgaySinh
+            // 
+            this.txtNgaySinh.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtNgaySinh.Location = new System.Drawing.Point(170, 180);
+            this.txtNgaySinh.Name = "txtNgaySinh";
+            this.txtNgaySinh.ReadOnly = true;
+            this.txtNgaySinh.Size = new System.Drawing.Size(161, 26);
+            this.txtNgaySinh.TabIndex = 30;
+            // 
             // FrmXepPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 411);
+            this.Controls.Add(this.txtNgaySinh);
             this.Controls.Add(this.btnthoat);
             this.Controls.Add(this.btnthem);
             this.Controls.Add(this.cbolop);
             this.Controls.Add(this.cboPhongthi);
-            this.Controls.Add(this.cbongaysinh);
             this.Controls.Add(this.txttensinhvien);
             this.Controls.Add(this.txthotendem);
             this.Controls.Add(this.txtmasinhvien);
@@ -371,10 +370,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorPhongthi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongthi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbongaysinh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgaySinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,8 +386,6 @@
         private System.Windows.Forms.Button btnthem;
         public Infragistics.Win.UltraWinGrid.UltraCombo cbolop;
         public Infragistics.Win.UltraWinGrid.UltraCombo cboPhongthi;
-        public Infragistics.Win.UltraWinEditors.UltraDateTimeEditor cbongaysinh;
-        public Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
         public Infragistics.Win.UltraWinEditors.UltraTextEditor txthotendem;
         public Infragistics.Win.UltraWinEditors.UltraTextEditor txtmasinhvien;
         private Infragistics.Win.Misc.UltraLabel ultraLabel6;
@@ -397,5 +394,7 @@
         private Infragistics.Win.Misc.UltraLabel ultraLabel3;
         private Infragistics.Win.Misc.UltraLabel ultraLabel2;
         private Infragistics.Win.Misc.UltraLabel ultraLabel1;
+        public Infragistics.Win.UltraWinEditors.UltraTextEditor txtNgaySinh;
+        public Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
     }
 }

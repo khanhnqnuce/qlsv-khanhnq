@@ -24,5 +24,32 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        public static void XoaXepPhong(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (var i in list)
+                {
+                    Conn.ExcuteQuerySql("DELETE FROM XepPhong WHERE IdSV = " + i.IdSV + " and IdKyThi = "+i.IdKyThi+" and IdPhong = "+i.IdPhong+"");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static void Xoa(string table)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM " + table);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
     }
 }

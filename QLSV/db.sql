@@ -69,7 +69,7 @@ Create table SinhVien
 go
 Create table XepPhong
 (
-	IdSV int,	
+	IdSV int not null,	
 	IdPhong int not null,
 	IdKyThi int not null,
 	CONSTRAINT PK_XepPhong  primary key(IdSV,IdPhong,IdKyThi),
@@ -79,4 +79,5 @@ Create table XepPhong
 )
 
 TRUNCATE TABLE SinhVien
---ALTER TABLE DiemSV ADD CONSTRAINT Ma FOREIGN KEY (MaSV) REFERENCES HSSV(MaSV)
+ALTER TABLE XepPhong ADD CONSTRAINT PK_XepPhong primary key(IdSV,IdPhong,IdKyThi)
+ALTER TABLE XepPhong ADD CONSTRAINT FK_XepPhong_SinhVien FOREIGN KEY (IdSV) REFERENCES SinhVien(ID)

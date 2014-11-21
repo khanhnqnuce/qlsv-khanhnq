@@ -325,6 +325,7 @@
     <Content Include="Reports\danhsachduthilop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\loading.GIF" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\danhsachsinhvien.rst">
