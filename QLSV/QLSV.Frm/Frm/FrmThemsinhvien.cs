@@ -91,7 +91,7 @@ namespace QLSV.Frm.Frm
                         };
                         QlsvSevice.Them(hs);
                         Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Đã lưu vào CSDL");
+                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
                         ClearAll();
                         return;
                     }
@@ -100,7 +100,7 @@ namespace QLSV.Frm.Frm
                             listKhoa.Where(
                                 khoa => khoa.ID.ToString(CultureInfo.InvariantCulture) == cbokhoa.Value.ToString()))
                     {
-                        var newLop1 = SinhVienSql.ThemLop(cbolop.Text, khoa.ID);
+                        var newLop1 = InsertData.ThemLop(cbolop.Text, khoa.ID);
                         var hs = new SinhVien
                         {
                             MaSinhVien = txtmasinhvien.Text,
@@ -111,12 +111,12 @@ namespace QLSV.Frm.Frm
                         };
                         QlsvSevice.Them(hs);
                         Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Đã lưu vào CSDL");
+                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
                         ClearAll();
                         return;
                     }
-                    var newkhoa = SinhVienSql.ThemKhoa(cbokhoa.Text);
-                    var newLop3 = SinhVienSql.ThemLop(cbolop.Text, newkhoa.ID);
+                    var newkhoa = InsertData.ThemKhoa(cbokhoa.Text);
+                    var newLop3 = InsertData.ThemLop(cbolop.Text, newkhoa.ID);
                     var hs1 = new SinhVien
                     {
                         MaSinhVien = txtmasinhvien.Text,
@@ -127,7 +127,7 @@ namespace QLSV.Frm.Frm
                     };
                     QlsvSevice.Them(hs1);
                     Themmoisinhvien(sender, hs1, cbokhoa.Text);
-                    MessageBox.Show(@"Đã lưu vào CSDL");
+                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
                     ClearAll();
                 }
                 else
@@ -142,7 +142,7 @@ namespace QLSV.Frm.Frm
                         IdLop = int.Parse(cbolop.Value.ToString())
                     };
                     QlsvSevice.Sua(hs1);
-                    MessageBox.Show(@"Đã lưu vào CSDL");
+                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
                     Id = 0;
                     Close();
                 }

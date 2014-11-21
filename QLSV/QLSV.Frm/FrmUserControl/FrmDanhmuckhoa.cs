@@ -59,7 +59,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void LoadForm()
+        protected override void LoadFormDetail()
         {
             LoadGrid();
             if (uG_DanhSach.Rows.Count == 0)
@@ -108,7 +108,7 @@ namespace QLSV.Frm.FrmUserControl
                 QlsvSevice.ThemAll(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                LoadForm();
+                LoadFormDetail();
 
             }
             catch (Exception ex)
@@ -127,13 +127,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (DialogResult.Yes ==
-                    MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question))
-                {
-                    QlsvSevice.Xoa("Khoa");
-                    LoadForm();
-                }
+                QlsvSevice.Xoa("Khoa");
+                LoadFormDetail();
             }
             catch (Exception ex)
             {
@@ -243,7 +238,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
-            LoadForm();
+            LoadFormDetail();
         }
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)

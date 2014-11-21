@@ -27,7 +27,6 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
         private readonly FrmTimkiem _frmTimkiem;
         private FrmThemsinhvien _frmThemsinhvien;
-        private IList<Lop> _listLop;
         private UltraGridRow _newRow;
 
         #endregion
@@ -37,8 +36,6 @@ namespace QLSV.Frm.FrmUserControl
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
-            _listLop = QlsvSevice.Load<Lop>();
-            
         }
 
         #region Exit
@@ -62,14 +59,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var table = GetTable();
-                var stt = 1;
-                table.Merge(LoadData.Load(1));
-                foreach (DataRow row in table.Rows)
-                {
-                    row["STT"] = stt++;
-                }
-                dgv_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = LoadData.Load(1);
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -80,11 +70,10 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override void LoadForm()
+        protected override void LoadFormDetail()
         {
             try
             {
-                Thread.Sleep(1000);
                 Invoke((Action)(LoadGrid));
                 Invoke((Action)(()=>cbokhoa.Value = null));
                 Invoke((Action)(()=>cbolop.Value = null));
@@ -121,7 +110,7 @@ namespace QLSV.Frm.FrmUserControl
                 QlsvSevice.Xoa(IdDelete, "SinhVien");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                LoadForm();
+                LoadFormDetail();
             }
             catch (Exception ex)
             {
@@ -134,14 +123,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (DialogResult.Yes ==
-                    MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question))
-                {
-                    QlsvSevice.Xoa("SinhVien");
-                    LoadForm();
-                    _listLop = QlsvSevice.Load<Lop>();
-                }
+                QlsvSevice.Xoa("SinhVien");
+                LoadFormDetail();
             }
             catch (Exception ex)
             {
@@ -162,11 +145,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 if(string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["ID"].Text)) return;
-                var lopnew = new Lop();
-                foreach (var lop in _listLop.Where(lop => lop.MaLop == dgv_DanhSach.ActiveRow.Cells["MaLop"].Text))
-                {
-                    lopnew = lop;
-                }
                 var frm = new FrmThemsinhvien
                 {
                     Id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
@@ -175,9 +153,8 @@ namespace QLSV.Frm.FrmUserControl
                     txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
                     cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                 };
-
-                frm.cbolop.Value = lopnew.ID;
-                frm.cbokhoa.Value = lopnew.IdKhoa;
+                frm.cbolop.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdLop"].Text);
+                frm.cbokhoa.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKhoa"].Text);
                 frm.ShowDialog();
                 if (frm.Id == 0)
                 {
@@ -199,7 +176,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var thread = new Thread(LoadForm) {IsBackground = true};
+                var thread = new Thread(LoadFormDetail) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
             }
@@ -310,11 +287,15 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["ID"].Hidden = true;
+                band.Columns["IdLop"].Hidden = true;
+                band.Columns["IdKhoa"].Hidden = true;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].Width = 50;
                 band.Columns["HoSinhVien"].Width = 170;
                 band.Columns["TenSinhVien"].Width = 150;
-                band.Columns["TenKhoa"].Width = 310;
+                band.Columns["NgaySinh"].Width = 150;
+                band.Columns["MaLop"].Width = 150;
+                band.Columns["TenKhoa"].Width = 350;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
@@ -413,14 +394,8 @@ namespace QLSV.Frm.FrmUserControl
                 if (string.IsNullOrEmpty(cbokhoa.Text)) return;
                 var b = IsNumber(cbokhoa.Value.ToString());
                 if (!b) return;
-                var table = GetTable();
-                table.Merge(SinhVienSql.Timkiemtheokhoa(int.Parse(cbokhoa.Value.ToString())));
-                var stt = 1;
-                foreach (DataRow row in table.Rows)
-                {
-                    row["STT"] = stt++;
-                }
-                dgv_DanhSach.DataSource = table;
+                var a = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.Value.ToString()));
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.Value.ToString()));
             }
             catch (Exception ex)
             {
@@ -436,14 +411,7 @@ namespace QLSV.Frm.FrmUserControl
                 if (string.IsNullOrEmpty(cbolop.Text)) return;
                 var b = IsNumber(cbolop.Value.ToString());
                 if (!b) return;
-                var table = GetTable();
-                table.Merge(SinhVienSql.Timkiemtheolop(int.Parse(cbolop.Value.ToString())));
-                var stt = 1;
-                foreach (DataRow row in table.Rows)
-                {
-                    row["STT"] = stt++;
-                }
-                dgv_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(cbolop.Value.ToString()));
             }
             catch (Exception ex)
             {

@@ -79,7 +79,9 @@ namespace QLSV.Frm.Base
 
         protected virtual void LoadGrid(){}
 
-        protected virtual void LoadForm(){}
+        protected virtual void LoadFormDetail(){}
+
+        public void LoadForm(){LoadFormDetail();}
 
         public void uG_DeleteRow()
         {
@@ -111,14 +113,14 @@ namespace QLSV.Frm.Base
                 }
                 else if (grid.ActiveRow != null)
                 {
-                    var id = grid.ActiveRow.Index;
+                    var index = grid.ActiveRow.Index;
                     if (string.IsNullOrEmpty(grid.ActiveRow.Cells[columnname].Text)
                         && string.IsNullOrEmpty(grid.ActiveRow.Cells[columnId].Text))
                     {
                         b = true;
                         grid.ActiveRow.Delete(false);
-                        if (id <= 0) return;
-                        grid.Rows[id - 1].Cells[2].Activate();
+                        if (index <= 0) return;
+                        grid.Rows[index - 1].Cells[2].Activate();
                         grid.PerformAction(UltraGridAction.EnterEditMode);
                         return;
                     }
@@ -131,8 +133,8 @@ namespace QLSV.Frm.Base
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));
                         grid.ActiveRow.Delete(false);
-                        if (id <= 0) return;
-                        grid.Rows[id - 1].Cells[2].Activate();
+                        if (index <= 0) return;
+                        grid.Rows[index - 1].Cells[2].Activate();
                         grid.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }
@@ -158,7 +160,13 @@ namespace QLSV.Frm.Base
 
         public void Xoa()
         {
-            XoaDetail();
+            if (DialogResult.Yes ==
+                    MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question))
+            {
+                XoaDetail();
+            }
+           
         }
 
         protected virtual void XoaDetail() {}

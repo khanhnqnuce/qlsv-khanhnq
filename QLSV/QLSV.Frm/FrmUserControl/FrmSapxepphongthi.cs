@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -64,7 +65,7 @@ namespace QLSV.Frm.FrmUserControl
                 var stt = 1;
                 if (listSinhvien == null || listSinhvien.Count == 0)
                 {
-                    MessageBox.Show(@"Chưa có Sinh viên nào hoặc tất cả sinh viên đã được xếp phòng");
+                    MessageBox.Show(FormResource.msgxepphong);
                     return;
                 }
                 var frm = new FrmCheckXepPhong();
@@ -132,7 +133,7 @@ namespace QLSV.Frm.FrmUserControl
                     if (s < listSinhvien.Count)
                         MessageBox.Show(@"Không đủ phòng thi để xếp sinh viên");
                     else
-                        uG_DanhSach.DataSource = table;
+                        dgv_DanhSach.DataSource = table;
 
                 }
                 else if (frm.rdoone.Checked)
@@ -147,7 +148,7 @@ namespace QLSV.Frm.FrmUserControl
                             sv.NgaySinh,
                             sv.Lop.MaLop);
                     }
-                    uG_DanhSach.DataSource = table;
+                    dgv_DanhSach.DataSource = table;
 
                 }
             }
@@ -163,14 +164,43 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override void LoadForm()
+        protected override void LoadFormDetail()
         {
-            //_bgwLoad.RunWorkerAsync();
-            //ShowDialog(null);
             Invoke((Action)(LoadGrid));
             lock (LockTotal)
             {
                 OnCloseDialog();
+            }
+        }
+
+        private void Sua()
+        {
+            try
+            {
+                if (!_check || dgv_DanhSach.ActiveRow.Cells["ID"].Text == "0")
+                {
+                    MessageBox.Show(@"Sinh viên đã được xếp phòng");
+                    return;
+                }
+                var lopnew = new Lop();
+                var frm = new FrmXepPhong
+                {
+                    txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text},
+                    txthotendem = {Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
+                    txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
+                    cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                    cbolop = {Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
+                    gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text)
+                };
+                frm.ShowDialog();
+                if(frm.gb_iIdsinhvien != 0) return;
+                dgv_DanhSach.ActiveRow.Cells["ID"].Value = 0;
+                dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -181,8 +211,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                SinhVienSql.XepPhong(_lstAdd);
-                SinhVienSql.UpdatePhongThi(_lstAdd1);
+                InsertData.XepPhong(_lstAdd);
+                UpdateData.UpdatePhongThi(_lstAdd1);
                 _lstAdd.Clear();
                 _lstAdd1.Clear();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
@@ -197,7 +227,7 @@ namespace QLSV.Frm.FrmUserControl
 
         public void Ghi()
         {
-            if (uG_DanhSach.Rows.Count <= 0) return;
+            if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
         }
@@ -226,7 +256,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Sapxepphongthi_Load(object sender, EventArgs e)
         {
-            var thread = new Thread(LoadForm) { IsBackground = true };
+            var thread = new Thread(LoadFormDetail) { IsBackground = true };
             thread.Start();
             OnShowDialog("Loading...");
         }
@@ -270,6 +300,10 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].Width = 50;
                 band.Columns["HoSinhVien"].Width = 170;
+                band.Columns["TenSinhVien"].Width = 150;
+                band.Columns["NgaySinh"].Width = 150;
+                band.Columns["MaLop"].Width = 150;
+                band.Columns["PhongThi"].Width = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
                 band.Columns["ID"].Hidden = true;
 
@@ -286,9 +320,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (!_check) return;
-                var frm = new FrmXepPhong();
-                frm.ShowDialog();
+                Sua();
             }
             catch (Exception ex)
             {
@@ -296,6 +328,11 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
 
             }
+        }
+
+        private void menuStrip_Themdong_Click(object sender, EventArgs e)
+        {
+            Sua();
         }
     }
 }

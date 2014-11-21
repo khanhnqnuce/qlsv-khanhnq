@@ -30,7 +30,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof (int));
-            table.Columns.Add("STT", typeof (int));
+            table.Columns.Add("Stt", typeof (int));
             table.Columns.Add("MaKyThi", typeof (string));
             table.Columns.Add("TenKythi", typeof (string));
             table.Columns.Add("NgayThi", typeof (DateTime));
@@ -65,7 +65,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void LoadForm()
+        protected override void LoadFormDetail()
         {
             LoadGrid();
             if (uG_DanhSach.Rows.Count == 0)
@@ -79,7 +79,7 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "MaKyThi");
+            InsertRow(uG_DanhSach, "Stt", "MaKyThi");
         }
 
         protected override void DeleteRow()
@@ -87,7 +87,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "MaKyThi");
-                STT();
+                Stt();
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace QLSV.Frm.FrmUserControl
                 QlsvSevice.Xoa(IdDelete, "Kythi");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                LoadForm();
+                LoadFormDetail();
 
             }
             catch (Exception ex)
@@ -137,13 +137,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (DialogResult.Yes ==
-                    MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question))
-                {
-                    QlsvSevice.Xoa("Kythi");
-                    LoadForm();
-                }
+                QlsvSevice.Xoa("Kythi");
+                LoadFormDetail();
             }
             catch (Exception ex)
             {
@@ -157,7 +152,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void STT()
+        private void Stt()
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
@@ -217,13 +212,13 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["Stt"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["ThoiGianLamBai"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["ThoiGianBatDau"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["ThoiGianKetThuc"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
+                band.Columns["Stt"].CellActivation = Activation.NoEdit;
+                band.Columns["Stt"].CellAppearance.BackColor = Color.LightCyan;
+                band.Columns["Stt"].Width = 50;
                 band.Columns["TenKythi"].Width = 400;
                 band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
@@ -272,7 +267,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
-            LoadForm();
+            LoadFormDetail();
         }
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)

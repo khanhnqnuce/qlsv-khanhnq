@@ -63,6 +63,16 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _101 {
+            get {
+                object obj = ResourceManager.GetObject("101", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _102 {
             get {
                 object obj = ResourceManager.GetObject("102", resourceCulture);
@@ -123,6 +133,16 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _108 {
+            get {
+                object obj = ResourceManager.GetObject("108", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
@@ -157,6 +177,26 @@ namespace QLSV.Frm.Properties {
             get {
                 object obj = ResourceManager.GetObject("doipass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon errormatkhau_Icon {
+            get {
+                object obj = ResourceManager.GetObject("errormatkhau.Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon errortaikhoan_Icon {
+            get {
+                object obj = ResourceManager.GetObject("errortaikhoan.Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

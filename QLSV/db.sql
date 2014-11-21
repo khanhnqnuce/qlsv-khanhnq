@@ -71,9 +71,11 @@ Create table XepPhong
 (
 	IdSV int,	
 	IdPhong int not null,
-	CONSTRAINT PK_XepPhong  primary key(IdSV),
+	IdKyThi int not null,
+	CONSTRAINT PK_XepPhong  primary key(IdSV,IdPhong,IdKyThi),
 	CONSTRAINT FK_XepPhong_SinhVien FOREIGN KEY (IdSV) REFERENCES SinhVien(ID),
-	CONSTRAINT FK_XepPhong_PhongThi FOREIGN KEY (IdPhong) REFERENCES PhongThi(ID)
+	CONSTRAINT FK_XepPhong_PhongThi FOREIGN KEY (IdPhong) REFERENCES PhongThi(ID),
+	CONSTRAINT FK_XepPhong_KyThi FOREIGN KEY (IdKyThi) REFERENCES KyThi(ID)
 )
 
 TRUNCATE TABLE SinhVien

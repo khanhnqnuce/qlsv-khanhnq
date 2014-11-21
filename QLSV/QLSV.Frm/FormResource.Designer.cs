@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace QLSV.Frm {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -54,6 +57,16 @@ namespace QLSV.Frm {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _102_ {
+            get {
+                object obj = ResourceManager.GetObject("_102_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -172,6 +185,16 @@ namespace QLSV.Frm {
         internal static string msgThongbaoxoathanhcong {
             get {
                 return ResourceManager.GetString("msgThongbaoxoathanhcong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tất cả sinh viên đã được xếp phòng
+        ///Thêm mới sinh viên hoặc xóa sinh viên đã xếp phòng.
+        /// </summary>
+        internal static string msgxepphong {
+            get {
+                return ResourceManager.GetString("msgxepphong", resourceCulture);
             }
         }
         

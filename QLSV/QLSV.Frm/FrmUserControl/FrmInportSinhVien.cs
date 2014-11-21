@@ -51,7 +51,7 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        protected override void LoadForm()
+        protected override void LoadFormDetail()
         {
             try
             {
@@ -158,7 +158,7 @@ namespace QLSV.Frm.FrmUserControl
                             _listKhoa.Where(khoa => khoa.TenKhoa.Equals(tenkhoa, StringComparison.OrdinalIgnoreCase))
                         )
                     {
-                        var newLop1 = SinhVienSql.ThemLop(malop, khoa.ID);
+                        var newLop1 = InsertData.ThemLop(malop, khoa.ID);
                         checkmakhoa = newLop1.MaLop;
                         var hs = new SinhVien
                         {
@@ -174,8 +174,8 @@ namespace QLSV.Frm.FrmUserControl
                     if (checkmakhoa != "") continue;
 
                     // Chưa có khoa lớp thì thêm mới
-                    var newkhoa = SinhVienSql.ThemKhoa(tenkhoa);
-                    var newLop3 = SinhVienSql.ThemLop(malop, newkhoa.ID);
+                    var newkhoa = InsertData.ThemKhoa(tenkhoa);
+                    var newLop3 = InsertData.ThemLop(malop, newkhoa.ID);
                     var hs1 = new SinhVien
                     {
                         MaSinhVien = row["MaSinhVien"].ToString(),
@@ -189,9 +189,9 @@ namespace QLSV.Frm.FrmUserControl
                     _listLop.Add(newLop3);
                     _listKhoa.Add(newkhoa);
                 }
-                SinhVienSql.ThemSinhVien(_listAdd);
+                InsertData.ThemSinhVien(_listAdd);
                 danhsach.Clear();
-                LoadForm();
+                LoadFormDetail();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -249,14 +249,14 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_Huy_Click(object sender, EventArgs e)
         {
-            LoadForm();
+            LoadFormDetail();
         }
 
         #endregion
 
         private void FrmInportSinhVien_Load(object sender, EventArgs e)
         {
-            LoadForm();
+            LoadFormDetail();
         }
 
         /// <summary>

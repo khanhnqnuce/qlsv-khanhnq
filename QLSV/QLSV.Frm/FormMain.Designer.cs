@@ -32,7 +32,6 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem1 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem2 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
@@ -68,6 +67,7 @@
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab9 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab10 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab17 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             this.Tabquanlynguoidung = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlynguoidung = new System.Windows.Forms.Panel();
             this.Tabdanhmuckhoa = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -86,6 +86,12 @@
             this.pn_danhsachphong = new System.Windows.Forms.Panel();
             this.TabSapxepphongthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_sapxepphongthi = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.Tabdaxepphong = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_daxepphong = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -113,6 +119,7 @@
             this.Tabquanlykythi.SuspendLayout();
             this.Tabdanhsachphongthi.SuspendLayout();
             this.TabSapxepphongthi.SuspendLayout();
+            this.Tabdaxepphong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -193,17 +200,17 @@
             // pn_quanlysinhvien
             // 
             this.pn_quanlysinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_quanlysinhvien.Location = new System.Drawing.Point(130, 0);
+            this.pn_quanlysinhvien.Location = new System.Drawing.Point(93, 0);
             this.pn_quanlysinhvien.Name = "pn_quanlysinhvien";
-            this.pn_quanlysinhvien.Size = new System.Drawing.Size(717, 632);
+            this.pn_quanlysinhvien.Size = new System.Drawing.Size(791, 632);
             this.pn_quanlysinhvien.TabIndex = 3;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(847, 0);
+            this.panel4.Location = new System.Drawing.Point(884, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(130, 632);
+            this.panel4.Size = new System.Drawing.Size(93, 632);
             this.panel4.TabIndex = 2;
             // 
             // panel3
@@ -211,7 +218,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(130, 632);
+            this.panel3.Size = new System.Drawing.Size(93, 632);
             this.panel3.TabIndex = 1;
             // 
             // Tabquanlykythi
@@ -247,6 +254,8 @@
             // TabSapxepphongthi
             // 
             this.TabSapxepphongthi.Controls.Add(this.pn_sapxepphongthi);
+            this.TabSapxepphongthi.Controls.Add(this.panel6);
+            this.TabSapxepphongthi.Controls.Add(this.panel5);
             this.TabSapxepphongthi.Location = new System.Drawing.Point(-10000, -10000);
             this.TabSapxepphongthi.Name = "TabSapxepphongthi";
             this.TabSapxepphongthi.Size = new System.Drawing.Size(977, 632);
@@ -254,10 +263,59 @@
             // pn_sapxepphongthi
             // 
             this.pn_sapxepphongthi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_sapxepphongthi.Location = new System.Drawing.Point(0, 0);
+            this.pn_sapxepphongthi.Location = new System.Drawing.Point(164, 0);
             this.pn_sapxepphongthi.Name = "pn_sapxepphongthi";
-            this.pn_sapxepphongthi.Size = new System.Drawing.Size(977, 632);
-            this.pn_sapxepphongthi.TabIndex = 2;
+            this.pn_sapxepphongthi.Size = new System.Drawing.Size(649, 632);
+            this.pn_sapxepphongthi.TabIndex = 4;
+            // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(813, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(164, 632);
+            this.panel6.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(164, 632);
+            this.panel5.TabIndex = 3;
+            // 
+            // Tabdaxepphong
+            // 
+            this.Tabdaxepphong.Controls.Add(this.pnl_daxepphong);
+            this.Tabdaxepphong.Controls.Add(this.panel7);
+            this.Tabdaxepphong.Controls.Add(this.panel8);
+            this.Tabdaxepphong.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabdaxepphong.Name = "Tabdaxepphong";
+            this.Tabdaxepphong.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pnl_daxepphong
+            // 
+            this.pnl_daxepphong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_daxepphong.Location = new System.Drawing.Point(164, 0);
+            this.pnl_daxepphong.Name = "pnl_daxepphong";
+            this.pnl_daxepphong.Size = new System.Drawing.Size(649, 632);
+            this.pnl_daxepphong.TabIndex = 6;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(813, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(164, 632);
+            this.panel7.TabIndex = 5;
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(164, 632);
+            this.panel8.TabIndex = 4;
             // 
             // MenuBar
             // 
@@ -265,22 +323,22 @@
             this.MenuBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuBar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             ultraExplorerBarItem1.Key = "login";
-            appearance1.Image = ((object)(resources.GetObject("appearance1.Image")));
+            appearance1.Image = global::QLSV.Frm.Properties.Resources.dangnhap;
             ultraExplorerBarItem1.Settings.AppearancesSmall.Appearance = appearance1;
             ultraExplorerBarItem1.Text = "Đăng nhập";
             ultraExplorerBarItem1.ToolTipText = "Đăng nhập vào hệ thống";
             ultraExplorerBarItem3.Key = "logout";
-            appearance2.Image = ((object)(resources.GetObject("appearance2.Image")));
+            appearance2.Image = global::QLSV.Frm.Properties.Resources.dangxuat;
             ultraExplorerBarItem3.Settings.AppearancesSmall.Appearance = appearance2;
             ultraExplorerBarItem3.Text = "Đăng xuất";
             ultraExplorerBarItem3.ToolTipText = "Đăng xuất khỏi hệ thống";
             ultraExplorerBarItem2.Key = "doimatkhau";
-            appearance3.Image = ((object)(resources.GetObject("appearance3.Image")));
+            appearance3.Image = global::QLSV.Frm.Properties.Resources.doipass;
             ultraExplorerBarItem2.Settings.AppearancesSmall.Appearance = appearance3;
             ultraExplorerBarItem2.Text = "Đổi mật khẩu";
             ultraExplorerBarItem2.ToolTipText = "Đổi mật khẩu người dùng";
             ultraExplorerBarItem5.Key = "thoat";
-            appearance4.Image = ((object)(resources.GetObject("appearance4.Image")));
+            appearance4.Image = global::QLSV.Frm.Properties.Resources.close;
             ultraExplorerBarItem5.Settings.AppearancesSmall.Appearance = appearance4;
             ultraExplorerBarItem5.Text = "Thoát";
             ultraExplorerBarItem5.ToolTipText = "Thoát khỏi chương trình chính";
@@ -292,46 +350,46 @@
             ultraExplorerBarGroup1.Key = "hethong";
             ultraExplorerBarGroup1.Text = "Chức năng hệ thống";
             ultraExplorerBarItem4.Key = "101";
-            appearance5.Image = ((object)(resources.GetObject("appearance5.Image")));
+            appearance5.Image = global::QLSV.Frm.Properties.Resources._101;
             ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance5;
             ultraExplorerBarItem4.Text = "Quản lý người dùng";
             ultraExplorerBarItem4.ToolTipText = "Thêm sửa xóa người dùng";
             ultraExplorerBarItem8.Key = "102";
-            appearance6.Image = ((object)(resources.GetObject("appearance6.Image")));
+            appearance6.Image = global::QLSV.Frm.Properties.Resources._102;
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance6;
             ultraExplorerBarItem8.Text = "Danh mục khoa";
             ultraExplorerBarItem8.ToolTipText = "Dánh sách các khoa";
             ultraExplorerBarItem9.Key = "103";
-            appearance7.Image = ((object)(resources.GetObject("appearance7.Image")));
+            appearance7.Image = global::QLSV.Frm.Properties.Resources._103;
             ultraExplorerBarItem9.Settings.AppearancesSmall.Appearance = appearance7;
             ultraExplorerBarItem9.Text = "Danh mục lớp";
             ultraExplorerBarItem9.ToolTipText = "Danh sách các lớp";
             ultraExplorerBarItem12.Key = "104";
-            appearance8.Image = ((object)(resources.GetObject("appearance8.Image")));
+            appearance8.Image = global::QLSV.Frm.Properties.Resources._104;
             ultraExplorerBarItem12.Settings.AppearancesSmall.Appearance = appearance8;
             ultraExplorerBarItem12.Text = "Inport Sinh viên";
             ultraExplorerBarItem12.ToolTipText = "Nạp dữ liệu từ file excel";
             ultraExplorerBarItem6.Key = "105";
-            appearance9.Image = ((object)(resources.GetObject("appearance9.Image")));
+            appearance9.Image = global::QLSV.Frm.Properties.Resources._105;
             ultraExplorerBarItem6.Settings.AppearancesSmall.Appearance = appearance9;
             ultraExplorerBarItem6.Text = "Quản lý sinh viên";
             ultraExplorerBarItem6.ToolTipText = "Danh sách sinh viên";
             ultraExplorerBarItem7.Key = "106";
-            appearance10.Image = ((object)(resources.GetObject("appearance10.Image")));
+            appearance10.Image = global::QLSV.Frm.Properties.Resources._106;
             ultraExplorerBarItem7.Settings.AppearancesSmall.Appearance = appearance10;
             ultraExplorerBarItem7.Text = "Quản lý kỳ thi";
             ultraExplorerBarItem10.Key = "107";
-            appearance11.Image = ((object)(resources.GetObject("appearance11.Image")));
+            appearance11.Image = global::QLSV.Frm.Properties.Resources._106;
             ultraExplorerBarItem10.Settings.AppearancesSmall.Appearance = appearance11;
             ultraExplorerBarItem10.Text = "Danh sách phòng thi";
             ultraExplorerBarItem11.Key = "108";
-            appearance12.Image = ((object)(resources.GetObject("appearance12.Image")));
+            appearance12.Image = global::QLSV.Frm.Properties.Resources._107;
             ultraExplorerBarItem11.Settings.AppearancesSmall.Appearance = appearance12;
             ultraExplorerBarItem11.Settings.MaxLines = 2;
             ultraExplorerBarItem11.Text = "Sắp xếp sinh viên vào phòng thi";
             ultraExplorerBarItem11.ToolTipText = "Sắp xếp sinh viên vào phòng thi";
             ultraExplorerBarItem13.Key = "109";
-            appearance13.Image = ((object)(resources.GetObject("appearance13.Image")));
+            appearance13.Image = global::QLSV.Frm.Properties.Resources._108;
             ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance13;
             ultraExplorerBarItem13.Settings.MaxLines = 2;
             ultraExplorerBarItem13.Text = "Danh sách sinh viên đã xếp phòng";
@@ -555,6 +613,7 @@
             this.TabPageControl.Controls.Add(this.Tabquanlykythi);
             this.TabPageControl.Controls.Add(this.Tabdanhsachphongthi);
             this.TabPageControl.Controls.Add(this.TabSapxepphongthi);
+            this.TabPageControl.Controls.Add(this.Tabdaxepphong);
             this.TabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabPageControl.Location = new System.Drawing.Point(215, 0);
             this.TabPageControl.Name = "TabPageControl";
@@ -577,7 +636,9 @@
             ultraTab10.TabPage = this.Tabdanhsachphongthi;
             ultraTab10.Text = "Danh sách phòng";
             ultraTab17.TabPage = this.TabSapxepphongthi;
-            ultraTab17.Text = "Sắp xếp phòng thi";
+            ultraTab17.Text = "Sắp xếp SV vào phòng thi";
+            ultraTab1.TabPage = this.Tabdaxepphong;
+            ultraTab1.Text = "Danh Sách SV đã xếp phòng";
             this.TabPageControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab4,
             ultraTab5,
@@ -586,7 +647,8 @@
             ultraTab8,
             ultraTab9,
             ultraTab10,
-            ultraTab17});
+            ultraTab17,
+            ultraTab1});
             this.TabPageControl.SelectedTabChanged += new Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventHandler(this.TabPageControl_SelectedTabChanged);
             // 
             // ultraTabSharedControlsPage1
@@ -621,6 +683,7 @@
             this.Tabquanlykythi.ResumeLayout(false);
             this.Tabdanhsachphongthi.ResumeLayout(false);
             this.TabSapxepphongthi.ResumeLayout(false);
+            this.Tabdaxepphong.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -667,9 +730,15 @@
         private Infragistics.Win.Misc.UltraLabel lbtime;
         private Infragistics.Win.Misc.UltraLabel lbusername;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel pn_sapxepphongthi;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel pn_quanlysinhvien;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabdaxepphong;
+        private System.Windows.Forms.Panel pn_sapxepphongthi;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel pnl_daxepphong;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
     }
 }

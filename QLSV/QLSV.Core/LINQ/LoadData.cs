@@ -10,25 +10,26 @@ namespace QLSV.Core.LINQ
 
         #region Khai báo chuỗi
 
-        const string Str1 = "select SinhVien.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh,MaLop,TenKhoa " +
-                            "from SinhVien,Lop,Khoa " +
-                            "where SinhVien.IdLop = Lop.ID and Lop.IdKhoa = Khoa.ID ORDER BY TenSinhVien";
-        const string Str2 = "select MaSinhVien from SinhVien ORDER BY TenSinhVien";
-        const string Str3 = "select * from Khoa";
-        const string Str4 = "select * from Lop";
-        const string Str5 = "select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
-                            "From SinhVien s,XepPhong x,PhongThi p,Lop l " +
-                            "where s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
+        const string Str1 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh," +
+                            "s.IdLop,MaLop,l.IdKhoa,TenKhoa " +
+                            "FROM SinhVien s,Lop l, Khoa k " +
+                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY TenSinhVien";
+        const string Str2 = "SELECT MaSinhVien FROM SinhVien ORDER BY TenSinhVien";
+        const string Str3 = "SELECT * FROM Khoa";
+        const string Str4 = "SELECT * FROM Lop";
+        const string Str5 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
+                            "FROM SinhVien s,XepPhong x,PhongThi p,Lop l " +
+                            "WHERE s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
         const string Str6 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
                             "s.TenSinhVien, s.NgaySinh, l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
                             "(SELECT x.IdSV FROM XepPhong x " +
                             "WHERE s.ID = x.IdSV) and s.IdLop = l.ID";
-        const string Str7 = "select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
-                            "s.TenSinhVien, s.NgaySinh,l.MaLop, p.TenPhong as [PhongThi], k.ID as [MaKhoa], k.TenKhoa " +
+        const string Str7 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
+                            "s.TenSinhVien, s.NgaySinh,l.MaLop,p.ID as [IdPhong], p.TenPhong as [PhongThi], k.ID as [MaKhoa], k.TenKhoa " +
                             "FROM Khoa k, Lop l, SinhVien s, XepPhong x, PhongThi p " +
-                            "where k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID;";
-
-        private const string Str8 = "SELECT * From PhongThi where SoLuong < SucChua";
+                            "WHERE k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID;";
+        private const string Str8 = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
+        private const string Str9 = "SELECT * FROM PhongThi";
 
         #endregion
 
@@ -44,7 +45,8 @@ namespace QLSV.Core.LINQ
         /// 5:Trả về bảng sinh viên đã được xếp phòng
         /// 6:Trả về bảng sinh viên chưa được xếp phòng
         /// 7:Trả về bảng sinh viên đã được xếp phòng
-        /// 8:Trả về bảng phòng thi còn xếp được sinh viên
+        /// 8:Trả về bảng phòng thi còn xếp được sinh viên(số lượng , sức chứa)
+        /// 9:Trả về bảng phòng thi
         public static DataTable Load(int chon)
         {
             try
@@ -75,6 +77,9 @@ namespace QLSV.Core.LINQ
                         break;
                     case 8:
                         table = Conn.getTable(Str8);
+                        break;
+                    case 9:
+                        table = Conn.getTable(Str9);
                         break;
                 }
                 return table;

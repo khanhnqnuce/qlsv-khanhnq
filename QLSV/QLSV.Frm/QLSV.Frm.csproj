@@ -96,11 +96,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSinhVienPhongThi.cs">
+    <Compile Include="FrmUserControl\FrmSvDaXepPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSinhVienPhongThi.Designer.cs">
-      <DependentUpon>FrmSinhVienPhongThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\FrmSvDaXepPhong.Designer.cs">
+      <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
@@ -230,16 +230,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FormResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmSinhVienPhongThi.resx">
-      <DependentUpon>FrmSinhVienPhongThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
+      <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
@@ -252,6 +255,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmDanhmuckhoa.resx">
       <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
@@ -288,6 +292,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmLoadding.resx">
       <DependentUpon>FrmLoadding.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmXepPhong.resx">
       <DependentUpon>FrmXepPhong.cs</DependentUpon>
