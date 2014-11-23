@@ -58,9 +58,11 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem14 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -396,9 +398,13 @@
             ultraExplorerBarItem13.Settings.MaxLines = 2;
             ultraExplorerBarItem13.Text = "Danh sách sinh viên đã xếp phòng";
             ultraExplorerBarItem14.Key = "201";
+            appearance14.Image = global::QLSV.Frm.Properties.Resources._201;
+            ultraExplorerBarItem14.Settings.AppearancesSmall.Appearance = appearance14;
             ultraExplorerBarItem14.Settings.MaxLines = 2;
             ultraExplorerBarItem14.Text = "Inport Đáp án các mã đề";
             ultraExplorerBarItem15.Key = "202";
+            appearance15.Image = global::QLSV.Frm.Properties.Resources._202;
+            ultraExplorerBarItem15.Settings.AppearancesSmall.Appearance = appearance15;
             ultraExplorerBarItem15.Settings.MaxLines = 2;
             ultraExplorerBarItem15.Text = "Inport Bài làm của sinh viên";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
@@ -451,9 +457,9 @@
             // 
             // lbtime
             // 
-            appearance14.TextHAlignAsString = "Left";
-            appearance14.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance14;
+            appearance16.TextHAlignAsString = "Left";
+            appearance16.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance16;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -462,9 +468,9 @@
             // 
             // lbusername
             // 
-            appearance15.TextHAlignAsString = "Left";
-            appearance15.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance15;
+            appearance17.TextHAlignAsString = "Left";
+            appearance17.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance17;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
