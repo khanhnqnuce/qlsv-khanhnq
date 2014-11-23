@@ -10,11 +10,10 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
-        public static void ThemSinhVien(IList<SinhVien> list)
+        public static bool ThemSinhVien(IList<SinhVien> list)
         {
             try
             {
-                int a = list.Count;
                 foreach (var sql in list.Select(item =>
                                 "insert into SinhVien(MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh,IdLop) values(N'" +
                                 item.MaSinhVien + "',N'" + item.HoSinhVien + "',N'" + item.TenSinhVien + "','" +
@@ -22,11 +21,12 @@ namespace QLSV.Core.LINQ
                 {
                     Conn.ExcuteQuerySql(sql);
                 }
-
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
@@ -34,7 +34,7 @@ namespace QLSV.Core.LINQ
         /// Thêm vào bảng xếp phòng
         /// </summary>
         /// <param name="list"></param>
-        public static void XepPhong(IList<XepPhong> list)
+        public static bool XepPhong(IList<XepPhong> list)
         {
             try
             {
@@ -46,24 +46,27 @@ namespace QLSV.Core.LINQ
                 {
                     Conn.ExcuteQuerySql(sql);
                 }
-
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
-        public static void XepPhong1(XepPhong hs)
+        public static bool XepPhong1(XepPhong hs)
         {
             try
             {
                 Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + hs.IdSV + "," + hs.IdPhong +
                                     "," + hs.IdKyThi + ")");
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 

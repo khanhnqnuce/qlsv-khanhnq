@@ -10,7 +10,7 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
-        public static void UpdatePhongThi(IList<PhongThi> list)
+        public static bool UpdatePhongThi(IList<PhongThi> list)
         {
             try
             {
@@ -21,26 +21,40 @@ namespace QLSV.Core.LINQ
                 {
                     Conn.ExcuteQuerySql(sql);
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
-        public static void UpdatePhongThi(int id)
+        /// <summary>
+        /// tăng số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
+        /// </summary>
+        /// <param name="id">ID của phòng thi</param>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdatePhongThi(int id)
         {
             try
             {
                 Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where ID = " + id + ") + 1) where ID = " + id + "");
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
-        public static void UpdateGiamPhongThi(IList<PhongThi> list)
+        /// <summary>
+        /// update lại số lượng sinh viên khi chuyển phòng thi
+        /// </summary>
+        /// <param name="list">danh sách phòng thì có sinh viên xếp sang phòng khác</param>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdateGiamPhongThi(IList<PhongThi> list)
         {
             try
             {
@@ -48,47 +62,60 @@ namespace QLSV.Core.LINQ
                 {
                     Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where TenPhong = '" + phong.TenPhong + "') - " + phong.SoLuong + ") where TenPhong = '" + phong.TenPhong + "'");
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
-        public static void UpdateGiamPhongThi(int i)
+        /// <summary>
+        /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
+        /// </summary>
+        /// <param name="id">ID của phòng thi</param>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdateGiamPhongThi(int i)
         {
             try
             {
                 Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where ID = " +
                                     i + ") - " + 1 + ") where ID = " + i +
                                     "");
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
 
-        public static void ResetPhongThi()
+        public static bool ResetPhongThi()
         {
             try
             {
                 Conn.ExcuteQuerySql("update PhongThi set SoLuong = " + 0 + " ");
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
-        public static void XepPhong(XepPhong hs)
+        public static bool XepPhong(XepPhong hs)
         {
             try
             {
                 Conn.ExcuteQuerySql("update XepPhong set IdPhong = " + hs.IdPhong + " WHERE IdSV = "+hs.IdSV+" and IdKythi = "+hs.IdKyThi+"");
+                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+                return false;
             }
         }
     }

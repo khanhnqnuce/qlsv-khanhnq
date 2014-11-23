@@ -7,10 +7,11 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmXepPhong : Form
     {
-        public int gb_iIdsinhvien = 0;
-        public int gb_iIdPhong = 0;
-        public int gb_iIdKythi = 0;
-        public bool gb_bUpdate = false;
+        public int gb_iIdsinhvien;
+        public int gb_iIdPhong;
+        public int gb_iIdKythi;
+        public bool gb_bUpdate;
+        private bool _bCheckUpdate;
 
         public FrmXepPhong()
         {
@@ -68,28 +69,38 @@ namespace QLSV.Frm.Frm
                     IdPhong = int.Parse(cboPhongthi.Value.ToString()),
                     IdKyThi = gb_iIdKythi
                 };
-                UpdateData.XepPhong(hs);
-                UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
-                UpdateData.UpdatePhongThi(hs.IdPhong);
+                var a = UpdateData.XepPhong(hs);
+                var b = UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
+                var c = UpdateData.UpdatePhongThi(hs.IdPhong);
+                gb_iIdPhong = int.Parse(cboPhongthi.Value.ToString());
+                _bCheckUpdate = true;
                 Close();
-                return;
             }
-            var hs1 = new XepPhong
+            else
             {
-                IdSV = gb_iIdsinhvien,
-                IdPhong = int.Parse(cboPhongthi.Value.ToString()),
-                IdKyThi = gb_iIdKythi
+                var hs1 = new XepPhong
+                {
+                    IdSV = gb_iIdsinhvien,
+                    IdPhong = int.Parse(cboPhongthi.Value.ToString()),
+                    IdKyThi = gb_iIdKythi
 
-            };
-            InsertData.XepPhong1(hs1);
-            UpdateData.UpdatePhongThi(hs1.IdPhong);
-            gb_iIdsinhvien = 0;
-            Close();
+                };
+                var a = InsertData.XepPhong1(hs1);
+                var b = UpdateData.UpdatePhongThi(hs1.IdPhong);
+                gb_iIdsinhvien = 0;
+                Close();
+            }
         }
 
         private void btnthoat_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void FrmXepPhong_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_bCheckUpdate) return;
+            gb_bUpdate = false;
         }
     }
 }

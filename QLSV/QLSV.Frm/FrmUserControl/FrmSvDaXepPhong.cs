@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
@@ -14,13 +14,15 @@ using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
+using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmSvDaXepPhong : FunctionControlHasGrid
     {
         private IList<PhongThi> _lisPhong = new List<PhongThi>();
-        private IList<XepPhong> m_IdDelete = new List<XepPhong>(); 
+        private IList<XepPhong> m_IdDelete = new List<XepPhong>();
+
         public FrmSvDaXepPhong()
         {
             InitializeComponent();
@@ -29,16 +31,17 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(string));
-            table.Columns.Add("MaSinhVien", typeof(string));
-            table.Columns.Add("HoSinhVien", typeof(string));
-            table.Columns.Add("TenSinhVien", typeof(string));
-            table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("PhongThi", typeof(string));
-            table.Columns.Add("MaKhoa", typeof(string));
-            table.Columns.Add("TenKhoa", typeof(string));
+            table.Columns.Add("ID", typeof (int));
+            table.Columns.Add("STT", typeof (string));
+            table.Columns.Add("MaSinhVien", typeof (string));
+            table.Columns.Add("HoSinhVien", typeof (string));
+            table.Columns.Add("TenSinhVien", typeof (string));
+            table.Columns.Add("NgaySinh", typeof (string));
+            table.Columns.Add("MaLop", typeof (string));
+            table.Columns.Add("IdPhong", typeof (int));
+            table.Columns.Add("PhongThi", typeof (string));
+            table.Columns.Add("MaKhoa", typeof (string));
+            table.Columns.Add("TenKhoa", typeof (string));
             return table;
         }
 
@@ -145,7 +148,8 @@ namespace QLSV.Frm.FrmUserControl
                             };
                             m_IdDelete.Add(hs);
                         }
-                        foreach (var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
+                        foreach (
+                            var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
                         {
                             p.SoLuong = p.SoLuong + 1;
                         }
@@ -194,22 +198,25 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var lopnew = new Lop();
                 var frm = new FrmXepPhong
                 {
-                    txtmasinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text},
-                    txthotendem = { Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
-                    txttensinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
-                    txtNgaySinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
-                    cbolop = { Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
-                    cboPhongthi = { Text = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text},
+                    txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text},
+                    txthotendem = {Text = dgv_DanhSach.ActiveRow.Cells["HoSinhVien"].Text},
+                    txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
+                    txtNgaySinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
+                    cbolop = {Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
+                    cboPhongthi = {Text = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text},
                     gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
                     gb_iIdKythi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
                     gb_iIdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
                     gb_bUpdate = true
                 };
                 frm.ShowDialog();
-                dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
+                if (frm.gb_bUpdate)
+                {
+                    dgv_DanhSach.ActiveRow.Cells["IdPhong"].Value = frm.gb_iIdPhong;
+                    dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
+                }
             }
             catch (Exception ex)
             {
@@ -230,11 +237,13 @@ namespace QLSV.Frm.FrmUserControl
                 RptLop();
         }
 
+        #region Xuất báo cáo
+
         private void RptPhongthi()
         {
             var listphongthi = QlsvSevice.Load<PhongThi>();
-            
-            var tb= (DataTable)dgv_DanhSach.DataSource;
+
+            var tb = (DataTable) dgv_DanhSach.DataSource;
             foreach (var phong in listphongthi)
             {
                 var stt = 1;
@@ -259,12 +268,13 @@ namespace QLSV.Frm.FrmUserControl
         private void RptKhoa()
         {
             var listkhoa = QlsvSevice.Load<Khoa>();
-            var tb=((DataTable)dgv_DanhSach.DataSource);
+            var tb = ((DataTable) dgv_DanhSach.DataSource);
             foreach (var khoa in listkhoa)
             {
                 var stt = 1;
                 var khoa1 = khoa;
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaKhoa"].ToString() == khoa1.ID.ToString()))
+                foreach (
+                    var row in tb.Rows.Cast<DataRow>().Where(row => row["MaKhoa"].ToString() == khoa1.ID.ToString()))
                 {
                     row["STT"] = stt++;
                 }
@@ -284,7 +294,7 @@ namespace QLSV.Frm.FrmUserControl
         private void RptLop()
         {
             var listlop = QlsvSevice.Load<Lop>();
-            var tb = ((DataTable)dgv_DanhSach.DataSource);
+            var tb = ((DataTable) dgv_DanhSach.DataSource);
             foreach (var lop in listlop)
             {
                 var stt = 1;
@@ -305,11 +315,13 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        #endregion
+
         private void FrmSinhVienPhongThi_Load(object sender, EventArgs e)
         {
             try
             {
-                var thread = new Thread(LoadFormDetail) { IsBackground = true };
+                var thread = new Thread(LoadFormDetail) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
             }
@@ -377,6 +389,11 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         private void dgv_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
+        {
+            Sua();
+        }
+
+        private void menuStrip_Themdong_Click(object sender, EventArgs e)
         {
             Sua();
         }
