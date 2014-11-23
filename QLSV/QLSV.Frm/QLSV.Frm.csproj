@@ -102,6 +102,18 @@
     <Compile Include="FrmUserControl\FrmSvDaXepPhong.Designer.cs">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\InportBaiLam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\InportBaiLam.Designer.cs">
+      <DependentUpon>InportBaiLam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUserControl\InportDapAn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\InportDapAn.Designer.cs">
+      <DependentUpon>InportDapAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +256,12 @@
     <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\InportBaiLam.resx">
+      <DependentUpon>InportBaiLam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\InportDapAn.resx">
+      <DependentUpon>InportDapAn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,7 +343,6 @@
     <Content Include="Reports\danhsachduthilop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\loading.GIF" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\danhsachsinhvien.rst">

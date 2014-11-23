@@ -39,7 +39,7 @@ go
 Create table Khoa
 (
 	ID int identity(1,1),
-	MaKhoa nvarchar(50),
+	MaKhoa nvarchar(255),
 	TenKhoa nvarchar(255) not null,
 	CONSTRAINT PK_Khoa  primary key(ID),
 )
@@ -47,7 +47,7 @@ go
 Create table Lop
 (
 	ID int identity(1,1),
-	MaLop nvarchar(50)not null,
+	MaLop nvarchar(255)not null,
 	GhiChu nvarchar(255),
 	IdKhoa int not null,
 	CONSTRAINT PK_Lop  primary key(ID),
@@ -58,7 +58,7 @@ go
 Create table SinhVien
 (
 	ID int identity(1,1),
-	MaSinhVien nvarchar(50) not null,
+	MaSinhVien nvarchar(255) not null,
 	HoSinhVien nvarchar(255) not null,
 	TenSinhVien nvarchar(255) not null,
 	IdLop int not null,
@@ -76,6 +76,29 @@ Create table XepPhong
 	CONSTRAINT FK_XepPhong_SinhVien FOREIGN KEY (IdSV) REFERENCES SinhVien(ID),
 	CONSTRAINT FK_XepPhong_PhongThi FOREIGN KEY (IdPhong) REFERENCES PhongThi(ID),
 	CONSTRAINT FK_XepPhong_KyThi FOREIGN KEY (IdKyThi) REFERENCES KyThi(ID)
+)
+go
+CREATE TABLE DapAn
+(
+	ID int identity(1,1),
+	IdKyThi int not null,
+	MaMon nvarchar(255) not null,
+	MaDe nvarchar(255) not null,
+	CauHoi nvarchar(255) not null,
+	DapAn nvarchar(255) not null
+	CONSTRAINT PK_DapAn  primary key(ID),
+	CONSTRAINT FK_DapAn_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
+)
+go
+CREATE TABLE KetQua
+(
+	ID int identity(1,1),
+	IdKyThi int not null,
+	MaSinhVien nvarchar(255) not null,
+	MaDe nvarchar(255) not null,
+	KetQua nvarchar(255) not null,
+	CONSTRAINT PK_KetQua  primary key(ID),
+	CONSTRAINT FK_KetQua_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
 )
 
 TRUNCATE TABLE SinhVien

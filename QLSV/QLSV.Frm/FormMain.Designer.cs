@@ -57,6 +57,8 @@
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem14 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -393,6 +395,12 @@
             ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance13;
             ultraExplorerBarItem13.Settings.MaxLines = 2;
             ultraExplorerBarItem13.Text = "Danh sách sinh viên đã xếp phòng";
+            ultraExplorerBarItem14.Key = "201";
+            ultraExplorerBarItem14.Settings.MaxLines = 2;
+            ultraExplorerBarItem14.Text = "Inport Đáp án các mã đề";
+            ultraExplorerBarItem15.Key = "202";
+            ultraExplorerBarItem15.Settings.MaxLines = 2;
+            ultraExplorerBarItem15.Text = "Inport Bài làm của sinh viên";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem4,
             ultraExplorerBarItem8,
@@ -402,7 +410,9 @@
             ultraExplorerBarItem7,
             ultraExplorerBarItem10,
             ultraExplorerBarItem11,
-            ultraExplorerBarItem13});
+            ultraExplorerBarItem13,
+            ultraExplorerBarItem14,
+            ultraExplorerBarItem15});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
             this.MenuBar.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {

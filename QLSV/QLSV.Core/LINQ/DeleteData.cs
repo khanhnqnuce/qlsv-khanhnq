@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 

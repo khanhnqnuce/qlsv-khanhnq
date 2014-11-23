@@ -2,32 +2,26 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace QLSV.Core.DataConnection
+namespace QLSV.Core.LINQ
 {
     class Connect
     {
-        SqlConnection conn;
-        public String conString;
+        private String _conString;
         
         // Phương thức kết nối sql
-        public SqlConnection getConnect(){
-            
-            //conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\quanlybanhang.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
-            // return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLKhachSan.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
-
-            conString = @"Data Source=QUANGKHANH-PC;Initial Catalog=QLSV;Integrated Security=True";
-            return new SqlConnection(conString);
-            //return new SqlConnection(@"Data Source=PC\SQLEXPRESS;Initial Catalog=quanlybanhang;Integrated Security=True");
+        private SqlConnection GetConnect(){
+            _conString = @"Data Source=QUANGKHANH-PC;Initial Catalog=QLSV;Integrated Security=True";
+            return new SqlConnection(_conString);
         }
         
-        public DataTable getTable(String sql)
+        public DataTable GetTable(String sql)
         {
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
             try
             {
 
-                SqlConnection conn = getConnect();
-                SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
+                var connect = GetConnect();
+                var ad = new SqlDataAdapter(sql, connect);
                 ad.Fill(dt);
 
             }
@@ -38,17 +32,17 @@ namespace QLSV.Core.DataConnection
             return dt;
         }
 
-        // Phương thức thực hiện them sua ...
+        // Phương thức thực hiện thêm sửa ...
         public void ExcuteQuerySql(string sql)
         {
             try
             {
-                SqlConnection conn = getConnect();
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                var connect = GetConnect();
+                connect.Open();
+                var cmd = new SqlCommand(sql, connect);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
-                conn.Close();
+                connect.Close();
             }
             catch (Exception e)
             {

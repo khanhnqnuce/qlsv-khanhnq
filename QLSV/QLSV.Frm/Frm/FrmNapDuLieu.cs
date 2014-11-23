@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
 using OfficeOpenXml;
-using QLSV.Core.Domain;
-using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
 
@@ -21,7 +16,8 @@ namespace QLSV.Frm.Frm
         public DataTable ResultValue = new DataTable();
         private readonly bool _multiSheet;
         private Thread _threadLoad;
-        private int _stt;
+        private int _iNumberStt;
+        private int _iNumberCol;
         //private readonly IList<SinhVien> _listSinhVien;
         public FrmNapDuLieu(int stt)
         {
@@ -29,7 +25,7 @@ namespace QLSV.Frm.Frm
             {
                 InitializeComponent();
                 _multiSheet = false;
-                _stt = stt;
+                _iNumberStt = stt;
                 //_listSinhVien = QlsvSevice.Load<SinhVien>();
             }
             catch (Exception ex)
@@ -119,7 +115,7 @@ namespace QLSV.Frm.Frm
                     {
                         goto a;
                     }
-                    result.Rows.Add(++_stt,
+                    result.Rows.Add(++_iNumberStt,
                         sheet.GetRow(i).GetCell(0).ToString(),
                         sheet.GetRow(i).GetCell(1).ToString(),
                         sheet.GetRow(i).GetCell(2).ToString(),
@@ -170,7 +166,7 @@ namespace QLSV.Frm.Frm
                 var result = GetTable();
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    result.Rows.Add(++_stt,
+                    result.Rows.Add(++_iNumberStt,
                         oSheet.Cells[i, 1].GetValue<string>(),
                         oSheet.Cells[i, 2].GetValue<string>(),
                         oSheet.Cells[i, 3].GetValue<string>(),

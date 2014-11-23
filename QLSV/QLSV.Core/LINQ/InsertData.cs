@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using QLSV.Core.DataConnection;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 
@@ -81,7 +80,7 @@ namespace QLSV.Core.LINQ
                 var sql1 = "insert into Lop(MaLop,idKhoa) values(N'" + ma + "'," + id + ")";
                 var sql2 = "select * from Lop where MaLop = N'" + ma + "'";
                 Conn.ExcuteQuerySql(sql1);
-                var tb = Conn.getTable(sql2);
+                var tb = Conn.GetTable(sql2);
                 var newLop = new Lop
                 {
                     MaLop = tb.Rows[0]["MaLop"].ToString(),
@@ -109,7 +108,7 @@ namespace QLSV.Core.LINQ
                 var sql1 = "insert into Khoa(TenKhoa) values(N'" + ma + "')";
                 var sql2 = "select * from Khoa where TenKhoa = N'" + ma + "'";
                 Conn.ExcuteQuerySql(sql1);
-                var tb = Conn.getTable(sql2);
+                var tb = Conn.GetTable(sql2);
                 var newKhoa = new Khoa
                 {
                     ID = int.Parse(tb.Rows[0]["ID"].ToString()),

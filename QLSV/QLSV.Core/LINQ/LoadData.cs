@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using QLSV.Core.DataConnection;
 using QLSV.Core.Utils.Core;
 namespace QLSV.Core.LINQ
 {
@@ -58,34 +57,34 @@ namespace QLSV.Core.LINQ
                 switch (chon)
                 {
                     case 1:
-                        table = Conn.getTable(Str1);
+                        table = Conn.GetTable(Str1);
                         break;
                     case 2:
-                        table = Conn.getTable(Str2);
+                        table = Conn.GetTable(Str2);
                         break;
                     case 3:
-                        table = Conn.getTable(Str3);
+                        table = Conn.GetTable(Str3);
                         break;
                     case 4:
-                        table = Conn.getTable(Str4);
+                        table = Conn.GetTable(Str4);
                         break;
                     case 5:
-                        table = Conn.getTable(Str5);
+                        table = Conn.GetTable(Str5);
                         break;
                     case 6:
-                        table = Conn.getTable(Str6);
+                        table = Conn.GetTable(Str6);
                         break;
                     case 7:
-                        table = Conn.getTable(Str7);
+                        table = Conn.GetTable(Str7);
                         break;
                     case 8:
-                        table = Conn.getTable(Str8);
+                        table = Conn.GetTable(Str8);
                         break;
                     case 9:
-                        table = Conn.getTable(Str9);
+                        table = Conn.GetTable(Str9);
                         break;
                     case 10:
-                        table = Conn.getTable(Str10);
+                        table = Conn.GetTable(Str10);
                         break;
                 }
                 return table;

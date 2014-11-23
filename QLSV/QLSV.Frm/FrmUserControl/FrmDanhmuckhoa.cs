@@ -49,7 +49,7 @@ namespace QLSV.Frm.FrmUserControl
                     table.Rows.Add(hs.ID, stt, hs.MaKhoa, hs.TenKhoa);
                     stt++;
                 }
-                uG_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = table;
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace QLSV.Frm.FrmUserControl
         protected override void LoadFormDetail()
         {
             LoadGrid();
-            if (uG_DanhSach.Rows.Count == 0)
+            if (dgv_DanhSach.Rows.Count == 0)
             {
                 InsertRow();
             }
@@ -73,14 +73,14 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "MaKhoa");
+            InsertRow(dgv_DanhSach, "STT", "MaKhoa");
         }
 
         protected override void DeleteRow()
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "MaKhoa");
+                DeleteRowGrid(dgv_DanhSach, "ID", "MaKhoa");
                 STT();
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new Khoa
                     {
@@ -144,9 +144,9 @@ namespace QLSV.Frm.FrmUserControl
 
         private void STT()
         {
-            for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
+            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                dgv_DanhSach.Rows[i].Cells[1].Value = i + 1;
             }
         }
 
@@ -163,19 +163,19 @@ namespace QLSV.Frm.FrmUserControl
                     b = false;
                     return;
                 }
-                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (string.IsNullOrEmpty(id)) return;
                 foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                 {
-                    item.MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
-                    item.TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
+                    item.MaKhoa = dgv_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
+                    item.TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
                     return;
                 }
                 var hs = new Khoa
                 {
                     ID = int.Parse(id),
-                    MaKhoa = uG_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
-                    TenKhoa = uG_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
+                    MaKhoa = dgv_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
+                    TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
                 };
                 _listUpdate.Add(hs);
             }
