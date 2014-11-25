@@ -102,17 +102,17 @@
     <Compile Include="FrmUserControl\FrmSvDaXepPhong.Designer.cs">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\InportBaiLam.cs">
+    <Compile Include="FrmUserControl\FrmInportBaiLam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\InportBaiLam.Designer.cs">
-      <DependentUpon>InportBaiLam.cs</DependentUpon>
+    <Compile Include="FrmUserControl\FrmInportBaiLam.Designer.cs">
+      <DependentUpon>FrmInportBaiLam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\InportDapAn.cs">
+    <Compile Include="FrmUserControl\FrmInportDapAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\InportDapAn.Designer.cs">
-      <DependentUpon>InportDapAn.cs</DependentUpon>
+    <Compile Include="FrmUserControl\FrmInportDapAn.Designer.cs">
+      <DependentUpon>FrmInportDapAn.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
@@ -256,11 +256,11 @@
     <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\InportBaiLam.resx">
-      <DependentUpon>InportBaiLam.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\FrmInportBaiLam.resx">
+      <DependentUpon>FrmInportBaiLam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\InportDapAn.resx">
-      <DependentUpon>InportDapAn.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\FrmInportDapAn.resx">
+      <DependentUpon>FrmInportDapAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>

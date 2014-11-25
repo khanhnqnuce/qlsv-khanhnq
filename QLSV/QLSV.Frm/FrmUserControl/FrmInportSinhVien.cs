@@ -77,16 +77,16 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var stt = uG_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNapDuLieu(stt);
+                var frmNapDuLieu = new FrmNapDuLieu(stt,GetTable(),6);
                 frmNapDuLieu.ShowDialog();
-                var b = frmNapDuLieu.ResultValue;
-                if (b == null || b.Rows.Count == 0) return;
+                var resultValue = frmNapDuLieu.ResultValue;
+                if (resultValue == null || resultValue.Rows.Count == 0) return;
                 var table = (DataTable)uG_DanhSach.DataSource;
 
-                table.Merge(b);
+                table.Merge(resultValue);
                 uG_DanhSach.DataSource = table;
 
-                MessageBox.Show(@"Inport thành công " + b.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                MessageBox.Show(@"Inport thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace QLSV.Frm.FrmUserControl
         /// <summary>
         /// Lưu dữ liệu trên UltraGrid
         /// </summary>
-        private new void Save()
+        private new void SaveAll()
         {
             try
             {
@@ -191,7 +191,6 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 InsertData.ThemSinhVien(_listAdd);
                 danhsach.Clear();
-                LoadFormDetail();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -215,7 +214,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                Save();
+                SaveAll();
             }
             catch (Exception ex)
             {
@@ -244,7 +243,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)
         {
-            Save();
+            SaveAll();
         }
 
         private void menuStrip_Huy_Click(object sender, EventArgs e)
