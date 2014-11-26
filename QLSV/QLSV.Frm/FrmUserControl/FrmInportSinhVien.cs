@@ -77,7 +77,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var stt = uG_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNapDuLieu(stt,GetTable(),6);
+                var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable(),6);
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
@@ -126,7 +126,7 @@ namespace QLSV.Frm.FrmUserControl
         /// <summary>
         /// Lưu dữ liệu trên UltraGrid
         /// </summary>
-        private new void SaveAll()
+        private void SaveAll()
         {
             try
             {

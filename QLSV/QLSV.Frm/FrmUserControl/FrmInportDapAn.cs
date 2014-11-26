@@ -1,13 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
@@ -16,13 +16,11 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmInportDapAn : FunctionControlHasGrid
     {
-        private readonly BackgroundWorker _bgwInsert;
+        private readonly IList<DapAn> _listAdd = new List<DapAn>();
+        
         public FrmInportDapAn()
         {
             InitializeComponent();
-            _bgwInsert = new BackgroundWorker();
-            _bgwInsert.DoWork += bgwInsert_DoWork;
-            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
         protected override DataTable GetTable()
@@ -33,7 +31,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("MaMon", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("CauHoi", typeof(string));
-            table.Columns.Add("DapAn", typeof(string));
+            table.Columns.Add("Dapan", typeof(string));
             table.Columns.Add("IdKyThi", typeof(string));
             return table;
         }
@@ -61,7 +59,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var stt = dgv_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNapDuLieu(stt, GetTable(), 4)
+                var frmNapDuLieu = new FrmNapDuLieu(GetTable(), 2, 4, 1)
                 {
                     gb_iViTriHeader = 1
                 };
@@ -72,8 +70,6 @@ namespace QLSV.Frm.FrmUserControl
 
                 table.Merge(resultValue);
                 dgv_DanhSach.DataSource = table;
-
-                MessageBox.Show(@"Inport thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
             }
             catch (Exception ex)
             {
@@ -113,14 +109,28 @@ namespace QLSV.Frm.FrmUserControl
         /// <summary>
         /// Lưu dữ liệu trên UltraGrid
         /// </summary>
-        private new void SaveAll()
+        protected override void SaveDetail()
         {
             try
             {
+                var frm = new FrmChonKyThi();
+                frm.ShowDialog();
+                if(string.IsNullOrEmpty(frm.cboKythi.Text)) return;
+
                 var danhsach = (DataTable)dgv_DanhSach.DataSource;
-                foreach (DataRow row in danhsach.Rows)
+                foreach (var hs in from DataRow row in danhsach.Rows select new DapAn
                 {
+                    IdKyThi = int.Parse(frm.cboKythi.Value.ToString()),
+                    MaMon = row["MaMon"].ToString(),
+                    MaDe = row["MaDe"].ToString(),
+                    CauHoi = row["CauHoi"].ToString(),
+                    Dapan = row["Dapan"].ToString()
+                        
+                })
+                {
+                    _listAdd.Add(hs);
                 }
+                InsertData.ThemDapAn(_listAdd);
                 danhsach.Clear();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -131,34 +141,6 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
-
-        public void Ghi()
-        {
-            if (dgv_DanhSach.Rows.Count <= 0) return;
-            _bgwInsert.RunWorkerAsync();
-            OnShowDialog("Đang lưu dữ liệu");
-        }
-
-        #region BackgroundWorker
-
-        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                SaveAll();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            OnCloseDialog();
-        }
-
-        #endregion
 
         private void FrmInportSinhVien_Load(object sender, EventArgs e)
         {
@@ -188,7 +170,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaMon"].Width = 150;
                 band.Columns["MaDe"].Width = 150;
                 band.Columns["CauHoi"].Width = 150;
-                band.Columns["DapAn"].Width = 150;
+                band.Columns["Dapan"].Width = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
@@ -196,7 +178,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaMon"].Header.Caption = @"Mã môn thi";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
                 band.Columns["CauHoi"].Header.Caption = @"Câu hỏi";
-                band.Columns["DapAn"].Header.Caption = @"Đáp án";
+                band.Columns["Dapan"].Header.Caption = @"Đáp án";
 
                 #endregion
             }

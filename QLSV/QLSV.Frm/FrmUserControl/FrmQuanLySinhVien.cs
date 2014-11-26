@@ -19,7 +19,7 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class FrmSinhVien : FunctionControlHasGrid
+    public partial class FrmQuanLySinhVien : FunctionControlHasGrid
     {
         #region Create
 
@@ -31,7 +31,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
-        public FrmSinhVien()
+        public FrmQuanLySinhVien()
         {
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
@@ -123,7 +123,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                QlsvSevice.Xoa("SinhVien");
+                DeleteData.Xoa("SinhVien");
                 LoadFormDetail();
             }
             catch (Exception ex)
