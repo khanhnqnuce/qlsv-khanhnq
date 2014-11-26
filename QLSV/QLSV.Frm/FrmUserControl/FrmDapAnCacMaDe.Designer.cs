@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class FrmInportDapAn
+    partial class FrmDapAnCacMaDe
     {
         /// <summary> 
         /// Required designer variable.
@@ -42,19 +42,17 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(855, 642);
-            this.dgv_DanhSach.TabIndex = 27;
-            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(752, 564);
+            this.dgv_DanhSach.TabIndex = 28;
             // 
-            // FrmInportDapAn
+            // FrmDapAnCacMaDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmInportDapAn";
-            this.Size = new System.Drawing.Size(855, 642);
-            this.Load += new System.EventHandler(this.FrmInportSinhVien_Load);
+            this.Name = "FrmDapAnCacMaDe";
+            this.Size = new System.Drawing.Size(752, 564);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
 
