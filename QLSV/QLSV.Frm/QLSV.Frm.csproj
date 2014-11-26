@@ -132,6 +132,18 @@
     <Compile Include="Frm\FrmCheckXepPhong.Designer.cs">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmChonKyThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmChonKyThi.Designer.cs">
+      <DependentUpon>FrmChonKyThi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmNDLSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmNDLSinhVien.Designer.cs">
+      <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmThemsinhvien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,11 +241,11 @@
     <Compile Include="FrmUserControl\FrmQuanLyNguoiDung.Designer.cs">
       <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSinhVien.cs">
+    <Compile Include="FrmUserControl\FrmQuanLySinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSinhVien.Designer.cs">
-      <DependentUpon>FrmSinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\FrmQuanLySinhVien.Designer.cs">
+      <DependentUpon>FrmQuanLySinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +283,9 @@
     <EmbeddedResource Include="Frm\FrmCheckXepPhong.resx">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmChonKyThi.resx">
+      <DependentUpon>FrmChonKyThi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -287,6 +302,9 @@
     <EmbeddedResource Include="FrmUserControl\FrmInportSinhVien.resx">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmNDLSinhVien.resx">
+      <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNapDuLieu.resx">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,8 +314,8 @@
     <EmbeddedResource Include="FrmUserControl\FrmQuanLyNguoiDung.resx">
       <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmSinhVien.resx">
-      <DependentUpon>FrmSinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\FrmQuanLySinhVien.resx">
+      <DependentUpon>FrmQuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmThemsinhvien.resx">
       <DependentUpon>FrmThemsinhvien.cs</DependentUpon>

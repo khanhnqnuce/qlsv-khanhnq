@@ -18,7 +18,7 @@ namespace QLSV.Frm
         private static FrmDanhmuckhoa _frmDanhmuckhoa;
         private static FrmDanhmuclop _frmDanhmuclop;
         private static FrmInportSinhVien _frmInportSinhVien;
-        private static FrmSinhVien _frmQuanlySinhVien;
+        private static FrmQuanLySinhVien _frmQuanlySinhVien;
         private static FrmQuanLyKyThi _frmQuanLyKyThi;
         private static FrmDanhsachphongthi _frmDanhsachphongthi;
         private static FrmSapxepphongthi _frmSapxepsinhvien;
@@ -141,7 +141,7 @@ namespace QLSV.Frm
                         //    TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
                         //    return;
                         //}
-                        _frmQuanlySinhVien = new FrmSinhVien();
+                        _frmQuanlySinhVien = new FrmQuanLySinhVien();
                         _frmQuanlySinhVien.ShowDialog += ShowLoading;
                         _frmQuanlySinhVien.CloseDialog += KillLoading;
                         _frmQuanlySinhVien.UpdateDialog += UpdateLoading;
@@ -589,7 +589,7 @@ namespace QLSV.Frm
             }
             else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
             {
-                _frmInportDapAn.Ghi();
+                _frmInportDapAn.Save();
                 //ChonChucNang("105");
             }
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
@@ -854,6 +854,25 @@ namespace QLSV.Frm
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                var a = MessageBox.Show(@"Bạn có muốn thoát chương trình không?",
+                    @"Thông báo",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1) != DialogResult.OK;
+                if (a != true)
+                    Application.ExitThread();
+                else e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         //private void timer1_Tick(object sender, EventArgs e)

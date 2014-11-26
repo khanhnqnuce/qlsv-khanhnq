@@ -14,7 +14,7 @@ namespace QLSV.Frm
 
         private static FrmDangNhap _frmDangNhap;
         private static FrmQuanLyNguoiDung _frmQuanLyNguoiDung;
-        private static FrmSinhVien _frmSinhVien;
+        private static FrmQuanLySinhVien _frmSinhVien;
         private static FrmDanhmuckhoa _frmDanhmuckhoa;
         private static FrmDanhmuclop _frmDanhmuclop;
         private static FrmDanhsachphongthi _frmDanhsachphongthi;
@@ -96,7 +96,7 @@ namespace QLSV.Frm
                         //_frmQuanLyNguoiDung.ShowDialog();
                         break;
                     case "201":
-                        _frmSinhVien = new FrmSinhVien();
+                        _frmSinhVien = new FrmQuanLySinhVien();
                         //_frmSinhVien.ShowDialog();
                         break;
                     case "103":

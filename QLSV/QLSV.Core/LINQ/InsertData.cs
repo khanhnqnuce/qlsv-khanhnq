@@ -16,8 +16,28 @@ namespace QLSV.Core.LINQ
             {
                 foreach (var sql in list.Select(item =>
                                 "insert into SinhVien(MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh,IdLop) values(N'" +
-                                item.MaSinhVien + "',N'" + item.HoSinhVien + "',N'" + item.TenSinhVien + "','" +
+                                item.MaSinhVien + "',N'" + item.HoSinhVien + "',N'" + item.TenSinhVien + "',N'" +
                                 item.NgaySinh + "'," + item.IdLop + ")"))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public static bool ThemDapAn(IList<DapAn> list)
+        {
+            try
+            {
+                foreach (var sql in list.Select(item =>
+                                "insert into DapAn(IdKyThi,MaMon,MaDe,CauHoi,Dapan) values(" +
+                                item.IdKyThi + ",N'" + item.MaMon + "',N'" + item.MaDe + "',N'" +
+                                item.CauHoi + "',N'" + item.Dapan + "')"))
                 {
                     Conn.ExcuteQuerySql(sql);
                 }

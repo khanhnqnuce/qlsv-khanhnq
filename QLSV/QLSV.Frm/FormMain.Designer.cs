@@ -61,8 +61,8 @@
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -98,6 +98,10 @@
             this.pnl_daxepphong = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.TabInportdapdan = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_Inportdapan = new System.Windows.Forms.Panel();
+            this.TabInportbailam = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_Inportbailam = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -117,10 +121,6 @@
             this.TabPageControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.TabInportdapdan = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.TabInportbailam = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_Inportdapan = new System.Windows.Forms.Panel();
-            this.pnl_Inportbailam = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -130,20 +130,20 @@
             this.Tabdanhsachphongthi.SuspendLayout();
             this.TabSapxepphongthi.SuspendLayout();
             this.Tabdaxepphong.SuspendLayout();
+            this.TabInportdapdan.SuspendLayout();
+            this.TabInportbailam.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pn_Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).BeginInit();
             this.TabPageControl.SuspendLayout();
-            this.TabInportdapdan.SuspendLayout();
-            this.TabInportbailam.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(977, 632);
             // 
@@ -329,6 +329,36 @@
             this.panel8.Size = new System.Drawing.Size(164, 632);
             this.panel8.TabIndex = 4;
             // 
+            // TabInportdapdan
+            // 
+            this.TabInportdapdan.Controls.Add(this.pnl_Inportdapan);
+            this.TabInportdapdan.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabInportdapdan.Name = "TabInportdapdan";
+            this.TabInportdapdan.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pnl_Inportdapan
+            // 
+            this.pnl_Inportdapan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Inportdapan.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Inportdapan.Name = "pnl_Inportdapan";
+            this.pnl_Inportdapan.Size = new System.Drawing.Size(977, 632);
+            this.pnl_Inportdapan.TabIndex = 4;
+            // 
+            // TabInportbailam
+            // 
+            this.TabInportbailam.Controls.Add(this.pnl_Inportbailam);
+            this.TabInportbailam.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabInportbailam.Name = "TabInportbailam";
+            this.TabInportbailam.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pnl_Inportbailam
+            // 
+            this.pnl_Inportbailam.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Inportbailam.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Inportbailam.Name = "pnl_Inportbailam";
+            this.pnl_Inportbailam.Size = new System.Drawing.Size(977, 632);
+            this.pnl_Inportbailam.TabIndex = 4;
+            // 
             // MenuBar
             // 
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
@@ -465,9 +495,9 @@
             // 
             // lbtime
             // 
-            appearance18.TextHAlignAsString = "Left";
-            appearance18.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance18;
+            appearance16.TextHAlignAsString = "Left";
+            appearance16.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance16;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -476,9 +506,9 @@
             // 
             // lbusername
             // 
-            appearance19.TextHAlignAsString = "Left";
-            appearance19.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance19;
+            appearance17.TextHAlignAsString = "Left";
+            appearance17.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance17;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -694,36 +724,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
-            // TabInportdapdan
-            // 
-            this.TabInportdapdan.Controls.Add(this.pnl_Inportdapan);
-            this.TabInportdapdan.Location = new System.Drawing.Point(-10000, -10000);
-            this.TabInportdapdan.Name = "TabInportdapdan";
-            this.TabInportdapdan.Size = new System.Drawing.Size(977, 632);
-            // 
-            // TabInportbailam
-            // 
-            this.TabInportbailam.Controls.Add(this.pnl_Inportbailam);
-            this.TabInportbailam.Location = new System.Drawing.Point(1, 1);
-            this.TabInportbailam.Name = "TabInportbailam";
-            this.TabInportbailam.Size = new System.Drawing.Size(977, 632);
-            // 
-            // pnl_Inportdapan
-            // 
-            this.pnl_Inportdapan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Inportdapan.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Inportdapan.Name = "pnl_Inportdapan";
-            this.pnl_Inportdapan.Size = new System.Drawing.Size(977, 632);
-            this.pnl_Inportdapan.TabIndex = 4;
-            // 
-            // pnl_Inportbailam
-            // 
-            this.pnl_Inportbailam.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Inportbailam.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Inportbailam.Name = "pnl_Inportbailam";
-            this.pnl_Inportbailam.Size = new System.Drawing.Size(977, 632);
-            this.pnl_Inportbailam.TabIndex = 4;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -736,6 +736,7 @@
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Tabquanlynguoidung.ResumeLayout(false);
             this.Tabdanhmuckhoa.ResumeLayout(false);
@@ -746,6 +747,8 @@
             this.Tabdanhsachphongthi.ResumeLayout(false);
             this.TabSapxepphongthi.ResumeLayout(false);
             this.Tabdaxepphong.ResumeLayout(false);
+            this.TabInportdapdan.ResumeLayout(false);
+            this.TabInportbailam.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -753,8 +756,6 @@
             this.pn_Button.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).EndInit();
             this.TabPageControl.ResumeLayout(false);
-            this.TabInportdapdan.ResumeLayout(false);
-            this.TabInportbailam.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
