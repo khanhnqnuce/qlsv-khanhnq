@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using NPOI.HSSF.UserModel;
@@ -10,41 +15,49 @@ using QLSV.Data.Utils.Data;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmNapDuLieu : Form
+    public partial class FrmNDLSinhVien : Form
     {
-        /// <summary>
-        /// gb_iViTriHeader: lưu vị trí bắt đầu lấy dữ liệu trong file excel
-        /// ResultValue, _result: Bảng lưu dữ liệu lấy trong file excel
-        /// _threadLoad: Thread chạy hàm loaddata
-        /// _iStartCol: Cột bắt đầu lấy dữ liệu của tbTable bắt đầu từ 0
-        /// iEndCol: Cột kết thúc lấy dữ liệu của tbTable
-        /// _iSheet: Vị trí sheet lấy dữ liệu của file excel
-        /// </summary>
-
-        public DataTable ResultValue = new DataTable();
-        private readonly DataTable _result;
-        private Thread _threadLoad;
-
         public int gb_iViTriHeader = 0;
-        private readonly int _iStartCol;
-        private readonly int _iEndCol;
-        private readonly int _iSheet;
-
-        public FrmNapDuLieu(DataTable tbTable, int iStartCol, int iEndCol, int iSheet)
+        public DataTable ResultValue = new DataTable();
+        private readonly bool _multiSheet;
+        private Thread _threadLoad;
+        private int _iNumberStt;
+        private readonly int _iNumberCol;
+        private readonly DataTable _result;
+        //private readonly IList<SinhVien> _listSinhVien;
+        public FrmNDLSinhVien(int stt, DataTable tbTable, int iNumberCol)
         {
             try
             {
                 InitializeComponent();
+                _multiSheet = false;
+                _iNumberStt = stt;
                 _result = tbTable;
-                _iStartCol = iStartCol;
-                _iEndCol = iEndCol;
-                _iSheet = iSheet;
+                _iNumberCol = iNumberCol;
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
+        //private static DataTable GetTable()
+        //{
+        //    var table = new DataTable();
+        //    table.Columns.Add("STT", typeof(string));
+        //    table.Columns.Add("MaSinhVien", typeof(string));
+        //    table.Columns.Add("HoSinhVien", typeof(string));
+        //    table.Columns.Add("TenSinhVien", typeof(string));
+        //    table.Columns.Add("NgaySinh", typeof(string));
+        //    table.Columns.Add("MaLop", typeof(string));
+        //    table.Columns.Add("TenKhoa", typeof(string));
+        //    return table;
+        //}
 
         private void LoadData(object obj)
         {
@@ -53,24 +66,29 @@ namespace QLSV.Frm.Frm
 
                 if (Path.GetExtension(txtTenFile.Text) == ".xlsx")
                 {
-                    Read_2007or2010();
+                    if (!_multiSheet)
+                        Read_2007or2010();
                     Invoke((MethodInvoker)Close);
                 }
                 else
                 {
-                    Read_2003();
+                    if (!_multiSheet)
+                        Read_2003();
                     Invoke((MethodInvoker)Close);
                 }
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains(FormResource.msgLostConnect))
+                {
+                    MessageBox.Show(FormResource.txtLoiDB);
+                }
+                else
+                    MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
 
-        /// <summary>
-        /// Vị trí trong excel bắt đầu lấy từ 0
-        /// </summary>
         private void Read_2003()
         {
             try
@@ -89,26 +107,27 @@ namespace QLSV.Frm.Frm
                 }
                 var excel = new HSSFWorkbook(stream);
                 stream.Close();
-                var sheet = excel.GetSheetAt(_iSheet);
+                var sheet = excel.GetSheetAt(0);
                 var startRows = sheet.FirstRowNum + gb_iViTriHeader;
                 var endRows = sheet.LastRowNum;
+                var tb = Core.LINQ.LoadData.Load(2);
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    for (var j = 0; j < _iEndCol; j++)
+                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row[0].ToString() == sheet.GetRow(i).GetCell(0).ToString()))
                     {
-                        _result.Rows[i - startRows][j + _iStartCol] = sheet.GetRow(i).GetCell(j).ToString();
-                        //_result.Rows.Add(++_iNumberStt,
-                        //sheet.GetRow(i).GetCell(0).ToString(),
-                        //sheet.GetRow(i).GetCell(1).ToString(),
-                        //sheet.GetRow(i).GetCell(2).ToString(),
-                        //sheet.GetRow(i).GetCell(3).ToString(),
-                        //sheet.GetRow(i).GetCell(4).ToString(),
-                        //sheet.GetRow(i).GetCell(5).ToString());
+                        goto a;
                     }
+                    _result.Rows.Add();
+                    _result.Rows[i - startRows][1] = ++_iNumberStt;
+                    for (var j = 0; j < _iNumberCol; j++)
+                    {
+                        _result.Rows[i - startRows][j + 2] = sheet.GetRow(i).GetCell(j).ToString();
+                    }
+
+                a: ;
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -121,9 +140,6 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        /// <summary>
-        /// vị trí trong excel bắt đầu lấu từ 1
-        /// </summary>
         private void Read_2007or2010()
         {
             try
@@ -143,27 +159,26 @@ namespace QLSV.Frm.Frm
                 var excelPkg = new ExcelPackage();
                 excelPkg.Load(stream);
                 stream.Close();
-                var oSheet = excelPkg.Workbook.Worksheets[_iSheet + 1];
+                var oSheet = excelPkg.Workbook.Worksheets[1];
                 var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader + 1;
                 var endRows = oSheet.Dimension.End.Row;
+                var tb = Core.LINQ.LoadData.Load(2);
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    for (var j = 0; j < _iEndCol; j++)
+                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row[0].ToString() == oSheet.Cells[i, 1].GetValue<string>()))
                     {
-                        _result.Rows[i - startRows][j + _iStartCol] = oSheet.Cells[i, j + 1].GetValue<string>();
+                        goto a;
                     }
-                    //_result.Rows.Add(++_iNumberStt,
-                    //    oSheet.Cells[i, 1].GetValue<string>(),
-                    //    oSheet.Cells[i, 2].GetValue<string>(),
-                    //    oSheet.Cells[i, 3].GetValue<string>(),
-                    //    oSheet.Cells[i, 4].GetValue<string>(),
-                    //    oSheet.Cells[i, 5].GetValue<string>(),
-                    //    oSheet.Cells[i, 6].GetValue<string>());
-
+                    _result.Rows.Add();
+                    _result.Rows[i - startRows][1] = ++_iNumberStt;
+                    for (var j = 1; j <= _iNumberCol; j++)
+                    {
+                        _result.Rows[i - startRows][j + 1] = oSheet.Cells[i, j].GetValue<string>();
+                    }
+                a: ;
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -171,8 +186,8 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                Log2File.LogExceptionToFile(ex);
-                ResultValue = null;
+               Log2File.LogExceptionToFile(ex);
+               ResultValue = null;
             }
         }
 
