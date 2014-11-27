@@ -181,7 +181,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

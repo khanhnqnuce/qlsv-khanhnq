@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -20,6 +21,8 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmDapAnCacMaDe : FunctionControlHasGrid
     {
+        private readonly IList<DapAn> _listUpdate = new List<DapAn>();
+
         public FrmDapAnCacMaDe()
         {
             InitializeComponent();
@@ -59,6 +62,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Invoke((Action)(LoadGrid));
                 Invoke((Action)(() => IdDelete.Clear()));
+                Invoke((Action)(() => _listUpdate.Clear()));
                 lock (LockTotal)
                 {
                     OnCloseDialog();
@@ -86,6 +90,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                UpdateData.UpdateDapAn(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "DapAn");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -126,17 +131,22 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void Rptdanhsach()
+        private void RptDapAn()
         {
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
-            rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
-            using (var previewForm = new PreviewForm(rptdanhsachsinhvien))
+            rptdapandethi.FilePath = Application.StartupPath + @"\Reports\dapandethi.rst";
+            using (var previewForm = new PreviewForm(rptdapandethi))
             {
                 previewForm.WindowState = FormWindowState.Maximized;
-                rptdanhsachsinhvien.Prepare();
+                rptdapandethi.Prepare();
                 previewForm.ShowDialog();
             }
+        }
+
+        public void InDanhSach()
+        {
+            RptDapAn();
         }
 
         #endregion
@@ -180,6 +190,41 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void dgv_DanhSach_AfterExitEditMode(object sender, EventArgs e)
+        {
+            try
+            {
+                if (b)
+                {
+                    b = false;
+                    return;
+                }
+                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
+                if (string.IsNullOrEmpty(id)) return;
+                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
+                {
+                    item.MaMon = dgv_DanhSach.ActiveRow.Cells["MaMon"].Text;
+                    item.MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
+                    item.CauHoi = dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text;
+                    item.Dapan = dgv_DanhSach.ActiveRow.Cells["Dapan"].Text;
+                    return;
+                }
+                var hs = new DapAn
+                {
+                    ID = int.Parse(id),
+                    MaMon = dgv_DanhSach.ActiveRow.Cells["MaMon"].Text,
+                    MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
+                    CauHoi = dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text,
+                    Dapan = dgv_DanhSach.ActiveRow.Cells["Dapan"].Text,
+                };
+                _listUpdate.Add(hs);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -210,6 +255,10 @@ namespace QLSV.Frm.FrmUserControl
             
         }
 
+        private void menuStrip_Luulai_Click(object sender, EventArgs e)
+        {
+            SaveDetail();
+        }
         #endregion
 
         private void FrmDapAnCacMaDe_Load(object sender, EventArgs e)

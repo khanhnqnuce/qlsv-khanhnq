@@ -255,7 +255,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Resources\203.png" />
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +370,9 @@
     <Content Include="Reports\danhsachduthilop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Reports\dapandethi.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\danhsachsinhvien.rst">

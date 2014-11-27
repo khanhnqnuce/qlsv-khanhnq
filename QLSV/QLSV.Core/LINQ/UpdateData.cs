@@ -30,6 +30,27 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static bool UpdateDapAn(IList<DapAn> list)
+        {
+            try
+            {
+                foreach (
+                    var sql in
+                        list.Select(
+                            item => "UPDATE DapAn SET MaMon = N'" + item.MaMon + "',MaDe = N'" + item.MaDe + "'," +
+                                    "CauHoi = N'" + item.CauHoi + "',Dapan = N'" + item.Dapan + "' WHERE ID = " + item.ID + ""))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
         /// <summary>
         /// tăng số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>

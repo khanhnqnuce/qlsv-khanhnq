@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Spreadsheet;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;

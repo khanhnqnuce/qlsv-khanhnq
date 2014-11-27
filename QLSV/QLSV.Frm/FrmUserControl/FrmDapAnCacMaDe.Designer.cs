@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_Xoadong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
+            this.rptdapandethi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
@@ -52,62 +52,64 @@
             // 
             // menu_ug
             // 
+            this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_Themdong,
-            this.menuStrip_Inport,
-            this.toolStripMenuItem2,
-            this.menuStrip_Huy,
-            this.menuStrip_dong});
+            this.menuStrip_Luulai,
+            this.menuStrip_Xoadong,
+            this.menuStrip_Huy});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(130, 114);
+            this.menu_ug.Size = new System.Drawing.Size(153, 114);
             // 
             // menuStrip_Themdong
             // 
             this.menuStrip_Themdong.Name = "menuStrip_Themdong";
-            this.menuStrip_Themdong.Size = new System.Drawing.Size(129, 22);
+            this.menuStrip_Themdong.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Themdong.Text = "Thêm mới";
             // 
-            // menuStrip_Inport
+            // menuStrip_Luulai
             // 
-            this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(129, 22);
-            this.menuStrip_Inport.Text = "Chỉnh sửa";
+            this.menuStrip_Luulai.Name = "menuStrip_Luulai";
+            this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Luulai.Text = "Lưu lại";
+            this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
             // 
-            // toolStripMenuItem2
+            // menuStrip_Xoadong
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 22);
-            this.toolStripMenuItem2.Text = "Xóa dòng";
+            this.menuStrip_Xoadong.Name = "menuStrip_Xoadong";
+            this.menuStrip_Xoadong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Xoadong.Text = "Xóa dòng";
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(129, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Huy.Text = "Hủy";
-            // 
-            // menuStrip_dong
-            // 
-            this.menuStrip_dong.Name = "menuStrip_dong";
-            this.menuStrip_dong.Size = new System.Drawing.Size(129, 22);
-            this.menuStrip_dong.Text = "Đóng";
+            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // reportManager1
             // 
             this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
             this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
-            this.rptdanhsachsinhvien});
+            this.rptdapandethi});
+            // 
+            // rptdapandethi
+            // 
+            this.rptdapandethi.FilePath = "";
+            this.rptdapandethi.ReportName = "";
+            this.rptdapandethi.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // rptdanhsachsinhvien
             // 
             this.rptdanhsachsinhvien.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachsinhvien.rst";
             this.rptdanhsachsinhvien.ReportName = "";
-            this.rptdanhsachsinhvien.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            this.rptdanhsachsinhvien.ReportScriptType = null;
             // 
             // pdfExportFilter1
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.ExtraParameters = extraParameters5;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -115,7 +117,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            this.excelExportFilter1.ExtraParameters = extraParameters6;
             // 
             // dgv_DanhSach
             // 
@@ -132,6 +134,7 @@
             this.dgv_DanhSach.Size = new System.Drawing.Size(752, 564);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
             // 
             // panel4
             // 
@@ -174,10 +177,9 @@
 
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Themdong;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Inport;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_Xoadong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
@@ -185,6 +187,7 @@
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnl_from;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdapandethi;
 
     }
 }

@@ -378,6 +378,10 @@ namespace QLSV.Frm
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
             }
+            else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
+            {
+                _frmDapAnCacMaDe.Huy();
+            }
         }
 
         private void Luu_F5()
@@ -424,6 +428,11 @@ namespace QLSV.Frm
             else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
             {
                 _frmInportDapAn.Save();
+                //ChonChucNang("105");
+            }
+            else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
+            {
+                _frmDapAnCacMaDe.Save();
                 //ChonChucNang("105");
             }
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
@@ -562,6 +571,10 @@ namespace QLSV.Frm
             else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
             {
                _frmSinhVienPhongThi.InDanhSach();
+            }
+            else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
+            {
+                _frmDapAnCacMaDe.InDanhSach();
             }
         }
 
@@ -852,7 +865,7 @@ namespace QLSV.Frm
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;
-                    btnHuy.Visible = false;
+                    btnHuy.Visible = true;
                     btnDong.Visible = true;
                     b = false;
                 }
