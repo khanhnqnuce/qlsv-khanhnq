@@ -31,6 +31,8 @@ namespace QLSV.Core.LINQ
         private const string Str8 = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
         private const string Str9 = "SELECT * FROM PhongThi";
         private const string Str10 = "SELECT * FROM Kythi";
+        private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaMon, MaDe, CauHoi, Dapan," +
+                                     "IdKyThi FROM DapAn";
 
         #endregion
 
@@ -49,6 +51,7 @@ namespace QLSV.Core.LINQ
         /// 8:Trả về bảng phòng thi còn xếp được sinh viên(số lượng , sức chứa)
         /// 9:Trả về bảng phòng thi
         /// 10:Trả về bảng kỳ thi
+        /// 11:Trả về bảng đáp án các mã đề
         public static DataTable Load(int chon)
         {
             try
@@ -85,6 +88,9 @@ namespace QLSV.Core.LINQ
                         break;
                     case 10:
                         table = Conn.GetTable(Str10);
+                        break;
+                    case 11:
+                        table = Conn.GetTable(Str11);
                         break;
                 }
                 return table;

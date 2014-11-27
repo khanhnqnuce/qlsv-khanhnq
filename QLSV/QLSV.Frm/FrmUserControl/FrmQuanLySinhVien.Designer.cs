@@ -138,7 +138,7 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(1215, 565);
+            this.pnl_from.Size = new System.Drawing.Size(978, 565);
             this.pnl_from.TabIndex = 6;
             this.pnl_from.Visible = false;
             // 
@@ -148,7 +148,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 34);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1215, 531);
+            this.panel4.Size = new System.Drawing.Size(978, 531);
             this.panel4.TabIndex = 27;
             // 
             // dgv_DanhSach
@@ -163,7 +163,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(1215, 531);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(978, 531);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -179,7 +179,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1215, 34);
+            this.panel3.Size = new System.Drawing.Size(978, 34);
             this.panel3.TabIndex = 26;
             // 
             // cbolop
@@ -356,15 +356,15 @@
             this.rptdanhsachsinhvien.ReportName = "";
             this.rptdanhsachsinhvien.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
-            // FrmSinhVien
+            // FrmQuanLySinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmSinhVien";
-            this.Size = new System.Drawing.Size(1215, 565);
+            this.Name = "FrmQuanLySinhVien";
+            this.Size = new System.Drawing.Size(978, 565);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);

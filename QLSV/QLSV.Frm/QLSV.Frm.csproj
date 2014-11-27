@@ -96,6 +96,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\FrmDapAnCacMaDe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\FrmDapAnCacMaDe.Designer.cs">
+      <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserControl\FrmSvDaXepPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,6 +255,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\203.png" />
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +271,9 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\FrmDapAnCacMaDe.resx">
+      <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>

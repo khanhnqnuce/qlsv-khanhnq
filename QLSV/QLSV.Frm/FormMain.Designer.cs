@@ -59,10 +59,12 @@
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem14 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem16 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -74,6 +76,7 @@
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab11 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             this.Tabquanlynguoidung = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlynguoidung = new System.Windows.Forms.Panel();
             this.Tabdanhmuckhoa = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -121,6 +124,8 @@
             this.TabPageControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.TabDapanmade = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_Dapanmade = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -138,12 +143,13 @@
             this.pn_Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).BeginInit();
             this.TabPageControl.SuspendLayout();
+            this.TabDapanmade.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(977, 632);
             // 
@@ -440,9 +446,13 @@
             ultraExplorerBarItem14.Settings.AppearancesSmall.Appearance = appearance14;
             ultraExplorerBarItem14.Settings.MaxLines = 2;
             ultraExplorerBarItem14.Text = "Inport Đáp án các mã đề";
-            ultraExplorerBarItem15.Key = "202";
+            ultraExplorerBarItem16.Key = "202";
             appearance15.Image = global::QLSV.Frm.Properties.Resources._202;
-            ultraExplorerBarItem15.Settings.AppearancesSmall.Appearance = appearance15;
+            ultraExplorerBarItem16.Settings.AppearancesSmall.Appearance = appearance15;
+            ultraExplorerBarItem16.Text = "Đáp án các mã đề";
+            ultraExplorerBarItem15.Key = "203";
+            appearance16.Image = global::QLSV.Frm.Properties.Resources._203;
+            ultraExplorerBarItem15.Settings.AppearancesSmall.Appearance = appearance16;
             ultraExplorerBarItem15.Settings.MaxLines = 2;
             ultraExplorerBarItem15.Text = "Inport Bài làm của sinh viên";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
@@ -456,6 +466,7 @@
             ultraExplorerBarItem11,
             ultraExplorerBarItem13,
             ultraExplorerBarItem14,
+            ultraExplorerBarItem16,
             ultraExplorerBarItem15});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
@@ -495,9 +506,9 @@
             // 
             // lbtime
             // 
-            appearance16.TextHAlignAsString = "Left";
-            appearance16.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance16;
+            appearance17.TextHAlignAsString = "Left";
+            appearance17.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance17;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -506,9 +517,9 @@
             // 
             // lbusername
             // 
-            appearance17.TextHAlignAsString = "Left";
-            appearance17.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance17;
+            appearance18.TextHAlignAsString = "Left";
+            appearance18.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance18;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -670,6 +681,7 @@
             this.TabPageControl.Controls.Add(this.Tabdaxepphong);
             this.TabPageControl.Controls.Add(this.TabInportdapdan);
             this.TabPageControl.Controls.Add(this.TabInportbailam);
+            this.TabPageControl.Controls.Add(this.TabDapanmade);
             this.TabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabPageControl.Location = new System.Drawing.Point(215, 0);
             this.TabPageControl.Name = "TabPageControl";
@@ -699,6 +711,8 @@
             ultraTab2.Text = "Inport đáp án";
             ultraTab3.TabPage = this.TabInportbailam;
             ultraTab3.Text = "Inport bài làm";
+            ultraTab11.TabPage = this.TabDapanmade;
+            ultraTab11.Text = "Đáp án các mã đề";
             this.TabPageControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab4,
             ultraTab5,
@@ -710,7 +724,8 @@
             ultraTab17,
             ultraTab1,
             ultraTab2,
-            ultraTab3});
+            ultraTab3,
+            ultraTab11});
             this.TabPageControl.SelectedTabChanged += new Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventHandler(this.TabPageControl_SelectedTabChanged);
             // 
             // ultraTabSharedControlsPage1
@@ -723,6 +738,21 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
+            // 
+            // TabDapanmade
+            // 
+            this.TabDapanmade.Controls.Add(this.pnl_Dapanmade);
+            this.TabDapanmade.Location = new System.Drawing.Point(1, 1);
+            this.TabDapanmade.Name = "TabDapanmade";
+            this.TabDapanmade.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pnl_Dapanmade
+            // 
+            this.pnl_Dapanmade.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Dapanmade.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Dapanmade.Name = "pnl_Dapanmade";
+            this.pnl_Dapanmade.Size = new System.Drawing.Size(977, 632);
+            this.pnl_Dapanmade.TabIndex = 5;
             // 
             // FormMain
             // 
@@ -756,6 +786,7 @@
             this.pn_Button.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).EndInit();
             this.TabPageControl.ResumeLayout(false);
+            this.TabDapanmade.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -809,5 +840,7 @@
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabInportbailam;
         private System.Windows.Forms.Panel pnl_Inportdapan;
         private System.Windows.Forms.Panel pnl_Inportbailam;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabDapanmade;
+        private System.Windows.Forms.Panel pnl_Dapanmade;
     }
 }
