@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -15,7 +13,6 @@ using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
-using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {

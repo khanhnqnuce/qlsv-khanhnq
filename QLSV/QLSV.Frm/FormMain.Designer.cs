@@ -105,6 +105,8 @@
             this.pnl_Inportdapan = new System.Windows.Forms.Panel();
             this.TabInportbailam = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_Inportbailam = new System.Windows.Forms.Panel();
+            this.TabDapanmade = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_Dapanmade = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -112,7 +114,7 @@
             this.lbusername = new Infragistics.Win.Misc.UltraLabel();
             this.ultraTabSharedControlsPage2 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.pn_Button = new System.Windows.Forms.Panel();
-            this.lbXoadong = new System.Windows.Forms.Label();
+            this.lbXoa = new System.Windows.Forms.Label();
             this.lbInsert = new System.Windows.Forms.Label();
             this.btnNapDuLieu = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -124,8 +126,6 @@
             this.TabPageControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.TabDapanmade = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_Dapanmade = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -137,19 +137,19 @@
             this.Tabdaxepphong.SuspendLayout();
             this.TabInportdapdan.SuspendLayout();
             this.TabInportbailam.SuspendLayout();
+            this.TabDapanmade.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pn_Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).BeginInit();
             this.TabPageControl.SuspendLayout();
-            this.TabDapanmade.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(977, 632);
             // 
@@ -365,6 +365,21 @@
             this.pnl_Inportbailam.Size = new System.Drawing.Size(977, 632);
             this.pnl_Inportbailam.TabIndex = 4;
             // 
+            // TabDapanmade
+            // 
+            this.TabDapanmade.Controls.Add(this.pnl_Dapanmade);
+            this.TabDapanmade.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabDapanmade.Name = "TabDapanmade";
+            this.TabDapanmade.Size = new System.Drawing.Size(977, 632);
+            // 
+            // pnl_Dapanmade
+            // 
+            this.pnl_Dapanmade.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Dapanmade.Location = new System.Drawing.Point(0, 0);
+            this.pnl_Dapanmade.Name = "pnl_Dapanmade";
+            this.pnl_Dapanmade.Size = new System.Drawing.Size(977, 632);
+            this.pnl_Dapanmade.TabIndex = 5;
+            // 
             // MenuBar
             // 
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
@@ -534,7 +549,7 @@
             // 
             // pn_Button
             // 
-            this.pn_Button.Controls.Add(this.lbXoadong);
+            this.pn_Button.Controls.Add(this.lbXoa);
             this.pn_Button.Controls.Add(this.lbInsert);
             this.pn_Button.Controls.Add(this.btnNapDuLieu);
             this.pn_Button.Controls.Add(this.btnLuu);
@@ -549,17 +564,17 @@
             this.pn_Button.Size = new System.Drawing.Size(981, 52);
             this.pn_Button.TabIndex = 4;
             // 
-            // lbXoadong
+            // lbXoa
             // 
-            this.lbXoadong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbXoadong.AutoSize = true;
-            this.lbXoadong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbXoadong.Location = new System.Drawing.Point(7, 30);
-            this.lbXoadong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbXoadong.Name = "lbXoadong";
-            this.lbXoadong.Size = new System.Drawing.Size(100, 15);
-            this.lbXoadong.TabIndex = 37;
-            this.lbXoadong.Text = "Nhấn F3: Xóa hết";
+            this.lbXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbXoa.AutoSize = true;
+            this.lbXoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbXoa.Location = new System.Drawing.Point(7, 30);
+            this.lbXoa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbXoa.Name = "lbXoa";
+            this.lbXoa.Size = new System.Drawing.Size(100, 15);
+            this.lbXoa.TabIndex = 37;
+            this.lbXoa.Text = "Nhấn F3: Xóa hết";
             // 
             // lbInsert
             // 
@@ -739,21 +754,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             // 
-            // TabDapanmade
-            // 
-            this.TabDapanmade.Controls.Add(this.pnl_Dapanmade);
-            this.TabDapanmade.Location = new System.Drawing.Point(1, 1);
-            this.TabDapanmade.Name = "TabDapanmade";
-            this.TabDapanmade.Size = new System.Drawing.Size(977, 632);
-            // 
-            // pnl_Dapanmade
-            // 
-            this.pnl_Dapanmade.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Dapanmade.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Dapanmade.Name = "pnl_Dapanmade";
-            this.pnl_Dapanmade.Size = new System.Drawing.Size(977, 632);
-            this.pnl_Dapanmade.TabIndex = 5;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -779,6 +779,7 @@
             this.Tabdaxepphong.ResumeLayout(false);
             this.TabInportdapdan.ResumeLayout(false);
             this.TabInportbailam.ResumeLayout(false);
+            this.TabDapanmade.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -786,7 +787,6 @@
             this.pn_Button.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).EndInit();
             this.TabPageControl.ResumeLayout(false);
-            this.TabDapanmade.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -798,7 +798,7 @@
         private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pn_Button;
-        private System.Windows.Forms.Label lbXoadong;
+        private System.Windows.Forms.Label lbXoa;
         private System.Windows.Forms.Label lbInsert;
         private System.Windows.Forms.Button btnNapDuLieu;
         private System.Windows.Forms.Button btnLuu;

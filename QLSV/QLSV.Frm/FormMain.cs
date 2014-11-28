@@ -747,6 +747,8 @@ namespace QLSV.Frm
                 pn_Button.Visible = true;
                 if (Tabquanlynguoidung.Tab.Visible && Tabquanlynguoidung.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -758,6 +760,8 @@ namespace QLSV.Frm
                 }
                 else if (Tabdanhmuckhoa.Tab.Visible && Tabdanhmuckhoa.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -769,6 +773,8 @@ namespace QLSV.Frm
                 }
                 else if (Tabdanhmuclop.Tab.Visible && Tabdanhmuclop.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -780,6 +786,8 @@ namespace QLSV.Frm
                 }
                 else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = false;
                     btnNapDuLieu.Visible = true;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -791,6 +799,8 @@ namespace QLSV.Frm
                 }
                 else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = true;
                     btnthemmoi.Visible = true;
@@ -802,6 +812,8 @@ namespace QLSV.Frm
                 }
                 else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -813,6 +825,8 @@ namespace QLSV.Frm
                 }
                 else if (Tabquanlykythi.Tab.Visible && Tabquanlykythi.Tab.Active)
                 {
+                    lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -824,6 +838,8 @@ namespace QLSV.Frm
                 }
                 else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
                 {
+                    lbInsert.Visible = false;
+                    lbXoa.Visible = false;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = false;
@@ -836,6 +852,7 @@ namespace QLSV.Frm
                 else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
                 {
                     lbInsert.Visible = false;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
@@ -848,6 +865,7 @@ namespace QLSV.Frm
                 else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
                 {
                     lbInsert.Visible = true;
+                    lbXoa.Visible = false;
                     btnNapDuLieu.Visible = true;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
@@ -860,6 +878,7 @@ namespace QLSV.Frm
                 else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
                 {
                     lbInsert.Visible = false;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
@@ -872,6 +891,7 @@ namespace QLSV.Frm
                 else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
                 {
                     lbInsert.Visible = true;
+                    lbXoa.Visible = true;
                     btnNapDuLieu.Visible = true;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;

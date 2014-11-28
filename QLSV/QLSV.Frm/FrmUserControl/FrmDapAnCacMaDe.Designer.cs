@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Xoadong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdapandethi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -54,18 +52,10 @@
             // 
             this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Themdong,
             this.menuStrip_Luulai,
-            this.menuStrip_Xoadong,
             this.menuStrip_Huy});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 114);
-            // 
-            // menuStrip_Themdong
-            // 
-            this.menuStrip_Themdong.Name = "menuStrip_Themdong";
-            this.menuStrip_Themdong.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_Themdong.Text = "Thêm mới";
+            this.menu_ug.Size = new System.Drawing.Size(153, 70);
             // 
             // menuStrip_Luulai
             // 
@@ -73,12 +63,6 @@
             this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Luulai.Text = "Lưu lại";
             this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
-            // 
-            // menuStrip_Xoadong
-            // 
-            this.menuStrip_Xoadong.Name = "menuStrip_Xoadong";
-            this.menuStrip_Xoadong.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_Xoadong.Text = "Xóa dòng";
             // 
             // menuStrip_Huy
             // 
@@ -109,7 +93,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters5;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -117,7 +101,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters6;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
             // dgv_DanhSach
             // 
@@ -176,9 +160,7 @@
         #endregion
 
         private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Themdong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Xoadong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
