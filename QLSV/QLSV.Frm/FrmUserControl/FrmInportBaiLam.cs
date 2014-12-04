@@ -274,6 +274,29 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
-        
+
+        #region Menu Strip
+
+        private void menuStrip_Inport_Click(object sender, EventArgs e)
+        {
+            Napdulieu();
+        }
+
+        private void menuStrip_Themmoi_Click(object sender, EventArgs e)
+        {
+            InsertRow();
+        }
+
+        private void menuStrip_Xoadong_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
+        }
+
+        private void menuStrip_Luulai_Click(object sender, EventArgs e)
+        {
+            Ghi();
+        }
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -19,10 +20,11 @@ namespace QLSV.Frm.FrmUserControl
     public partial class FrmDapAnCacMaDe : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listUpdate = new List<DapAn>();
-
+        
         public FrmDapAnCacMaDe()
         {
             InitializeComponent();
+            
         }
 
         #region Exit
@@ -160,7 +162,12 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
+
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["MaMon"].CellActivation = Activation.NoEdit;
+                band.Columns["MaDe"].CellActivation = Activation.NoEdit;
+                band.Columns["CauHoi"].CellActivation = Activation.NoEdit;
+
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
@@ -230,31 +237,20 @@ namespace QLSV.Frm.FrmUserControl
         #endregion
 
         #region MenuStrip
-
-
-        private void menuStrip_xoadong_Click(object sender, EventArgs e)
-        {
-            DeleteRow();
-        }
-
+        
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
             Huy();
         }
 
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
-
-        private void menuStrip_Sua_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void menuStrip_Luulai_Click(object sender, EventArgs e)
         {
             SaveDetail();
+        }
+
+        private void menuStrip_In_Click(object sender, EventArgs e)
+        {
+            RptDapAn();
         }
         #endregion
 

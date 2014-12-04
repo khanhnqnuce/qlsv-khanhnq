@@ -15,15 +15,16 @@ namespace QLSV.Frm.Frm
         private void FrmChonKyThi_Load(object sender, EventArgs e)
         {
             cboKythi.DataSource = LoadData.Load(10);
-            cboKythi.DisplayMember = "MaKyThi";
+            cboKythi.DisplayMember = "TenKyThi";
             cboKythi.ValueMember = "ID";
             cboKythi.Rows.Band.Columns["ID"].Hidden = true;
             cboKythi.Rows.Band.Columns["ThoiGianLamBai"].Hidden = true;
             cboKythi.Rows.Band.Columns["ThoiGianBatDau"].Hidden = true;
             cboKythi.Rows.Band.Columns["ThoiGianKetThuc"].Hidden = true;
-            cboKythi.DisplayLayout.Bands[0].Columns["NgayThi"].Header.Caption = @"ngày thi";
+            cboKythi.Rows.Band.Columns["NgayThi"].Hidden = true;
             cboKythi.DisplayLayout.Bands[0].Columns["MaKyThi"].Header.Caption = @"Mã kỳ thi";
             cboKythi.DisplayLayout.Bands[0].Columns["TenKyThi"].Header.Caption = @"Tên kỳ thi";
+            cboKythi.Rows.Band.Columns["TenKyThi"].Width = 200;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnl_from = new System.Windows.Forms.Panel();
+            this.menuStrip_In = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel4.SuspendLayout();
@@ -53,9 +54,10 @@
             this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_Luulai,
-            this.menuStrip_Huy});
+            this.menuStrip_Huy,
+            this.menuStrip_In});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 70);
+            this.menu_ug.Size = new System.Drawing.Size(153, 92);
             // 
             // menuStrip_Luulai
             // 
@@ -140,6 +142,13 @@
             this.pnl_from.TabIndex = 7;
             this.pnl_from.Visible = false;
             // 
+            // menuStrip_In
+            // 
+            this.menuStrip_In.Name = "menuStrip_In";
+            this.menuStrip_In.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_In.Text = "In";
+            this.menuStrip_In.Click += new System.EventHandler(this.menuStrip_In_Click);
+            // 
             // FrmDapAnCacMaDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -170,6 +179,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pnl_from;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdapandethi;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_In;
 
     }
 }
