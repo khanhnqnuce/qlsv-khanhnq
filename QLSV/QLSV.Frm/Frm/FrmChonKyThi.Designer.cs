@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -40,10 +41,13 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChonKyThi));
             this.cboKythi = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.errorkythi = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.cboKythi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorkythi)).BeginInit();
             this.SuspendLayout();
             // 
             // cboKythi
@@ -127,6 +131,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // errorkythi
+            // 
+            this.errorkythi.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errorkythi.ContainerControl = this;
+            this.errorkythi.Icon = ((System.Drawing.Icon)(resources.GetObject("errorkythi.Icon")));
+            // 
             // FrmChonKyThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -138,8 +148,10 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmChonKyThi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmChonKyThi_FormClosing);
             this.Load += new System.EventHandler(this.FrmChonKyThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cboKythi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorkythi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,6 +162,7 @@
         public Infragistics.Win.UltraWinGrid.UltraCombo cboKythi;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ErrorProvider errorkythi;
 
     }
 }

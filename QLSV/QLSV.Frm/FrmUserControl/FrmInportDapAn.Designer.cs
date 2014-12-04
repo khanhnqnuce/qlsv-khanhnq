@@ -54,7 +54,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmInportDapAn";
             this.Size = new System.Drawing.Size(855, 642);
-            this.Load += new System.EventHandler(this.FrmInportSinhVien_Load);
+            this.Load += new System.EventHandler(this.FrmInportDapAn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
 

@@ -17,7 +17,8 @@ namespace QLSV.Frm.FrmUserControl
     public partial class FrmInportDapAn : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listAdd = new List<DapAn>();
-        
+        private int _idKythi = 0;
+
         public FrmInportDapAn()
         {
             InitializeComponent();
@@ -58,6 +59,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var frm = new FrmChonKyThi();
+                frm.ShowDialog();
+                if (string.IsNullOrEmpty(frm.cboKythi.Text)) return;
                 var stt = dgv_DanhSach.Rows.Count;
                 var frmNapDuLieu = new FrmNapDuLieu(GetTable(), 2, 4, 1)
                 {
@@ -66,6 +70,8 @@ namespace QLSV.Frm.FrmUserControl
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
+
+                _idKythi = int.Parse(frm.cboKythi.Value.ToString());
                 var table = (DataTable)dgv_DanhSach.DataSource;
 
                 table.Merge(resultValue);
@@ -113,14 +119,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var frm = new FrmChonKyThi();
-                frm.ShowDialog();
-                if(string.IsNullOrEmpty(frm.cboKythi.Text)) return;
-
+                if (_idKythi == 0) return;
                 var danhsach = (DataTable)dgv_DanhSach.DataSource;
                 foreach (var hs in from DataRow row in danhsach.Rows select new DapAn
                 {
-                    IdKyThi = int.Parse(frm.cboKythi.Value.ToString()),
+                    IdKyThi = _idKythi,
                     MaMon = row["MaMon"].ToString(),
                     MaDe = row["MaDe"].ToString(),
                     CauHoi = row["CauHoi"].ToString(),
@@ -134,6 +137,7 @@ namespace QLSV.Frm.FrmUserControl
                 danhsach.Clear();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                _idKythi = 0;
             }
             catch (Exception ex)
             {
@@ -142,7 +146,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void FrmInportSinhVien_Load(object sender, EventArgs e)
+        private void FrmInportDapAn_Load(object sender, EventArgs e)
         {
             LoadFormDetail();
         }

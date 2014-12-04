@@ -44,14 +44,17 @@
             this.dgv_DanhSach.Name = "dgv_DanhSach";
             this.dgv_DanhSach.Size = new System.Drawing.Size(1165, 623);
             this.dgv_DanhSach.TabIndex = 27;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
             // 
-            // InportBaiLam
+            // FrmInportBaiLam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
-            this.Name = "InportBaiLam";
+            this.Name = "FrmInportBaiLam";
             this.Size = new System.Drawing.Size(1165, 623);
+            this.Load += new System.EventHandler(this.FrmInportBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
 

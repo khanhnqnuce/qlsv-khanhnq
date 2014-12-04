@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using Infragistics.Win;
 using QLSV.Core.Domain;
@@ -428,16 +427,15 @@ namespace QLSV.Frm
             else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
             {
                 _frmInportDapAn.Save();
-                //ChonChucNang("105");
+                ChonChucNang("202");
             }
             else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
             {
                 _frmDapAnCacMaDe.Save();
-                //ChonChucNang("105");
             }
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
-                //_frmInportBaiLam.Ghi();
+                _frmInportBaiLam.Ghi();
                 //ChonChucNang("105");
             }
         }
@@ -590,7 +588,7 @@ namespace QLSV.Frm
             }
             if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
-                //_frmInportBaiLam.Napdulieu();
+               _frmInportBaiLam.Napdulieu();
             }
         }
 
@@ -728,9 +726,7 @@ namespace QLSV.Frm
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button1) != DialogResult.OK;
-                if (a != true)
-                    Application.ExitThread();
-                else e.Cancel = true;
+                e.Cancel = a;
             }
             catch (Exception ex)
             {

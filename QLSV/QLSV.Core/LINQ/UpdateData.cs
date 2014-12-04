@@ -10,6 +10,11 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
+        /// <summary>
+        /// Update lại sô lượng sĩ số phòng thi khi đã xếp phòng cho sinh viên
+        /// </summary>
+        /// <param name="list">Danh sách phòng</param>
+        /// <returns>true</returns>
         public static bool UpdatePhongThi(IList<PhongThi> list)
         {
             try
@@ -30,6 +35,11 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Sửa lại đáp án đúng của câu hỏi
+        /// </summary>
+        /// <param name="list">danh sách đối tượng đáp án được sửa</param>
+        /// <returns>true</returns>
         public static bool UpdateDapAn(IList<DapAn> list)
         {
             try
@@ -113,6 +123,10 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Sau khi xóa tất cả sinh viên đã xếp phòng thì sĩ số phòng giảm về 0
+        /// </summary>
+        /// <returns>true</returns>
         public static bool ResetPhongThi()
         {
             try
@@ -126,6 +140,12 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
+
+        /// <summary>
+        /// Xếp phòng cho tường sinh viên
+        /// </summary>
+        /// <param name="hs">đối tượng sinh viên cần xếp</param>
+        /// <returns>true</returns>
         public static bool XepPhong(XepPhong hs)
         {
             try

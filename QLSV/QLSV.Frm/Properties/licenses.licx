@@ -1,9 +1,10 @@
-Infragistics.Win.UltraWinTabControl.UltraTabControl, Infragistics2.Win.UltraWinTabControl.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
-Infragistics.Win.Misc.UltraLabel, Infragistics2.Win.Misc.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
-Infragistics.Win.UltraWinEditors.UltraDateTimeEditor, Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
-PerpetuumSoft.Reporting.Components.ReportManager, PerpetuumSoft.Reporting, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5
-Infragistics.Win.UltraWinProgressBar.UltraProgressBar, Infragistics2.Win.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
-Infragistics.Win.UltraWinEditors.UltraTextEditor, Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
-Infragistics.Win.UltraWinGrid.UltraGrid, Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
 Infragistics.Win.UltraWinGrid.UltraCombo, Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.UltraWinGrid.UltraGrid, Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.UltraWinProgressBar.UltraProgressBar, Infragistics2.Win.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.Misc.UltraLabel, Infragistics2.Win.Misc.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+PerpetuumSoft.Reporting.Components.ReportManager, PerpetuumSoft.Reporting, Version=7.1.1.18, Culture=neutral, PublicKeyToken=8a6ae0a3e67829b5
+Infragistics.Win.UltraWinEditors.UltraDateTimeEditor, Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
 Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar, Infragistics2.Win.UltraWinExplorerBar.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.UltraWinEditors.UltraTextEditor, Infragistics2.Win.UltraWinEditors.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.Misc.UltraGroupBox, Infragistics2.Win.Misc.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Win.UltraWinTabControl.UltraTabControl, Infragistics2.Win.UltraWinTabControl.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb

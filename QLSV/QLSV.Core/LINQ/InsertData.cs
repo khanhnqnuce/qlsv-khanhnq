@@ -50,6 +50,26 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static bool ThemBaiLam(IList<BaiLam> list)
+        {
+            try
+            {
+                foreach (var sql in list.Select(item =>
+                                "insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(" +
+                                item.MaSinhVien + ",N'" + item.MaDe + "',N'" + item.KetQua + "'," +
+                                item.IdKyThi + ")"))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Thêm vào bảng xếp phòng
         /// </summary>

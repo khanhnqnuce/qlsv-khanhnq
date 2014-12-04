@@ -6,6 +6,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmChonKyThi : Form
     {
+        private bool b = false;
         public FrmChonKyThi()
         {
             InitializeComponent();
@@ -27,7 +28,18 @@ namespace QLSV.Frm.Frm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cboKythi.Text))
+            {
+                errorkythi.SetError(cboKythi, "Không được để trống");
+                return;
+            }
+            b = true;
             Close();
+        }
+
+        private void FrmChonKyThi_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!b) cboKythi.Value = null;
         }
     }
 }
