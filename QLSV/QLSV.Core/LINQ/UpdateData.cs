@@ -62,6 +62,32 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// Sửa lại bài làm của sinh vien
+        /// </summary>
+        /// <param name="list">danh sách đối tượng bài làm đã được sửa</param>
+        /// <returns>true</returns>
+        public static bool UpdateBaiLam(IList<BaiLam> list)
+        {
+            try
+            {
+                foreach (
+                    var sql in
+                        list.Select(
+                            item => "UPDATE BaiLam SET MaSinhVien = N'" + item.MaSinhVien + "',MaDe = N'" + item.MaDe + "'," +
+                                    "KetQua = N'" + item.KetQua + "' WHERE ID = " + item.ID + ""))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// tăng số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <param name="id">ID của phòng thi</param>

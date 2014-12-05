@@ -20,7 +20,6 @@ namespace QLSV.Frm.FrmUserControl
     {
 
         private readonly IList<BaiLam> _listAdd = new List<BaiLam>();
-        private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
         private int _idKythi;
 
         private readonly BackgroundWorker _bgwInsert;
@@ -235,39 +234,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
 
                 #endregion
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void dgv_DanhSach_AfterExitEditMode(object sender, EventArgs e)
-        {
-            try
-            {
-                if (b)
-                {
-                    b = false;
-                    return;
-                }
-                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.MaSinhVien = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
-                    item.MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
-                    item.KetQua = dgv_DanhSach.ActiveRow.Cells["KetQua"].Text;
-                    return;
-                }
-                var hs = new BaiLam
-                {
-                    ID = int.Parse(id),
-                    MaSinhVien = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
-                    MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
-                    KetQua = dgv_DanhSach.ActiveRow.Cells["KetQua"].Text
-                };
-                _listUpdate.Add(hs);
             }
             catch (Exception ex)
             {

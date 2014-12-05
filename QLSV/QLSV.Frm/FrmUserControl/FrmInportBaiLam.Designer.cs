@@ -49,10 +49,9 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(1165, 623);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(819, 309);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
-            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
             // 
             // menu_ug
             // 
@@ -67,14 +66,14 @@
             // menuStrip_Inport
             // 
             this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Inport.Size = new System.Drawing.Size(148, 22);
             this.menuStrip_Inport.Text = "Inport bài lam";
             this.menuStrip_Inport.Click += new System.EventHandler(this.menuStrip_Inport_Click);
             // 
             // menuStrip_Themmoi
             // 
             this.menuStrip_Themmoi.Name = "menuStrip_Themmoi";
-            this.menuStrip_Themmoi.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Themmoi.Size = new System.Drawing.Size(148, 22);
             this.menuStrip_Themmoi.Text = "Thêm mới";
             this.menuStrip_Themmoi.Click += new System.EventHandler(this.menuStrip_Themmoi_Click);
             // 
@@ -87,11 +86,12 @@
             // 
             // FrmInportBaiLam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
+            this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmInportBaiLam";
-            this.Size = new System.Drawing.Size(1165, 623);
+            this.Size = new System.Drawing.Size(819, 309);
             this.Load += new System.EventHandler(this.FrmInportBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);

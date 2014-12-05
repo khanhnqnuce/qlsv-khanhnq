@@ -34,6 +34,7 @@
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_In = new System.Windows.Forms.ToolStripMenuItem();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdapandethi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -42,7 +43,6 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnl_from = new System.Windows.Forms.Panel();
-            this.menuStrip_In = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_ug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel4.SuspendLayout();
@@ -57,21 +57,28 @@
             this.menuStrip_Huy,
             this.menuStrip_In});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 92);
+            this.menu_ug.Size = new System.Drawing.Size(110, 70);
             // 
             // menuStrip_Luulai
             // 
             this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Luulai.Size = new System.Drawing.Size(109, 22);
             this.menuStrip_Luulai.Text = "Lưu lại";
             this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(109, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
+            // 
+            // menuStrip_In
+            // 
+            this.menuStrip_In.Name = "menuStrip_In";
+            this.menuStrip_In.Size = new System.Drawing.Size(109, 22);
+            this.menuStrip_In.Text = "In";
+            this.menuStrip_In.Click += new System.EventHandler(this.menuStrip_In_Click);
             // 
             // reportManager1
             // 
@@ -117,7 +124,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(752, 564);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(752, 456);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
@@ -128,7 +135,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(752, 564);
+            this.panel4.Size = new System.Drawing.Size(752, 456);
             this.panel4.TabIndex = 27;
             // 
             // pnl_from
@@ -138,16 +145,9 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(752, 564);
+            this.pnl_from.Size = new System.Drawing.Size(752, 456);
             this.pnl_from.TabIndex = 7;
             this.pnl_from.Visible = false;
-            // 
-            // menuStrip_In
-            // 
-            this.menuStrip_In.Name = "menuStrip_In";
-            this.menuStrip_In.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_In.Text = "In";
-            this.menuStrip_In.Click += new System.EventHandler(this.menuStrip_In_Click);
             // 
             // FrmDapAnCacMaDe
             // 
@@ -156,7 +156,7 @@
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmDapAnCacMaDe";
-            this.Size = new System.Drawing.Size(752, 564);
+            this.Size = new System.Drawing.Size(752, 456);
             this.Load += new System.EventHandler(this.FrmDapAnCacMaDe_Load);
             this.menu_ug.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();

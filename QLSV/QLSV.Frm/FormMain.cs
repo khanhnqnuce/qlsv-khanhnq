@@ -25,6 +25,7 @@ namespace QLSV.Frm
         private static FrmInportDapAn _frmInportDapAn;
         private static FrmInportBaiLam _frmInportBaiLam;
         private static FrmDapAnCacMaDe _frmDapAnCacMaDe;
+        private static FrmDanhSachBaiLam _frmDanhSachBaiLam;
         private bool _dangnhap = false;
 
         public FormMain()
@@ -161,6 +162,7 @@ namespace QLSV.Frm
                         _frmInportDapAn.CloseDialog += KillLoading;
                         _frmInportDapAn.UpdateDialog += UpdateLoading;
                         TabInportdapdan.Tab.Visible = true;
+                        TabDanhsachbailam.Tab.Visible = false;
                         TabInportbailam.Tab.Visible = false;
                         TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportdapdan.Tab;
@@ -172,6 +174,7 @@ namespace QLSV.Frm
                         _frmDapAnCacMaDe.CloseDialog += KillLoading;
                         _frmDapAnCacMaDe.UpdateDialog += UpdateLoading;
                         TabDapanmade.Tab.Visible = true;
+                        TabDanhsachbailam.Tab.Visible = false;
                         TabInportdapdan.Tab.Visible = false;
                         TabInportbailam.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDapanmade.Tab;
@@ -183,10 +186,23 @@ namespace QLSV.Frm
                         _frmInportBaiLam.CloseDialog += KillLoading;
                         _frmInportBaiLam.UpdateDialog += UpdateLoading;
                         TabInportbailam.Tab.Visible = true;
+                        TabDanhsachbailam.Tab.Visible = false;
                         TabInportdapdan.Tab.Visible = false;
                         TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportbailam.Tab;
                         ShowControl(_frmInportBaiLam, pnl_Inportbailam);
+                        break;
+                    case "204":
+                        _frmDanhSachBaiLam = new FrmDanhSachBaiLam();
+                        _frmDanhSachBaiLam.ShowDialog += ShowLoading;
+                        _frmDanhSachBaiLam.CloseDialog += KillLoading;
+                        _frmDanhSachBaiLam.UpdateDialog += UpdateLoading;
+                        TabDanhsachbailam.Tab.Visible = true;
+                        TabInportbailam.Tab.Visible = false;
+                        TabInportdapdan.Tab.Visible = false;
+                        TabDapanmade.Tab.Visible = false;
+                        TabPageControl.SelectedTab = TabDanhsachbailam.Tab;
+                        ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;
                 }
             }
@@ -202,6 +218,7 @@ namespace QLSV.Frm
             switch (quyen)
             {
                 case "quantri":
+                    TabPageControl.Visible = true;
                     MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.True;
@@ -217,6 +234,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.True;
                     break;
                 case "nguoidung":
                     MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
@@ -234,6 +252,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.True;
                     break;
                 default:
                     MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.True;
@@ -251,6 +270,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.False;
                     Tabquanlynguoidung.Tab.Visible = false;
                     Tabdanhmuckhoa.Tab.Visible = false;
                     Tabdanhmuclop.Tab.Visible = false;
@@ -263,6 +283,7 @@ namespace QLSV.Frm
                     TabInportdapdan.Tab.Visible = false;
                     TabDapanmade.Tab.Visible = false;
                     TabInportbailam.Tab.Visible = false;
+                    TabDanhsachbailam.Tab.Visible = false;
                     pn_Button.Visible = false;
                     break;
             }
@@ -338,9 +359,17 @@ namespace QLSV.Frm
             {
                 TabInportdapdan.Tab.Visible = false;
             }
+            else if (TabDapanmade.Tab.Active)
+            {
+                TabDapanmade.Tab.Visible = false;
+            }
             else if (TabInportbailam.Tab.Active)
             {
                 TabInportbailam.Tab.Visible = false;
+            }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+                TabDanhsachbailam.Tab.Visible = false;
             }
         }
 
@@ -380,6 +409,10 @@ namespace QLSV.Frm
             else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
             {
                 _frmDapAnCacMaDe.Huy();
+            }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+                
             }
         }
 
@@ -436,7 +469,11 @@ namespace QLSV.Frm
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
                 _frmInportBaiLam.Ghi();
-                //ChonChucNang("105");
+                ChonChucNang("204");
+            }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
             }
         }
 
@@ -473,6 +510,10 @@ namespace QLSV.Frm
             else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
             {
                 _frmDapAnCacMaDe.Xoa();
+            }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
             }
         }
 
@@ -518,6 +559,10 @@ namespace QLSV.Frm
             {
                 _frmInportBaiLam.uG_DeleteRow();
             }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
+            }
         }
 
         private void Themmoi_Insert()
@@ -558,6 +603,10 @@ namespace QLSV.Frm
             {
                 _frmInportBaiLam.uG_InsertRow();
             }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
+            }
         }
 
         private void In_F10()
@@ -578,6 +627,10 @@ namespace QLSV.Frm
             {
                 _frmDapAnCacMaDe.InDanhSach();
             }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
+            }
         }
 
         private void NapDuLieu_F8()
@@ -593,6 +646,10 @@ namespace QLSV.Frm
             if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
                _frmInportBaiLam.Napdulieu();
+            }
+            else if (TabDanhsachbailam.Tab.Active)
+            {
+
             }
         }
 
@@ -898,6 +955,19 @@ namespace QLSV.Frm
                     btnXoadong.Visible = true;
                     btnLuu.Visible = true;
                     btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                    b = false;
+                }
+                else if (TabDanhsachbailam.Tab.Visible && TabDanhsachbailam.Tab.Active)
+                {
+                    lbInsert.Visible = false;
+                    lbXoa.Visible = true;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
                     btnDong.Visible = true;
                     b = false;
                 }

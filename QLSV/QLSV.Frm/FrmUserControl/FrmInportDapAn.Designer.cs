@@ -49,7 +49,7 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(855, 642);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(447, 290);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
@@ -61,26 +61,26 @@
             this.menuStrip_Themmoi,
             this.menuStrip_Xoadong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 92);
+            this.menu_ug.Size = new System.Drawing.Size(146, 70);
             // 
             // menuStrip_Inport
             // 
             this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Inport.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_Inport.Text = "Inport đáp án";
             this.menuStrip_Inport.Click += new System.EventHandler(this.menuStrip_Inport_Click);
             // 
             // menuStrip_Themmoi
             // 
             this.menuStrip_Themmoi.Name = "menuStrip_Themmoi";
-            this.menuStrip_Themmoi.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Themmoi.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_Themmoi.Text = "Thêm mới";
             this.menuStrip_Themmoi.Click += new System.EventHandler(this.menuStrip_Themmoi_Click);
             // 
             // menuStrip_Xoadong
             // 
             this.menuStrip_Xoadong.Name = "menuStrip_Xoadong";
-            this.menuStrip_Xoadong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Xoadong.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_Xoadong.Text = "Xóa dòng";
             this.menuStrip_Xoadong.Click += new System.EventHandler(this.menuStrip_Xoadong_Click);
             // 
@@ -91,7 +91,7 @@
             this.Controls.Add(this.dgv_DanhSach);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmInportDapAn";
-            this.Size = new System.Drawing.Size(855, 642);
+            this.Size = new System.Drawing.Size(447, 290);
             this.Load += new System.EventHandler(this.FrmInportDapAn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);

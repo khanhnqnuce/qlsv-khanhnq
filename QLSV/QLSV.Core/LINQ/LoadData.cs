@@ -33,6 +33,8 @@ namespace QLSV.Core.LINQ
         private const string Str10 = "SELECT * FROM Kythi";
         private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaMon, MaDe, CauHoi, Dapan," +
                                      "IdKyThi FROM DapAn";
+        private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
+                                     " FROM BaiLam";
 
         #endregion
 
@@ -52,6 +54,7 @@ namespace QLSV.Core.LINQ
         /// 9:Trả về bảng phòng thi
         /// 10:Trả về bảng kỳ thi
         /// 11:Trả về bảng đáp án các mã đề
+        /// 12: Trả về danh sách bài làm của sinh viên
         public static DataTable Load(int chon)
         {
             try
@@ -91,6 +94,9 @@ namespace QLSV.Core.LINQ
                         break;
                     case 11:
                         table = Conn.GetTable(Str11);
+                        break;
+                    case 12:
+                        table = Conn.GetTable(Str12);
                         break;
                 }
                 return table;
