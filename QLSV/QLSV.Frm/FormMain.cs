@@ -27,6 +27,7 @@ namespace QLSV.Frm
         private static FrmDapAnCacMaDe _frmDapAnCacMaDe;
         private static FrmDanhSachBaiLam _frmDanhSachBaiLam;
         private bool _dangnhap = false;
+        private bool _thoat = false;
 
         public FormMain()
         {
@@ -79,10 +80,12 @@ namespace QLSV.Frm
                     case "doimatkhau":
                         break;
                     case "thoat":
+                        
                         if (DialogResult.Yes ==
                             MessageBox.Show(FormResource.msgThoat, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question))
                         {
+                            _thoat = true;
                             Application.Exit();
                         }
                         break;
@@ -473,7 +476,7 @@ namespace QLSV.Frm
             }
             else if (TabDanhsachbailam.Tab.Active)
             {
-
+                //_frmDanhSachBaiLam.Save();
             }
         }
 
@@ -513,7 +516,7 @@ namespace QLSV.Frm
             }
             else if (TabDanhsachbailam.Tab.Active)
             {
-
+                _frmDanhSachBaiLam.Xoa();
             }
         }
 
@@ -782,6 +785,7 @@ namespace QLSV.Frm
         {
             try
             {
+                if(_thoat) return;
                 var a = MessageBox.Show(@"Bạn có muốn thoát chương trình không?",
                     @"Thông báo",
                     MessageBoxButtons.OKCancel,
@@ -963,11 +967,11 @@ namespace QLSV.Frm
                     lbInsert.Visible = false;
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
+                    btnInds.Visible = false;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = true;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
                     btnDong.Visible = true;
                     b = false;
                 }
