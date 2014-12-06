@@ -13,16 +13,21 @@ using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmDanhSachBaiLam : FunctionControlHasGrid
     {
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
+        private readonly FrmTimkiem _frmTimkiem;
+        private UltraGridRow _newRow;
 
         public FrmDanhSachBaiLam()
         {
             InitializeComponent();
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
         #region Exit
 
@@ -111,6 +116,26 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         public void Huy()
         {
             try
@@ -164,7 +189,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
-                band.Columns["KetQua"].CellActivation = Activation.NoEdit;
+                band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
+                //band.Columns["KetQua"].CellAppearanc
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
@@ -251,6 +277,17 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
         {
             Huy();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

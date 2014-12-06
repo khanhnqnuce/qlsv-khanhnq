@@ -55,8 +55,8 @@ namespace QLSV.Core.LINQ
             try
             {
                 foreach (var sql in list.Select(item =>
-                                "insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(" +
-                                item.MaSinhVien + ",N'" + item.MaDe + "',N'" + item.KetQua + "'," +
+                                "insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(N'" +
+                                item.MaSinhVien + "',N'" + item.MaDe + "',N'" + item.KetQua + "'," +
                                 item.IdKyThi + ")"))
                 {
                     Conn.ExcuteQuerySql(sql);

@@ -9,7 +9,8 @@ namespace QLSV.Core.LINQ
         private String _conString;
         
         // Phương thức kết nối sql
-        private SqlConnection GetConnect(){
+        private SqlConnection GetConnect()
+        {
             _conString = @"Data Source=QUANGKHANH-PC;Initial Catalog=QLSV;Integrated Security=True";
             return new SqlConnection(_conString);
         }
@@ -19,7 +20,6 @@ namespace QLSV.Core.LINQ
             var dt = new DataTable();
             try
             {
-
                 var connect = GetConnect();
                 var ad = new SqlDataAdapter(sql, connect);
                 ad.Fill(dt);

@@ -108,6 +108,12 @@
     <Compile Include="FrmUserControl\FrmDapAnCacMaDe.Designer.cs">
       <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\FrmNhapThangDiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\FrmNhapThangDiem.Designer.cs">
+      <DependentUpon>FrmNhapThangDiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserControl\FrmSvDaXepPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmDapAnCacMaDe.resx">
       <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\FrmNhapThangDiem.resx">
+      <DependentUpon>FrmNhapThangDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
       <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
