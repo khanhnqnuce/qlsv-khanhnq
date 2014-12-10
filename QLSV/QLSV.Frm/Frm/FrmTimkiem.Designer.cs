@@ -37,21 +37,21 @@
             // txtmasinhvien
             // 
             this.txtmasinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtmasinhvien.Location = new System.Drawing.Point(143, 28);
+            this.txtmasinhvien.Location = new System.Drawing.Point(124, 28);
             this.txtmasinhvien.Name = "txtmasinhvien";
-            this.txtmasinhvien.Size = new System.Drawing.Size(161, 26);
+            this.txtmasinhvien.Size = new System.Drawing.Size(182, 26);
             this.txtmasinhvien.TabIndex = 8;
             this.txtmasinhvien.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyUp);
             // 
             // ultraLabel1
             // 
-            appearance1.TextHAlignAsString = "Right";
+            appearance1.TextHAlignAsString = "Left";
             appearance1.TextVAlignAsString = "Middle";
             this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel1.Location = new System.Drawing.Point(27, 30);
+            this.ultraLabel1.Location = new System.Drawing.Point(24, 30);
             this.ultraLabel1.Name = "ultraLabel1";
-            this.ultraLabel1.Size = new System.Drawing.Size(100, 23);
+            this.ultraLabel1.Size = new System.Drawing.Size(94, 23);
             this.ultraLabel1.TabIndex = 7;
             this.ultraLabel1.Text = "Mã sinh viên:";
             // 
@@ -64,7 +64,10 @@
             this.Controls.Add(this.txtmasinhvien);
             this.Controls.Add(this.ultraLabel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmTimkiem";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm kiếm";

@@ -11,6 +11,9 @@ namespace QLSV.Frm.Frm
         public FrmCheckXepPhong()
         {
             InitializeComponent();
+            //MaximizeBox = false;
+            //MinimizeBox = false;
+            //ShowIcon = false;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

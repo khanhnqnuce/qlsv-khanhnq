@@ -21,10 +21,10 @@ namespace QLSV.Frm.Frm
         public FrmThemsinhvien()
         {
             InitializeComponent();
-            Load();
+            LoadForm();
         }
 
-        private new void Load()
+        private void LoadForm()
         {
             cbokhoa.DataSource = QlsvSevice.Load<Khoa>();
             cbokhoa.ValueMember = "ID";
@@ -45,16 +45,6 @@ namespace QLSV.Frm.Frm
             cbolop.DropDownWidth = 0;
         }
 
-        private void btnthoat_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnhuy_Click(object sender, EventArgs e)
-        {
-            ClearAll();
-        }
-
         private void ClearAll()
         {
             txttensinhvien.Clear();
@@ -62,95 +52,6 @@ namespace QLSV.Frm.Frm
             cbongaysinh.Value = null;
             cbokhoa.Value = null;
             cbolop.Value = null;
-        }
-
-        private void btnthem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!Checkghi()) return;
-                if (Id == 0)
-                {
-                    var listLop = QlsvSevice.Load<Lop>();
-                    var listKhoa = QlsvSevice.Load<Khoa>();
-                    var listSinhVien = QlsvSevice.Load<SinhVien>();
-                    foreach (var sv in listSinhVien.Where(sv => sv.MaSinhVien == txtmasinhvien.Text))
-                    {
-                        MessageBox.Show(@"Sinh viên đã có trong CSDL");
-                        return;
-                    }
-                    foreach (var lop in listLop.Where(lop => lop.ID.ToString() == cbolop.Value.ToString()))
-                    {
-                        var hs = new SinhVien
-                        {
-                            MaSinhVien = txtmasinhvien.Text,
-                            HoSinhVien = txthotendem.Text,
-                            TenSinhVien = txttensinhvien.Text,
-                            NgaySinh = cbongaysinh.Text,
-                            IdLop = lop.ID,
-                        };
-                        QlsvSevice.Them(hs);
-                        Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                        ClearAll();
-                        return;
-                    }
-                    foreach (
-                        var khoa in
-                            listKhoa.Where(
-                                khoa => khoa.ID.ToString(CultureInfo.InvariantCulture) == cbokhoa.Value.ToString()))
-                    {
-                        var newLop1 = InsertData.ThemLop(cbolop.Text, khoa.ID);
-                        var hs = new SinhVien
-                        {
-                            MaSinhVien = txtmasinhvien.Text,
-                            HoSinhVien = txthotendem.Text,
-                            TenSinhVien = txttensinhvien.Text,
-                            NgaySinh = cbongaysinh.Text,
-                            IdLop = newLop1.ID
-                        };
-                        QlsvSevice.Them(hs);
-                        Themmoisinhvien(sender, hs, cbokhoa.Text);
-                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                        ClearAll();
-                        return;
-                    }
-                    var newkhoa = InsertData.ThemKhoa(cbokhoa.Text);
-                    var newLop3 = InsertData.ThemLop(cbolop.Text, newkhoa.ID);
-                    var hs1 = new SinhVien
-                    {
-                        MaSinhVien = txtmasinhvien.Text,
-                        HoSinhVien = txthotendem.Text,
-                        TenSinhVien = txttensinhvien.Text,
-                        NgaySinh = cbongaysinh.Text,
-                        IdLop = newLop3.ID
-                    };
-                    QlsvSevice.Them(hs1);
-                    Themmoisinhvien(sender, hs1, cbokhoa.Text);
-                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                    ClearAll();
-                }
-                else
-                {
-                    var hs1 = new SinhVien
-                    {
-                        ID = Id,
-                        MaSinhVien = txtmasinhvien.Text,
-                        HoSinhVien = txthotendem.Text,
-                        TenSinhVien = txttensinhvien.Text,
-                        NgaySinh = cbongaysinh.Text,
-                        IdLop = int.Parse(cbolop.Value.ToString())
-                    };
-                    QlsvSevice.Sua(hs1);
-                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                    Id = 0;
-                    Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
         }
 
         private bool Checkghi()
@@ -240,6 +141,105 @@ namespace QLSV.Frm.Frm
                     MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Checkghi()) return;
+                if (Id == 0)
+                {
+                    var listLop = QlsvSevice.Load<Lop>();
+                    var listKhoa = QlsvSevice.Load<Khoa>();
+                    var listSinhVien = QlsvSevice.Load<SinhVien>();
+                    foreach (var sv in listSinhVien.Where(sv => sv.MaSinhVien == txtmasinhvien.Text))
+                    {
+                        MessageBox.Show(@"Sinh viên đã có trong CSDL");
+                        return;
+                    }
+                    foreach (var lop in listLop.Where(lop => lop.ID.ToString() == cbolop.Value.ToString()))
+                    {
+                        var hs = new SinhVien
+                        {
+                            MaSinhVien = txtmasinhvien.Text,
+                            HoSinhVien = txthotendem.Text,
+                            TenSinhVien = txttensinhvien.Text,
+                            NgaySinh = cbongaysinh.Text,
+                            IdLop = lop.ID,
+                        };
+                        QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs, cbokhoa.Text);
+                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
+                        ClearAll();
+                        return;
+                    }
+                    foreach (
+                        var khoa in
+                            listKhoa.Where(
+                                khoa => khoa.ID.ToString(CultureInfo.InvariantCulture) == cbokhoa.Value.ToString()))
+                    {
+                        var newLop1 = InsertData.ThemLop(cbolop.Text, khoa.ID);
+                        var hs = new SinhVien
+                        {
+                            MaSinhVien = txtmasinhvien.Text,
+                            HoSinhVien = txthotendem.Text,
+                            TenSinhVien = txttensinhvien.Text,
+                            NgaySinh = cbongaysinh.Text,
+                            IdLop = newLop1.ID
+                        };
+                        QlsvSevice.Them(hs);
+                        Themmoisinhvien(sender, hs, cbokhoa.Text);
+                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
+                        ClearAll();
+                        return;
+                    }
+                    var newkhoa = InsertData.ThemKhoa(cbokhoa.Text);
+                    var newLop3 = InsertData.ThemLop(cbolop.Text, newkhoa.ID);
+                    var hs1 = new SinhVien
+                    {
+                        MaSinhVien = txtmasinhvien.Text,
+                        HoSinhVien = txthotendem.Text,
+                        TenSinhVien = txttensinhvien.Text,
+                        NgaySinh = cbongaysinh.Text,
+                        IdLop = newLop3.ID
+                    };
+                    QlsvSevice.Them(hs1);
+                    Themmoisinhvien(sender, hs1, cbokhoa.Text);
+                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
+                    ClearAll();
+                }
+                else
+                {
+                    var hs1 = new SinhVien
+                    {
+                        ID = Id,
+                        MaSinhVien = txtmasinhvien.Text,
+                        HoSinhVien = txthotendem.Text,
+                        TenSinhVien = txttensinhvien.Text,
+                        NgaySinh = cbongaysinh.Text,
+                        IdLop = int.Parse(cbolop.Value.ToString())
+                    };
+                    QlsvSevice.Sua(hs1);
+                    MessageBox.Show(@"Đã Thêm mới một sinh viên");
+                    Id = 0;
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+            ClearAll();
+        }
+
+        private void btndong_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

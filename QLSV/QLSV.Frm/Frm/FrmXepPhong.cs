@@ -54,7 +54,13 @@ namespace QLSV.Frm.Frm
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void btnthem_Click(object sender, EventArgs e)
+        private void FrmXepPhong_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_bCheckUpdate) return;
+            gb_bUpdate = false;
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cboPhongthi.Text))
             {
@@ -69,9 +75,9 @@ namespace QLSV.Frm.Frm
                     IdPhong = int.Parse(cboPhongthi.Value.ToString()),
                     IdKyThi = gb_iIdKythi
                 };
-                var a = UpdateData.XepPhong(hs);
-                var b = UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
-                var c = UpdateData.UpdatePhongThi(hs.IdPhong);
+                UpdateData.XepPhong(hs);
+                UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
+                UpdateData.UpdatePhongThi(hs.IdPhong);
                 gb_iIdPhong = int.Parse(cboPhongthi.Value.ToString());
                 _bCheckUpdate = true;
                 Close();
@@ -85,22 +91,16 @@ namespace QLSV.Frm.Frm
                     IdKyThi = gb_iIdKythi
 
                 };
-                var a = InsertData.XepPhong1(hs1);
-                var b = UpdateData.UpdatePhongThi(hs1.IdPhong);
+                InsertData.XepPhong1(hs1);
+                UpdateData.UpdatePhongThi(hs1.IdPhong);
                 gb_iIdsinhvien = 0;
                 Close();
             }
         }
 
-        private void btnthoat_Click(object sender, EventArgs e)
+        private void btndong_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void FrmXepPhong_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(_bCheckUpdate) return;
-            gb_bUpdate = false;
         }
     }
 }

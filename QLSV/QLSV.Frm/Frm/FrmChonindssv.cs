@@ -11,18 +11,18 @@ namespace QLSV.Frm.Frm
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            _ok = true;
-            Close();
-        }
-
         private void FrmChonindssv_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(_ok) return;
             rdoPhongthi.Checked = false;
             rdokhoa.Checked = false;
             rdoLop.Checked = false;
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            _ok = true;
+            Close();
         }
     }
 }

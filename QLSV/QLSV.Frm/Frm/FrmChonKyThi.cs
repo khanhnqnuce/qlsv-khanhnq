@@ -27,7 +27,12 @@ namespace QLSV.Frm.Frm
             cboKythi.Rows.Band.Columns["TenKyThi"].Width = 200;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FrmChonKyThi_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!b) cboKythi.Value = null;
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cboKythi.Text))
             {
@@ -36,11 +41,6 @@ namespace QLSV.Frm.Frm
             }
             b = true;
             Close();
-        }
-
-        private void FrmChonKyThi_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!b) cboKythi.Value = null;
         }
     }
 }

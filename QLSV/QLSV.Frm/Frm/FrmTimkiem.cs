@@ -12,6 +12,9 @@ namespace QLSV.Frm.Frm
         public FrmTimkiem()
         {
             InitializeComponent();
+            MaximizeBox = false;
+            MinimizeBox = false;
+            ShowIcon = false;
         }
 
         private void txtMaChucNang_KeyUp(object sender, KeyEventArgs e)

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_themdong = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,18 +40,28 @@
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.uG_DanhSach);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(816, 459);
             this.panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.uG_DanhSach);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(816, 459);
+            this.panel3.TabIndex = 27;
             // 
             // uG_DanhSach
             // 
@@ -135,6 +146,7 @@
             this.Size = new System.Drawing.Size(816, 459);
             this.Load += new System.EventHandler(this.FrmQuanLyNguoiDung_Load);
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -152,5 +164,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
+        private System.Windows.Forms.Panel panel3;
     }
 }

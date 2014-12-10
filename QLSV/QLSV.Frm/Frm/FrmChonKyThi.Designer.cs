@@ -44,10 +44,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChonKyThi));
             this.cboKythi = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.errorkythi = new System.Windows.Forms.ErrorProvider(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnChon = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.cboKythi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorkythi)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboKythi
@@ -107,7 +111,7 @@
             this.cboKythi.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cboKythi.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.cboKythi.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
-            this.cboKythi.Location = new System.Drawing.Point(112, 29);
+            this.cboKythi.Location = new System.Drawing.Point(112, 27);
             this.cboKythi.Name = "cboKythi";
             this.cboKythi.Size = new System.Drawing.Size(187, 25);
             this.cboKythi.TabIndex = 3;
@@ -115,21 +119,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 34);
+            this.label1.Location = new System.Drawing.Point(32, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Chọn kỳ thi:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(120, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 24);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // errorkythi
             // 
@@ -137,21 +131,58 @@
             this.errorkythi.ContainerControl = this;
             this.errorkythi.Icon = ((System.Drawing.Icon)(resources.GetObject("errorkythi.Icon")));
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnChon});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(331, 25);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnChon
+            // 
+            this.btnChon.Image = global::QLSV.Frm.Properties.Resources.ok_icon;
+            this.btnChon.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnChon.Name = "btnChon";
+            this.btnChon.Size = new System.Drawing.Size(56, 22);
+            this.btnChon.Text = "Chọn";
+            this.btnChon.ToolTipText = "(Enter)";
+            this.btnChon.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cboKythi);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(331, 79);
+            this.panel1.TabIndex = 6;
+            // 
             // FrmChonKyThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 109);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.cboKythi);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(331, 104);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmChonKyThi";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmChonKyThi_FormClosing);
             this.Load += new System.EventHandler(this.FrmChonKyThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cboKythi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorkythi)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,8 +192,10 @@
 
         public Infragistics.Win.UltraWinGrid.UltraCombo cboKythi;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ErrorProvider errorkythi;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnChon;
+        private System.Windows.Forms.Panel panel1;
 
     }
 }

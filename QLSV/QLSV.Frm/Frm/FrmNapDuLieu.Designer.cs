@@ -63,16 +63,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 32);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(21, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 15);
+            this.label1.Size = new System.Drawing.Size(189, 17);
             this.label1.TabIndex = 18;
             this.label1.Text = "Chọn đường dẫn file tải dữ liệu";
             // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(331, 63);
+            this.button1.Location = new System.Drawing.Point(331, 61);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 30);
             this.button1.TabIndex = 12;
@@ -82,7 +83,7 @@
             // 
             // txtTenFile
             // 
-            this.txtTenFile.Location = new System.Drawing.Point(21, 67);
+            this.txtTenFile.Location = new System.Drawing.Point(21, 65);
             this.txtTenFile.Name = "txtTenFile";
             this.txtTenFile.Size = new System.Drawing.Size(291, 22);
             this.txtTenFile.TabIndex = 11;
@@ -125,13 +126,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(452, 208);
-            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.upsbLoading);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmNapDuLieu";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nạp dữ liệu từ file excel";

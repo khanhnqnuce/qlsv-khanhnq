@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 namespace QLSV.Core.LINQ
 {
@@ -31,8 +32,7 @@ namespace QLSV.Core.LINQ
         private const string Str8 = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
         private const string Str9 = "SELECT * FROM PhongThi";
         private const string Str10 = "SELECT * FROM Kythi";
-        private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaMon, MaDe, CauHoi, Dapan," +
-                                     "IdKyThi FROM DapAn";
+        private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID";
         private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
                                      " FROM BaiLam";
 
@@ -100,6 +100,36 @@ namespace QLSV.Core.LINQ
                         break;
                 }
                 return table;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        public static Taikhoan KiemTraTaiKhoan(string user, string pass)
+        {
+            try
+            {
+                var str = "SELECT * FROM Taikhoan WHERE TaiKhoan = N'"+user+"' and MatKhau = N'"+pass+"'";
+                var tb = Conn.GetTable(str);
+                if (tb != null && tb.Rows.Count>0)
+                {
+                    var tk = new Taikhoan
+                        {
+                            ID = int.Parse(tb.Rows[0]["ID"].ToString()),
+                            TaiKhoan = tb.Rows[0]["TaiKhoan"].ToString(),
+                            MatKhau = tb.Rows[0]["MatKhau"].ToString(),
+                            HoTen = tb.Rows[0]["HoTen"].ToString(),
+                            Quyen = tb.Rows[0]["Quyen"].ToString(),
+                        };
+                    return tk;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception ex)
             {

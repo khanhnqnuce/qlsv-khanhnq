@@ -207,6 +207,8 @@
             this.Controls.Add(this.pnl_Chonkythi);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmCheckXepPhong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmChonindssv_FormClosing);

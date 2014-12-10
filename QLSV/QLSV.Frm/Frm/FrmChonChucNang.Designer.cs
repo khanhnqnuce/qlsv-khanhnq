@@ -44,14 +44,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(341, 43);
+            this.panel1.Size = new System.Drawing.Size(317, 37);
             this.panel1.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(115, 14);
+            this.label2.Location = new System.Drawing.Point(103, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 15);
             this.label2.TabIndex = 0;
@@ -61,7 +61,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 19);
+            this.label1.Location = new System.Drawing.Point(20, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 15);
             this.label1.TabIndex = 4;
@@ -69,10 +69,10 @@
             // 
             // txtMaChucNang
             // 
-            this.txtMaChucNang.Location = new System.Drawing.Point(192, 15);
+            this.txtMaChucNang.Location = new System.Drawing.Point(159, 11);
             this.txtMaChucNang.MaxLength = 10;
             this.txtMaChucNang.Name = "txtMaChucNang";
-            this.txtMaChucNang.Size = new System.Drawing.Size(95, 22);
+            this.txtMaChucNang.Size = new System.Drawing.Size(137, 22);
             this.txtMaChucNang.TabIndex = 6;
             this.txtMaChucNang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyDown);
             this.txtMaChucNang.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyUp);
@@ -82,9 +82,9 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.txtMaChucNang);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 43);
+            this.panel2.Location = new System.Drawing.Point(0, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(341, 52);
+            this.panel2.Size = new System.Drawing.Size(317, 45);
             this.panel2.TabIndex = 7;
             // 
             // FrmChonChucNang
@@ -92,12 +92,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(341, 95);
-            this.ControlBox = false;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.ClientSize = new System.Drawing.Size(317, 82);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmChonChucNang";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

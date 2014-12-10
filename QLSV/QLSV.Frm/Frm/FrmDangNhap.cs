@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using QLSV.Core.Service;
+using QLSV.Core.LINQ;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
@@ -10,9 +9,6 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmDangNhap : Form
     {
-        private readonly QlsvSevice _taikhoanSrv;
-        private IList<Taikhoan> _listCheck = new List<Taikhoan>();
-
         public delegate void CustomHandler(object sender, bool checkState, Taikhoan hs);
 
         public event CustomHandler CheckDangNhap;
@@ -20,7 +16,6 @@ namespace QLSV.Frm.Frm
         public FrmDangNhap()
         {
             InitializeComponent();
-            _taikhoanSrv = new QlsvSevice();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -83,10 +78,10 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                _listCheck = QlsvSevice.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
-                if (_listCheck!= null && _listCheck.Count > 0)
+                var taikhoan = LoadData.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
+                if (taikhoan != null)
                 {
-                    CheckDangNhap(this, true, _listCheck[0]);
+                    CheckDangNhap(this, true, taikhoan);
                 }
                 else
                 {
