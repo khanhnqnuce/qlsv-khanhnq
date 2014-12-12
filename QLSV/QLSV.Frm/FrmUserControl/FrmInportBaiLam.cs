@@ -141,7 +141,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var hs = new BaiLam
                     {
-                        MaSinhVien = row.Cells["MaSinhVien"].Text,
+                        MaSinhVien = double.Parse(row.Cells["MaSinhVien"].Text),
                         MaDe = row.Cells["MaDe"].Text,
                         KetQua = row.Cells["KetQua"].Text,
                         IdKyThi = _idKythi

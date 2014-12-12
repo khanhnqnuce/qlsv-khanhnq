@@ -209,6 +209,8 @@ namespace QLSV.Frm
                         ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;
                     case "205":
+                        var frm = new FrmKiemTraLoiLogic();
+                        frm.Indanhsach();
                         break;
                     case "206":
                         _frmNhapThangDiem = new FrmNhapThangDiem();

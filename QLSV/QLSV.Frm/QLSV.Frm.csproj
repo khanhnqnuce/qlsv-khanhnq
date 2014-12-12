@@ -156,6 +156,12 @@
     <Compile Include="Frm\FrmChonKyThi.Designer.cs">
       <DependentUpon>FrmChonKyThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmKiemTraLoiLogic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmKiemTraLoiLogic.Designer.cs">
+      <DependentUpon>FrmKiemTraLoiLogic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmNDLSinhVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +341,9 @@
     <EmbeddedResource Include="FrmUserControl\FrmInportSinhVien.resx">
       <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmKiemTraLoiLogic.resx">
+      <DependentUpon>FrmKiemTraLoiLogic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNDLSinhVien.resx">
       <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -402,6 +411,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Reports\dapandethi.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\kiemtrasinhvien.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

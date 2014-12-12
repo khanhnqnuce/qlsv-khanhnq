@@ -36,6 +36,8 @@ namespace QLSV.Core.LINQ
         private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
                                      " FROM BaiLam";
 
+        private const string Str13 = "select * from BaiLam b where not exists (select * from SinhVien s where b.MaSinhVien = s.MaSinhVien)";
+
         #endregion
 
         /// <summary>
@@ -54,7 +56,8 @@ namespace QLSV.Core.LINQ
         /// 9:Trả về bảng phòng thi
         /// 10:Trả về bảng kỳ thi
         /// 11:Trả về bảng đáp án các mã đề
-        /// 12: Trả về danh sách bài làm của sinh viên
+        /// 12:Trả về danh sách bài làm của sinh viên
+        /// 13:Kiểm tra những sinh viên có trong danh sách bài thi những không có trong danh sách dự thi 
         public static DataTable Load(int chon)
         {
             try
@@ -97,6 +100,9 @@ namespace QLSV.Core.LINQ
                         break;
                     case 12:
                         table = Conn.GetTable(Str12);
+                        break;
+                    case 13:
+                        table = Conn.GetTable(Str13);
                         break;
                 }
                 return table;
