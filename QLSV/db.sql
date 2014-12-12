@@ -91,15 +91,16 @@ CREATE TABLE DapAn
 	CONSTRAINT FK_DapAn_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
 )
 go
-CREATE TABLE KetQua
+CREATE TABLE BaiLam
 (
 	ID int identity(1,1),
 	IdKyThi int not null,
 	MaSinhVien nvarchar(255) not null,
 	MaDe nvarchar(255) not null,
 	KetQua nvarchar(255) not null,
-	CONSTRAINT PK_KetQua  primary key(ID),
-	CONSTRAINT FK_KetQua_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
+	DiemThi int,
+	CONSTRAINT PK_BaiLam  primary key(ID),
+	CONSTRAINT FK_BaiLam_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
 )
 
 TRUNCATE TABLE SinhVien
