@@ -62,6 +62,31 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// Sửa lại đáp án đúng của câu hỏi
+        /// </summary>
+        /// <param name="list">danh sách đối tượng đáp án được sửa</param>
+        /// <returns>true</returns>
+        public static bool UpdateThangDiem(IList<DapAn> list)
+        {
+            try
+            {
+                foreach (
+                    var sql in
+                        list.Select(
+                            item => "UPDATE DapAn SET ThangDiem = "+item.ThangDiem+" WHERE ID = " + item.ID + ""))
+                {
+                    Conn.ExcuteQuerySql(sql);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Sửa lại bài làm của sinh vien
         /// </summary>
         /// <param name="list">danh sách đối tượng bài làm đã được sửa</param>
@@ -177,6 +202,25 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("update XepPhong set IdPhong = " + hs.IdPhong + " WHERE IdSV = "+hs.IdSV+" and IdKythi = "+hs.IdKyThi+"");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Sửa mã sinh viên trong bảng bài làm
+        /// </summary>
+        /// <param name="hs"></param>
+        /// <returns>true</returns>
+        public static bool UpdateMaSinhVien(BaiLam hs)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update BaiLam set MaSinhVien = " + hs.MaSinhVien + " WHERE ID = " + hs.ID + "");
                 return true;
             }
             catch (Exception ex)

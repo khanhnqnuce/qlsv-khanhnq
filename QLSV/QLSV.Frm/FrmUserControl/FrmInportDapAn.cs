@@ -133,8 +133,8 @@ namespace QLSV.Frm.FrmUserControl
                     MaMon = row["MaMon"].ToString(),
                     MaDe = row["MaDe"].ToString(),
                     CauHoi = row["CauHoi"].ToString(),
-                    Dapan = row["Dapan"].ToString()
-                        
+                    Dapan = row["Dapan"].ToString(),
+                    ThangDiem = 0
                 })
                 {
                     _listAdd.Add(hs);

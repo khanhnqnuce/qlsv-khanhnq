@@ -102,11 +102,11 @@
     <Compile Include="FrmUserControl\FrmDanhSachBaiLam.Designer.cs">
       <DependentUpon>FrmDanhSachBaiLam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDapAnCacMaDe.cs">
+    <Compile Include="FrmUserControl\FrmDanhSachDapAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDapAnCacMaDe.Designer.cs">
-      <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
+    <Compile Include="FrmUserControl\FrmDanhSachDapAn.Designer.cs">
+      <DependentUpon>FrmDanhSachDapAn.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\FrmNhapThangDiem.cs">
       <SubType>UserControl</SubType>
@@ -161,6 +161,12 @@
     </Compile>
     <Compile Include="Frm\FrmNDLSinhVien.Designer.cs">
       <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmSuaMaSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmSuaMaSinhVien.Designer.cs">
+      <DependentUpon>FrmSuaMaSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmThemsinhvien.cs">
       <SubType>Form</SubType>
@@ -267,45 +273,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Resources\report_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\close_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\inport_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\close_tab_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\refresh_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\save.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ic_excel.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ic_delete.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ic_add.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ok_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Ribbon_Find_32x32.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Ribbon_Exit_32x32.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Ribbon_Save_32x32.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,8 +292,8 @@
     <EmbeddedResource Include="FrmUserControl\FrmDanhSachBaiLam.resx">
       <DependentUpon>FrmDanhSachBaiLam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDapAnCacMaDe.resx">
-      <DependentUpon>FrmDapAnCacMaDe.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\FrmDanhSachDapAn.resx">
+      <DependentUpon>FrmDanhSachDapAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmNhapThangDiem.resx">
       <DependentUpon>FrmNhapThangDiem.cs</DependentUpon>
@@ -382,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\FrmQuanLySinhVien.resx">
       <DependentUpon>FrmQuanLySinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmSuaMaSinhVien.resx">
+      <DependentUpon>FrmSuaMaSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmThemsinhvien.resx">
       <DependentUpon>FrmThemsinhvien.cs</DependentUpon>

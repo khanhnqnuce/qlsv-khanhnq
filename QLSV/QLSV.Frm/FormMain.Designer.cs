@@ -76,19 +76,20 @@
             Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab7 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab8 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab9 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab10 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab17 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab11 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab12 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab28 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab29 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab30 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab31 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab32 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab33 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab34 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab35 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab36 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab37 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab38 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab39 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab40 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab41 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             this.Tabquanlynguoidung = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlynguoidung = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -160,6 +161,60 @@
             this.TabPageControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ultraTabSharedControlsPage3 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
+            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.panel30 = new System.Windows.Forms.Panel();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel32 = new System.Windows.Forms.Panel();
+            this.panel33 = new System.Windows.Forms.Panel();
+            this.panel34 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl3 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.panel36 = new System.Windows.Forms.Panel();
+            this.panel37 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl4 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel38 = new System.Windows.Forms.Panel();
+            this.panel39 = new System.Windows.Forms.Panel();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl5 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel41 = new System.Windows.Forms.Panel();
+            this.panel42 = new System.Windows.Forms.Panel();
+            this.panel43 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl6 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel44 = new System.Windows.Forms.Panel();
+            this.panel45 = new System.Windows.Forms.Panel();
+            this.panel46 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl7 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel47 = new System.Windows.Forms.Panel();
+            this.panel48 = new System.Windows.Forms.Panel();
+            this.panel49 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl8 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel50 = new System.Windows.Forms.Panel();
+            this.panel51 = new System.Windows.Forms.Panel();
+            this.panel52 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl9 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel53 = new System.Windows.Forms.Panel();
+            this.panel54 = new System.Windows.Forms.Panel();
+            this.panel55 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl10 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel56 = new System.Windows.Forms.Panel();
+            this.panel57 = new System.Windows.Forms.Panel();
+            this.panel58 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl11 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel59 = new System.Windows.Forms.Panel();
+            this.panel60 = new System.Windows.Forms.Panel();
+            this.panel61 = new System.Windows.Forms.Panel();
+            this.ultraTabPageControl12 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.panel62 = new System.Windows.Forms.Panel();
+            this.panel63 = new System.Windows.Forms.Panel();
+            this.panel64 = new System.Windows.Forms.Panel();
+            this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
+            this.TabNhapthangdiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_nhapthangdiem = new System.Windows.Forms.Panel();
+            this.panel66 = new System.Windows.Forms.Panel();
+            this.panel67 = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -179,6 +234,21 @@
             this.pn_Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).BeginInit();
             this.TabPageControl.SuspendLayout();
+            this.ultraTabPageControl1.SuspendLayout();
+            this.ultraTabPageControl2.SuspendLayout();
+            this.ultraTabPageControl3.SuspendLayout();
+            this.ultraTabPageControl4.SuspendLayout();
+            this.ultraTabPageControl5.SuspendLayout();
+            this.ultraTabPageControl6.SuspendLayout();
+            this.ultraTabPageControl7.SuspendLayout();
+            this.ultraTabPageControl8.SuspendLayout();
+            this.ultraTabPageControl9.SuspendLayout();
+            this.ultraTabPageControl10.SuspendLayout();
+            this.ultraTabPageControl11.SuspendLayout();
+            this.ultraTabPageControl12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
+            this.ultraTabControl1.SuspendLayout();
+            this.TabNhapthangdiem.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -186,7 +256,7 @@
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
             this.Tabquanlynguoidung.Controls.Add(this.panel10);
             this.Tabquanlynguoidung.Controls.Add(this.panel9);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(978, 499);
             // 
@@ -973,6 +1043,7 @@
             this.TabPageControl.Controls.Add(this.TabInportbailam);
             this.TabPageControl.Controls.Add(this.TabDapanmade);
             this.TabPageControl.Controls.Add(this.TabDanhsachbailam);
+            this.TabPageControl.Controls.Add(this.TabNhapthangdiem);
             this.TabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabPageControl.Location = new System.Drawing.Point(215, 0);
             this.TabPageControl.Name = "TabPageControl";
@@ -980,59 +1051,63 @@
             this.TabPageControl.Size = new System.Drawing.Size(982, 526);
             this.TabPageControl.TabIndex = 5;
             this.TabPageControl.TabOrientation = Infragistics.Win.UltraWinTabs.TabOrientation.BottomLeft;
-            ultraTab4.TabPage = this.Tabquanlynguoidung;
-            ultraTab4.Text = "Quảng lý người dùng";
-            ultraTab4.Visible = false;
-            ultraTab5.TabPage = this.Tabdanhmuckhoa;
-            ultraTab5.Text = "Danh mục khoa";
-            ultraTab5.Visible = false;
-            ultraTab6.TabPage = this.Tabdanhmuclop;
-            ultraTab6.Text = "Danh mục lớp";
-            ultraTab6.Visible = false;
-            ultraTab7.TabPage = this.TabInportsinhvien;
-            ultraTab7.Text = "Inport Sinh viên";
-            ultraTab7.Visible = false;
-            ultraTab8.TabPage = this.Tabquanlysinhvien;
-            ultraTab8.Text = "Quản lý sinh viên";
-            ultraTab8.Visible = false;
-            ultraTab9.TabPage = this.Tabquanlykythi;
-            ultraTab9.Text = "Quảng lý kỳ thi";
-            ultraTab9.Visible = false;
-            ultraTab10.TabPage = this.Tabdanhsachphongthi;
-            ultraTab10.Text = "Danh sách phòng";
-            ultraTab10.Visible = false;
-            ultraTab17.TabPage = this.TabSapxepphongthi;
-            ultraTab17.Text = "Sắp xếp SV vào phòng thi";
-            ultraTab17.Visible = false;
-            ultraTab1.TabPage = this.Tabdaxepphong;
-            ultraTab1.Text = "Danh Sách SV đã xếp phòng";
-            ultraTab1.Visible = false;
-            ultraTab2.TabPage = this.TabInportdapdan;
-            ultraTab2.Text = "Inport đáp án";
-            ultraTab2.Visible = false;
-            ultraTab11.TabPage = this.TabDapanmade;
-            ultraTab11.Text = "Đáp án các mã đề";
-            ultraTab11.Visible = false;
-            ultraTab3.TabPage = this.TabInportbailam;
-            ultraTab3.Text = "Inport bài làm";
-            ultraTab3.Visible = false;
-            ultraTab12.TabPage = this.TabDanhsachbailam;
-            ultraTab12.Text = "Danh sách bài làm";
-            ultraTab12.Visible = false;
+            ultraTab28.TabPage = this.Tabquanlynguoidung;
+            ultraTab28.Text = "Quảng lý người dùng";
+            ultraTab28.Visible = false;
+            ultraTab29.TabPage = this.Tabdanhmuckhoa;
+            ultraTab29.Text = "Danh mục khoa";
+            ultraTab29.Visible = false;
+            ultraTab30.TabPage = this.Tabdanhmuclop;
+            ultraTab30.Text = "Danh mục lớp";
+            ultraTab30.Visible = false;
+            ultraTab31.TabPage = this.TabInportsinhvien;
+            ultraTab31.Text = "Inport Sinh viên";
+            ultraTab31.Visible = false;
+            ultraTab32.TabPage = this.Tabquanlysinhvien;
+            ultraTab32.Text = "Quản lý sinh viên";
+            ultraTab32.Visible = false;
+            ultraTab33.TabPage = this.Tabquanlykythi;
+            ultraTab33.Text = "Quảng lý kỳ thi";
+            ultraTab33.Visible = false;
+            ultraTab34.TabPage = this.Tabdanhsachphongthi;
+            ultraTab34.Text = "Danh sách phòng";
+            ultraTab34.Visible = false;
+            ultraTab35.TabPage = this.TabSapxepphongthi;
+            ultraTab35.Text = "Sắp xếp SV vào phòng thi";
+            ultraTab35.Visible = false;
+            ultraTab36.TabPage = this.Tabdaxepphong;
+            ultraTab36.Text = "Danh Sách SV đã xếp phòng";
+            ultraTab36.Visible = false;
+            ultraTab37.TabPage = this.TabInportdapdan;
+            ultraTab37.Text = "Inport đáp án";
+            ultraTab37.Visible = false;
+            ultraTab38.TabPage = this.TabDapanmade;
+            ultraTab38.Text = "Đáp án các mã đề";
+            ultraTab38.Visible = false;
+            ultraTab39.TabPage = this.TabInportbailam;
+            ultraTab39.Text = "Inport bài làm";
+            ultraTab39.Visible = false;
+            ultraTab40.TabPage = this.TabDanhsachbailam;
+            ultraTab40.Text = "Danh sách bài làm";
+            ultraTab40.Visible = false;
+            ultraTab41.TabPage = this.TabNhapthangdiem;
+            ultraTab41.Text = "Nhập thang điểm";
+            ultraTab41.Visible = false;
             this.TabPageControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
-            ultraTab4,
-            ultraTab5,
-            ultraTab6,
-            ultraTab7,
-            ultraTab8,
-            ultraTab9,
-            ultraTab10,
-            ultraTab17,
-            ultraTab1,
-            ultraTab2,
-            ultraTab11,
-            ultraTab3,
-            ultraTab12});
+            ultraTab28,
+            ultraTab29,
+            ultraTab30,
+            ultraTab31,
+            ultraTab32,
+            ultraTab33,
+            ultraTab34,
+            ultraTab35,
+            ultraTab36,
+            ultraTab37,
+            ultraTab38,
+            ultraTab39,
+            ultraTab40,
+            ultraTab41});
             this.TabPageControl.SelectedTabChanged += new Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventHandler(this.TabPageControl_SelectedTabChanged);
             // 
             // ultraTabSharedControlsPage1
@@ -1045,6 +1120,461 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
+            // 
+            // ultraTabSharedControlsPage3
+            // 
+            this.ultraTabSharedControlsPage3.Location = new System.Drawing.Point(1, 20);
+            this.ultraTabSharedControlsPage3.Name = "ultraTabSharedControlsPage3";
+            this.ultraTabSharedControlsPage3.Size = new System.Drawing.Size(196, 77);
+            // 
+            // ultraTabPageControl1
+            // 
+            this.ultraTabPageControl1.Controls.Add(this.panel29);
+            this.ultraTabPageControl1.Controls.Add(this.panel30);
+            this.ultraTabPageControl1.Controls.Add(this.panel31);
+            this.ultraTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
+            this.ultraTabPageControl1.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel29
+            // 
+            this.panel29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel29.Location = new System.Drawing.Point(140, 0);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(698, 499);
+            this.panel29.TabIndex = 3;
+            // 
+            // panel30
+            // 
+            this.panel30.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel30.Location = new System.Drawing.Point(0, 0);
+            this.panel30.Name = "panel30";
+            this.panel30.Size = new System.Drawing.Size(140, 499);
+            this.panel30.TabIndex = 2;
+            // 
+            // panel31
+            // 
+            this.panel31.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel31.Location = new System.Drawing.Point(838, 0);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(140, 499);
+            this.panel31.TabIndex = 1;
+            // 
+            // ultraTabPageControl2
+            // 
+            this.ultraTabPageControl2.Controls.Add(this.panel32);
+            this.ultraTabPageControl2.Controls.Add(this.panel33);
+            this.ultraTabPageControl2.Controls.Add(this.panel34);
+            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
+            this.ultraTabPageControl2.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel32
+            // 
+            this.panel32.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel32.Location = new System.Drawing.Point(340, 0);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(298, 499);
+            this.panel32.TabIndex = 5;
+            // 
+            // panel33
+            // 
+            this.panel33.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel33.Location = new System.Drawing.Point(0, 0);
+            this.panel33.Name = "panel33";
+            this.panel33.Size = new System.Drawing.Size(340, 499);
+            this.panel33.TabIndex = 4;
+            // 
+            // panel34
+            // 
+            this.panel34.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel34.Location = new System.Drawing.Point(638, 0);
+            this.panel34.Name = "panel34";
+            this.panel34.Size = new System.Drawing.Size(340, 499);
+            this.panel34.TabIndex = 3;
+            // 
+            // ultraTabPageControl3
+            // 
+            this.ultraTabPageControl3.Controls.Add(this.panel35);
+            this.ultraTabPageControl3.Controls.Add(this.panel36);
+            this.ultraTabPageControl3.Controls.Add(this.panel37);
+            this.ultraTabPageControl3.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl3.Name = "ultraTabPageControl3";
+            this.ultraTabPageControl3.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel35
+            // 
+            this.panel35.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel35.Location = new System.Drawing.Point(190, 0);
+            this.panel35.Name = "panel35";
+            this.panel35.Size = new System.Drawing.Size(598, 499);
+            this.panel35.TabIndex = 5;
+            // 
+            // panel36
+            // 
+            this.panel36.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel36.Location = new System.Drawing.Point(0, 0);
+            this.panel36.Name = "panel36";
+            this.panel36.Size = new System.Drawing.Size(190, 499);
+            this.panel36.TabIndex = 4;
+            // 
+            // panel37
+            // 
+            this.panel37.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel37.Location = new System.Drawing.Point(788, 0);
+            this.panel37.Name = "panel37";
+            this.panel37.Size = new System.Drawing.Size(190, 499);
+            this.panel37.TabIndex = 3;
+            // 
+            // ultraTabPageControl4
+            // 
+            this.ultraTabPageControl4.Controls.Add(this.panel38);
+            this.ultraTabPageControl4.Controls.Add(this.panel39);
+            this.ultraTabPageControl4.Controls.Add(this.panel40);
+            this.ultraTabPageControl4.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl4.Name = "ultraTabPageControl4";
+            this.ultraTabPageControl4.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel38
+            // 
+            this.panel38.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel38.Location = new System.Drawing.Point(55, 0);
+            this.panel38.Name = "panel38";
+            this.panel38.Size = new System.Drawing.Size(868, 499);
+            this.panel38.TabIndex = 5;
+            // 
+            // panel39
+            // 
+            this.panel39.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel39.Location = new System.Drawing.Point(923, 0);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(55, 499);
+            this.panel39.TabIndex = 4;
+            // 
+            // panel40
+            // 
+            this.panel40.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel40.Location = new System.Drawing.Point(0, 0);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(55, 499);
+            this.panel40.TabIndex = 3;
+            // 
+            // ultraTabPageControl5
+            // 
+            this.ultraTabPageControl5.Controls.Add(this.panel41);
+            this.ultraTabPageControl5.Controls.Add(this.panel42);
+            this.ultraTabPageControl5.Controls.Add(this.panel43);
+            this.ultraTabPageControl5.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl5.Name = "ultraTabPageControl5";
+            this.ultraTabPageControl5.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel41
+            // 
+            this.panel41.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel41.Location = new System.Drawing.Point(93, 0);
+            this.panel41.Name = "panel41";
+            this.panel41.Size = new System.Drawing.Size(792, 499);
+            this.panel41.TabIndex = 3;
+            // 
+            // panel42
+            // 
+            this.panel42.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel42.Location = new System.Drawing.Point(885, 0);
+            this.panel42.Name = "panel42";
+            this.panel42.Size = new System.Drawing.Size(93, 499);
+            this.panel42.TabIndex = 2;
+            // 
+            // panel43
+            // 
+            this.panel43.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel43.Location = new System.Drawing.Point(0, 0);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(93, 499);
+            this.panel43.TabIndex = 1;
+            // 
+            // ultraTabPageControl6
+            // 
+            this.ultraTabPageControl6.Controls.Add(this.panel44);
+            this.ultraTabPageControl6.Controls.Add(this.panel45);
+            this.ultraTabPageControl6.Controls.Add(this.panel46);
+            this.ultraTabPageControl6.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl6.Name = "ultraTabPageControl6";
+            this.ultraTabPageControl6.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel44
+            // 
+            this.panel44.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel44.Location = new System.Drawing.Point(110, 0);
+            this.panel44.Name = "panel44";
+            this.panel44.Size = new System.Drawing.Size(758, 499);
+            this.panel44.TabIndex = 8;
+            // 
+            // panel45
+            // 
+            this.panel45.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel45.Location = new System.Drawing.Point(868, 0);
+            this.panel45.Name = "panel45";
+            this.panel45.Size = new System.Drawing.Size(110, 499);
+            this.panel45.TabIndex = 7;
+            // 
+            // panel46
+            // 
+            this.panel46.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel46.Location = new System.Drawing.Point(0, 0);
+            this.panel46.Name = "panel46";
+            this.panel46.Size = new System.Drawing.Size(110, 499);
+            this.panel46.TabIndex = 6;
+            // 
+            // ultraTabPageControl7
+            // 
+            this.ultraTabPageControl7.Controls.Add(this.panel47);
+            this.ultraTabPageControl7.Controls.Add(this.panel48);
+            this.ultraTabPageControl7.Controls.Add(this.panel49);
+            this.ultraTabPageControl7.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl7.Name = "ultraTabPageControl7";
+            this.ultraTabPageControl7.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel47
+            // 
+            this.panel47.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel47.Location = new System.Drawing.Point(290, 0);
+            this.panel47.Name = "panel47";
+            this.panel47.Size = new System.Drawing.Size(398, 499);
+            this.panel47.TabIndex = 6;
+            // 
+            // panel48
+            // 
+            this.panel48.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel48.Location = new System.Drawing.Point(688, 0);
+            this.panel48.Name = "panel48";
+            this.panel48.Size = new System.Drawing.Size(290, 499);
+            this.panel48.TabIndex = 5;
+            // 
+            // panel49
+            // 
+            this.panel49.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel49.Location = new System.Drawing.Point(0, 0);
+            this.panel49.Name = "panel49";
+            this.panel49.Size = new System.Drawing.Size(290, 499);
+            this.panel49.TabIndex = 4;
+            // 
+            // ultraTabPageControl8
+            // 
+            this.ultraTabPageControl8.Controls.Add(this.panel50);
+            this.ultraTabPageControl8.Controls.Add(this.panel51);
+            this.ultraTabPageControl8.Controls.Add(this.panel52);
+            this.ultraTabPageControl8.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl8.Name = "ultraTabPageControl8";
+            this.ultraTabPageControl8.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel50
+            // 
+            this.panel50.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel50.Location = new System.Drawing.Point(190, 0);
+            this.panel50.Name = "panel50";
+            this.panel50.Size = new System.Drawing.Size(598, 499);
+            this.panel50.TabIndex = 4;
+            // 
+            // panel51
+            // 
+            this.panel51.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel51.Location = new System.Drawing.Point(788, 0);
+            this.panel51.Name = "panel51";
+            this.panel51.Size = new System.Drawing.Size(190, 499);
+            this.panel51.TabIndex = 3;
+            // 
+            // panel52
+            // 
+            this.panel52.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel52.Location = new System.Drawing.Point(0, 0);
+            this.panel52.Name = "panel52";
+            this.panel52.Size = new System.Drawing.Size(190, 499);
+            this.panel52.TabIndex = 3;
+            // 
+            // ultraTabPageControl9
+            // 
+            this.ultraTabPageControl9.Controls.Add(this.panel53);
+            this.ultraTabPageControl9.Controls.Add(this.panel54);
+            this.ultraTabPageControl9.Controls.Add(this.panel55);
+            this.ultraTabPageControl9.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl9.Name = "ultraTabPageControl9";
+            this.ultraTabPageControl9.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel53
+            // 
+            this.panel53.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel53.Location = new System.Drawing.Point(190, 0);
+            this.panel53.Name = "panel53";
+            this.panel53.Size = new System.Drawing.Size(598, 499);
+            this.panel53.TabIndex = 6;
+            // 
+            // panel54
+            // 
+            this.panel54.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel54.Location = new System.Drawing.Point(788, 0);
+            this.panel54.Name = "panel54";
+            this.panel54.Size = new System.Drawing.Size(190, 499);
+            this.panel54.TabIndex = 5;
+            // 
+            // panel55
+            // 
+            this.panel55.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel55.Location = new System.Drawing.Point(0, 0);
+            this.panel55.Name = "panel55";
+            this.panel55.Size = new System.Drawing.Size(190, 499);
+            this.panel55.TabIndex = 4;
+            // 
+            // ultraTabPageControl10
+            // 
+            this.ultraTabPageControl10.Controls.Add(this.panel56);
+            this.ultraTabPageControl10.Controls.Add(this.panel57);
+            this.ultraTabPageControl10.Controls.Add(this.panel58);
+            this.ultraTabPageControl10.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl10.Name = "ultraTabPageControl10";
+            this.ultraTabPageControl10.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel56
+            // 
+            this.panel56.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel56.Location = new System.Drawing.Point(330, 0);
+            this.panel56.Name = "panel56";
+            this.panel56.Size = new System.Drawing.Size(318, 499);
+            this.panel56.TabIndex = 10;
+            // 
+            // panel57
+            // 
+            this.panel57.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel57.Location = new System.Drawing.Point(0, 0);
+            this.panel57.Name = "panel57";
+            this.panel57.Size = new System.Drawing.Size(330, 499);
+            this.panel57.TabIndex = 9;
+            // 
+            // panel58
+            // 
+            this.panel58.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel58.Location = new System.Drawing.Point(648, 0);
+            this.panel58.Name = "panel58";
+            this.panel58.Size = new System.Drawing.Size(330, 499);
+            this.panel58.TabIndex = 8;
+            // 
+            // ultraTabPageControl11
+            // 
+            this.ultraTabPageControl11.Controls.Add(this.panel59);
+            this.ultraTabPageControl11.Controls.Add(this.panel60);
+            this.ultraTabPageControl11.Controls.Add(this.panel61);
+            this.ultraTabPageControl11.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl11.Name = "ultraTabPageControl11";
+            this.ultraTabPageControl11.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel59
+            // 
+            this.panel59.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel59.Location = new System.Drawing.Point(170, 0);
+            this.panel59.Name = "panel59";
+            this.panel59.Size = new System.Drawing.Size(638, 499);
+            this.panel59.TabIndex = 10;
+            // 
+            // panel60
+            // 
+            this.panel60.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel60.Location = new System.Drawing.Point(0, 0);
+            this.panel60.Name = "panel60";
+            this.panel60.Size = new System.Drawing.Size(170, 499);
+            this.panel60.TabIndex = 9;
+            // 
+            // panel61
+            // 
+            this.panel61.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel61.Location = new System.Drawing.Point(808, 0);
+            this.panel61.Name = "panel61";
+            this.panel61.Size = new System.Drawing.Size(170, 499);
+            this.panel61.TabIndex = 8;
+            // 
+            // ultraTabPageControl12
+            // 
+            this.ultraTabPageControl12.Controls.Add(this.panel62);
+            this.ultraTabPageControl12.Controls.Add(this.panel63);
+            this.ultraTabPageControl12.Controls.Add(this.panel64);
+            this.ultraTabPageControl12.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl12.Name = "ultraTabPageControl12";
+            this.ultraTabPageControl12.Size = new System.Drawing.Size(978, 499);
+            // 
+            // panel62
+            // 
+            this.panel62.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel62.Location = new System.Drawing.Point(330, 0);
+            this.panel62.Name = "panel62";
+            this.panel62.Size = new System.Drawing.Size(318, 499);
+            this.panel62.TabIndex = 8;
+            // 
+            // panel63
+            // 
+            this.panel63.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel63.Location = new System.Drawing.Point(0, 0);
+            this.panel63.Name = "panel63";
+            this.panel63.Size = new System.Drawing.Size(330, 499);
+            this.panel63.TabIndex = 7;
+            // 
+            // panel64
+            // 
+            this.panel64.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel64.Location = new System.Drawing.Point(648, 0);
+            this.panel64.Name = "panel64";
+            this.panel64.Size = new System.Drawing.Size(330, 499);
+            this.panel64.TabIndex = 6;
+            // 
+            // ultraTabControl1
+            // 
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl1);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl2);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl3);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl4);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl5);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl6);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl7);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl8);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl9);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl10);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl11);
+            this.ultraTabControl1.Controls.Add(this.ultraTabPageControl12);
+            this.ultraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.ultraTabControl1.Name = "ultraTabControl1";
+            this.ultraTabControl1.SharedControlsPage = this.ultraTabSharedControlsPage3;
+            this.ultraTabControl1.Size = new System.Drawing.Size(200, 100);
+            this.ultraTabControl1.TabIndex = 0;
+            // 
+            // TabNhapthangdiem
+            // 
+            this.TabNhapthangdiem.Controls.Add(this.pnl_nhapthangdiem);
+            this.TabNhapthangdiem.Controls.Add(this.panel66);
+            this.TabNhapthangdiem.Controls.Add(this.panel67);
+            this.TabNhapthangdiem.Location = new System.Drawing.Point(1, 1);
+            this.TabNhapthangdiem.Name = "TabNhapthangdiem";
+            this.TabNhapthangdiem.Size = new System.Drawing.Size(978, 499);
+            // 
+            // pnl_nhapthangdiem
+            // 
+            this.pnl_nhapthangdiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_nhapthangdiem.Location = new System.Drawing.Point(270, 0);
+            this.pnl_nhapthangdiem.Name = "pnl_nhapthangdiem";
+            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(438, 499);
+            this.pnl_nhapthangdiem.TabIndex = 11;
+            // 
+            // panel66
+            // 
+            this.panel66.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel66.Location = new System.Drawing.Point(0, 0);
+            this.panel66.Name = "panel66";
+            this.panel66.Size = new System.Drawing.Size(270, 499);
+            this.panel66.TabIndex = 10;
+            // 
+            // panel67
+            // 
+            this.panel67.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel67.Location = new System.Drawing.Point(708, 0);
+            this.panel67.Name = "panel67";
+            this.panel67.Size = new System.Drawing.Size(270, 499);
+            this.panel67.TabIndex = 9;
             // 
             // FormMain
             // 
@@ -1081,6 +1611,21 @@
             this.pn_Button.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabPageControl)).EndInit();
             this.TabPageControl.ResumeLayout(false);
+            this.ultraTabPageControl1.ResumeLayout(false);
+            this.ultraTabPageControl2.ResumeLayout(false);
+            this.ultraTabPageControl3.ResumeLayout(false);
+            this.ultraTabPageControl4.ResumeLayout(false);
+            this.ultraTabPageControl5.ResumeLayout(false);
+            this.ultraTabPageControl6.ResumeLayout(false);
+            this.ultraTabPageControl7.ResumeLayout(false);
+            this.ultraTabPageControl8.ResumeLayout(false);
+            this.ultraTabPageControl9.ResumeLayout(false);
+            this.ultraTabPageControl10.ResumeLayout(false);
+            this.ultraTabPageControl11.ResumeLayout(false);
+            this.ultraTabPageControl12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
+            this.ultraTabControl1.ResumeLayout(false);
+            this.TabNhapthangdiem.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1158,5 +1703,59 @@
         private System.Windows.Forms.Panel pn_danhmuckhoa;
         private System.Windows.Forms.Panel pn_danhmuclop;
         private System.Windows.Forms.Panel pn_quanlykythi;
+        private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage3;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.Panel panel31;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl2;
+        private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Panel panel33;
+        private System.Windows.Forms.Panel panel34;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl3;
+        private System.Windows.Forms.Panel panel35;
+        private System.Windows.Forms.Panel panel36;
+        private System.Windows.Forms.Panel panel37;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl4;
+        private System.Windows.Forms.Panel panel38;
+        private System.Windows.Forms.Panel panel39;
+        private System.Windows.Forms.Panel panel40;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl5;
+        private System.Windows.Forms.Panel panel41;
+        private System.Windows.Forms.Panel panel42;
+        private System.Windows.Forms.Panel panel43;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl6;
+        private System.Windows.Forms.Panel panel44;
+        private System.Windows.Forms.Panel panel45;
+        private System.Windows.Forms.Panel panel46;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl7;
+        private System.Windows.Forms.Panel panel47;
+        private System.Windows.Forms.Panel panel48;
+        private System.Windows.Forms.Panel panel49;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl8;
+        private System.Windows.Forms.Panel panel50;
+        private System.Windows.Forms.Panel panel51;
+        private System.Windows.Forms.Panel panel52;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl9;
+        private System.Windows.Forms.Panel panel53;
+        private System.Windows.Forms.Panel panel54;
+        private System.Windows.Forms.Panel panel55;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl10;
+        private System.Windows.Forms.Panel panel56;
+        private System.Windows.Forms.Panel panel57;
+        private System.Windows.Forms.Panel panel58;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl11;
+        private System.Windows.Forms.Panel panel59;
+        private System.Windows.Forms.Panel panel60;
+        private System.Windows.Forms.Panel panel61;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl12;
+        private System.Windows.Forms.Panel panel62;
+        private System.Windows.Forms.Panel panel63;
+        private System.Windows.Forms.Panel panel64;
+        private Infragistics.Win.UltraWinTabControl.UltraTabControl ultraTabControl1;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabNhapthangdiem;
+        private System.Windows.Forms.Panel pnl_nhapthangdiem;
+        private System.Windows.Forms.Panel panel66;
+        private System.Windows.Forms.Panel panel67;
     }
 }

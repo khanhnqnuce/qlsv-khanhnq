@@ -29,17 +29,18 @@ namespace QLSV.Frm.FrmUserControl
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
+
         #region Exit
 
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSinhVien", typeof(string));
-            table.Columns.Add("MaDe", typeof(string));
-            table.Columns.Add("KetQua", typeof(string));
-            table.Columns.Add("IdKyThi", typeof(string));
+            table.Columns.Add("ID", typeof (int));
+            table.Columns.Add("STT", typeof (int));
+            table.Columns.Add("MaSinhVien", typeof (string));
+            table.Columns.Add("MaDe", typeof (string));
+            table.Columns.Add("KetQua", typeof (string));
+            table.Columns.Add("IdKyThi", typeof (string));
             return table;
         }
 
@@ -60,9 +61,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                Invoke((Action)(LoadGrid));
-                Invoke((Action)(() => IdDelete.Clear()));
-                Invoke((Action)(() => _listUpdate.Clear()));
+                Invoke((Action) (LoadGrid));
+                Invoke((Action) (() => IdDelete.Clear()));
+                Invoke((Action) (() => _listUpdate.Clear()));
                 lock (LockTotal)
                 {
                     OnCloseDialog();
@@ -90,7 +91,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                UpdateData.UpdateBaiLam(_listUpdate);
+                //UpdateData.UpdateBaiLam(_listUpdate);
                 QlsvSevice.Xoa(IdDelete, "BaiLam");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -136,11 +137,11 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void Huy()
+        private void Huy()
         {
             try
             {
-                var thread = new Thread(LoadFormDetail) { IsBackground = true };
+                var thread = new Thread(LoadFormDetail) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
             }
@@ -151,22 +152,15 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void RptDapAn()
+        private void SuaMaSinhVien()
         {
-            reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
-            rptdapandethi.FilePath = Application.StartupPath + @"\Reports\dapandethi.rst";
-            using (var previewForm = new PreviewForm(rptdapandethi))
+            var frm = new FrmSuaMaSinhVien
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdapandethi.Prepare();
-                previewForm.ShowDialog();
-            }
-        }
-
-        public void InDanhSach()
-        {
-            RptDapAn();
+                id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text)
+            };
+            frm.ShowDialog();
+            if(frm.id != 0) return;
+            dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Value = frm.txtmasinhvien.Text;
         }
 
         #endregion
@@ -216,47 +210,19 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void dgv_DanhSach_AfterExitEditMode(object sender, EventArgs e)
+        private void dgv_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
         {
-            try
-            {
-                if (b)
-                {
-                    b = false;
-                    return;
-                }
-                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.MaSinhVien = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text;
-                    item.MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
-                    item.KetQua = dgv_DanhSach.ActiveRow.Cells["KetQua"].Text;
-                    return;
-                }
-                var hs = new BaiLam
-                {
-                    ID = int.Parse(id),
-                    MaSinhVien = dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Text,
-                    MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
-                    KetQua = dgv_DanhSach.ActiveRow.Cells["KetQua"].Text
-                };
-                _listUpdate.Add(hs);
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)
-        {
-
+            SuaMaSinhVien();
         }
 
         #endregion
 
         #region MenuStrip
+
+        private void menuStrip_Sua_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
@@ -268,10 +234,6 @@ namespace QLSV.Frm.FrmUserControl
             SaveDetail();
         }
 
-        private void menuStrip_In_Click(object sender, EventArgs e)
-        {
-            RptDapAn();
-        }
         #endregion
 
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
@@ -289,5 +251,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
     }
 }

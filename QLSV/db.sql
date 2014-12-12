@@ -85,7 +85,8 @@ CREATE TABLE DapAn
 	MaMon nvarchar(255) not null,
 	MaDe nvarchar(255) not null,
 	CauHoi nvarchar(255) not null,
-	DapAn nvarchar(255) not null
+	DapAn nvarchar(255) not null,
+	ThangDiem int,
 	CONSTRAINT PK_DapAn  primary key(ID),
 	CONSTRAINT FK_DapAn_KyThi FOREIGN KEY (IdKyThi) REFERENCES Kythi(ID),
 )
