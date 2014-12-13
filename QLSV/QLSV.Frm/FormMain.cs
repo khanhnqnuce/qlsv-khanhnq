@@ -178,7 +178,6 @@ namespace QLSV.Frm
                         _frmDapAnCacMaDe.CloseDialog += KillLoading;
                         _frmDapAnCacMaDe.UpdateDialog += UpdateLoading;
                         TabDapanmade.Tab.Visible = true;
-                        TabDanhsachbailam.Tab.Visible = false;
                         TabInportdapdan.Tab.Visible = false;
                         TabInportbailam.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDapanmade.Tab;
@@ -204,7 +203,6 @@ namespace QLSV.Frm
                         TabDanhsachbailam.Tab.Visible = true;
                         TabInportbailam.Tab.Visible = false;
                         TabInportdapdan.Tab.Visible = false;
-                        TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDanhsachbailam.Tab;
                         ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;

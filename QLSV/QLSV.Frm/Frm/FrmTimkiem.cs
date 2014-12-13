@@ -33,7 +33,6 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -41,6 +40,11 @@ namespace QLSV.Frm.Frm
         private void FrmTimkiem_Load(object sender, EventArgs e)
         {
             txtmasinhvien.Clear();
+        }
+
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
+            Timkiemsinhvien(sender, txtmasinhvien.Text);
         }
     }
 }

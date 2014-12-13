@@ -104,9 +104,10 @@
     <EmbeddedResource Include="Domain\PhongThi.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Domain\BaiLam.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\BaiLam.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Domain\DapAn.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -142,6 +142,10 @@
             this.pnl_danhsachbailam = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.TabNhapthangdiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_nhapthangdiem = new System.Windows.Forms.Panel();
+            this.panel66 = new System.Windows.Forms.Panel();
+            this.panel67 = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -211,10 +215,7 @@
             this.panel63 = new System.Windows.Forms.Panel();
             this.panel64 = new System.Windows.Forms.Panel();
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
-            this.TabNhapthangdiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_nhapthangdiem = new System.Windows.Forms.Panel();
-            this.panel66 = new System.Windows.Forms.Panel();
-            this.panel67 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -228,6 +229,7 @@
             this.TabDapanmade.SuspendLayout();
             this.TabInportbailam.SuspendLayout();
             this.TabDanhsachbailam.SuspendLayout();
+            this.TabNhapthangdiem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -248,7 +250,6 @@
             this.ultraTabPageControl12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
-            this.TabNhapthangdiem.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -256,12 +257,13 @@
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
             this.Tabquanlynguoidung.Controls.Add(this.panel10);
             this.Tabquanlynguoidung.Controls.Add(this.panel9);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(978, 499);
             // 
             // pn_quanlynguoidung
             // 
+            this.pn_quanlynguoidung.AutoSize = true;
             this.pn_quanlynguoidung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pn_quanlynguoidung.Location = new System.Drawing.Point(140, 0);
             this.pn_quanlynguoidung.Name = "pn_quanlynguoidung";
@@ -680,6 +682,39 @@
             this.panel12.Size = new System.Drawing.Size(170, 499);
             this.panel12.TabIndex = 7;
             // 
+            // TabNhapthangdiem
+            // 
+            this.TabNhapthangdiem.Controls.Add(this.pnl_nhapthangdiem);
+            this.TabNhapthangdiem.Controls.Add(this.panel66);
+            this.TabNhapthangdiem.Controls.Add(this.panel67);
+            this.TabNhapthangdiem.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabNhapthangdiem.Name = "TabNhapthangdiem";
+            this.TabNhapthangdiem.Size = new System.Drawing.Size(978, 499);
+            // 
+            // pnl_nhapthangdiem
+            // 
+            this.pnl_nhapthangdiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_nhapthangdiem.Location = new System.Drawing.Point(270, 0);
+            this.pnl_nhapthangdiem.Name = "pnl_nhapthangdiem";
+            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(438, 499);
+            this.pnl_nhapthangdiem.TabIndex = 11;
+            // 
+            // panel66
+            // 
+            this.panel66.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel66.Location = new System.Drawing.Point(0, 0);
+            this.panel66.Name = "panel66";
+            this.panel66.Size = new System.Drawing.Size(270, 499);
+            this.panel66.TabIndex = 10;
+            // 
+            // panel67
+            // 
+            this.panel67.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel67.Location = new System.Drawing.Point(708, 0);
+            this.panel67.Name = "panel67";
+            this.panel67.Size = new System.Drawing.Size(270, 499);
+            this.panel67.TabIndex = 9;
+            // 
             // MenuBar
             // 
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
@@ -1007,6 +1042,7 @@
             this.btnDong.TabIndex = 31;
             this.btnDong.Text = "&Đóng(Esc)";
             this.btnDong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnDong, "(Esc)");
             this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
@@ -1543,39 +1579,6 @@
             this.ultraTabControl1.Size = new System.Drawing.Size(200, 100);
             this.ultraTabControl1.TabIndex = 0;
             // 
-            // TabNhapthangdiem
-            // 
-            this.TabNhapthangdiem.Controls.Add(this.pnl_nhapthangdiem);
-            this.TabNhapthangdiem.Controls.Add(this.panel66);
-            this.TabNhapthangdiem.Controls.Add(this.panel67);
-            this.TabNhapthangdiem.Location = new System.Drawing.Point(1, 1);
-            this.TabNhapthangdiem.Name = "TabNhapthangdiem";
-            this.TabNhapthangdiem.Size = new System.Drawing.Size(978, 499);
-            // 
-            // pnl_nhapthangdiem
-            // 
-            this.pnl_nhapthangdiem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_nhapthangdiem.Location = new System.Drawing.Point(270, 0);
-            this.pnl_nhapthangdiem.Name = "pnl_nhapthangdiem";
-            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(438, 499);
-            this.pnl_nhapthangdiem.TabIndex = 11;
-            // 
-            // panel66
-            // 
-            this.panel66.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel66.Location = new System.Drawing.Point(0, 0);
-            this.panel66.Name = "panel66";
-            this.panel66.Size = new System.Drawing.Size(270, 499);
-            this.panel66.TabIndex = 10;
-            // 
-            // panel67
-            // 
-            this.panel67.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel67.Location = new System.Drawing.Point(708, 0);
-            this.panel67.Name = "panel67";
-            this.panel67.Size = new System.Drawing.Size(270, 499);
-            this.panel67.TabIndex = 9;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1592,6 +1595,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Tabquanlynguoidung.ResumeLayout(false);
+            this.Tabquanlynguoidung.PerformLayout();
             this.Tabdanhmuckhoa.ResumeLayout(false);
             this.Tabdanhmuclop.ResumeLayout(false);
             this.TabInportsinhvien.ResumeLayout(false);
@@ -1604,6 +1608,7 @@
             this.TabDapanmade.ResumeLayout(false);
             this.TabInportbailam.ResumeLayout(false);
             this.TabDanhsachbailam.ResumeLayout(false);
+            this.TabNhapthangdiem.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1625,7 +1630,6 @@
             this.ultraTabPageControl12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
-            this.TabNhapthangdiem.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1757,5 +1761,6 @@
         private System.Windows.Forms.Panel pnl_nhapthangdiem;
         private System.Windows.Forms.Panel panel66;
         private System.Windows.Forms.Panel panel67;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

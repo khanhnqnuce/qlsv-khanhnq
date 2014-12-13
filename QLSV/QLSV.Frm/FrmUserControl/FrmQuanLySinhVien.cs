@@ -510,36 +510,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        //private void btnpdf_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (Kiemtrafile())
-        //        {
-        //            MessageBox.Show(@"Vui lòng đóng file đang được mở.", @"Thông báo", MessageBoxButtons.OK,
-        //                MessageBoxIcon.Information);
-        //            return;
-        //        }
-
-        //        if (!Directory.Exists("Data"))
-        //            Directory.CreateDirectory("Data");
-
-        //        ultraGridDocumentExporter1.Export(uG_DanhSach, Application.StartupPath + @"\Data\grid.pdf", GridExportFileFormat.PDF);
-
-        //        var mydoc = new Process();
-        //        if (File.Exists(Application.StartupPath + @"\Data\grid.pdf"))
-        //        {
-        //            mydoc.StartInfo.FileName = Application.StartupPath + @"\Data\grid.pdf";
-        //            mydoc.Start();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //        Log2File.LogExceptionToFile(ex);
-        //    }
-        //}
     }
 }
 

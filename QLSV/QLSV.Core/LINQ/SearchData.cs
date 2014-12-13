@@ -65,5 +65,58 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
-    }
+
+        /// <summary>
+        /// Tìm kiếm bài làm của sinh viên theo mã đề
+        /// </summary>
+        /// <returns>trả về bảng thông tin bài làm</returns>
+        public static DataTable Timkiemmade(string made)
+        {
+            try
+            {
+                try
+                {
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
+                                 " FROM BaiLam WHERE MaDe = N'"+made+"'";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Tìm kiếm bài làm của sinh viên theo mã đề
+        /// </summary>
+        /// <returns>trả về bảng thông tin bài làm</returns>
+        public static DataTable Timkiemmade1(string made)
+        {
+            try
+            {
+                try
+                {
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID and MaDe = N'"+made+"'";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+        }
 }

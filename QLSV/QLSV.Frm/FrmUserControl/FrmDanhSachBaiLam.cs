@@ -163,6 +163,19 @@ namespace QLSV.Frm.FrmUserControl
             dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Value = frm.txtmasinhvien.Text;
         }
 
+        private void Timkiemmde()
+        {
+            try
+            {
+                dgv_DanhSach.DataSource = SearchData.Timkiemmade(txtmade.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         #endregion
 
         #region Event uG
@@ -250,6 +263,51 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void txtmade_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        if (string.IsNullOrEmpty(txtmade.Text)) return;
+                        Timkiemmde();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtmade.Text))return;
+            Timkiemmde();
+        }
+
+        private void btntimkiemsinhvien_Click(object sender, EventArgs e)
+        {
+            _frmTimkiem.ShowDialog();
+        }
+
+        private void btnrefresh_Click(object sender, EventArgs e)
+        {
+            LoadFormDetail();
+        }
+
+        /// <summary>
+        /// tắt âm khi nhấn Enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtmade_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true;
         }
 
     }
