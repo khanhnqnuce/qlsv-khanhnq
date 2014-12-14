@@ -61,7 +61,7 @@
             this.ultraGroupBox_login.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGroupBox_login.Location = new System.Drawing.Point(0, 0);
             this.ultraGroupBox_login.Name = "ultraGroupBox_login";
-            this.ultraGroupBox_login.Size = new System.Drawing.Size(325, 211);
+            this.ultraGroupBox_login.Size = new System.Drawing.Size(321, 207);
             this.ultraGroupBox_login.TabIndex = 20;
             // 
             // txtTaiKhoan
@@ -153,7 +153,7 @@
             this.pictureBox_Logo.Image = global::QLSV.Frm.Properties.Resources.logo1;
             this.pictureBox_Logo.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_Logo.Name = "pictureBox_Logo";
-            this.pictureBox_Logo.Size = new System.Drawing.Size(205, 211);
+            this.pictureBox_Logo.Size = new System.Drawing.Size(205, 207);
             this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Logo.TabIndex = 21;
             this.pictureBox_Logo.TabStop = false;
@@ -164,7 +164,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(205, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(325, 211);
+            this.panel1.Size = new System.Drawing.Size(321, 207);
             this.panel1.TabIndex = 22;
             // 
             // FrmDangNhap
@@ -172,13 +172,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(530, 211);
+            this.ClientSize = new System.Drawing.Size(526, 207);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox_Logo);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmDangNhap";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox_login)).EndInit();

@@ -109,6 +109,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSuaMaSinhVien";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập mã sinh viên";
             this.toolStrip1.ResumeLayout(false);

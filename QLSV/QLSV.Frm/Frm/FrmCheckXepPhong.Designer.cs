@@ -210,6 +210,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCheckXepPhong";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmChonindssv_FormClosing);
             this.Load += new System.EventHandler(this.FrmCheckXepPhong_Load);

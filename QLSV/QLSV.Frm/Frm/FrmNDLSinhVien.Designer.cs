@@ -133,6 +133,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmNDLSinhVien";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nạp dữ liệu từ file excel";
             this.panel1.ResumeLayout(false);

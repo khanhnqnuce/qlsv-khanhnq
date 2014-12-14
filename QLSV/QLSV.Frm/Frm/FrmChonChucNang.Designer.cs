@@ -101,6 +101,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmChonChucNang";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
