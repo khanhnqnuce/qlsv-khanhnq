@@ -40,25 +40,25 @@
       <HintPath>E:\Setup\ThucTap_VDC\id_VDC_setup\NHibernate-4.0.1.GA-bin\Required_Bins\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Data">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
