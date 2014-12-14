@@ -146,9 +146,9 @@
             // 
             this.panel4.Controls.Add(this.dgv_DanhSach);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 34);
+            this.panel4.Location = new System.Drawing.Point(0, 29);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(978, 531);
+            this.panel4.Size = new System.Drawing.Size(978, 536);
             this.panel4.TabIndex = 27;
             // 
             // dgv_DanhSach
@@ -163,7 +163,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(978, 531);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(978, 536);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -179,7 +179,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(978, 34);
+            this.panel3.Size = new System.Drawing.Size(978, 29);
             this.panel3.TabIndex = 26;
             // 
             // cbolop
@@ -238,7 +238,7 @@
             this.cbolop.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cbolop.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cbolop.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.cbolop.Location = new System.Drawing.Point(704, 4);
+            this.cbolop.Location = new System.Drawing.Point(416, 2);
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(189, 25);
             this.cbolop.TabIndex = 3;
@@ -301,9 +301,9 @@
             this.cbokhoa.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cbokhoa.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cbokhoa.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.cbokhoa.Location = new System.Drawing.Point(407, 4);
+            this.cbokhoa.Location = new System.Drawing.Point(81, 2);
             this.cbokhoa.Name = "cbokhoa";
-            this.cbokhoa.Size = new System.Drawing.Size(189, 25);
+            this.cbokhoa.Size = new System.Drawing.Size(235, 25);
             this.cbokhoa.TabIndex = 2;
             this.cbokhoa.ValueChanged += new System.EventHandler(this.cbokhoa_ValueChanged);
             this.cbokhoa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbokhoa_KeyUp);
@@ -313,7 +313,7 @@
             appearance25.TextHAlignAsString = "Right";
             appearance25.TextVAlignAsString = "Middle";
             this.lbLop.Appearance = appearance25;
-            this.lbLop.Location = new System.Drawing.Point(596, 5);
+            this.lbLop.Location = new System.Drawing.Point(316, 3);
             this.lbLop.Name = "lbLop";
             this.lbLop.Size = new System.Drawing.Size(100, 23);
             this.lbLop.TabIndex = 1;
@@ -321,10 +321,10 @@
             // 
             // lbkhoa
             // 
-            appearance26.TextHAlignAsString = "Right";
+            appearance26.TextHAlignAsString = "Left";
             appearance26.TextVAlignAsString = "Middle";
             this.lbkhoa.Appearance = appearance26;
-            this.lbkhoa.Location = new System.Drawing.Point(321, 5);
+            this.lbkhoa.Location = new System.Drawing.Point(3, 3);
             this.lbkhoa.Name = "lbkhoa";
             this.lbkhoa.Size = new System.Drawing.Size(78, 23);
             this.lbkhoa.TabIndex = 0;

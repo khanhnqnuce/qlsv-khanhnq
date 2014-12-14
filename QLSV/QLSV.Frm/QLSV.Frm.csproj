@@ -332,9 +332,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ultis.Frm\ValidateHighlight.cs" />
-    <None Include="Resources\find_icon.png" />
-    <None Include="Resources\refresh1_icon.png" />
-    <None Include="Resources\go_icon.png" />
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -469,12 +466,12 @@
     <Content Include="Reports\danhsachduthilop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Reports\dapandethi.rst">
+    <Content Include="Reports\dapandethi.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Reports\kiemtrasinhvien.rst">
+    </Content>
+    <Content Include="Reports\kiemtrasinhvien.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\danhsachsinhvien.rst">
