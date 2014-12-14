@@ -27,6 +27,7 @@ namespace QLSV.Frm
         private static FrmDanhSachDapAn _frmDapAnCacMaDe;
         private static FrmDanhSachBaiLam _frmDanhSachBaiLam;
         private static FrmNhapThangDiem _frmNhapThangDiem;
+        private static FrmChamDiemThi _frmChamDiemThi;
         private bool _dangnhap = false;
         private bool _thoat = false;
 
@@ -220,6 +221,13 @@ namespace QLSV.Frm
                         ShowControl(_frmNhapThangDiem, pnl_nhapthangdiem);
                         break;
                     case "207":
+                        _frmChamDiemThi = new FrmChamDiemThi();
+                        _frmChamDiemThi.ShowDialog += ShowLoading;
+                        _frmChamDiemThi.CloseDialog += KillLoading;
+                        _frmChamDiemThi.UpdateDialog += UpdateLoading;
+                        Tabchamdiemthi.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabchamdiemthi.Tab;
+                        ShowControl(_frmChamDiemThi, pnl_chamdiemthi);
                         break;
                     case "208":
                         break;
@@ -316,6 +324,7 @@ namespace QLSV.Frm
                     TabInportbailam.Tab.Visible = false;
                     TabDanhsachbailam.Tab.Visible = false;
                     TabNhapthangdiem.Tab.Visible = false;
+                    Tabchamdiemthi.Tab.Visible = false;
                     pn_Button.Visible = false;
                     break;
             }
@@ -509,7 +518,7 @@ namespace QLSV.Frm
             }
             else if (TabNhapthangdiem.Tab.Active)
             {
-                _frmNhapThangDiem.Save();
+                _frmNhapThangDiem.Ghi();
             }
         }
 
@@ -1009,6 +1018,19 @@ namespace QLSV.Frm
                     b = false;
                 }
                 else if (TabNhapthangdiem.Tab.Visible && TabNhapthangdiem.Tab.Active)
+                {
+                    lbInsert.Visible = false;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
+                }
+                else if (Tabchamdiemthi.Tab.Visible && Tabchamdiemthi.Tab.Active)
                 {
                     lbInsert.Visible = false;
                     lbXoa.Visible = false;

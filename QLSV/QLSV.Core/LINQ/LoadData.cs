@@ -33,8 +33,7 @@ namespace QLSV.Core.LINQ
         private const string Str9 = "SELECT * FROM PhongThi";
         private const string Str10 = "SELECT * FROM Kythi";
         private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID";
-        private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
-                                     " FROM BaiLam";
+        private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], b.* FROM BaiLam b";
 
         private const string Str13 = "select * from BaiLam b where not exists (select * from SinhVien s where b.MaSinhVien = s.MaSinhVien)";
 

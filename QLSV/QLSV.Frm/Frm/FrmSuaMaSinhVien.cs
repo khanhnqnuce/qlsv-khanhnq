@@ -25,7 +25,7 @@ namespace QLSV.Frm.Frm
                 var hs = new BaiLam
                 {
                     ID = id,
-                    MaSinhVien = double.Parse(txtmasinhvien.Text)
+                    MaSinhVien = txtmasinhvien.Text
                 };
                 UpdateData.UpdateMaSinhVien(hs);
                 Close();

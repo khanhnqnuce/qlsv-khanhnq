@@ -104,7 +104,9 @@
     <EmbeddedResource Include="Domain\PhongThi.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Domain\BaiLam.hbm.xml" />
+    <EmbeddedResource Include="Domain\BaiLam.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Domain\DapAn.hbm.xml" />

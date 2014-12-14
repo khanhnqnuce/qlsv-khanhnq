@@ -6,6 +6,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmNhapDiem : Form
     {
+        private bool _bCheck = false;
         public FrmNhapDiem()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace QLSV.Frm.Frm
                 errorNhapdiem.SetError(txtNhapdiem,@"Nhập vào thang điểm");
                 return;
             }
+            _bCheck = true;
             Close();
         }
 
@@ -36,10 +38,10 @@ namespace QLSV.Frm.Frm
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
+                        _bCheck = true;
                        Close();
                         break;
                     case Keys.Escape:
-                        txtNhapdiem.Clear();
                         Close();
                         break;
                 }
@@ -48,6 +50,12 @@ namespace QLSV.Frm.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void FrmNhapDiem_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_bCheck) return;
+            txtNhapdiem.Clear();
         }
     }
 }

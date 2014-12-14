@@ -118,5 +118,31 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+
+        /// <summary>
+        /// Lấy đáp án theo ma đe
+        /// </summary>
+        /// <returns>trả về bảng thông tin bài làm</returns>
+        public static DataTable Timkiemmade2(string made)
+        {
+            try
+            {
+                try
+                {
+                    var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "'";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
         }
 }

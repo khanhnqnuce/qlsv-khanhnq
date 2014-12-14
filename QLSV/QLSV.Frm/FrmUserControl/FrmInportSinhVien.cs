@@ -126,7 +126,7 @@ namespace QLSV.Frm.FrmUserControl
         /// <summary>
         /// Lưu dữ liệu trên UltraGrid
         /// </summary>
-        private void SaveAll()
+        protected override void SaveDetail()
         {
             try
             {
@@ -214,7 +214,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                SaveAll();
+                SaveDetail();
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_luulai_Click(object sender, EventArgs e)
         {
-            SaveAll();
+            SaveDetail();
         }
 
         private void menuStrip_Huy_Click(object sender, EventArgs e)

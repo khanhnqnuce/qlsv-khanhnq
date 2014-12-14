@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,10 +21,14 @@ namespace QLSV.Frm.FrmUserControl
     public partial class FrmNhapThangDiem : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listUpdate = new List<DapAn>();
+        private readonly BackgroundWorker _bgwInsert;
 
         public FrmNhapThangDiem()
         {
             InitializeComponent();
+            _bgwInsert = new BackgroundWorker();
+            _bgwInsert.DoWork += bgwInsert_DoWork;
+            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
         #region Exit
@@ -89,6 +94,13 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        public void Ghi()
+        {
+            if (dgv_DanhSach.Rows.Count <= 0) return;
+            _bgwInsert.RunWorkerAsync();
+            OnShowDialog("Đang lưu dữ liệu");
+        }
+
         public void Huy()
         {
             try
@@ -119,12 +131,27 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Nhapdiem()
         {
-            var frm = new FrmNhapDiem();
-            frm.ShowDialog();
-            if(string.IsNullOrEmpty(frm.txtNhapdiem.Text)) return;
-            foreach (var row in dgv_DanhSach.Rows)
+            try
             {
-                row.Cells["ThangDiem"].Value = frm.txtNhapdiem.Text;
+                var frm = new FrmNhapDiem();
+                frm.ShowDialog();
+                if (string.IsNullOrEmpty(frm.txtNhapdiem.Text)) return;
+                _listUpdate.Clear();
+                foreach (var row in dgv_DanhSach.Rows)
+                {
+                    row.Cells["ThangDiem"].Value = frm.txtNhapdiem.Text;
+                    var hs = new DapAn
+                    {
+                        ID = int.Parse(row.Cells["ID"].Text),
+                        ThangDiem = int.Parse(frm.txtNhapdiem.Text)
+                    };
+                   
+                    _listUpdate.Add(hs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -227,6 +254,27 @@ namespace QLSV.Frm.FrmUserControl
         private void menuStrip_Luulai_Click(object sender, EventArgs e)
         {
             SaveDetail();
+        }
+
+        #endregion
+
+        #region BackgroundWorker
+
+        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
         }
 
         #endregion

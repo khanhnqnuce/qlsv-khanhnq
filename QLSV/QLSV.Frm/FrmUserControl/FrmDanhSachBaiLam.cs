@@ -7,7 +7,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Service;

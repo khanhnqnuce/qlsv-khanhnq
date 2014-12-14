@@ -78,6 +78,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập thang điểm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNhapDiem_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.errorNhapdiem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

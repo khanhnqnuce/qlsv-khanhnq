@@ -234,7 +234,6 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         #region BackgroundWorker
-        
 
         private void BgwInsertDoWork(object sender, DoWorkEventArgs e)
         {

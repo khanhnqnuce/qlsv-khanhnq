@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters33 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters34 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters35 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters36 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +51,7 @@
             this.excelExportFilter2 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.fileReportSlot2 = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pnl_from = new System.Windows.Forms.Panel();
-            this.pdfExportFilter2 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
+            this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtmade = new System.Windows.Forms.ToolStripTextBox();
@@ -60,12 +60,12 @@
             this.btntimkiemsinhvien = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
-            this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.pdfExportFilter2 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.menu_ug.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu_ug
@@ -101,7 +101,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters33;
+            this.excelExportFilter1.ExtraParameters = extraParameters1;
             // 
             // rptdapandethi
             // 
@@ -119,7 +119,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters34;
+            this.pdfExportFilter1.ExtraParameters = extraParameters2;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // rptdanhsachsinhvien
@@ -173,7 +173,7 @@
             this.excelExportFilter2.ExportInLargePage = true;
             this.excelExportFilter2.ExportInOnePage = true;
             this.excelExportFilter2.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter2.ExtraParameters = extraParameters35;
+            this.excelExportFilter2.ExtraParameters = extraParameters3;
             // 
             // fileReportSlot2
             // 
@@ -193,12 +193,21 @@
             this.pnl_from.TabIndex = 32;
             this.pnl_from.Visible = false;
             // 
-            // pdfExportFilter2
+            // dgv_DanhSach
             // 
-            this.pdfExportFilter2.ChangePermissionsPassword = null;
-            this.pdfExportFilter2.Compress = true;
-            this.pdfExportFilter2.ExtraParameters = extraParameters36;
-            this.pdfExportFilter2.UserPassword = null;
+            this.dgv_DanhSach.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
+            this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.dgv_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.dgv_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_DanhSach.Location = new System.Drawing.Point(0, 25);
+            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(5);
+            this.dgv_DanhSach.Name = "dgv_DanhSach";
+            this.dgv_DanhSach.Size = new System.Drawing.Size(626, 426);
+            this.dgv_DanhSach.TabIndex = 33;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
             // toolStrip1
             // 
@@ -265,20 +274,12 @@
             this.btnrefresh.Text = "Quay lại";
             this.btnrefresh.ToolTipText = "Tải lại dữ liệu";
             // 
-            // dgv_DanhSach
+            // pdfExportFilter2
             // 
-            this.dgv_DanhSach.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
-            this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.dgv_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.dgv_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.dgv_DanhSach.Location = new System.Drawing.Point(0, 25);
-            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(5);
-            this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(626, 426);
-            this.dgv_DanhSach.TabIndex = 33;
+            this.pdfExportFilter2.ChangePermissionsPassword = null;
+            this.pdfExportFilter2.Compress = true;
+            this.pdfExportFilter2.ExtraParameters = extraParameters4;
+            this.pdfExportFilter2.UserPassword = null;
             // 
             // FrmChamDiemThi
             // 
@@ -288,13 +289,14 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmChamDiemThi";
             this.Size = new System.Drawing.Size(626, 451);
+            this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
             this.menu_ug.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);
             this.pnl_from.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
 
         }
