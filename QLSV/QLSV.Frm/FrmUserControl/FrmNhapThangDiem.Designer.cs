@@ -33,7 +33,6 @@
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_In = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_from = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -44,6 +43,7 @@
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnnhapdiem = new System.Windows.Forms.ToolStripButton();
+            this.menuStrip_nhapdiem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.pnl_from.SuspendLayout();
@@ -67,34 +67,31 @@
             this.dgv_DanhSach.TabIndex = 26;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
+            this.dgv_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_DanhSach_KeyDown);
             // 
             // menu_ug
             // 
             this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip_nhapdiem,
             this.menuStrip_Luulai,
-            this.menuStrip_Huy,
-            this.menuStrip_In});
+            this.menuStrip_Huy});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(110, 70);
+            this.menu_ug.Size = new System.Drawing.Size(153, 92);
             // 
             // menuStrip_Luulai
             // 
             this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(109, 22);
+            this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Luulai.Text = "Lưu lại";
+            this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(109, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Huy.Text = "Hủy";
-            // 
-            // menuStrip_In
-            // 
-            this.menuStrip_In.Name = "menuStrip_In";
-            this.menuStrip_In.Size = new System.Drawing.Size(109, 22);
-            this.menuStrip_In.Text = "In";
+            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // pnl_from
             // 
@@ -184,6 +181,14 @@
             this.btnnhapdiem.Name = "btnnhapdiem";
             this.btnnhapdiem.Size = new System.Drawing.Size(86, 22);
             this.btnnhapdiem.Text = "Nhập điểm";
+            this.btnnhapdiem.Click += new System.EventHandler(this.btnnhapdiem_Click);
+            // 
+            // menuStrip_nhapdiem
+            // 
+            this.menuStrip_nhapdiem.Name = "menuStrip_nhapdiem";
+            this.menuStrip_nhapdiem.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_nhapdiem.Text = "Nhập điểm";
+            this.menuStrip_nhapdiem.Click += new System.EventHandler(this.menuStrip_nhapdiem_Click);
             // 
             // FrmNhapThangDiem
             // 
@@ -211,7 +216,6 @@
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_In;
         private System.Windows.Forms.Panel pnl_from;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -222,5 +226,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnnhapdiem;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_nhapdiem;
     }
 }

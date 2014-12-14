@@ -13,6 +13,7 @@ using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -116,6 +117,17 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void Nhapdiem()
+        {
+            var frm = new FrmNhapDiem();
+            frm.ShowDialog();
+            if(string.IsNullOrEmpty(frm.txtNhapdiem.Text)) return;
+            foreach (var row in dgv_DanhSach.Rows)
+            {
+                row.Cells["ThangDiem"].Value = frm.txtNhapdiem.Text;
+            }
+        }
+
         #endregion
 
         #region Event uG
@@ -202,6 +214,11 @@ namespace QLSV.Frm.FrmUserControl
 
         #region MenuStrip
 
+        private void menuStrip_nhapdiem_Click(object sender, EventArgs e)
+        {
+            Nhapdiem();
+        }
+
         private void menuStripHuy_Click(object sender, EventArgs e)
         {
             Huy();
@@ -251,6 +268,50 @@ namespace QLSV.Frm.FrmUserControl
         private void btnrefresh_Click(object sender, EventArgs e)
         {
             LoadFormDetail();
+        }
+
+        private void btnnhapdiem_Click(object sender, EventArgs e)
+        {
+            Nhapdiem();
+        }
+
+        private void dgv_DanhSach_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Up:
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
+                        e.Handled = true;
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Down:
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
+                        e.Handled = true;
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Right:
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
+                        e.Handled = true;
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                    case Keys.Left:
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
+                        e.Handled = true;
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

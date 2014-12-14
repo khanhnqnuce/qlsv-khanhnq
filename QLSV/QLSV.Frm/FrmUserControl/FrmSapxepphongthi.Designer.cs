@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.pnl_form = new System.Windows.Forms.Panel();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl_form = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
-            this.pnl_form.SuspendLayout();
             this.menu_ug.SuspendLayout();
+            this.pnl_form.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_DanhSach
@@ -49,20 +49,10 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(1035, 565);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(533, 479);
             this.dgv_DanhSach.TabIndex = 26;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.uG_DanhSach_DoubleClickCell);
-            // 
-            // pnl_form
-            // 
-            this.pnl_form.Controls.Add(this.dgv_DanhSach);
-            this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_form.Location = new System.Drawing.Point(0, 0);
-            this.pnl_form.Name = "pnl_form";
-            this.pnl_form.Size = new System.Drawing.Size(1035, 565);
-            this.pnl_form.TabIndex = 27;
-            this.pnl_form.Visible = false;
             // 
             // menu_ug
             // 
@@ -78,17 +68,27 @@
             this.menuStrip_Themdong.Text = "Xếp phòng";
             this.menuStrip_Themdong.Click += new System.EventHandler(this.menuStrip_Themdong_Click);
             // 
+            // pnl_form
+            // 
+            this.pnl_form.Controls.Add(this.dgv_DanhSach);
+            this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_form.Location = new System.Drawing.Point(0, 0);
+            this.pnl_form.Name = "pnl_form";
+            this.pnl_form.Size = new System.Drawing.Size(533, 479);
+            this.pnl_form.TabIndex = 27;
+            this.pnl_form.Visible = false;
+            // 
             // FrmSapxepphongthi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_form);
             this.Name = "FrmSapxepphongthi";
-            this.Size = new System.Drawing.Size(1035, 565);
+            this.Size = new System.Drawing.Size(533, 479);
             this.Load += new System.EventHandler(this.Sapxepphongthi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
-            this.pnl_form.ResumeLayout(false);
             this.menu_ug.ResumeLayout(false);
+            this.pnl_form.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

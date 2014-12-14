@@ -92,7 +92,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(916, 475);
+            this.panel2.Size = new System.Drawing.Size(475, 475);
             this.panel2.TabIndex = 12;
             // 
             // uG_DanhSach
@@ -107,7 +107,7 @@
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(916, 475);
+            this.uG_DanhSach.Size = new System.Drawing.Size(475, 475);
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
@@ -146,7 +146,7 @@
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmDanhsachphongthi";
-            this.Size = new System.Drawing.Size(916, 475);
+            this.Size = new System.Drawing.Size(475, 475);
             this.Load += new System.EventHandler(this.FrmDanhsachphongthi_Load);
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

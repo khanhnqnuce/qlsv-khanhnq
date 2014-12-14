@@ -86,7 +86,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(955, 430);
+            this.panel2.Size = new System.Drawing.Size(458, 430);
             this.panel2.TabIndex = 7;
             // 
             // dgv_DanhSach
@@ -101,7 +101,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(955, 430);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(458, 430);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
@@ -114,7 +114,7 @@
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "FrmDanhmuckhoa";
-            this.Size = new System.Drawing.Size(955, 430);
+            this.Size = new System.Drawing.Size(458, 430);
             this.Load += new System.EventHandler(this.FrmDanhmuckhoa_Load);
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
