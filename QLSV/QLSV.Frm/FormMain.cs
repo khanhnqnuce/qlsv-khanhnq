@@ -520,6 +520,10 @@ namespace QLSV.Frm
             {
                 _frmNhapThangDiem.Ghi();
             }
+            else if (Tabchamdiemthi.Tab.Active)
+            {
+                _frmNhapThangDiem.Save();
+            }
         }
 
         private void Xoa_F3()
@@ -759,7 +763,7 @@ namespace QLSV.Frm
                     _loading.Invoke((Action)(() =>
                     {
                         _loading.Close();
-                        _loading.Dispose();
+                        //_loading.Dispose();
                         _loading = null;
                     }));
                 }

@@ -229,5 +229,27 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
+
+        /// <summary>
+        /// Chấm điểm thi cho bài làm của sinh viên
+        /// </summary>
+        /// <param name="hs"></param>
+        /// <returns>true</returns>
+        public static bool UpdateDiemThi(IList<BaiLam> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    Conn.ExcuteQuerySql("update BaiLam set DiemThi = " + item.DiemThi + " WHERE ID = " + item.ID + "");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
     }
 }

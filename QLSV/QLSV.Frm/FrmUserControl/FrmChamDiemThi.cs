@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -16,6 +18,7 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class FrmChamDiemThi : FunctionControlHasGrid
     {
+        private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
 
@@ -45,23 +48,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var tbbailam = LoadData.Load(12);
-                foreach (DataRow dataRow in tbbailam.Rows)
-                {
-                    var diem = 0;
-                    var listbailam = dataRow["KetQua"].ToString();
-                    var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString());
-                    for (var i = 0; i < tbdapan.Rows.Count; i++)
-                    {
-                        var a = listbailam[i].ToString();
-                        var b = tbdapan.Rows[i]["Dapan"].ToString();
-                        var c = tbdapan.Rows[i]["ThangDiem"].ToString();
-                        if (a==b)
-                        {
-                            diem = diem + int.Parse(c);
-                        }
-                    }
-                    dataRow["DiemThi"] = diem.ToString();
-                }
                 dgv_DanhSach.DataSource = tbbailam;
                 pnl_from.Visible = true;
             }
@@ -75,11 +61,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                Invoke((Action)(LoadGrid));
-                lock (LockTotal)
-                {
-                    OnCloseDialog();
-                }
+                LoadGrid();
             }
             catch (Exception ex)
             {
@@ -103,7 +85,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                //UpdateData.UpdateBaiLam(_listUpdate);
+                UpdateData.UpdateDiemThi(_listUpdate);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -206,7 +188,10 @@ namespace QLSV.Frm.FrmUserControl
 
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
         {
-            LoadFormDetail();
+            _threads[0] = new Thread(Chamthi) {IsBackground = true};
+            _threads[0].Start();
+
+            OnShowDialog("Đang chấm thi...");
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -218,6 +203,57 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private readonly Thread[] _threads = new Thread[2];
+        readonly FrmLoadding _frm = new FrmLoadding();
+
+        private void btnchamthi_Click(object sender, EventArgs e)
+        {
+            _threads[0] = new Thread(Chamthi) {IsBackground = true};
+            _threads[0].Start();
+
+            Loadding();
+        }
+
+        private void Chamthi()
+        {
+            var tbbailam = LoadData.Load(12);
+            foreach (DataRow dataRow in tbbailam.Rows)
+            {
+                var diem = 0;
+                var listbailam = dataRow["KetQua"].ToString();
+                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString());
+                for (var i = 0; i < tbdapan.Rows.Count; i++)
+                {
+                    var a = listbailam[i].ToString();
+                    var b = tbdapan.Rows[i]["Dapan"].ToString();
+                    var c = tbdapan.Rows[i]["ThangDiem"].ToString();
+                    if (a == b)
+                    {
+                        diem = diem + int.Parse(c);
+                    }
+                }
+                var hs = new BaiLam
+                {
+                    ID = int.Parse(dataRow["ID"].ToString()),
+                    DiemThi = diem
+                };
+                _listUpdate.Add(hs);
+                dataRow["DiemThi"] = diem.ToString();
+            }
+            Invoke((Action) (() => dgv_DanhSach.DataSource = tbbailam));
+            Invoke((Action)(() => pnl_from.Visible = true));
+            lock (LockTotal)
+            {
+                OnCloseDialog();
+            }
+        }
+
+        private void Loadding()
+        {
+            _frm.Update("Đang chấm thi...");
+            _frm.ShowDialog();
         }
     }
 }
