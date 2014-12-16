@@ -263,7 +263,7 @@
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
             this.Tabquanlynguoidung.Controls.Add(this.panel10);
             this.Tabquanlynguoidung.Controls.Add(this.panel9);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(978, 499);
             // 
@@ -725,7 +725,7 @@
             this.Tabchamdiemthi.Controls.Add(this.pnl_chamdiemthi);
             this.Tabchamdiemthi.Controls.Add(this.panel68);
             this.Tabchamdiemthi.Controls.Add(this.panel69);
-            this.Tabchamdiemthi.Location = new System.Drawing.Point(1, 1);
+            this.Tabchamdiemthi.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabchamdiemthi.Name = "Tabchamdiemthi";
             this.Tabchamdiemthi.Size = new System.Drawing.Size(978, 499);
             // 
@@ -762,21 +762,25 @@
             ultraExplorerBarItem1.Key = "login";
             appearance1.Image = global::QLSV.Frm.Properties.Resources.dangnhap;
             ultraExplorerBarItem1.Settings.AppearancesSmall.Appearance = appearance1;
+            ultraExplorerBarItem1.Settings.MaxLines = 2;
             ultraExplorerBarItem1.Text = "Đăng nhập";
             ultraExplorerBarItem1.ToolTipText = "Đăng nhập vào hệ thống";
             ultraExplorerBarItem3.Key = "logout";
             appearance2.Image = global::QLSV.Frm.Properties.Resources.dangxuat;
             ultraExplorerBarItem3.Settings.AppearancesSmall.Appearance = appearance2;
+            ultraExplorerBarItem3.Settings.MaxLines = 2;
             ultraExplorerBarItem3.Text = "Đăng xuất";
             ultraExplorerBarItem3.ToolTipText = "Đăng xuất khỏi hệ thống";
             ultraExplorerBarItem2.Key = "doimatkhau";
             appearance3.Image = global::QLSV.Frm.Properties.Resources.doipass;
             ultraExplorerBarItem2.Settings.AppearancesSmall.Appearance = appearance3;
+            ultraExplorerBarItem2.Settings.MaxLines = 2;
             ultraExplorerBarItem2.Text = "Đổi mật khẩu";
             ultraExplorerBarItem2.ToolTipText = "Đổi mật khẩu người dùng";
             ultraExplorerBarItem5.Key = "thoat";
             appearance4.Image = global::QLSV.Frm.Properties.Resources.close;
             ultraExplorerBarItem5.Settings.AppearancesSmall.Appearance = appearance4;
+            ultraExplorerBarItem5.Settings.MaxLines = 2;
             ultraExplorerBarItem5.Text = "Thoát";
             ultraExplorerBarItem5.ToolTipText = "Thoát khỏi chương trình chính";
             ultraExplorerBarGroup1.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
@@ -789,35 +793,42 @@
             ultraExplorerBarItem4.Key = "101";
             appearance5.Image = global::QLSV.Frm.Properties.Resources._101;
             ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance5;
+            ultraExplorerBarItem4.Settings.MaxLines = 2;
             ultraExplorerBarItem4.Text = "Quản lý người dùng";
             ultraExplorerBarItem4.ToolTipText = "Thêm sửa xóa người dùng";
             ultraExplorerBarItem8.Key = "102";
             appearance6.Image = global::QLSV.Frm.Properties.Resources._102;
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance6;
+            ultraExplorerBarItem8.Settings.MaxLines = 2;
             ultraExplorerBarItem8.Text = "Danh mục khoa";
             ultraExplorerBarItem8.ToolTipText = "Dánh sách các khoa";
             ultraExplorerBarItem9.Key = "103";
             appearance7.Image = global::QLSV.Frm.Properties.Resources._103;
             ultraExplorerBarItem9.Settings.AppearancesSmall.Appearance = appearance7;
+            ultraExplorerBarItem9.Settings.MaxLines = 2;
             ultraExplorerBarItem9.Text = "Danh mục lớp";
             ultraExplorerBarItem9.ToolTipText = "Danh sách các lớp";
             ultraExplorerBarItem12.Key = "104";
             appearance8.Image = global::QLSV.Frm.Properties.Resources._104;
             ultraExplorerBarItem12.Settings.AppearancesSmall.Appearance = appearance8;
+            ultraExplorerBarItem12.Settings.MaxLines = 2;
             ultraExplorerBarItem12.Text = "Inport Sinh viên";
             ultraExplorerBarItem12.ToolTipText = "Nạp dữ liệu từ file excel";
             ultraExplorerBarItem6.Key = "105";
             appearance9.Image = global::QLSV.Frm.Properties.Resources._105;
             ultraExplorerBarItem6.Settings.AppearancesSmall.Appearance = appearance9;
+            ultraExplorerBarItem6.Settings.MaxLines = 2;
             ultraExplorerBarItem6.Text = "Quản lý sinh viên";
             ultraExplorerBarItem6.ToolTipText = "Danh sách sinh viên";
             ultraExplorerBarItem7.Key = "106";
             appearance10.Image = global::QLSV.Frm.Properties.Resources._106;
             ultraExplorerBarItem7.Settings.AppearancesSmall.Appearance = appearance10;
+            ultraExplorerBarItem7.Settings.MaxLines = 2;
             ultraExplorerBarItem7.Text = "Quản lý kỳ thi";
             ultraExplorerBarItem10.Key = "107";
             appearance11.Image = global::QLSV.Frm.Properties.Resources._107;
             ultraExplorerBarItem10.Settings.AppearancesSmall.Appearance = appearance11;
+            ultraExplorerBarItem10.Settings.MaxLines = 2;
             ultraExplorerBarItem10.Text = "Danh sách phòng thi";
             ultraExplorerBarItem11.Key = "108";
             appearance12.Image = global::QLSV.Frm.Properties.Resources._108;
@@ -838,6 +849,7 @@
             ultraExplorerBarItem16.Key = "202";
             appearance15.Image = global::QLSV.Frm.Properties.Resources._202_;
             ultraExplorerBarItem16.Settings.AppearancesSmall.Appearance = appearance15;
+            ultraExplorerBarItem16.Settings.MaxLines = 2;
             ultraExplorerBarItem16.Text = "Đáp án các mã đề";
             ultraExplorerBarItem15.Key = "203";
             appearance16.Image = global::QLSV.Frm.Properties.Resources._203_;
@@ -852,18 +864,22 @@
             ultraExplorerBarItem18.Key = "205";
             appearance18.Image = global::QLSV.Frm.Properties.Resources._205_;
             ultraExplorerBarItem18.Settings.AppearancesSmall.Appearance = appearance18;
+            ultraExplorerBarItem18.Settings.MaxLines = 2;
             ultraExplorerBarItem18.Text = "Kiểm tra lỗi logic";
             ultraExplorerBarItem19.Key = "206";
             appearance19.Image = global::QLSV.Frm.Properties.Resources._206_;
             ultraExplorerBarItem19.Settings.AppearancesSmall.Appearance = appearance19;
+            ultraExplorerBarItem19.Settings.MaxLines = 2;
             ultraExplorerBarItem19.Text = "Nhập thang điểm";
             ultraExplorerBarItem20.Key = "207";
             appearance20.Image = global::QLSV.Frm.Properties.Resources._207_;
             ultraExplorerBarItem20.Settings.AppearancesSmall.Appearance = appearance20;
+            ultraExplorerBarItem20.Settings.MaxLines = 3;
             ultraExplorerBarItem20.Text = "Chấm điểm thi";
             ultraExplorerBarItem21.Key = "208";
             appearance21.Image = global::QLSV.Frm.Properties.Resources._208_;
             ultraExplorerBarItem21.Settings.AppearancesSmall.Appearance = appearance21;
+            ultraExplorerBarItem21.Settings.MaxLines = 3;
             ultraExplorerBarItem21.Text = "Thống kê điểm";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem4,
