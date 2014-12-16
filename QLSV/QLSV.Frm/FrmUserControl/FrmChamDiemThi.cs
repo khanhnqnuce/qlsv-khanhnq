@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -21,12 +22,17 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
+        private readonly BackgroundWorker _bgwInsert;
 
         public FrmChamDiemThi()
         {
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
+
+            _bgwInsert = new BackgroundWorker();
+            _bgwInsert.DoWork += bgwInsert_DoWork;
+            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
         #region Exit
@@ -88,12 +94,18 @@ namespace QLSV.Frm.FrmUserControl
                 UpdateData.UpdateDiemThi(_listUpdate);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                LoadFormDetail();
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        public void Ghi()
+        {
+            if (dgv_DanhSach.Rows.Count <= 0) return;
+            _bgwInsert.RunWorkerAsync();
+            OnShowDialog("Đang lưu dữ liệu");
         }
 
         protected override void XoaDetail()
@@ -183,6 +195,27 @@ namespace QLSV.Frm.FrmUserControl
         #endregion
 
         #region MenuStrip
+
+        #endregion
+
+        #region BackgroundWorker
+
+        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
 
         #endregion
 

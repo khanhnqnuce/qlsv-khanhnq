@@ -522,7 +522,7 @@ namespace QLSV.Frm
             }
             else if (Tabchamdiemthi.Tab.Active)
             {
-                _frmNhapThangDiem.Save();
+                _frmChamDiemThi.Ghi();
             }
         }
 
