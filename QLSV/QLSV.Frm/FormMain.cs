@@ -28,6 +28,7 @@ namespace QLSV.Frm
         private static Frm_204_DanhSachBaiLam _frmDanhSachBaiLam;
         private static Frm_206_NhapThangDiem _frmNhapThangDiem;
         private static Frm_207_ChamDiemThi _frmChamDiemThi;
+        private static Frm_208_ThongKeDiem _frmThongKeDiem;
         private bool _dangnhap = false;
         private bool _thoat = false;
 
@@ -230,6 +231,13 @@ namespace QLSV.Frm
                         ShowControl(_frmChamDiemThi, pnl_chamdiemthi);
                         break;
                     case "208":
+                        _frmThongKeDiem = new Frm_208_ThongKeDiem();
+                        _frmThongKeDiem.ShowDialog += ShowLoading;
+                        _frmThongKeDiem.CloseDialog += KillLoading;
+                        _frmThongKeDiem.UpdateDialog += UpdateLoading;
+                        Tabthongkediem.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabthongkediem.Tab;
+                        ShowControl(_frmThongKeDiem, pnl_thongkediem);
                         break;
                 }
             }
@@ -325,6 +333,7 @@ namespace QLSV.Frm
                     TabDanhsachbailam.Tab.Visible = false;
                     TabNhapthangdiem.Tab.Visible = false;
                     Tabchamdiemthi.Tab.Visible = false;
+                    Tabthongkediem.Tab.Visible = false;
                     pn_Button.Visible = false;
                     break;
             }
@@ -1035,6 +1044,19 @@ namespace QLSV.Frm
                     b = false;
                 }
                 else if (Tabchamdiemthi.Tab.Visible && Tabchamdiemthi.Tab.Active)
+                {
+                    lbInsert.Visible = false;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                    b = false;
+                }
+                else if (Tabthongkediem.Tab.Visible && Tabthongkediem.Tab.Active)
                 {
                     lbInsert.Visible = false;
                     lbXoa.Visible = false;

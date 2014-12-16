@@ -231,7 +231,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["SoLuong"].Width = 150;
                 band.Columns["GhiChu"].Width = 250;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["SucChua"].FormatNumberic();
 

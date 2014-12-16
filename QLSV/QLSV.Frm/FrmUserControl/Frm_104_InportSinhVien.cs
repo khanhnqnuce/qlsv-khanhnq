@@ -272,7 +272,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].Width = 50;
                 band.Columns["MaSinhVien"].Width = 150;

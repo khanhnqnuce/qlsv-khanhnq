@@ -65,6 +65,7 @@
     <Reference Include="Infragistics2.Win.UltraWinGrid.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinSchedule.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Infragistics2.Win.UltraWinStatusBar.v12.1, Version=12.1.20121.1001, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
       <Private>True</Private>
     </Reference>
@@ -142,65 +143,65 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmChamDiemThi.cs">
+    <Compile Include="FrmUserControl\Frm_207_ChamDiemThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmChamDiemThi.Designer.cs">
-      <DependentUpon>FrmChamDiemThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_207_ChamDiemThi.Designer.cs">
+      <DependentUpon>Frm_207_ChamDiemThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhSachBaiLam.cs">
+    <Compile Include="FrmUserControl\Frm_204_DanhSachBaiLam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhSachBaiLam.Designer.cs">
-      <DependentUpon>FrmDanhSachBaiLam.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_204_DanhSachBaiLam.Designer.cs">
+      <DependentUpon>Frm_204_DanhSachBaiLam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhSachDapAn.cs">
+    <Compile Include="FrmUserControl\Frm_202_DanhSachDapAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhSachDapAn.Designer.cs">
-      <DependentUpon>FrmDanhSachDapAn.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_202_DanhSachDapAn.Designer.cs">
+      <DependentUpon>Frm_202_DanhSachDapAn.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmNhapThangDiem.cs">
+    <Compile Include="FrmUserControl\Frm_206_NhapThangDiem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmNhapThangDiem.Designer.cs">
-      <DependentUpon>FrmNhapThangDiem.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_206_NhapThangDiem.Designer.cs">
+      <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLyNguoiDung.cs">
+    <Compile Include="FrmUserControl\Frm_101_QuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLyNguoiDung.Designer.cs">
-      <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_101_QuanLyNguoiDung.Designer.cs">
+      <DependentUpon>Frm_101_QuanLyNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLySinhVien.cs">
+    <Compile Include="FrmUserControl\Frm_105_QuanLySinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLySinhVien.Designer.cs">
-      <DependentUpon>FrmQuanLySinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_105_QuanLySinhVien.Designer.cs">
+      <DependentUpon>Frm_105_QuanLySinhVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSvDaXepPhong.cs">
+    <Compile Include="FrmUserControl\Frm_109_SvDaXepPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSvDaXepPhong.Designer.cs">
-      <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_109_SvDaXepPhong.Designer.cs">
+      <DependentUpon>Frm_109_SvDaXepPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportBaiLam.cs">
+    <Compile Include="FrmUserControl\Frm_203_InportBaiLam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportBaiLam.Designer.cs">
-      <DependentUpon>FrmInportBaiLam.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_203_InportBaiLam.Designer.cs">
+      <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportDapAn.cs">
+    <Compile Include="FrmUserControl\Frm_201_InportDapAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportDapAn.Designer.cs">
-      <DependentUpon>FrmInportDapAn.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_201_InportDapAn.Designer.cs">
+      <DependentUpon>Frm_201_InportDapAn.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmThongKeDiem.cs">
+    <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmThongKeDiem.Designer.cs">
-      <DependentUpon>FrmThongKeDiem.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.Designer.cs">
+      <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
@@ -208,11 +209,11 @@
     <Compile Include="Frm\FrmChonindssv.Designer.cs">
       <DependentUpon>FrmChonindssv.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportSinhVien.cs">
+    <Compile Include="FrmUserControl\Frm_104_InportSinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmInportSinhVien.Designer.cs">
-      <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_104_InportSinhVien.Designer.cs">
+      <DependentUpon>Frm_104_InportSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmCheckXepPhong.cs">
       <SubType>Form</SubType>
@@ -226,11 +227,11 @@
     <Compile Include="Frm\FrmChonKyThi.Designer.cs">
       <DependentUpon>FrmChonKyThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmKiemTraLoiLogic.cs">
-      <SubType>Form</SubType>
+    <Compile Include="FrmUserControl\Frm_205_KiemTraLoiLogic.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frm\FrmKiemTraLoiLogic.Designer.cs">
-      <DependentUpon>FrmKiemTraLoiLogic.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_205_KiemTraLoiLogic.Designer.cs">
+      <DependentUpon>Frm_205_KiemTraLoiLogic.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmNDLSinhVien.cs">
       <SubType>Form</SubType>
@@ -262,11 +263,11 @@
     <Compile Include="Frm\FrmTimkiem.Designer.cs">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSapxepphongthi.cs">
+    <Compile Include="FrmUserControl\Frm_108_Sapxepphongthi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmSapxepphongthi.Designer.cs">
-      <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_108_Sapxepphongthi.Designer.cs">
+      <DependentUpon>Frm_108_Sapxepphongthi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmLoadding.cs">
       <SubType>Form</SubType>
@@ -311,23 +312,23 @@
     <Compile Include="Frm\FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhmuckhoa.cs">
+    <Compile Include="FrmUserControl\Frm_102_Danhmuckhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhmuckhoa.Designer.cs">
-      <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_102_Danhmuckhoa.Designer.cs">
+      <DependentUpon>Frm_102_Danhmuckhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhmuclop.cs">
+    <Compile Include="FrmUserControl\Frm_103_Danhmuclop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhmuclop.Designer.cs">
-      <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_103_Danhmuclop.Designer.cs">
+      <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhsachphongthi.cs">
+    <Compile Include="FrmUserControl\Frm_107_Danhsachphongthi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmDanhsachphongthi.Designer.cs">
-      <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_107_Danhsachphongthi.Designer.cs">
+      <DependentUpon>Frm_107_Danhsachphongthi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmNapDuLieu.cs">
       <SubType>Form</SubType>
@@ -335,15 +336,18 @@
     <Compile Include="Frm\FrmNapDuLieu.Designer.cs">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLyKyThi.cs">
+    <Compile Include="FrmUserControl\Frm_106_QuanLyKyThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\FrmQuanLyKyThi.Designer.cs">
-      <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_106_QuanLyKyThi.Designer.cs">
+      <DependentUpon>Frm_106_QuanLyKyThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ultis.Frm\ValidateHighlight.cs" />
+    <None Include="Resources\chart_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -360,35 +364,35 @@
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmChamDiemThi.resx">
-      <DependentUpon>FrmChamDiemThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_207_ChamDiemThi.resx">
+      <DependentUpon>Frm_207_ChamDiemThi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDanhSachBaiLam.resx">
-      <DependentUpon>FrmDanhSachBaiLam.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_204_DanhSachBaiLam.resx">
+      <DependentUpon>Frm_204_DanhSachBaiLam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDanhSachDapAn.resx">
-      <DependentUpon>FrmDanhSachDapAn.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_202_DanhSachDapAn.resx">
+      <DependentUpon>Frm_202_DanhSachDapAn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmNhapThangDiem.resx">
-      <DependentUpon>FrmNhapThangDiem.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_206_NhapThangDiem.resx">
+      <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmQuanLyNguoiDung.resx">
-      <DependentUpon>FrmQuanLyNguoiDung.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_101_QuanLyNguoiDung.resx">
+      <DependentUpon>Frm_101_QuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmQuanLySinhVien.resx">
-      <DependentUpon>FrmQuanLySinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_105_QuanLySinhVien.resx">
+      <DependentUpon>Frm_105_QuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmSvDaXepPhong.resx">
-      <DependentUpon>FrmSvDaXepPhong.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_109_SvDaXepPhong.resx">
+      <DependentUpon>Frm_109_SvDaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmInportBaiLam.resx">
-      <DependentUpon>FrmInportBaiLam.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_203_InportBaiLam.resx">
+      <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmInportDapAn.resx">
-      <DependentUpon>FrmInportDapAn.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_201_InportDapAn.resx">
+      <DependentUpon>Frm_201_InportDapAn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmThongKeDiem.resx">
-      <DependentUpon>FrmThongKeDiem.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_208_ThongKeDiem.resx">
+      <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
@@ -406,20 +410,20 @@
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDanhmuckhoa.resx">
-      <DependentUpon>FrmDanhmuckhoa.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_102_Danhmuckhoa.resx">
+      <DependentUpon>Frm_102_Danhmuckhoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDanhmuclop.resx">
-      <DependentUpon>FrmDanhmuclop.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_103_Danhmuclop.resx">
+      <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmDanhsachphongthi.resx">
-      <DependentUpon>FrmDanhsachphongthi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_107_Danhsachphongthi.resx">
+      <DependentUpon>Frm_107_Danhsachphongthi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmInportSinhVien.resx">
-      <DependentUpon>FrmInportSinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_104_InportSinhVien.resx">
+      <DependentUpon>Frm_104_InportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmKiemTraLoiLogic.resx">
-      <DependentUpon>FrmKiemTraLoiLogic.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_205_KiemTraLoiLogic.resx">
+      <DependentUpon>Frm_205_KiemTraLoiLogic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNDLSinhVien.resx">
       <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>
@@ -427,8 +431,8 @@
     <EmbeddedResource Include="Frm\FrmNapDuLieu.resx">
       <DependentUpon>FrmNapDuLieu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmQuanLyKyThi.resx">
-      <DependentUpon>FrmQuanLyKyThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_106_QuanLyKyThi.resx">
+      <DependentUpon>Frm_106_QuanLyKyThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNhapDiem.resx">
       <DependentUpon>FrmNhapDiem.cs</DependentUpon>
@@ -442,8 +446,8 @@
     <EmbeddedResource Include="Frm\FrmTimkiem.resx">
       <DependentUpon>FrmTimkiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\FrmSapxepphongthi.resx">
-      <DependentUpon>FrmSapxepphongthi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_108_Sapxepphongthi.resx">
+      <DependentUpon>Frm_108_Sapxepphongthi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmLoadding.resx">
       <DependentUpon>FrmLoadding.cs</DependentUpon>

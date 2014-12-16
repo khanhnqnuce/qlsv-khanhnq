@@ -199,7 +199,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaKhoa"].Width = 200;
                 band.Columns["TenKhoa"].Width = 400;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption

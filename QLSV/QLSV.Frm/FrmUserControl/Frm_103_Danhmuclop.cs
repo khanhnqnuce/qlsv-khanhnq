@@ -198,7 +198,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaKhoa"].Width = 400;
                 band.Columns["GhiChu"].Width = 300;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["MaKhoa"].Loadcbokhoa();
                 #region Caption

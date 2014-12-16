@@ -231,7 +231,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption

@@ -7,6 +7,7 @@ namespace QLSV.Core.LINQ
     public class SearchData
     {
         private static readonly Connect Conn = new Connect();
+
         /// <summary>
         /// Tìm kiếm sinh viên theo khoa
         /// </summary>
@@ -19,9 +20,9 @@ namespace QLSV.Core.LINQ
                 {
                     var str =
                         "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh," +
-                            "s.IdLop,MaLop,l.IdKhoa,TenKhoa " +
-                            "FROM SinhVien s,Lop l, Khoa k " +
-                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSinhVien";
+                        "s.IdLop,MaLop,l.IdKhoa,TenKhoa " +
+                        "FROM SinhVien s,Lop l, Khoa k " +
+                        "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSinhVien";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -77,7 +78,7 @@ namespace QLSV.Core.LINQ
                 try
                 {
                     var str = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], ID, MaSinhVien, MaDe, KetQua, IdKyThi" +
-                                 " FROM BaiLam WHERE MaDe = N'"+made+"'";
+                              " FROM BaiLam WHERE MaDe = N'" + made + "'";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -92,7 +93,7 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Tìm kiếm bài làm của sinh viên theo mã đề
         /// </summary>
@@ -103,7 +104,9 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID and MaDe = N'"+made+"'";
+                    var str =
+                        "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID and MaDe = N'" +
+                        made + "'";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -127,16 +130,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "'";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "'";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -144,5 +139,56 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+
+        public static DataTable Thongkediem(int index)
+        {
+            try
+            {
+                string str = null;
+                switch (index)
+                {
+                    case 0:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi < 200";
+                        break;
+                    case 1:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi > 200 and b.DiemThi < 249";
+                        break;
+                    case 2:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi > 250 and b.DiemThi < 300";
+                        break;
+                    case 3:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi > 300 and b.DiemThi < 374";
+                        break;
+                    case 4:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi > 375 and b.DiemThi < 450";
+                        break;
+                    case 5:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
+                              "and b.DiemThi > 450";
+                        break; 
+                    default:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop";
+                        break;
+                }
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
         }
+    }
 }

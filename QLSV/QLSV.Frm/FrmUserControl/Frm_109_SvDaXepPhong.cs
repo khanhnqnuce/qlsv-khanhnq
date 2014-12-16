@@ -377,7 +377,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 12;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
             }
             catch (Exception ex)
             {
