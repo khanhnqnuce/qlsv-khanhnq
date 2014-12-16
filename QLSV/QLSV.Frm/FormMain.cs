@@ -13,21 +13,21 @@ namespace QLSV.Frm
     public partial class FormMain : Form
     {
         private static FrmDangNhap _frmDangNhap;
-        private static FrmQuanLyNguoiDung _frmQuanLyNguoiDung;
-        private static FrmDanhmuckhoa _frmDanhmuckhoa;
-        private static FrmDanhmuclop _frmDanhmuclop;
-        private static FrmInportSinhVien _frmInportSinhVien;
-        private static FrmQuanLySinhVien _frmQuanlySinhVien;
-        private static FrmQuanLyKyThi _frmQuanLyKyThi;
-        private static FrmDanhsachphongthi _frmDanhsachphongthi;
-        private static FrmSapxepphongthi _frmSapxepsinhvien;
-        private static FrmSvDaXepPhong _frmSinhVienPhongThi;
-        private static FrmInportDapAn _frmInportDapAn;
-        private static FrmInportBaiLam _frmInportBaiLam;
-        private static FrmDanhSachDapAn _frmDapAnCacMaDe;
-        private static FrmDanhSachBaiLam _frmDanhSachBaiLam;
-        private static FrmNhapThangDiem _frmNhapThangDiem;
-        private static FrmChamDiemThi _frmChamDiemThi;
+        private static Frm_101_QuanLyNguoiDung _frmQuanLyNguoiDung;
+        private static Frm_102_Danhmuckhoa _frmDanhmuckhoa;
+        private static Frm_103_Danhmuclop _frmDanhmuclop;
+        private static Frm_104_InportSinhVien _frmInportSinhVien;
+        private static Frm_105_QuanLySinhVien _frmQuanlySinhVien;
+        private static Frm_106_QuanLyKyThi _frmQuanLyKyThi;
+        private static Frm_107_Danhsachphongthi _frmDanhsachphongthi;
+        private static Frm_108_Sapxepphongthi _frmSapxepsinhvien;
+        private static Frm_109_SvDaXepPhong _frmSinhVienPhongThi;
+        private static Frm_201_InportDapAn _frmInportDapAn;
+        private static Frm_203_InportBaiLam _frmInportBaiLam;
+        private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
+        private static Frm_204_DanhSachBaiLam _frmDanhSachBaiLam;
+        private static Frm_206_NhapThangDiem _frmNhapThangDiem;
+        private static Frm_207_ChamDiemThi _frmChamDiemThi;
         private bool _dangnhap = false;
         private bool _thoat = false;
 
@@ -92,25 +92,25 @@ namespace QLSV.Frm
                         }
                         break;
                     case "101":
-                        _frmQuanLyNguoiDung = new FrmQuanLyNguoiDung();
+                        _frmQuanLyNguoiDung = new Frm_101_QuanLyNguoiDung();
                         Tabquanlynguoidung.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlynguoidung.Tab;
                         ShowControl(_frmQuanLyNguoiDung, pn_quanlynguoidung);
                         break;
                     case "102":
-                        _frmDanhmuckhoa = new FrmDanhmuckhoa();
+                        _frmDanhmuckhoa = new Frm_102_Danhmuckhoa();
                         Tabdanhmuckhoa.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdanhmuckhoa.Tab;
                         ShowControl(_frmDanhmuckhoa, pn_danhmuckhoa);
                         break;
                     case "103":
-                        _frmDanhmuclop = new FrmDanhmuclop();
+                        _frmDanhmuclop = new Frm_103_Danhmuclop();
                         Tabdanhmuclop.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdanhmuclop.Tab;
                         ShowControl(_frmDanhmuclop, pn_danhmuclop);
                         break;
                     case "104":
-                        _frmInportSinhVien = new FrmInportSinhVien();
+                        _frmInportSinhVien = new Frm_104_InportSinhVien();
                         _frmInportSinhVien.ShowDialog += ShowLoading;
                         _frmInportSinhVien.CloseDialog += KillLoading;
                         _frmInportSinhVien.UpdateDialog += UpdateLoading;
@@ -120,7 +120,7 @@ namespace QLSV.Frm
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
                     case "105":
-                        _frmQuanlySinhVien = new FrmQuanLySinhVien();
+                        _frmQuanlySinhVien = new Frm_105_QuanLySinhVien();
                         _frmQuanlySinhVien.ShowDialog += ShowLoading;
                         _frmQuanlySinhVien.CloseDialog += KillLoading;
                         _frmQuanlySinhVien.UpdateDialog += UpdateLoading;
@@ -130,19 +130,19 @@ namespace QLSV.Frm
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
                     case "106":
-                        _frmQuanLyKyThi = new FrmQuanLyKyThi();
+                        _frmQuanLyKyThi = new Frm_106_QuanLyKyThi();
                         Tabquanlykythi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlykythi.Tab;
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);
                         break;
                     case "107":
-                        _frmDanhsachphongthi = new FrmDanhsachphongthi();
+                        _frmDanhsachphongthi = new Frm_107_Danhsachphongthi();
                         Tabdanhsachphongthi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
                         break;
                     case "108":
-                        _frmSapxepsinhvien = new FrmSapxepphongthi();
+                        _frmSapxepsinhvien = new Frm_108_Sapxepphongthi();
                         _frmSapxepsinhvien.ShowDialog += ShowLoading;
                         _frmSapxepsinhvien.CloseDialog += KillLoading;
                         _frmSapxepsinhvien.UpdateDialog += UpdateLoading;
@@ -152,7 +152,7 @@ namespace QLSV.Frm
                         ShowControl(_frmSapxepsinhvien, pn_sapxepphongthi);
                         break;
                     case "109":
-                        _frmSinhVienPhongThi = new FrmSvDaXepPhong();
+                        _frmSinhVienPhongThi = new Frm_109_SvDaXepPhong();
                         _frmSinhVienPhongThi.ShowDialog += ShowLoading;
                         _frmSinhVienPhongThi.CloseDialog += KillLoading;
                         _frmSinhVienPhongThi.UpdateDialog += UpdateLoading;
@@ -162,7 +162,7 @@ namespace QLSV.Frm
                         ShowControl(_frmSinhVienPhongThi, pnl_daxepphong);
                         break;
                     case "201":
-                        _frmInportDapAn = new FrmInportDapAn();
+                        _frmInportDapAn = new Frm_201_InportDapAn();
                         _frmInportDapAn.ShowDialog += ShowLoading;
                         _frmInportDapAn.CloseDialog += KillLoading;
                         _frmInportDapAn.UpdateDialog += UpdateLoading;
@@ -174,7 +174,7 @@ namespace QLSV.Frm
                         ShowControl(_frmInportDapAn, pnl_Inportdapan);
                         break;
                     case "202":
-                        _frmDapAnCacMaDe = new FrmDanhSachDapAn();
+                        _frmDapAnCacMaDe = new Frm_202_DanhSachDapAn();
                         _frmDapAnCacMaDe.ShowDialog += ShowLoading;
                         _frmDapAnCacMaDe.CloseDialog += KillLoading;
                         _frmDapAnCacMaDe.UpdateDialog += UpdateLoading;
@@ -185,7 +185,7 @@ namespace QLSV.Frm
                         ShowControl(_frmDapAnCacMaDe, pnl_Dapanmade);
                         break;
                     case "203":
-                        _frmInportBaiLam = new FrmInportBaiLam();
+                        _frmInportBaiLam = new Frm_203_InportBaiLam();
                         _frmInportBaiLam.ShowDialog += ShowLoading;
                         _frmInportBaiLam.CloseDialog += KillLoading;
                         _frmInportBaiLam.UpdateDialog += UpdateLoading;
@@ -197,7 +197,7 @@ namespace QLSV.Frm
                         ShowControl(_frmInportBaiLam, pnl_Inportbailam);
                         break;
                     case "204":
-                        _frmDanhSachBaiLam = new FrmDanhSachBaiLam();
+                        _frmDanhSachBaiLam = new Frm_204_DanhSachBaiLam();
                         _frmDanhSachBaiLam.ShowDialog += ShowLoading;
                         _frmDanhSachBaiLam.CloseDialog += KillLoading;
                         _frmDanhSachBaiLam.UpdateDialog += UpdateLoading;
@@ -212,7 +212,7 @@ namespace QLSV.Frm
                         frm.Indanhsach();
                         break;
                     case "206":
-                        _frmNhapThangDiem = new FrmNhapThangDiem();
+                        _frmNhapThangDiem = new Frm_206_NhapThangDiem();
                         _frmNhapThangDiem.ShowDialog += ShowLoading;
                         _frmNhapThangDiem.CloseDialog += KillLoading;
                         _frmNhapThangDiem.UpdateDialog += UpdateLoading;
@@ -221,7 +221,7 @@ namespace QLSV.Frm
                         ShowControl(_frmNhapThangDiem, pnl_nhapthangdiem);
                         break;
                     case "207":
-                        _frmChamDiemThi = new FrmChamDiemThi();
+                        _frmChamDiemThi = new Frm_207_ChamDiemThi();
                         _frmChamDiemThi.ShowDialog += ShowLoading;
                         _frmChamDiemThi.CloseDialog += KillLoading;
                         _frmChamDiemThi.UpdateDialog += UpdateLoading;

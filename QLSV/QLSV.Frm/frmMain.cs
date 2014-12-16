@@ -13,12 +13,12 @@ namespace QLSV.Frm
     {
 
         private static FrmDangNhap _frmDangNhap;
-        private static FrmQuanLyNguoiDung _frmQuanLyNguoiDung;
-        private static FrmQuanLySinhVien _frmSinhVien;
-        private static FrmDanhmuckhoa _frmDanhmuckhoa;
-        private static FrmDanhmuclop _frmDanhmuclop;
-        private static FrmDanhsachphongthi _frmDanhsachphongthi;
-        private static FrmInportSinhVien _frmInportSinhVien;
+        private static Frm_101_QuanLyNguoiDung _frmQuanLyNguoiDung;
+        private static Frm_105_QuanLySinhVien _frmSinhVien;
+        private static Frm_102_Danhmuckhoa _frmDanhmuckhoa;
+        private static Frm_103_Danhmuclop _frmDanhmuclop;
+        private static Frm_107_Danhsachphongthi _frmDanhsachphongthi;
+        private static Frm_104_InportSinhVien _frmInportSinhVien;
 
         public FrmMain()
         {
@@ -92,31 +92,31 @@ namespace QLSV.Frm
                         _frmDangNhap.ShowDialog();
                         break;
                     case "101":
-                        _frmQuanLyNguoiDung = new FrmQuanLyNguoiDung();
+                        _frmQuanLyNguoiDung = new Frm_101_QuanLyNguoiDung();
                         //_frmQuanLyNguoiDung.ShowDialog();
                         break;
                     case "201":
-                        _frmSinhVien = new FrmQuanLySinhVien();
+                        _frmSinhVien = new Frm_105_QuanLySinhVien();
                         //_frmSinhVien.ShowDialog();
                         break;
                     case "103":
-                        var frmQuanLyKyThi = new FrmQuanLyKyThi();
+                        var frmQuanLyKyThi = new Frm_106_QuanLyKyThi();
                         //frmQuanLyKyThi.ShowDialog();
                         break;
                     case "104":
-                        _frmDanhmuckhoa = new FrmDanhmuckhoa();
+                        _frmDanhmuckhoa = new Frm_102_Danhmuckhoa();
                         //_frmDanhmuckhoa.ShowDialog();
                         break;
                     case "105":
-                        _frmDanhmuclop = new FrmDanhmuclop();
+                        _frmDanhmuclop = new Frm_103_Danhmuclop();
                         //_frmDanhmuclop.ShowDialog();
                         break;
                     case "106":
-                        _frmDanhsachphongthi = new FrmDanhsachphongthi();
+                        _frmDanhsachphongthi = new Frm_107_Danhsachphongthi();
                         //_frmDanhsachphongthi.ShowDialog();
                         break;
                     case "107":
-                        _frmInportSinhVien = new FrmInportSinhVien();
+                        _frmInportSinhVien = new Frm_104_InportSinhVien();
                         //_frmInportSinhVien.ShowDialog();
                         break;
                     case "thoat":
@@ -184,7 +184,7 @@ namespace QLSV.Frm
 
         private void btnkythi_Click(object sender, EventArgs e)
         {
-            var frmQuanLyKyThi = new FrmQuanLyKyThi();
+            var frmQuanLyKyThi = new Frm_106_QuanLyKyThi();
             //frmQuanLyKyThi.ShowDialog();
         }
 
