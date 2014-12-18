@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="QLSV.Core" namespace="QLSV.Core.Domain">
+  <class name="QLSV.Core.Domain.DapAn, QLSV.Core" table="DapAn">
+    <id name="ID" column="ID" type="Int32" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+    <property name="IdKyThi" column="IdKyThi"  type="int"/>
+    <property name="MaMon" column="MaMon"  type="string" length="255" />
+    <property name="MaDe" column="MaDe"  type="string" length="255"/>
+    <property name="CauHoi" column="CauHoi"  type="string" length="255" />
+    <property name="Dapan" column="Dapan"  type="string" length="255" />
+    <property name="ThangDiem" column="ThangDiem"  type="int" />
+  </class>
+</hibernate-mapping>
