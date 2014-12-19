@@ -60,6 +60,7 @@ namespace QLSV.Core.LINQ
             var dt = new DataTable();
             try
             {
+                if (string.IsNullOrEmpty(sql)) return dt;
                 var connect = GetConnect();
                 var ad = new SqlDataAdapter(sql, connect);
                 ad.Fill(dt);
@@ -90,7 +91,6 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
                 Console.WriteLine(ex.Message);
             }
-
         }
     }
 }

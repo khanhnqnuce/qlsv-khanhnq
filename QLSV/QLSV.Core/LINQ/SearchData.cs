@@ -4,7 +4,7 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.LINQ
 {
-    public class SearchData
+    public static class SearchData
     {
         private static readonly Connect Conn = new Connect();
 
@@ -12,17 +12,69 @@ namespace QLSV.Core.LINQ
         /// Tìm kiếm sinh viên theo khoa
         /// </summary>
         /// <returns>trả về bảng sinh  viên</returns>
+
         public static DataTable Timkiemtheokhoa(int id)
         {
             try
             {
                 try
                 {
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                              "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                              "FROM SINHVIEN s,LOP l, KHOA k " +
+                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        public static DataTable Timkiemtheokhoa(int id, int idkythi)
+        {
+            try
+            {
+                try
+                {
                     var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh," +
-                        "s.IdLop,MaLop,l.IdKhoa,TenKhoa " +
-                        "FROM SinhVien s,Lop l, Khoa k " +
-                        "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSinhVien";
+                        "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, '' as [PhongThi] FROM SINHVIEN s,LOP l, KHOA k WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +
+                        idkythi + " )and s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Tìm kiếm sinh viên theo niên khóa
+        /// </summary>
+        /// <returns>trả về bảng sinh  viên</returns>
+        public static DataTable Timkiemtheokhoa(string id, int idkythi)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                        "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, '' as [PhongThi] FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " +
+                        idkythi + ") and s.IdLop = l.ID  and s.MaSV like '%" + id + "' ORDER BY TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -48,10 +100,61 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                              "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                              "FROM SINHVIEN s,LOP l, KHOA k " +
+                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        public static DataTable Timkiemtheolop(int id, int idkythi)
+        {
+            try
+            {
+                try
+                {
                     var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh, s.IdLop," +
-                        "MaLop,l.IdKhoa,TenKhoa FROM SinhVien s, Lop l, Khoa k " +
-                        "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSinhVien";
+                        "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, '' as [PhongThi] FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +
+                        idkythi + " )and  s.IdLop = l.ID and l.ID = " + id + " ORDER BY TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Lấy ra lớp quản lý theo mã khoa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static DataTable Timkiem(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str = "SELECT * FROM LOP WHERE IdKhoa = " + id + "";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -140,6 +243,11 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Thống kê sinh viên theo điểm
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static DataTable Thongkediem(int index)
         {
             try
@@ -183,6 +291,31 @@ namespace QLSV.Core.LINQ
                         break;
                 }
                 return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// lấy ra phòng thi chưa dùng tròng kỳ thi
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable LoadPhong(int id)
+        {
+            try
+            {
+                try
+                {
+                    return Conn.GetTable("SELECT p.ID, 'false' as [Chon], p.TenPhong, p.SucChua FROM PHONGTHI p WHERE not exists (SELECT p.ID  FROM KT_PHONG k WHERE k.IdPhong = p.ID and k.IdKyThi = "+id+")");
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
             }
             catch (Exception ex)
             {

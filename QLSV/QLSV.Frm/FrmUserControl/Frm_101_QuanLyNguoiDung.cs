@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
@@ -44,15 +45,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var table = GetTable();
-                var danhsach = QlsvSevice.Load<Taikhoan>();
-                var stt = 1;
-                foreach (var hs in danhsach)
-                {
-                    table.Rows.Add(hs.ID, stt, hs.TaiKhoan, hs.MatKhau, hs.HoTen, hs.Quyen);
-                    stt++;
-                }
-                uG_DanhSach.DataSource = table;
+                uG_DanhSach.DataSource = LoadData.Load(14);
                 foreach (var row in uG_DanhSach.Rows)
                 {
                     row.Cells["TaiKhoan"].Activation = Activation.NoEdit;
@@ -150,10 +143,10 @@ namespace QLSV.Frm.FrmUserControl
                     };
                     _listAdd.Add(hs);
                 }
-                QlsvSevice.ThemAll(_listAdd);
-                QlsvSevice.SuaTaiKhoan(_listUpdate);
-                QlsvSevice.SuaMatKhau(_listUpdatepass);
-                QlsvSevice.Xoa(IdDelete,"Taikhoan");
+                if (_listUpdate.Count > 0) UpdateData.UpdateTaiKhoan(_listUpdate);
+                if (_listUpdatepass.Count > 0) UpdateData.UpdateMatKhau(_listUpdatepass);
+                if (IdDelete.Count > 0) DeleteData.XoaTaiKhoan(IdDelete);
+                if(_listAdd.Count > 0) InsertData.ThemTaiKhoan(_listAdd);
 
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -194,7 +187,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                uG_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 

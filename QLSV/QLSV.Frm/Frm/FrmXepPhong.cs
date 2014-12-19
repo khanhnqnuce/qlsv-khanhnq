@@ -91,7 +91,7 @@ namespace QLSV.Frm.Frm
                     IdKyThi = gb_iIdKythi
 
                 };
-                InsertData.XepPhong1(hs1);
+                InsertData.XepPhong(hs1);
                 UpdateData.UpdatePhongThi(hs1.IdPhong);
                 gb_iIdsinhvien = 0;
                 Close();

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
@@ -17,7 +15,7 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_108_Sapxepphongthi : FunctionControlHasGrid
+    public partial class Frm_109_Sapxepphongthi : FunctionControlHasGrid
     {
         private IList<XepPhong> _lstAdd = new List<XepPhong>();
         private IList<PhongThi> _lstAdd1 = new List<PhongThi>();
@@ -25,7 +23,7 @@ namespace QLSV.Frm.FrmUserControl
         private int m_iIdKythi;
         private readonly BackgroundWorker _bgwInsert = null;
 
-        public Frm_108_Sapxepphongthi()
+        public Frm_109_Sapxepphongthi()
         {
             InitializeComponent();
 
@@ -51,118 +49,118 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void LoadGrid()
         {
-            try
-            {
-                _lstAdd.Clear();
-                _lstAdd1.Clear();
-                var table = GetTable();
-                var tbSinhVien = LoadData.Load(6);
-                var listPhongthi = QlsvSevice.Load<PhongThi>();
-                var t = 0;
-                var s = 0;
-                var tg = 0;
-                var stt = 1;
-                if (tbSinhVien == null || tbSinhVien.Rows.Count == 0)
-                {
-                    MessageBox.Show(FormResource.msgxepphong);
-                    return;
-                }
-                var frm = new FrmCheckXepPhong();
-                frm.ShowDialog();
-                m_iIdKythi = frm.gb_iIdKythi;
-                if (frm.rdoall.Checked)
-                {
-                    _check = false;
-                    foreach (var pt in listPhongthi.Where(pt => pt.SoLuong < pt.SucChua))
-                    {
-                        var phong = new PhongThi
-                        {
-                            ID = pt.ID,
-                            SoLuong = pt.SoLuong
-                        };
-                        t = t + tg;
-                        tg = pt.SucChua - pt.SoLuong;
-                        s = s + tg;
-                        if (s < tbSinhVien.Rows.Count)
-                        {
-                            for (var i = t; i < s; i++)
-                            {
-                                table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
-                                    stt++,
-                                    tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["NgaySinh"].ToString(),
-                                    tbSinhVien.Rows[i]["MaLop"].ToString(),
-                                    pt.TenPhong);
-                                var hs = new XepPhong
-                                {
-                                    IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
-                                    IdPhong = pt.ID,
-                                    IdKyThi = m_iIdKythi
-                                };
-                                phong.SoLuong = phong.SoLuong + 1;
-                                _lstAdd.Add(hs);
-                            }
-                            _lstAdd1.Add(phong);
-                        }
-                        else
-                        {
-                            for (var i = t; i < tbSinhVien.Rows.Count; i++)
-                            {
-                                table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
-                                    stt++,
-                                    tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
-                                    tbSinhVien.Rows[i]["NgaySinh"].ToString(),
-                                    tbSinhVien.Rows[i]["MaLop"].ToString(),
-                                    pt.TenPhong);
-                                var hs = new XepPhong
-                                {
-                                    IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
-                                    IdPhong = pt.ID,
-                                    IdKyThi = m_iIdKythi
-                                };
-                                phong.SoLuong = phong.SoLuong + 1;
-                                _lstAdd.Add(hs);
-                            }
-                            _lstAdd1.Add(phong);
-                            break;
-                        }
+            //try
+            //{
+            //    _lstAdd.Clear();
+            //    _lstAdd1.Clear();
+            //    var table = GetTable();
+            //    var tbSinhVien = LoadData.Load(6);
+            //    var listPhongthi = QlsvSevice.Load<PhongThi>();
+            //    var t = 0;
+            //    var s = 0;
+            //    var tg = 0;
+            //    var stt = 1;
+            //    if (tbSinhVien == null || tbSinhVien.Rows.Count == 0)
+            //    {
+            //        MessageBox.Show(FormResource.msgxepphong);
+            //        return;
+            //    }
+            //    var frm = new FrmCheckXepPhong();
+            //    frm.ShowDialog();
+            //    m_iIdKythi = frm.gb_iIdKythi;
+            //    if (frm.rdoall.Checked)
+            //    {
+            //        _check = false;
+            //        foreach (var pt in listPhongthi.Where(pt => pt.SoLuong < pt.SucChua))
+            //        {
+            //            var phong = new PhongThi
+            //            {
+            //                ID = pt.ID,
+            //                SoLuong = pt.SoLuong
+            //            };
+            //            t = t + tg;
+            //            tg = pt.SucChua - pt.SoLuong;
+            //            s = s + tg;
+            //            if (s < tbSinhVien.Rows.Count)
+            //            {
+            //                for (var i = t; i < s; i++)
+            //                {
+            //                    table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
+            //                        stt++,
+            //                        tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["NgaySinh"].ToString(),
+            //                        tbSinhVien.Rows[i]["MaLop"].ToString(),
+            //                        pt.TenPhong);
+            //                    var hs = new XepPhong
+            //                    {
+            //                        IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
+            //                        IdPhong = pt.ID,
+            //                        IdKyThi = m_iIdKythi
+            //                    };
+            //                    phong.SoLuong = phong.SoLuong + 1;
+            //                    _lstAdd.Add(hs);
+            //                }
+            //                _lstAdd1.Add(phong);
+            //            }
+            //            else
+            //            {
+            //                for (var i = t; i < tbSinhVien.Rows.Count; i++)
+            //                {
+            //                    table.Rows.Add(tbSinhVien.Rows[i]["ID"].ToString(),
+            //                        stt++,
+            //                        tbSinhVien.Rows[i]["MaSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["HoSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["TenSinhVien"].ToString(),
+            //                        tbSinhVien.Rows[i]["NgaySinh"].ToString(),
+            //                        tbSinhVien.Rows[i]["MaLop"].ToString(),
+            //                        pt.TenPhong);
+            //                    var hs = new XepPhong
+            //                    {
+            //                        IdSV = int.Parse(tbSinhVien.Rows[i]["ID"].ToString()),
+            //                        IdPhong = pt.ID,
+            //                        IdKyThi = m_iIdKythi
+            //                    };
+            //                    phong.SoLuong = phong.SoLuong + 1;
+            //                    _lstAdd.Add(hs);
+            //                }
+            //                _lstAdd1.Add(phong);
+            //                break;
+            //            }
 
-                    }
-                    if (s < tbSinhVien.Rows.Count)
-                        MessageBox.Show(@"Không đủ phòng thi để xếp sinh viên");
-                    else
-                        dgv_DanhSach.DataSource = table;
+            //        }
+            //        if (s < tbSinhVien.Rows.Count)
+            //            MessageBox.Show(@"Không đủ phòng thi để xếp sinh viên");
+            //        else
+            //            dgv_DanhSach.DataSource = table;
 
-                }
-                else if (frm.rdoone.Checked)
-                {
-                    foreach (DataRow sv in tbSinhVien.Rows)
-                    {
-                        table.Rows.Add(sv["ID"].ToString(),
-                            stt++,
-                            sv["MaSinhVien"].ToString(),
-                            sv["HoSinhVien"].ToString(),
-                            sv["TenSinhVien"].ToString(),
-                            sv["NgaySinh"].ToString(),
-                            sv["MaLop"].ToString());
-                    }
-                    dgv_DanhSach.DataSource = table;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
+            //    }
+            //    else if (frm.rdoone.Checked)
+            //    {
+            //        foreach (DataRow sv in tbSinhVien.Rows)
+            //        {
+            //            table.Rows.Add(sv["ID"].ToString(),
+            //                stt++,
+            //                sv["MaSinhVien"].ToString(),
+            //                sv["HoSinhVien"].ToString(),
+            //                sv["TenSinhVien"].ToString(),
+            //                sv["NgaySinh"].ToString(),
+            //                sv["MaLop"].ToString());
+            //        }
+            //        dgv_DanhSach.DataSource = table;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    Log2File.LogExceptionToFile(ex);
 
-            }
-            finally
-            {
-                pnl_form.Visible = true;
-            }
+            //}
+            //finally
+            //{
+            //    pnl_form.Visible = true;
+            //}
         }
 
         protected override void LoadFormDetail()

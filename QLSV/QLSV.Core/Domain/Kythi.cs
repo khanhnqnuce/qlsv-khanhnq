@@ -6,16 +6,16 @@ namespace QLSV.Core.Domain
     {
         public virtual int ID { get; set; }
 
-        public virtual string MaKyThi { get; set; }
+        public virtual string MaKT { get; set; }
 
-        public virtual string TenKyThi { get; set; }
+        public virtual string TenKT { get; set; }
 
         public virtual string NgayThi { get; set; }
 
-        public virtual int ThoiGianLamBai { get; set; }
+        public virtual int TGLamBai { get; set; }
 
-        public virtual string ThoiGianBatDau { get; set; }
+        public virtual string TGBatDau { get; set; }
 
-        public virtual string ThoiGianKetThuc { get; set; }
+        public virtual string TGKetThuc { get; set; }
     }
 }

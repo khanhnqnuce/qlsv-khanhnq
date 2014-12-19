@@ -77,6 +77,7 @@
             this.txtmasinhvien.Name = "txtmasinhvien";
             this.txtmasinhvien.Size = new System.Drawing.Size(197, 26);
             this.txtmasinhvien.TabIndex = 34;
+            this.txtmasinhvien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmasinhvien_KeyPress);
             // 
             // ultraLabel1
             // 

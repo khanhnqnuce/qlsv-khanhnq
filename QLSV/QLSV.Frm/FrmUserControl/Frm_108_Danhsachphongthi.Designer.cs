@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_107_Danhsachphongthi
+    partial class Frm_108_Danhsachphongthi
     {
         /// <summary>
         /// Required designer variable.
@@ -37,14 +37,14 @@
             this.menuStrip_luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdanhsachphongthi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.menu_ug.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_ug
@@ -87,7 +87,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.uG_DanhSach);
+            this.panel2.Controls.Add(this.dgv_DanhSach);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -95,23 +95,23 @@
             this.panel2.Size = new System.Drawing.Size(475, 475);
             this.panel2.TabIndex = 12;
             // 
-            // uG_DanhSach
+            // dgv_DanhSach
             // 
-            this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
-            this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
-            this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.uG_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
-            this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(475, 475);
-            this.uG_DanhSach.TabIndex = 25;
-            this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
-            this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
-            this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
+            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
+            this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.dgv_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.dgv_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
+            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.dgv_DanhSach.Name = "dgv_DanhSach";
+            this.dgv_DanhSach.Size = new System.Drawing.Size(475, 475);
+            this.dgv_DanhSach.TabIndex = 25;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.dgv_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
             // 
             // reportManager1
             // 
@@ -139,18 +139,18 @@
             this.pdfExportFilter1.ExtraParameters = extraParameters2;
             this.pdfExportFilter1.UserPassword = null;
             // 
-            // FrmDanhsachphongthi
+            // Frm_108_Danhsachphongthi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmDanhsachphongthi";
+            this.Name = "Frm_108_Danhsachphongthi";
             this.Size = new System.Drawing.Size(475, 475);
             this.Load += new System.EventHandler(this.FrmDanhsachphongthi_Load);
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -163,7 +163,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.Panel panel2;
-        private Infragistics.Win.UltraWinGrid.UltraGrid uG_DanhSach;
+        private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;

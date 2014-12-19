@@ -153,12 +153,10 @@ namespace QLSV.Frm.FrmUserControl
 
         private void SuaMaSinhVien()
         {
-            var frm = new FrmSuaMaSinhVien
-            {
-                id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text)
-            };
+            var id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text);
+            var frm = new FrmSuaMaSinhVien(id);
             frm.ShowDialog();
-            if(frm.id != 0) return;
+            if(frm.Masv != 0) return;
             dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Value = frm.txtmasinhvien.Text;
         }
 

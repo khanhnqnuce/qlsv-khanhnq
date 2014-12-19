@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Domain\BaiLam.cs" />
     <Compile Include="Domain\DapAn.cs" />
+    <Compile Include="Domain\KTPhong.cs" />
     <Compile Include="Domain\XepPhong.cs" />
     <Compile Include="LINQ\DeleteData.cs" />
     <Compile Include="LINQ\InsertData.cs" />

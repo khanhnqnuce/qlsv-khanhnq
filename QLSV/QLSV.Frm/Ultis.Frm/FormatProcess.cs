@@ -1,6 +1,7 @@
 ﻿using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinMaskedEdit;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 namespace QLSV.Frm.Ultis.Frm
 {
@@ -84,15 +85,16 @@ namespace QLSV.Frm.Ultis.Frm
         {
             var ultraCombo = new UltraCombo
             {
-                DataSource = QlsvSevice.Load<Khoa>(),
+                DataSource = LoadData.Load(15),
                 ValueMember = "ID",
                 DisplayMember = "TenKhoa"
             };
             ultraCombo.DisplayLayout.ScrollStyle = ScrollStyle.Immediate;
             ultraCombo.DisplayLayout.ScrollBounds = ScrollBounds.ScrollToFill;
+            ultraCombo.Rows.Band.Columns["STT"].Hidden = true;
             ultraCombo.Rows.Band.Columns["ID"].Hidden = true;
             ultraCombo.Rows.Band.Columns["MaKhoa"].Hidden = true;
-            ultraCombo.Rows.Band.Columns["TenKhoa"].Width = 400;
+            ultraCombo.Rows.Band.Columns["TenKhoa"].Width = 350;
             ultraCombo.DisplayLayout.Bands[0].Columns["TenKhoa"].Header.Caption = @"Khoa";
             ultraCombo.DisplayLayout.Bands[0].Columns["TenKhoa"].SortIndicator = SortIndicator.Ascending;
             ultraCombo.DropDownWidth = 0;

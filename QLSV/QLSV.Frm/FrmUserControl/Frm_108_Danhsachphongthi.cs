@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
-using QLSV.Core.Service;
+using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
+using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_107_Danhsachphongthi : FunctionControlHasGrid
+    public partial class Frm_108_Danhsachphongthi : FunctionControlHasGrid
     {
         private readonly List<PhongThi> _listAdd = new List<PhongThi>();
         private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
 
-        public Frm_107_Danhsachphongthi()
+        public Frm_108_Danhsachphongthi()
         {
             InitializeComponent();
         }
@@ -34,7 +35,6 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("STT", typeof(int));
             table.Columns.Add("TenPhong", typeof(string));
             table.Columns.Add("SucChua", typeof(int));
-            table.Columns.Add("SoLuong", typeof(int));
             table.Columns.Add("GhiChu", typeof(string));
             return table;
         }
@@ -43,17 +43,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                _listAdd.Clear();
-                _listUpdate.Clear();
-                var table = GetTable();
-                var danhsach = QlsvSevice.Load<PhongThi>();
-                var stt = 1;
-                foreach (var hs in danhsach)
-                {
-                    table.Rows.Add(hs.ID, stt, hs.TenPhong, hs.SucChua, hs.SoLuong, hs.GhiChu);
-                    stt++;
-                }
-                uG_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = LoadData.Load(9);
             }
             catch (Exception ex)
             {
@@ -68,7 +58,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 LoadGrid();
-                if (uG_DanhSach.Rows.Count == 0)
+                if (dgv_DanhSach.Rows.Count == 0)
                 {
                     InsertRow();
                 }
@@ -86,14 +76,14 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "TenPhong");
+            InsertRow(dgv_DanhSach, "STT", "TenPhong");
         }
 
         protected override void DeleteRow()
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "TenPhong");
+                DeleteRowGrid(dgv_DanhSach, "ID", "TenPhong");
                 Stt();
             }
             catch (Exception ex)
@@ -107,7 +97,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                 {
                     var hs = new PhongThi
                     {
@@ -117,9 +107,10 @@ namespace QLSV.Frm.FrmUserControl
                     };
                     _listAdd.Add(hs);
                 }
-                QlsvSevice.ThemAll(_listAdd);
-                QlsvSevice.SuaAll(_listUpdate);
-                QlsvSevice.Xoa(IdDelete, "PhongThi");
+
+                if (_listUpdate.Count >0) UpdateData.UpdatePhongThi(_listUpdate);
+                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete,"PHONGTHI");
+                if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -141,7 +132,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                QlsvSevice.Xoa("PhongThi");
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -159,7 +149,7 @@ namespace QLSV.Frm.FrmUserControl
         public void Rptdanhsach()
         {
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", uG_DanhSach.DataSource);
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachphongthi.FilePath = Application.StartupPath + @"\Reports\danhsachphongthi.rst";
             using (var previewForm = new PreviewForm(rptdanhsachphongthi))
             {
@@ -171,9 +161,9 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Stt()
         {
-            for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
+            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 
@@ -190,21 +180,21 @@ namespace QLSV.Frm.FrmUserControl
                     b = false;
                     return;
                 }
-                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (string.IsNullOrEmpty(id)) return;
                 foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                 {
-                    item.TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text;
-                    item.SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text);
-                    item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
+                    item.TenPhong = dgv_DanhSach.ActiveRow.Cells["TenPhong"].Text;
+                    item.SucChua = int.Parse(dgv_DanhSach.ActiveRow.Cells["SucChua"].Text);
+                    item.GhiChu = dgv_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                     return;
                 }
                 var hs = new PhongThi
                 {
                     ID = int.Parse(id),
-                    TenPhong = uG_DanhSach.ActiveRow.Cells["TenPhong"].Text,
-                    SucChua = int.Parse(uG_DanhSach.ActiveRow.Cells["SucChua"].Text),
-                    GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
+                    TenPhong = dgv_DanhSach.ActiveRow.Cells["TenPhong"].Text,
+                    SucChua = int.Parse(dgv_DanhSach.ActiveRow.Cells["SucChua"].Text),
+                    GhiChu = dgv_DanhSach.ActiveRow.Cells["GhiChu"].Text,
                 };
                 _listUpdate.Add(hs);
             }
@@ -223,12 +213,10 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["ID"].Hidden = true;
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["SoLuong"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].Width = 50;
                 band.Columns["TenPhong"].Width = 150;
                 band.Columns["SucChua"].Width = 150;
-                band.Columns["SoLuong"].Width = 150;
                 band.Columns["GhiChu"].Width = 250;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
@@ -239,7 +227,6 @@ namespace QLSV.Frm.FrmUserControl
 
                 band.Columns["TenPhong"].Header.Caption = @"Tên phòng";
                 band.Columns["SucChua"].Header.Caption = @"Sức chứa";
-                band.Columns["SoLuong"].Header.Caption = @"Số Lượng";
                 band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
 
                 #endregion
@@ -258,28 +245,28 @@ namespace QLSV.Frm.FrmUserControl
                 switch (e.KeyCode)
                 {
                     case Keys.Up:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Down:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Right:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                     case Keys.Left:
-                        uG_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        uG_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
                         e.Handled = true;
-                        uG_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
                         break;
                 }
             }

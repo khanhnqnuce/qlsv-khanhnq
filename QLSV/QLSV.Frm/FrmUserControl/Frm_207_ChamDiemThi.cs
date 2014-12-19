@@ -269,7 +269,7 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 var hs = new BaiLam
                 {
-                    ID = int.Parse(dataRow["ID"].ToString()),
+                    MaSV = int.Parse(dataRow["MaSV"].ToString()),
                     DiemThi = diem
                 };
                 _listUpdate.Add(hs);

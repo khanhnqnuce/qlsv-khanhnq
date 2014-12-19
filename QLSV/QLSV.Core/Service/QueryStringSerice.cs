@@ -184,5 +184,7 @@ namespace QLSV.Core.Service
                 Log2File.LogExceptionToFile(ex);
             }
         }
+        
+        
     }
 }

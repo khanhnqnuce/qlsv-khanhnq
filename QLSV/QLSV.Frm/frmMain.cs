@@ -17,7 +17,7 @@ namespace QLSV.Frm
         private static Frm_105_QuanLySinhVien _frmSinhVien;
         private static Frm_102_Danhmuckhoa _frmDanhmuckhoa;
         private static Frm_103_Danhmuclop _frmDanhmuclop;
-        private static Frm_107_Danhsachphongthi _frmDanhsachphongthi;
+        private static Frm_108_Danhsachphongthi _frmDanhsachphongthi;
         private static Frm_104_InportSinhVien _frmInportSinhVien;
 
         public FrmMain()
@@ -112,7 +112,7 @@ namespace QLSV.Frm
                         //_frmDanhmuclop.ShowDialog();
                         break;
                     case "106":
-                        _frmDanhsachphongthi = new Frm_107_Danhsachphongthi();
+                        _frmDanhsachphongthi = new Frm_108_Danhsachphongthi();
                         //_frmDanhsachphongthi.ShowDialog();
                         break;
                     case "107":
@@ -195,7 +195,7 @@ namespace QLSV.Frm
             tb.Columns.Add("Tên kỳ thi", typeof (string));
             foreach (var item in QlsvSevice.Load<Kythi>())
             {
-                tb.Rows.Add(item.MaKyThi, item.TenKyThi);
+                //tb.Rows.Add(item.MaKyThi, item.TenKyThi);
             }
             cboChonKyThi.DataSource = tb;
             cboChonKyThi.DisplayMember = "Tên kỳ thi";

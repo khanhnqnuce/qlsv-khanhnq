@@ -19,8 +19,6 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_104_InportSinhVien : FunctionControlHasGrid
     {
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
-        private IList<Lop> _listLop;
-        private IList<Khoa> _listKhoa;
 
         private readonly BackgroundWorker _bgwInsert;
 
@@ -41,9 +39,9 @@ namespace QLSV.Frm.FrmUserControl
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(string));
-            table.Columns.Add("MaSinhVien", typeof(string));
-            table.Columns.Add("HoSinhVien", typeof(string));
-            table.Columns.Add("TenSinhVien", typeof(string));
+            table.Columns.Add("MaSV", typeof(string));
+            table.Columns.Add("HoSV", typeof(string));
+            table.Columns.Add("TenSV", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof(string));
             table.Columns.Add("TenKhoa", typeof(string));
@@ -55,8 +53,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                _listLop = QlsvSevice.Load<Lop>();
-                _listKhoa = QlsvSevice.Load<Khoa>();
                 _listAdd.Clear();
                 var table = GetTable();
                 uG_DanhSach.DataSource = table;
@@ -130,6 +126,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var tbKhoa = LoadData.Load(15);
+                var tbLop = LoadData.Load(16);
                 var danhsach = (DataTable)uG_DanhSach.DataSource;
                 foreach (DataRow row in danhsach.Rows)
                 {
@@ -138,38 +136,36 @@ namespace QLSV.Frm.FrmUserControl
                     var tenkhoa = row["TenKhoa"].ToString();
                     var malop = row["MaLop"].ToString();
                     // Kiểm tra lớp đã tồn tại chưa
-                    foreach (var lop in _listLop.Where(lop => lop.MaLop == malop))
+                    foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
                     {
                         var hs = new SinhVien
                         {
-                            MaSinhVien = row["MaSinhVien"].ToString(),
-                            HoSinhVien = row["HoSinhVien"].ToString(),
-                            TenSinhVien = row["TenSinhVien"].ToString(),
+                            MaSV = int.Parse(row["MaSV"].ToString()),
+                            HoSV = row["HoSV"].ToString(),
+                            TenSV = row["TenSV"].ToString(),
                             NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = lop.ID,
+                            IdLop = int.Parse(dataRow["ID"].ToString()),
                         };
                         checkmalop = malop;
                         _listAdd.Add(hs);
                     }
                     if (checkmalop != "") continue;
                     //Kiểm tra khoa đã tồn tại chưa
-                    foreach (
-                        var khoa in
-                            _listKhoa.Where(khoa => khoa.TenKhoa.Equals(tenkhoa, StringComparison.OrdinalIgnoreCase))
-                        )
+                    foreach (var dataRow in tbKhoa.Rows.Cast<DataRow>().Where(dataRow => dataRow["TenKhoa"].ToString().Equals(tenkhoa, StringComparison.OrdinalIgnoreCase)))
                     {
-                        var newLop1 = InsertData.ThemLop(malop, khoa.ID);
+                        var newLop1 = InsertData.ThemLop(malop, int.Parse(dataRow["ID"].ToString()));
                         checkmakhoa = newLop1.MaLop;
                         var hs = new SinhVien
                         {
-                            MaSinhVien = row["MaSinhVien"].ToString(),
-                            HoSinhVien = row["HoSinhVien"].ToString(),
-                            TenSinhVien = row["TenSinhVien"].ToString(),
+                            MaSV = int.Parse(row["MaSV"].ToString()),
+                            HoSV = row["HoSV"].ToString(),
+                            TenSV = row["TenSV"].ToString(),
                             NgaySinh = row["NgaySinh"].ToString(),
                             IdLop = newLop1.ID,
                         };
                         _listAdd.Add(hs);
-                        _listLop.Add(newLop1);
+                        var a = tbLop.Rows.Count + 1;
+                        tbLop.Rows.Add(a,newLop1.ID,newLop1.MaLop,newLop1.IdKhoa,newLop1.GhiChu);
                     }
                     if (checkmakhoa != "") continue;
 
@@ -178,16 +174,18 @@ namespace QLSV.Frm.FrmUserControl
                     var newLop3 = InsertData.ThemLop(malop, newkhoa.ID);
                     var hs1 = new SinhVien
                     {
-                        MaSinhVien = row["MaSinhVien"].ToString(),
-                        HoSinhVien = row["HoSinhVien"].ToString(),
-                        TenSinhVien = row["TenSinhVien"].ToString(),
+                        MaSV = int.Parse(row["MaSV"].ToString()),
+                        HoSV = row["HoSV"].ToString(),
+                        TenSV = row["TenSV"].ToString(),
                         NgaySinh = row["NgaySinh"].ToString(),
                         IdLop = newLop3.ID
                     };
 
                     _listAdd.Add(hs1);
-                    _listLop.Add(newLop3);
-                    _listKhoa.Add(newkhoa);
+                    var a1 = tbLop.Rows.Count + 1;
+                    var b = tbKhoa.Rows.Count + 1;
+                    tbLop.Rows.Add(a1, newLop3.ID, newLop3.MaLop, newLop3.IdKhoa, newLop3.GhiChu);
+                    tbKhoa.Rows.Add(b, newkhoa.ID, newkhoa.MaKhoa, newkhoa.TenKhoa);
                 }
                 InsertData.ThemSinhVien(_listAdd);
                 danhsach.Clear();
@@ -275,18 +273,18 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].Width = 50;
-                band.Columns["MaSinhVien"].Width = 150;
-                band.Columns["HoSinhVien"].Width = 200;
-                band.Columns["TenSinhVien"].Width = 150;
+                band.Columns["MaSV"].Width = 150;
+                band.Columns["HoSV"].Width = 200;
+                band.Columns["TenSV"].Width = 150;
                 band.Columns["TenKhoa"].Width = 400;
                 band.Columns["MaLop"].Width = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 
-                band.Columns["MaSinhVien"].Header.Caption = FormResource.txtMasinhvien;
-                band.Columns["HoSinhVien"].Header.Caption = FormResource.txtHosinhvien;
-                band.Columns["TenSinhVien"].Header.Caption = FormResource.txtTensinhvien;
+                band.Columns["MaSV"].Header.Caption = FormResource.txtMasinhvien;
+                band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
+                band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
                 band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
                 band.Columns["TenKhoa"].Header.Caption = FormResource.txtKhoaquanly;
                 band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;

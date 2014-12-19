@@ -7,10 +7,12 @@ using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
+using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -32,7 +34,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("MaKhoa", typeof(string));
+            table.Columns.Add("IdKhoa", typeof(string));
             table.Columns.Add("GhiChu", typeof(string));
             return table;
         }
@@ -43,15 +45,8 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _listAdd.Clear();
                 _listUpdate.Clear();
-                var table = GetTable();
-                var danhsach = QlsvSevice.Load<Lop>();
-                var stt = 1;
-                foreach (var hs in danhsach)
-                {
-                    table.Rows.Add(hs.ID, stt, hs.MaLop, hs.Khoa.ID,hs.GhiChu);
-                    stt++;
-                }
-                uG_DanhSach.DataSource = table;
+                var a = LoadData.Load(16);
+                uG_DanhSach.DataSource = LoadData.Load(16);
             }
             catch (Exception ex)
             {
@@ -102,13 +97,13 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         MaLop = row.Cells["MaLop"].Text,
                         GhiChu = row.Cells["GhiChu"].Text,
-                        IdKhoa = int.Parse(row.Cells["MaKhoa"].Value.ToString())
+                        IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
                     };
                     _listAdd.Add(hs);
                 }
-                QlsvSevice.ThemAll(_listAdd);
-                QlsvSevice.SuaAll(_listUpdate);
-                QlsvSevice.Xoa(IdDelete, "Lop");
+                if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
+                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
+                if (_listAdd.Count > 0) InsertData.ThemLop(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -139,7 +134,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                uG_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 
@@ -162,7 +157,7 @@ namespace QLSV.Frm.FrmUserControl
                     foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                     {
                         item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
-                        item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString());
+                        item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString());
                         item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                         return;
                     }
@@ -170,7 +165,7 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         ID = int.Parse(id),
                         MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
-                        IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["MaKhoa"].Value.ToString()),
+                        IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString()),
                         GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
                     };
                     _listUpdate.Add(hs);
@@ -195,16 +190,17 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].Width = 50;
                 band.Columns["MaLop"].Width = 200;
-                band.Columns["MaKhoa"].Width = 400;
+                band.Columns["IdKhoa"].Width = 400;
                 band.Columns["GhiChu"].Width = 300;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["MaKhoa"].Loadcbokhoa();
+                band.Columns["IdKhoa"].Loadcbokhoa();
+                band.Columns["IdKhoa"].Style = ColumnStyle.DropDownList;
                 #region Caption
 
                 band.Columns["MaLop"].Header.Caption = @"Mã lớp";
-                band.Columns["MaKhoa"].Header.Caption = @"Tên khoa";
+                band.Columns["IdKhoa"].Header.Caption = @"Tên khoa";
                 band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
 
                 #endregion

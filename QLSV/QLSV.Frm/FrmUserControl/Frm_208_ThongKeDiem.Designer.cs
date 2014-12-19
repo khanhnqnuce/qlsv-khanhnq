@@ -33,20 +33,21 @@
             this.menuStrip_nhapdiem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl_from = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lbthongke = new System.Windows.Forms.ToolStripLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cbothongke = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.pnl_from = new System.Windows.Forms.Panel();
-            this.lbthongke = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menu_ug.SuspendLayout();
+            this.pnl_from.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,7 +55,6 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.pnl_from.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu_ug
@@ -84,6 +84,16 @@
             this.menuStrip_Huy.Name = "menuStrip_Huy";
             this.menuStrip_Huy.Size = new System.Drawing.Size(133, 22);
             this.menuStrip_Huy.Text = "Hủy";
+            // 
+            // pnl_from
+            // 
+            this.pnl_from.Controls.Add(this.panel1);
+            this.pnl_from.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_from.Location = new System.Drawing.Point(0, 0);
+            this.pnl_from.Name = "pnl_from";
+            this.pnl_from.Size = new System.Drawing.Size(743, 526);
+            this.pnl_from.TabIndex = 29;
+            this.pnl_from.Visible = false;
             // 
             // panel1
             // 
@@ -143,6 +153,17 @@
             this.toolStripButton1.Size = new System.Drawing.Size(77, 22);
             this.toolStripButton1.Text = "Thống kê";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lbthongke
+            // 
+            this.lbthongke.Name = "lbthongke";
+            this.lbthongke.Size = new System.Drawing.Size(61, 22);
+            this.lbthongke.Text = "lbthongke";
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.cbothongke);
@@ -195,27 +216,6 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(87, 22);
             this.toolStripLabel1.Text = "Thống kê điểm";
             // 
-            // pnl_from
-            // 
-            this.pnl_from.Controls.Add(this.panel1);
-            this.pnl_from.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_from.Location = new System.Drawing.Point(0, 0);
-            this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(743, 526);
-            this.pnl_from.TabIndex = 29;
-            this.pnl_from.Visible = false;
-            // 
-            // lbthongke
-            // 
-            this.lbthongke.Name = "lbthongke";
-            this.lbthongke.Size = new System.Drawing.Size(61, 22);
-            this.lbthongke.Text = "lbthongke";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // Frm_208_ThongKeDiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +225,7 @@
             this.Size = new System.Drawing.Size(743, 526);
             this.Load += new System.EventHandler(this.Frm_208_ThongKeDiem_Load);
             this.menu_ug.ResumeLayout(false);
+            this.pnl_from.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -236,7 +237,6 @@
             this.panel3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.pnl_from.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

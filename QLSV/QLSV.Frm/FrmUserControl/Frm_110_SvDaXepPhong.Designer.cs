@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_109_SvDaXepPhong
+    partial class Frm_110_SvDaXepPhong
     {
         /// <summary> 
         /// Required designer variable.

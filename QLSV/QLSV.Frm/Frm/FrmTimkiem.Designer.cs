@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             this.txtmasinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -44,13 +44,14 @@
             this.txtmasinhvien.Name = "txtmasinhvien";
             this.txtmasinhvien.Size = new System.Drawing.Size(182, 26);
             this.txtmasinhvien.TabIndex = 8;
+            this.txtmasinhvien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtmasinhvien_KeyPress);
             this.txtmasinhvien.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMaChucNang_KeyUp);
             // 
             // ultraLabel1
             // 
-            appearance4.TextHAlignAsString = "Left";
-            appearance4.TextVAlignAsString = "Middle";
-            this.ultraLabel1.Appearance = appearance4;
+            appearance1.TextHAlignAsString = "Left";
+            appearance1.TextVAlignAsString = "Middle";
+            this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel1.Location = new System.Drawing.Point(22, 42);
             this.ultraLabel1.Name = "ultraLabel1";

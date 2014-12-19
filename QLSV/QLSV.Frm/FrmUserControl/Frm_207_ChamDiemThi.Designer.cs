@@ -33,7 +33,6 @@
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_207_ChamDiemThi));
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +61,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.pdfExportFilter2 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
-            this.btnchamthi = new System.Windows.Forms.ToolStripButton();
             this.menu_ug.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
@@ -221,8 +219,7 @@
             this.toolStripSeparator1,
             this.btntimkiemsinhvien,
             this.toolStripSeparator2,
-            this.btnrefresh,
-            this.btnchamthi});
+            this.btnrefresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(626, 25);
@@ -284,23 +281,13 @@
             this.pdfExportFilter2.ExtraParameters = extraParameters4;
             this.pdfExportFilter2.UserPassword = null;
             // 
-            // btnchamthi
-            // 
-            this.btnchamthi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnchamthi.Image = ((System.Drawing.Image)(resources.GetObject("btnchamthi.Image")));
-            this.btnchamthi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnchamthi.Name = "btnchamthi";
-            this.btnchamthi.Size = new System.Drawing.Size(23, 22);
-            this.btnchamthi.Text = "Chấm thi";
-            this.btnchamthi.Click += new System.EventHandler(this.btnchamthi_Click);
-            // 
-            // FrmChamDiemThi
+            // Frm_207_ChamDiemThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmChamDiemThi";
+            this.Name = "Frm_207_ChamDiemThi";
             this.Size = new System.Drawing.Size(626, 451);
             this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
             this.menu_ug.ResumeLayout(false);
@@ -344,6 +331,5 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnrefresh;
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
-        private System.Windows.Forms.ToolStripButton btnchamthi;
     }
 }

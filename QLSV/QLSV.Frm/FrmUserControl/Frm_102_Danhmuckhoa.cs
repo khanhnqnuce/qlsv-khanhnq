@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
+using QLSV.Core.LINQ;
 using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
@@ -41,15 +42,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _listAdd.Clear();
                 _listUpdate.Clear();
-                var table = GetTable();
-                var danhsach = QlsvSevice.Load<Khoa>();
-                var stt = 1;
-                foreach (var hs in danhsach)
-                {
-                    table.Rows.Add(hs.ID, stt, hs.MaKhoa, hs.TenKhoa);
-                    stt++;
-                }
-                dgv_DanhSach.DataSource = table;
+                dgv_DanhSach.DataSource = LoadData.Load(15);
             }
             catch (Exception ex)
             {
@@ -103,9 +96,10 @@ namespace QLSV.Frm.FrmUserControl
                     };
                         _listAdd.Add(hs);
                 }
-                QlsvSevice.Xoa(IdDelete, "Khoa");
-                QlsvSevice.SuaAll(_listUpdate);
-                QlsvSevice.ThemAll(_listAdd);
+
+                if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
+                if(IdDelete.Count>0) DeleteData.Xoa(IdDelete, "KHOA");
+                if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -146,7 +140,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
             {
-                dgv_DanhSach.Rows[i].Cells[1].Value = i + 1;
+                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 

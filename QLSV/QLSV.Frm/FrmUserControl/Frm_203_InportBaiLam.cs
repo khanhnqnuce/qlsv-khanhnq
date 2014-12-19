@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -111,7 +110,7 @@ namespace QLSV.Frm.FrmUserControl
         /// </summary>
         protected override void InsertRow()
         {
-            InsertRow(dgv_DanhSach, "STT", "MaSinhVien");
+            InsertRow(dgv_DanhSach, "STT", "MaSV");
         }
 
         /// <summary>
@@ -121,7 +120,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, "ID", "MaSinhVien");
+                DeleteRowGrid(dgv_DanhSach, "ID", "MaSV");
             }
             catch (Exception ex)
             {
@@ -141,7 +140,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var hs = new BaiLam
                     {
-                        MaSinhVien = row.Cells["MaSinhVien"].Text,
+                        MaSV = int.Parse(row.Cells["MaSV"].Text),
                         MaDe = row.Cells["MaDe"].Text,
                         KetQua = row.Cells["KetQua"].Text,
                         IdKyThi = _idKythi
@@ -208,11 +207,11 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["MaSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                //band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                //band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 //band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 //band.Columns["KetQua"].CellActivation = Activation.NoEdit;
                 //band.Columns["ID"].CellActivation = Activation.NoEdit;
@@ -222,14 +221,14 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].Width = 50;
-                band.Columns["MaSinhVien"].Width = 150;
+                band.Columns["MaSV"].Width = 150;
                 band.Columns["MaDe"].Width = 150;
                 band.Columns["KetQua"].Width = 650;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 
-                band.Columns["MaSinhVien"].Header.Caption = @"Mã sinh viên";
+                band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
                 band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
 
@@ -256,11 +255,6 @@ namespace QLSV.Frm.FrmUserControl
         private void menuStrip_Xoadong_Click(object sender, EventArgs e)
         {
             DeleteRow();
-        }
-
-        private void menuStrip_Luulai_Click(object sender, EventArgs e)
-        {
-            Ghi();
         }
 
         #endregion

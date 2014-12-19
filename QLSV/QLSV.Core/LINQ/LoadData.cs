@@ -8,37 +8,6 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
-        #region Khai báo chuỗi
-
-        const string Str1 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh," +
-                            "s.IdLop,MaLop,l.IdKhoa,TenKhoa " +
-                            "FROM SinhVien s,Lop l, Khoa k " +
-                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY TenSinhVien";
-        const string Str2 = "SELECT MaSinhVien FROM SinhVien ORDER BY TenSinhVien";
-        const string Str3 = "SELECT * FROM Khoa";
-        const string Str4 = "SELECT * FROM Lop";
-        const string Str5 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
-                            "FROM SinhVien s,XepPhong x,PhongThi p,Lop l " +
-                            "WHERE s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
-        const string Str6 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
-                            "s.TenSinhVien, s.NgaySinh, l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
-                            "(SELECT x.IdSV FROM XepPhong x " +
-                            "WHERE s.ID = x.IdSV) and s.IdLop = l.ID";
-        const string Str7 = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
-                            "s.TenSinhVien, s.NgaySinh,l.MaLop,p.ID as [IdPhong], p.TenPhong as [PhongThi], " +
-                            "k.ID as [MaKhoa], k.TenKhoa, kt.ID as [IdKyThi]" +
-                            "FROM Khoa k, Lop l, SinhVien s, XepPhong x, PhongThi p,Kythi kt " +
-                            "WHERE k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID and x.IdKyThi = kt.ID;";
-        private const string Str8 = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
-        private const string Str9 = "SELECT * FROM PhongThi";
-        private const string Str10 = "SELECT * FROM Kythi";
-        private const string Str11 = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID";
-        private const string Str12 = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], b.* FROM BaiLam b";
-
-        private const string Str13 = "select * from BaiLam b where not exists (select * from SinhVien s where b.MaSinhVien = s.MaSinhVien)";
-
-        #endregion
-
         /// <summary>
         /// 
         /// </summary>
@@ -57,90 +26,122 @@ namespace QLSV.Core.LINQ
         /// 11:Trả về bảng đáp án các mã đề
         /// 12:Trả về danh sách bài làm của sinh viên
         /// 13:Kiểm tra những sinh viên có trong danh sách bài thi những không có trong danh sách dự thi 
+        /// 14: trả về bảng TAIKHOAN
+        /// 15: Khoa
+        /// 16: Lớp
+        /// 17: Sinh viên
+        /// 18: kỳ thi
+        /// 19: phòng thi
         public static DataTable Load(int chon)
         {
+            var table = new DataTable();
+            string str = null;
             try
             {
-                var table = new DataTable();
                 switch (chon)
                 {
-                    case 1:
-                        table = Conn.GetTable(Str1);
+                   case 1:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                            "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                            "FROM SINHVIEN s,LOP l, KHOA k " +
+                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY TenSV";
                         break;
                     case 2:
-                        table = Conn.GetTable(Str2);
+                        str = "SELECT MaSV FROM SINHVIEN ORDER BY TenSV";
                         break;
                     case 3:
-                        table = Conn.GetTable(Str3);
+                        str = "SELECT * FROM KHOA";
                         break;
                     case 4:
-                        table = Conn.GetTable(Str4);
+                        str = "SELECT * FROM LOP";
                         break;
                     case 5:
-                        table = Conn.GetTable(Str5);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
+                              "FROM SINHVIEN s,XEPPHONG x,PHONGTHI p,LOP l " +
+                              "WHERE s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
                         break;
                     case 6:
-                        table = Conn.GetTable(Str6);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
+                              "s.TenSinhVien, s.NgaySinh, l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
+                              "(SELECT x.IdSV FROM XepPhong x " +
+                              "WHERE s.ID = x.IdSV) and s.IdLop = l.ID";
                         break;
                     case 7:
-                        table = Conn.GetTable(Str7);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
+                              "s.TenSinhVien, s.NgaySinh,l.MaLop,p.ID as [IdPhong], p.TenPhong as [PhongThi], " +
+                              "k.ID as [MaKhoa], k.TenKhoa, kt.ID as [IdKyThi]" +
+                              "FROM Khoa k, Lop l, SinhVien s, XepPhong x, PhongThi p,Kythi kt " +
+                              "WHERE k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID and x.IdKyThi = kt.ID;";
                         break;
                     case 8:
-                        table = Conn.GetTable(Str8);
+                        str = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
                         break;
                     case 9:
-                        table = Conn.GetTable(Str9);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY p.ID) as [STT], p.* FROM PHONGTHI p";
                         break;
                     case 10:
-                        table = Conn.GetTable(Str10);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.* FROM KYTHI K";
                         break;
                     case 11:
-                        table = Conn.GetTable(Str11);
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID";
                         break;
                     case 12:
-                        table = Conn.GetTable(Str12);
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], b.* FROM BAILAM b";
                         break;
                     case 13:
-                        table = Conn.GetTable(Str13);
+                        str =
+                            "select * from BAILAM b where not exists (select * from SinhVien s where b.MaSinhVien = s.MaSinhVien)";
+                        break;
+                    case 14:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY T.ID) as [STT], T.* FROM TAIKHOAN T";
+                        break;
+                    case 15:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.* FROM KHOA K";
+                        break;
+                    case 16:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY L.ID) as [STT], L.ID, L.MaLop,L.IdKhoa, L.GhiChu FROM LOP L";
+                        break;
+                    case 17:
+                        str = "SELECT * FROM SINHVIEN";
+                        break;
+                    case 18:
+                        str = "SELECT ID, MaKT, TenKT  FROM KYTHI";
+                        break;
+                    case 19:
+                        str = "SELECT ID, 'false' as [Chon], TenPhong, SucChua  FROM PHONGTHI";
                         break;
                 }
-                return table;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return null;
             }
+            return Conn.GetTable(str);
         }
 
         public static Taikhoan KiemTraTaiKhoan(string user, string pass)
         {
+            var tk = new Taikhoan();
             try
             {
-                var str = "SELECT * FROM Taikhoan WHERE TaiKhoan = N'"+user+"' and MatKhau = N'"+pass+"'";
-                var tb = Conn.GetTable(str);
-                if (tb != null && tb.Rows.Count>0)
+                var str1 = "SELECT * FROM Taikhoan WHERE TaiKhoan = N'" + user + "' and MatKhau = N'" + pass + "'";
+                var tb = Conn.GetTable(str1);
+                if (tb != null && tb.Rows.Count > 0)
                 {
-                    var tk = new Taikhoan
-                        {
-                            ID = int.Parse(tb.Rows[0]["ID"].ToString()),
-                            TaiKhoan = tb.Rows[0]["TaiKhoan"].ToString(),
-                            MatKhau = tb.Rows[0]["MatKhau"].ToString(),
-                            HoTen = tb.Rows[0]["HoTen"].ToString(),
-                            Quyen = tb.Rows[0]["Quyen"].ToString(),
-                        };
-                    return tk;
-                }
-                else
-                {
-                    return null;
+                    tk.ID = int.Parse(tb.Rows[0]["ID"].ToString());
+                    tk.TaiKhoan = tb.Rows[0]["TaiKhoan"].ToString();
+                    tk.MatKhau = tb.Rows[0]["MatKhau"].ToString();
+                    tk.HoTen = tb.Rows[0]["HoTen"].ToString();
+                    tk.Quyen = tb.Rows[0]["Quyen"].ToString();
                 }
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return null;
             }
+            return tk;
         }
     }
 }

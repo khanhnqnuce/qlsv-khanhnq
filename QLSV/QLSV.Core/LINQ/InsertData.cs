@@ -10,16 +10,160 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
+        /// <summary>
+        /// Thêm 1 người dùng mới
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemTaiKhoan(Taikhoan item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("INSERT INTO TAIKHOAN(TaiKhoan,MatKhau,HoTen,Quyen) values(N'" +
+                                    item.TaiKhoan + "',N'" + item.MatKhau + "',N'" + item.HoTen + "',N'" +
+                                    item.Quyen + "')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm người dùng mới mới
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemTaiKhoan(IList<Taikhoan> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemTaiKhoan(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm 1 khoa quản lý
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool ThemKhoa(Khoa item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("INSERT INTO KHOA(MaKhoa,TenKhoa) values(N'" + item.MaKhoa + "',N'" + item.TenKhoa + "')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm nhiều khoa quản lý
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemKhoa(IList<Khoa> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemKhoa(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm 1 lớp quản lý
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemLop(Lop item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("INSERT INTO LOP(MaLop,IdKhoa,GhiChu) values(N'" +
+                            item.MaLop + "'," + item.IdKhoa + ",N'" + item.GhiChu + "')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm nhiều lớp quản lý
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemLop(IList<Lop> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemLop(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm mới 1 sinh viên
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool ThemSinhVien(SinhVien item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into SINHVIEN(MaSV,HoSV,TenSV,NgaySinh,IdLop) values(" +
+                                    item.MaSV + ",N'" + item.HoSV + "',N'" + item.TenSV + "','" +
+                                    item.NgaySinh + "'," + item.IdLop + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm mới nhiều sinh viên
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static bool ThemSinhVien(IList<SinhVien> list)
         {
             try
             {
-                foreach (var sql in list.Select(item =>
-                                "insert into SinhVien(MaSinhVien,HoSinhVien,TenSinhVien,NgaySinh,IdLop) values(N'" +
-                                item.MaSinhVien + "',N'" + item.HoSinhVien + "',N'" + item.TenSinhVien + "',N'" +
-                                item.NgaySinh + "'," + item.IdLop + ")"))
+                foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql(sql);
+                    ThemSinhVien(item);
                 }
                 return true;
             }
@@ -30,16 +174,121 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Thêm 1 kỳ thi
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemKyThi(Kythi item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into KYTHI(MaKT,TenKT,NgayThi,TGLamBai,TGBatDau,TGKetThuc) values(N'" +
+                            item.MaKT + "',N'" + item.TenKT + "','" + item.NgayThi + "'," +
+                            item.TGLamBai + ",N'" + item.TGBatDau + "',N'" + item.TGKetThuc + "')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm nhiều kỳ thi
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool ThemKythi(IList<Kythi> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemKyThi(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm 1 phòng thi
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemPhongThi(PhongThi item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into PHONGTHI(TenPhong,SucChua,GhiChu) values(N'" +
+                            item.TenPhong + "'," + item.SucChua + ",N'" + item.GhiChu + "')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm nhiều phòng thi
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static bool ThemPhongThi(IList<PhongThi> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemPhongThi(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm 1 đáp án cho mã đề
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemDapAn(DapAn item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into DapAn(IdKyThi,MaMon,MaDe,CauHoi,Dapan,ThangDiem) values(" +
+                            item.IdKyThi + ",N'" + item.MaMon + "',N'" + item.MaDe + "',N'" +
+                            item.CauHoi + "',N'" + item.Dapan + "'," + item.ThangDiem + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm nhiều đáp án cho mã đề
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static bool ThemDapAn(IList<DapAn> list)
         {
             try
             {
-                foreach (var sql in list.Select(item =>
-                                "insert into DapAn(IdKyThi,MaMon,MaDe,CauHoi,Dapan,ThangDiem) values(" +
-                                item.IdKyThi + ",N'" + item.MaMon + "',N'" + item.MaDe + "',N'" +
-                                item.CauHoi + "',N'" + item.Dapan + "',"+item.ThangDiem+")"))
+                foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql(sql);
+                    ThemDapAn(item);
                 }
                 return true;
             }
@@ -50,17 +299,59 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Thêm 1 bài làm của sinh viên
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemBaiLam(BaiLam item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(" +
+                item.MaSV + ",N'" + item.MaDe + "',N'" + item.KetQua + "'," +
+                item.IdKyThi + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm 1 bài làm của sinh viên
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static bool ThemBaiLam(IList<BaiLam> list)
         {
             try
             {
-                foreach (var sql in list.Select(item =>
-                    "insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(" +
-                    item.MaSinhVien + ",N'" + item.MaDe + "',N'" + item.KetQua + "'," +
-                    item.IdKyThi + ")"))
+                foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql(sql);
+                    ThemBaiLam(item);
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// xếp phòng cho 1 sinh viên
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool XepPhong(XepPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + item.IdSV + "," + item.IdPhong +
+                                    "," + item.IdKyThi + ")");
                 return true;
             }
             catch (Exception ex)
@@ -78,13 +369,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                foreach (
-                    var sql in
-                        list.Select(
-                            item => "insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + item.IdSV + "," + item.IdPhong + ","+ item.IdKyThi +")")
-                    )
+                foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql(sql);
+                    XepPhong(item);
                 }
                 return true;
             }
@@ -95,12 +382,39 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static bool XepPhong1(XepPhong hs)
+
+        /// <summary>
+        /// Lưu 1 phòng được sử dụng trong kỳ thi
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool KtPhong(KTPhong item)
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdPhong,IdKyThi) values(" + hs.IdSV + "," + hs.IdPhong +
-                                    "," + hs.IdKyThi + ")");
+                Conn.ExcuteQuerySql("insert into KT_PHONG(IdKyThi,IdPhong,SiSo) values(" + item.IdKyThi + "," + item.IdPhong +
+                                    "," + item.SiSo + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Thêm vào bảng xếp phòng lưu nhiều phòng được sử dụng trong kỳ thi
+        /// </summary>
+        /// <param name="list"></param>
+        public static bool KtPhong(IList<KTPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    KtPhong(item);
+                }
                 return true;
             }
             catch (Exception ex)

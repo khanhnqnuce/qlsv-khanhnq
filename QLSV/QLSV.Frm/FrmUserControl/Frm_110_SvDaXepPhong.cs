@@ -17,12 +17,12 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_109_SvDaXepPhong : FunctionControlHasGrid
+    public partial class Frm_110_SvDaXepPhong : FunctionControlHasGrid
     {
         private IList<PhongThi> _lisPhong = new List<PhongThi>();
         private IList<XepPhong> m_IdDelete = new List<XepPhong>();
 
-        public Frm_109_SvDaXepPhong()
+        public Frm_110_SvDaXepPhong()
         {
             InitializeComponent();
         }
@@ -97,70 +97,70 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (dgv_DanhSach.Selected.Rows.Count > 0)
-                {
-                    if (DialogResult.Yes ==
-                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question))
-                    {
-                        foreach (var row in dgv_DanhSach.Selected.Rows)
-                        {
-                            var id = row.Cells["ID"].Value.ToString();
-                            if (!string.IsNullOrEmpty(id))
-                            {
-                                var hs = new XepPhong
-                                {
-                                    IdSV = int.Parse(id),
-                                    IdKyThi = int.Parse(row.Cells["IdKyThi"].Text),
-                                    IdPhong = int.Parse(row.Cells["IdPhong"].Text),
-                                };
-                                m_IdDelete.Add(hs);
-                            }
-                            foreach (var p in _lisPhong.Where(p => p.TenPhong == row.Cells["PhongThi"].Text))
-                            {
-                                p.SoLuong = p.SoLuong + 1;
-                            }
-                            var phong = new PhongThi
-                            {
-                                TenPhong = row.Cells["PhongThi"].Text,
-                                SoLuong = 1
-                            };
-                            _lisPhong.Add(phong);
-                        }
-                        dgv_DanhSach.DeleteSelectedRows(false);
-                    }
-                }
-                else if (dgv_DanhSach.ActiveRow != null)
-                {
-                    if (DialogResult.Yes ==
-                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question))
-                    {
-                        var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Value.ToString();
-                        if (!string.IsNullOrEmpty(idStr))
-                        {
-                            var hs = new XepPhong
-                            {
-                                IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
-                                IdKyThi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
-                                IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
-                            };
-                            m_IdDelete.Add(hs);
-                        }
-                        foreach (
-                            var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
-                        {
-                            p.SoLuong = p.SoLuong + 1;
-                        }
-                        var phong = new PhongThi
-                        {
-                            TenPhong = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text,
-                            SoLuong = 1
-                        };
-                        _lisPhong.Add(phong);
-                        dgv_DanhSach.ActiveRow.Delete(false);
-                    }
-                }
+                //if (dgv_DanhSach.Selected.Rows.Count > 0)
+                //{
+                //    if (DialogResult.Yes ==
+                //        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                //            MessageBoxIcon.Question))
+                //    {
+                //        foreach (var row in dgv_DanhSach.Selected.Rows)
+                //        {
+                //            var id = row.Cells["ID"].Value.ToString();
+                //            if (!string.IsNullOrEmpty(id))
+                //            {
+                //                var hs = new XepPhong
+                //                {
+                //                    IdSV = int.Parse(id),
+                //                    IdKyThi = int.Parse(row.Cells["IdKyThi"].Text),
+                //                    IdPhong = int.Parse(row.Cells["IdPhong"].Text),
+                //                };
+                //                m_IdDelete.Add(hs);
+                //            }
+                //            foreach (var p in _lisPhong.Where(p => p.TenPhong == row.Cells["PhongThi"].Text))
+                //            {
+                //                p.SoLuong = p.SoLuong + 1;
+                //            }
+                //            var phong = new PhongThi
+                //            {
+                //                TenPhong = row.Cells["PhongThi"].Text,
+                //                SoLuong = 1
+                //            };
+                //            _lisPhong.Add(phong);
+                //        }
+                //        dgv_DanhSach.DeleteSelectedRows(false);
+                //    }
+                //}
+                //else if (dgv_DanhSach.ActiveRow != null)
+                //{
+                //    if (DialogResult.Yes ==
+                //        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                //            MessageBoxIcon.Question))
+                //    {
+                //        var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Value.ToString();
+                //        if (!string.IsNullOrEmpty(idStr))
+                //        {
+                //            var hs = new XepPhong
+                //            {
+                //                IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                //                IdKyThi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
+                //                IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
+                //            };
+                //            m_IdDelete.Add(hs);
+                //        }
+                //        foreach (
+                //            var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
+                //        {
+                //            p.SoLuong = p.SoLuong + 1;
+                //        }
+                //        var phong = new PhongThi
+                //        {
+                //            TenPhong = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text,
+                //            SoLuong = 1
+                //        };
+                //        _lisPhong.Add(phong);
+                //        dgv_DanhSach.ActiveRow.Delete(false);
+                //    }
+                //}
             }
             catch (Exception ex)
             {

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 
 namespace QLSV.Frm.Frm
 {
     public partial class FrmSuaMaSinhVien : Form
     {
-        public int id;
+        public int Masv = 0;
 
-        public FrmSuaMaSinhVien()
+        public FrmSuaMaSinhVien(int id)
         {
+            Masv = id;
             InitializeComponent();
         }
 
@@ -22,15 +22,11 @@ namespace QLSV.Frm.Frm
             }
             else
             {
-                var hs = new BaiLam
-                {
-                    ID = id,
-                    MaSinhVien = txtmasinhvien.Text
-                };
-                UpdateData.UpdateMaSinhVien(hs);
+                
+                UpdateData.UpdateMaSinhVien(Masv,int.Parse(txtmasinhvien.Text));
                 Close();
                 MessageBox.Show(@"Lưu lại thành công");
-                id = 0;
+                Masv = 0;
             }
         }
 
@@ -49,6 +45,14 @@ namespace QLSV.Frm.Frm
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void txtmasinhvien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
