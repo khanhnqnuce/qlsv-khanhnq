@@ -212,6 +212,7 @@
             this.cboPhongthi.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cboPhongthi.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cboPhongthi.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.cboPhongthi.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
             this.cboPhongthi.Location = new System.Drawing.Point(133, 217);
             this.cboPhongthi.Name = "cboPhongthi";
             this.cboPhongthi.Size = new System.Drawing.Size(197, 22);

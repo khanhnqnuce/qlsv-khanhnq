@@ -7,10 +7,9 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmXepPhong : Form
     {
-        public int gb_iIdsinhvien;
-        public int gb_iIdPhong;
-        public int gb_iIdKythi;
-        public bool gb_bUpdate;
+        public int IdPhong;
+        public int IdKythi;
+        public bool bUpdate;
         private bool _bCheckUpdate;
 
         public FrmXepPhong()
@@ -20,16 +19,15 @@ namespace QLSV.Frm.Frm
 
         private void FrmXepPhong_Load(object sender, EventArgs e)
         {
-            if (gb_bUpdate)
+            if (bUpdate)
             {
-                cboPhongthi.DataSource = LoadData.Load(9);
                 cboPhongthi.DisplayMember = "TenPhong";
-                cboPhongthi.ValueMember = "ID";
-                cboPhongthi.Rows.Band.Columns["ID"].Hidden = true;
-                cboPhongthi.Rows.Band.Columns["GhiChu"].Hidden = true;
+                cboPhongthi.ValueMember = "IdPhong";
+                cboPhongthi.DataSource = LoadData.Load(5,IdKythi);
+                cboPhongthi.Rows.Band.Columns["IdPhong"].Hidden = true;
                 cboPhongthi.DisplayLayout.Bands[0].Columns["TenPhong"].Header.Caption = @"Phòng thi";
                 cboPhongthi.DisplayLayout.Bands[0].Columns["SucChua"].Header.Caption = @"Sức chứa";
-                cboPhongthi.DisplayLayout.Bands[0].Columns["SoLuong"].Header.Caption = @"Sĩ số";
+                cboPhongthi.DisplayLayout.Bands[0].Columns["SiSo"].Header.Caption = @"Sĩ số";
                 return;
             }
             cboPhongthi.DataSource = LoadData.Load(8);
@@ -57,7 +55,7 @@ namespace QLSV.Frm.Frm
         private void FrmXepPhong_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(_bCheckUpdate) return;
-            gb_bUpdate = false;
+            bUpdate = false;
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -67,33 +65,22 @@ namespace QLSV.Frm.Frm
                 errorPhongthi.SetError(cboPhongthi, "Chọn Phòng thi");
                 return;
             }
-            if (gb_bUpdate)
+            if (bUpdate)
             {
                 var hs = new XepPhong
                 {
-                    IdSV = gb_iIdsinhvien,
+                    IdSV = int.Parse(txtmasinhvien.Text),
                     IdPhong = int.Parse(cboPhongthi.Value.ToString()),
-                    IdKyThi = gb_iIdKythi
+                    IdKyThi = IdKythi
                 };
-                UpdateData.XepPhong(hs);
-                UpdateData.UpdateGiamPhongThi(gb_iIdPhong);
-                UpdateData.UpdatePhongThi(hs.IdPhong);
-                gb_iIdPhong = int.Parse(cboPhongthi.Value.ToString());
-                _bCheckUpdate = true;
+                UpdateData.UpdateXepPhong(hs);
+                UpdateData.UpdateKtPhong(hs.IdPhong, IdPhong, IdKythi);
+                bUpdate = false;
                 Close();
             }
             else
             {
-                var hs1 = new XepPhong
-                {
-                    IdSV = gb_iIdsinhvien,
-                    IdPhong = int.Parse(cboPhongthi.Value.ToString()),
-                    IdKyThi = gb_iIdKythi
-
-                };
-                InsertData.XepPhong(hs1);
-                UpdateData.UpdatePhongThi(hs1.IdPhong);
-                gb_iIdsinhvien = 0;
+                
                 Close();
             }
         }

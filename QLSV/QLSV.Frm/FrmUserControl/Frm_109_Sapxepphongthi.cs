@@ -188,11 +188,9 @@ namespace QLSV.Frm.FrmUserControl
                     txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSinhVien"].Text},
                     txtNgaySinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                     cbolop = {Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text},
-                    gb_iIdsinhvien = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
-                    gb_iIdKythi = m_iIdKythi
+                    IdKythi = m_iIdKythi
                 };
                 frm.ShowDialog();
-                if(frm.gb_iIdsinhvien != 0) return;
                 dgv_DanhSach.ActiveRow.Cells["ID"].Value = 0;
                 dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
             }

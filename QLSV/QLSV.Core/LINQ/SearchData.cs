@@ -12,7 +12,6 @@ namespace QLSV.Core.LINQ
         /// Tìm kiếm sinh viên theo khoa
         /// </summary>
         /// <returns>trả về bảng sinh  viên</returns>
-
         public static DataTable Timkiemtheokhoa(int id)
         {
             try

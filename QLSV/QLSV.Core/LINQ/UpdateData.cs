@@ -405,20 +405,36 @@ namespace QLSV.Core.LINQ
             //    return false;
             //}
         //}
+
         /// <summary>
-        /// Sửa lại bài làm của sinh vien
+        /// chuyển phòng thi cho sinh viên
         /// </summary>
-        /// <returns>true</returns>
-        /// <summary>
-        /// tăng số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
-        /// </summary>
-        /// <param name="id">ID của phòng thi</param>
-        /// <returns>true nếu thành công</returns>
-        public static bool UpdatePhongThi(int id)
+        /// <param name="hs"></param>
+        /// <returns></returns>
+        public static bool UpdateXepPhong(XepPhong hs)
         {
             try
             {
-                Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where ID = " + id + ") + 1) where ID = " + id + "");
+                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = " + hs.IdPhong + " where IdSV = " + hs.IdSV + " and IdKyThi =" + hs.IdKyThi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
+        /// </summary>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdateKtPhong(int idphong1, int idphong2, int idkt)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong1 + " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong1 + " and IdKyThi = " + idkt + "");
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong2 + " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong2 + " and IdKyThi = " + idkt + "");
                 return true;
             }
             catch (Exception ex)
@@ -450,26 +466,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
-        /// </summary>
-        /// <returns>true nếu thành công</returns>
-        public static bool UpdateGiamPhongThi(int i)
-        {
-            try
-            {
-                Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where ID = " +
-                                    i + ") - " + 1 + ") where ID = " + i +
-                                    "");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return false;
-            }
-        }
-
+        
         /// <summary>
         /// Sau khi xóa tất cả sinh viên đã xếp phòng thì sĩ số phòng giảm về 0
         /// </summary>

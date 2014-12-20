@@ -9,7 +9,7 @@ namespace QLSV.Core.LINQ
         private static readonly Connect Conn = new Connect();
 
         /// <summary>
-        /// 
+        /// Load dữ liệu
         /// </summary>
         /// <param name="chon"></param>
         /// <returns>trả về 1 table</returns>
@@ -113,12 +113,63 @@ namespace QLSV.Core.LINQ
                         str = "SELECT ID, 'false' as [Chon], TenPhong, SucChua  FROM PHONGTHI";
                         break;
                 }
+                table = Conn.GetTable(str);
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
-            return Conn.GetTable(str);
+            return table;
+        }
+
+        /// <summary>
+        /// Load dữ liệu theo kỳ thi
+        /// </summary>
+        /// <param name="chon"></param>
+        /// <param name="idKythi"></param>
+        /// <returns>trả về 1 table</returns>
+        /// 1. sinh viên dự thi
+        /// 5. si số phòn đã được xếp sinh viên
+        public static DataTable Load(int chon, int idKythi)
+        {
+            var table = new DataTable();
+            string str = null;
+            try
+            {
+                switch (chon)
+                {
+                    case 1:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                            "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, p.TenPhong, k.TenKhoa, l.IdKhoa, x.IdPhong " +
+                            "FROM SINHVIEN s " +
+                            "join XEPPHONG x on s.MaSV = x.IdSV " +
+                            "join PHONGTHI p on x.IdPhong = p.ID " +
+                            "join LOP l on s.IdLop = l.ID " +
+                            "join KHOA k on l.IdKhoa = k.ID " +
+                            "WHERE x.IdKyThi = "+idKythi+"";
+                        break;
+                    case 2:
+                        str = "SELECT p.TenPhong FROM PHONGTHI p  join XEPPHONG x on p.ID = x.IdPhong where x.IdKyThi = "+idKythi+" ORDER BY p.TenPhong";
+                        break;
+                    case 3:
+                        str = "SELECT TenKT, NgayThi FROM KYTHI WHERE ID = " + idKythi + "";
+                        break;
+                    case 4:
+                        str = "SELECT l.MaLop FROM LOP l join SINHVIEN s on l.ID = s.IdLop join XEPPHONG x " +
+                              "on s.MaSV = x.IdSV where x.IdKyThi = "+idKythi+" GROUP BY l.MaLop";
+                        break;
+                    case 5:
+                        str = "SELECT p.TenPhong, p.SucChua, k.SiSo, k.IdPhong FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID WHERE k.IdKyThi = "+idKythi+"";
+                        break;
+                }
+                table =  Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return table;
         }
 
         public static Taikhoan KiemTraTaiKhoan(string user, string pass)

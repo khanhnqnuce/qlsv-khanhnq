@@ -914,7 +914,7 @@
             appearance9.Image = global::QLSV.Frm.Properties.Resources._105;
             ultraExplorerBarItem6.Settings.AppearancesSmall.Appearance = appearance9;
             ultraExplorerBarItem6.Settings.MaxLines = 2;
-            ultraExplorerBarItem6.Text = "Quản lý sinh viên";
+            ultraExplorerBarItem6.Text = "Quản lý Sinh Viên";
             ultraExplorerBarItem6.ToolTipText = "Danh sách sinh viên";
             ultraExplorerBarItem7.Key = "106";
             appearance10.Image = global::QLSV.Frm.Properties.Resources._106;
@@ -935,13 +935,13 @@
             appearance13.Image = global::QLSV.Frm.Properties.Resources._109;
             ultraExplorerBarItem11.Settings.AppearancesSmall.Appearance = appearance13;
             ultraExplorerBarItem11.Settings.MaxLines = 2;
-            ultraExplorerBarItem11.Text = "Sắp xếp sinh viên vào phòng thi";
+            ultraExplorerBarItem11.Text = "Sắp xếp phòng thi cho Sinh Viên";
             ultraExplorerBarItem11.ToolTipText = "Sắp xếp sinh viên vào phòng thi";
             ultraExplorerBarItem13.Key = "110";
             appearance14.Image = global::QLSV.Frm.Properties.Resources._110;
             ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance14;
             ultraExplorerBarItem13.Settings.MaxLines = 2;
-            ultraExplorerBarItem13.Text = "Danh sách sinh viên dự thi";
+            ultraExplorerBarItem13.Text = "Danh sách Sinh Viên dự thi";
             ultraExplorerBarItem14.Key = "201";
             appearance15.Image = global::QLSV.Frm.Properties.Resources._201_;
             ultraExplorerBarItem14.Settings.AppearancesSmall.Appearance = appearance15;
