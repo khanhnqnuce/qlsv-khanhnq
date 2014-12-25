@@ -9,24 +9,30 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmKiemTraLoiLogic : FunctionControlHasGrid
     {
-        public FrmKiemTraLoiLogic()
+        private readonly int _idkythi;
+
+        public FrmKiemTraLoiLogic(int idkythi)
         {
             InitializeComponent();
+            _idkythi = idkythi;
         }
 
         private void Rptdanhsach()
         {
             try
             {
-                var tb = LoadData.Load(13);
+                var tb = LoadData.Load(8,_idkythi);
+                if (tb == null || tb.Rows.Count == 0)
+                {
+                    MessageBox.Show(@"Không có lỗi xảy ra", @"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    return;
+                }
                 reportManager1.DataSources.Clear();
                 reportManager1.DataSources.Add("danhsach",tb );
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien.rst";
                 using (var previewForm = new PreviewForm(rptkiemtralogic))
                 {
                     previewForm.WindowState = FormWindowState.Maximized;
-                    if(tb==null || tb.Rows.Count == 0)
-                    rptkiemtralogic.GetReportParameter += GetParameter;
                     rptkiemtralogic.Prepare();
                     previewForm.ShowDialog();
                 }

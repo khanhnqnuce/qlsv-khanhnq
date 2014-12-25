@@ -6,12 +6,17 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmSuaMaSinhVien : Form
     {
-        public int Masv = 0;
+        private readonly int _masv;
+        private readonly int _idkythi;
+        private readonly string _made;
+        public bool bUpdate;
 
-        public FrmSuaMaSinhVien(int id)
+        public FrmSuaMaSinhVien(int masv, int idkythi, string made)
         {
-            Masv = id;
             InitializeComponent();
+            _masv = masv;
+            _idkythi = idkythi;
+            _made = made;
         }
 
         private void Sua()
@@ -22,11 +27,10 @@ namespace QLSV.Frm.Frm
             }
             else
             {
-                
-                UpdateData.UpdateMaSinhVien(Masv,int.Parse(txtmasinhvien.Text));
+                UpdateData.UpdateMaSinhVien(int.Parse(txtmasinhvien.Text), _masv,_idkythi,_made);
                 Close();
                 MessageBox.Show(@"Lưu lại thành công");
-                Masv = 0;
+                bUpdate = true;
             }
         }
 

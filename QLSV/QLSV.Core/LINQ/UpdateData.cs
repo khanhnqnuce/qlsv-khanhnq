@@ -476,14 +476,16 @@ namespace QLSV.Core.LINQ
         /// <summary>
         /// Sửa mã sinh viên trong bảng bài làm
         /// </summary>
-        /// <param name="masv1">Mã sinh viên ban đầu</param>
-        /// <param name="masv2">Mã sv đã sửa</param>
+        /// <param name="masv1">ma sv mới</param>
+        /// <param name="masv2">Mã sv cần sửa </param>
+        /// <param name="idkythi"></param>
         /// <returns>true</returns>
-        public static bool UpdateMaSinhVien(int masv1, int masv2)
+        public static bool UpdateMaSinhVien(int masv1, int masv2, int idkythi, string made)
         {
             try
             {
-                Conn.ExcuteQuerySql("update BaiLam set MaSV = " + masv2 + " WHERE ID = " + masv1 + "");
+                Conn.ExcuteQuerySql("update BAILAM set MaSV = " + masv1 + " WHERE MaSV = " + masv2 + " and IdKyThi = " +
+                                    idkythi + " and MaDe = N'" + made + "'");
                 return true;
             }
             catch (Exception ex)

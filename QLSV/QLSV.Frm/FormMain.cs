@@ -216,11 +216,11 @@ namespace QLSV.Frm
                         ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;
                     case "205":
-                        var frm = new FrmKiemTraLoiLogic();
+                        var frm = new FrmKiemTraLoiLogic(_idkythi);
                         frm.Indanhsach();
                         break;
                     case "206":
-                        _frmNhapThangDiem = new Frm_206_NhapThangDiem();
+                        _frmNhapThangDiem = new Frm_206_NhapThangDiem(_idkythi);
                         _frmNhapThangDiem.ShowDialog += ShowLoading;
                         _frmNhapThangDiem.CloseDialog += KillLoading;
                         _frmNhapThangDiem.UpdateDialog += UpdateLoading;
@@ -604,7 +604,7 @@ namespace QLSV.Frm
             }
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
-                _frmInportBaiLam.uG_DeleteRow();
+
             }
             else if (TabDanhsachbailam.Tab.Active)
             {
@@ -648,7 +648,7 @@ namespace QLSV.Frm
             }
             else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
-                _frmInportBaiLam.uG_InsertRow();
+                //_frmInportBaiLam.uG_InsertRow();
             }
             else if (TabDanhsachbailam.Tab.Active)
             {
@@ -1085,7 +1085,10 @@ namespace QLSV.Frm
 
             TabSapxepphongthi.Tab.Visible = false;
             Tabdaxepphong.Tab.Visible = false;
-
+            TabInportdapdan.Tab.Visible = false;
+            TabDapanmade.Tab.Visible = false;
+            TabInportbailam.Tab.Visible = false;
+            TabDanhsachbailam.Tab.Visible = false;
             #endregion
 
             #region menu

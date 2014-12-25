@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_107_ChonSinhVienThi));
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,12 +97,12 @@
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_Inport});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 48);
+            this.menu_ug.Size = new System.Drawing.Size(133, 26);
             // 
             // menuStrip_Inport
             // 
             this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Inport.Size = new System.Drawing.Size(132, 22);
             this.menuStrip_Inport.Text = "Xếp phòng";
             this.menuStrip_Inport.Click += new System.EventHandler(this.menuStrip_Sua_Click);
             // 
@@ -198,7 +197,7 @@
             // 
             // btnxepphong
             // 
-            this.btnxepphong.Image = ((System.Drawing.Image)(resources.GetObject("btnxepphong.Image")));
+            this.btnxepphong.Image = global::QLSV.Frm.Properties.Resources.xepphong;
             this.btnxepphong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnxepphong.Name = "btnxepphong";
             this.btnxepphong.Size = new System.Drawing.Size(85, 22);
@@ -264,13 +263,13 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters3;
+            this.excelExportFilter1.ExtraParameters = extraParameters1;
             // 
             // pdfExportFilter1
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters4;
+            this.pdfExportFilter1.ExtraParameters = extraParameters2;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // panel6

@@ -22,13 +22,16 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly IList<DapAn> _listUpdate = new List<DapAn>();
         private readonly BackgroundWorker _bgwInsert;
+        private readonly int _idkythi;
 
-        public Frm_206_NhapThangDiem()
+        public Frm_206_NhapThangDiem(int idkythi)
         {
             InitializeComponent();
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+
+            _idkythi = idkythi;
         }
 
         #region Exit
@@ -120,7 +123,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = SearchData.Timkiemmade1(txtmade.Text);
+                dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idkythi,txtmade.Text);
             }
             catch (Exception ex)
             {

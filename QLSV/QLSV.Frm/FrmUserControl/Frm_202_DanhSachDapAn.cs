@@ -10,7 +10,6 @@ using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 
@@ -45,7 +44,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = LoadData.Load(11);
+                dgv_DanhSach.DataSource = LoadData.Load(7,_idKyThi);
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -131,7 +130,7 @@ namespace QLSV.Frm.FrmUserControl
         private void RptDapAn()
         {
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+            reportManager1.DataSources.Add("danhsach", LoadData.Load(7,_idKyThi));
             rptdapandethi.FilePath = Application.StartupPath + @"\Reports\dapandethi.rst";
             using (var previewForm = new PreviewForm(rptdapandethi))
             {
@@ -169,7 +168,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = SearchData.Timkiemmade1(txtmade.Text);
+                dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idKyThi, txtmade.Text);
             }
             catch (Exception ex)
             {

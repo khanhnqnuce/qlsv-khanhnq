@@ -10,7 +10,6 @@ namespace QLSV.Frm.Frm
         public int IdPhong;
         public int IdKythi;
         public bool bUpdate;
-        private bool _bCheckUpdate;
 
         public FrmXepPhong()
         {
@@ -68,7 +67,6 @@ namespace QLSV.Frm.Frm
                 };
                 UpdateData.UpdateXepPhong(hs);
                 UpdateData.UpdateKtPhong(hs.IdPhong, IdPhong, IdKythi);
-                _bCheckUpdate = true;
                 bUpdate = false;
                 Close();
             }

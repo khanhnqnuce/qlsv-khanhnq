@@ -31,8 +31,8 @@ namespace QLSV.Core.Utils.Core
         public static void LogExceptionToFile(Exception ex)
         {
             //string LogPath = Environment.CurrentDirectory;
-            var logPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);//@"C:\VNPT-BHXH";
-            var logDirectory = logPath + @"\" + DateTime.Today.ToString("yyyyMMdd");
+            var logPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            var logDirectory = logPath + @"\EXCEPTION";
             string filePath;
             if (!Directory.Exists(logDirectory))
             {
@@ -82,7 +82,7 @@ namespace QLSV.Core.Utils.Core
                     {
                         var lastestFile = new FileInfo(filePath);
                         // check if file size be larger than 5MB then create new one
-                        if (((lastestFile.Length / 1024f) / 1024f) > 5)
+                        if (((lastestFile.Length / 1024f) / 1024f) > 1)
                         {
                             lastestIndex++;
                             filePath = logDirectory + @"\" + LogFileType.Exception + "." + lastestIndex + ".log";

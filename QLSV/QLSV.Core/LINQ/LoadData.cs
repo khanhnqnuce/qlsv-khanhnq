@@ -92,7 +92,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 13:
                         str =
-                            "select * from BAILAM b where not exists (select * from SinhVien s where b.MaSinhVien = s.MaSinhVien)";
+                            "select * from BAILAM b where not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
                         break;
                     case 14:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY T.ID) as [STT], T.* FROM TAIKHOAN T";
@@ -130,6 +130,9 @@ namespace QLSV.Core.LINQ
         /// <returns>trả về 1 table</returns>
         /// 1. sinh viên dự thi
         /// 5. si số phòng đã được xếp sinh viên
+        /// 6:Trả về danh sách bài làm của sinh viên
+        /// 7: Dap An
+        /// 8: kiểm tra lỗi logic
         public static DataTable Load(int chon, int idKythi)
         {
             var table = new DataTable();
@@ -161,6 +164,15 @@ namespace QLSV.Core.LINQ
                         break;
                     case 5:
                         str = "SELECT p.TenPhong, p.SucChua, k.SiSo, k.IdPhong FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID WHERE k.IdKyThi = "+idKythi+"";
+                        break;
+                    case 6:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* FROM BAILAM b WHERE b.IdKyThi = " + idKythi + "";
+                        break;
+                    case 7:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
+                        break;
+                    case 8:
+                        str = "select b.MaSV from BAILAM b where b.IdKyThi = "+idKythi+" and not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
                         break;
                 }
                 table =  Conn.GetTable(str);

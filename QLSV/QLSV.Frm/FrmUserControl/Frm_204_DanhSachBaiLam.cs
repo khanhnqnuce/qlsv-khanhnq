@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -38,7 +37,6 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof (int));
             table.Columns.Add("STT", typeof (int));
             table.Columns.Add("MaSV", typeof (string));
             table.Columns.Add("MaDe", typeof (string));
@@ -51,7 +49,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = LoadData.Load(12);
+                dgv_DanhSach.DataSource = LoadData.Load(6,_idKyThi);
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -87,7 +85,7 @@ namespace QLSV.Frm.FrmUserControl
         protected override void DeleteRow()
         {
 
-            DeleteRowGrid(dgv_DanhSach, "ID", "MaSV");
+            DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
         }
 
         protected override void SaveDetail()
@@ -157,18 +155,18 @@ namespace QLSV.Frm.FrmUserControl
 
         private void SuaMaSinhVien()
         {
-            var id = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text);
-            var frm = new FrmSuaMaSinhVien(id);
+            var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
+            var made = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
+            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made) {bUpdate = false};
             frm.ShowDialog();
-            if(frm.Masv != 0) return;
-            dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
+            if (frm.bUpdate) dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
         }
 
         private void Timkiemmde()
         {
             try
             {
-                dgv_DanhSach.DataSource = SearchData.Timkiemmade(txtmade.Text);
+                dgv_DanhSach.DataSource = SearchData.Timkiemmade(_idKyThi,txtmade.Text);
             }
             catch (Exception ex)
             {

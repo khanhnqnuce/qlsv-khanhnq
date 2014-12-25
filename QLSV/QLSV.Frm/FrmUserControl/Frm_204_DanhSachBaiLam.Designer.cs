@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,7 +114,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters5;
+            this.pdfExportFilter1.ExtraParameters = extraParameters3;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -122,7 +122,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters6;
+            this.excelExportFilter1.ExtraParameters = extraParameters4;
             // 
             // rptdapandethi
             // 
@@ -162,7 +162,8 @@
             // txtmade
             // 
             this.txtmade.Name = "txtmade";
-            this.txtmade.Size = new System.Drawing.Size(150, 25);
+            this.txtmade.Size = new System.Drawing.Size(100, 25);
+            this.txtmade.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtmade.ToolTipText = "Nhập mã đề cần tìm kiếm";
             this.txtmade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtmade_KeyDown);
             this.txtmade.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtmade_KeyUp);
@@ -217,14 +218,14 @@
             this.pnl_from.TabIndex = 30;
             this.pnl_from.Visible = false;
             // 
-            // FrmDanhSachBaiLam
+            // Frm_204_DanhSachBaiLam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_from);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmDanhSachBaiLam";
+            this.Name = "Frm_204_DanhSachBaiLam";
             this.Size = new System.Drawing.Size(654, 498);
             this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
