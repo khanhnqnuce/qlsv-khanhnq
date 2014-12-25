@@ -23,12 +23,14 @@ namespace QLSV.Frm.FrmUserControl
 
         private readonly BackgroundWorker _bgwInsert;
 
-        public Frm_203_InportBaiLam()
+        public Frm_203_InportBaiLam(int idkythi)
         {
             InitializeComponent();
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+
+            _idKythi = idkythi;
         }
 
         protected override DataTable GetTable()
@@ -36,10 +38,9 @@ namespace QLSV.Frm.FrmUserControl
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSinhVien", typeof(string));
+            table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("KetQua", typeof(string));
-            table.Columns.Add("IdKyThi", typeof(string));
             return table;
         }
 
@@ -67,10 +68,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var tb = GetTable();
                 var stt = 1;
-                var frm = new FrmChonKyThi();
-                frm.ShowDialog();
-                if (string.IsNullOrEmpty(frm.cboKythi.Text)) return;
-                _idKythi = int.Parse(frm.cboKythi.Value.ToString());
                 var dialog = new OpenFileDialog
                 {
                     Filter = @"Tập tin (.txt)|*.txt",
@@ -86,7 +83,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var chuoi = str.Replace("\"", "");
                     var bailam = chuoi.Split(',');
-                    tb.Rows.Add(null, stt++, bailam[0], bailam[1],bailam[2],_idKythi);
+                    tb.Rows.Add(null, stt++, bailam[0], bailam[1],bailam[2]);
                     str = sr.ReadLine();
                 }
                 sr.Close();
@@ -204,18 +201,16 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
 
                 band.Columns["ID"].Hidden = true;
-                band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                //band.Columns["MaSV"].CellActivation = Activation.NoEdit;
-                //band.Columns["MaDe"].CellActivation = Activation.NoEdit;
-                //band.Columns["KetQua"].CellActivation = Activation.NoEdit;
-                //band.Columns["ID"].CellActivation = Activation.NoEdit;
-                band.Columns["IdKyThi"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
+                band.Columns["MaDe"].CellActivation = Activation.NoEdit;
+                band.Columns["KetQua"].CellActivation = Activation.NoEdit;
+                band.Columns["ID"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;

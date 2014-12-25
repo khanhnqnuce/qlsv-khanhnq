@@ -134,7 +134,23 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xoa tất cả bản ghi có trong bảng
+        /// xóa theo kỳ thi
+        /// </summary>
+        /// <param name="table"></param>
+        public static void Xoa(string table, int idkythi)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM " + table + " WHERE IdKyThi = " + idkythi + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// xóa theo kỳ thi
         /// </summary>
         /// <param name="table"></param>
         public static void Xoa(string table)

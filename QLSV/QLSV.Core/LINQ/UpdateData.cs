@@ -295,14 +295,15 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// sửa sĩ số 1 phòng thi
+        /// Sửa lại đáp án đúng của câu hỏi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateSiSoPhong(KTPhong item)
+        public static bool UpdateDapAn(DapAn item)
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE PhongThi SET SoLuong = " + item.SiSo + " WHERE IdPhong = " + item.IdPhong + " and IdSV = " + item.IdKyThi + "");
+                Conn.ExcuteQuerySql("UPDATE DAPAN SET MaMon = N'" + item.MaMon + "',MaDe = N'" + item.MaDe + "'," +
+                                   "CauHoi = N'" + item.CauHoi + "',Dapan = N'" + item.Dapan + "' WHERE ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -311,29 +312,7 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
-
-        /// <summary>
-        /// sửa sĩ số nhiều phòng thi
-        /// </summary>
-        /// <param name="list">Danh sách phòng</param>
-        /// <returns>true</returns>
-        public static bool UpdateSiSoPhong(IList<KTPhong> list)
-        {
-            try
-            {
-                foreach (var item in list)
-                {
-                    UpdateSiSoPhong(item);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return false;
-            }
-        }
-
+        
         /// <summary>
         /// Sửa lại đáp án đúng của câu hỏi
         /// </summary>
@@ -343,13 +322,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                foreach (
-                    var sql in
-                        list.Select(
-                            item => "UPDATE DapAn SET MaMon = N'" + item.MaMon + "',MaDe = N'" + item.MaDe + "'," +
-                                    "CauHoi = N'" + item.CauHoi + "',Dapan = N'" + item.Dapan + "' WHERE ID = " + item.ID + ""))
+                foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql(sql);
+                    UpdateDapAn(item);
                 }
                 return true;
             }
@@ -429,12 +404,11 @@ namespace QLSV.Core.LINQ
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateKtPhong(int idphong1, int idphong2, int idkt)
+        public static bool UpdateTangSiSo(int idphong, int idkt)
         {
             try
             {
-                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong1 + " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong1 + " and IdKyThi = " + idkt + "");
-                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong2 + " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong2 + " and IdKyThi = " + idkt + "");
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong + " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong + " and IdKyThi = " + idkt + "");
                 return true;
             }
             catch (Exception ex)
@@ -445,18 +419,14 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// update lại số lượng sinh viên khi chuyển phòng thi
+        /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
-        /// <param name="list">danh sách phòng thì có sinh viên xếp sang phòng khác</param>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateGiamPhongThi(IList<PhongThi> list)
+        public static bool UpdateGiamSiSo(int idphong, int idkt)
         {
             try
             {
-                //foreach (var phong in list)
-                //{
-                //    Conn.ExcuteQuerySql("update PhongThi set SoLuong = ((select SoLuong from PhongThi where TenPhong = '" + phong.TenPhong + "') - " + phong.SoLuong + ") where TenPhong = '" + phong.TenPhong + "'");
-                //}
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong + " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong + " and IdKyThi = " + idkt + "");
                 return true;
             }
             catch (Exception ex)
@@ -466,6 +436,24 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
+        /// </summary>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdateKtPhong(int idphong1, int idphong2, int idkt)
+        {
+            try
+            {
+                UpdateTangSiSo(idphong1, idkt);
+                UpdateGiamSiSo(idphong2, idkt);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
         
         /// <summary>
         /// Sau khi xóa tất cả sinh viên đã xếp phòng thì sĩ số phòng giảm về 0
@@ -476,25 +464,6 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("update PhongThi set SoLuong = " + 0 + " ");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Xếp phòng cho tường sinh viên
-        /// </summary>
-        /// <param name="hs">đối tượng sinh viên cần xếp</param>
-        /// <returns>true</returns>
-        public static bool XepPhong(XepPhong hs)
-        {
-            try
-            {
-                Conn.ExcuteQuerySql("update XepPhong set IdPhong = " + hs.IdPhong + " WHERE IdSV = "+hs.IdSV+" and IdKythi = "+hs.IdKyThi+"");
                 return true;
             }
             catch (Exception ex)

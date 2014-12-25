@@ -112,7 +112,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("BaiLam");
+                //DeleteData.Xoa("BaiLam");
                 LoadFormDetail();
             }
             catch (Exception ex)

@@ -11,6 +11,7 @@ using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 using QLSV.Frm.Ultis.Frm;
 using Color = System.Drawing.Color;
 
@@ -20,7 +21,7 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly List<PhongThi> _listAdd = new List<PhongThi>();
         private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
-
+        
         public Frm_108_Danhsachphongthi()
         {
             InitializeComponent();

@@ -108,7 +108,6 @@ namespace QLSV.Frm.Frm
                 if (!bool.Parse(row.Cells["Chon"].Text)) return;
                 var sc = int.Parse(row.Cells["SucChua"].Text);
                 var idphong = int.Parse(row.Cells["ID"].Text);
-                var phong = row.Cells["TenPhong"].Text;
                 var bd = kt;
                 kt = kt + sc;
                 if (kt < _tongsv)
@@ -131,7 +130,6 @@ namespace QLSV.Frm.Frm
                         SiSo = sc
                     };
                     _listPhanPhongs.Add(hspp);
-                    continue;
                 }
                 else
                 {

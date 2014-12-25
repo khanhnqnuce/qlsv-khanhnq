@@ -75,7 +75,7 @@ namespace QLSV.Core.LINQ
                               "WHERE k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID and x.IdKyThi = kt.ID;";
                         break;
                     case 8:
-                        str = "SELECT * FROM PhongThi WHERE SoLuong < SucChua";
+                        str = "select p.TenPhong, p.SucChua, k.SiSo, k.IdPhong from PHONGTHI p left join KT_PHONG k on p.ID = k.IdPhong";
                         break;
                     case 9:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY p.ID) as [STT], p.* FROM PHONGTHI p";
@@ -85,10 +85,10 @@ namespace QLSV.Core.LINQ
                         break;
                     case 11:
                         str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, IdKyThi, TenKyThi, NgayThi, ThangDiem FROM DapAn d, Kythi k WHERE d.IdKyThi = k.ID";
+                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID";
                         break;
                     case 12:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY ID) as [STT], b.* FROM BAILAM b";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* FROM BAILAM b";
                         break;
                     case 13:
                         str =
@@ -129,7 +129,7 @@ namespace QLSV.Core.LINQ
         /// <param name="idKythi"></param>
         /// <returns>trả về 1 table</returns>
         /// 1. sinh viên dự thi
-        /// 5. si số phòn đã được xếp sinh viên
+        /// 5. si số phòng đã được xếp sinh viên
         public static DataTable Load(int chon, int idKythi)
         {
             var table = new DataTable();

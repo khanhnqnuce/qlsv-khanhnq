@@ -30,14 +30,13 @@ namespace QLSV.Frm.Frm
                 cboPhongthi.DisplayLayout.Bands[0].Columns["SiSo"].Header.Caption = @"Sĩ số";
                 return;
             }
-            cboPhongthi.DataSource = LoadData.Load(8);
             cboPhongthi.DisplayMember = "TenPhong";
-            cboPhongthi.ValueMember = "ID";
-            cboPhongthi.Rows.Band.Columns["ID"].Hidden = true;
-            cboPhongthi.Rows.Band.Columns["GhiChu"].Hidden = true;
+            cboPhongthi.ValueMember = "IdPhong";
+            cboPhongthi.DataSource = LoadData.Load(8);
+            //cboPhongthi.Rows.Band.Columns["IdPhong"].Hidden = true;
             cboPhongthi.DisplayLayout.Bands[0].Columns["TenPhong"].Header.Caption = @"Phòng thi";
             cboPhongthi.DisplayLayout.Bands[0].Columns["SucChua"].Header.Caption = @"Sức chứa";
-            cboPhongthi.DisplayLayout.Bands[0].Columns["SoLuong"].Header.Caption = @"Sĩ số";
+            cboPhongthi.DisplayLayout.Bands[0].Columns["SiSo"].Header.Caption = @"Sĩ số";
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -51,13 +50,7 @@ namespace QLSV.Frm.Frm
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        private void FrmXepPhong_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(_bCheckUpdate) return;
-            bUpdate = false;
-        }
-
+        
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cboPhongthi.Text))
@@ -75,12 +68,29 @@ namespace QLSV.Frm.Frm
                 };
                 UpdateData.UpdateXepPhong(hs);
                 UpdateData.UpdateKtPhong(hs.IdPhong, IdPhong, IdKythi);
+                _bCheckUpdate = true;
                 bUpdate = false;
                 Close();
             }
             else
             {
-                
+                var a = cboPhongthi.Value;
+                if (a == null) return;
+                var hsxp = new XepPhong
+                {
+                    IdKyThi = IdKythi,
+                    IdPhong = (int) a,
+                    IdSV = int.Parse(txtmasinhvien.Text),
+                };
+
+                var hspp = new KTPhong
+                {
+                    IdKyThi = IdKythi,
+                    IdPhong = (int)a,
+                    SiSo = 1
+                };
+                InsertData.XepPhong(hsxp);
+                UpdateData.UpdateTangSiSo(hspp.IdPhong,hspp.IdKyThi);
                 Close();
             }
         }

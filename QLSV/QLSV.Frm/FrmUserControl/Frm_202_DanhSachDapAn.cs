@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -20,11 +19,11 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_202_DanhSachDapAn : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listUpdate = new List<DapAn>();
-        
-        public Frm_202_DanhSachDapAn()
+        private int _idKyThi;
+        public Frm_202_DanhSachDapAn(int idkythi)
         {
             InitializeComponent();
-            
+            _idKyThi = idkythi;
         }
 
         #region Exit
@@ -90,7 +89,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 UpdateData.UpdateDapAn(_listUpdate);
-                QlsvSevice.Xoa(IdDelete, "DapAn");
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
@@ -105,7 +103,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("DapAn");
+                DeleteData.Xoa("DAPAN",_idKyThi);
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -138,8 +136,27 @@ namespace QLSV.Frm.FrmUserControl
             using (var previewForm = new PreviewForm(rptdapandethi))
             {
                 previewForm.WindowState = FormWindowState.Maximized;
+                rptdapandethi.GetReportParameter += GetParameter;
                 rptdapandethi.Prepare();
                 previewForm.ShowDialog();
+            }
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idKyThi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
+                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -172,9 +189,6 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
 
                 band.Columns["ID"].Hidden = true;
-                band.Columns["IdKyThi"].Hidden = true;
-                band.Columns["TenKyThi"].Hidden = true;
-                band.Columns["NgayThi"].Hidden = true;
                 band.Columns["ThangDiem"].Hidden = true;
 
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
@@ -183,8 +197,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaMon"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["CauHoi"].CellActivation = Activation.NoEdit;
-                band.Columns["TenKyThi"].CellActivation = Activation.NoEdit;
-                band.Columns["NgayThi"].CellActivation = Activation.NoEdit;
                 band.Columns["ThangDiem"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;

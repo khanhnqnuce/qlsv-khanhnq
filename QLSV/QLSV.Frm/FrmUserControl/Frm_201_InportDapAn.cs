@@ -20,11 +20,12 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<DapAn> _listAdd = new List<DapAn>(); 
         private readonly BackgroundWorker _bgwInsert;
 
-        private int _idKythi = 0;
+        private int _idKythi;
 
-        public Frm_201_InportDapAn()
+        public Frm_201_InportDapAn(int idkythi)
         {
             InitializeComponent();
+            _idKythi = idkythi;
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
@@ -65,9 +66,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var frm = new FrmChonKyThi();
-                frm.ShowDialog();
-                if (string.IsNullOrEmpty(frm.cboKythi.Text)) return;
                 var stt = dgv_DanhSach.Rows.Count;
                 var frmNapDuLieu = new FrmNapDuLieu(GetTable(), 2, 4, 1)
                 {
@@ -76,8 +74,6 @@ namespace QLSV.Frm.FrmUserControl
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
-
-                _idKythi = int.Parse(frm.cboKythi.Value.ToString());
                 var table = (DataTable)dgv_DanhSach.DataSource;
 
                 table.Merge(resultValue);
@@ -125,7 +121,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (_idKythi == 0) return;
                 var danhsach = (DataTable)dgv_DanhSach.DataSource;
                 foreach (var hs in from DataRow row in danhsach.Rows select new DapAn
                 {
@@ -143,7 +138,6 @@ namespace QLSV.Frm.FrmUserControl
                 danhsach.Clear();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                _idKythi = 0;
             }
             catch (Exception ex)
             {

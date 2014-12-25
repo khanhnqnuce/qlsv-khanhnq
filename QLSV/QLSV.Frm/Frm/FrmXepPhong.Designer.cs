@@ -399,7 +399,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xếp Phòng";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmXepPhong_FormClosing);
             this.Load += new System.EventHandler(this.FrmXepPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorPhongthi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).EndInit();

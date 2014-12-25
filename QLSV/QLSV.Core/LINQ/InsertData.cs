@@ -307,9 +307,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into BaiLam(MaSinhVien,MaDe,KetQua,IdKyThi) values(" +
-                item.MaSV + ",N'" + item.MaDe + "',N'" + item.KetQua + "'," +
-                item.IdKyThi + ")");
+                Conn.ExcuteQuerySql("insert into BAILAM(IdKyThi,MaSV,MaDe,KetQua) values(" +
+                item.IdKyThi + "," + item.MaSV + ",N'" + item.MaDe + "',N'" +
+                item.KetQua + "')");
                 return true;
             }
             catch (Exception ex)
@@ -381,7 +381,6 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
-
 
         /// <summary>
         /// Lưu 1 phòng được sử dụng trong kỳ thi

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -13,6 +13,7 @@ using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
+using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -21,12 +22,15 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
+        private readonly int _idKyThi;
 
-        public Frm_204_DanhSachBaiLam()
+        public Frm_204_DanhSachBaiLam(int idkythi)
         {
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
+
+            _idKyThi = idkythi;
         }
 
         #region Exit
@@ -36,7 +40,7 @@ namespace QLSV.Frm.FrmUserControl
             var table = new DataTable();
             table.Columns.Add("ID", typeof (int));
             table.Columns.Add("STT", typeof (int));
-            table.Columns.Add("MaSinhVien", typeof (string));
+            table.Columns.Add("MaSV", typeof (string));
             table.Columns.Add("MaDe", typeof (string));
             table.Columns.Add("KetQua", typeof (string));
             table.Columns.Add("IdKyThi", typeof (string));
@@ -77,13 +81,13 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(dgv_DanhSach, "STT", "MaSinhVien");
+            InsertRow(dgv_DanhSach, "STT", "MaSV");
         }
 
         protected override void DeleteRow()
         {
 
-            DeleteRowGrid(dgv_DanhSach, "ID", "MaSinhVien");
+            DeleteRowGrid(dgv_DanhSach, "ID", "MaSV");
         }
 
         protected override void SaveDetail()
@@ -106,7 +110,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("BaiLam");
+                DeleteData.Xoa("BAILAM",_idKyThi);
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -122,7 +126,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 if (_newRow != null) _newRow.Selected = false;
                 foreach (
-                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
                 {
                     dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
@@ -157,7 +161,7 @@ namespace QLSV.Frm.FrmUserControl
             var frm = new FrmSuaMaSinhVien(id);
             frm.ShowDialog();
             if(frm.Masv != 0) return;
-            dgv_DanhSach.ActiveRow.Cells["MaSinhVien"].Value = frm.txtmasinhvien.Text;
+            dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
         }
 
         private void Timkiemmde()
@@ -182,16 +186,14 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-
-                band.Columns["ID"].Hidden = true;
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["MaSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
                 //band.Columns["KetQua"].CellAppearanc
@@ -200,16 +202,16 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].Width = 50;
-                band.Columns["MaSinhVien"].Width = 150;
+                band.Columns["MaSV"].Width = 150;
                 band.Columns["MaDe"].Width = 150;
                 band.Columns["KetQua"].Width = 650;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 
-                band.Columns["MaSinhVien"].Header.Caption = @"Mã sinh viên";
+                band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
-                band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
+                band.Columns["KetQua"].Header.Caption = @"Đáp án bài làm";
 
                 #endregion
             }

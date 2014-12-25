@@ -115,7 +115,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("SINHVIEN");
+                //DeleteData.Xoa("SINHVIEN");
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -129,26 +129,24 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text)) return;
-                var frm = new FrmThemsinhvien
+                var txtphongthi = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text;
+                if (!string.IsNullOrEmpty(txtphongthi))
                 {
-                    txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text, ReadOnly = true},
-                    txthotendem = {Text = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text},
-                    txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSV"].Text},
-                    cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
-                };
-                frm.masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
-                frm.cbolop.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdLop"].Text);
-                frm.cbokhoa.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKhoa"].Text);
-                frm.ShowDialog();
-                if (frm.masv == 0)
-                {
-                    dgv_DanhSach.ActiveRow.Cells["HoSV"].Value = frm.txthotendem.Text;
-                    dgv_DanhSach.ActiveRow.Cells["TenSV"].Value = frm.txttensinhvien.Text;
-                    dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
-                    dgv_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
-                    dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
+                    MessageBox.Show(@"Sinh viên đã được xếp phòng");
+                    return;
                 }
+
+                var frm = new FrmXepPhong
+                {
+                    txtmasinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text },
+                    txthotendem = { Text = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text },
+                    txttensinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["TenSV"].Text },
+                    txtNgaySinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text },
+                    cbolop = { Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text },
+                    IdKythi = _idkythi
+                };
+                frm.ShowDialog();
+                dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
             }
             catch (Exception ex)
             {
@@ -286,21 +284,6 @@ namespace QLSV.Frm.FrmUserControl
         #endregion
 
         #region MenuStrip
-
-        private void menuStrip_xoadong_Click(object sender, EventArgs e)
-        {
-            DeleteRow();
-        }
-
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            Huy();
-        }
-
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            //Close();
-        }
 
         private void menuStrip_Sua_Click(object sender, EventArgs e)
         {
