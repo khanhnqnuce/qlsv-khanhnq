@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_nhapdiem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +48,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
+            this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
+            this.rptthongke = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.menu_ug.SuspendLayout();
             this.pnl_from.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -119,6 +125,7 @@
             this.dgv_DanhSach.Name = "dgv_DanhSach";
             this.dgv_DanhSach.Size = new System.Drawing.Size(743, 503);
             this.dgv_DanhSach.TabIndex = 33;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
             // panel2
             // 
@@ -161,8 +168,7 @@
             // lbthongke
             // 
             this.lbthongke.Name = "lbthongke";
-            this.lbthongke.Size = new System.Drawing.Size(61, 22);
-            this.lbthongke.Text = "lbthongke";
+            this.lbthongke.Size = new System.Drawing.Size(0, 22);
             // 
             // panel4
             // 
@@ -176,6 +182,7 @@
             // cbothongke
             // 
             this.cbothongke.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbothongke.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbothongke.FormattingEnabled = true;
             this.cbothongke.Items.AddRange(new object[] {
             "< 200",
@@ -215,6 +222,32 @@
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(87, 22);
             this.toolStripLabel1.Text = "Thống kê điểm";
+            // 
+            // pdfExportFilter1
+            // 
+            this.pdfExportFilter1.ChangePermissionsPassword = null;
+            this.pdfExportFilter1.Compress = true;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.UserPassword = null;
+            // 
+            // reportManager1
+            // 
+            this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
+            this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
+            this.rptthongke});
+            // 
+            // rptthongke
+            // 
+            this.rptthongke.FilePath = "";
+            this.rptthongke.ReportName = "";
+            this.rptthongke.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
+            // excelExportFilter1
+            // 
+            this.excelExportFilter1.ExportInLargePage = true;
+            this.excelExportFilter1.ExportInOnePage = true;
+            this.excelExportFilter1.ExportWithoutPageDelimeters = true;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
             // Frm_208_ThongKeDiem
             // 
@@ -260,6 +293,10 @@
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private System.Windows.Forms.ToolStripLabel lbthongke;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
+        private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptthongke;
+        private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
 
     }
 }

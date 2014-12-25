@@ -523,17 +523,17 @@
             // pnl_sapxepphongthi
             // 
             this.pnl_sapxepphongthi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_sapxepphongthi.Location = new System.Drawing.Point(190, 0);
+            this.pnl_sapxepphongthi.Location = new System.Drawing.Point(160, 0);
             this.pnl_sapxepphongthi.Name = "pnl_sapxepphongthi";
-            this.pnl_sapxepphongthi.Size = new System.Drawing.Size(882, 495);
+            this.pnl_sapxepphongthi.Size = new System.Drawing.Size(942, 495);
             this.pnl_sapxepphongthi.TabIndex = 4;
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(1072, 0);
+            this.panel6.Location = new System.Drawing.Point(1102, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(190, 495);
+            this.panel6.Size = new System.Drawing.Size(160, 495);
             this.panel6.TabIndex = 3;
             // 
             // panel5
@@ -541,7 +541,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(190, 495);
+            this.panel5.Size = new System.Drawing.Size(160, 495);
             this.panel5.TabIndex = 3;
             // 
             // Tabdaxepphong

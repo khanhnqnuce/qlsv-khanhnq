@@ -22,10 +22,9 @@ namespace QLSV.Frm
         private static Frm_104_InportSinhVien _frmInportSinhVien;
         private static Frm_105_QuanLySinhVien _frmQuanlySinhVien;
         private static Frm_106_QuanLyKyThi _frmQuanLyKyThi;
-        private static Frm_107_ChonSinhVienThi _frmmChonSinhVienThi;
-        private static Frm_108_Danhsachphongthi _frmDanhsachphongthi;
-        private static Frm_109_Sapxepphongthi _frmSapxepsinhvien;
-        private static Frm_110_SinhVienDuThi _frmSinhVienDuThi;
+        private static Frm_108_SxphongthichoSv _frmmChonSinhVienThi;
+        private static Frm_107_Danhsachphongthi _frmDanhsachphongthi;
+        private static Frm_109_SinhVienDuThi _frmSinhVienDuThi;
         private static Frm_201_InportDapAn _frmInportDapAn;
         private static Frm_203_InportBaiLam _frmInportBaiLam;
         private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
@@ -144,13 +143,13 @@ namespace QLSV.Frm
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);
                         break;
                     case "107":
-                        _frmDanhsachphongthi = new Frm_108_Danhsachphongthi();
+                        _frmDanhsachphongthi = new Frm_107_Danhsachphongthi();
                         Tabdanhsachphongthi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
                         break;
                     case "108":
-                        _frmmChonSinhVienThi = new Frm_107_ChonSinhVienThi(_idkythi);
+                        _frmmChonSinhVienThi = new Frm_108_SxphongthichoSv(_idkythi);
                         _frmmChonSinhVienThi.ShowDialog += ShowLoading;
                         _frmmChonSinhVienThi.CloseDialog += KillLoading;
                         _frmmChonSinhVienThi.UpdateDialog += UpdateLoading;
@@ -160,7 +159,7 @@ namespace QLSV.Frm
                         ShowControl(_frmmChonSinhVienThi, pnl_sapxepphongthi);
                         break;
                     case "109":
-                        _frmSinhVienDuThi = new Frm_110_SinhVienDuThi(_idkythi);
+                        _frmSinhVienDuThi = new Frm_109_SinhVienDuThi(_idkythi);
                         _frmSinhVienDuThi.ShowDialog += ShowLoading;
                         _frmSinhVienDuThi.CloseDialog += KillLoading;
                         _frmSinhVienDuThi.UpdateDialog += UpdateLoading;
@@ -229,7 +228,7 @@ namespace QLSV.Frm
                         ShowControl(_frmNhapThangDiem, pnl_nhapthangdiem);
                         break;
                     case "207":
-                        _frmChamDiemThi = new Frm_207_ChamDiemThi();
+                        _frmChamDiemThi = new Frm_207_ChamDiemThi(_idkythi);
                         _frmChamDiemThi.ShowDialog += ShowLoading;
                         _frmChamDiemThi.CloseDialog += KillLoading;
                         _frmChamDiemThi.UpdateDialog += UpdateLoading;
@@ -238,7 +237,7 @@ namespace QLSV.Frm
                         ShowControl(_frmChamDiemThi, pnl_chamdiemthi);
                         break;
                     case "208":
-                        _frmThongKeDiem = new Frm_208_ThongKeDiem();
+                        _frmThongKeDiem = new Frm_208_ThongKeDiem(_idkythi);
                         _frmThongKeDiem.ShowDialog += ShowLoading;
                         _frmThongKeDiem.CloseDialog += KillLoading;
                         _frmThongKeDiem.UpdateDialog += UpdateLoading;
@@ -489,8 +488,6 @@ namespace QLSV.Frm
             }
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
-                _frmSapxepsinhvien.Ghi();
-                ChonChucNang("109");
             }
             else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
             {
@@ -678,6 +675,15 @@ namespace QLSV.Frm
             {
 
             }
+            else if (Tabchamdiemthi.Tab.Active)
+            {
+                _frmChamDiemThi.InDanhSach();
+            }
+            else if (Tabthongkediem.Tab.Active)
+            {
+                _frmThongKeDiem.InDanhSach();
+            }
+
         }
 
         private void NapDuLieu_F8()
@@ -841,6 +847,59 @@ namespace QLSV.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void cboChonkythi_InitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+            cboChonkythi.Rows.Band.Columns["ID"].Hidden = true;
+            cboChonkythi.Rows.Band.Columns["MaKT"].Width = 70;
+            cboChonkythi.Rows.Band.Columns["TenKT"].Width = 250;
+            cboChonkythi.Rows.Band.ColHeadersVisible = false;
+        }
+
+        private void cboChonkythi_ValueChanged(object sender, EventArgs e)
+        {
+            lbXoa.Focus();
+            var index = cboChonkythi.Value;
+            if(index == null) return;
+            if (!IsNumber(index.ToString())) return;
+            _idkythi = (int) index;
+
+            #region TabControl
+
+            TabSapxepphongthi.Tab.Visible = false;
+            Tabdaxepphong.Tab.Visible = false;
+            TabInportdapdan.Tab.Visible = false;
+            TabDapanmade.Tab.Visible = false;
+            TabInportbailam.Tab.Visible = false;
+            TabDanhsachbailam.Tab.Visible = false;
+            TabNhapthangdiem.Tab.Visible = false;
+            Tabchamdiemthi.Tab.Visible = false;
+            Tabthongkediem.Tab.Visible = false;
+
+            #endregion
+
+            #region menu
+
+            MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["205"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["206"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["207"].Settings.Enabled = DefaultableBoolean.True;
+            MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.True;
+
+            #endregion
+        }
+
+        private static bool IsNumber(string pText)
+        {
+            var regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
+            return regex.IsMatch(pText);
         }
 
         private void TabPageControl_SelectedTabChanged(object sender, SelectedTabChangedEventArgs e)
@@ -1037,7 +1096,7 @@ namespace QLSV.Frm
                     lbInsert.Visible = false;
                     lbXoa.Visible = false;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
+                    btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;
@@ -1050,11 +1109,11 @@ namespace QLSV.Frm
                     lbInsert.Visible = false;
                     lbXoa.Visible = false;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
+                    btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = true;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }
                 if (!bCheck) TabPageControl.Visible = false;
@@ -1063,55 +1122,6 @@ namespace QLSV.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private void cboChonkythi_InitializeLayout(object sender, InitializeLayoutEventArgs e)
-        {
-            cboChonkythi.Rows.Band.Columns["ID"].Hidden = true;
-            cboChonkythi.Rows.Band.Columns["MaKT"].Width = 70;
-            cboChonkythi.Rows.Band.Columns["TenKT"].Width = 250;
-            cboChonkythi.Rows.Band.ColHeadersVisible = false;
-        }
-
-        private void cboChonkythi_ValueChanged(object sender, EventArgs e)
-        {
-            lbXoa.Focus();
-            var index = cboChonkythi.Value;
-            if(index == null) return;
-            if (!IsNumber(index.ToString())) return;
-            _idkythi = (int) index;
-
-            #region TabControl
-
-            TabSapxepphongthi.Tab.Visible = false;
-            Tabdaxepphong.Tab.Visible = false;
-            TabInportdapdan.Tab.Visible = false;
-            TabDapanmade.Tab.Visible = false;
-            TabInportbailam.Tab.Visible = false;
-            TabDanhsachbailam.Tab.Visible = false;
-            #endregion
-
-            #region menu
-
-            MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["205"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["206"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["207"].Settings.Enabled = DefaultableBoolean.True;
-            MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.True;
-
-            #endregion
-        }
-
-        private static bool IsNumber(string pText)
-        {
-            var regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
-            return regex.IsMatch(pText);
         }
 
         //private void timer1_Tick(object sender, EventArgs e)

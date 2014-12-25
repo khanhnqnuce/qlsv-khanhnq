@@ -201,7 +201,7 @@ namespace QLSV.Frm.FrmUserControl
             }
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
-            rptdiemthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
+            rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
             using (var previewForm = new PreviewForm(rptdiemthi))
             {
                 previewForm.WindowState = FormWindowState.Maximized;

@@ -336,21 +336,14 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// Sửa lại đáp án đúng của câu hỏi
+        /// Sửa lại đáp án đúng của 1 câu hỏi
         /// </summary>
-        /// <param name="list">danh sách đối tượng đáp án được sửa</param>
         /// <returns>true</returns>
-        public static bool UpdateThangDiem(IList<DapAn> list)
+        public static bool UpdateThangDiem(DapAn item)
         {
             try
             {
-                foreach (
-                    var sql in
-                        list.Select(
-                            item => "UPDATE DapAn SET ThangDiem = "+item.ThangDiem+" WHERE ID = " + item.ID + ""))
-                {
-                    Conn.ExcuteQuerySql(sql);
-                }
+                Conn.ExcuteQuerySql("UPDATE DAPAN SET ThangDiem = " + item.ThangDiem + " WHERE ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -360,26 +353,27 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        //public static bool UpdateBaiLam(IList<BaiLam> list)
-        //{
-            //try
-            //{
-            //    foreach (
-            //        var sql in
-            //            list.Select(
-            //                item => "UPDATE BaiLam SET MaSV = N'" + item.MaSV + "',MaDe = N'" + item.MaDe + "'," +
-            //                        "KetQua = N'" + item.KetQua + "' WHERE ID = " + item.ID + ""))
-            //    {
-            //        Conn.ExcuteQuerySql(sql);
-            //    }
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log2File.LogExceptionToFile(ex);
-            //    return false;
-            //}
-        //}
+        /// <summary>
+        /// Sửa lại đáp án đúng của câu hỏi
+        /// </summary>
+        /// <param name="list">danh sách đối tượng đáp án được sửa</param>
+        /// <returns>true</returns>
+        public static bool UpdateThangDiem(IList<DapAn> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateThangDiem(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
 
         /// <summary>
         /// chuyển phòng thi cho sinh viên
@@ -456,24 +450,6 @@ namespace QLSV.Core.LINQ
         }
         
         /// <summary>
-        /// Sau khi xóa tất cả sinh viên đã xếp phòng thì sĩ số phòng giảm về 0
-        /// </summary>
-        /// <returns>true</returns>
-        public static bool ResetPhongThi()
-        {
-            try
-            {
-                Conn.ExcuteQuerySql("update PhongThi set SoLuong = " + 0 + " ");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Sửa mã sinh viên trong bảng bài làm
         /// </summary>
         /// <param name="masv1">ma sv mới</param>
@@ -486,6 +462,24 @@ namespace QLSV.Core.LINQ
             {
                 Conn.ExcuteQuerySql("update BAILAM set MaSV = " + masv1 + " WHERE MaSV = " + masv2 + " and IdKyThi = " +
                                     idkythi + " and MaDe = N'" + made + "'");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Chấm điểm thi cho bài làm của sinh viên
+        /// </summary>
+        /// <returns>true</returns>
+        public static bool UpdateDiemThi(BaiLam item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update BAILAM set DiemThi = " + item.DiemThi + " WHERE MaSV = " + item.MaSV + " and IdKyThi = "+item.IdKyThi+"");
                 return true;
             }
             catch (Exception ex)

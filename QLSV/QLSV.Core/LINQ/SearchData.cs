@@ -244,8 +244,9 @@ namespace QLSV.Core.LINQ
         /// Thống kê sinh viên theo điểm
         /// </summary>
         /// <param name="index"></param>
+        /// <param name="idkythi"></param>
         /// <returns></returns>
-        public static DataTable Thongkediem(int index)
+        public static DataTable Thongkediem(int index, int idkythi)
         {
             try
             {
@@ -253,38 +254,53 @@ namespace QLSV.Core.LINQ
                 switch (index)
                 {
                     case 0:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi < 200";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "WHERE b.DiemThi < 200 and b.IdKyThi = "+idkythi+" ";
                         break;
                     case 1:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi > 200 and b.DiemThi < 249";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "and b.DiemThi > 200 and b.DiemThi < 249 and b.IdKyThi = " + idkythi + "";
                         break;
                     case 2:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi > 250 and b.DiemThi < 300";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "and b.DiemThi > 250 and b.DiemThi < 300 and b.IdKyThi = " + idkythi + "";
                         break;
                     case 3:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi > 300 and b.DiemThi < 374";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "and b.DiemThi > 300 and b.DiemThi < 374 and b.IdKyThi = " + idkythi + "";
                         break;
                     case 4:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi > 375 and b.DiemThi < 450";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "and b.DiemThi > 375 and b.DiemThi < 450 and b.IdKyThi = " + idkythi + "";
                         break;
                     case 5:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop " +
-                              "and b.DiemThi > 450";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "and b.DiemThi > 450 and b.IdKyThi = " + idkythi + "";
                         break; 
                     default:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.ID,s.MaSinhVien,s.HoSinhVien,s.TenSinhVien,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM SinhVien s, BaiLam b, Lop l WHERE s.MaSinhVien = b.MaSinhVien and l.ID = s.IdLop";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "WHERE b.IdKyThi = " + idkythi + "";
                         break;
                 }
                 return Conn.GetTable(str);

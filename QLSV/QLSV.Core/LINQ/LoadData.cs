@@ -128,11 +128,13 @@ namespace QLSV.Core.LINQ
         /// <param name="chon"></param>
         /// <param name="idKythi"></param>
         /// <returns>trả về 1 table</returns>
-        /// 1. sinh viên dự thi
-        /// 5. si số phòng đã được xếp sinh viên
-        /// 6:Trả về danh sách bài làm của sinh viên
-        /// 7: Dap An
-        /// 8: kiểm tra lỗi logic
+        /// 1. Sinh viên dự thi
+        /// 5. Sĩ số phòng đã được xếp sinh viên
+        /// 6: Trả về danh sách bài làm của sinh viên
+        /// 7: Đáp án
+        /// 8: Kiểm tra lỗi logic
+        /// 9: Nhập thang điểm
+        /// 10: In điểm thi
         public static DataTable Load(int chon, int idKythi)
         {
             var table = new DataTable();
@@ -153,26 +155,51 @@ namespace QLSV.Core.LINQ
                             "WHERE x.IdKyThi = "+idKythi+"";
                         break;
                     case 2:
-                        str = "SELECT p.TenPhong FROM PHONGTHI p  join XEPPHONG x on p.ID = x.IdPhong where x.IdKyThi = "+idKythi+" ORDER BY p.TenPhong";
+                        str = "SELECT p.TenPhong " +
+                              "FROM PHONGTHI p  join XEPPHONG x on p.ID = x.IdPhong " +
+                              "where x.IdKyThi = "+idKythi+" ORDER BY p.TenPhong";
                         break;
                     case 3:
                         str = "SELECT TenKT, NgayThi FROM KYTHI WHERE ID = " + idKythi + "";
                         break;
                     case 4:
-                        str = "SELECT l.MaLop FROM LOP l join SINHVIEN s on l.ID = s.IdLop join XEPPHONG x " +
-                              "on s.MaSV = x.IdSV where x.IdKyThi = "+idKythi+" GROUP BY l.MaLop";
+                        str = "SELECT l.MaLop " +
+                              "FROM LOP l join SINHVIEN s on l.ID = s.IdLop " +
+                              "join XEPPHONG x on s.MaSV = x.IdSV " +
+                              "where x.IdKyThi = "+idKythi+" GROUP BY l.MaLop";
                         break;
                     case 5:
-                        str = "SELECT p.TenPhong, p.SucChua, k.SiSo, k.IdPhong FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID WHERE k.IdKyThi = "+idKythi+"";
+                        str = "SELECT p.TenPhong, p.SucChua, k.SiSo, k.IdPhong " +
+                              "FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID " +
+                              "WHERE k.IdKyThi = "+idKythi+"";
                         break;
                     case 6:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* FROM BAILAM b WHERE b.IdKyThi = " + idKythi + "";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* " +
+                              "FROM BAILAM b " +
+                              "WHERE b.IdKyThi = " + idKythi + "";
                         break;
                     case 7:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
+                              "FROM DAPAN d, KYTHI k " +
+                              "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
                         break;
                     case 8:
-                        str = "select b.MaSV from BAILAM b where b.IdKyThi = "+idKythi+" and not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
+                        str = "select b.MaSV " +
+                              "FROM BAILAM b " +
+                              "where b.IdKyThi = "+idKythi+" and not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
+                        break;
+                    case 9:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
+                            "FROM DAPAN d, KYTHI k " +
+                            "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
+                        break;
+                    case 10:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.MaSV, s.HoSV, s.TenSV,s.NgaySinh,l.MaLop, b.DiemThi " +
+                            "FROM BAILAM b join SINHVIEN s on b.MaSV = s.MaSV " +
+                            "join LOP l on s.IdLop = l.ID " +
+                            "WHERE b.IdKyThi = "+idKythi+" ";
                         break;
                 }
                 table =  Conn.GetTable(str);

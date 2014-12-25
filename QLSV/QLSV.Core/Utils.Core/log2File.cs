@@ -82,7 +82,7 @@ namespace QLSV.Core.Utils.Core
                     {
                         var lastestFile = new FileInfo(filePath);
                         // check if file size be larger than 5MB then create new one
-                        if (((lastestFile.Length / 1024f) / 1024f) > 1)
+                        if (((lastestFile.Length / 1024f) / 1024f) > 0.5)
                         {
                             lastestIndex++;
                             filePath = logDirectory + @"\" + LogFileType.Exception + "." + lastestIndex + ".log";
