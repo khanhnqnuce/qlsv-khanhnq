@@ -17,13 +17,13 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_110_SinhVienDuThi : FunctionControlHasGrid
+    public partial class Frm_109_SinhVienDuThi : FunctionControlHasGrid
     {
         private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
 
-        public Frm_110_SinhVienDuThi(int idkythi)
+        public Frm_109_SinhVienDuThi(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;

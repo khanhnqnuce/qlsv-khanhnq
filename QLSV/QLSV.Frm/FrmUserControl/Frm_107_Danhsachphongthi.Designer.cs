@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_108_Danhsachphongthi
+    partial class Frm_107_Danhsachphongthi
     {
         /// <summary>
         /// Required designer variable.

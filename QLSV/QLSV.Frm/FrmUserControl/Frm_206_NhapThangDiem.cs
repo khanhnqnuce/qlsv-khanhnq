@@ -8,10 +8,8 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
@@ -54,7 +52,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = LoadData.Load(11);
+                dgv_DanhSach.DataSource = LoadData.Load(9,_idkythi);
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -169,9 +167,6 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
 
                 band.Columns["ID"].Hidden = true;
-                band.Columns["IdKyThi"].Hidden = true;
-                band.Columns["TenKyThi"].Hidden = true;
-                band.Columns["NgayThi"].Hidden = true;
 
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
 
@@ -179,8 +174,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaMon"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["CauHoi"].CellActivation = Activation.NoEdit;
-                band.Columns["TenKyThi"].CellActivation = Activation.NoEdit;
-                band.Columns["NgayThi"].CellActivation = Activation.NoEdit;
                 band.Columns["Dapan"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
@@ -206,7 +199,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -361,8 +353,7 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                MessageBox.Show(ex.Message);
-            }
+             }
         }
     }
 }

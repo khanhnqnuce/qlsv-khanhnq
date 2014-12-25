@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_107_ChonSinhVienThi
+    partial class Frm_108_SxphongthichoSv
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +61,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnl_from = new System.Windows.Forms.Panel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.lbsinhvien = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -87,7 +89,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(1001, 486);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(1122, 486);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -140,10 +142,12 @@
             this.txtkhoa,
             this.btnTimtheokhoa,
             this.toolStripSeparator4,
-            this.btnxepphong});
+            this.btnxepphong,
+            this.toolStripSeparator5,
+            this.lbsinhvien});
             this.toolStrip3.Location = new System.Drawing.Point(531, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(470, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(591, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -263,13 +267,13 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters1;
+            this.excelExportFilter1.ExtraParameters = extraParameters5;
             // 
             // pdfExportFilter1
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters2;
+            this.pdfExportFilter1.ExtraParameters = extraParameters6;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // panel6
@@ -296,7 +300,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1001, 486);
+            this.panel4.Size = new System.Drawing.Size(1122, 486);
             this.panel4.TabIndex = 27;
             // 
             // panel2
@@ -327,7 +331,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1001, 26);
+            this.panel3.Size = new System.Drawing.Size(1122, 26);
             this.panel3.TabIndex = 26;
             // 
             // pnl_from
@@ -338,9 +342,19 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(1001, 512);
+            this.pnl_from.Size = new System.Drawing.Size(1122, 512);
             this.pnl_from.TabIndex = 7;
             this.pnl_from.Visible = false;
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lbsinhvien
+            // 
+            this.lbsinhvien.Name = "lbsinhvien";
+            this.lbsinhvien.Size = new System.Drawing.Size(0, 22);
             // 
             // Frm_107_ChonSinhVienThi
             // 
@@ -349,7 +363,7 @@
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_107_ChonSinhVienThi";
-            this.Size = new System.Drawing.Size(1001, 512);
+            this.Size = new System.Drawing.Size(1122, 512);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
@@ -405,5 +419,7 @@
         private System.Windows.Forms.ToolStripButton btnTimtheokhoa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton btnxepphong;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripLabel lbsinhvien;
     }
 }

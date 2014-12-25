@@ -17,12 +17,12 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_108_Danhsachphongthi : FunctionControlHasGrid
+    public partial class Frm_107_Danhsachphongthi : FunctionControlHasGrid
     {
         private readonly List<PhongThi> _listAdd = new List<PhongThi>();
         private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
         
-        public Frm_108_Danhsachphongthi()
+        public Frm_107_Danhsachphongthi()
         {
             InitializeComponent();
         }

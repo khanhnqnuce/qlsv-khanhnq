@@ -17,7 +17,7 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_107_ChonSinhVienThi : FunctionControlHasGrid
+    public partial class Frm_108_SxphongthichoSv : FunctionControlHasGrid
     {
         #region Create
 
@@ -28,7 +28,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
-        public Frm_107_ChonSinhVienThi(int id)
+        public Frm_108_SxphongthichoSv(int id)
         {
             InitializeComponent();
             _idkythi = id;
@@ -177,18 +177,25 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                lbsinhvien.Text = "";
                 var indexkhoa = cbokhoa.SelectedValue;
                 var indexlop = cbolop.SelectedValue;
                 if (indexlop == null)
                 {
                     if (indexkhoa == null) return;
                     if (IsNumber(indexkhoa.ToString()))
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa((int)indexkhoa,_idkythi);
+                    {
+                        dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa((int) indexkhoa, _idkythi);
+                        lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
+                    }
                 }
                 else
                 {
                     if (IsNumber(indexlop.ToString()))
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheolop((int)indexlop, _idkythi);
+                    {
+                        dgv_DanhSach.DataSource = SearchData.Timkiemtheolop((int) indexlop, _idkythi);
+                        lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
+                    }
                 }
 
 
@@ -207,10 +214,10 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                lbsinhvien.Text = "";
                 if (string.IsNullOrEmpty(txtkhoa.Text)) return;
                 dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtkhoa.Text,_idkythi);
-
-
+                lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
             }
             catch (Exception ex)
             {
@@ -271,7 +278,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

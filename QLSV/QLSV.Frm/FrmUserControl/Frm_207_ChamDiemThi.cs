@@ -8,9 +8,9 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
@@ -20,11 +20,13 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_207_ChamDiemThi : FunctionControlHasGrid
     {
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
+        private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
+        private readonly Thread[] _threads = new Thread[2];
 
-        public Frm_207_ChamDiemThi()
+        public Frm_207_ChamDiemThi(int idkythi)
         {
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
@@ -33,6 +35,8 @@ namespace QLSV.Frm.FrmUserControl
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+
+            _idkythi = idkythi;
         }
 
         #region Exit
@@ -53,7 +57,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var tbbailam = LoadData.Load(12);
+                var tbbailam = LoadData.Load(6,_idkythi);
                 dgv_DanhSach.DataSource = tbbailam;
                 pnl_from.Visible = true;
             }
@@ -128,7 +132,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 if (_newRow != null) _newRow.Selected = false;
                 foreach (
-                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSinhVien"].Value.ToString() == masinhvien))
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
                 {
                     dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
@@ -138,6 +142,89 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void Chamthi()
+        {
+            var tbbailam = LoadData.Load(6, _idkythi);
+            foreach (DataRow dataRow in tbbailam.Rows)
+            {
+                var diem = 0;
+                var listbailam = dataRow["KetQua"].ToString();
+                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString());
+                for (var i = 0; i < tbdapan.Rows.Count; i++)
+                {
+                    var a = listbailam[i].ToString();
+                    var s = tbdapan.Rows[i]["Dapan"].ToString();
+                    var c = tbdapan.Rows[i]["ThangDiem"].ToString();
+                    if (a == s)
+                    {
+                        diem = diem + int.Parse(c);
+                    }
+                }
+                var hs = new BaiLam
+                {
+                    IdKyThi = _idkythi,
+                    MaSV = int.Parse(dataRow["MaSV"].ToString()),
+                    DiemThi = diem
+                };
+                _listUpdate.Add(hs);
+                dataRow["DiemThi"] = diem.ToString();
+            }
+            Invoke((Action)(() => dgv_DanhSach.DataSource = tbbailam));
+            Invoke((Action)(() => pnl_from.Visible = true));
+            lock (LockTotal)
+            {
+                OnCloseDialog();
+            }
+        }
+
+        public void InDanhSach()
+        {
+            RptLop();
+        }
+
+        private void RptLop()
+        {
+            var tblop = LoadData.Load(4, _idkythi);
+            var tb = LoadData.Load(10,_idkythi);
+            foreach (DataRow rowl in tblop.Rows)
+            {
+                var stt = 1;
+                var malop = rowl["MaLop"].ToString();
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString().Equals(malop)))
+                {
+                    row["STT"] = stt++;
+                }
+            }
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach", tb);
+            rptdiemthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
+            using (var previewForm = new PreviewForm(rptdiemthi))
+            {
+                previewForm.WindowState = FormWindowState.Maximized;
+                rptdiemthi.GetReportParameter += GetParameter;
+                rptdiemthi.Prepare();
+                previewForm.ShowDialog();
+            }
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idkythi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
+                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -152,25 +239,23 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
 
-                band.Columns["ID"].Hidden = true;
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["MaSinhVien"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["DiemThi"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["MaSinhVien"].CellActivation = Activation.NoEdit;
+                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
-                //band.Columns["KetQua"].CellAppearanc
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].Width = 50;
-                band.Columns["MaSinhVien"].Width = 150;
+                band.Columns["MaSV"].Width = 150;
                 band.Columns["MaDe"].Width = 150;
                 band.Columns["KetQua"].Width = 650;
                 band.Columns["DiemThi"].Width = 150;
@@ -178,7 +263,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 #region Caption
 
-                band.Columns["MaSinhVien"].Header.Caption = @"Mã sinh viên";
+                band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
                 band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
                 band.Columns["DiemThi"].Header.Caption = @"Điểm thi";
@@ -187,7 +272,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -221,7 +305,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
         {
-            _threads[0] = new Thread(Chamthi) {IsBackground = true};
+            _threads[0] = new Thread(Chamthi) { IsBackground = true };
             _threads[0].Start();
 
             OnShowDialog("Đang chấm thi...");
@@ -236,57 +320,6 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        private readonly Thread[] _threads = new Thread[2];
-        readonly FrmLoadding _frm = new FrmLoadding();
-
-        private void btnchamthi_Click(object sender, EventArgs e)
-        {
-            _threads[0] = new Thread(Chamthi) {IsBackground = true};
-            _threads[0].Start();
-
-            Loadding();
-        }
-
-        private void Chamthi()
-        {
-            var tbbailam = LoadData.Load(12);
-            foreach (DataRow dataRow in tbbailam.Rows)
-            {
-                var diem = 0;
-                var listbailam = dataRow["KetQua"].ToString();
-                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString());
-                for (var i = 0; i < tbdapan.Rows.Count; i++)
-                {
-                    var a = listbailam[i].ToString();
-                    var b = tbdapan.Rows[i]["Dapan"].ToString();
-                    var c = tbdapan.Rows[i]["ThangDiem"].ToString();
-                    if (a == b)
-                    {
-                        diem = diem + int.Parse(c);
-                    }
-                }
-                var hs = new BaiLam
-                {
-                    MaSV = int.Parse(dataRow["MaSV"].ToString()),
-                    DiemThi = diem
-                };
-                _listUpdate.Add(hs);
-                dataRow["DiemThi"] = diem.ToString();
-            }
-            Invoke((Action) (() => dgv_DanhSach.DataSource = tbbailam));
-            Invoke((Action)(() => pnl_from.Visible = true));
-            lock (LockTotal)
-            {
-                OnCloseDialog();
-            }
-        }
-
-        private void Loadding()
-        {
-            _frm.Update("Đang chấm thi...");
-            _frm.ShowDialog();
         }
     }
 }
