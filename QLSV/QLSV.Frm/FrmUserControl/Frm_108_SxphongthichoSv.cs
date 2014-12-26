@@ -369,10 +369,10 @@ namespace QLSV.Frm.FrmUserControl
                 MessageBox.Show(@"Chưa có sinh viên để xếp phòng!");
                 return;
             }
-            var frm = new FrmChonPhongThi(_idkythi,count,(DataTable) dgv_DanhSach.DataSource);
+            var frm = new FrmChonPhongThi(_idkythi);
             frm.ShowDialog();
 
-            dgv_DanhSach.DataSource = frm.TbTable;
+            //dgv_DanhSach.DataSource = frm.TbTable;
         }
     }
 }

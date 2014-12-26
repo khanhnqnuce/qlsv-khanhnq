@@ -226,11 +226,11 @@ namespace QLSV.Core.LINQ
         /// Lấy đáp án theo ma đe
         /// </summary>
         /// <returns>trả về bảng thông tin bài làm</returns>
-        public static DataTable Timkiemmade2(string made)
+        public static DataTable Timkiemmade2(string made, int idkythi)
         {
             try
             {
-                var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "'";
+                var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "' and IdKyThi = " + idkythi + "";
                 return Conn.GetTable(str);
             }
             catch (Exception ex)

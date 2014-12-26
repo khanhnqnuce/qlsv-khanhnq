@@ -115,16 +115,65 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// xóa xếp phòng cho 1 sinh viên
+        /// </summary>
+        public static void XoaXepPhong1(XepPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM XEPPHONG WHERE IdKyThi = " + item.IdKyThi + " and IdPhong = " + item.IdPhong + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
         /// xếp phòng cho nhiều sinh viên
         /// </summary>
         /// <param name="list"></param>
-        public static void XoaXepPhong(IList<XepPhong> list)
+        public static void XoaXepPhong1(IList<XepPhong> list)
         {
             try
             {
                 foreach (var item in list)
                 {
-                    XoaXepPhong(item);
+                    XoaXepPhong1(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// xóa xếp phòng cho 1 sinh viên
+        /// </summary>
+        public static void XoaKtPhong(KTPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM KT_PHONG WHERE IdKyThi = " + item.IdKyThi + " and IdPhong = " + item.IdPhong + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// xếp phòng cho nhiều sinh viên
+        /// </summary>
+        /// <param name="list"></param>
+        public static void XoaKtPhong(IList<KTPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    XoaKtPhong(item);
                 }
             }
             catch (Exception ex)

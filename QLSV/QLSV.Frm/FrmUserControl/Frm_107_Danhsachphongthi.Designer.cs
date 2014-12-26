@@ -92,7 +92,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(475, 475);
+            this.panel2.Size = new System.Drawing.Size(627, 513);
             this.panel2.TabIndex = 12;
             // 
             // dgv_DanhSach
@@ -107,7 +107,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(475, 475);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(627, 513);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
@@ -139,14 +139,14 @@
             this.pdfExportFilter1.ExtraParameters = extraParameters2;
             this.pdfExportFilter1.UserPassword = null;
             // 
-            // Frm_108_Danhsachphongthi
+            // Frm_107_Danhsachphongthi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "Frm_108_Danhsachphongthi";
-            this.Size = new System.Drawing.Size(475, 475);
+            this.Name = "Frm_107_Danhsachphongthi";
+            this.Size = new System.Drawing.Size(627, 513);
             this.Load += new System.EventHandler(this.FrmDanhsachphongthi_Load);
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

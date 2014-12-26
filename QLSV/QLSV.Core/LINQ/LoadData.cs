@@ -112,6 +112,9 @@ namespace QLSV.Core.LINQ
                     case 19:
                         str = "SELECT ID, 'false' as [Chon], TenPhong, SucChua  FROM PHONGTHI";
                         break;
+                    case 20:
+                        str = "SELECT ID, 'false' as [Chon], TenKT  FROM KYTHI";
+                        break;
                 }
                 table = Conn.GetTable(str);
             }
@@ -200,6 +203,13 @@ namespace QLSV.Core.LINQ
                             "FROM BAILAM b join SINHVIEN s on b.MaSV = s.MaSV " +
                             "join LOP l on s.IdLop = l.ID " +
                             "WHERE b.IdKyThi = "+idKythi+" ";
+                        break;
+                    case 11:
+                        str =
+                            "select ROW_NUMBER() OVER(ORDER BY p.ID) as [STT], " +
+                            "p.ID, p.TenPhong,p.SucChua, kt.SiSo " +
+                            "From KT_PHONG kt join PHONGTHI p on kt.IdPhong = p.ID " +
+                            "where kt.IdKyThi = " + idKythi + "";
                         break;
                 }
                 table =  Conn.GetTable(str);

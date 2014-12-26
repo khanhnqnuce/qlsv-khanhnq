@@ -15,16 +15,13 @@ namespace QLSV.Frm.Frm
         private IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private int _tongsucchua;
         private readonly int _idKythi;
-        private readonly int _tongsv;
-        public readonly DataTable TbTable = new DataTable();
 
-        public FrmChonPhongThi(int idkythi, int tongsv,DataTable tb)
+        public FrmChonPhongThi(int idkythi)
         {
             InitializeComponent();
             _idKythi = idkythi;
-            _tongsv = tongsv;
-            TbTable = tb;
         }
+        
 
         private static DataTable GetTable()
         {
@@ -97,66 +94,20 @@ namespace QLSV.Frm.Frm
 
         private void Xepphong()
         {
-            if (_tongsucchua < _tongsv)
-            {
-                MessageBox.Show(@"Không đủ phòng để sắp xếp sinh viên");
-                return;
-            }
-            var kt = 0;
             foreach (var row in dgv_DanhSach.Rows)
             {
-                if (!bool.Parse(row.Cells["Chon"].Text)) return;
-                var sc = int.Parse(row.Cells["SucChua"].Text);
+                if (!bool.Parse(row.Cells["Chon"].Text)) continue;
                 var idphong = int.Parse(row.Cells["ID"].Text);
-                var bd = kt;
-                kt = kt + sc;
-                if (kt < _tongsv)
+                var hspp = new KTPhong
                 {
-                    for (var i = bd; i < kt; i++)
-                    {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idKythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(TbTable.Rows[i]["MaSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        TbTable.Rows[i]["PhongThi"] = row.Cells["TenPhong"].Text;
-                    }
-                    var hspp = new KTPhong
-                    {
-                        IdKyThi = _idKythi,
-                        IdPhong = idphong,
-                        SiSo = sc
-                    };
-                    _listPhanPhongs.Add(hspp);
-                }
-                else
-                {
-                    for (var i = bd; i < _tongsv; i++)
-                    {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idKythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(TbTable.Rows[i]["MaSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        TbTable.Rows[i]["PhongThi"] = row.Cells["TenPhong"].Text;
-                    }
-                    var hspp = new KTPhong()
-                    {
-                        IdKyThi = _idKythi,
-                        IdPhong = idphong,
-                        SiSo = _tongsv - bd
-                    };
-                    _listPhanPhongs.Add(hspp);
-                    break;
-                }
+                    IdKyThi = _idKythi,
+                    IdPhong = idphong,
+                    SiSo = 0
+                };
+                _listPhanPhongs.Add(hspp);
             }
-            InsertData.XepPhong(_listXepPhong);
+            //InsertData.XepPhong(_listXepPhong);
             InsertData.KtPhong(_listPhanPhongs);
-            MessageBox.Show(@"Sinh viên đã được xếp phòng");
             Close();
         }
 

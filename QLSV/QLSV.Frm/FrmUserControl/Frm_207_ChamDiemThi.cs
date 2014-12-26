@@ -153,7 +153,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var diem = 0;
                 var listbailam = dataRow["KetQua"].ToString();
-                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString());
+                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
                 for (var i = 0; i < tbdapan.Rows.Count; i++)
                 {
                     var a = listbailam[i].ToString();
