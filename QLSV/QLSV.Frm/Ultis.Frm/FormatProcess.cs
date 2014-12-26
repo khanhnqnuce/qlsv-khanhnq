@@ -1,8 +1,7 @@
 ﻿using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinMaskedEdit;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
+
 namespace QLSV.Frm.Ultis.Frm
 {
     public static class FormatProcess
@@ -45,7 +44,6 @@ namespace QLSV.Frm.Ultis.Frm
         {
             @ultraCombo = new UltraCombo
             {
-                DataSource = QlsvSevice.Load<Khoa>(),
                 ValueMember = "ID",
                 DisplayMember = "TenKhoa"
             };
@@ -106,7 +104,6 @@ namespace QLSV.Frm.Ultis.Frm
         {
             var ultraCombo = new UltraCombo
             {
-                DataSource = QlsvSevice.Load<Lop>(),
                 ValueMember = "ID",
                 DisplayMember = "MaLop"
             };

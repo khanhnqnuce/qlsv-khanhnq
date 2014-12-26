@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Utils.Core;
@@ -62,12 +61,6 @@ namespace QLSV.Frm.Base
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -141,12 +134,6 @@ namespace QLSV.Frm.Base
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

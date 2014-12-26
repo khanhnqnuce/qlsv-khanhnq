@@ -8,7 +8,6 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
@@ -131,7 +130,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                QlsvSevice.Xoa("Kythi");
+                DeleteData.Xoa("KYTHI");
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -141,7 +140,6 @@ namespace QLSV.Frm.FrmUserControl
                     MessageBox.Show(FormResource.txtLoiDB);
                 }
                 else
-                    MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

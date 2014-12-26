@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using QLSV.Core.Domain;
-using QLSV.Core.Service;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Frm;
 using QLSV.Frm.FrmUserControl;
@@ -193,10 +192,6 @@ namespace QLSV.Frm
             var tb = new DataTable();
             tb.Columns.Add("Mã kỳ thi", typeof (string));
             tb.Columns.Add("Tên kỳ thi", typeof (string));
-            foreach (var item in QlsvSevice.Load<Kythi>())
-            {
-                //tb.Rows.Add(item.MaKyThi, item.TenKyThi);
-            }
             cboChonKyThi.DataSource = tb;
             cboChonKyThi.DisplayMember = "Tên kỳ thi";
             cboChonKyThi.ValueMember = "Mã kỳ thi";

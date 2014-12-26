@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -147,6 +146,7 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+            band.Columns["DiemThi"].CellAppearance.TextHAlign = HAlign.Center;
 
             band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
             band.Columns["STT"].Width = 50;

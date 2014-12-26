@@ -1099,8 +1099,8 @@ namespace QLSV.Frm
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = true;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }
                 else if (Tabthongkediem.Tab.Visible && Tabthongkediem.Tab.Active)
