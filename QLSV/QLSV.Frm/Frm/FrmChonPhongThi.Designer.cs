@@ -79,6 +79,7 @@
             this.btndong.Size = new System.Drawing.Size(57, 22);
             this.btndong.Text = "Đóng";
             this.btndong.ToolTipText = "(Esc)";
+            this.btndong.Click += new System.EventHandler(this.btndong_Click);
             // 
             // ckbChon
             // 

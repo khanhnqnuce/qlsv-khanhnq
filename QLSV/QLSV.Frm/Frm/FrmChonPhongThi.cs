@@ -191,5 +191,10 @@ namespace QLSV.Frm.Frm
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void btndong_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
