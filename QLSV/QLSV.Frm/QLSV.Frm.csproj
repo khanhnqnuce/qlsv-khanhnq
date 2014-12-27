@@ -149,11 +149,11 @@
     <Compile Include="FrmUserControl\Frm_Chonphongthi.Designer.cs">
       <DependentUpon>Frm_Chonphongthi.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_108_SxphongthichoSv.cs">
+    <Compile Include="FrmUserControl\Frm_108_SapXepPhongThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_108_SxphongthichoSv.Designer.cs">
-      <DependentUpon>Frm_108_SxphongthichoSv.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_108_SapXepPhongThi.Designer.cs">
+      <DependentUpon>Frm_108_SapXepPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_207_ChamDiemThi.cs">
       <SubType>UserControl</SubType>
@@ -388,8 +388,8 @@
     <EmbeddedResource Include="FrmUserControl\Frm_Chonphongthi.resx">
       <DependentUpon>Frm_Chonphongthi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_108_SxphongthichoSv.resx">
-      <DependentUpon>Frm_108_SxphongthichoSv.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_108_SapXepPhongThi.resx">
+      <DependentUpon>Frm_108_SapXepPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_207_ChamDiemThi.resx">
       <DependentUpon>Frm_207_ChamDiemThi.cs</DependentUpon>

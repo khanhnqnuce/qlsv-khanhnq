@@ -22,7 +22,7 @@ namespace QLSV.Frm
         private static Frm_104_InportSinhVien _frmInportSinhVien;
         private static Frm_105_QuanLySinhVien _frmQuanlySinhVien;
         private static Frm_106_QuanLyKyThi _frmQuanLyKyThi;
-        private static Frm_108_SxphongthichoSv _frmmChonSinhVienThi;
+        private static Frm_108_SapXepPhongThi _frmmChonSinhVienThi;
         private static Frm_107_TuDienPhongThi _frmDanhsachphongthi;
         private static Frm_109_SinhVienDuThi _frmSinhVienDuThi;
         private static Frm_201_InportDapAn _frmInportDapAn;
@@ -34,8 +34,7 @@ namespace QLSV.Frm
         private static Frm_208_ThongKeDiem _frmThongKeDiem;
         private static Frm_Chonphongthi _frmChonphongthi;
         private static Frm_ChonSinhVien _frmChonSinhVien;
-        private bool _dangnhap = false;
-        private bool _thoat = false;
+        private bool _dangnhap;
         private int _idkythi ;
 
         public FormMain()
@@ -144,7 +143,7 @@ namespace QLSV.Frm
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
                         break;
                     case "108":
-                        _frmmChonSinhVienThi = new Frm_108_SxphongthichoSv(_idkythi);
+                        _frmmChonSinhVienThi = new Frm_108_SapXepPhongThi(_idkythi);
                         _frmmChonSinhVienThi.ShowDialog += ShowLoading;
                         _frmmChonSinhVienThi.CloseDialog += KillLoading;
                         _frmmChonSinhVienThi.UpdateDialog += UpdateLoading;
