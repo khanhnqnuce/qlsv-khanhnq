@@ -6,9 +6,9 @@ using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmThongKeKetQua : Form
+    public partial class FrmGopKetQua : Form
     {
-        public FrmThongKeKetQua()
+        public FrmGopKetQua()
         {
             InitializeComponent();
         }

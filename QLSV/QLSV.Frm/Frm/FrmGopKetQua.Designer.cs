@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.Frm
 {
-    partial class FrmThongKeKetQua
+    partial class FrmGopKetQua
     {
         /// <summary>
         /// Required designer variable.
