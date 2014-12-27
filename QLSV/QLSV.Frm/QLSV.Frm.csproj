@@ -348,11 +348,11 @@
     <Compile Include="FrmUserControl\Frm_103_Danhmuclop.Designer.cs">
       <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_107_Danhsachphongthi.cs">
+    <Compile Include="FrmUserControl\Frm_107_TuDienPhongThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_107_Danhsachphongthi.Designer.cs">
-      <DependentUpon>Frm_107_Danhsachphongthi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_107_TuDienPhongThi.Designer.cs">
+      <DependentUpon>Frm_107_TuDienPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmNapDuLieu.cs">
       <SubType>Form</SubType>
@@ -452,8 +452,8 @@
     <EmbeddedResource Include="FrmUserControl\Frm_103_Danhmuclop.resx">
       <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_107_Danhsachphongthi.resx">
-      <DependentUpon>Frm_107_Danhsachphongthi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_107_TuDienPhongThi.resx">
+      <DependentUpon>Frm_107_TuDienPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_104_InportSinhVien.resx">
       <DependentUpon>Frm_104_InportSinhVien.cs</DependentUpon>

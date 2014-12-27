@@ -84,7 +84,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteData.Xoa("KT_PHONG",_idkythi);
-                DeleteData.Xoa("XEPPHONG",_idkythi);
+                UpdateData.UpdateXepPhongNull(_idkythi);
                 LoadGrid();
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace QLSV.Frm.FrmUserControl
                     _listKtPhong.Add(ktp);
                 }
                 DeleteData.XoaKtPhong(_listKtPhong);
-                DeleteData.XoaXepPhong1(_listXepPhong);
+                UpdateData.UpdateXepPhongNull(_listXepPhong);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
                 LoadGrid();

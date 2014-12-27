@@ -27,7 +27,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa 1 bản ghi
+        /// Xóa 1 bản ghi trong bảng theo ID
         /// </summary>
         /// <param name="item"></param>
         /// <param name="table"></param>
@@ -44,7 +44,7 @@ namespace QLSV.Core.LINQ
         }
         
         /// <summary>
-        /// xóa nhiều bản ghi
+        /// xóa nhiều bản ghi trong bảng theo ID
         /// </summary>
         /// <param name="list"></param>
         /// <param name="table"></param>
@@ -64,7 +64,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa 1 sih viên
+        /// Xóa bản SINHVIEN theo mã sinh viên
         /// </summary>
         /// <param name="item"></param>
         public static void XoaSV(int item)
@@ -80,7 +80,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa nhiều sinh viên
+        /// Xóa bản SINHVIEN theo mã sinh viên
         /// </summary>
         /// <param name="list"></param>
         public static void XoaSV(IList<int> list)
@@ -99,14 +99,13 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa xếp phòng cho 1 sinh viên
+        /// xóa bảng XEPPHONG theo kỳ thi và mã sinh viên
         /// </summary>
-        /// <param name="list"></param>
         public static void XoaXepPhong(XepPhong item)
         {
             try
             {
-                Conn.ExcuteQuerySql("DELETE FROM XepPhong WHERE IdSV = " + item.IdSV + " and IdKyThi = " + item.IdKyThi + " and IdPhong = " + item.IdPhong + "");
+                Conn.ExcuteQuerySql("DELETE FROM XEPPHONG WHERE IdKyThi = " + item.IdKyThi + " and IdSV = " + item.IdSV + "");
             }
             catch (Exception ex)
             {
@@ -115,31 +114,16 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa xếp phòng cho 1 sinh viên
-        /// </summary>
-        public static void XoaXepPhong1(XepPhong item)
-        {
-            try
-            {
-                Conn.ExcuteQuerySql("DELETE FROM XEPPHONG WHERE IdKyThi = " + item.IdKyThi + " and IdPhong = " + item.IdPhong + "");
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        /// <summary>
-        /// xếp phòng cho nhiều sinh viên
+        /// xóa bảng XEPPHONG theo kỳ thi và mã phòng
         /// </summary>
         /// <param name="list"></param>
-        public static void XoaXepPhong1(IList<XepPhong> list)
+        public static void XoaXepPhong(IList<XepPhong> list)
         {
             try
             {
                 foreach (var item in list)
                 {
-                    XoaXepPhong1(item);
+                    XoaXepPhong(item);
                 }
             }
             catch (Exception ex)
@@ -149,7 +133,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa xếp phòng cho 1 sinh viên
+        /// xóa bảng KT_PHONG theo kỳ thi và mã phòng
         /// </summary>
         public static void XoaKtPhong(KTPhong item)
         {
@@ -164,7 +148,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xếp phòng cho nhiều sinh viên
+        /// xóa bảng KT_PHONG theo kỳ thi và mã phòng
         /// </summary>
         /// <param name="list"></param>
         public static void XoaKtPhong(IList<KTPhong> list)
@@ -183,7 +167,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa theo kỳ thi
+        /// xóa 1 bảng theo kỳ thi
         /// </summary>
         /// <param name="table"></param>
         public static void Xoa(string table, int idkythi)
@@ -199,7 +183,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// xóa theo kỳ thi
+        /// Xóa toàn bộ bảng
         /// </summary>
         /// <param name="table"></param>
         public static void Xoa(string table)

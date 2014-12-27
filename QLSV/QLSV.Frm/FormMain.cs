@@ -23,7 +23,7 @@ namespace QLSV.Frm
         private static Frm_105_QuanLySinhVien _frmQuanlySinhVien;
         private static Frm_106_QuanLyKyThi _frmQuanLyKyThi;
         private static Frm_108_SxphongthichoSv _frmmChonSinhVienThi;
-        private static Frm_107_Danhsachphongthi _frmDanhsachphongthi;
+        private static Frm_107_TuDienPhongThi _frmDanhsachphongthi;
         private static Frm_109_SinhVienDuThi _frmSinhVienDuThi;
         private static Frm_201_InportDapAn _frmInportDapAn;
         private static Frm_203_InportBaiLam _frmInportBaiLam;
@@ -117,7 +117,7 @@ namespace QLSV.Frm
                         _frmInportSinhVien.CloseDialog += KillLoading;
                         _frmInportSinhVien.UpdateDialog += UpdateLoading;
                         TabInportsinhvien.Tab.Visible = true;
-                        Tabquanlysinhvien.Tab.Visible = false;
+                        //Tabquanlysinhvien.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportsinhvien.Tab;
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
@@ -127,7 +127,7 @@ namespace QLSV.Frm
                         _frmQuanlySinhVien.CloseDialog += KillLoading;
                         _frmQuanlySinhVien.UpdateDialog += UpdateLoading;
                         Tabquanlysinhvien.Tab.Visible = true;
-                        TabInportsinhvien.Tab.Visible = false;
+                        //TabInportsinhvien.Tab.Visible = false;
                         TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
@@ -138,7 +138,7 @@ namespace QLSV.Frm
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);
                         break;
                     case "107":
-                        _frmDanhsachphongthi = new Frm_107_Danhsachphongthi();
+                        _frmDanhsachphongthi = new Frm_107_TuDienPhongThi();
                         Tabdanhsachphongthi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdanhsachphongthi.Tab;
                         ShowControl(_frmDanhsachphongthi, pn_danhsachphong);
@@ -149,7 +149,7 @@ namespace QLSV.Frm
                         _frmmChonSinhVienThi.CloseDialog += KillLoading;
                         _frmmChonSinhVienThi.UpdateDialog += UpdateLoading;
                         TabSapxepphongthi.Tab.Visible = true;
-                        Tabdaxepphong.Tab.Visible = false;
+                        //Tabdaxepphong.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         ShowControl(_frmmChonSinhVienThi, pnl_sapxepphongthi);
                         break;
@@ -159,7 +159,9 @@ namespace QLSV.Frm
                         _frmSinhVienDuThi.CloseDialog += KillLoading;
                         _frmSinhVienDuThi.UpdateDialog += UpdateLoading;
                         Tabdaxepphong.Tab.Visible = true;
-                        TabSapxepphongthi.Tab.Visible = false;
+                        //TabSapxepphongthi.Tab.Visible = false;
+                        //Tabchonsinhvien.Tab.Visible = false;
+                        //TabChonPhongThi.Tab.Visible = false;
                         TabPageControl.SelectedTab = Tabdaxepphong.Tab;
                         ShowControl(_frmSinhVienDuThi, pnl_daxepphong);
                         break;
@@ -169,9 +171,9 @@ namespace QLSV.Frm
                         _frmInportDapAn.CloseDialog += KillLoading;
                         _frmInportDapAn.UpdateDialog += UpdateLoading;
                         TabInportdapdan.Tab.Visible = true;
-                        TabDanhsachbailam.Tab.Visible = false;
-                        TabInportbailam.Tab.Visible = false;
-                        TabDapanmade.Tab.Visible = false;
+                        //TabDanhsachbailam.Tab.Visible = false;
+                        //TabInportbailam.Tab.Visible = false;
+                        //TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportdapdan.Tab;
                         ShowControl(_frmInportDapAn, pnl_Inportdapan);
                         break;
@@ -181,8 +183,8 @@ namespace QLSV.Frm
                         _frmDapAnCacMaDe.CloseDialog += KillLoading;
                         _frmDapAnCacMaDe.UpdateDialog += UpdateLoading;
                         TabDapanmade.Tab.Visible = true;
-                        TabInportdapdan.Tab.Visible = false;
-                        TabInportbailam.Tab.Visible = false;
+                        //TabInportdapdan.Tab.Visible = false;
+                        //TabInportbailam.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDapanmade.Tab;
                         ShowControl(_frmDapAnCacMaDe, pnl_Dapanmade);
                         break;
@@ -192,9 +194,9 @@ namespace QLSV.Frm
                         _frmInportBaiLam.CloseDialog += KillLoading;
                         _frmInportBaiLam.UpdateDialog += UpdateLoading;
                         TabInportbailam.Tab.Visible = true;
-                        TabDanhsachbailam.Tab.Visible = false;
-                        TabInportdapdan.Tab.Visible = false;
-                        TabDapanmade.Tab.Visible = false;
+                        //TabDanhsachbailam.Tab.Visible = false;
+                        //TabInportdapdan.Tab.Visible = false;
+                        //TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportbailam.Tab;
                         ShowControl(_frmInportBaiLam, pnl_Inportbailam);
                         break;
@@ -204,8 +206,8 @@ namespace QLSV.Frm
                         _frmDanhSachBaiLam.CloseDialog += KillLoading;
                         _frmDanhSachBaiLam.UpdateDialog += UpdateLoading;
                         TabDanhsachbailam.Tab.Visible = true;
-                        TabInportbailam.Tab.Visible = false;
-                        TabInportdapdan.Tab.Visible = false;
+                        //TabInportbailam.Tab.Visible = false;
+                        //TabInportdapdan.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDanhsachbailam.Tab;
                         ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;

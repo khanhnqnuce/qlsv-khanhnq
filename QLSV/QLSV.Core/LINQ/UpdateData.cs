@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 
@@ -93,7 +92,6 @@ namespace QLSV.Core.LINQ
         /// <summary>
         /// Update Thông tin khoa
         /// </summary>
-        /// <param name="list"></param>
         /// <returns>true</returns>
         public static bool UpdateKhoa(Khoa item)
         {
@@ -175,7 +173,7 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin 1 sinh viên
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateSV(SinhVien item)
+        public static bool UpdateSv(SinhVien item)
         {
             try
             {
@@ -193,13 +191,13 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin của nhiều sinh viên
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateSV(IList<SinhVien> list)
+        public static bool UpdateSv(IList<SinhVien> list)
         {
             try
             {
                 foreach (var item in list)
                 {
-                    UpdateSV(item);
+                    UpdateSv(item);
                 }
                 return true;
             }
@@ -376,7 +374,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// chuyển phòng thi cho sinh viên
+        /// sửa phòng thi cho sinh viên
         /// </summary>
         /// <param name="hs"></param>
         /// <returns></returns>
@@ -385,6 +383,63 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = " + hs.IdPhong + " where IdSV = " + hs.IdSV + " and IdKyThi =" + hs.IdKyThi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXepPhongNull(int idkythi)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdKyThi = " + idkythi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXepPhongNull(XepPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdPhong = "+item.IdPhong+" and IdKyThi = "+item.IdKyThi+"");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXepPhongNull(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateXepPhongNull(item);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -430,6 +485,23 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static bool UpdateGiamSiSo(IList<KTPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateGiamSiSo(item.IdPhong,item.IdKyThi);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
         /// <summary>
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
@@ -448,13 +520,32 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
-        
+
+        /// <summary>
+        /// khi xóa bảng XEPPHONG thì cho sĩ số phòng về 0
+        /// </summary>
+        /// <returns>true nếu thành công</returns>
+        public static bool UpdateKtPhongNull(int idkythi)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql(" update KT_PHONG set SiSo = 0 where IdKyThi = " + idkythi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Sửa mã sinh viên trong bảng bài làm
         /// </summary>
         /// <param name="masv1">ma sv mới</param>
         /// <param name="masv2">Mã sv cần sửa </param>
         /// <param name="idkythi"></param>
+        /// <param name="made"></param>
         /// <returns>true</returns>
         public static bool UpdateMaSinhVien(int masv1, int masv2, int idkythi, string made)
         {
@@ -499,7 +590,7 @@ namespace QLSV.Core.LINQ
             {
                 foreach (var item in list)
                 {
-                    Conn.ExcuteQuerySql("update BaiLam set DiemThi = " + item.DiemThi + " WHERE MaSV = " + item.MaSV + "");
+                    UpdateDiemThi(item);
                 }
                 return true;
             }

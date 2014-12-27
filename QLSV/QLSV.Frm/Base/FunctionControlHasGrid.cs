@@ -95,7 +95,7 @@ namespace QLSV.Frm.Base
                     {
                         foreach (var row in grid.Selected.Rows)
                         {
-                            var id = row.Cells[columnId].Value.ToString();
+                            var id = row.Cells[columnId].Text;
                             if (!string.IsNullOrEmpty(id))
                             {
                                 IdDelete.Add(int.Parse(id));
@@ -122,12 +122,14 @@ namespace QLSV.Frm.Base
                             MessageBoxIcon.Question))
                     {
                         b = true;
-                        var idStr = grid.ActiveRow.Cells[columnId].Value.ToString();
+                        var idStr = grid.ActiveRow.Cells[columnId].Text;
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));
                         grid.ActiveRow.Delete(false);
-                        if (index <= 0) return;
-                        grid.Rows[index - 1].Cells[2].Activate();
+                        if (index > 0)
+                            grid.Rows[index - 1].Cells[2].Activate();
+                        else
+                            grid.Rows[index].Cells[2].Activate();
                         grid.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }

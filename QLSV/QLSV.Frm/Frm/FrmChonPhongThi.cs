@@ -1,27 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
+using QLSV.Core.Utils.Core;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm
 {
     public partial class FrmChonPhongThi : Form
     {
-        private IList<KTPhong> _listPhanPhongs = new List<KTPhong>();
-        private IList<XepPhong> _listXepPhong = new List<XepPhong>();
+        private readonly IList<KTPhong> _listPhanPhong = new List<KTPhong>();
         private int _tongsucchua;
         private readonly int _idKythi;
+        private FrmLoadding _loading = new FrmLoadding();
+        private readonly BackgroundWorker _bgwInsert;
 
         public FrmChonPhongThi(int idkythi)
         {
             InitializeComponent();
             _idKythi = idkythi;
+            _bgwInsert = new BackgroundWorker();
+            _bgwInsert.DoWork += bgwInsert_DoWork;
+            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
-        
 
         private static DataTable GetTable()
         {
@@ -105,15 +111,85 @@ namespace QLSV.Frm.Frm
                     IdPhong = idphong,
                     SiSo = 0
                 };
-                _listPhanPhongs.Add(hspp);
+                _listPhanPhong.Add(hspp);
             }
-            InsertData.KtPhong(_listPhanPhongs);
-            Close();
+            InsertData.KtPhong(_listPhanPhong);
+            Invoke((Action)(() => MessageBox.Show(@"Lưu lại thành công", @"Thông báo")));
+            Invoke((Action)(Close));
+        }
+
+        private void Luu()
+        {
+            _bgwInsert.RunWorkerAsync();
+            OnShowDialog("Đang lưu dữ liệu");
         }
 
         private void btnLuu_Click(object sender, System.EventArgs e)
         {
+            Luu();
+        }
+
+        #region BackgroundWorker
+
+        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        {
             Xepphong();
+        }
+
+        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
+
+        private void OnShowDialog(string msg)
+        {
+            try
+            {
+                _loading = new FrmLoadding();
+                _loading.Update(msg);
+                _loading.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void OnCloseDialog()
+        {
+            try
+            {
+                if (_loading != null)
+                {
+                    _loading.Invoke((Action)(() =>
+                    {
+                        _loading.Close();
+                        _loading = null;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        #endregion
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.F5):
+                    Luu();
+                    break;
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

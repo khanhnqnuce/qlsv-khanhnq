@@ -220,7 +220,7 @@ namespace QLSV.Frm.Frm
                         NgaySinh = cbongaysinh.Text,
                         IdLop = int.Parse(cbolop.Value.ToString())
                     };
-                    UpdateData.UpdateSV(hs1);
+                    UpdateData.UpdateSv(hs1);
                     MessageBox.Show(@"Đã Thêm mới một sinh viên");
                     masv = 0;
                     Close();
