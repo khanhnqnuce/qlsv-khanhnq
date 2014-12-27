@@ -56,24 +56,6 @@ namespace QLSV.Core.LINQ
                     case 4:
                         str = "SELECT * FROM LOP";
                         break;
-                    case 5:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa " +
-                              "FROM SINHVIEN s,XEPPHONG x,PHONGTHI p,LOP l " +
-                              "WHERE s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID";
-                        break;
-                    case 6:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
-                              "s.TenSinhVien, s.NgaySinh, l.MaLop FROM SinhVien s,Lop l WHERE not exists " +
-                              "(SELECT x.IdSV FROM XepPhong x " +
-                              "WHERE s.ID = x.IdSV) and s.IdLop = l.ID";
-                        break;
-                    case 7:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.ID) as [STT],s.ID, s.MaSinhVien, s.HoSinhVien, " +
-                              "s.TenSinhVien, s.NgaySinh,l.MaLop,p.ID as [IdPhong], p.TenPhong as [PhongThi], " +
-                              "k.ID as [MaKhoa], k.TenKhoa, kt.ID as [IdKyThi]" +
-                              "FROM Khoa k, Lop l, SinhVien s, XepPhong x, PhongThi p,Kythi kt " +
-                              "WHERE k.ID = l.IdKhoa and l.ID = s.IdLop and s.ID = x.IdSV and x.IdPhong = p.ID and x.IdKyThi = kt.ID;";
-                        break;
                     case 8:
                         str = "select p.TenPhong, p.SucChua, k.SiSo, k.IdPhong from PHONGTHI p left join KT_PHONG k on p.ID = k.IdPhong";
                         break;
@@ -82,17 +64,6 @@ namespace QLSV.Core.LINQ
                         break;
                     case 10:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.* FROM KYTHI K";
-                        break;
-                    case 11:
-                        str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID";
-                        break;
-                    case 12:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* FROM BAILAM b";
-                        break;
-                    case 13:
-                        str =
-                            "select * from BAILAM b where not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
                         break;
                     case 14:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY T.ID) as [STT], T.* FROM TAIKHOAN T";
@@ -108,9 +79,6 @@ namespace QLSV.Core.LINQ
                         break;
                     case 18:
                         str = "SELECT ID, MaKT, TenKT  FROM KYTHI";
-                        break;
-                    case 19:
-                        str = "SELECT ID, 'false' as [Chon], TenPhong, SucChua  FROM PHONGTHI";
                         break;
                     case 20:
                         str = "SELECT ID, 'false' as [Chon], TenKT  FROM KYTHI";
@@ -131,13 +99,16 @@ namespace QLSV.Core.LINQ
         /// <param name="chon"></param>
         /// <param name="idKythi"></param>
         /// <returns>trả về 1 table</returns>
-        /// 1. Sinh viên dự thi
+        /// 1. Sinh viên đã được xếp phòng
+        /// 2.3.4. RptPhongthi - 109_SinhVienDuThi
         /// 5. Sĩ số phòng đã được xếp sinh viên
         /// 6: Trả về danh sách bài làm của sinh viên
         /// 7: Đáp án
         /// 8: Kiểm tra lỗi logic
         /// 9: Nhập thang điểm
         /// 10: In điểm thi
+        /// 11. Phòng thi đã được chọn
+        /// 12. Sinh viên đã được chọn để thi
         /// 13: Sinh viên chưa được xếp phòng trong bảng KT_PHONG với IdPhong là null
         /// 14: Phong thi có SiSo nhỏ hơn SucChua
         public static DataTable Load(int chon, int idKythi)
@@ -191,7 +162,8 @@ namespace QLSV.Core.LINQ
                     case 8:
                         str = "select b.MaSV " +
                               "FROM BAILAM b " +
-                              "where b.IdKyThi = "+idKythi+" and not exists (select * from SINHVIEN s where b.MaSV = s.MaSV)";
+                              "where b.IdKyThi = "+idKythi+" " +
+                              "and not exists (select * from XEPPHONG s where b.MaSV = s.IdSV)";
                         break;
                     case 9:
                         str =
