@@ -58,7 +58,8 @@ namespace QLSV.Frm.Frm
             {
                 var b = bool.Parse(e.Cell.Row.Cells["Chon"].Text);
                 if (b)
-                {_tongsucchua = _tongsucchua + int.Parse(e.Cell.Row.Cells["SucChua"].Text);
+                {
+                    _tongsucchua = _tongsucchua + int.Parse(e.Cell.Row.Cells["SucChua"].Text);
                 }
                 else
                 {
@@ -106,7 +107,6 @@ namespace QLSV.Frm.Frm
                 };
                 _listPhanPhongs.Add(hspp);
             }
-            //InsertData.XepPhong(_listXepPhong);
             InsertData.KtPhong(_listPhanPhongs);
             Close();
         }

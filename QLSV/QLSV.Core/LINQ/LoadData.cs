@@ -211,6 +211,14 @@ namespace QLSV.Core.LINQ
                             "From KT_PHONG kt join PHONGTHI p on kt.IdPhong = p.ID " +
                             "where kt.IdKyThi = " + idKythi + "";
                         break;
+                    case 12:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                            "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop " +
+                            "FROM SINHVIEN s join XEPPHONG x on s.MaSV = x.IdSV " +
+                            "join LOP l on s.IdLop = l.ID " +
+                            "WHERE x.IdKyThi = " + idKythi + "";
+                        break;
                 }
                 table =  Conn.GetTable(str);
             }

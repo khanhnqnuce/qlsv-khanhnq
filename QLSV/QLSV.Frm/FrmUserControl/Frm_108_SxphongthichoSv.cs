@@ -315,8 +315,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             var obj = cbokhoa.SelectedValue;
             if(obj == null) return;
-            //cbolop.ValueMember = "ID";
-            //cbolop.DisplayMember = "MaLop";
             cbolop.DataSource = SearchData.Timkiem(int.Parse(obj.ToString()));
         }
 

@@ -215,6 +215,12 @@
     <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.Designer.cs">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\Frm_ChonSinhVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\Frm_ChonSinhVien.Designer.cs">
+      <DependentUpon>Frm_ChonSinhVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,11 +239,17 @@
     <Compile Include="Frm\FrmCheckXepPhong.Designer.cs">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmThongKeKetQua.cs">
+    <Compile Include="Frm\FrmChonSv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm\FrmThongKeKetQua.Designer.cs">
-      <DependentUpon>FrmThongKeKetQua.cs</DependentUpon>
+    <Compile Include="Frm\FrmChonSv.Designer.cs">
+      <DependentUpon>FrmChonSv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmGopKetQua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmGopKetQua.Designer.cs">
+      <DependentUpon>FrmGopKetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_205_KiemTraLoiLogic.cs">
       <SubType>UserControl</SubType>
@@ -409,6 +421,9 @@
     <EmbeddedResource Include="FrmUserControl\Frm_208_ThongKeDiem.resx">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\Frm_ChonSinhVien.resx">
+      <DependentUpon>Frm_ChonSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
     </EmbeddedResource>
@@ -418,8 +433,11 @@
     <EmbeddedResource Include="Frm\FrmCheckXepPhong.resx">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmThongKeKetQua.resx">
-      <DependentUpon>FrmThongKeKetQua.cs</DependentUpon>
+    <EmbeddedResource Include="Frm\FrmChonSv.resx">
+      <DependentUpon>FrmChonSv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmGopKetQua.resx">
+      <DependentUpon>FrmGopKetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonPhongThi.resx">
       <DependentUpon>FrmChonPhongThi.cs</DependentUpon>

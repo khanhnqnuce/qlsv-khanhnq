@@ -54,6 +54,7 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem7 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem23 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem25 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem22 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
@@ -98,6 +99,7 @@
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab23 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab24 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab25 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab26 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab27 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab28 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -247,6 +249,8 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Tabchonsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_chonsinhvien = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -286,6 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Tabchonsinhvien.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -927,6 +932,9 @@
             ultraExplorerBarItem7.Text = "Quản lý kỳ thi";
             ultraExplorerBarItem23.Key = "110";
             ultraExplorerBarItem23.Text = "Chọn phòng thi";
+            ultraExplorerBarItem25.Key = "111";
+            ultraExplorerBarItem25.Settings.MaxLines = 2;
+            ultraExplorerBarItem25.Text = "Chọn sinh viên";
             ultraExplorerBarItem22.Key = "108";
             appearance12.Image = global::QLSV.Frm.Properties.Resources._108;
             ultraExplorerBarItem22.Settings.AppearancesSmall.Appearance = appearance12;
@@ -987,6 +995,7 @@
             ultraExplorerBarItem12,
             ultraExplorerBarItem7,
             ultraExplorerBarItem23,
+            ultraExplorerBarItem25,
             ultraExplorerBarItem22,
             ultraExplorerBarItem13,
             ultraExplorerBarItem14,
@@ -1316,6 +1325,7 @@
             this.TabPageControl.Controls.Add(this.Tabchamdiemthi);
             this.TabPageControl.Controls.Add(this.Tabthongkediem);
             this.TabPageControl.Controls.Add(this.TabChonPhongThi);
+            this.TabPageControl.Controls.Add(this.Tabchonsinhvien);
             this.TabPageControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabPageControl.Location = new System.Drawing.Point(215, 0);
             this.TabPageControl.Name = "TabPageControl";
@@ -1347,6 +1357,9 @@
             ultraTab25.TabPage = this.TabChonPhongThi;
             ultraTab25.Text = "Chọn phòng thi";
             ultraTab25.Visible = false;
+            ultraTab1.TabPage = this.Tabchonsinhvien;
+            ultraTab1.Text = "Chọn sinh viên";
+            ultraTab1.Visible = false;
             ultraTab26.TabPage = this.TabSapxepphongthi;
             ultraTab26.Text = "Sắp xếp phòng thi cho sinh viên";
             ultraTab26.Visible = false;
@@ -1383,6 +1396,7 @@
             ultraTab23,
             ultraTab24,
             ultraTab25,
+            ultraTab1,
             ultraTab26,
             ultraTab27,
             ultraTab28,
@@ -1839,6 +1853,21 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // Tabchonsinhvien
+            // 
+            this.Tabchonsinhvien.Controls.Add(this.pnl_chonsinhvien);
+            this.Tabchonsinhvien.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabchonsinhvien.Name = "Tabchonsinhvien";
+            this.Tabchonsinhvien.Size = new System.Drawing.Size(1262, 495);
+            // 
+            // pnl_chonsinhvien
+            // 
+            this.pnl_chonsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_chonsinhvien.Location = new System.Drawing.Point(0, 0);
+            this.pnl_chonsinhvien.Name = "pnl_chonsinhvien";
+            this.pnl_chonsinhvien.Size = new System.Drawing.Size(1262, 495);
+            this.pnl_chonsinhvien.TabIndex = 11;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1896,6 +1925,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Tabchonsinhvien.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2042,5 +2072,7 @@
         private System.Windows.Forms.Panel panel71;
         private System.Windows.Forms.Panel panel72;
         private System.Windows.Forms.Panel pnl_chonphongthi;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabchonsinhvien;
+        private System.Windows.Forms.Panel pnl_chonsinhvien;
     }
 }

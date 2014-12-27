@@ -57,6 +57,7 @@
     <Compile Include="Domain\BaiLam.cs" />
     <Compile Include="Domain\DapAn.cs" />
     <Compile Include="Domain\KTPhong.cs" />
+    <Compile Include="Domain\ThongKe.cs" />
     <Compile Include="Domain\XepPhong.cs" />
     <Compile Include="LINQ\DeleteData.cs" />
     <Compile Include="LINQ\InsertData.cs" />
@@ -72,34 +73,6 @@
     <Compile Include="LINQ\UpdateData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.Core\log2File.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Domain\Taikhoan.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Domain\Kythi.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Domain\SinhVien.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Lop.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Domain\Khoa.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Domain\PhongThi.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Domain\BaiLam.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Domain\DapAn.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

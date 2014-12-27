@@ -48,7 +48,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(576, 439);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(671, 558);
             this.dgv_DanhSach.TabIndex = 26;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             // 
@@ -72,7 +72,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
             this.Name = "Frm_Chonphongthi";
-            this.Size = new System.Drawing.Size(576, 439);
+            this.Size = new System.Drawing.Size(671, 558);
             this.Load += new System.EventHandler(this.Frm_Chonphongthi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);

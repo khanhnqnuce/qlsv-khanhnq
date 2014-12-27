@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 
@@ -413,6 +412,46 @@ namespace QLSV.Core.LINQ
                 foreach (var item in list)
                 {
                     KtPhong(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// lưu 1 sv được chọn tham gia thi
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool Chonsinhvien(XepPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into XepPhong(IdSV,IdKyThi) values(" + item.IdSV + "," + item.IdKyThi + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// lưu nhiều sv được chọn tham gia thi
+        /// </summary>
+        /// <param name="list"></param>
+        public static bool Chonsinhvien(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    Chonsinhvien(item);
                 }
                 return true;
             }
