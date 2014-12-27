@@ -21,7 +21,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private readonly IList<KTPhong> _listPhanPhong = new List<KTPhong>();
-        private int _idkythi;
+        private readonly int _idkythi;
+        private DataTable _tbSv = new DataTable();
         private UltraGridRow _newRow;
 
         #endregion
@@ -51,7 +52,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = GetTable();
+                Xepphong();
+                dgv_DanhSach.DataSource = _tbSv;
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -64,158 +66,28 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                Invoke((Action)(LoadGrid));
-                Invoke((Action)(()=>_listXepPhong.Clear()));
-                //Invoke((Action)(()=>_listUpdate.Clear()));
-                Invoke((Action)(()=>IdDelete.Clear()));
-                lock (LockTotal)
-                {
-                    OnCloseDialog();
-                }
+                
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        protected override void InsertRow()
-        {
-            //InsertRow(dgv_DanhSach, "STT", "MaSV");
-        }
-
-        protected override void DeleteRow()
-        {
-
-            DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
         }
 
         protected override void SaveDetail()
         {
             try
             {
-                DeleteData.XoaSV(IdDelete);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
+                UpdateData.UpdateXepPhong(_listXepPhong);
+                UpdateData.UpdateKtPhong(_listPhanPhong);
+                MessageBox.Show(@"Sinh viên đã được xếp phòng");
+                _listPhanPhong.Clear();
+                _listXepPhong.Clear();
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        protected override void XoaDetail()
-        {
-            try
-            {
-                //DeleteData.Xoa("SINHVIEN");
-                LoadFormDetail();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-       private void Sua()
-        {
-            try
-            {
-                var txtphongthi = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text;
-                if (!string.IsNullOrEmpty(txtphongthi))
-                {
-                    MessageBox.Show(@"Sinh viên đã được xếp phòng");
-                    return;
-                }
-
-                var frm = new FrmXepPhong
-                {
-                    txtmasinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text },
-                    txthotendem = { Text = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text },
-                    txttensinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["TenSV"].Text },
-                    txtNgaySinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text },
-                    cbolop = { Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text },
-                    IdKythi = _idkythi
-                };
-                frm.ShowDialog();
-                dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        public void Huy()
-        {
-            try
-            {
-                var thread = new Thread(LoadFormDetail) {IsBackground = true};
-                thread.Start();
-                OnShowDialog("Loading...");
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        /// <summary>
-        /// Tìm theo khoa , lớp
-        /// </summary>
-        private void Timkiemtheolop()
-        {
-            try
-            {
-                var indexkhoa = cbokhoa.SelectedValue;
-                var indexlop = cbolop.SelectedValue;
-                if (indexlop == null)
-                {
-                    if (indexkhoa == null) return;
-                    if (IsNumber(indexkhoa.ToString()))
-                    {
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa((int) indexkhoa, _idkythi);
-                    }
-                }
-                else
-                {
-                    if (IsNumber(indexlop.ToString()))
-                    {
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheolop((int) indexlop, _idkythi);
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        /// <summary>
-        /// Tìm theo niên khóa
-        /// </summary>
-        private void Timkiemtheokhoa()
-        {
-            try
-            {
-                //lbsinhvien.Text = "";
-                //if (string.IsNullOrEmpty(txtkhoa.Text)) return;
-                //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtkhoa.Text,_idkythi);
-                //lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private static bool IsNumber(string pText)
-        {
-            var regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
-            return regex.IsMatch(pText);
         }
 
         #endregion
@@ -279,7 +151,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_Sua_Click(object sender, EventArgs e)
         {
-           Sua();
+           
         }
 
         #endregion
@@ -288,7 +160,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                Xepphong();
+                LoadGrid();
             }
             catch (Exception ex)
             {
@@ -316,15 +188,15 @@ namespace QLSV.Frm.FrmUserControl
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            Timkiemtheolop();
+           
         }
 
         private void Xepphong()
         {
             var kt = 0;
-            var tbSv = LoadData.Load(13, _idkythi);
+            _tbSv = LoadData.Load(13, _idkythi);
             var tbPhong = LoadData.Load(14, _idkythi);
-            var tong = tbSv.Rows.Count;
+            var tong = _tbSv.Rows.Count;
 
             foreach (DataRow row in tbPhong.Rows)
             {
@@ -340,10 +212,10 @@ namespace QLSV.Frm.FrmUserControl
                         {
                             IdKyThi = _idkythi,
                             IdPhong = idphong,
-                            IdSV = int.Parse(tbSv.Rows[i]["IdSV"].ToString())
+                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
                         };
                         _listXepPhong.Add(hsxp);
-                        tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
                     }
                     var hspp = new KTPhong
                     {
@@ -361,10 +233,10 @@ namespace QLSV.Frm.FrmUserControl
                         {
                             IdKyThi = _idkythi,
                             IdPhong = idphong,
-                            IdSV = int.Parse(tbSv.Rows[i]["IdSV"].ToString())
+                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
                         };
                         _listXepPhong.Add(hsxp);
-                        tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
                     }
                     var hspp = new KTPhong
                     {
@@ -376,9 +248,6 @@ namespace QLSV.Frm.FrmUserControl
                     break;
                 }
             }
-            UpdateData.UpdateXepPhong(_listXepPhong);
-            UpdateData.UpdateKtPhong(_listPhanPhong);
-            MessageBox.Show(@"Sinh viên đã được xếp phòng");
         }
     }
 }
