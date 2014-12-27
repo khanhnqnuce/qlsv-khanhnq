@@ -53,7 +53,7 @@ namespace QLSV.Frm.Frm
             band.Columns["SucChua"].CellActivation = Activation.NoEdit;
         }
 
-        private void FrmChonPhongThi_Load(object sender, System.EventArgs e)
+        private void FrmChonPhongThi_Load(object sender, EventArgs e)
         {
             dgv_DanhSach.DataSource = SearchData.LoadPhong(_idKythi);
         }
@@ -76,7 +76,7 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void ckbChon_CheckedChanged(object sender, System.EventArgs e)
+        private void ckbChon_CheckedChanged(object sender, EventArgs e)
         {
             _tongsucchua = 0;
             if (ckbChon.Checked)
@@ -124,7 +124,7 @@ namespace QLSV.Frm.Frm
             OnShowDialog("Đang lưu dữ liệu");
         }
 
-        private void btnLuu_Click(object sender, System.EventArgs e)
+        private void btnLuu_Click(object sender, EventArgs e)
         {
             Luu();
         }

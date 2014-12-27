@@ -78,8 +78,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("XEPPHONG", _idkythi);
-                DeleteData.Xoa("KT_PHONG", _idkythi);
+                UpdateData.UpdateKtPhong(_idkythi);
+                UpdateData.UpdateXepPhongNull(_idkythi);
                 LoadFormDetail();
             }
             catch (Exception ex)

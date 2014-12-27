@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,14 +40,6 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btntimkiem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.txtkhoa = new System.Windows.Forms.ToolStripTextBox();
-            this.btnTimtheokhoa = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnxepphong = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbsinhvien = new System.Windows.Forms.ToolStripLabel();
             this.cbolop = new System.Windows.Forms.ComboBox();
             this.cbokhoa = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -136,15 +128,7 @@
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
-            this.btntimkiem,
-            this.toolStripSeparator3,
-            this.toolStripLabel3,
-            this.txtkhoa,
-            this.btnTimtheokhoa,
-            this.toolStripSeparator4,
-            this.btnxepphong,
-            this.toolStripSeparator5,
-            this.lbsinhvien});
+            this.btntimkiem});
             this.toolStrip3.Location = new System.Drawing.Point(531, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(591, 25);
@@ -164,59 +148,6 @@
             this.btntimkiem.Size = new System.Drawing.Size(77, 22);
             this.btntimkiem.Text = "Tìm kiếm";
             this.btntimkiem.Click += new System.EventHandler(this.btntimkiem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(78, 22);
-            this.toolStripLabel3.Text = "Chọn khóa: K";
-            // 
-            // txtkhoa
-            // 
-            this.txtkhoa.Name = "txtkhoa";
-            this.txtkhoa.Size = new System.Drawing.Size(70, 25);
-            this.txtkhoa.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtkhoa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyDown);
-            this.txtkhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtkhoa_KeyPress);
-            this.txtkhoa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyUp);
-            // 
-            // btnTimtheokhoa
-            // 
-            this.btnTimtheokhoa.Image = global::QLSV.Frm.Properties.Resources.find_icon;
-            this.btnTimtheokhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnTimtheokhoa.Name = "btnTimtheokhoa";
-            this.btnTimtheokhoa.Size = new System.Drawing.Size(77, 22);
-            this.btnTimtheokhoa.Text = "Tìm kiếm";
-            this.btnTimtheokhoa.Click += new System.EventHandler(this.btnTimtheokhoa_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnxepphong
-            // 
-            this.btnxepphong.Image = global::QLSV.Frm.Properties.Resources.dichuyen;
-            this.btnxepphong.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnxepphong.Name = "btnxepphong";
-            this.btnxepphong.Size = new System.Drawing.Size(85, 22);
-            this.btnxepphong.Text = "Xếp phòng";
-            this.btnxepphong.Click += new System.EventHandler(this.btnxepphong_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lbsinhvien
-            // 
-            this.lbsinhvien.Name = "lbsinhvien";
-            this.lbsinhvien.Size = new System.Drawing.Size(0, 22);
             // 
             // cbolop
             // 
@@ -277,13 +208,13 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters1;
+            this.excelExportFilter1.ExtraParameters = extraParameters3;
             // 
             // pdfExportFilter1
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters2;
+            this.pdfExportFilter1.ExtraParameters = extraParameters4;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // panel6
@@ -356,13 +287,13 @@
             this.pnl_from.TabIndex = 7;
             this.pnl_from.Visible = false;
             // 
-            // Frm_108_SxphongthichoSv
+            // Frm_108_SapXepPhongThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "Frm_108_SxphongthichoSv";
+            this.Name = "Frm_108_SapXepPhongThi";
             this.Size = new System.Drawing.Size(1122, 512);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
@@ -413,13 +344,5 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel pnl_from;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox txtkhoa;
-        private System.Windows.Forms.ToolStripButton btnTimtheokhoa;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton btnxepphong;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripLabel lbsinhvien;
     }
 }

@@ -138,6 +138,8 @@ namespace QLSV.Core.LINQ
         /// 8: Kiểm tra lỗi logic
         /// 9: Nhập thang điểm
         /// 10: In điểm thi
+        /// 13: Sinh viên chưa được xếp phòng trong bảng KT_PHONG với IdPhong là null
+        /// 14: Phong thi có SiSo nhỏ hơn SucChua
         public static DataTable Load(int chon, int idKythi)
         {
             var table = new DataTable();
@@ -218,6 +220,19 @@ namespace QLSV.Core.LINQ
                             "FROM SINHVIEN s join XEPPHONG x on s.MaSV = x.IdSV " +
                             "join LOP l on s.IdLop = l.ID " +
                             "WHERE x.IdKyThi = " + idKythi + "";
+                        break;
+                    case 13:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY x.IdSV) as [STT],x.IdSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, '' as [PhongThi] " +
+                            "FROM XEPPHONG x join SINHVIEN s on x.IdSV = s.MaSV " +
+                            "join LOP l on s.IdLop = l.ID " +
+                            "where x.IdPhong is null and x.IdKyThi = "+idKythi+"";
+                        break;
+                    case 14:
+                        str =
+                            "SELECT k.IdPhong, p.SucChua, k.SiSo, p.TenPhong " +
+                            "FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID " +
+                            "WHERE k.SiSo < p.SucChua and k.IdKyThi = " + idKythi + "";
                         break;
                 }
                 table =  Conn.GetTable(str);

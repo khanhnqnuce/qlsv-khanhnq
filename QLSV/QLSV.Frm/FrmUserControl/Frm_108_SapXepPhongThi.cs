@@ -19,8 +19,8 @@ namespace QLSV.Frm.FrmUserControl
     {
         #region Create
 
-        private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
-        private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
+        private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
+        private readonly IList<KTPhong> _listPhanPhong = new List<KTPhong>();
         private int _idkythi;
         private UltraGridRow _newRow;
 
@@ -65,8 +65,8 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 Invoke((Action)(LoadGrid));
-                Invoke((Action)(()=>_listAdd.Clear()));
-                Invoke((Action)(()=>_listUpdate.Clear()));
+                Invoke((Action)(()=>_listXepPhong.Clear()));
+                //Invoke((Action)(()=>_listUpdate.Clear()));
                 Invoke((Action)(()=>IdDelete.Clear()));
                 lock (LockTotal)
                 {
@@ -168,7 +168,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                lbsinhvien.Text = "";
                 var indexkhoa = cbokhoa.SelectedValue;
                 var indexlop = cbolop.SelectedValue;
                 if (indexlop == null)
@@ -177,7 +176,6 @@ namespace QLSV.Frm.FrmUserControl
                     if (IsNumber(indexkhoa.ToString()))
                     {
                         dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa((int) indexkhoa, _idkythi);
-                        lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
                     }
                 }
                 else
@@ -185,7 +183,6 @@ namespace QLSV.Frm.FrmUserControl
                     if (IsNumber(indexlop.ToString()))
                     {
                         dgv_DanhSach.DataSource = SearchData.Timkiemtheolop((int) indexlop, _idkythi);
-                        lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
                     }
                 }
 
@@ -204,10 +201,10 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                lbsinhvien.Text = "";
-                if (string.IsNullOrEmpty(txtkhoa.Text)) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtkhoa.Text,_idkythi);
-                lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
+                //lbsinhvien.Text = "";
+                //if (string.IsNullOrEmpty(txtkhoa.Text)) return;
+                //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtkhoa.Text,_idkythi);
+                //lbsinhvien.Text = dgv_DanhSach.Rows.Count + @" Sinh viên";
             }
             catch (Exception ex)
             {
@@ -291,8 +288,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                cbokhoa.DataSource = LoadData.Load(3);
-                Huy();
+                Xepphong();
             }
             catch (Exception ex)
             {
@@ -323,54 +319,66 @@ namespace QLSV.Frm.FrmUserControl
             Timkiemtheolop();
         }
 
-        private void btnTimtheokhoa_Click(object sender, EventArgs e)
+        private void Xepphong()
         {
-            Timkiemtheokhoa();
-        }
+            var kt = 0;
+            var tbSv = LoadData.Load(13, _idkythi);
+            var tbPhong = LoadData.Load(14, _idkythi);
+            var tong = tbSv.Rows.Count;
 
-        private void txtkhoa_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            foreach (DataRow row in tbPhong.Rows)
             {
-                e.Handled = true;
-            }
-        }
-
-        private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
+                var sc = int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString());
+                var idphong = int.Parse(row["IdPhong"].ToString());
+                var bd = kt;
+                kt = kt + sc;
+                if (kt<tong)
                 {
-                    case Keys.Enter:
-                        Timkiemtheokhoa();
-                        break;
+                    for (var i = bd; i < kt; i++)
+                    {
+                        var hsxp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdPhong = idphong,
+                            IdSV = int.Parse(tbSv.Rows[i]["IdSV"].ToString())
+                        };
+                        _listXepPhong.Add(hsxp);
+                        tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                    }
+                    var hspp = new KTPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = idphong,
+                        SiSo = int.Parse(row["SucChua"].ToString())
+                    };
+                    _listPhanPhong.Add(hspp);
+                }
+                else
+                {
+                    for (var i = bd; i < tong; i++)
+                    {
+                        var hsxp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdPhong = idphong,
+                            IdSV = int.Parse(tbSv.Rows[i]["IdSV"].ToString())
+                        };
+                        _listXepPhong.Add(hsxp);
+                        tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                    }
+                    var hspp = new KTPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = idphong,
+                        SiSo = int.Parse(row["SiSo"].ToString()) + (tong - bd)
+                    };
+                    _listPhanPhong.Add(hspp);
+                    break;
                 }
             }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void txtkhoa_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                e.SuppressKeyPress = true;
-        }
-
-        private void btnxepphong_Click(object sender, EventArgs e)
-        {
-            var count = dgv_DanhSach.Rows.Count;
-            if (count <= 0)
-            {
-                MessageBox.Show(@"Chưa có sinh viên để xếp phòng!");
-                return;
-            }
-            var frm = new FrmChonPhongThi(_idkythi);
-            frm.ShowDialog();
-
-            //dgv_DanhSach.DataSource = frm.TbTable;
+            UpdateData.UpdateXepPhong(_listXepPhong);
+            UpdateData.UpdateKtPhong(_listPhanPhong);
+            MessageBox.Show(@"Sinh viên đã được xếp phòng");
         }
     }
 }

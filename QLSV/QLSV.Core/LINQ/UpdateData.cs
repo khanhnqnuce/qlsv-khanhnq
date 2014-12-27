@@ -393,6 +393,27 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// sửa phòng thi cho sinh viên
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXepPhong(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateXepPhong(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
         /// </summary>
         /// <returns></returns>
@@ -522,10 +543,46 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// sửa lại SiSo trong bảng KT_PHONG khi xếp phòng xong
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool UpdateKtPhong(KTPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = " + item.SiSo + " where IdPhong = " + item.IdPhong + " and IdKyThi =" + item.IdKyThi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public static bool UpdateKtPhong(IList<KTPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateKtPhong(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// khi xóa bảng XEPPHONG thì cho sĩ số phòng về 0
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateKtPhongNull(int idkythi)
+        public static bool UpdateKtPhong(int idkythi)
         {
             try
             {
@@ -563,7 +620,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// Chấm điểm thi cho bài làm của sinh viên
+        /// sửa lại điểm thi trong bản BAILAM
         /// </summary>
         /// <returns>true</returns>
         public static bool UpdateDiemThi(BaiLam item)
@@ -581,7 +638,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// Chấm điểm thi cho bài làm của sinh viên
+        /// sửa lại điểm thi trong bản BAILAM
         /// </summary>
         /// <returns>true</returns>
         public static bool UpdateDiemThi(IList<BaiLam> list)

@@ -142,7 +142,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteData.Xoa("XEPPHONG", _idkythi);
-                UpdateData.UpdateKtPhongNull(_idkythi);
+                UpdateData.UpdateKtPhong(_idkythi);
                 LoadGrid();
             }
             catch (Exception ex)
