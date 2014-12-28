@@ -302,7 +302,7 @@ namespace QLSV.Core.LINQ
             {
                 Conn.ExcuteQuerySql("UPDATE DAPAN SET Dapan = '"+item.Dapan+"' " +
                                     "WHERE MaMon = '"+item.MaMon+"' and MaDe = '"+item.MaDe+"' " +
-                                    "and CauHoi = N'"+item.CauHoi+"' and IdKyThi= "+item.IdKyThi+"");
+                                    "and CauHoi = "+item.CauHoi+" and IdKyThi= "+item.IdKyThi+"");
                 return true;
             }
             catch (Exception ex)
@@ -344,7 +344,7 @@ namespace QLSV.Core.LINQ
             {
                 Conn.ExcuteQuerySql("UPDATE DAPAN SET ThangDiem = " + item.ThangDiem + " " +
                                     "WHERE MaMon = '" + item.MaMon + "' and MaDe = '" + item.MaDe + "' " +
-                                    "and CauHoi = N'" + item.CauHoi + "' and IdKyThi= " + item.IdKyThi + "");
+                                    "and CauHoi =" + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)

@@ -234,7 +234,7 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "' and IdKyThi = " + idkythi + "";
+                var str = "SELECT * FROM DapAn WHERE MaDe = N'" + made + "' and IdKyThi = " + idkythi + " order by CauHoi";
                 return Conn.GetTable(str);
             }
             catch (Exception ex)

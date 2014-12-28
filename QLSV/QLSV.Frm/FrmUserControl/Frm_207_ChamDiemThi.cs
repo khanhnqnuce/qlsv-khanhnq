@@ -96,12 +96,18 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Chamthi()
         {
+            var dem = 0;
             var tbbailam = LoadData.Load(16, _idkythi);
             foreach (DataRow dataRow in tbbailam.Rows)
             {
                 var diem = 0;
                 var listbailam = dataRow["KetQua"].ToString();
                 var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
+                if (listbailam.Length != tbdapan.Rows.Count)
+                {
+                    dem = dem + 1;
+                    continue;
+                }
                 for (var i = 0; i < tbdapan.Rows.Count; i++)
                 {
                     var a = listbailam[i].ToString();
@@ -127,6 +133,10 @@ namespace QLSV.Frm.FrmUserControl
             {
                 OnCloseDialog();
             }
+            if (dem > 0)
+                Invoke(
+                    (Action) (() => MessageBox.Show(@"Còn " + dem + @" sinh viên chưa được chấm thi", @"Có lỗi xảy ra",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)));
         }
 
         public void InDanhSach()
@@ -197,6 +207,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
+                band.Columns["DiemThi"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;

@@ -121,21 +121,22 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var danhsach = (DataTable)dgv_DanhSach.DataSource;
-                foreach (var hs in from DataRow row in danhsach.Rows select new DapAn
+                foreach (var row in dgv_DanhSach.Rows)
                 {
-                    IdKyThi = _idKythi,
-                    MaMon = row["MaMon"].ToString(),
-                    MaDe = row["MaDe"].ToString(),
-                    CauHoi = row["CauHoi"].ToString(),
-                    Dapan = row["Dapan"].ToString(),
-                    ThangDiem = 0
-                })
-                {
+                    var hs = new DapAn
+                    {
+                        IdKyThi = _idKythi,
+                        MaMon = row.Cells["MaMon"].Text,
+                        MaDe = row.Cells["MaDe"].Text,
+                        CauHoi = int.Parse(row.Cells["CauHoi"].Text),
+                        Dapan = row.Cells["Dapan"].Text,
+                        ThangDiem = 0
+                    };
+
                     _listAdd.Add(hs);
+
                 }
                 InsertData.ThemDapAn(_listAdd);
-                danhsach.Clear();
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }

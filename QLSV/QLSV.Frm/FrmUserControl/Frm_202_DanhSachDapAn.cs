@@ -229,7 +229,7 @@ namespace QLSV.Frm.FrmUserControl
                     IdKyThi = _idKyThi,
                     MaMon = dgv_DanhSach.ActiveRow.Cells["MaMon"].Text,
                     MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
-                    CauHoi = dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text,
+                    CauHoi = int.Parse(dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text),
                     Dapan = dgv_DanhSach.ActiveRow.Cells["Dapan"].Text,
                 };
                 _listUpdate.Add(hs);

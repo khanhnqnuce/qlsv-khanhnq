@@ -178,7 +178,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["IdKyThi"].Hidden = true;
-                band.Columns["DiemThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
@@ -188,7 +187,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
-                //band.Columns["KetQua"].CellAppearanc
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;

@@ -8,7 +8,7 @@
 
         public virtual string MaDe { get; set; }
 
-        public virtual string CauHoi { get; set; }
+        public virtual int CauHoi { get; set; }
 
         public virtual string Dapan { get; set; }
 

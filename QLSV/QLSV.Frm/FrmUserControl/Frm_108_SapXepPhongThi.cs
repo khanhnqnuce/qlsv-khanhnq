@@ -23,6 +23,7 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<KTPhong> _listPhanPhong = new List<KTPhong>();
         private readonly int _idkythi;
         private DataTable _tbSv = new DataTable();
+        private DataTable _tbPhong = new DataTable();
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
 
@@ -43,7 +44,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var table = new DataTable();
             table.Columns.Add("STT", typeof (string));
-            table.Columns.Add("MaSV", typeof (string));
+            table.Columns.Add("IdSV", typeof(string));
             table.Columns.Add("HoSV", typeof (string));
             table.Columns.Add("TenSV", typeof (string));
             table.Columns.Add("NgaySinh", typeof (string));
@@ -55,10 +56,9 @@ namespace QLSV.Frm.FrmUserControl
         private void Xepphong()
         {
             var kt = 0;
-            var tbPhong = LoadData.Load(14, _idkythi);
             var tong = _tbSv.Rows.Count;
 
-            foreach (DataRow row in tbPhong.Rows)
+            foreach (DataRow row in _tbPhong.Rows)
             {
                 var sc = int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString());
                 var idphong = int.Parse(row["IdPhong"].ToString());
@@ -152,14 +152,19 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void Huy()
+        private void Huy()
         {
             try
             {
                 _tbSv = LoadData.Load(13, _idkythi);
-                if (_tbSv.Rows.Count <= 0)
+                _tbPhong = LoadData.Load(14, _idkythi);
+                if (_tbSv.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");
+                    return;
+                }else if (_tbPhong.Rows.Count == 0)
+                {
+                    MessageBox.Show(@"Chưa chọn phòng thi");
                     return;
                 }
                 var thread = new Thread(LoadFormDetail) { IsBackground = true };
@@ -212,7 +217,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 #region Caption
 
-                band.Columns["MaSV"].Header.Caption = @"Mã SV";
+                band.Columns["IdSV"].Header.Caption = @"Mã SV";
                 band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
                 band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
                 band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
@@ -222,7 +227,7 @@ namespace QLSV.Frm.FrmUserControl
                 #endregion
                 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
+                band.Columns["IdSV"].CellActivation = Activation.NoEdit;
                 band.Columns["HoSV"].CellActivation = Activation.NoEdit;
                 band.Columns["TenSV"].CellActivation = Activation.NoEdit;
                 band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
