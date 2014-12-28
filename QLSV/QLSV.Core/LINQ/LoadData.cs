@@ -111,6 +111,7 @@ namespace QLSV.Core.LINQ
         /// 12. Sinh viên đã được chọn để thi
         /// 13: Sinh viên chưa được xếp phòng trong bảng KT_PHONG với IdPhong là null
         /// 14: Phong thi có SiSo nhỏ hơn SucChua
+        /// 15: Bảng BAILAM với sinh viên đã được chấm thì DiemThi not null
         public static DataTable Load(int chon, int idKythi)
         {
             var table = new DataTable();
@@ -150,12 +151,13 @@ namespace QLSV.Core.LINQ
                               "WHERE k.IdKyThi = "+idKythi+"";
                         break;
                     case 6:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* " +
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT]," +
+                              " b.IdKyThi, b.MaSV, b.MaDe, b.KetQua " +
                               "FROM BAILAM b " +
-                              "WHERE b.IdKyThi = " + idKythi + "";
+                              "WHERE b.IdKyThi = "+idKythi+"";
                         break;
                     case 7:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
+                        str = "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
                               "FROM DAPAN d, KYTHI k " +
                               "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
                         break;
@@ -167,7 +169,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 9:
                         str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
+                            "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem " +
                             "FROM DAPAN d, KYTHI k " +
                             "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
                         break;
@@ -205,6 +207,18 @@ namespace QLSV.Core.LINQ
                             "SELECT k.IdPhong, p.SucChua, k.SiSo, p.TenPhong " +
                             "FROM KT_PHONG k join PHONGTHI p on k.IdPhong = p.ID " +
                             "WHERE k.SiSo < p.SucChua and k.IdKyThi = " + idKythi + "";
+                        break;
+                    case 15:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
+                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
+                              "join LOP l on s.IdLop = l.ID " +
+                              "WHERE b.IdKyThi = " + idKythi + " and b.DiemThi is not null";
+                        break;
+                    case 16:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* "+
+                              "FROM BAILAM b " +
+                              "WHERE b.IdKyThi = " + idKythi + "";
                         break;
                 }
                 table =  Conn.GetTable(str);

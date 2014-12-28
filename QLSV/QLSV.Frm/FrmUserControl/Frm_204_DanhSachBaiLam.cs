@@ -150,9 +150,10 @@ namespace QLSV.Frm.FrmUserControl
         {
             var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
             var made = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
-            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made) {bUpdate = false};
+            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made) {Update = false};
             frm.ShowDialog();
-            if (frm.bUpdate) dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
+            if (frm.Update) 
+                dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
         }
 
         private void Timkiemmde()
@@ -223,7 +224,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_Sua_Click(object sender, EventArgs e)
         {
-
+            SuaMaSinhVien();
         }
 
         private void menuStripHuy_Click(object sender, EventArgs e)
@@ -298,6 +299,5 @@ namespace QLSV.Frm.FrmUserControl
             if (e.KeyCode == Keys.Enter)
                 e.SuppressKeyPress = true;
         }
-
     }
 }

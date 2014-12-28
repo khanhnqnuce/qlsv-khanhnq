@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,26 +81,26 @@
             this.menuStrip_Luulai,
             this.menuStrip_Huy});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(128, 70);
+            this.menu_ug.Size = new System.Drawing.Size(153, 92);
             // 
             // menuStrip_Sua
             // 
             this.menuStrip_Sua.Name = "menuStrip_Sua";
-            this.menuStrip_Sua.Size = new System.Drawing.Size(127, 22);
-            this.menuStrip_Sua.Text = "Chỉnh sửa";
+            this.menuStrip_Sua.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Sua.Text = "Nhập điểm";
             this.menuStrip_Sua.Click += new System.EventHandler(this.menuStrip_Sua_Click);
             // 
             // menuStrip_Luulai
             // 
             this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(127, 22);
+            this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Luulai.Text = "Lưu lại";
             this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(127, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
@@ -114,7 +114,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters3;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -122,7 +122,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters4;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
             // rptdapandethi
             // 

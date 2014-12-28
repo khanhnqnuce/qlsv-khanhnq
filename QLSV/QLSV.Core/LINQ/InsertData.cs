@@ -265,8 +265,8 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("insert into DapAn(IdKyThi,MaMon,MaDe,CauHoi,Dapan,ThangDiem) values(" +
-                            item.IdKyThi + ",N'" + item.MaMon + "',N'" + item.MaDe + "',N'" +
-                            item.CauHoi + "',N'" + item.Dapan + "'," + item.ThangDiem + ")");
+                            item.IdKyThi + ",'" + item.MaMon + "','" + item.MaDe + "',N'" +
+                            item.CauHoi + "','" + item.Dapan + "'," + item.ThangDiem + ")");
                 return true;
             }
             catch (Exception ex)

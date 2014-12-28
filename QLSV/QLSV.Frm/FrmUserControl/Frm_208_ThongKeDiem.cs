@@ -26,12 +26,11 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSinhVien", typeof(string));
-            table.Columns.Add("HoSinhVien", typeof(string));
-            table.Columns.Add("TenSinhVien", typeof(string));
-            table.Columns.Add("NgaySinh", typeof(string));
+            table.Columns.Add("IdKyThi", typeof(string));
+            table.Columns.Add("MaSV", typeof(string));
+            table.Columns.Add("MaDe", typeof(string));
+            table.Columns.Add("KetQua", typeof(string));
             table.Columns.Add("MaLop", typeof(string));
             table.Columns.Add("DiemThi", typeof(int));
             return table;
@@ -42,7 +41,12 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 lbthongke.Text = "";
-                dgv_DanhSach.DataSource = SearchData.Thongkediem(6,_idkythi);
+                var tb = LoadData.Load(15, _idkythi);
+                if (tb.Rows.Count == 0)
+                {
+                    MessageBox.Show(@"Sinh viên chưa được chấm thi",@"Thông báo");
+                }
+                dgv_DanhSach.DataSource = tb;
                 pnl_from.Visible = true;
             }
             catch (Exception ex)

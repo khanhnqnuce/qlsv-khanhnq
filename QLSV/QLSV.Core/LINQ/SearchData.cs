@@ -298,13 +298,6 @@ namespace QLSV.Core.LINQ
                               "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
                               "join LOP l on s.IdLop = l.ID " +
                               "and b.DiemThi > 450 and b.IdKyThi = " + idkythi + "";
-                        break; 
-                    default:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
-                              "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
-                              "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
-                              "join LOP l on s.IdLop = l.ID " +
-                              "WHERE b.IdKyThi = " + idkythi + "";
                         break;
                 }
                 return Conn.GetTable(str);

@@ -9,7 +9,7 @@ namespace QLSV.Frm.Frm
         private readonly int _masv;
         private readonly int _idkythi;
         private readonly string _made;
-        public bool bUpdate;
+        public bool Update;
 
         public FrmSuaMaSinhVien(int masv, int idkythi, string made)
         {
@@ -30,7 +30,7 @@ namespace QLSV.Frm.Frm
                 UpdateData.UpdateMaSinhVien(int.Parse(txtmasinhvien.Text), _masv,_idkythi,_made);
                 Close();
                 MessageBox.Show(@"Lưu lại thành công");
-                bUpdate = true;
+                Update = true;
             }
         }
 

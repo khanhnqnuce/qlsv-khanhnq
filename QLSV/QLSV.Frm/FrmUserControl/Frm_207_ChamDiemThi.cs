@@ -53,44 +53,6 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        protected override void LoadGrid()
-        {
-            try
-            {
-                var tbbailam = LoadData.Load(6,_idkythi);
-                dgv_DanhSach.DataSource = tbbailam;
-                pnl_from.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        protected override void LoadFormDetail()
-        {
-            try
-            {
-                LoadGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        protected override void InsertRow()
-        {
-            InsertRow(dgv_DanhSach, "STT", "MaSinhVien");
-        }
-
-        protected override void DeleteRow()
-        {
-
-            DeleteRowGrid(dgv_DanhSach, "ID", "MaSinhVien");
-        }
-
         protected override void SaveDetail()
         {
             try
@@ -110,20 +72,6 @@ namespace QLSV.Frm.FrmUserControl
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
-        }
-
-        protected override void XoaDetail()
-        {
-            try
-            {
-                //DeleteData.Xoa("BaiLam");
-                LoadFormDetail();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
         }
 
         private void Timkiemsinhvien(object sender, string masinhvien)
@@ -148,7 +96,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Chamthi()
         {
-            var tbbailam = LoadData.Load(6, _idkythi);
+            var tbbailam = LoadData.Load(16, _idkythi);
             foreach (DataRow dataRow in tbbailam.Rows)
             {
                 var diem = 0;

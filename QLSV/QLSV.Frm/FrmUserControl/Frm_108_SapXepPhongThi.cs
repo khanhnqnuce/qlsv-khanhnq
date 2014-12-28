@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -24,13 +24,17 @@ namespace QLSV.Frm.FrmUserControl
         private readonly int _idkythi;
         private DataTable _tbSv = new DataTable();
         private UltraGridRow _newRow;
+        private readonly BackgroundWorker _bgwInsert;
 
         #endregion
 
-        public Frm_108_SapXepPhongThi(int id)
+        public Frm_108_SapXepPhongThi(int idkythi)
         {
             InitializeComponent();
-            _idkythi = id;
+            _idkythi = idkythi;
+            _bgwInsert = new BackgroundWorker();
+            _bgwInsert.DoWork += bgwInsert_DoWork;
+            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
         #region Exit
@@ -48,13 +52,83 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
+        private void Xepphong()
+        {
+            var kt = 0;
+            var tbPhong = LoadData.Load(14, _idkythi);
+            var tong = _tbSv.Rows.Count;
+
+            foreach (DataRow row in tbPhong.Rows)
+            {
+                var sc = int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString());
+                var idphong = int.Parse(row["IdPhong"].ToString());
+                var bd = kt;
+                kt = kt + sc;
+                if (kt < tong)
+                {
+                    for (var i = bd; i < kt; i++)
+                    {
+                        var hsxp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdPhong = idphong,
+                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
+                        };
+                        _listXepPhong.Add(hsxp);
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                    }
+                    var hspp = new KTPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = idphong,
+                        SiSo = int.Parse(row["SucChua"].ToString())
+                    };
+                    _listPhanPhong.Add(hspp);
+                }
+                else
+                {
+                    for (var i = bd; i < tong; i++)
+                    {
+                        var hsxp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdPhong = idphong,
+                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
+                        };
+                        _listXepPhong.Add(hsxp);
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                    }
+                    var hspp = new KTPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = idphong,
+                        SiSo = int.Parse(row["SiSo"].ToString()) + (tong - bd)
+                    };
+                    _listPhanPhong.Add(hspp);
+                    break;
+                }
+            }
+        }
+
         protected override void LoadGrid()
         {
             try
             {
-                Xepphong();
-                dgv_DanhSach.DataSource = _tbSv;
-                pnl_from.Visible = true;
+                var frm = new FrmCheckXepPhong {update = false};
+                frm.ShowDialog();
+                if (frm.update && frm.rdoall.Checked)
+                {
+                    if (_tbSv.Rows.Count > 0)
+                        Xepphong();
+                    else
+                        MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");
+                    dgv_DanhSach.DataSource = _tbSv;
+                    pnl_from.Visible = true;
+                }else if (frm.update && frm.rdoone.Checked)
+                {
+                    dgv_DanhSach.DataSource = _tbSv;
+                    pnl_from.Visible = true;
+                }
             }
             catch (Exception ex)
             {
@@ -66,10 +140,35 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                
+                Invoke((Action)(LoadGrid));
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
             }
             catch (Exception ex)
             {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Huy()
+        {
+            try
+            {
+                _tbSv = LoadData.Load(13, _idkythi);
+                if (_tbSv.Rows.Count <= 0)
+                {
+                    MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");
+                    return;
+                }
+                var thread = new Thread(LoadFormDetail) { IsBackground = true };
+                thread.Start();
+                OnShowDialog("Loading...");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -78,8 +177,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                UpdateData.UpdateXepPhong(_listXepPhong);
-                UpdateData.UpdateKtPhong(_listPhanPhong);
+                if (_listXepPhong.Count > 0) UpdateData.UpdateXepPhong(_listXepPhong);
+                if (_listPhanPhong.Count > 0) UpdateData.UpdateKtPhong(_listPhanPhong);
                 MessageBox.Show(@"Sinh viên đã được xếp phòng");
                 _listPhanPhong.Clear();
                 _listXepPhong.Clear();
@@ -87,6 +186,14 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Ghi()
+        {
+            if (_listXepPhong.Count >0 && _listPhanPhong.Count > 0){
+                _bgwInsert.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
             }
         }
 
@@ -156,11 +263,32 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
+        #region BackgroundWorker
+
+        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
+
+        #endregion
+
         private void FrmSinhVien_Load(object sender, EventArgs e)
         {
             try
             {
-                LoadGrid();
+                Huy();
             }
             catch (Exception ex)
             {
@@ -189,65 +317,6 @@ namespace QLSV.Frm.FrmUserControl
         private void btntimkiem_Click(object sender, EventArgs e)
         {
            
-        }
-
-        private void Xepphong()
-        {
-            var kt = 0;
-            _tbSv = LoadData.Load(13, _idkythi);
-            var tbPhong = LoadData.Load(14, _idkythi);
-            var tong = _tbSv.Rows.Count;
-
-            foreach (DataRow row in tbPhong.Rows)
-            {
-                var sc = int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString());
-                var idphong = int.Parse(row["IdPhong"].ToString());
-                var bd = kt;
-                kt = kt + sc;
-                if (kt<tong)
-                {
-                    for (var i = bd; i < kt; i++)
-                    {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idkythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
-                    }
-                    var hspp = new KTPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = idphong,
-                        SiSo = int.Parse(row["SucChua"].ToString())
-                    };
-                    _listPhanPhong.Add(hspp);
-                }
-                else
-                {
-                    for (var i = bd; i < tong; i++)
-                    {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idkythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
-                    }
-                    var hspp = new KTPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = idphong,
-                        SiSo = int.Parse(row["SiSo"].ToString()) + (tong - bd)
-                    };
-                    _listPhanPhong.Add(hspp);
-                    break;
-                }
-            }
         }
     }
 }

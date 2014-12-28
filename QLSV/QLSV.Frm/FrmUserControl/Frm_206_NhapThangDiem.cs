@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -37,8 +35,6 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaMon", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("CauHoi", typeof(string));
@@ -143,7 +139,10 @@ namespace QLSV.Frm.FrmUserControl
                     row.Cells["ThangDiem"].Value = frm.txtNhapdiem.Text;
                     var hs = new DapAn
                     {
-                        ID = int.Parse(row.Cells["ID"].Text),
+                        IdKyThi = _idkythi,
+                        MaMon = row.Cells["MaMon"].Text,
+                        MaDe = row.Cells["MaDe"].Text,
+                        CauHoi = row.Cells["CauHoi"].Text,
                         ThangDiem = int.Parse(frm.txtNhapdiem.Text)
                     };
                    
@@ -166,20 +165,15 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
 
-                band.Columns["ID"].Hidden = true;
-
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
 
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaMon"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["CauHoi"].CellActivation = Activation.NoEdit;
                 band.Columns["Dapan"].CellActivation = Activation.NoEdit;
 
-                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["STT"].Width = 50;
                 band.Columns["MaMon"].Width = 150;
                 band.Columns["MaDe"].Width = 150;
                 band.Columns["CauHoi"].Width = 150;
@@ -207,21 +201,12 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (b)
-                {
-                    b = false;
-                    return;
-                }
-                var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.ThangDiem = int.Parse(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text);
-                    return;
-                }
                 var hs = new DapAn
                 {
-                    ID = int.Parse(id),
+                    IdKyThi = _idkythi,
+                    MaMon = dgv_DanhSach.ActiveRow.Cells["MaMon"].Text,
+                    MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
+                    CauHoi = dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text,
                     ThangDiem = !string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) ? int.Parse(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) : 0,
                 };
                 _listUpdate.Add(hs);

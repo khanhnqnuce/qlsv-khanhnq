@@ -141,6 +141,8 @@
             this.pnl_chonphongthi = new System.Windows.Forms.Panel();
             this.panel71 = new System.Windows.Forms.Panel();
             this.panel72 = new System.Windows.Forms.Panel();
+            this.Tabchonsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_chonsinhvien = new System.Windows.Forms.Panel();
             this.TabSapxepphongthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_sapxepphongthi = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -249,8 +251,6 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Tabchonsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_chonsinhvien = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -259,6 +259,7 @@
             this.Tabquanlykythi.SuspendLayout();
             this.Tabdanhsachphongthi.SuspendLayout();
             this.TabChonPhongThi.SuspendLayout();
+            this.Tabchonsinhvien.SuspendLayout();
             this.TabSapxepphongthi.SuspendLayout();
             this.Tabdaxepphong.SuspendLayout();
             this.TabInportdapdan.SuspendLayout();
@@ -290,7 +291,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Tabchonsinhvien.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -556,6 +556,21 @@
             this.panel72.Name = "panel72";
             this.panel72.Size = new System.Drawing.Size(400, 495);
             this.panel72.TabIndex = 8;
+            // 
+            // Tabchonsinhvien
+            // 
+            this.Tabchonsinhvien.Controls.Add(this.pnl_chonsinhvien);
+            this.Tabchonsinhvien.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabchonsinhvien.Name = "Tabchonsinhvien";
+            this.Tabchonsinhvien.Size = new System.Drawing.Size(1262, 495);
+            // 
+            // pnl_chonsinhvien
+            // 
+            this.pnl_chonsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_chonsinhvien.Location = new System.Drawing.Point(0, 0);
+            this.pnl_chonsinhvien.Name = "pnl_chonsinhvien";
+            this.pnl_chonsinhvien.Size = new System.Drawing.Size(1262, 495);
+            this.pnl_chonsinhvien.TabIndex = 11;
             // 
             // TabSapxepphongthi
             // 
@@ -859,6 +874,7 @@
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
             this.MenuBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuBar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            ultraExplorerBarGroup1.Expanded = false;
             ultraExplorerBarItem24.Key = "101";
             appearance1.Image = global::QLSV.Frm.Properties.Resources.nd;
             ultraExplorerBarItem24.Settings.AppearancesSmall.Appearance = appearance1;
@@ -1853,21 +1869,6 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Tabchonsinhvien
-            // 
-            this.Tabchonsinhvien.Controls.Add(this.pnl_chonsinhvien);
-            this.Tabchonsinhvien.Location = new System.Drawing.Point(-10000, -10000);
-            this.Tabchonsinhvien.Name = "Tabchonsinhvien";
-            this.Tabchonsinhvien.Size = new System.Drawing.Size(1262, 495);
-            // 
-            // pnl_chonsinhvien
-            // 
-            this.pnl_chonsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_chonsinhvien.Location = new System.Drawing.Point(0, 0);
-            this.pnl_chonsinhvien.Name = "pnl_chonsinhvien";
-            this.pnl_chonsinhvien.Size = new System.Drawing.Size(1262, 495);
-            this.pnl_chonsinhvien.TabIndex = 11;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1893,6 +1894,7 @@
             this.Tabquanlykythi.ResumeLayout(false);
             this.Tabdanhsachphongthi.ResumeLayout(false);
             this.TabChonPhongThi.ResumeLayout(false);
+            this.Tabchonsinhvien.ResumeLayout(false);
             this.TabSapxepphongthi.ResumeLayout(false);
             this.Tabdaxepphong.ResumeLayout(false);
             this.TabInportdapdan.ResumeLayout(false);
@@ -1925,7 +1927,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Tabchonsinhvien.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
