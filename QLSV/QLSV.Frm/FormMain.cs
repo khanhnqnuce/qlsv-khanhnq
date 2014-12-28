@@ -1173,7 +1173,7 @@ namespace QLSV.Frm
                     lbInsert.Visible = false;
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
+                    btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;
@@ -1186,7 +1186,7 @@ namespace QLSV.Frm
                     lbInsert.Visible = false;
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
+                    btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;

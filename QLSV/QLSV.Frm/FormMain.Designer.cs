@@ -142,7 +142,6 @@
             this.panel71 = new System.Windows.Forms.Panel();
             this.panel72 = new System.Windows.Forms.Panel();
             this.Tabchonsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_chonsinhvien = new System.Windows.Forms.Panel();
             this.TabSapxepphongthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_sapxepphongthi = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -251,6 +250,9 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel73 = new System.Windows.Forms.Panel();
+            this.panel74 = new System.Windows.Forms.Panel();
+            this.pnl_chonsinhvien = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -298,7 +300,7 @@
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
             this.Tabquanlynguoidung.Controls.Add(this.panel10);
             this.Tabquanlynguoidung.Controls.Add(this.panel9);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(1262, 495);
             // 
@@ -560,17 +562,11 @@
             // Tabchonsinhvien
             // 
             this.Tabchonsinhvien.Controls.Add(this.pnl_chonsinhvien);
-            this.Tabchonsinhvien.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabchonsinhvien.Controls.Add(this.panel73);
+            this.Tabchonsinhvien.Controls.Add(this.panel74);
+            this.Tabchonsinhvien.Location = new System.Drawing.Point(1, 1);
             this.Tabchonsinhvien.Name = "Tabchonsinhvien";
             this.Tabchonsinhvien.Size = new System.Drawing.Size(1262, 495);
-            // 
-            // pnl_chonsinhvien
-            // 
-            this.pnl_chonsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_chonsinhvien.Location = new System.Drawing.Point(0, 0);
-            this.pnl_chonsinhvien.Name = "pnl_chonsinhvien";
-            this.pnl_chonsinhvien.Size = new System.Drawing.Size(1262, 495);
-            this.pnl_chonsinhvien.TabIndex = 11;
             // 
             // TabSapxepphongthi
             // 
@@ -1869,6 +1865,30 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // panel73
+            // 
+            this.panel73.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel73.Location = new System.Drawing.Point(967, 0);
+            this.panel73.Name = "panel73";
+            this.panel73.Size = new System.Drawing.Size(295, 495);
+            this.panel73.TabIndex = 13;
+            // 
+            // panel74
+            // 
+            this.panel74.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel74.Location = new System.Drawing.Point(0, 0);
+            this.panel74.Name = "panel74";
+            this.panel74.Size = new System.Drawing.Size(295, 495);
+            this.panel74.TabIndex = 12;
+            // 
+            // pnl_chonsinhvien
+            // 
+            this.pnl_chonsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_chonsinhvien.Location = new System.Drawing.Point(295, 0);
+            this.pnl_chonsinhvien.Name = "pnl_chonsinhvien";
+            this.pnl_chonsinhvien.Size = new System.Drawing.Size(672, 495);
+            this.pnl_chonsinhvien.TabIndex = 14;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2074,6 +2094,8 @@
         private System.Windows.Forms.Panel panel72;
         private System.Windows.Forms.Panel pnl_chonphongthi;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabchonsinhvien;
+        private System.Windows.Forms.Panel panel73;
+        private System.Windows.Forms.Panel panel74;
         private System.Windows.Forms.Panel pnl_chonsinhvien;
     }
 }
