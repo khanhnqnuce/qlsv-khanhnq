@@ -583,6 +583,10 @@ namespace QLSV.Frm
             {
                 _frmChonSinhVien.Save();
             }
+            else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
+            {
+                _frmGopKeQua.Save();
+            }
         }
 
         private void Xoa_F3()

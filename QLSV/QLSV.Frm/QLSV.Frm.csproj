@@ -269,6 +269,12 @@
     <Compile Include="Frm\FrmChonPhongThi.Designer.cs">
       <DependentUpon>FrmChonPhongThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmGopKQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmGopKQ.Designer.cs">
+      <DependentUpon>FrmGopKQ.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmNDLSinhVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -469,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_205_KiemTraLoiLogic.resx">
       <DependentUpon>Frm_205_KiemTraLoiLogic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmGopKQ.resx">
+      <DependentUpon>FrmGopKQ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmNDLSinhVien.resx">
       <DependentUpon>FrmNDLSinhVien.cs</DependentUpon>

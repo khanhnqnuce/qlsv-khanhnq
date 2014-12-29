@@ -341,6 +341,42 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// Thêm bảng thống kê
+        /// </summary>
+        /// <returns></returns>
+        public static bool ThemThongKe(ThongKe item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into THONGKE(MaSV,NamHoc,HocKy,Diem) values(" +
+                item.MaSV + ",'" + item.NamHoc + "','" + item.HocKy + "'," +item.Diem + ")");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public static bool ThemThongKe(IList<ThongKe> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemThongKe(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// xếp phòng cho 1 sinh viên
         /// </summary>
         /// <param name="item"></param>
