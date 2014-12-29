@@ -32,11 +32,8 @@
             this.btnLuu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btndong = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ckbChon = new System.Windows.Forms.CheckBox();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.toolStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,12 +53,13 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
+            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.ok_icon;
             this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(48, 22);
-            this.btnLuu.Text = "Lưu";
+            this.btnLuu.Size = new System.Drawing.Size(56, 22);
+            this.btnLuu.Text = "Chọn";
             this.btnLuu.ToolTipText = "(F5)";
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // toolStripSeparator1
             // 
@@ -77,25 +75,6 @@
             this.btndong.Text = "Đóng";
             this.btndong.ToolTipText = "(Esc)";
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.ckbChon);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 317);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(347, 31);
-            this.panel1.TabIndex = 39;
-            // 
-            // ckbChon
-            // 
-            this.ckbChon.AutoSize = true;
-            this.ckbChon.Location = new System.Drawing.Point(48, 6);
-            this.ckbChon.Name = "ckbChon";
-            this.ckbChon.Size = new System.Drawing.Size(75, 19);
-            this.ckbChon.TabIndex = 35;
-            this.ckbChon.Text = "Chọn hết";
-            this.ckbChon.UseVisualStyleBackColor = true;
-            // 
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
@@ -109,30 +88,27 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 25);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(347, 292);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(347, 323);
             this.dgv_DanhSach.TabIndex = 41;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
-            // FrmThongKeKetQua
+            // FrmGopKetQua
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 348);
             this.Controls.Add(this.dgv_DanhSach);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmThongKeKetQua";
+            this.Name = "FrmGopKetQua";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmChonKyThi_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,8 +121,6 @@
         private System.Windows.Forms.ToolStripButton btnLuu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btndong;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox ckbChon;
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
 
 

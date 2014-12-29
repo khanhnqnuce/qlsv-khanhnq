@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.LINQ;
@@ -8,6 +9,8 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmGopKetQua : Form
     {
+        public bool Check;
+        public readonly IList<int> LstIdKyThi = new List<int>();
         public FrmGopKetQua()
         {
             InitializeComponent();
@@ -28,6 +31,28 @@ namespace QLSV.Frm.Frm
             band.Columns["Chon"].MaxWidth = 70;
             band.Columns["TenKT"].CellActivation = Activation.NoEdit;
         }
-        
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            foreach (var row in dgv_DanhSach.Rows)
+            {
+                if (bool.Parse(row.Cells["Chon"].Text)) 
+                    LstIdKyThi.Add(int.Parse(row.Cells["ID"].Text));
+            }
+            Check = true;
+            Close();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
