@@ -81,7 +81,7 @@ namespace QLSV.Core.LINQ
                         str = "SELECT ID, MaKT, TenKT  FROM KYTHI";
                         break;
                     case 20:
-                        str = "SELECT ID, 'false' as [Chon], TenKT  FROM KYTHI";
+                        str = "SELECT ID, 'false' as [Chon], TenKT  FROM KYTHI order by ID desc";
                         break;
                 }
                 table = Conn.GetTable(str);
@@ -220,8 +220,99 @@ namespace QLSV.Core.LINQ
                               "FROM BAILAM b " +
                               "WHERE b.IdKyThi = " + idKythi + "";
                         break;
+                    case 209:
+                        str =
+                            "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], b.MaSV, s.HoSV,s.TenSV, s.NgaySinh, l.MaLop,b.MaDe, b.DiemThi " +
+                            "from BAILAM b join SINHVIEN s on b.MaSV = s.MaSV " +
+                            "join LOP l on s.IdLop = l.ID " +
+                            "where b.DiemThi is not null and IdKyThi = " + idKythi + " order by TenSV";
+                        break;
                 }
                 table =  Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return table;
+        }
+
+        /// <summary>
+        /// Gộp kết quả của các kỳ thi
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="id2"></param>
+        /// <returns></returns>
+        public static DataTable GopKetQua(int id1, int id2)
+        {
+            var table = new DataTable();
+            try
+            {
+                var str =
+                    "select a.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, a.DiemThi as [Diem1], b.DiemThi as [Diem2], (a.DiemThi + b.DiemThi) as [TongDiem] from " +
+                    "(select  MaSV, DiemThi " +
+                    "from BAILAM " +
+                    "where DiemThi is not null and IdKyThi = "+id1+" ) a " +
+                    "join " +
+                    "(select MaSV, DiemThi " +
+                    "from BAILAM " +
+                    "where DiemThi is not null and IdKyThi = "+id2+" ) b " +
+                    "on a.MaSV = b.MaSV " +
+                    "join SINHVIEN s on a.MaSV = s.MaSV " +
+                    "join LOP l on s.IdLop = l.ID";
+                table = Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return table;
+        }
+
+        public static DataTable GopKetQua1(int id1, int id2)
+        {
+            var table = new DataTable();
+            try
+            {
+                var str =
+                    "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, bl.DiemThi as [Diem1], 0 as [Diem2], bl.DiemThi as[TongDiem]" +
+                    " from BAILAM bl" +
+                    " join SINHVIEN s on bl.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID" +
+                    " where IdKyThi = " + id1 + " and not exists(" +
+                    " select * from (" +
+                    " select a.MaSV from (" +
+                    " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
+                    " select MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id2 +
+                    " ) b on a.MaSV = b.MaSV) c" +
+                    " where bl.MaSV = c.MaSV)";
+                table = Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return table;
+        }
+
+        public static DataTable GopKetQua2(int id1, int id2)
+        {
+            var table = new DataTable();
+            try
+            {
+                var str =
+                    "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, bl.DiemThi as [Diem1], 0 as [Diem2], bl.DiemThi as[TongDiem]" +
+                    " from BAILAM bl" +
+                    " join SINHVIEN s on bl.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID" +
+                    " where IdKyThi = " + id2 + " and not exists(" +
+                    " select * from (" +
+                    " select a.MaSV from (" +
+                    " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
+                    " select MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id2 +
+                    " ) b on a.MaSV = b.MaSV) c" +
+                    " where bl.MaSV = c.MaSV)";
+                table = Conn.GetTable(str);
             }
             catch (Exception ex)
             {

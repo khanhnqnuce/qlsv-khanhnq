@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -130,13 +128,14 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", LoadData.Load(7,_idKyThi));
             rptdapandethi.FilePath = Application.StartupPath + @"\Reports\dapandethi.rst";
-            using (var previewForm = new PreviewForm(rptdapandethi))
+            rptdapandethi.GetReportParameter += GetParameter;
+            rptdapandethi.Prepare();
+            var previewForm = new PreviewForm(rptdapandethi)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdapandethi.GetReportParameter += GetParameter;
-                rptdapandethi.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
         }
 
         private void GetParameter(object sender,
@@ -170,7 +169,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

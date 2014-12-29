@@ -62,16 +62,17 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptLop()
         {
-            
+
             reportManager1.DataSources.Clear();
             rptthongke.FilePath = Application.StartupPath + @"\Reports\thongke.rst";
-            using (var previewForm = new PreviewForm(rptthongke))
+            rptthongke.GetReportParameter += GetParameter;
+            rptthongke.Prepare();
+            var previewForm = new PreviewForm(rptthongke)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptthongke.GetReportParameter += GetParameter;
-                rptthongke.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized
+            };
+            previewForm.ShowInTaskbar = false;
+            previewForm.Show();
         }
 
         private void GetParameter(object sender,

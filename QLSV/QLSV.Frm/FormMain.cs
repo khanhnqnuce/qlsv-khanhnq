@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Infragistics.Win;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -32,6 +33,7 @@ namespace QLSV.Frm
         private static Frm_206_NhapThangDiem _frmNhapThangDiem;
         private static Frm_207_ChamDiemThi _frmChamDiemThi;
         private static Frm_208_ThongKeDiem _frmThongKeDiem;
+        private static Frm_209_GopKeQuaThi _frmGopKeQua;
         private static Frm_Chonphongthi _frmChonphongthi;
         private static Frm_ChonSinhVien _frmChonSinhVien;
         private bool _dangnhap;
@@ -242,8 +244,13 @@ namespace QLSV.Frm
                         ShowControl(_frmThongKeDiem, pnl_thongkediem);
                         break;
                     case "209":
-                        var frm1 = new FrmGopKetQua();
-                        frm1.ShowDialog();
+                        _frmGopKeQua = new Frm_209_GopKeQuaThi();
+                        _frmGopKeQua.ShowDialog += ShowLoading;
+                        _frmGopKeQua.CloseDialog += KillLoading;
+                        _frmGopKeQua.UpdateDialog += UpdateLoading;
+                        Tabgopketqua.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabgopketqua.Tab;
+                        ShowControl(_frmGopKeQua, pnl_gopketqua);
                         break;
                     case "110":
                         _frmChonphongthi = new Frm_Chonphongthi(_idkythi);
@@ -287,6 +294,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
                     cboChonkythi.Enabled = true;
                     break;
                 case "nguoidung":
@@ -300,6 +308,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
                     cboChonkythi.Enabled = true;
                     break;
                 default:
@@ -326,6 +335,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["206"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["207"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.False;
                     Tabquanlynguoidung.Tab.Visible = false;
                     Tabdanhmuckhoa.Tab.Visible = false;
                     Tabdanhmuclop.Tab.Visible = false;
@@ -344,6 +354,7 @@ namespace QLSV.Frm
                     Tabthongkediem.Tab.Visible = false;
                     TabChonPhongThi.Tab.Visible = false;
                     Tabchonsinhvien.Tab.Visible = false;
+                    Tabgopketqua.Tab.Visible = false;
                     cboChonkythi.Enabled = false;
                     cboChonkythi.Value = null;
                     break;
@@ -451,6 +462,10 @@ namespace QLSV.Frm
             else if (Tabthongkediem.Tab.Active)
             {
                 Tabthongkediem.Tab.Visible = false;
+            }
+            else if (Tabgopketqua.Tab.Active)
+            {
+                Tabgopketqua.Tab.Visible = false;
             }
         }
 
@@ -1187,6 +1202,19 @@ namespace QLSV.Frm
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }
+                else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
+                {
+                    bCheck = true;
+                    lbInsert.Visible = false;
+                    lbXoa.Visible = true;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;

@@ -256,13 +256,14 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
-            using (var previewForm = new PreviewForm(rptdanhsachduthi))
+            rptdanhsachduthi.GetReportParameter += GetParameter;
+            rptdanhsachduthi.Prepare();
+            var previewForm = new PreviewForm(rptdanhsachduthi)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdanhsachduthi.GetReportParameter += GetParameter;
-                rptdanhsachduthi.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
         }
 
         private void RptKhoa()
@@ -281,13 +282,14 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachkhoa.FilePath = Application.StartupPath + @"\Reports\danhsachduthikhoa.rst";
-            using (var previewForm = new PreviewForm(rptdanhsachkhoa))
+            rptdanhsachkhoa.GetReportParameter += GetParameter;
+            rptdanhsachkhoa.Prepare();
+            var previewForm = new PreviewForm(rptdanhsachkhoa)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdanhsachkhoa.GetReportParameter += GetParameter;
-                rptdanhsachkhoa.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
         }
 
         private void RptLop()
@@ -306,13 +308,14 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachlop.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
-            using (var previewForm = new PreviewForm(rptdanhsachlop))
+            rptdanhsachlop.GetReportParameter += GetParameter;
+            rptdanhsachlop.Prepare();
+            var previewForm = new PreviewForm(rptdanhsachlop)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdanhsachlop.GetReportParameter += GetParameter;
-                rptdanhsachlop.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
         }
 
         private void GetParameter(object sender,

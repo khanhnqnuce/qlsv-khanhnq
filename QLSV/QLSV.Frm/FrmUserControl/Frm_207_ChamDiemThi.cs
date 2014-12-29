@@ -147,7 +147,7 @@ namespace QLSV.Frm.FrmUserControl
         private void RptLop()
         {
             var tblop = LoadData.Load(4, _idkythi);
-            var tb = LoadData.Load(10,_idkythi);
+            var tb = LoadData.Load(10, _idkythi);
             foreach (DataRow rowl in tblop.Rows)
             {
                 var stt = 1;
@@ -160,13 +160,15 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
-            using (var previewForm = new PreviewForm(rptdiemthi))
+            rptdiemthi.GetReportParameter += GetParameter;
+            rptdiemthi.Prepare();
+            var previewForm = new PreviewForm(rptdiemthi)
             {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdiemthi.GetReportParameter += GetParameter;
-                rptdiemthi.Prepare();
-                previewForm.ShowDialog();
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
+
         }
 
         private void GetParameter(object sender,

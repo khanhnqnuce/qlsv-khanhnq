@@ -30,12 +30,13 @@ namespace QLSV.Frm.Frm
                 reportManager1.DataSources.Clear();
                 reportManager1.DataSources.Add("danhsach",tb );
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien.rst";
-                using (var previewForm = new PreviewForm(rptkiemtralogic))
+                rptkiemtralogic.Prepare();
+                var previewForm = new PreviewForm(rptkiemtralogic)
                 {
-                    previewForm.WindowState = FormWindowState.Maximized;
-                    rptkiemtralogic.Prepare();
-                    previewForm.ShowDialog();
-                }
+                    WindowState = FormWindowState.Maximized,
+                    ShowInTaskbar = false
+                };
+                previewForm.Show();
             }
             catch (Exception ex)
             {
