@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblProcess = new Infragistics.Win.Misc.UltraLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,9 +50,9 @@
             // 
             // lblProcess
             // 
-            appearance1.TextHAlignAsString = "Center";
-            appearance1.TextVAlignAsString = "Middle";
-            this.lblProcess.Appearance = appearance1;
+            appearance2.TextHAlignAsString = "Center";
+            appearance2.TextVAlignAsString = "Middle";
+            this.lblProcess.Appearance = appearance2;
             this.lblProcess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProcess.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblProcess.Location = new System.Drawing.Point(0, 39);
@@ -64,6 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(143, 65);
             this.ControlBox = false;
             this.Controls.Add(this.lblProcess);

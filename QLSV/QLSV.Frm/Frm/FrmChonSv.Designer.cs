@@ -38,6 +38,8 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.btnTimtheokhoa = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnluu = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -50,8 +52,6 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel7 = new System.Windows.Forms.Panel();
             this.ckbChon = new System.Windows.Forms.CheckBox();
-            this.btnluu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -158,6 +158,21 @@
             this.toolStrip3.Size = new System.Drawing.Size(327, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnluu
+            // 
+            this.btnluu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
+            this.btnluu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnluu.Name = "btnluu";
+            this.btnluu.Size = new System.Drawing.Size(47, 22);
+            this.btnluu.Text = "Lưu";
+            this.btnluu.ToolTipText = "(F5)";
+            this.btnluu.Click += new System.EventHandler(this.btnluu_Click);
             // 
             // panel3
             // 
@@ -283,21 +298,6 @@
             this.ckbChon.UseVisualStyleBackColor = true;
             this.ckbChon.CheckedChanged += new System.EventHandler(this.ckbChon_CheckedChanged);
             // 
-            // btnluu
-            // 
-            this.btnluu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnluu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnluu.Name = "btnluu";
-            this.btnluu.Size = new System.Drawing.Size(47, 22);
-            this.btnluu.Text = "Lưu";
-            this.btnluu.ToolTipText = "(F5)";
-            this.btnluu.Click += new System.EventHandler(this.btnluu_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
             // FrmChonSv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -305,6 +305,7 @@
             this.ClientSize = new System.Drawing.Size(946, 611);
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmChonSv";

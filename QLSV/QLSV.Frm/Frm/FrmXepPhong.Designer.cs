@@ -392,6 +392,7 @@
             this.ClientSize = new System.Drawing.Size(358, 289);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmXepPhong";

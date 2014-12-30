@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Infragistics.Win.Appearance appearance31 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance32 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance33 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance34 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance35 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance36 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
@@ -101,9 +101,9 @@
             // 
             // ultraLabel1
             // 
-            appearance31.TextHAlignAsString = "Left";
-            appearance31.TextVAlignAsString = "Middle";
-            this.ultraLabel1.Appearance = appearance31;
+            appearance1.TextHAlignAsString = "Left";
+            appearance1.TextVAlignAsString = "Middle";
+            this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel1.Location = new System.Drawing.Point(15, 44);
             this.ultraLabel1.Name = "ultraLabel1";
@@ -113,8 +113,8 @@
             // 
             // ultraLabel2
             // 
-            appearance32.TextVAlignAsString = "Middle";
-            this.ultraLabel2.Appearance = appearance32;
+            appearance2.TextVAlignAsString = "Middle";
+            this.ultraLabel2.Appearance = appearance2;
             this.ultraLabel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel2.Location = new System.Drawing.Point(15, 83);
             this.ultraLabel2.Name = "ultraLabel2";
@@ -124,9 +124,9 @@
             // 
             // ultraLabel3
             // 
-            appearance33.TextHAlignAsString = "Left";
-            appearance33.TextVAlignAsString = "Middle";
-            this.ultraLabel3.Appearance = appearance33;
+            appearance3.TextHAlignAsString = "Left";
+            appearance3.TextVAlignAsString = "Middle";
+            this.ultraLabel3.Appearance = appearance3;
             this.ultraLabel3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel3.Location = new System.Drawing.Point(15, 122);
             this.ultraLabel3.Name = "ultraLabel3";
@@ -136,9 +136,9 @@
             // 
             // ultraLabel4
             // 
-            appearance34.TextHAlignAsString = "Left";
-            appearance34.TextVAlignAsString = "Middle";
-            this.ultraLabel4.Appearance = appearance34;
+            appearance4.TextHAlignAsString = "Left";
+            appearance4.TextVAlignAsString = "Middle";
+            this.ultraLabel4.Appearance = appearance4;
             this.ultraLabel4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel4.Location = new System.Drawing.Point(15, 161);
             this.ultraLabel4.Name = "ultraLabel4";
@@ -148,9 +148,9 @@
             // 
             // ultraLabel5
             // 
-            appearance35.TextHAlignAsString = "Left";
-            appearance35.TextVAlignAsString = "Middle";
-            this.ultraLabel5.Appearance = appearance35;
+            appearance5.TextHAlignAsString = "Left";
+            appearance5.TextVAlignAsString = "Middle";
+            this.ultraLabel5.Appearance = appearance5;
             this.ultraLabel5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel5.Location = new System.Drawing.Point(15, 239);
             this.ultraLabel5.Name = "ultraLabel5";
@@ -160,9 +160,9 @@
             // 
             // ultraLabel6
             // 
-            appearance36.TextHAlignAsString = "Left";
-            appearance36.TextVAlignAsString = "Middle";
-            this.ultraLabel6.Appearance = appearance36;
+            appearance6.TextHAlignAsString = "Left";
+            appearance6.TextVAlignAsString = "Middle";
+            this.ultraLabel6.Appearance = appearance6;
             this.ultraLabel6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.ultraLabel6.Location = new System.Drawing.Point(15, 200);
             this.ultraLabel6.Name = "ultraLabel6";
@@ -430,6 +430,7 @@
             this.Controls.Add(this.ultraLabel2);
             this.Controls.Add(this.ultraLabel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmThemsinhvien";
