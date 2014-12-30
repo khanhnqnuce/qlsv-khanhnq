@@ -28,14 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDoiMatKhau));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtMK1 = new System.Windows.Forms.TextBox();
+            this.txtMK2 = new System.Windows.Forms.TextBox();
+            this.txtMK3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.errorcu = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errormoi = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errornhaplai = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorcu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errormoi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errornhaplai)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,29 +76,29 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Nhập lại MK";
             // 
-            // textBox1
+            // txtMK1
             // 
-            this.textBox1.Location = new System.Drawing.Point(130, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(192, 22);
-            this.textBox1.TabIndex = 3;
+            this.txtMK1.Location = new System.Drawing.Point(130, 14);
+            this.txtMK1.Name = "txtMK1";
+            this.txtMK1.PasswordChar = '*';
+            this.txtMK1.Size = new System.Drawing.Size(192, 22);
+            this.txtMK1.TabIndex = 3;
             // 
-            // textBox2
+            // txtMK2
             // 
-            this.textBox2.Location = new System.Drawing.Point(130, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(192, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtMK2.Location = new System.Drawing.Point(130, 46);
+            this.txtMK2.Name = "txtMK2";
+            this.txtMK2.PasswordChar = '*';
+            this.txtMK2.Size = new System.Drawing.Size(192, 22);
+            this.txtMK2.TabIndex = 4;
             // 
-            // textBox3
+            // txtMK3
             // 
-            this.textBox3.Location = new System.Drawing.Point(130, 78);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(192, 22);
-            this.textBox3.TabIndex = 5;
+            this.txtMK3.Location = new System.Drawing.Point(130, 78);
+            this.txtMK3.Name = "txtMK3";
+            this.txtMK3.PasswordChar = '*';
+            this.txtMK3.Size = new System.Drawing.Size(192, 22);
+            this.txtMK3.TabIndex = 5;
             // 
             // button1
             // 
@@ -100,6 +108,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Đồng ý";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -109,6 +118,25 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "Đóng";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // errorcu
+            // 
+            this.errorcu.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errorcu.ContainerControl = this;
+            this.errorcu.Icon = ((System.Drawing.Icon)(resources.GetObject("errorcu.Icon")));
+            // 
+            // errormoi
+            // 
+            this.errormoi.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errormoi.ContainerControl = this;
+            this.errormoi.Icon = ((System.Drawing.Icon)(resources.GetObject("errormoi.Icon")));
+            // 
+            // errornhaplai
+            // 
+            this.errornhaplai.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errornhaplai.ContainerControl = this;
+            this.errornhaplai.Icon = ((System.Drawing.Icon)(resources.GetObject("errornhaplai.Icon")));
             // 
             // FrmDoiMatKhau
             // 
@@ -117,9 +145,9 @@
             this.ClientSize = new System.Drawing.Size(348, 149);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMK3);
+            this.Controls.Add(this.txtMK2);
+            this.Controls.Add(this.txtMK1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -132,6 +160,9 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đổi mật khẩu";
+            ((System.ComponentModel.ISupportInitialize)(this.errorcu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errormoi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errornhaplai)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,10 +173,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtMK1;
+        private System.Windows.Forms.TextBox txtMK2;
+        public System.Windows.Forms.TextBox txtMK3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.ErrorProvider errorcu;
+        public System.Windows.Forms.ErrorProvider errormoi;
+        public System.Windows.Forms.ErrorProvider errornhaplai;
     }
 }

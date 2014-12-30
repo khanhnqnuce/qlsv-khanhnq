@@ -78,26 +78,28 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var taikhoan = LoadData.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
-                if (taikhoan != null)
+                var tb = LoadData.KiemTraTaiKhoan(txtTaiKhoan.Text, MaHoaMd5.Md5(txtMatKhau.Text));
+                if (tb.Rows.Count>0)
                 {
+                    var taikhoan = new Taikhoan
+                    {
+                        ID = int.Parse(tb.Rows[0]["ID"].ToString()),
+                        TaiKhoan = tb.Rows[0]["TaiKhoan"].ToString(),
+                        MatKhau = tb.Rows[0]["MatKhau"].ToString(),
+                        HoTen = tb.Rows[0]["HoTen"].ToString(),
+                        Quyen = tb.Rows[0]["Quyen"].ToString()
+                    };
                     CheckDangNhap(this, true, taikhoan);
                 }
                 else
                 {
-                    errormatkhau.SetError(txtMatKhau, "Sai tài khoảng hoặc mật khẩu");
+                    errormatkhau.SetError(txtMatKhau, "Sai tài khoản hoặc mật khẩu");
                     txtMatKhau.Clear();
-                    CheckDangNhap(this, false, null);
                 }
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -113,14 +115,6 @@ namespace QLSV.Frm.Frm
                 ToolTipTitle = "Lỗi"
             };
             tooltip.SetToolTip(txtMatKhau, "Sai mật khẩu hoặc tài khoản");
-        }
-
-        public void HighlightControlSet()
-        {
-            //errormatkhau.SetError(txtMatKhau, "Sai mật khẩu hoặc tài khoản");
-            //errorProvider = new ErrorProvider();
-            //errorProvider.Icon = FormResource.error;
-            //errorProvider.SetError(txtMatKhau, "Sai mật khẩu hoặc tài khoản");
         }
     }
 }
