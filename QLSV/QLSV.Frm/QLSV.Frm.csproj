@@ -251,6 +251,12 @@
     <Compile Include="Frm\FrmChonSv.Designer.cs">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmDoiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDoiMatKhau.Designer.cs">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmGopKetQua.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonSv.resx">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDoiMatKhau.resx">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmGopKetQua.resx">
       <DependentUpon>FrmGopKetQua.cs</DependentUpon>

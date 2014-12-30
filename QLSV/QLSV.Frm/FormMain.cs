@@ -76,7 +76,7 @@ namespace QLSV.Frm
         {
             try
             {
-                if(!strChucNang.Equals("thoat"))TabPageControl.Visible = true;
+                TabPageControl.Visible = true;
                 switch (strChucNang)
                 {
                     case "login":
@@ -90,6 +90,9 @@ namespace QLSV.Frm
                         _frmDangNhap.ShowDialog();
                         break;
                     case "doimatkhau":
+                        TabPageControl.Visible = false;
+                        var frmdmk = new FrmDoiMatKhau();
+                        frmdmk.ShowDialog();
                         break;
                     case "thoat":
                         Close();
@@ -124,7 +127,6 @@ namespace QLSV.Frm
                         _frmQuanlySinhVien.CloseDialog += KillLoading;
                         _frmQuanlySinhVien.UpdateDialog += UpdateLoading;
                         Tabquanlysinhvien.Tab.Visible = true;
-                        //TabInportsinhvien.Tab.Visible = false;
                         TabPageControl.SelectedTab = Tabquanlysinhvien.Tab;
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
@@ -134,7 +136,6 @@ namespace QLSV.Frm
                         _frmInportSinhVien.CloseDialog += KillLoading;
                         _frmInportSinhVien.UpdateDialog += UpdateLoading;
                         TabInportsinhvien.Tab.Visible = true;
-                        //Tabquanlysinhvien.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportsinhvien.Tab;
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
@@ -168,7 +169,6 @@ namespace QLSV.Frm
                         _frmSapXepPhongThi.CloseDialog += KillLoading;
                         _frmSapXepPhongThi.UpdateDialog += UpdateLoading;
                         TabSapxepphongthi.Tab.Visible = true;
-                        //Tabdaxepphong.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabSapxepphongthi.Tab;
                         ShowControl(_frmSapXepPhongThi, pnl_sapxepphongthi);
                         break;
@@ -178,9 +178,6 @@ namespace QLSV.Frm
                         _frmSinhVienDuThi.CloseDialog += KillLoading;
                         _frmSinhVienDuThi.UpdateDialog += UpdateLoading;
                         Tabdaxepphong.Tab.Visible = true;
-                        //TabSapxepphongthi.Tab.Visible = false;
-                        //Tabchonsinhvien.Tab.Visible = false;
-                        //TabChonPhongThi.Tab.Visible = false;
                         TabPageControl.SelectedTab = Tabdaxepphong.Tab;
                         ShowControl(_frmSinhVienDuThi, pnl_daxepphong);
                         break;
@@ -190,9 +187,6 @@ namespace QLSV.Frm
                         _frmInportDapAn.CloseDialog += KillLoading;
                         _frmInportDapAn.UpdateDialog += UpdateLoading;
                         TabInportdapdan.Tab.Visible = true;
-                        //TabDanhsachbailam.Tab.Visible = false;
-                        //TabInportbailam.Tab.Visible = false;
-                        //TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportdapdan.Tab;
                         ShowControl(_frmInportDapAn, pnl_Inportdapan);
                         break;
@@ -202,8 +196,6 @@ namespace QLSV.Frm
                         _frmDapAnCacMaDe.CloseDialog += KillLoading;
                         _frmDapAnCacMaDe.UpdateDialog += UpdateLoading;
                         TabDapanmade.Tab.Visible = true;
-                        //TabInportdapdan.Tab.Visible = false;
-                        //TabInportbailam.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDapanmade.Tab;
                         ShowControl(_frmDapAnCacMaDe, pnl_Dapanmade);
                         break;
@@ -213,9 +205,6 @@ namespace QLSV.Frm
                         _frmInportBaiLam.CloseDialog += KillLoading;
                         _frmInportBaiLam.UpdateDialog += UpdateLoading;
                         TabInportbailam.Tab.Visible = true;
-                        //TabDanhsachbailam.Tab.Visible = false;
-                        //TabInportdapdan.Tab.Visible = false;
-                        //TabDapanmade.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabInportbailam.Tab;
                         ShowControl(_frmInportBaiLam, pnl_Inportbailam);
                         break;
@@ -225,12 +214,11 @@ namespace QLSV.Frm
                         _frmDanhSachBaiLam.CloseDialog += KillLoading;
                         _frmDanhSachBaiLam.UpdateDialog += UpdateLoading;
                         TabDanhsachbailam.Tab.Visible = true;
-                        //TabInportbailam.Tab.Visible = false;
-                        //TabInportdapdan.Tab.Visible = false;
                         TabPageControl.SelectedTab = TabDanhsachbailam.Tab;
                         ShowControl(_frmDanhSachBaiLam, pnl_danhsachbailam);
                         break;
                     case "205":
+                        TabPageControl.Visible = false;
                         var frm = new FrmKiemTraLoiLogic(_idkythi);
                         frm.Indanhsach();
                         break;

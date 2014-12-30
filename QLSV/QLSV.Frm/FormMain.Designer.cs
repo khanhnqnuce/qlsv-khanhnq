@@ -78,6 +78,9 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem21 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
@@ -124,22 +127,22 @@
             this.pn_danhmuclop = new System.Windows.Forms.Panel();
             this.panel27 = new System.Windows.Forms.Panel();
             this.panel28 = new System.Windows.Forms.Panel();
-            this.TabInportsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pn_inportsinhvien = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.Tabquanlysinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.Tabquanlykythi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pn_quanlykythi = new System.Windows.Forms.Panel();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.panel22 = new System.Windows.Forms.Panel();
             this.Tabdanhsachphongthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_danhsachphong = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel20 = new System.Windows.Forms.Panel();
+            this.Tabquanlysinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.TabInportsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pn_inportsinhvien = new System.Windows.Forms.Panel();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.Tabquanlykythi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pn_quanlykythi = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel22 = new System.Windows.Forms.Panel();
             this.TabChonPhongThi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_chonphongthi = new System.Windows.Forms.Panel();
             this.panel71 = new System.Windows.Forms.Panel();
@@ -261,10 +264,10 @@
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
-            this.TabInportsinhvien.SuspendLayout();
-            this.Tabquanlysinhvien.SuspendLayout();
-            this.Tabquanlykythi.SuspendLayout();
             this.Tabdanhsachphongthi.SuspendLayout();
+            this.Tabquanlysinhvien.SuspendLayout();
+            this.TabInportsinhvien.SuspendLayout();
+            this.Tabquanlykythi.SuspendLayout();
             this.TabChonPhongThi.SuspendLayout();
             this.Tabchonsinhvien.SuspendLayout();
             this.TabSapxepphongthi.SuspendLayout();
@@ -306,7 +309,7 @@
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
             this.Tabquanlynguoidung.Controls.Add(this.panel10);
             this.Tabquanlynguoidung.Controls.Add(this.panel9);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(1143, 495);
             // 
@@ -401,38 +404,38 @@
             this.panel28.Size = new System.Drawing.Size(190, 495);
             this.panel28.TabIndex = 3;
             // 
-            // TabInportsinhvien
+            // Tabdanhsachphongthi
             // 
-            this.TabInportsinhvien.Controls.Add(this.pn_inportsinhvien);
-            this.TabInportsinhvien.Controls.Add(this.panel23);
-            this.TabInportsinhvien.Controls.Add(this.panel24);
-            this.TabInportsinhvien.Location = new System.Drawing.Point(-10000, -10000);
-            this.TabInportsinhvien.Name = "TabInportsinhvien";
-            this.TabInportsinhvien.Size = new System.Drawing.Size(1143, 495);
+            this.Tabdanhsachphongthi.Controls.Add(this.pn_danhsachphong);
+            this.Tabdanhsachphongthi.Controls.Add(this.panel19);
+            this.Tabdanhsachphongthi.Controls.Add(this.panel20);
+            this.Tabdanhsachphongthi.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabdanhsachphongthi.Name = "Tabdanhsachphongthi";
+            this.Tabdanhsachphongthi.Size = new System.Drawing.Size(1143, 495);
             // 
-            // pn_inportsinhvien
+            // pn_danhsachphong
             // 
-            this.pn_inportsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_inportsinhvien.Location = new System.Drawing.Point(55, 0);
-            this.pn_inportsinhvien.Name = "pn_inportsinhvien";
-            this.pn_inportsinhvien.Size = new System.Drawing.Size(1033, 495);
-            this.pn_inportsinhvien.TabIndex = 5;
+            this.pn_danhsachphong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn_danhsachphong.Location = new System.Drawing.Point(290, 0);
+            this.pn_danhsachphong.Name = "pn_danhsachphong";
+            this.pn_danhsachphong.Size = new System.Drawing.Size(563, 495);
+            this.pn_danhsachphong.TabIndex = 6;
             // 
-            // panel23
+            // panel19
             // 
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel23.Location = new System.Drawing.Point(1088, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(55, 495);
-            this.panel23.TabIndex = 4;
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel19.Location = new System.Drawing.Point(853, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(290, 495);
+            this.panel19.TabIndex = 5;
             // 
-            // panel24
+            // panel20
             // 
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel24.Location = new System.Drawing.Point(0, 0);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(55, 495);
-            this.panel24.TabIndex = 3;
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel20.Location = new System.Drawing.Point(0, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(290, 495);
+            this.panel20.TabIndex = 4;
             // 
             // Tabquanlysinhvien
             // 
@@ -467,6 +470,39 @@
             this.panel3.Size = new System.Drawing.Size(93, 495);
             this.panel3.TabIndex = 1;
             // 
+            // TabInportsinhvien
+            // 
+            this.TabInportsinhvien.Controls.Add(this.pn_inportsinhvien);
+            this.TabInportsinhvien.Controls.Add(this.panel23);
+            this.TabInportsinhvien.Controls.Add(this.panel24);
+            this.TabInportsinhvien.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabInportsinhvien.Name = "TabInportsinhvien";
+            this.TabInportsinhvien.Size = new System.Drawing.Size(1143, 495);
+            // 
+            // pn_inportsinhvien
+            // 
+            this.pn_inportsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn_inportsinhvien.Location = new System.Drawing.Point(55, 0);
+            this.pn_inportsinhvien.Name = "pn_inportsinhvien";
+            this.pn_inportsinhvien.Size = new System.Drawing.Size(1033, 495);
+            this.pn_inportsinhvien.TabIndex = 5;
+            // 
+            // panel23
+            // 
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel23.Location = new System.Drawing.Point(1088, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(55, 495);
+            this.panel23.TabIndex = 4;
+            // 
+            // panel24
+            // 
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel24.Location = new System.Drawing.Point(0, 0);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(55, 495);
+            this.panel24.TabIndex = 3;
+            // 
             // Tabquanlykythi
             // 
             this.Tabquanlykythi.Controls.Add(this.pn_quanlykythi);
@@ -499,39 +535,6 @@
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(110, 495);
             this.panel22.TabIndex = 6;
-            // 
-            // Tabdanhsachphongthi
-            // 
-            this.Tabdanhsachphongthi.Controls.Add(this.pn_danhsachphong);
-            this.Tabdanhsachphongthi.Controls.Add(this.panel19);
-            this.Tabdanhsachphongthi.Controls.Add(this.panel20);
-            this.Tabdanhsachphongthi.Location = new System.Drawing.Point(1, 1);
-            this.Tabdanhsachphongthi.Name = "Tabdanhsachphongthi";
-            this.Tabdanhsachphongthi.Size = new System.Drawing.Size(1143, 495);
-            // 
-            // pn_danhsachphong
-            // 
-            this.pn_danhsachphong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_danhsachphong.Location = new System.Drawing.Point(290, 0);
-            this.pn_danhsachphong.Name = "pn_danhsachphong";
-            this.pn_danhsachphong.Size = new System.Drawing.Size(563, 495);
-            this.pn_danhsachphong.TabIndex = 6;
-            // 
-            // panel19
-            // 
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel19.Location = new System.Drawing.Point(853, 0);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(290, 495);
-            this.panel19.TabIndex = 5;
-            // 
-            // panel20
-            // 
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel20.Location = new System.Drawing.Point(0, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(290, 495);
-            this.panel20.TabIndex = 4;
             // 
             // TabChonPhongThi
             // 
@@ -1070,9 +1073,20 @@
             ultraExplorerBarItem11});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
+            ultraExplorerBarItem4.Key = "gioithieu";
+            ultraExplorerBarItem4.Text = "Giới thiệu phần mềm";
+            ultraExplorerBarItem26.Key = "huongdan";
+            ultraExplorerBarItem26.Text = "Hướng dẫn sử dụng";
+            ultraExplorerBarItem26.ToolTipText = "(F1)";
+            ultraExplorerBarGroup3.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
+            ultraExplorerBarItem4,
+            ultraExplorerBarItem26});
+            ultraExplorerBarGroup3.Key = "trogiup";
+            ultraExplorerBarGroup3.Text = "Trợ giúp";
             this.MenuBar.Groups.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup[] {
             ultraExplorerBarGroup1,
-            ultraExplorerBarGroup2});
+            ultraExplorerBarGroup2,
+            ultraExplorerBarGroup3});
             this.MenuBar.GroupSettings.Style = Infragistics.Win.UltraWinExplorerBar.GroupStyle.LargeImagesWithText;
             this.MenuBar.ItemSettings.Style = Infragistics.Win.UltraWinExplorerBar.ItemStyle.Button;
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
@@ -1106,7 +1120,7 @@
             // 
             // lbtime
             // 
-            appearance24.TextHAlignAsString = "Left";
+            appearance24.TextHAlignAsString = "Center";
             appearance24.TextVAlignAsString = "Middle";
             this.lbtime.Appearance = appearance24;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1117,7 +1131,7 @@
             // 
             // lbusername
             // 
-            appearance25.TextHAlignAsString = "Left";
+            appearance25.TextHAlignAsString = "Center";
             appearance25.TextVAlignAsString = "Middle";
             this.lbusername.Appearance = appearance25;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1938,10 +1952,10 @@
             this.Tabquanlynguoidung.PerformLayout();
             this.Tabdanhmuckhoa.ResumeLayout(false);
             this.Tabdanhmuclop.ResumeLayout(false);
-            this.TabInportsinhvien.ResumeLayout(false);
-            this.Tabquanlysinhvien.ResumeLayout(false);
-            this.Tabquanlykythi.ResumeLayout(false);
             this.Tabdanhsachphongthi.ResumeLayout(false);
+            this.Tabquanlysinhvien.ResumeLayout(false);
+            this.TabInportsinhvien.ResumeLayout(false);
+            this.Tabquanlykythi.ResumeLayout(false);
             this.TabChonPhongThi.ResumeLayout(false);
             this.Tabchonsinhvien.ResumeLayout(false);
             this.TabSapxepphongthi.ResumeLayout(false);
