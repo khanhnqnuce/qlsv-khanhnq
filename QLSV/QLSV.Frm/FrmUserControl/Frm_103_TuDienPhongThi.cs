@@ -9,6 +9,7 @@ using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
 using Color = System.Drawing.Color;
@@ -91,29 +92,49 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                if (ValidateData())
                 {
-                    var hs = new PhongThi
-                    {
-                        TenPhong = row.Cells["TenPhong"].Text,
-                        SucChua = int.Parse(row.Cells["SucChua"].Text),
-                        GhiChu = row.Cells["GhiChu"].Text
-                    };
-                    _listAdd.Add(hs);
+                    MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin", @"Lỗi");
                 }
+                else
+                {
+                    foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                    {
+                        var hs = new PhongThi
+                        {
+                            TenPhong = row.Cells["TenPhong"].Text,
+                            SucChua = int.Parse(row.Cells["SucChua"].Text),
+                            GhiChu = row.Cells["GhiChu"].Text
+                        };
+                        _listAdd.Add(hs);
+                    }
 
-                if (_listUpdate.Count >0) UpdateData.UpdatePhongThi(_listUpdate);
-                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete,"PHONGTHI");
-                if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
-
+                    if (_listUpdate.Count > 0) UpdateData.UpdatePhongThi(_listUpdate);
+                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "PHONGTHI");
+                    if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    LoadFormDetail();
+                }
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        protected override bool ValidateData()
+        {
+            var inputTypes = new List<InputType>
+            {
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.KhongKiemTra
+                
+            };
+            return ValidateHighlight.UltraGrid(dgv_DanhSach, inputTypes);
         }
 
         protected override void XoaDetail()
@@ -158,9 +179,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (b)
+                if (B)
                 {
-                    b = false;
+                    B = false;
                     return;
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;

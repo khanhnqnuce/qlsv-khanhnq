@@ -958,6 +958,7 @@
             ultraExplorerBarItem5});
             ultraExplorerBarGroup1.Key = "hethong";
             ultraExplorerBarGroup1.Text = "Chức năng hệ thống";
+            ultraExplorerBarGroup2.Expanded = false;
             ultraExplorerBarItem8.Key = "101";
             appearance6.Image = global::QLSV.Frm.Properties.Resources._101;
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance6;

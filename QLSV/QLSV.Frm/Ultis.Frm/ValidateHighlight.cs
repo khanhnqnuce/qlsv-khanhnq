@@ -7,9 +7,10 @@ using QLSV.Data.Utils.Data;
 
 namespace QLSV.Frm.Ultis.Frm
 {
-    class ValidateHighlight
+    internal class ValidateHighlight
     {
         private IList<ToolTip> _toolTips;
+
         /// <summary>
         /// Hàm khởi tạo
         /// </summary>
@@ -17,7 +18,7 @@ namespace QLSV.Frm.Ultis.Frm
         {
             _toolTips = new List<ToolTip>();
         }
-        
+
         private static void HighlightGridCellClear(UltraGridCell cell)
         {
             cell.Appearance.ResetBackColor();
@@ -33,11 +34,16 @@ namespace QLSV.Frm.Ultis.Frm
             }
         }
 
+        /// <summary>
+        /// Báo lỗi
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <param name="tooltip"></param>
         private static void HighlightGridCellSet(UltraGridCell cell, string tooltip)
         {
             if (!string.IsNullOrEmpty(tooltip))
             {
-                cell.Appearance.BackColor = Color.Red;
+                cell.Appearance.BackColor = Color.FromArgb(255, 160, 154);
                 cell.Appearance.ForeColor = Color.White;
                 cell.ToolTipText = tooltip;
             }
@@ -49,7 +55,7 @@ namespace QLSV.Frm.Ultis.Frm
         /// <param name="row">Dòng cần kiểm tra</param>
         /// <param name="inputTypes">Danh sách kiểu tương ứng với từng cột</param>
         /// <returns>True nếu có lỗi</returns>
-        public bool UltraGrid(UltraGridRow row, IList<InputType> inputTypes)
+        public static bool UltraGrid(UltraGridRow row, IList<InputType> inputTypes)
         {
             var result = false;
             HighlightGridCellClear(row);
@@ -89,13 +95,14 @@ namespace QLSV.Frm.Ultis.Frm
             }
             return result;
         }
+
         /// <summary>
         /// Highight ô có dữ liệu không hợp lệ
         /// </summary>
         /// <param name="grid">UltraGrid cần kiểm tra</param>
         /// <param name="inputTypes">Danh sách kiểu tương ứng với từng cột</param>
         /// <returns>True nếu có lỗi</returns>
-        public bool UltraGrid(UltraGrid grid, IList<InputType> inputTypes)
+        public static bool UltraGrid(UltraGrid grid, IList<InputType> inputTypes)
         {
             var result = false;
             foreach (var row in grid.Rows)
@@ -186,6 +193,7 @@ namespace QLSV.Frm.Ultis.Frm
             var validate = new ValidateData();
             return ValidateData.ValDataOne(inputparam);
         }
+
         /// <summary>
         /// Hàm hủy
         /// </summary>

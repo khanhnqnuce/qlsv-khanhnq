@@ -9,6 +9,7 @@ using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
@@ -44,7 +45,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _listAdd.Clear();
                 _listUpdate.Clear();
-                var a = LoadData.Load(16);
                 uG_DanhSach.DataSource = LoadData.Load(16);
             }
             catch (Exception ex)
@@ -87,22 +87,29 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                if (ValidateData())
                 {
-                    var hs = new Lop
-                    {
-                        MaLop = row.Cells["MaLop"].Text,
-                        GhiChu = row.Cells["GhiChu"].Text,
-                        IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
-                    };
-                    _listAdd.Add(hs);
+                    MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin", @"Lỗi");
                 }
-                if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
-                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
-                if (_listAdd.Count > 0) InsertData.ThemLop(_listAdd);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
+                else
+                {
+                    foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                    {
+                        var hs = new Lop
+                        {
+                            MaLop = row.Cells["MaLop"].Text,
+                            GhiChu = row.Cells["GhiChu"].Text,
+                            IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
+                        };
+                        _listAdd.Add(hs);
+                    }
+                    if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
+                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
+                    if (_listAdd.Count > 0) InsertData.ThemLop(_listAdd);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    LoadFormDetail();
+                }
 
             }
             catch (Exception ex)
@@ -110,6 +117,20 @@ namespace QLSV.Frm.FrmUserControl
                 MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        protected override bool ValidateData()
+        {
+            var inputTypes = new List<InputType>
+            {
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.KhongKiemTra
+                
+            };
+            return ValidateHighlight.UltraGrid(uG_DanhSach, inputTypes);
         }
 
         protected override void XoaDetail()
@@ -142,9 +163,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (b)
+                if (B)
                 {
-                    b = false;
+                    B = false;
                     return;
                 }
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;

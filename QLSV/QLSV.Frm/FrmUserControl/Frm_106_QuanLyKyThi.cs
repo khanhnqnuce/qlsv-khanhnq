@@ -160,9 +160,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (b)
+                if (B)
                 {
-                    b = false;
+                    B = false;
                     return;
                 }
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;

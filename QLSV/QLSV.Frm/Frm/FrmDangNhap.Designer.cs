@@ -98,6 +98,7 @@
             this.txtMatKhau.PasswordChar = '•';
             this.txtMatKhau.Size = new System.Drawing.Size(257, 26);
             this.txtMatKhau.TabIndex = 11;
+            this.txtMatKhau.Text = "123456";
             // 
             // shapeContainer2
             // 
@@ -159,6 +160,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(257, 26);
             this.txtTaiKhoan.TabIndex = 10;
+            this.txtTaiKhoan.Text = "admin";
             // 
             // shapeContainer1
             // 
@@ -239,6 +241,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.BackColor = System.Drawing.Color.White;
             this.pictureBox5.Image = global::QLSV.Frm.Properties.Resources.system;
             this.pictureBox5.Location = new System.Drawing.Point(-2, 10);
             this.pictureBox5.Name = "pictureBox5";

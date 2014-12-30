@@ -11,7 +11,7 @@ namespace QLSV.Frm.Base
     {
         protected IList<int> IdDelete = new List<int>();
         protected readonly object LockTotal = new object();
-        protected bool b = false;
+        protected bool B = false;
 
         #region event delegate
 
@@ -110,7 +110,7 @@ namespace QLSV.Frm.Base
                     if (string.IsNullOrEmpty(grid.ActiveRow.Cells[columnname].Text)
                         && string.IsNullOrEmpty(grid.ActiveRow.Cells[columnId].Text))
                     {
-                        b = true;
+                        B = true;
                         grid.ActiveRow.Delete(false);
                         if (index <= 0) return;
                         grid.Rows[index - 1].Cells[2].Activate();
@@ -121,7 +121,7 @@ namespace QLSV.Frm.Base
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                     {
-                        b = true;
+                        B = true;
                         var idStr = grid.ActiveRow.Cells[columnId].Text;
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));
@@ -147,6 +147,11 @@ namespace QLSV.Frm.Base
 
         protected virtual void SaveDetail(){}
 
+        protected virtual bool ValidateData()
+        {
+            return false;
+        }
+
         public void Xoa()
         {
             if (DialogResult.Yes ==
@@ -159,13 +164,5 @@ namespace QLSV.Frm.Base
         }
 
         protected virtual void XoaDetail() {}
-
-        private static void Stt(UltraGrid grid, string columnname)
-        {
-            for (var i = 0; i < grid.Rows.Count; i++)
-            {
-                grid.Rows[i].Cells[columnname].Value = i + 1;
-            }
-        }
     }
 }

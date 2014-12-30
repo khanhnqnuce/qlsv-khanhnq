@@ -9,7 +9,9 @@ using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
+using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -84,23 +86,29 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                if (ValidateData())
                 {
-                    var hs = new Khoa
-                    {
-                        MaKhoa = row.Cells["MaKhoa"].Text,
-                        TenKhoa = row.Cells["TenKhoa"].Text
-                    };
-                        _listAdd.Add(hs);
+                    MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin", @"Lỗi");
                 }
+                else
+                {
+                    foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                    {
+                        var hs = new Khoa
+                        {
+                            MaKhoa = row.Cells["MaKhoa"].Text,
+                            TenKhoa = row.Cells["TenKhoa"].Text
+                        };
+                        _listAdd.Add(hs);
+                    }
 
-                if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
-                if(IdDelete.Count>0) DeleteData.Xoa(IdDelete, "KHOA");
-                if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
-
+                    if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
+                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KHOA");
+                    if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    LoadFormDetail();
+                }
             }
             catch (Exception ex)
             {
@@ -111,6 +119,19 @@ namespace QLSV.Frm.FrmUserControl
                 else
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        protected override bool ValidateData()
+        {
+            var inputTypes = new List<InputType>
+            {
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
+                InputType.ChuoiRong
+                
+            };
+            return ValidateHighlight.UltraGrid(dgv_DanhSach, inputTypes);
         }
 
         protected override void XoaDetail()
@@ -147,9 +168,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (b)
+                if (B)
                 {
-                    b = false;
+                    B = false;
                     return;
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
