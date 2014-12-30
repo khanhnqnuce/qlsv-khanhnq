@@ -243,6 +243,16 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _209_ {
+            get {
+                object obj = ResourceManager.GetObject("209_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chart_icon {
             get {
                 object obj = ResourceManager.GetObject("chart_icon", resourceCulture);
@@ -346,6 +356,16 @@ namespace QLSV.Frm.Properties {
         internal static System.Drawing.Bitmap find_icon {
             get {
                 object obj = ResourceManager.GetObject("find_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gioithieu {
+            get {
+                object obj = ResourceManager.GetObject("gioithieu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

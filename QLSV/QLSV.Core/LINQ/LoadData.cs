@@ -259,7 +259,7 @@ namespace QLSV.Core.LINQ
                     "where DiemThi is not null and IdKyThi = "+id2+" ) b " +
                     "on a.MaSV = b.MaSV " +
                     "join SINHVIEN s on a.MaSV = s.MaSV " +
-                    "join LOP l on s.IdLop = l.ID";
+                    "join LOP l on s.IdLop = l.ID order by s.TenSV";
                 table = Conn.GetTable(str);
             }
             catch (Exception ex)
@@ -321,27 +321,19 @@ namespace QLSV.Core.LINQ
             return table;
         }
 
-        public static Taikhoan KiemTraTaiKhoan(string user, string pass)
+        public static DataTable KiemTraTaiKhoan(string user, string pass)
         {
-            var tk = new Taikhoan();
+            var tb = new DataTable();
             try
             {
                 var str1 = "SELECT * FROM Taikhoan WHERE TaiKhoan = N'" + user + "' and MatKhau = N'" + pass + "'";
-                var tb = Conn.GetTable(str1);
-                if (tb != null && tb.Rows.Count > 0)
-                {
-                    tk.ID = int.Parse(tb.Rows[0]["ID"].ToString());
-                    tk.TaiKhoan = tb.Rows[0]["TaiKhoan"].ToString();
-                    tk.MatKhau = tb.Rows[0]["MatKhau"].ToString();
-                    tk.HoTen = tb.Rows[0]["HoTen"].ToString();
-                    tk.Quyen = tb.Rows[0]["Quyen"].ToString();
-                }
+                tb = Conn.GetTable(str1);
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
-            return tk;
+            return tb;
         }
     }
 }

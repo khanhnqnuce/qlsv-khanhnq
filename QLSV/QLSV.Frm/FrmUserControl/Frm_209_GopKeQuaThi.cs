@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -103,50 +104,18 @@ namespace QLSV.Frm.FrmUserControl
         private void RptLop()
         {
 
-            //reportManager1.DataSources.Clear();
-            //rptthongke.FilePath = Application.StartupPath + @"\Reports\thongke.rst";
-            //rptthongke.GetReportParameter += GetParameter;
-            //rptthongke.Prepare();
-            //var previewForm = new PreviewForm(rptthongke)
-            //{
-            //    WindowState = FormWindowState.Maximized
-            //};
-            //previewForm.ShowInTaskbar = false;
-            //previewForm.Show();
-        }
-
-        private void GetParameter(object sender,
-           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
-        {
-            try
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach",dgv_DanhSach.DataSource);
+            rptgopdiem.FilePath = Application.StartupPath + @"\Reports\gopdiem.rst";
+            rptgopdiem.Prepare();
+            var previewForm = new PreviewForm(rptgopdiem)
             {
-                //double bosung = SearchData.Thongkediem(0, _idkythi).Rows.Count;
-                //double toiec1 = SearchData.Thongkediem(1, _idkythi).Rows.Count;
-                //double toiec2 = SearchData.Thongkediem(2, _idkythi).Rows.Count;
-                //double toiec3 = SearchData.Thongkediem(3, _idkythi).Rows.Count;
-                //double toiec4 = SearchData.Thongkediem(4, _idkythi).Rows.Count;
-                //double miengiam = SearchData.Thongkediem(5, _idkythi).Rows.Count;
-                //var tong = bosung + toiec1 + toiec2 + toiec3 + toiec4 + miengiam;
-
-                //e.Parameters["bosung"].Value = bosung.ToString();
-                //e.Parameters["toiec1"].Value = toiec1.ToString();
-                //e.Parameters["toiec2"].Value = toiec2.ToString();
-                //e.Parameters["toiec3"].Value = toiec3.ToString();
-                //e.Parameters["toiec4"].Value = toiec4.ToString();
-                //e.Parameters["miengiam"].Value = miengiam.ToString();
-                //e.Parameters["TLbosung"].Value = Math.Round(bosung / tong * 100, 1).ToString();
-                //e.Parameters["TLtoiec1"].Value = Math.Round(toiec1 / tong * 100, 1).ToString();
-                //e.Parameters["TLtoiec2"].Value = Math.Round(toiec2 / tong * 100, 1).ToString();
-                //e.Parameters["TLtoiec3"].Value = Math.Round(toiec3 / tong * 100, 1).ToString();
-                //e.Parameters["TLtoiec4"].Value = Math.Round(toiec4 / tong * 100, 1).ToString();
-                //e.Parameters["TLmiengiam"].Value = Math.Round(miengiam / tong * 100, 1).ToString();
-                //e.Parameters["tong"].Value = tong.ToString();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
         }
+        
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {

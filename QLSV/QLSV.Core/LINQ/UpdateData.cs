@@ -13,6 +13,7 @@ namespace QLSV.Core.LINQ
         /// Update thông tin 1 tài khoản
         /// </summary>
         /// <returns>true</returns>
+
         public static bool UpdateTaiKhoan(Taikhoan item)
         {
             try
@@ -27,11 +28,6 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// Update thông tin nhiều tài khoản
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns>true</returns>
         public static bool UpdateTaiKhoan(IList<Taikhoan> list)
         {
             try
@@ -53,6 +49,21 @@ namespace QLSV.Core.LINQ
         /// Update mật khẩu cho 1 tk
         /// </summary>
         /// <returns>true</returns>
+
+        public static bool UpdateMatKhau(string taikhoan, string matkhau)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("Update TAIKHOAN set MatKhau = N'" + matkhau + "' where TaiKhoan = N'" + taikhoan + "'");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
         public static bool UpdateMatKhau(Taikhoan item)
         {
             try

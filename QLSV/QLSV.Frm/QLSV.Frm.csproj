@@ -257,6 +257,12 @@
     <Compile Include="Frm\FrmDoiMatKhau.Designer.cs">
       <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmGioiThieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmGioiThieu.Designer.cs">
+      <DependentUpon>FrmGioiThieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmGopKetQua.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -460,6 +466,9 @@
     <EmbeddedResource Include="Frm\FrmDoiMatKhau.resx">
       <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmGioiThieu.resx">
+      <DependentUpon>FrmGioiThieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmGopKetQua.resx">
       <DependentUpon>FrmGopKetQua.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,6 +563,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\thongke.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\gopdiem.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

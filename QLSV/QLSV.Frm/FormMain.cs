@@ -7,6 +7,7 @@ using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using Infragistics.Win.UltraWinExplorerBar;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Frm;
 using Infragistics.Win.UltraWinTabControl;
 using QLSV.Frm.FrmUserControl;
@@ -38,6 +39,8 @@ namespace QLSV.Frm
         private static Frm_209_GopKeQuaThi _frmGopKeQua;
         private bool _dangnhap;
         private int _idkythi ;
+        private string _taikhoan;
+        private string _matkhau;
 
         public FormMain()
         {
@@ -91,8 +94,9 @@ namespace QLSV.Frm
                         break;
                     case "doimatkhau":
                         TabPageControl.Visible = false;
-                        var frmdmk = new FrmDoiMatKhau();
+                        var frmdmk = new FrmDoiMatKhau(_taikhoan,_matkhau) {CheckUpdate = false};
                         frmdmk.ShowDialog();
+                        if (frmdmk.CheckUpdate) _matkhau = MaHoaMd5.Md5(frmdmk.txtMK3.Text);
                         break;
                     case "thoat":
                         Close();
@@ -258,6 +262,14 @@ namespace QLSV.Frm
                         TabPageControl.SelectedTab = Tabgopketqua.Tab;
                         ShowControl(_frmGopKeQua, pnl_gopketqua);
                         break;
+                    case "gioithieu":
+                        TabPageControl.Visible = false;
+                        var frmGt = new FrmGioiThieu();
+                        frmGt.ShowDialog();
+                        break;
+                    case "huongdan":
+                        TabPageControl.Visible = false;
+                        break;
                 }
             }
             catch (Exception ex)
@@ -272,7 +284,7 @@ namespace QLSV.Frm
             switch (quyen)
             {
                 case "quantri":
-                    MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
+                    //MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["QLND"].Settings.Enabled = DefaultableBoolean.True;
@@ -286,7 +298,7 @@ namespace QLSV.Frm
                     cboChonkythi.Enabled = true;
                     break;
                 case "nguoidung":
-                    MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
+                    //MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["QLND"].Settings.Enabled = DefaultableBoolean.False;
@@ -297,6 +309,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
+                    Tabquanlynguoidung.Tab.Visible = false;
                     cboChonkythi.Enabled = true;
                     break;
                 default:
@@ -352,14 +365,11 @@ namespace QLSV.Frm
 
         private void CheckDangNhap(object sender, bool checkState, Taikhoan hs)
         {
-            if (hs.Quyen == null)
-            {
-                LoadDefaul(null);
-                return;
-            }
             LoadDefaul(hs.Quyen);
             _dangnhap = true;
             lbusername.Text = hs.HoTen;
+            _taikhoan = hs.TaiKhoan;
+            _matkhau = hs.MatKhau;
             _frmDangNhap.Close();
         }
 
@@ -742,6 +752,10 @@ namespace QLSV.Frm
             else if (Tabthongkediem.Tab.Active)
             {
                 _frmThongKeDiem.InDanhSach();
+            }
+            else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
+            {
+                _frmGopKeQua.InDanhSach();
             }
         }
 
