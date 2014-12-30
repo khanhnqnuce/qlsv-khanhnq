@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_ChonSinhVien
+    partial class Frm_107_Chonphongthi
     {
         /// <summary> 
         /// Required designer variable.
@@ -48,9 +48,9 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(537, 550);
-            this.dgv_DanhSach.TabIndex = 27;
-            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(671, 558);
+            this.dgv_DanhSach.TabIndex = 26;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             // 
             // menu_ug
             // 
@@ -64,15 +64,16 @@
             this.menuStrip_chonphong.Name = "menuStrip_chonphong";
             this.menuStrip_chonphong.Size = new System.Drawing.Size(141, 22);
             this.menuStrip_chonphong.Text = "Chọn Phòng";
+            this.menuStrip_chonphong.Click += new System.EventHandler(this.menuStrip_chonphong_Click);
             // 
-            // Frm_ChonSinhVien
+            // Frm_Chonphongthi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
-            this.Name = "Frm_ChonSinhVien";
-            this.Size = new System.Drawing.Size(537, 550);
-            this.Load += new System.EventHandler(this.Frm_ChonSinhVien_Load);
+            this.Name = "Frm_Chonphongthi";
+            this.Size = new System.Drawing.Size(671, 558);
+            this.Load += new System.EventHandler(this.Frm_Chonphongthi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -149,17 +149,17 @@
     <Compile Include="FrmUserControl\Frm_209_GopKeQuaThi.Designer.cs">
       <DependentUpon>Frm_209_GopKeQuaThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_Chonphongthi.cs">
+    <Compile Include="FrmUserControl\Frm_107_Chonphongthi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_Chonphongthi.Designer.cs">
-      <DependentUpon>Frm_Chonphongthi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_107_Chonphongthi.Designer.cs">
+      <DependentUpon>Frm_107_Chonphongthi.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_108_SapXepPhongThi.cs">
+    <Compile Include="FrmUserControl\Frm_109_SapXepPhongThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_108_SapXepPhongThi.Designer.cs">
-      <DependentUpon>Frm_108_SapXepPhongThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_109_SapXepPhongThi.Designer.cs">
+      <DependentUpon>Frm_109_SapXepPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_207_ChamDiemThi.cs">
       <SubType>UserControl</SubType>
@@ -185,23 +185,23 @@
     <Compile Include="FrmUserControl\Frm_206_NhapThangDiem.Designer.cs">
       <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_101_QuanLyNguoiDung.cs">
+    <Compile Include="FrmUserControl\Frm_QuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_101_QuanLyNguoiDung.Designer.cs">
-      <DependentUpon>Frm_101_QuanLyNguoiDung.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_QuanLyNguoiDung.Designer.cs">
+      <DependentUpon>Frm_QuanLyNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_105_QuanLySinhVien.cs">
+    <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_105_QuanLySinhVien.Designer.cs">
-      <DependentUpon>Frm_105_QuanLySinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.Designer.cs">
+      <DependentUpon>Frm_104_QuanLySinhVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_109_SinhVienDuThi.cs">
+    <Compile Include="FrmUserControl\Frm_110_SinhVienDuThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_109_SinhVienDuThi.Designer.cs">
-      <DependentUpon>Frm_109_SinhVienDuThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_110_SinhVienDuThi.Designer.cs">
+      <DependentUpon>Frm_110_SinhVienDuThi.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_203_InportBaiLam.cs">
       <SubType>UserControl</SubType>
@@ -221,11 +221,11 @@
     <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.Designer.cs">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_ChonSinhVien.cs">
+    <Compile Include="FrmUserControl\Frm_108_ChonSinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_ChonSinhVien.Designer.cs">
-      <DependentUpon>Frm_ChonSinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_108_ChonSinhVien.Designer.cs">
+      <DependentUpon>Frm_108_ChonSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmChonindssv.cs">
       <SubType>Form</SubType>
@@ -233,11 +233,11 @@
     <Compile Include="Frm\FrmChonindssv.Designer.cs">
       <DependentUpon>FrmChonindssv.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_104_InportSinhVien.cs">
+    <Compile Include="FrmUserControl\Frm_105_InportSinhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_104_InportSinhVien.Designer.cs">
-      <DependentUpon>Frm_104_InportSinhVien.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_105_InportSinhVien.Designer.cs">
+      <DependentUpon>Frm_105_InportSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmCheckXepPhong.cs">
       <SubType>Form</SubType>
@@ -348,23 +348,23 @@
     <Compile Include="Frm\FrmDangNhap.Designer.cs">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_102_Danhmuckhoa.cs">
+    <Compile Include="FrmUserControl\Frm_101_Danhmuckhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_102_Danhmuckhoa.Designer.cs">
-      <DependentUpon>Frm_102_Danhmuckhoa.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_101_Danhmuckhoa.Designer.cs">
+      <DependentUpon>Frm_101_Danhmuckhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_103_Danhmuclop.cs">
+    <Compile Include="FrmUserControl\Frm_102_Danhmuclop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_103_Danhmuclop.Designer.cs">
-      <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_102_Danhmuclop.Designer.cs">
+      <DependentUpon>Frm_102_Danhmuclop.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_107_TuDienPhongThi.cs">
+    <Compile Include="FrmUserControl\Frm_103_TuDienPhongThi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_107_TuDienPhongThi.Designer.cs">
-      <DependentUpon>Frm_107_TuDienPhongThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_103_TuDienPhongThi.Designer.cs">
+      <DependentUpon>Frm_103_TuDienPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmNapDuLieu.cs">
       <SubType>Form</SubType>
@@ -400,11 +400,11 @@
     <EmbeddedResource Include="FrmUserControl\Frm_209_GopKeQuaThi.resx">
       <DependentUpon>Frm_209_GopKeQuaThi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_Chonphongthi.resx">
-      <DependentUpon>Frm_Chonphongthi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_107_Chonphongthi.resx">
+      <DependentUpon>Frm_107_Chonphongthi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_108_SapXepPhongThi.resx">
-      <DependentUpon>Frm_108_SapXepPhongThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_109_SapXepPhongThi.resx">
+      <DependentUpon>Frm_109_SapXepPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_207_ChamDiemThi.resx">
       <DependentUpon>Frm_207_ChamDiemThi.cs</DependentUpon>
@@ -418,14 +418,14 @@
     <EmbeddedResource Include="FrmUserControl\Frm_206_NhapThangDiem.resx">
       <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_101_QuanLyNguoiDung.resx">
-      <DependentUpon>Frm_101_QuanLyNguoiDung.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_QuanLyNguoiDung.resx">
+      <DependentUpon>Frm_QuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_105_QuanLySinhVien.resx">
-      <DependentUpon>Frm_105_QuanLySinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_104_QuanLySinhVien.resx">
+      <DependentUpon>Frm_104_QuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_109_SinhVienDuThi.resx">
-      <DependentUpon>Frm_109_SinhVienDuThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_110_SinhVienDuThi.resx">
+      <DependentUpon>Frm_110_SinhVienDuThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_203_InportBaiLam.resx">
       <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
@@ -436,8 +436,8 @@
     <EmbeddedResource Include="FrmUserControl\Frm_208_ThongKeDiem.resx">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_ChonSinhVien.resx">
-      <DependentUpon>Frm_ChonSinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_108_ChonSinhVien.resx">
+      <DependentUpon>Frm_108_ChonSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
@@ -461,17 +461,17 @@
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_102_Danhmuckhoa.resx">
-      <DependentUpon>Frm_102_Danhmuckhoa.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_101_Danhmuckhoa.resx">
+      <DependentUpon>Frm_101_Danhmuckhoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_103_Danhmuclop.resx">
-      <DependentUpon>Frm_103_Danhmuclop.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_102_Danhmuclop.resx">
+      <DependentUpon>Frm_102_Danhmuclop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_107_TuDienPhongThi.resx">
-      <DependentUpon>Frm_107_TuDienPhongThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_103_TuDienPhongThi.resx">
+      <DependentUpon>Frm_103_TuDienPhongThi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_104_InportSinhVien.resx">
-      <DependentUpon>Frm_104_InportSinhVien.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_105_InportSinhVien.resx">
+      <DependentUpon>Frm_105_InportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_205_KiemTraLoiLogic.resx">
       <DependentUpon>Frm_205_KiemTraLoiLogic.cs</DependentUpon>

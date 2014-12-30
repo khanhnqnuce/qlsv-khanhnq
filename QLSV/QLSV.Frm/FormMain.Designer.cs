@@ -54,30 +54,30 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem7 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem23 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem25 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem22 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem25 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem14 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem22 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem16 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem13 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem14 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem17 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem16 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem18 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem15 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem19 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem17 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem20 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem18 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem21 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem19 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem20 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem21 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
@@ -90,14 +90,16 @@
             Infragistics.Win.Appearance appearance33 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance34 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance35 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance36 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance37 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab18 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab19 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab20 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab21 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab22 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab23 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab24 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab22 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab21 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab23 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab25 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab26 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -182,6 +184,8 @@
             this.pnl_thongkediem = new System.Windows.Forms.Panel();
             this.panel65 = new System.Windows.Forms.Panel();
             this.panel70 = new System.Windows.Forms.Panel();
+            this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_gopketqua = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -254,8 +258,6 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_gopketqua = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -274,6 +276,7 @@
             this.TabNhapthangdiem.SuspendLayout();
             this.Tabchamdiemthi.SuspendLayout();
             this.Tabthongkediem.SuspendLayout();
+            this.Tabgopketqua.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -296,7 +299,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Tabgopketqua.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -503,7 +505,7 @@
             this.Tabdanhsachphongthi.Controls.Add(this.pn_danhsachphong);
             this.Tabdanhsachphongthi.Controls.Add(this.panel19);
             this.Tabdanhsachphongthi.Controls.Add(this.panel20);
-            this.Tabdanhsachphongthi.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabdanhsachphongthi.Location = new System.Drawing.Point(1, 1);
             this.Tabdanhsachphongthi.Name = "Tabdanhsachphongthi";
             this.Tabdanhsachphongthi.Size = new System.Drawing.Size(1143, 495);
             // 
@@ -894,13 +896,27 @@
             this.panel70.Size = new System.Drawing.Size(95, 495);
             this.panel70.TabIndex = 13;
             // 
+            // Tabgopketqua
+            // 
+            this.Tabgopketqua.Controls.Add(this.pnl_gopketqua);
+            this.Tabgopketqua.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabgopketqua.Name = "Tabgopketqua";
+            this.Tabgopketqua.Size = new System.Drawing.Size(1143, 495);
+            // 
+            // pnl_gopketqua
+            // 
+            this.pnl_gopketqua.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_gopketqua.Location = new System.Drawing.Point(0, 0);
+            this.pnl_gopketqua.Name = "pnl_gopketqua";
+            this.pnl_gopketqua.Size = new System.Drawing.Size(1143, 495);
+            this.pnl_gopketqua.TabIndex = 16;
+            // 
             // MenuBar
             // 
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
             this.MenuBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuBar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            ultraExplorerBarGroup1.Expanded = false;
-            ultraExplorerBarItem24.Key = "101";
+            ultraExplorerBarItem24.Key = "QLND";
             appearance1.Image = global::QLSV.Frm.Properties.Resources.nd;
             ultraExplorerBarItem24.Settings.AppearancesSmall.Appearance = appearance1;
             ultraExplorerBarItem24.Settings.MaxLines = 2;
@@ -937,31 +953,31 @@
             ultraExplorerBarItem5});
             ultraExplorerBarGroup1.Key = "hethong";
             ultraExplorerBarGroup1.Text = "Chức năng hệ thống";
-            ultraExplorerBarItem8.Key = "102";
-            appearance6.Image = global::QLSV.Frm.Properties.Resources._102;
+            ultraExplorerBarItem8.Key = "101";
+            appearance6.Image = global::QLSV.Frm.Properties.Resources._101;
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance6;
             ultraExplorerBarItem8.Settings.MaxLines = 2;
             ultraExplorerBarItem8.Text = "Từ điển khoa";
             ultraExplorerBarItem8.ToolTipText = "Dánh sách các khoa";
-            ultraExplorerBarItem9.Key = "103";
-            appearance7.Image = global::QLSV.Frm.Properties.Resources._103;
+            ultraExplorerBarItem9.Key = "102";
+            appearance7.Image = global::QLSV.Frm.Properties.Resources._102;
             ultraExplorerBarItem9.Settings.AppearancesSmall.Appearance = appearance7;
             ultraExplorerBarItem9.Settings.MaxLines = 2;
             ultraExplorerBarItem9.Text = "Từ điên lớp";
             ultraExplorerBarItem9.ToolTipText = "Danh sách các lớp";
-            ultraExplorerBarItem10.Key = "107";
-            appearance8.Image = global::QLSV.Frm.Properties.Resources._107;
+            ultraExplorerBarItem10.Key = "103";
+            appearance8.Image = global::QLSV.Frm.Properties.Resources._103;
             ultraExplorerBarItem10.Settings.AppearancesSmall.Appearance = appearance8;
             ultraExplorerBarItem10.Settings.MaxLines = 2;
             ultraExplorerBarItem10.Text = "Từ điển phòng thi";
-            ultraExplorerBarItem6.Key = "105";
-            appearance9.Image = global::QLSV.Frm.Properties.Resources._105;
+            ultraExplorerBarItem6.Key = "104";
+            appearance9.Image = global::QLSV.Frm.Properties.Resources._104;
             ultraExplorerBarItem6.Settings.AppearancesSmall.Appearance = appearance9;
             ultraExplorerBarItem6.Settings.MaxLines = 2;
             ultraExplorerBarItem6.Text = "Từ điển Sinh Viên";
             ultraExplorerBarItem6.ToolTipText = "Danh sách sinh viên";
-            ultraExplorerBarItem12.Key = "104";
-            appearance10.Image = global::QLSV.Frm.Properties.Resources._104;
+            ultraExplorerBarItem12.Key = "105";
+            appearance10.Image = global::QLSV.Frm.Properties.Resources._105;
             ultraExplorerBarItem12.Settings.AppearancesSmall.Appearance = appearance10;
             ultraExplorerBarItem12.Settings.MaxLines = 2;
             ultraExplorerBarItem12.Text = "Import Sinh viên";
@@ -971,59 +987,63 @@
             ultraExplorerBarItem7.Settings.AppearancesSmall.Appearance = appearance11;
             ultraExplorerBarItem7.Settings.MaxLines = 2;
             ultraExplorerBarItem7.Text = "Quản lý kỳ thi";
-            ultraExplorerBarItem23.Key = "110";
+            ultraExplorerBarItem23.Key = "107";
+            appearance12.Image = global::QLSV.Frm.Properties.Resources._107;
+            ultraExplorerBarItem23.Settings.AppearancesSmall.Appearance = appearance12;
             ultraExplorerBarItem23.Text = "Chọn phòng thi";
-            ultraExplorerBarItem25.Key = "111";
+            ultraExplorerBarItem25.Key = "108";
+            appearance13.Image = global::QLSV.Frm.Properties.Resources._108;
+            ultraExplorerBarItem25.Settings.AppearancesSmall.Appearance = appearance13;
             ultraExplorerBarItem25.Settings.MaxLines = 2;
             ultraExplorerBarItem25.Text = "Chọn sinh viên";
-            ultraExplorerBarItem22.Key = "108";
-            appearance12.Image = global::QLSV.Frm.Properties.Resources._108;
-            ultraExplorerBarItem22.Settings.AppearancesSmall.Appearance = appearance12;
+            ultraExplorerBarItem22.Key = "109";
+            appearance14.Image = global::QLSV.Frm.Properties.Resources._109;
+            ultraExplorerBarItem22.Settings.AppearancesSmall.Appearance = appearance14;
             ultraExplorerBarItem22.Settings.MaxLines = 2;
             ultraExplorerBarItem22.Text = "Sắp xếp phòng thi";
-            ultraExplorerBarItem13.Key = "109";
-            appearance13.Image = global::QLSV.Frm.Properties.Resources._109;
-            ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance13;
+            ultraExplorerBarItem13.Key = "110";
+            appearance15.Image = global::QLSV.Frm.Properties.Resources._110;
+            ultraExplorerBarItem13.Settings.AppearancesSmall.Appearance = appearance15;
             ultraExplorerBarItem13.Settings.MaxLines = 2;
-            ultraExplorerBarItem13.Text = "Danh sách Sinh Viên dự thi";
+            ultraExplorerBarItem13.Text = "Danh sách Sinh Viên đã xếp phòng";
             ultraExplorerBarItem14.Key = "201";
-            appearance14.Image = global::QLSV.Frm.Properties.Resources._201_;
-            ultraExplorerBarItem14.Settings.AppearancesSmall.Appearance = appearance14;
+            appearance16.Image = global::QLSV.Frm.Properties.Resources._201_;
+            ultraExplorerBarItem14.Settings.AppearancesSmall.Appearance = appearance16;
             ultraExplorerBarItem14.Settings.MaxLines = 2;
-            ultraExplorerBarItem14.Text = "Inport Đáp án các mã đề";
+            ultraExplorerBarItem14.Text = "Import Đáp án các mã đề";
             ultraExplorerBarItem16.Key = "202";
-            appearance15.Image = global::QLSV.Frm.Properties.Resources._202_;
-            ultraExplorerBarItem16.Settings.AppearancesSmall.Appearance = appearance15;
+            appearance17.Image = global::QLSV.Frm.Properties.Resources._202_;
+            ultraExplorerBarItem16.Settings.AppearancesSmall.Appearance = appearance17;
             ultraExplorerBarItem16.Settings.MaxLines = 2;
             ultraExplorerBarItem16.Text = "Đáp án các mã đề";
             ultraExplorerBarItem15.Key = "203";
-            appearance16.Image = global::QLSV.Frm.Properties.Resources._203_;
-            ultraExplorerBarItem15.Settings.AppearancesSmall.Appearance = appearance16;
+            appearance18.Image = global::QLSV.Frm.Properties.Resources._203_;
+            ultraExplorerBarItem15.Settings.AppearancesSmall.Appearance = appearance18;
             ultraExplorerBarItem15.Settings.MaxLines = 2;
-            ultraExplorerBarItem15.Text = "Inport Bài làm của sinh viên";
+            ultraExplorerBarItem15.Text = "Import Bài làm của sinh viên";
             ultraExplorerBarItem17.Key = "204";
-            appearance17.Image = global::QLSV.Frm.Properties.Resources._204_;
-            ultraExplorerBarItem17.Settings.AppearancesSmall.Appearance = appearance17;
+            appearance19.Image = global::QLSV.Frm.Properties.Resources._204_;
+            ultraExplorerBarItem17.Settings.AppearancesSmall.Appearance = appearance19;
             ultraExplorerBarItem17.Settings.MaxLines = 2;
             ultraExplorerBarItem17.Text = "Danh sách bài làm của sinh viên";
             ultraExplorerBarItem18.Key = "205";
-            appearance18.Image = global::QLSV.Frm.Properties.Resources._205_;
-            ultraExplorerBarItem18.Settings.AppearancesSmall.Appearance = appearance18;
+            appearance20.Image = global::QLSV.Frm.Properties.Resources._205_;
+            ultraExplorerBarItem18.Settings.AppearancesSmall.Appearance = appearance20;
             ultraExplorerBarItem18.Settings.MaxLines = 2;
             ultraExplorerBarItem18.Text = "Kiểm tra lỗi logic";
             ultraExplorerBarItem19.Key = "206";
-            appearance19.Image = global::QLSV.Frm.Properties.Resources._206_;
-            ultraExplorerBarItem19.Settings.AppearancesSmall.Appearance = appearance19;
+            appearance21.Image = global::QLSV.Frm.Properties.Resources._206_;
+            ultraExplorerBarItem19.Settings.AppearancesSmall.Appearance = appearance21;
             ultraExplorerBarItem19.Settings.MaxLines = 2;
             ultraExplorerBarItem19.Text = "Nhập thang điểm";
             ultraExplorerBarItem20.Key = "207";
-            appearance20.Image = global::QLSV.Frm.Properties.Resources._207_;
-            ultraExplorerBarItem20.Settings.AppearancesSmall.Appearance = appearance20;
+            appearance22.Image = global::QLSV.Frm.Properties.Resources._207_;
+            ultraExplorerBarItem20.Settings.AppearancesSmall.Appearance = appearance22;
             ultraExplorerBarItem20.Settings.MaxLines = 3;
             ultraExplorerBarItem20.Text = "Chấm điểm thi";
             ultraExplorerBarItem21.Key = "208";
-            appearance21.Image = global::QLSV.Frm.Properties.Resources._208_;
-            ultraExplorerBarItem21.Settings.AppearancesSmall.Appearance = appearance21;
+            appearance23.Image = global::QLSV.Frm.Properties.Resources._208_;
+            ultraExplorerBarItem21.Settings.AppearancesSmall.Appearance = appearance23;
             ultraExplorerBarItem21.Settings.MaxLines = 3;
             ultraExplorerBarItem21.Text = "Thống kê điểm";
             ultraExplorerBarItem11.Key = "209";
@@ -1086,9 +1106,9 @@
             // 
             // lbtime
             // 
-            appearance22.TextHAlignAsString = "Left";
-            appearance22.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance22;
+            appearance24.TextHAlignAsString = "Left";
+            appearance24.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance24;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -1097,9 +1117,9 @@
             // 
             // lbusername
             // 
-            appearance23.TextHAlignAsString = "Left";
-            appearance23.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance23;
+            appearance25.TextHAlignAsString = "Left";
+            appearance25.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance25;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -1133,57 +1153,57 @@
             // cboChonkythi
             // 
             this.cboChonkythi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            appearance24.BackColor = System.Drawing.SystemColors.Window;
-            appearance24.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cboChonkythi.DisplayLayout.Appearance = appearance24;
+            appearance26.BackColor = System.Drawing.SystemColors.Window;
+            appearance26.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cboChonkythi.DisplayLayout.Appearance = appearance26;
             this.cboChonkythi.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.cboChonkythi.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            appearance25.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance25.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance25.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance25.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance25;
-            appearance26.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance26;
+            appearance27.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance27.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance27.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance27;
+            appearance28.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance28;
             this.cboChonkythi.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance27.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance27.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance27.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance27;
+            appearance29.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance29.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance29.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance29.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance29;
             this.cboChonkythi.DisplayLayout.MaxColScrollRegions = 1;
             this.cboChonkythi.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance28.BackColor = System.Drawing.SystemColors.Window;
-            appearance28.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance28;
-            appearance29.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance29.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance29;
+            appearance30.BackColor = System.Drawing.SystemColors.Window;
+            appearance30.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance30;
+            appearance31.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance31.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance31;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance30.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance30;
-            appearance31.BorderColor = System.Drawing.Color.Silver;
-            appearance31.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance31;
+            appearance32.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance32;
+            appearance33.BorderColor = System.Drawing.Color.Silver;
+            appearance33.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance33;
             this.cboChonkythi.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
             this.cboChonkythi.DisplayLayout.Override.CellPadding = 0;
-            appearance32.BackColor = System.Drawing.SystemColors.Control;
-            appearance32.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance32.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance32.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance32.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance32;
-            appearance33.TextHAlignAsString = "Left";
-            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance33;
+            appearance34.BackColor = System.Drawing.SystemColors.Control;
+            appearance34.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance34.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance34.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance34.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance34;
+            appearance35.TextHAlignAsString = "Left";
+            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance35;
             this.cboChonkythi.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
             this.cboChonkythi.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance34.BackColor = System.Drawing.SystemColors.Window;
-            appearance34.BorderColor = System.Drawing.Color.Silver;
-            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance34;
+            appearance36.BackColor = System.Drawing.SystemColors.Window;
+            appearance36.BorderColor = System.Drawing.Color.Silver;
+            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance36;
             this.cboChonkythi.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance35.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance35;
+            appearance37.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance37;
             this.cboChonkythi.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cboChonkythi.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cboChonkythi.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
@@ -1236,7 +1256,7 @@
             this.btnNapDuLieu.Name = "btnNapDuLieu";
             this.btnNapDuLieu.Size = new System.Drawing.Size(92, 35);
             this.btnNapDuLieu.TabIndex = 34;
-            this.btnNapDuLieu.Text = "Inport(F8)";
+            this.btnNapDuLieu.Text = "Import(F8)";
             this.btnNapDuLieu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNapDuLieu.UseVisualStyleBackColor = true;
             this.btnNapDuLieu.Visible = false;
@@ -1384,18 +1404,18 @@
             ultraTab20.TabPage = this.Tabdanhmuclop;
             ultraTab20.Text = "Danh mục lớp";
             ultraTab20.Visible = false;
-            ultraTab21.TabPage = this.TabInportsinhvien;
-            ultraTab21.Text = "Inport Sinh viên";
-            ultraTab21.Visible = false;
-            ultraTab22.TabPage = this.Tabquanlysinhvien;
-            ultraTab22.Text = "Quản lý sinh viên";
-            ultraTab22.Visible = false;
-            ultraTab23.TabPage = this.Tabquanlykythi;
-            ultraTab23.Text = "Quảng lý kỳ thi";
-            ultraTab23.Visible = false;
             ultraTab24.TabPage = this.Tabdanhsachphongthi;
             ultraTab24.Text = "Danh sách phòng thi";
             ultraTab24.Visible = false;
+            ultraTab22.TabPage = this.Tabquanlysinhvien;
+            ultraTab22.Text = "Quản lý sinh viên";
+            ultraTab22.Visible = false;
+            ultraTab21.TabPage = this.TabInportsinhvien;
+            ultraTab21.Text = "Import Sinh viên";
+            ultraTab21.Visible = false;
+            ultraTab23.TabPage = this.Tabquanlykythi;
+            ultraTab23.Text = "Quảng lý kỳ thi";
+            ultraTab23.Visible = false;
             ultraTab25.TabPage = this.TabChonPhongThi;
             ultraTab25.Text = "Chọn phòng thi";
             ultraTab25.Visible = false;
@@ -1409,13 +1429,13 @@
             ultraTab27.Text = "Danh Sách sinh viên dự thi";
             ultraTab27.Visible = false;
             ultraTab28.TabPage = this.TabInportdapdan;
-            ultraTab28.Text = "Inport đáp án";
+            ultraTab28.Text = "Import đáp án";
             ultraTab28.Visible = false;
             ultraTab29.TabPage = this.TabDapanmade;
             ultraTab29.Text = "Đáp án các mã đề";
             ultraTab29.Visible = false;
             ultraTab30.TabPage = this.TabInportbailam;
-            ultraTab30.Text = "Inport bài làm";
+            ultraTab30.Text = "Import bài làm";
             ultraTab30.Visible = false;
             ultraTab31.TabPage = this.TabDanhsachbailam;
             ultraTab31.Text = "Danh sách bài làm";
@@ -1435,10 +1455,10 @@
             ultraTab18,
             ultraTab19,
             ultraTab20,
-            ultraTab21,
-            ultraTab22,
-            ultraTab23,
             ultraTab24,
+            ultraTab22,
+            ultraTab21,
+            ultraTab23,
             ultraTab25,
             ultraTab1,
             ultraTab26,
@@ -1898,21 +1918,6 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Tabgopketqua
-            // 
-            this.Tabgopketqua.Controls.Add(this.pnl_gopketqua);
-            this.Tabgopketqua.Location = new System.Drawing.Point(1, 1);
-            this.Tabgopketqua.Name = "Tabgopketqua";
-            this.Tabgopketqua.Size = new System.Drawing.Size(1143, 495);
-            // 
-            // pnl_gopketqua
-            // 
-            this.pnl_gopketqua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_gopketqua.Location = new System.Drawing.Point(0, 0);
-            this.pnl_gopketqua.Name = "pnl_gopketqua";
-            this.pnl_gopketqua.Size = new System.Drawing.Size(1143, 495);
-            this.pnl_gopketqua.TabIndex = 16;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1948,6 +1953,7 @@
             this.TabNhapthangdiem.ResumeLayout(false);
             this.Tabchamdiemthi.ResumeLayout(false);
             this.Tabthongkediem.ResumeLayout(false);
+            this.Tabgopketqua.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1971,7 +1977,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Tabgopketqua.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -15,12 +15,12 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_107_TuDienPhongThi : FunctionControlHasGrid
+    public partial class Frm_103_TuDienPhongThi : FunctionControlHasGrid
     {
         private readonly List<PhongThi> _listAdd = new List<PhongThi>();
         private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
         
-        public Frm_107_TuDienPhongThi()
+        public Frm_103_TuDienPhongThi()
         {
             InitializeComponent();
         }

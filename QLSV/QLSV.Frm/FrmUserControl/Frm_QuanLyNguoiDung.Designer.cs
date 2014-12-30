@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_104_InportSinhVien
+    partial class Frm_QuanLyNguoiDung
     {
         /// <summary>
         /// Required designer variable.
@@ -15,7 +15,7 @@
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
+                //Close();
             }
             base.Dispose(disposing);
         }
@@ -29,15 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_xoadong = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_doipass = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_dong = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
             this.menu_ug.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(816, 459);
+            this.panel2.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.uG_DanhSach);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(816, 459);
+            this.panel3.TabIndex = 27;
             // 
             // uG_DanhSach
             // 
@@ -49,59 +73,80 @@
             this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
-            this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(5);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(940, 647);
-            this.uG_DanhSach.TabIndex = 28;
+            this.uG_DanhSach.Size = new System.Drawing.Size(816, 459);
+            this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
+            this.uG_DanhSach.DoubleClickRow += new Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler(this.uG_DanhSach_DoubleClickRow);
+            this.uG_DanhSach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uG_DanhSach_KeyDown);
             // 
             // menu_ug
             // 
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_themdong,
             this.menuStrip_xoadong,
+            this.menuStrip_doipass,
             this.menuStrip_luulai,
-            this.menuStrip_Huy});
+            this.menuStrip_Huy,
+            this.menuStrip_dong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(137, 92);
+            this.menu_ug.Size = new System.Drawing.Size(146, 136);
             // 
             // menuStrip_themdong
             // 
             this.menuStrip_themdong.Name = "menuStrip_themdong";
-            this.menuStrip_themdong.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_themdong.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_themdong.Text = "Thêm dòng";
             this.menuStrip_themdong.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // menuStrip_xoadong
             // 
             this.menuStrip_xoadong.Name = "menuStrip_xoadong";
-            this.menuStrip_xoadong.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_xoadong.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_xoadong.Text = "Xóa dòng";
             this.menuStrip_xoadong.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
+            // 
+            // menuStrip_doipass
+            // 
+            this.menuStrip_doipass.Name = "menuStrip_doipass";
+            this.menuStrip_doipass.Size = new System.Drawing.Size(145, 22);
+            this.menuStrip_doipass.Text = "Đổi mật khẩu";
+            this.menuStrip_doipass.Click += new System.EventHandler(this.menuStrip_doipass_Click);
             // 
             // menuStrip_luulai
             // 
             this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_luulai.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_luulai.Text = "Lưu lại";
             this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(145, 22);
             this.menuStrip_Huy.Text = "Hủy";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStrip_Huy_Click);
+            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
-            // FrmInportSinhVien
+            // menuStrip_dong
+            // 
+            this.menuStrip_dong.Name = "menuStrip_dong";
+            this.menuStrip_dong.Size = new System.Drawing.Size(145, 22);
+            this.menuStrip_dong.Text = "Đóng";
+            this.menuStrip_dong.Click += new System.EventHandler(this.menuStrip_dong_Click);
+            // 
+            // FrmQuanLyNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.uG_DanhSach);
+            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmInportSinhVien";
-            this.Size = new System.Drawing.Size(940, 647);
-            this.Load += new System.EventHandler(this.FrmInportSinhVien_Load);
+            this.Name = "FrmQuanLyNguoiDung";
+            this.Size = new System.Drawing.Size(816, 459);
+            this.Load += new System.EventHandler(this.FrmQuanLyNguoiDung_Load);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -110,11 +155,15 @@
 
         #endregion
 
+        private System.Windows.Forms.Panel panel2;
         private Infragistics.Win.UltraWinGrid.UltraGrid uG_DanhSach;
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_themdong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_xoadong;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_doipass;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_dong;
+        private System.Windows.Forms.Panel panel3;
     }
 }

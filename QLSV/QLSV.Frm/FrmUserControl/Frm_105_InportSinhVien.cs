@@ -15,13 +15,13 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_104_InportSinhVien : FunctionControlHasGrid
+    public partial class Frm_105_InportSinhVien : FunctionControlHasGrid
     {
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
 
         private readonly BackgroundWorker _bgwInsert;
 
-        public Frm_104_InportSinhVien()
+        public Frm_105_InportSinhVien()
         {
             InitializeComponent();
             _bgwInsert = new BackgroundWorker();

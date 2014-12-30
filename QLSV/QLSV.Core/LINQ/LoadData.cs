@@ -42,10 +42,10 @@ namespace QLSV.Core.LINQ
                 {
                    case 1:
                         str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                            "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                             "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                             "FROM SINHVIEN s,LOP l, KHOA k " +
-                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY TenSV";
+                            "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY s.TenSV";
                         break;
                     case 2:
                         str = "SELECT MaSV FROM SINHVIEN ORDER BY TenSV";

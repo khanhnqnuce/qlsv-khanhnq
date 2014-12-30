@@ -15,13 +15,13 @@ using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_101_QuanLyNguoiDung : FunctionControlHasGrid
+    public partial class Frm_QuanLyNguoiDung : FunctionControlHasGrid
     {
         private readonly IList<Taikhoan> _listAdd = new List<Taikhoan>();
         private readonly IList<Taikhoan> _listUpdate = new List<Taikhoan>();
         private readonly IList<Taikhoan> _listUpdatepass = new List<Taikhoan>();
 
-        public Frm_101_QuanLyNguoiDung()
+        public Frm_QuanLyNguoiDung()
         {
             InitializeComponent();
         }

@@ -15,7 +15,7 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_108_SapXepPhongThi : FunctionControlHasGrid
+    public partial class Frm_109_SapXepPhongThi : FunctionControlHasGrid
     {
         #region Create
 
@@ -29,7 +29,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
-        public Frm_108_SapXepPhongThi(int idkythi)
+        public Frm_109_SapXepPhongThi(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;

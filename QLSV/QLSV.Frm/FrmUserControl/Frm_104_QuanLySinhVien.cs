@@ -17,7 +17,7 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_105_QuanLySinhVien : FunctionControlHasGrid
+    public partial class Frm_104_QuanLySinhVien : FunctionControlHasGrid
     {
         #region Create
 
@@ -29,7 +29,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
-        public Frm_105_QuanLySinhVien()
+        public Frm_104_QuanLySinhVien()
         {
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();

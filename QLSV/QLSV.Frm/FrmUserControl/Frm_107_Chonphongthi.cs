@@ -14,13 +14,13 @@ using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_Chonphongthi : FunctionControlHasGrid
+    public partial class Frm_107_Chonphongthi : FunctionControlHasGrid
     {
         private IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private IList<KTPhong> _listKtPhong = new List<KTPhong>();
         private int _idkythi;
 
-        public Frm_Chonphongthi(int idkythi)
+        public Frm_107_Chonphongthi(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;

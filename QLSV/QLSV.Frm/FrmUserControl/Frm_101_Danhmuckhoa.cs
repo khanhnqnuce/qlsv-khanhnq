@@ -13,12 +13,12 @@ using QLSV.Frm.Base;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_102_Danhmuckhoa : FunctionControlHasGrid
+    public partial class Frm_101_Danhmuckhoa : FunctionControlHasGrid
     {
         private readonly List<Khoa> _listAdd = new List<Khoa>();
         private readonly List<Khoa> _listUpdate = new List<Khoa>();
 
-        public Frm_102_Danhmuckhoa()
+        public Frm_101_Danhmuckhoa()
         {
             InitializeComponent();
         }
