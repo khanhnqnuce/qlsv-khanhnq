@@ -52,6 +52,7 @@
             this.textBox1.Location = new System.Drawing.Point(196, 153);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(355, 142);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Số điện thoại hỗ trợ: 01699993928";
@@ -79,9 +80,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(196, 49);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 15);
+            this.label3.Size = new System.Drawing.Size(190, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Phiên bản: 1.0.0.0 Ngày 1/1/2015";
+            this.label3.Text = "Phiên bản: 1.0.0.0 Ngày 01/01/2015";
             // 
             // label4
             // 
@@ -100,6 +101,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmGioiThieu
             // 

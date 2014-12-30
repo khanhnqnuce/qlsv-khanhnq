@@ -40,12 +40,12 @@ namespace QLSV.Core.LINQ
                         _pass = passwordNode.InnerText;
                 }
                 if (_user == "") // ko dung user - pass
-                    _conString = @"Data Source = " + _sv + ";Initial Catalog = " + _db + ";Integrated Security=SSPI;";
+                    _conString = @"Data Source = " + _sv + ";Initial Catalog = " + _db + ";Integrated Security=SSPI";
                 else
                     _conString = @"Data Source=" + _sv + ";Initial Catalog=" + _db + ";User Id=" + _user + ";Password=" +
-                                 _pass + ";";
+                                 _pass + "";
                 return new SqlConnection(_conString);
-                //conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\quanlybanhang.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+                //conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
                 // return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLKhachSan.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
             }
             catch (Exception ex)
