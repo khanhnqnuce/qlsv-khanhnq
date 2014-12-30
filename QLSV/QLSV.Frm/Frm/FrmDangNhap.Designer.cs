@@ -28,184 +28,281 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangNhap));
-            this.ultraGroupBox_login = new Infragistics.Win.Misc.UltraGroupBox();
-            this.txtTaiKhoan = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
-            this.lblMatKhau = new System.Windows.Forms.Label();
-            this.lblTaiKhoan = new System.Windows.Forms.Label();
-            this.btnDangNhap = new System.Windows.Forms.Button();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.errormatkhau = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errortaikhoan = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox_login)).BeginInit();
-            this.ultraGroupBox_login.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errormatkhau)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errortaikhoan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtTaiKhoan = new System.Windows.Forms.TextBox();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.lbdangnhap = new Infragistics.Win.Misc.UltraLabel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
-            // ultraGroupBox_login
+            // groupBox2
             // 
-            this.ultraGroupBox_login.BorderStyle = Infragistics.Win.Misc.GroupBoxBorderStyle.Rectangular3D;
-            this.ultraGroupBox_login.Controls.Add(this.txtTaiKhoan);
-            this.ultraGroupBox_login.Controls.Add(this.txtMatKhau);
-            this.ultraGroupBox_login.Controls.Add(this.lblMatKhau);
-            this.ultraGroupBox_login.Controls.Add(this.lblTaiKhoan);
-            this.ultraGroupBox_login.Controls.Add(this.btnDangNhap);
-            this.ultraGroupBox_login.Controls.Add(this.btnThoat);
-            this.ultraGroupBox_login.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGroupBox_login.Location = new System.Drawing.Point(0, 0);
-            this.ultraGroupBox_login.Name = "ultraGroupBox_login";
-            this.ultraGroupBox_login.Size = new System.Drawing.Size(317, 203);
-            this.ultraGroupBox_login.TabIndex = 20;
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.pictureBox2);
+            this.groupBox2.Controls.Add(this.txtMatKhau);
+            this.groupBox2.Controls.Add(this.shapeContainer2);
+            this.groupBox2.Location = new System.Drawing.Point(25, 133);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(347, 57);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
             // 
-            // txtTaiKhoan
+            // label2
             // 
-            this.txtTaiKhoan.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaiKhoan.Location = new System.Drawing.Point(107, 45);
-            this.txtTaiKhoan.MaxLength = 30;
-            this.txtTaiKhoan.Name = "txtTaiKhoan";
-            this.txtTaiKhoan.Size = new System.Drawing.Size(173, 25);
-            this.txtTaiKhoan.TabIndex = 10;
-            this.txtTaiKhoan.Text = "admin";
-            this.txtTaiKhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaiKhoan_KeyDown);
-            this.txtTaiKhoan.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDangNhap_KeyUp);
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(327, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 15);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "*";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::QLSV.Frm.Properties.Resources.matkhau;
+            this.pictureBox2.Location = new System.Drawing.Point(8, 17);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
             // 
             // txtMatKhau
             // 
-            this.txtMatKhau.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMatKhau.Location = new System.Drawing.Point(107, 93);
+            this.txtMatKhau.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtMatKhau.Location = new System.Drawing.Point(68, 19);
             this.txtMatKhau.MaxLength = 30;
             this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.PasswordChar = '*';
-            this.txtMatKhau.Size = new System.Drawing.Size(173, 25);
+            this.txtMatKhau.PasswordChar = '•';
+            this.txtMatKhau.Size = new System.Drawing.Size(257, 26);
             this.txtMatKhau.TabIndex = 11;
-            this.txtMatKhau.Text = "123456";
-            this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTaiKhoan_KeyDown);
-            this.txtMatKhau.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDangNhap_KeyUp);
             // 
-            // lblMatKhau
+            // shapeContainer2
             // 
-            this.lblMatKhau.AutoSize = true;
-            this.lblMatKhau.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatKhau.Location = new System.Drawing.Point(24, 97);
-            this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(68, 17);
-            this.lblMatKhau.TabIndex = 13;
-            this.lblMatKhau.Text = "Mật Khẩu";
-            this.lblMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.shapeContainer2.Location = new System.Drawing.Point(3, 18);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape2});
+            this.shapeContainer2.Size = new System.Drawing.Size(341, 36);
+            this.shapeContainer2.TabIndex = 13;
+            this.shapeContainer2.TabStop = false;
             // 
-            // lblTaiKhoan
+            // lineShape2
             // 
-            this.lblTaiKhoan.AutoSize = true;
-            this.lblTaiKhoan.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaiKhoan.Location = new System.Drawing.Point(22, 49);
-            this.lblTaiKhoan.Name = "lblTaiKhoan";
-            this.lblTaiKhoan.Size = new System.Drawing.Size(70, 17);
-            this.lblTaiKhoan.TabIndex = 12;
-            this.lblTaiKhoan.Text = "Tài Khoản";
-            this.lblTaiKhoan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lineShape2.BorderColor = System.Drawing.Color.Silver;
+            this.lineShape2.Name = "lineShape2";
+            this.lineShape2.X1 = 43;
+            this.lineShape2.X2 = 43;
+            this.lineShape2.Y1 = -2;
+            this.lineShape2.Y2 = 29;
             // 
-            // btnDangNhap
+            // groupBox1
             // 
-            this.btnDangNhap.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDangNhap.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangNhap.Location = new System.Drawing.Point(107, 139);
-            this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(85, 27);
-            this.btnDangNhap.TabIndex = 14;
-            this.btnDangNhap.Text = "Đăng Nhập";
-            this.btnDangNhap.UseVisualStyleBackColor = true;
-            this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.txtTaiKhoan);
+            this.groupBox1.Controls.Add(this.shapeContainer1);
+            this.groupBox1.Location = new System.Drawing.Point(25, 65);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(347, 57);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
             // 
-            // btnThoat
+            // label1
             // 
-            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Location = new System.Drawing.Point(195, 139);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(85, 27);
-            this.btnThoat.TabIndex = 15;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(327, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "*";
             // 
-            // errormatkhau
+            // pictureBox1
             // 
-            this.errormatkhau.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
-            this.errormatkhau.ContainerControl = this;
-            this.errormatkhau.Icon = ((System.Drawing.Icon)(resources.GetObject("errormatkhau.Icon")));
+            this.pictureBox1.Image = global::QLSV.Frm.Properties.Resources.taikhoan;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
-            // errortaikhoan
+            // txtTaiKhoan
             // 
-            this.errortaikhoan.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
-            this.errortaikhoan.ContainerControl = this;
-            this.errortaikhoan.Icon = ((System.Drawing.Icon)(resources.GetObject("errortaikhoan.Icon")));
+            this.txtTaiKhoan.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtTaiKhoan.Location = new System.Drawing.Point(68, 19);
+            this.txtTaiKhoan.MaxLength = 30;
+            this.txtTaiKhoan.Name = "txtTaiKhoan";
+            this.txtTaiKhoan.Size = new System.Drawing.Size(257, 26);
+            this.txtTaiKhoan.TabIndex = 10;
             // 
-            // pictureBox_Logo
+            // shapeContainer1
             // 
-            this.pictureBox_Logo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox_Logo.Image = global::QLSV.Frm.Properties.Resources.logo1;
-            this.pictureBox_Logo.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox_Logo.Name = "pictureBox_Logo";
-            this.pictureBox_Logo.Size = new System.Drawing.Size(205, 203);
-            this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Logo.TabIndex = 21;
-            this.pictureBox_Logo.TabStop = false;
+            this.shapeContainer1.Location = new System.Drawing.Point(3, 18);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(341, 36);
+            this.shapeContainer1.TabIndex = 12;
+            this.shapeContainer1.TabStop = false;
             // 
-            // panel1
+            // lineShape1
             // 
-            this.panel1.Controls.Add(this.ultraGroupBox_login);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(205, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(317, 203);
-            this.panel1.TabIndex = 22;
+            this.lineShape1.BorderColor = System.Drawing.Color.Silver;
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 43;
+            this.lineShape1.X2 = 43;
+            this.lineShape1.Y1 = -1;
+            this.lineShape1.Y2 = 30;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(237, 22);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(55, 15);
+            this.linkLabel1.TabIndex = 26;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Cấu hình";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(336, 22);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(39, 15);
+            this.linkLabel2.TabIndex = 27;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Thoát";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::QLSV.Frm.Properties.Resources.caidat;
+            this.pictureBox3.Location = new System.Drawing.Point(212, 17);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 28;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::QLSV.Frm.Properties.Resources.thoat;
+            this.pictureBox4.Location = new System.Drawing.Point(310, 16);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 29;
+            this.pictureBox4.TabStop = false;
+            // 
+            // lbdangnhap
+            // 
+            appearance1.TextHAlignAsString = "Center";
+            appearance1.TextVAlignAsString = "Middle";
+            this.lbdangnhap.Appearance = appearance1;
+            this.lbdangnhap.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lbdangnhap.Location = new System.Drawing.Point(25, 210);
+            this.lbdangnhap.Name = "lbdangnhap";
+            this.lbdangnhap.Size = new System.Drawing.Size(350, 44);
+            this.lbdangnhap.TabIndex = 30;
+            this.lbdangnhap.Text = "Đăng nhập";
+            this.lbdangnhap.Click += new System.EventHandler(this.lbdangnhap_Click);
+            this.lbdangnhap.MouseEnter += new System.EventHandler(this.lbdangnhap_MouseEnter);
+            this.lbdangnhap.MouseLeave += new System.EventHandler(this.lbdangnhap_MouseLeave);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::QLSV.Frm.Properties.Resources.system;
+            this.pictureBox5.Location = new System.Drawing.Point(-2, 10);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(173, 39);
+            this.pictureBox5.TabIndex = 31;
+            this.pictureBox5.TabStop = false;
             // 
             // FrmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(522, 203);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox_Logo);
+            this.ClientSize = new System.Drawing.Size(396, 270);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.lbdangnhap);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmDangNhap";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox_login)).EndInit();
-            this.ultraGroupBox_login.ResumeLayout(false);
-            this.ultraGroupBox_login.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errormatkhau)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errortaikhoan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.Text = "Đăng nhập";
+            this.Load += new System.EventHandler(this.FrmDangNhap_Load);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Infragistics.Win.Misc.UltraGroupBox ultraGroupBox_login;
-        public System.Windows.Forms.TextBox txtTaiKhoan;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.TextBox txtMatKhau;
-        private System.Windows.Forms.Label lblMatKhau;
-        private System.Windows.Forms.Label lblTaiKhoan;
-        private System.Windows.Forms.Button btnThoat;
-        public System.Windows.Forms.ErrorProvider errormatkhau;
-        public System.Windows.Forms.ErrorProvider errortaikhoan;
-        private System.Windows.Forms.Button btnDangNhap;
-        private System.Windows.Forms.PictureBox pictureBox_Logo;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.TextBox txtTaiKhoan;
+        private Infragistics.Win.Misc.UltraLabel lbdangnhap;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }

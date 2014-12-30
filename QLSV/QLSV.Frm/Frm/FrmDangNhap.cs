@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Drawing;
 using QLSV.Core.LINQ;
 using QLSV.Core.Domain;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
+using System.Drawing;
 
 namespace QLSV.Frm.Frm
 {
@@ -18,54 +20,17 @@ namespace QLSV.Frm.Frm
             InitializeComponent();
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void txtDangNhap_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Enter:
-                        Dangnhap();
-                        break;
-                    case Keys.Escape:
-                        Close();
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    MessageBox.Show(ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void txtTaiKhoan_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                e.SuppressKeyPress = true;
-        }
-
-        private void btnDangNhap_Click(object sender, EventArgs e)
+        private void lbdangnhap_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtTaiKhoan.Text))
             {
-                errormatkhau.Dispose();
-                errortaikhoan.SetError(txtTaiKhoan,"Không được để trống");
+                MessageBox.Show(@"Vui lòng nhập tên tài khoản",@"Thông báo",
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 txtTaiKhoan.Focus();
             }else if (string.IsNullOrEmpty(txtMatKhau.Text))
             {
-                errortaikhoan.Dispose();
-                errormatkhau.SetError(txtMatKhau,"Không được để trống");
+                MessageBox.Show(@"Vui lòng nhập mật khâu", @"Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtMatKhau.Focus();
             }
             else
@@ -93,7 +58,8 @@ namespace QLSV.Frm.Frm
                 }
                 else
                 {
-                    errormatkhau.SetError(txtMatKhau, "Sai tài khoản hoặc mật khẩu");
+                    MessageBox.Show("Bạn đã nhập sai tên đăng nhập hoặc mật khẩu\n" +
+                                    "Xin vui lòng thử lại", @"Thông báo");
                     txtMatKhau.Clear();
                 }
             }
@@ -104,17 +70,52 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        public void HighlightTextBoxSet()
+        private void FrmDangNhap_Load(object sender, EventArgs e)
         {
-            var tooltip = new ToolTip
+            lbdangnhap.ForeColor = Color.FromArgb(255,255,255);
+            lbdangnhap.BackColor = Color.FromArgb(0, 171, 228);
+        }
+
+        private void lbdangnhap_MouseEnter(object sender, EventArgs e)
+        {
+            lbdangnhap.BackColor = Color.FromArgb(0, 255, 230);
+        }
+
+        private void lbdangnhap_MouseLeave(object sender, EventArgs e)
+        {
+            lbdangnhap.BackColor = Color.FromArgb(0, 171, 228);
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
             {
-                IsBalloon = true,
-                InitialDelay = 0,
-                ShowAlways = true,
-                ToolTipIcon = ToolTipIcon.Error,
-                ToolTipTitle = "Lỗi"
-            };
-            tooltip.SetToolTip(txtMatKhau, "Sai mật khẩu hoặc tài khoản");
+                case (Keys.Enter):
+                    Dangnhap();
+                    break;
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var frm = new FrmCauHinh();
+            frm.ShowDialog();
         }
     }
 }
