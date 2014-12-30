@@ -47,15 +47,26 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var xdoc = new XDocument(
-                    new XElement("config",
-                        new XElement("server", txtserver.Text),
-                        new XElement("database", txtdatabase.Text),
-                        new XElement("username", txtusername.Text),
-                        new XElement("password", txtpassword.Text)
-                        )
-                    );
-                xdoc.Save("Connection.xml");
+                if (string.IsNullOrEmpty(txtserver.Text))
+                {
+                    txtserver.Focus();
+                }else if (string.IsNullOrEmpty(txtdatabase.Text))
+                {
+                    txtdatabase.Focus();
+                }
+                else
+                {
+                    var xdoc = new XDocument(
+                        new XElement("config",
+                            new XElement("server", txtserver.Text),
+                            new XElement("database", txtdatabase.Text),
+                            new XElement("username", txtusername.Text),
+                            new XElement("password", txtpassword.Text)
+                            )
+                        );
+                    xdoc.Save("Connection.xml");
+                    MessageBox.Show(@"Lưu lại thành công", @"Thông báo");
+                }
             }
             catch (Exception ex)
             {

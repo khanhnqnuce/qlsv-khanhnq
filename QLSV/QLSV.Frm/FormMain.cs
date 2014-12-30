@@ -51,7 +51,6 @@ namespace QLSV.Frm
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            cboChonkythi.DataSource = LoadData.Load(18);
             LoadDefaul(null);
             _frmDangNhap.ShowDialog();
         }
@@ -371,6 +370,8 @@ namespace QLSV.Frm
             _taikhoan = hs.TaiKhoan;
             _matkhau = hs.MatKhau;
             _frmDangNhap.Close();
+
+            cboChonkythi.DataSource = LoadData.Load(18);
         }
 
         private void MenuBar_ItemClick(object sender, ItemEventArgs e)
