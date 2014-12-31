@@ -43,6 +43,7 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup2 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem8 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem9 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem10 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
@@ -82,8 +83,8 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance39 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance40 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
@@ -96,7 +97,6 @@
             Infragistics.Win.Appearance appearance36 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance37 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance38 = new Infragistics.Win.Appearance();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab18 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab19 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab20 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -190,6 +190,8 @@
             this.panel70 = new System.Windows.Forms.Panel();
             this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_gopketqua = new System.Windows.Forms.Panel();
+            this.panel75 = new System.Windows.Forms.Panel();
+            this.panel76 = new System.Windows.Forms.Panel();
             this.MenuBar = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -903,6 +905,8 @@
             // Tabgopketqua
             // 
             this.Tabgopketqua.Controls.Add(this.pnl_gopketqua);
+            this.Tabgopketqua.Controls.Add(this.panel75);
+            this.Tabgopketqua.Controls.Add(this.panel76);
             this.Tabgopketqua.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabgopketqua.Name = "Tabgopketqua";
             this.Tabgopketqua.Size = new System.Drawing.Size(1143, 495);
@@ -910,10 +914,26 @@
             // pnl_gopketqua
             // 
             this.pnl_gopketqua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_gopketqua.Location = new System.Drawing.Point(0, 0);
+            this.pnl_gopketqua.Location = new System.Drawing.Point(80, 0);
             this.pnl_gopketqua.Name = "pnl_gopketqua";
-            this.pnl_gopketqua.Size = new System.Drawing.Size(1143, 495);
-            this.pnl_gopketqua.TabIndex = 16;
+            this.pnl_gopketqua.Size = new System.Drawing.Size(983, 495);
+            this.pnl_gopketqua.TabIndex = 19;
+            // 
+            // panel75
+            // 
+            this.panel75.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel75.Location = new System.Drawing.Point(0, 0);
+            this.panel75.Name = "panel75";
+            this.panel75.Size = new System.Drawing.Size(80, 495);
+            this.panel75.TabIndex = 18;
+            // 
+            // panel76
+            // 
+            this.panel76.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel76.Location = new System.Drawing.Point(1063, 0);
+            this.panel76.Name = "panel76";
+            this.panel76.Size = new System.Drawing.Size(80, 495);
+            this.panel76.TabIndex = 17;
             // 
             // MenuBar
             // 
@@ -958,9 +978,8 @@
             ultraExplorerBarItem5});
             ultraExplorerBarGroup1.Key = "hethong";
             ultraExplorerBarGroup1.Text = "Chức năng hệ thống";
-            ultraExplorerBarGroup2.Expanded = false;
             ultraExplorerBarItem8.Key = "101";
-            appearance6.Image = global::QLSV.Frm.Properties.Resources._101;
+            appearance6.Image = ((object)(resources.GetObject("appearance6.Image")));
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance6;
             ultraExplorerBarItem8.Settings.MaxLines = 2;
             ultraExplorerBarItem8.Text = "Từ điển khoa";
@@ -1128,9 +1147,9 @@
             // 
             // lbtime
             // 
-            appearance25.TextHAlignAsString = "Center";
-            appearance25.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance25;
+            appearance39.TextHAlignAsString = "Center";
+            appearance39.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance39;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -1139,9 +1158,9 @@
             // 
             // lbusername
             // 
-            appearance26.TextHAlignAsString = "Center";
-            appearance26.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance26;
+            appearance40.TextHAlignAsString = "Center";
+            appearance40.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance40;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -1272,7 +1291,7 @@
             // 
             this.btnNapDuLieu.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnNapDuLieu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNapDuLieu.Image = ((System.Drawing.Image)(resources.GetObject("btnNapDuLieu.Image")));
+            this.btnNapDuLieu.Image = global::QLSV.Frm.Properties.Resources.buttom_icon;
             this.btnNapDuLieu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNapDuLieu.Location = new System.Drawing.Point(489, 9);
             this.btnNapDuLieu.Name = "btnNapDuLieu";
@@ -1289,7 +1308,7 @@
             this.btnLuu.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnLuu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLuu.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLuu.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.Image")));
+            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.save_icon;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLuu.Location = new System.Drawing.Point(818, 10);
             this.btnLuu.Margin = new System.Windows.Forms.Padding(4);
@@ -1323,7 +1342,7 @@
             this.btnthemmoi.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnthemmoi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnthemmoi.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnthemmoi.Image = ((System.Drawing.Image)(resources.GetObject("btnthemmoi.Image")));
+            this.btnthemmoi.Image = global::QLSV.Frm.Properties.Resources.add_icon;
             this.btnthemmoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnthemmoi.Location = new System.Drawing.Point(598, 10);
             this.btnthemmoi.Margin = new System.Windows.Forms.Padding(4);
@@ -1339,7 +1358,7 @@
             // 
             this.btnHuy.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHuy.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.Image")));
+            this.btnHuy.Image = global::QLSV.Frm.Properties.Resources.Refresh_icon;
             this.btnHuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHuy.Location = new System.Drawing.Point(928, 10);
             this.btnHuy.Name = "btnHuy";
@@ -1375,7 +1394,7 @@
             this.btnXoadong.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnXoadong.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnXoadong.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoadong.Image = ((System.Drawing.Image)(resources.GetObject("btnXoadong.Image")));
+            this.btnXoadong.Image = global::QLSV.Frm.Properties.Resources.Delete_icon;
             this.btnXoadong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXoadong.Location = new System.Drawing.Point(708, 11);
             this.btnXoadong.Margin = new System.Windows.Forms.Padding(4);
@@ -2151,5 +2170,7 @@
         private System.Windows.Forms.Panel pn_quanlynguoidung;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabgopketqua;
         private System.Windows.Forms.Panel pnl_gopketqua;
+        private System.Windows.Forms.Panel panel75;
+        private System.Windows.Forms.Panel panel76;
     }
 }

@@ -98,45 +98,70 @@ namespace QLSV.Frm.FrmUserControl
         {
             var dem = 0;
             var tbbailam = LoadData.Load(16, _idkythi);
-            foreach (DataRow dataRow in tbbailam.Rows)
+            var tabledapan = LoadData.Load(7, _idkythi);
+            if (tabledapan.Rows.Count==0)
             {
-                var diem = 0;
-                var listbailam = dataRow["KetQua"].ToString();
-                var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
-                if (listbailam.Length != tbdapan.Rows.Count)
+                lock (LockTotal)
                 {
-                    dem = dem + 1;
-                    continue;
+                    OnCloseDialog();
                 }
-                for (var i = 0; i < tbdapan.Rows.Count; i++)
-                {
-                    var a = listbailam[i].ToString();
-                    var s = tbdapan.Rows[i]["Dapan"].ToString();
-                    var c = tbdapan.Rows[i]["ThangDiem"].ToString();
-                    if (a == s)
-                    {
-                        diem = diem + int.Parse(c);
-                    }
-                }
-                var hs = new BaiLam
-                {
-                    IdKyThi = _idkythi,
-                    MaSV = int.Parse(dataRow["MaSV"].ToString()),
-                    DiemThi = diem
-                };
-                _listUpdate.Add(hs);
-                dataRow["DiemThi"] = diem.ToString();
-            }
-            Invoke((Action)(() => dgv_DanhSach.DataSource = tbbailam));
-            Invoke((Action)(() => pnl_from.Visible = true));
-            lock (LockTotal)
-            {
-                OnCloseDialog();
-            }
-            if (dem > 0)
                 Invoke(
-                    (Action) (() => MessageBox.Show(@"Còn " + dem + @" sinh viên chưa được chấm thi", @"Có lỗi xảy ra",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error)));
+                        (Action)(() => MessageBox.Show(@"Chưa Import đáp án của mã đề", @"Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+                return;
+            }
+            if (tbbailam.Rows.Count>0)
+            {
+                foreach (DataRow dataRow in tbbailam.Rows)
+                {
+                    var diem = 0;
+                    var listbailam = dataRow["KetQua"].ToString();
+                    var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
+                    if (listbailam.Length != tbdapan.Rows.Count)
+                    {
+                        dem = dem + 1;
+                        continue;
+                    }
+                    for (var i = 0; i < tbdapan.Rows.Count; i++)
+                    {
+                        var a = listbailam[i].ToString();
+                        var s = tbdapan.Rows[i]["Dapan"].ToString();
+                        var c = tbdapan.Rows[i]["ThangDiem"].ToString();
+                        if (a == s)
+                        {
+                            diem = diem + int.Parse(c);
+                        }
+                    }
+                    var hs = new BaiLam
+                    {
+                        IdKyThi = _idkythi,
+                        MaSV = int.Parse(dataRow["MaSV"].ToString()),
+                        DiemThi = diem
+                    };
+                    _listUpdate.Add(hs);
+                    dataRow["DiemThi"] = diem.ToString();
+                }
+                Invoke((Action)(() => dgv_DanhSach.DataSource = tbbailam));
+                Invoke((Action)(() => pnl_from.Visible = true));
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
+                if (dem > 0)
+                    Invoke(
+                        (Action)(() => MessageBox.Show(@"Còn " + dem + @" sinh viên chưa được chấm thi", @"Có lỗi xảy ra",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error)));
+            }
+            else
+            {
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
+                Invoke(
+                        (Action)(() => MessageBox.Show(@"Chưa Import bài làm của sinh viên", @"Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+            }
         }
 
         public void InDanhSach()

@@ -135,6 +135,22 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
+                band.Columns["MaSV"].Width = 110;
+                band.Columns["HoSV"].Width = 150;
+                band.Columns["TenSV"].Width = 110;
+                band.Columns["NgaySinh"].Width = 110;
+                band.Columns["MaLop"].Width = 110;
+                band.Columns["Diem1"].Width = 110;
+                band.Columns["Diem2"].Width = 110;
+                band.Columns["TongDiem"].Width = 110;
+
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["Diem1"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["Diem2"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TongDiem"].CellAppearance.TextHAlign = HAlign.Center;
+
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["HoSV"].CellActivation = Activation.NoEdit;
                 band.Columns["TenSV"].CellActivation = Activation.NoEdit;

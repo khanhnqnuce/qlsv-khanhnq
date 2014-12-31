@@ -279,7 +279,7 @@ namespace QLSV.Core.LINQ
                     " from BAILAM bl" +
                     " join SINHVIEN s on bl.MaSV = s.MaSV" +
                     " join LOP l on s.IdLop = l.ID" +
-                    " where IdKyThi = " + id1 + " and not exists(" +
+                    " where IdKyThi = " + id1 + " and DiemThi is not null and not exists(" +
                     " select * from (" +
                     " select a.MaSV from (" +
                     " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
@@ -305,7 +305,7 @@ namespace QLSV.Core.LINQ
                     " from BAILAM bl" +
                     " join SINHVIEN s on bl.MaSV = s.MaSV" +
                     " join LOP l on s.IdLop = l.ID" +
-                    " where IdKyThi = " + id2 + " and not exists(" +
+                    " where IdKyThi = " + id2 + " and DiemThi is not null and not exists(" +
                     " select * from (" +
                     " select a.MaSV from (" +
                     " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
