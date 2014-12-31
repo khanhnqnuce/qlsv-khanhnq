@@ -151,12 +151,14 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(76, 22);
             this.toolStripLabel1.Text = "Nhập mã đề :";
             // 
             // txtmade
             // 
+            this.txtmade.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtmade.Name = "txtmade";
             this.txtmade.Size = new System.Drawing.Size(100, 25);
             this.txtmade.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -166,10 +168,11 @@
             // 
             // btnTimkiem
             // 
+            this.btnTimkiem.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnTimkiem.Image = global::QLSV.Frm.Properties.Resources.find_icon;
             this.btnTimkiem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimkiem.Name = "btnTimkiem";
-            this.btnTimkiem.Size = new System.Drawing.Size(77, 22);
+            this.btnTimkiem.Size = new System.Drawing.Size(74, 22);
             this.btnTimkiem.Text = "Tìm kiếm";
             this.btnTimkiem.ToolTipText = "Enter";
             this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);
@@ -181,10 +184,11 @@
             // 
             // btnrefresh
             // 
+            this.btnrefresh.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnrefresh.Image = global::QLSV.Frm.Properties.Resources.refresh1_icon;
             this.btnrefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnrefresh.Name = "btnrefresh";
-            this.btnrefresh.Size = new System.Drawing.Size(70, 22);
+            this.btnrefresh.Size = new System.Drawing.Size(71, 22);
             this.btnrefresh.Text = "Quay lại";
             this.btnrefresh.ToolTipText = "Tải lại dữ liệu";
             this.btnrefresh.Click += new System.EventHandler(this.btnrefresh_Click);

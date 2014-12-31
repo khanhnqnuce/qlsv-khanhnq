@@ -210,7 +210,7 @@ namespace QLSV.Core.LINQ
                 try
                 {
                     var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY d.ID) as [STT], d.ID, MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and MaDe = N'" + made + "'";
+                        "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and MaDe = '" + made + "'";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
