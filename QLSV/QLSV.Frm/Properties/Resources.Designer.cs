@@ -65,7 +65,7 @@ namespace QLSV.Frm.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _101 {
             get {
-                object obj = ResourceManager.GetObject("101", resourceCulture);
+                object obj = ResourceManager.GetObject("_101", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
