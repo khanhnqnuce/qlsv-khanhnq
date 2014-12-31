@@ -19,7 +19,7 @@ namespace QLSV.Frm.Frm
             rdoLop.Checked = false;
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             _ok = true;
             Close();
