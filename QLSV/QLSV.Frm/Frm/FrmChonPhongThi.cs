@@ -45,7 +45,7 @@ namespace QLSV.Frm.Frm
             band.ColHeadersVisible = false;
             band.Columns["ID"].Hidden = true;
             band.Columns["Chon"].Style = ColumnStyle.CheckBox;
-            band.Columns["Chon"].MaxWidth = 70;
+            //band.Columns["Chon"].MaxWidth = 70;
 
 
             band.Override.CellAppearance.TextHAlign = HAlign.Center;

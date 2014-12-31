@@ -319,7 +319,7 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    return Conn.GetTable("SELECT p.ID, 'false' as [Chon], p.TenPhong, p.SucChua FROM PHONGTHI p WHERE not exists (SELECT p.ID  FROM KT_PHONG k WHERE k.IdPhong = p.ID and k.IdKyThi = "+id+")");
+                    return Conn.GetTable("SELECT p.ID, p.TenPhong, p.SucChua, 'false' as [Chon] FROM PHONGTHI p WHERE not exists (SELECT p.ID  FROM KT_PHONG k WHERE k.IdPhong = p.ID and k.IdKyThi = " + id + ")");
                 }
                 catch (Exception ex)
                 {
