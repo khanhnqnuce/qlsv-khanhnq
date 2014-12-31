@@ -61,36 +61,36 @@
             this.menuStrip_Themmoi,
             this.menuStrip_Xoadong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(149, 70);
+            this.menu_ug.Size = new System.Drawing.Size(153, 92);
             // 
             // menuStrip_Inport
             // 
             this.menuStrip_Inport.Name = "menuStrip_Inport";
-            this.menuStrip_Inport.Size = new System.Drawing.Size(148, 22);
-            this.menuStrip_Inport.Text = "Inport bài lam";
+            this.menuStrip_Inport.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Inport.Text = "Import bài lam";
             this.menuStrip_Inport.Click += new System.EventHandler(this.menuStrip_Inport_Click);
             // 
             // menuStrip_Themmoi
             // 
             this.menuStrip_Themmoi.Name = "menuStrip_Themmoi";
-            this.menuStrip_Themmoi.Size = new System.Drawing.Size(148, 22);
+            this.menuStrip_Themmoi.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Themmoi.Text = "Thêm mới";
             this.menuStrip_Themmoi.Click += new System.EventHandler(this.menuStrip_Themmoi_Click);
             // 
             // menuStrip_Xoadong
             // 
             this.menuStrip_Xoadong.Name = "menuStrip_Xoadong";
-            this.menuStrip_Xoadong.Size = new System.Drawing.Size(148, 22);
+            this.menuStrip_Xoadong.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_Xoadong.Text = "Xóa dòng";
             this.menuStrip_Xoadong.Click += new System.EventHandler(this.menuStrip_Xoadong_Click);
             // 
-            // FrmInportBaiLam
+            // Frm_203_InportBaiLam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmInportBaiLam";
+            this.Name = "Frm_203_InportBaiLam";
             this.Size = new System.Drawing.Size(819, 309);
             this.Load += new System.EventHandler(this.FrmInportBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
