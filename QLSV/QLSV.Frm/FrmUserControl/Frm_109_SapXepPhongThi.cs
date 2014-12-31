@@ -53,6 +53,37 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
+        private void Sua()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
+                {
+                    MessageBox.Show(@"Sinh viên đã được xếp phòng");
+                    return;
+                }
+                var frm = new FrmXepPhong
+                {
+                    txtmasinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["IdSV"].Text },
+                    txthotendem = { Text = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text },
+                    txttensinhvien = { Text = dgv_DanhSach.ActiveRow.Cells["TenSV"].Text },
+                    txtNgaySinh = { Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text },
+                    cbolop = { Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text },
+                    IdKythi = _idkythi,
+                    bUpdate= false
+                };
+                frm.ShowDialog();
+                if (!frm.bUpdate) return;
+                MessageBox.Show(@"Lưu lại thành công", @"Thông báo");
+                dgv_DanhSach.ActiveRow.Cells["PhongThi"].Value = frm.cboPhongthi.Text;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         private void Xepphong()
         {
             var kt = 0;
@@ -263,7 +294,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void menuStrip_Sua_Click(object sender, EventArgs e)
         {
-           
+            Sua();
         }
 
         #endregion

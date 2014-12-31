@@ -18,21 +18,10 @@ namespace QLSV.Frm.Frm
 
         private void FrmXepPhong_Load(object sender, EventArgs e)
         {
-            if (bUpdate)
-            {
-                cboPhongthi.DisplayMember = "TenPhong";
-                cboPhongthi.ValueMember = "IdPhong";
-                cboPhongthi.DataSource = LoadData.Load(5,IdKythi);
-                cboPhongthi.Rows.Band.Columns["IdPhong"].Hidden = true;
-                cboPhongthi.DisplayLayout.Bands[0].Columns["TenPhong"].Header.Caption = @"Phòng thi";
-                cboPhongthi.DisplayLayout.Bands[0].Columns["SucChua"].Header.Caption = @"Sức chứa";
-                cboPhongthi.DisplayLayout.Bands[0].Columns["SiSo"].Header.Caption = @"Sĩ số";
-                return;
-            }
             cboPhongthi.DisplayMember = "TenPhong";
             cboPhongthi.ValueMember = "IdPhong";
-            cboPhongthi.DataSource = LoadData.Load(8);
-            //cboPhongthi.Rows.Band.Columns["IdPhong"].Hidden = true;
+            cboPhongthi.DataSource = LoadData.Load(5, IdKythi);
+            cboPhongthi.Rows.Band.Columns["IdPhong"].Hidden = true;
             cboPhongthi.DisplayLayout.Bands[0].Columns["TenPhong"].Header.Caption = @"Phòng thi";
             cboPhongthi.DisplayLayout.Bands[0].Columns["SucChua"].Header.Caption = @"Sức chứa";
             cboPhongthi.DisplayLayout.Bands[0].Columns["SiSo"].Header.Caption = @"Sĩ số";
@@ -87,8 +76,9 @@ namespace QLSV.Frm.Frm
                     IdPhong = (int)a,
                     SiSo = 1
                 };
-                InsertData.XepPhong(hsxp);
+                UpdateData.UpdateXepPhong(hsxp);
                 UpdateData.UpdateTangSiSo(hspp.IdPhong,hspp.IdKyThi);
+                bUpdate = true;
                 Close();
             }
         }
