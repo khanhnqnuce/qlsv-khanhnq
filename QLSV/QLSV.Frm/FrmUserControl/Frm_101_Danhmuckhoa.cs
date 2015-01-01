@@ -74,7 +74,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "MaKhoa");
-                STT();
+                Stt();
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-
+                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
                     if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KHOA");
                     if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
@@ -152,7 +152,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void STT()
+        private void Stt()
         {
             for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
             {
@@ -205,11 +205,10 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaKhoa"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["MaKhoa"].Width = 200;
-                band.Columns["TenKhoa"].Width = 400;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["MaKhoa"].MaxWidth = 150;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption

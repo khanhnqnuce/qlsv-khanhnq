@@ -103,6 +103,7 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
+                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
                     if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
                     if (_listAdd.Count > 0) InsertData.ThemLop(_listAdd);
@@ -204,12 +205,17 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["MaLop"].Width = 200;
-                band.Columns["IdKhoa"].Width = 400;
-                band.Columns["GhiChu"].Width = 300;
+                #region MyRegion
+                band.Columns["STT"].MinWidth = 50;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["MaLop"].MinWidth = 100;
+                band.Columns["MaLop"].MaxWidth = 120;
+                band.Columns["IdKhoa"].MinWidth = 250;
+                band.Columns["IdKhoa"].MaxWidth = 300;
+                #endregion
+                
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["IdKhoa"].Loadcbokhoa();
                 band.Columns["IdKhoa"].Style = ColumnStyle.DropDownList;

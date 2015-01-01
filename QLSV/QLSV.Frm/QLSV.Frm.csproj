@@ -192,9 +192,7 @@
     <Compile Include="FrmUserControl\Frm_QuanLyNguoiDung.Designer.cs">
       <DependentUpon>Frm_QuanLyNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.cs" />
     <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.Designer.cs">
       <DependentUpon>Frm_104_QuanLySinhVien.cs</DependentUpon>
     </Compile>

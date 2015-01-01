@@ -197,5 +197,20 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        /// <summary>
+        /// Xóa toàn bộ bảng tai khoản
+        /// </summary>
+        public static void XoaTaiKhoan()
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM TAIKHOAN WHERE Quyen <> N'quantri'");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
     }
 }

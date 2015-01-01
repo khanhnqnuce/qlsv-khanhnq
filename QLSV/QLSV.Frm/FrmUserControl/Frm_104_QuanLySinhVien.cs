@@ -62,7 +62,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
 
             }
@@ -83,7 +82,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -103,6 +101,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                if(IdDelete.Count<=0)return;
                 DeleteData.XoaSV(IdDelete);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -110,7 +109,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -124,7 +122,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -163,7 +160,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -178,7 +174,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -198,7 +193,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -221,7 +215,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -250,7 +243,7 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
                 
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
                 #region Caption
 
@@ -272,23 +265,33 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenKhoa"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["IdLop"].Hidden = true;
                 band.Columns["IdKhoa"].Hidden = true;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["HoSV"].Width = 170;
-                band.Columns["TenSV"].Width = 150;
-                band.Columns["NgaySinh"].Width = 150;
-                band.Columns["MaLop"].Width = 150;
-                band.Columns["TenKhoa"].Width = 350;
+                #region Size
+                band.Columns["STT"].MinWidth = 50;
+                band.Columns["STT"].MaxWidth = 50;
+                band.Columns["MaSV"].MinWidth = 100;
+                band.Columns["MaSV"].MaxWidth = 120;
+                band.Columns["HoSV"].MinWidth = 130;
+                band.Columns["HoSV"].MaxWidth = 150;
+                band.Columns["TenSV"].MinWidth = 90;
+                band.Columns["TenSV"].MaxWidth = 100;
+                band.Columns["NgaySinh"].MinWidth = 100;
+                band.Columns["NgaySinh"].MaxWidth = 100;
+                band.Columns["MaLop"].MinWidth = 100;
+                band.Columns["MaLop"].MaxWidth = 110;
+                band.Columns["TenKhoa"].MinWidth = 250;
+                band.Columns["TenKhoa"].MaxWidth = 270;
+                #endregion                
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -333,7 +336,6 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -402,7 +404,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -426,7 +427,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

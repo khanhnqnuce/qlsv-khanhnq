@@ -108,7 +108,7 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-
+                    if(_listUpdate.Count<=0&&IdDelete.Count<=0&&_listAdd.Count<=0)return;
                     if (_listUpdate.Count > 0) UpdateData.UpdatePhongThi(_listUpdate);
                     if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "PHONGTHI");
                     if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
@@ -217,12 +217,19 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["TenPhong"].Width = 150;
-                band.Columns["SucChua"].Width = 150;
-                band.Columns["GhiChu"].Width = 250;
+                #region MyRegion
+
+                band.Columns["STT"].MinWidth = 50;
+                band.Columns["STT"].MaxWidth = 60;
+                band.Columns["TenPhong"].MinWidth = 100;
+                band.Columns["TenPhong"].MaxWidth = 120;
+                band.Columns["SucChua"].MinWidth = 100;
+                band.Columns["SucChua"].MaxWidth = 120;
+
+                #endregion
+                
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["SucChua"].FormatNumberic();
 

@@ -161,5 +161,10 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["MaLop"].Width = 150;
             band.Columns["DiemThi"].Width = 150;
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
     }
 }

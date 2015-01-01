@@ -86,12 +86,13 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 494);
+            this.panel2.Size = new System.Drawing.Size(270, 355);
             this.panel2.TabIndex = 9;
             // 
             // uG_DanhSach
             // 
             this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -101,19 +102,19 @@
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(618, 494);
+            this.uG_DanhSach.Size = new System.Drawing.Size(270, 355);
             this.uG_DanhSach.TabIndex = 25;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
             // 
-            // FrmDanhmuclop
+            // Frm_102_Danhmuclop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Name = "FrmDanhmuclop";
-            this.Size = new System.Drawing.Size(618, 494);
+            this.Name = "Frm_102_Danhmuclop";
+            this.Size = new System.Drawing.Size(270, 355);
             this.Load += new System.EventHandler(this.FrmDanhmuclop_Load);
             this.menu_ug.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

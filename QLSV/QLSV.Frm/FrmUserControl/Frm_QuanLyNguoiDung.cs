@@ -161,6 +161,8 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
+                    if (_listAdd.Count <= 0 && _listUpdate.Count <= 0 && _listUpdatepass.Count <= 0 &&
+                        IdDelete.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateTaiKhoan(_listUpdate);
                     if (_listUpdatepass.Count > 0) UpdateData.UpdateMatKhau(_listUpdatepass);
                     if (IdDelete.Count > 0) DeleteData.XoaTaiKhoan(IdDelete);
@@ -181,7 +183,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteData.Xoa("TAIKHOAN");
+                DeleteData.XoaTaiKhoan();
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -207,7 +209,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                //band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption
@@ -219,11 +221,10 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
-                band.Columns["STT"].Width = 50;
-                band.Columns["MatKhau"].Width = 250;
-                band.Columns["HoTen"].Width = 250;
-                band.Columns["TaiKhoan"].Width = 250;
-                band.Columns["Quyen"].Width = 250;
+                band.Columns["STT"].MaxWidth = 70;
+                //band.Columns["MatKhau"].Width = 150;
+                //band.Columns["HoTen"].Width = 200;
+                //band.Columns["TaiKhoan"].Width = 150;
 
                 band.Columns["ID"].Hidden = true;
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
@@ -231,6 +232,13 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["Quyen"].EditorComponent = CboQuyen();
                 band.Columns["Quyen"].Style = ColumnStyle.DropDownList;
+            
+                dgv_DanhSach.DisplayLayout.UseFixedHeaders = true;
+                band.Override.FixedHeaderIndicator = FixedHeaderIndicator.None;
+                band.Columns["STT"].Header.Fixed = true;
+                band.Columns["TaiKhoan"].Header.Fixed = true;
+                band.Columns["MatKhau"].Header.Fixed = true; 
+
             }
             catch (Exception ex)
             {
