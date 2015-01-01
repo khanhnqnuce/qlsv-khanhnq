@@ -134,8 +134,6 @@
             this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
             this.TabInportsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_inportsinhvien = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.panel24 = new System.Windows.Forms.Panel();
             this.Tabquanlykythi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlykythi = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
@@ -186,8 +184,6 @@
             this.panel70 = new System.Windows.Forms.Panel();
             this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_gopketqua = new System.Windows.Forms.Panel();
-            this.panel75 = new System.Windows.Forms.Panel();
-            this.panel76 = new System.Windows.Forms.Panel();
             this.lbXoa = new System.Windows.Forms.Label();
             this.btnInds = new System.Windows.Forms.Button();
             this.btnNapDuLieu = new System.Windows.Forms.Button();
@@ -420,7 +416,7 @@
             // Tabquanlysinhvien
             // 
             this.Tabquanlysinhvien.Controls.Add(this.pn_quanlysinhvien);
-            this.Tabquanlysinhvien.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlysinhvien.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlysinhvien.Name = "Tabquanlysinhvien";
             this.Tabquanlysinhvien.Size = new System.Drawing.Size(829, 502);
             // 
@@ -435,8 +431,6 @@
             // TabInportsinhvien
             // 
             this.TabInportsinhvien.Controls.Add(this.pn_inportsinhvien);
-            this.TabInportsinhvien.Controls.Add(this.panel23);
-            this.TabInportsinhvien.Controls.Add(this.panel24);
             this.TabInportsinhvien.Location = new System.Drawing.Point(-10000, -10000);
             this.TabInportsinhvien.Name = "TabInportsinhvien";
             this.TabInportsinhvien.Size = new System.Drawing.Size(829, 502);
@@ -444,26 +438,10 @@
             // pn_inportsinhvien
             // 
             this.pn_inportsinhvien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pn_inportsinhvien.Location = new System.Drawing.Point(55, 0);
+            this.pn_inportsinhvien.Location = new System.Drawing.Point(0, 0);
             this.pn_inportsinhvien.Name = "pn_inportsinhvien";
-            this.pn_inportsinhvien.Size = new System.Drawing.Size(719, 502);
+            this.pn_inportsinhvien.Size = new System.Drawing.Size(829, 502);
             this.pn_inportsinhvien.TabIndex = 5;
-            // 
-            // panel23
-            // 
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel23.Location = new System.Drawing.Point(774, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(55, 502);
-            this.panel23.TabIndex = 4;
-            // 
-            // panel24
-            // 
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel24.Location = new System.Drawing.Point(0, 0);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(55, 502);
-            this.panel24.TabIndex = 3;
             // 
             // Tabquanlykythi
             // 
@@ -864,35 +842,17 @@
             // Tabgopketqua
             // 
             this.Tabgopketqua.Controls.Add(this.pnl_gopketqua);
-            this.Tabgopketqua.Controls.Add(this.panel75);
-            this.Tabgopketqua.Controls.Add(this.panel76);
-            this.Tabgopketqua.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabgopketqua.Location = new System.Drawing.Point(1, 1);
             this.Tabgopketqua.Name = "Tabgopketqua";
             this.Tabgopketqua.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_gopketqua
             // 
             this.pnl_gopketqua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_gopketqua.Location = new System.Drawing.Point(80, 0);
+            this.pnl_gopketqua.Location = new System.Drawing.Point(0, 0);
             this.pnl_gopketqua.Name = "pnl_gopketqua";
-            this.pnl_gopketqua.Size = new System.Drawing.Size(669, 502);
+            this.pnl_gopketqua.Size = new System.Drawing.Size(829, 502);
             this.pnl_gopketqua.TabIndex = 19;
-            // 
-            // panel75
-            // 
-            this.panel75.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel75.Location = new System.Drawing.Point(0, 0);
-            this.panel75.Name = "panel75";
-            this.panel75.Size = new System.Drawing.Size(80, 502);
-            this.panel75.TabIndex = 18;
-            // 
-            // panel76
-            // 
-            this.panel76.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel76.Location = new System.Drawing.Point(749, 0);
-            this.panel76.Name = "panel76";
-            this.panel76.Size = new System.Drawing.Size(80, 502);
-            this.panel76.TabIndex = 17;
             // 
             // lbXoa
             // 
@@ -2035,8 +1995,6 @@
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Panel pn_inportsinhvien;
-        private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Panel panel27;
@@ -2121,7 +2079,5 @@
         private System.Windows.Forms.Panel pn_quanlynguoidung;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabgopketqua;
         private System.Windows.Forms.Panel pnl_gopketqua;
-        private System.Windows.Forms.Panel panel75;
-        private System.Windows.Forms.Panel panel76;
     }
 }

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -17,7 +15,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmChonSv : Form
     {
-        private IList<XepPhong> _listXepPhong = new List<XepPhong>();
+        private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private readonly int _idkythi;
         private FrmLoadding _loading = new FrmLoadding();
         private readonly BackgroundWorker _bgwInsert;

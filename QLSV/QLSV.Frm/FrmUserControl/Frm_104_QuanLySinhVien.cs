@@ -219,17 +219,19 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void Timkiemtheokhoa()
+        {
+            dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtKhoa.Text);
+        }
+
         public void Rptdanhsach()
         {
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
-            using (var previewForm = new PreviewForm(rptdanhsachsinhvien))
-            {
-                previewForm.WindowState = FormWindowState.Maximized;
-                rptdanhsachsinhvien.Prepare();
-                previewForm.ShowDialog();
-            }
+            rptdanhsachsinhvien.Prepare();
+            var previewForm = new PreviewForm(rptdanhsachsinhvien) {WindowState = FormWindowState.Maximized};
+            previewForm.Show();
         }
         
         #endregion
@@ -285,8 +287,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["NgaySinh"].MaxWidth = 100;
                 band.Columns["MaLop"].MinWidth = 100;
                 band.Columns["MaLop"].MaxWidth = 110;
-                band.Columns["TenKhoa"].MinWidth = 250;
-                band.Columns["TenKhoa"].MaxWidth = 270;
+                band.Columns["TenKhoa"].MinWidth = 270;
+                band.Columns["TenKhoa"].MaxWidth = 290;
                 #endregion                
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
@@ -416,14 +418,45 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
+        private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        Timkiemtheokhoa();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void txtkhoa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtkhoa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true;
+        }
+
         private void FrmSinhVien_Load(object sender, EventArgs e)
         {
             try
             {
+                Huy();
                 cbokhoa.ValueMember = "ID";
                 cbokhoa.DisplayMember = "TenKhoa";
                 cbokhoa.DataSource = LoadData.Load(3);
-                Huy();
             }
             catch (Exception ex)
             {
@@ -455,6 +488,11 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
+        {
+            Timkiemtheokhoa();
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
             Timkiem();
         }

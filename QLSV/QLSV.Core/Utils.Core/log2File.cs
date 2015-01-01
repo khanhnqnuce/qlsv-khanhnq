@@ -30,10 +30,9 @@ namespace QLSV.Core.Utils.Core
 
         public static void LogExceptionToFile(Exception ex)
         {
-            //string LogPath = Environment.CurrentDirectory;
             var logPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
             var logDirectory = logPath + @"\EXCEPTION";
-            string filePath;
+            var filePath = "";
             if (!Directory.Exists(logDirectory))
             {
                 Directory.CreateDirectory(logDirectory);
@@ -48,54 +47,38 @@ namespace QLSV.Core.Utils.Core
                 }
                 else
                 {
-                    var fileList = new List<string>();
-                    foreach (var fPath in filePaths)
+                    var fPath = filePaths[filePaths.Length - 1];
+                    if (File.Exists(fPath))
                     {
-                        var file = new FileInfo(fPath);
-                        var parts = file.Name.Split('.');
-                        if (parts[0].ToUpper() == LogFileType.Exception.ToString())
-                        {
-                            fileList.Add(fPath);
-                        }
-                    }
-
-                    var lastestIndex = int.MinValue;
-                    var lastestFilePath = "";
-                    if (fileList.Count <= 0)
-                    {
-                        filePath = logDirectory + @"\EXCEPTION.0.log";
-                    }
-                    else
-                    {
-                        foreach (var fPath in fileList)
+                        var lastestFile = new FileInfo(fPath);
+                        // > 2 MB
+                        if (((lastestFile.Length / 1024f) / 1024f) > 2)
                         {
                             var file = new FileInfo(fPath);
-                            var parts = file.Name.Split('.'); //fPath.Split('.');
-                            if (Convert.ToInt32(parts[1]) < lastestIndex) continue;
-                            lastestIndex = Convert.ToInt32(parts[1]);
-                            lastestFilePath = fPath;
+                            var fileName = file.Name.Split('.');
+                            filePath = logDirectory + @"\EXCEPTION."+ (int.Parse(fileName[1])+1) +@".log";
                         }
-                        filePath = lastestFilePath;
-                    }
-
-                    if (File.Exists(filePath))
-                    {
-                        var lastestFile = new FileInfo(filePath);
-                        // check if file size be larger than 5MB then create new one
-                        if (((lastestFile.Length / 1024f) / 1024f) > 0.5)
+                        else
                         {
-                            lastestIndex++;
-                            filePath = logDirectory + @"\" + LogFileType.Exception + "." + lastestIndex + ".log";
+                            filePath = fPath;
                         }
                     }
                 }
             }
 
-            var logMessage = string.Concat(new object[] { ex.Message, Environment.NewLine, 
-                                                        ex.Source, Environment.NewLine, 
-                                                        ex.StackTrace, 
-                                                        ex.TargetSite, 
-                                                        ex.InnerException });
+            var a = Environment.NewLine;
+            var logMessage = string.Concat(new object[]
+            {
+                ex.Message,
+                Environment.NewLine,
+                ex.Source, 
+                Environment.NewLine,
+                ex.StackTrace,
+                Environment.NewLine,
+                ex.TargetSite,
+                Environment.NewLine,
+                ex.InnerException
+            });
             logMessage = DateTime.Now.ToString("HH:mm:ss") + " " + logMessage;
             var listener = new TextWriterTraceListener(filePath);
             listener.WriteLine(logMessage);

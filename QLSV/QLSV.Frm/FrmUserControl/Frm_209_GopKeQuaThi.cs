@@ -42,12 +42,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var frm = new FrmGopKetQua {Check = false};
                 frm.ShowDialog();
-                var tb = LoadData.GopKetQua(frm.LstIdKyThi[0],frm.LstIdKyThi[1]);
-                var tb1 = LoadData.GopKetQua1(frm.LstIdKyThi[0], frm.LstIdKyThi[1]);
-                var tb2 = LoadData.GopKetQua2(frm.LstIdKyThi[0], frm.LstIdKyThi[1]);
-                if (tb1.Rows.Count > 0) tb.Merge(tb1);
-                if (tb2.Rows.Count > 0) tb.Merge(tb2);
-                dgv_DanhSach.DataSource = tb;
+                dgv_DanhSach.DataSource = Statistic.GopKetQua(frm.LstIdKyThi);
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -122,6 +117,8 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
+                band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+
                 #region Caption
 
                 band.Columns["MaSV"].Header.Caption = @"Mã SV";
@@ -129,8 +126,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
                 band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
                 band.Columns["MaLop"].Header.Caption = @"Lớp";
-                band.Columns["Diem1"].Header.Caption = @"Điểm thi 1";
-                band.Columns["Diem2"].Header.Caption = @"Điểm thi 2";
                 band.Columns["TongDiem"].Header.Caption = @"Tổng điểm";
 
                 #endregion
@@ -140,27 +135,26 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenSV"].Width = 110;
                 band.Columns["NgaySinh"].Width = 110;
                 band.Columns["MaLop"].Width = 110;
-                band.Columns["Diem1"].Width = 110;
-                band.Columns["Diem2"].Width = 110;
                 band.Columns["TongDiem"].Width = 110;
 
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["Diem1"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["Diem2"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TongDiem"].CellAppearance.TextHAlign = HAlign.Center;
+                var j = band.Columns["MaLop"].Index;
+                var i = band.Columns["TongDiem"].Index;
+                var d = 1;
+                for (var k = j+1; k < i; k++)
+                {
+                    band.Columns[k].Header.Caption = @"Điểm môn "+(d++);
+                    band.Columns[k].Width = 110;
+                    band.Columns[k].CellAppearance.TextHAlign = HAlign.Center;
+                }
 
-                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
-                band.Columns["HoSV"].CellActivation = Activation.NoEdit;
-                band.Columns["TenSV"].CellActivation = Activation.NoEdit;
-                band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
-                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
-                band.Columns["Diem1"].CellActivation = Activation.NoEdit;
-                band.Columns["Diem2"].CellActivation = Activation.NoEdit;
-                band.Columns["TongDiem"].CellActivation = Activation.NoEdit;
-                band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                
+                foreach (var coloum in band.Columns)
+                {
+                    coloum.CellActivation = Activation.NoEdit;
+                }
             }
             catch (Exception ex)
             {

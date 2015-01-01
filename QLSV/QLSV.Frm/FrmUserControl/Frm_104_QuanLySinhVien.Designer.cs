@@ -43,8 +43,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.txtKhoa = new System.Windows.Forms.ToolStripTextBox();
             this.btntimkiem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.lbsiso = new System.Windows.Forms.ToolStripLabel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cbolop = new System.Windows.Forms.ComboBox();
@@ -129,7 +130,7 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(716, 286);
+            this.pnl_from.Size = new System.Drawing.Size(787, 286);
             this.pnl_from.TabIndex = 6;
             this.pnl_from.Visible = false;
             // 
@@ -139,7 +140,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(716, 260);
+            this.panel4.Size = new System.Drawing.Size(787, 260);
             this.panel4.TabIndex = 27;
             // 
             // dgv_DanhSach
@@ -154,7 +155,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(716, 260);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(787, 260);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -171,7 +172,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(716, 26);
+            this.panel3.Size = new System.Drawing.Size(787, 26);
             this.panel3.TabIndex = 26;
             // 
             // toolStrip3
@@ -179,12 +180,13 @@
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
+            this.toolStripLabel3,
+            this.txtKhoa,
             this.btntimkiem,
-            this.toolStripSeparator3,
             this.lbsiso});
             this.toolStrip3.Location = new System.Drawing.Point(531, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(185, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(256, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -192,6 +194,21 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel3.Text = "Chọn khóa: K";
+            // 
+            // txtKhoa
+            // 
+            this.txtKhoa.Name = "txtKhoa";
+            this.txtKhoa.Size = new System.Drawing.Size(50, 25);
+            this.txtKhoa.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtKhoa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyDown);
+            this.txtKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtkhoa_KeyPress);
+            this.txtKhoa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyUp);
             // 
             // btntimkiem
             // 
@@ -201,11 +218,6 @@
             this.btntimkiem.Size = new System.Drawing.Size(77, 22);
             this.btntimkiem.Text = "Tìm kiếm";
             this.btntimkiem.Click += new System.EventHandler(this.btntimkiem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // lbsiso
             // 
@@ -231,6 +243,7 @@
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(127, 23);
             this.cbolop.TabIndex = 0;
+            this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
             // 
             // panel5
             // 
@@ -344,7 +357,7 @@
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_104_QuanLySinhVien";
-            this.Size = new System.Drawing.Size(716, 286);
+            this.Size = new System.Drawing.Size(787, 286);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);
@@ -398,7 +411,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btntimkiem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel lbsiso;
+        private System.Windows.Forms.ToolStripTextBox txtKhoa;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }

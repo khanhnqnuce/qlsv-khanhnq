@@ -94,24 +94,16 @@ namespace QLSV.Frm.Frm
                 var sheet = excel.GetSheetAt(0);
                 var startRows = sheet.FirstRowNum + gb_iViTriHeader;
                 var endRows = sheet.LastRowNum;
-                var tb = Core.LINQ.LoadData.Load(2);
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
-                {
-                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row[0].ToString() == sheet.GetRow(i).GetCell(0).ToString()))
-                    {
-                        goto a;
-                    }
-                    _result.Rows.Add();
+                {_result.Rows.Add();
                     _result.Rows[i - startRows][1] = ++_iNumberStt;
                     for (var j = 0; j < _iNumberCol; j++)
                     {
                         _result.Rows[i - startRows][j + 2] = sheet.GetRow(i).GetCell(j).ToString();
                     }
-
-                a: ;
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -146,23 +138,17 @@ namespace QLSV.Frm.Frm
                 var oSheet = excelPkg.Workbook.Worksheets[1];
                 var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader + 1;
                 var endRows = oSheet.Dimension.End.Row;
-                var tb = Core.LINQ.LoadData.Load(2);
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row[0].ToString() == oSheet.Cells[i, 1].GetValue<string>()))
-                    {
-                        goto a;
-                    }
                     _result.Rows.Add();
                     _result.Rows[i - startRows][1] = ++_iNumberStt;
                     for (var j = 1; j <= _iNumberCol; j++)
                     {
                         _result.Rows[i - startRows][j + 1] = oSheet.Cells[i, j].GetValue<string>();
                     }
-                a: ;
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
