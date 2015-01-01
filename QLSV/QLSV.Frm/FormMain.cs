@@ -60,10 +60,6 @@ namespace QLSV.Frm
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -349,7 +345,6 @@ namespace QLSV.Frm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -628,7 +623,6 @@ namespace QLSV.Frm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -1132,7 +1126,6 @@ namespace QLSV.Frm
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
