@@ -13,12 +13,12 @@ namespace QLSV.Core.LINQ
         /// Gộp kết quả của các kỳ thi
         /// </summary>
         /// <returns></returns>
-        public static DataTable GopKetQua(IList<int> list )
+        private static string Getstr(IList<int> list )
         {
             var tb = new DataTable();
             try
             {
-                var str = new string[100];
+                var str = new string[list.Count];
                 var strselect = "select a0.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,";
 
                 for (var i = 0; i < list.Count; i++)
@@ -44,7 +44,54 @@ namespace QLSV.Core.LINQ
 
                 const string strjoin = " join SINHVIEN s on a0.MaSV = s.MaSV join LOP l on s.IdLop = l.ID order by s.TenSV";
                 var strend = strselect + " FROM " + strjointable + strjoin;
-                tb = Conn.GetTable(strend);
+                return strend;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        private static string Getstr1(IList<int> list)
+        {
+            var tb = new DataTable();
+            try
+            {
+                var str = new string[list.Count];
+                const string strselect = "select a0.MaSV";
+
+                for (var i = 0; i < list.Count; i++)
+                {
+                    str[i] = "(select MaSV, DiemThi from BAILAM where DiemThi is not null and IdKyThi = " + list[i] + " ) a" + i;
+                }
+
+                var strjointable = str[0];
+                for (var i = 1; i < list.Count; i++)
+                {
+                    strjointable = strjointable + " join " + str[i] + " on a" + (i - 1) + ".MaSV = a" + i + ".MaSV ";
+                }
+                
+                var strend = strselect + " FROM " + strjointable;
+                return strend;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gộp kết quả của các kỳ thi
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GopKetQua(IList<int> list)
+        {
+            var tb = new DataTable();
+            try
+            {
+                tb = Conn.GetTable(Getstr(list));
             }
             catch (Exception ex)
             {
@@ -53,50 +100,27 @@ namespace QLSV.Core.LINQ
             return tb;
         }
 
-        public static DataTable GopKetQua1(int id1, int id2)
+        public static DataTable GopKetQua1(IList<int> list )
         {
             var table = new DataTable();
             try
             {
-                var str =
-                    "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, bl.DiemThi as [Diem1], 0 as [Diem2], bl.DiemThi as[TongDiem]" +
-                    " from BAILAM bl" +
-                    " join SINHVIEN s on bl.MaSV = s.MaSV" +
-                    " join LOP l on s.IdLop = l.ID" +
-                    " where IdKyThi = " + id1 + " and DiemThi is not null and not exists(" +
-                    " select * from (" +
-                    " select a.MaSV from (" +
-                    " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
-                    " select MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id2 +
-                    " ) b on a.MaSV = b.MaSV) c" +
-                    " where bl.MaSV = c.MaSV)";
-                table = Conn.GetTable(str);
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-            return table;
-        }
+                var tb= new DataTable[list.Count];
+                var str = new string[list.Count];
 
-        public static DataTable GopKetQua2(int id1, int id2)
-        {
-            var table = new DataTable();
-            try
-            {
-                var str =
-                    "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, bl.DiemThi as [Diem1], 0 as [Diem2], bl.DiemThi as[TongDiem]" +
-                    " from BAILAM bl" +
-                    " join SINHVIEN s on bl.MaSV = s.MaSV" +
-                    " join LOP l on s.IdLop = l.ID" +
-                    " where IdKyThi = " + id2 + " and DiemThi is not null and not exists(" +
-                    " select * from (" +
-                    " select a.MaSV from (" +
-                    " select  MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id1 + ") a join (" +
-                    " select MaSV from BAILAM where DiemThi is not null and IdKyThi = " + id2 +
-                    " ) b on a.MaSV = b.MaSV) c" +
-                    " where bl.MaSV = c.MaSV)";
-                table = Conn.GetTable(str);
+                for (var i = 0; i < list.Count; i++)
+                {
+                    str[i] =
+                        "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, bl.DiemThi as [Diem"+(i+1)+"], bl.DiemThi as[TongDiem]" +
+                        " from BAILAM bl" +
+                        " join SINHVIEN s on bl.MaSV = s.MaSV" +
+                        " join LOP l on s.IdLop = l.ID" +
+                        " where IdKyThi = " + list[i] + " and DiemThi is not null and not exists( select c.MaSV From (" +
+                        Getstr1(list) + " ) c where bl.MaSV = c.MaSV)";
+                    tb[i] = Conn.GetTable(str[i]);
+                    table.Merge(tb[i]);
+                }
+                
             }
             catch (Exception ex)
             {

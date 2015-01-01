@@ -16,6 +16,7 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_209_GopKeQuaThi : FunctionControlHasGrid
     {
         private readonly IList<ThongKe> _listThongke = new List<ThongKe>();
+        private IList<int> _list; 
         public Frm_209_GopKeQuaThi()
         {
             InitializeComponent();
@@ -42,7 +43,11 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var frm = new FrmGopKetQua {Check = false};
                 frm.ShowDialog();
-                dgv_DanhSach.DataSource = Statistic.GopKetQua(frm.LstIdKyThi);
+                _list = frm.LstIdKyThi;
+                var tb1 = Statistic.GopKetQua(frm.LstIdKyThi);
+                var tb2 = Statistic.GopKetQua1(frm.LstIdKyThi);
+                tb1.Merge(tb2);
+                dgv_DanhSach.DataSource = tb1;
                 pnl_from.Visible = true;
             }
             catch (Exception ex)
@@ -139,14 +144,13 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TongDiem"].CellAppearance.TextHAlign = HAlign.Center;
-                var j = band.Columns["MaLop"].Index;
-                var i = band.Columns["TongDiem"].Index;
-                var d = 1;
-                for (var k = j+1; k < i; k++)
+                
+                for (var i = 0; i < _list.Count; i++)
                 {
-                    band.Columns[k].Header.Caption = @"Điểm môn "+(d++);
-                    band.Columns[k].Width = 110;
-                    band.Columns[k].CellAppearance.TextHAlign = HAlign.Center;
+                    var ten = "Diem" + (i + 1);
+                    band.Columns[ten].Header.Caption = @"Điểm môn "+(i+1);
+                    band.Columns[ten].Width = 110;
+                    band.Columns[ten].CellAppearance.TextHAlign = HAlign.Center;
                 }
 
                 foreach (var coloum in band.Columns)
