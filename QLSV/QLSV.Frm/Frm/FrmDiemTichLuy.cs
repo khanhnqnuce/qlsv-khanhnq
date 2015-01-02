@@ -3,14 +3,15 @@ using System.Windows.Forms;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmChonIndssv : Form
+    public partial class FrmDiemTichLuy : Form
     {
         public bool Update;
-        public FrmChonIndssv()
+        public FrmDiemTichLuy()
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnOk_Click(object sender, EventArgs e)
         {
             Update = true;
             Close();
