@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -19,10 +20,18 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_209_GopKeQuaThi : FunctionControlHasGrid
     {
         private readonly IList<ThongKe> _listThongke = new List<ThongKe>();
-        private IList<int> _list; 
+        private IList<int> _list;
+        private readonly BackgroundWorker _bgwInsert;
+        private bool _update;
+        private string _namhoc;
+        private string _hocky;
+
         public Frm_209_GopKeQuaThi()
         {
             InitializeComponent();
+            _bgwInsert = new BackgroundWorker();
+            _bgwInsert.DoWork += bgwInsert_DoWork;
+            _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
         protected override DataTable GetTable()
@@ -130,26 +139,38 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var frm = new FrmGopKQ();
-                frm.ShowDialog();
                 foreach (var row in dgv_DanhSach.Rows)
                 {
                     var hs = new ThongKe
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
                         Diem = int.Parse(row.Cells["TongDiem"].Text),
-                        NamHoc = frm.txtNamHoc.Text,
-                        HocKy = (string)frm.cbohocky.SelectedValue
+                        NamHoc = _namhoc,
+                        HocKy = _hocky
                     };
                     _listThongke.Add(hs);
                 }
-                InsertData.ThemThongKe(_listThongke);
-                MessageBox.Show(@"Thêm thành công");
+                if (_listThongke.Count > 0)
+                {
+                    InsertData.ThemThongKe(_listThongke);
+                    MessageBox.Show(@"Thêm thành công");
+                }
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        public void Ghi()
+        {
+            var frm = new FrmGopKQ { Update = false };
+            frm.ShowDialog();
+            if(!frm.Update) return;
+            _namhoc = frm.txtNamHoc.Text;
+            _hocky = frm.cbohocky.SelectedValue.ToString();
+            _bgwInsert.RunWorkerAsync();
+            OnShowDialog("Đang lưu dữ liệu");
         }
 
         public void InDanhSach()
@@ -171,7 +192,27 @@ namespace QLSV.Frm.FrmUserControl
             };
             previewForm.Show();
         }
-        
+
+        #region BackgroundWorker
+
+        private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
+
+        #endregion
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {

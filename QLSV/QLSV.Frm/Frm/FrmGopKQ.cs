@@ -6,6 +6,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmGopKQ : Form
     {
+        public bool Update;
         public FrmGopKQ()
         {
             InitializeComponent();
@@ -16,8 +17,10 @@ namespace QLSV.Frm.Frm
             var table = new DataTable();
             table.Columns.Add("ma", typeof (string));
             table.Columns.Add("ten", typeof (string));
+            table.Rows.Add("HK0", "Học kỳ 0");
             table.Rows.Add("HK1", "Học kỳ 1");
             table.Rows.Add("HK2", "Học kỳ 2");
+            table.Rows.Add("HK3", "Học kỳ 3");
             cbohocky.DisplayMember = "ten";
             cbohocky.ValueMember = "ma";
             cbohocky.DataSource = table;
@@ -28,14 +31,15 @@ namespace QLSV.Frm.Frm
             if (string.IsNullOrEmpty(txtNamHoc.Text))
             {
                 errorNH.SetError(txtNamHoc, "Nhập năm học");
-                return;
-            }
-            else if(string.IsNullOrEmpty(cbohocky.Text))
+            }else if(string.IsNullOrEmpty(cbohocky.Text))
             {
                 errorHK.SetError(cbohocky,"Chọn học kỳ");
             }
-
-            Close();
+            else
+            {
+                Update = true;
+                Close();
+            }
         }
     }
 }

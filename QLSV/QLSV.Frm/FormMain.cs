@@ -825,7 +825,7 @@ namespace QLSV.Frm
             }
             else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
             {
-                _frmGopKeQua.Save();
+                _frmGopKeQua.Ghi();
             }
         }
 
