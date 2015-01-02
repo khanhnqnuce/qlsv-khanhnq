@@ -293,43 +293,72 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
+                band.Groups.Clear();
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption
+                var columns = band.Columns;
+                band.ColHeadersVisible = false;
+                var group0 = band.Groups.Add("Mã SV");
+                columns["MaSV"].Group = group0;
+                var group1 = band.Groups.Add("Họ và tên");
+                columns["HoSV"].Group = group1;
+                columns["TenSV"].Group = group1;
+                var group2 = band.Groups.Add("Ngày sinh");
+                columns["NgaySinh"].Group = group2;
+                var group3 = band.Groups.Add("Lớp");
+                columns["MaLop"].Group = group3;
 
-                band.Columns["MaSV"].Header.Caption = @"Mã SV";
-                band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-                band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-                band.Columns["MaLop"].Header.Caption = @"Lớp";
-                band.Columns["TongDiem"].Header.Caption = @"Tổng điểm";
+                for (var i = 0; i < _list.Count; i++)
+                {
+                    var ten = "Diem" + (i + 1);
+                    var ten1 = "Điểm môn " + (i + 1);
+                    var group = band.Groups.Add(ten1);
+                    band.Columns[ten].Group = group;
+                    band.Columns[ten].MinWidth = 100;
+                    band.Columns[ten].MaxWidth = 110;
+                    band.Columns[ten].CellAppearance.TextHAlign = HAlign.Center;
+                }
+
+                var group4 = band.Groups.Add("Tổng điểm");
+                columns["TongDiem"].Group = group4;
 
                 #endregion
 
-                band.Columns["MaSV"].Width = 110;
-                band.Columns["HoSV"].Width = 150;
-                band.Columns["TenSV"].Width = 110;
-                band.Columns["NgaySinh"].Width = 110;
-                band.Columns["MaLop"].Width = 110;
-                band.Columns["TongDiem"].Width = 110;
+                #region Size
+
+                band.Columns["MaSV"].MinWidth = 100;
+                band.Columns["MaSV"].MaxWidth = 120;
+                band.Columns["HoSV"].MinWidth = 130;
+                band.Columns["HoSV"].MaxWidth = 150;
+                band.Columns["TenSV"].MinWidth = 90;
+                band.Columns["TenSV"].MaxWidth = 100;
+                band.Columns["NgaySinh"].MinWidth = 100;
+                band.Columns["NgaySinh"].MaxWidth = 100;
+                band.Columns["MaLop"].MinWidth = 100;
+                band.Columns["MaLop"].MaxWidth = 110;
+                band.Columns["TongDiem"].MinWidth = 100;
+                band.Columns["TongDiem"].MaxWidth = 120;
+
+                #endregion
 
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TongDiem"].CellAppearance.TextHAlign = HAlign.Center;
                 
-                for (var i = 0; i < _list.Count; i++)
-                {
-                    var ten = "Diem" + (i + 1);
-                    band.Columns[ten].Header.Caption = @"Điểm môn "+(i+1);
-                    band.Columns[ten].Width = 110;
-                    band.Columns[ten].CellAppearance.TextHAlign = HAlign.Center;
-                }
-
                 foreach (var coloum in band.Columns)
                 {
                     coloum.CellActivation = Activation.NoEdit;
                 }
+
+                dgv_DanhSach.DisplayLayout.UseFixedHeaders = true;
+                dgv_DanhSach.DisplayLayout.FixedHeaderOffImage = Properties.Resources.trang;
+                dgv_DanhSach.DisplayLayout.FixedHeaderOnImage = Properties.Resources.trang;
+                group0.Header.Fixed = true;
+                group1.Header.Fixed = true;
+                group2.Header.Fixed = true; group3.Header.Fixed = true;
             }
             catch (Exception ex)
             {

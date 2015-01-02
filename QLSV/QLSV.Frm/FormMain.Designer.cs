@@ -187,6 +187,8 @@
             this.panel70 = new System.Windows.Forms.Panel();
             this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_gopketqua = new System.Windows.Forms.Panel();
+            this.Tabdiemtichluy = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_diemtichluy = new System.Windows.Forms.Panel();
             this.lbXoa = new System.Windows.Forms.Label();
             this.btnInds = new System.Windows.Forms.Button();
             this.btnNapDuLieu = new System.Windows.Forms.Button();
@@ -258,8 +260,6 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Tabdiemtichluy = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_diemtichluy = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
@@ -279,6 +279,7 @@
             this.Tabchamdiemthi.SuspendLayout();
             this.Tabthongkediem.SuspendLayout();
             this.Tabgopketqua.SuspendLayout();
+            this.Tabdiemtichluy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -301,7 +302,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Tabdiemtichluy.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
@@ -817,16 +817,16 @@
             this.Tabthongkediem.Controls.Add(this.pnl_thongkediem);
             this.Tabthongkediem.Controls.Add(this.panel65);
             this.Tabthongkediem.Controls.Add(this.panel70);
-            this.Tabthongkediem.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabthongkediem.Location = new System.Drawing.Point(1, 1);
             this.Tabthongkediem.Name = "Tabthongkediem";
             this.Tabthongkediem.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_thongkediem
             // 
             this.pnl_thongkediem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_thongkediem.Location = new System.Drawing.Point(95, 0);
+            this.pnl_thongkediem.Location = new System.Drawing.Point(10, 0);
             this.pnl_thongkediem.Name = "pnl_thongkediem";
-            this.pnl_thongkediem.Size = new System.Drawing.Size(639, 502);
+            this.pnl_thongkediem.Size = new System.Drawing.Size(809, 502);
             this.pnl_thongkediem.TabIndex = 15;
             // 
             // panel65
@@ -834,15 +834,15 @@
             this.panel65.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel65.Location = new System.Drawing.Point(0, 0);
             this.panel65.Name = "panel65";
-            this.panel65.Size = new System.Drawing.Size(95, 502);
+            this.panel65.Size = new System.Drawing.Size(10, 502);
             this.panel65.TabIndex = 14;
             // 
             // panel70
             // 
             this.panel70.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel70.Location = new System.Drawing.Point(734, 0);
+            this.panel70.Location = new System.Drawing.Point(819, 0);
             this.panel70.Name = "panel70";
-            this.panel70.Size = new System.Drawing.Size(95, 502);
+            this.panel70.Size = new System.Drawing.Size(10, 502);
             this.panel70.TabIndex = 13;
             // 
             // Tabgopketqua
@@ -859,6 +859,21 @@
             this.pnl_gopketqua.Name = "pnl_gopketqua";
             this.pnl_gopketqua.Size = new System.Drawing.Size(829, 502);
             this.pnl_gopketqua.TabIndex = 19;
+            // 
+            // Tabdiemtichluy
+            // 
+            this.Tabdiemtichluy.Controls.Add(this.pnl_diemtichluy);
+            this.Tabdiemtichluy.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabdiemtichluy.Name = "Tabdiemtichluy";
+            this.Tabdiemtichluy.Size = new System.Drawing.Size(829, 502);
+            // 
+            // pnl_diemtichluy
+            // 
+            this.pnl_diemtichluy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_diemtichluy.Location = new System.Drawing.Point(0, 0);
+            this.pnl_diemtichluy.Name = "pnl_diemtichluy";
+            this.pnl_diemtichluy.Size = new System.Drawing.Size(829, 502);
+            this.pnl_diemtichluy.TabIndex = 20;
             // 
             // lbXoa
             // 
@@ -1892,21 +1907,6 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Tabdiemtichluy
-            // 
-            this.Tabdiemtichluy.Controls.Add(this.pnl_diemtichluy);
-            this.Tabdiemtichluy.Location = new System.Drawing.Point(1, 1);
-            this.Tabdiemtichluy.Name = "Tabdiemtichluy";
-            this.Tabdiemtichluy.Size = new System.Drawing.Size(829, 502);
-            // 
-            // pnl_diemtichluy
-            // 
-            this.pnl_diemtichluy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_diemtichluy.Location = new System.Drawing.Point(0, 0);
-            this.pnl_diemtichluy.Name = "pnl_diemtichluy";
-            this.pnl_diemtichluy.Size = new System.Drawing.Size(829, 502);
-            this.pnl_diemtichluy.TabIndex = 20;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1943,6 +1943,7 @@
             this.Tabchamdiemthi.ResumeLayout(false);
             this.Tabthongkediem.ResumeLayout(false);
             this.Tabgopketqua.ResumeLayout(false);
+            this.Tabdiemtichluy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1966,7 +1967,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Tabdiemtichluy.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

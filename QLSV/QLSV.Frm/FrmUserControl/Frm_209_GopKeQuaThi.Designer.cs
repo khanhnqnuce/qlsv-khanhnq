@@ -41,8 +41,8 @@
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptgopdiem = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
-            this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.rptthongketong = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.pnl_from.SuspendLayout();
             this.menu_ug.SuspendLayout();
@@ -50,6 +50,7 @@
             // 
             // dgv_DanhSach
             // 
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -127,18 +128,18 @@
             this.rptgopdiem.ReportName = "";
             this.rptgopdiem.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
+            // rptthongketong
+            // 
+            this.rptthongketong.FilePath = "";
+            this.rptthongketong.ReportName = "";
+            this.rptthongketong.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
             // excelExportFilter1
             // 
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
             this.excelExportFilter1.ExtraParameters = extraParameters2;
-            // 
-            // rptthongketong
-            // 
-            this.rptthongketong.FilePath = "";
-            this.rptthongketong.ReportName = "";
-            this.rptthongketong.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // Frm_209_GopKeQuaThi
             // 

@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_nhapdiem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.pnl_from = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
@@ -51,8 +47,8 @@
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptthongke = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.rptdiemthi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
-            this.menu_ug.SuspendLayout();
             this.pnl_from.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
@@ -62,34 +58,6 @@
             this.panel3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menu_ug
-            // 
-            this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_nhapdiem,
-            this.menuStrip_Luulai,
-            this.menuStrip_Huy});
-            this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(134, 70);
-            // 
-            // menuStrip_nhapdiem
-            // 
-            this.menuStrip_nhapdiem.Name = "menuStrip_nhapdiem";
-            this.menuStrip_nhapdiem.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_nhapdiem.Text = "Nhập điểm";
-            // 
-            // menuStrip_Luulai
-            // 
-            this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Luulai.Text = "Lưu lại";
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Huy.Text = "Hủy";
             // 
             // pnl_from
             // 
@@ -113,7 +81,7 @@
             // 
             // dgv_DanhSach
             // 
-            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -231,14 +199,15 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters3;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // reportManager1
             // 
             this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
             this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
-            this.rptthongke});
+            this.rptthongke,
+            this.rptdiemthi});
             // 
             // rptthongke
             // 
@@ -246,12 +215,18 @@
             this.rptthongke.ReportName = "";
             this.rptthongke.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
+            // rptdiemthi
+            // 
+            this.rptdiemthi.FilePath = "";
+            this.rptdiemthi.ReportName = "";
+            this.rptdiemthi.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
             // excelExportFilter1
             // 
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters4;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
             // Frm_208_ThongKeDiem
             // 
@@ -261,7 +236,6 @@
             this.Name = "Frm_208_ThongKeDiem";
             this.Size = new System.Drawing.Size(743, 526);
             this.Load += new System.EventHandler(this.Frm_208_ThongKeDiem_Load);
-            this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
@@ -280,10 +254,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_nhapdiem;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -301,6 +271,7 @@
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptthongke;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdiemthi;
 
     }
 }

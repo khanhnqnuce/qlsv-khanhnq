@@ -592,7 +592,7 @@ namespace QLSV.Frm
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = true;
-                    btnthemmoi.Visible = true;
+                    btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
                     btnLuu.Visible = true;
                     btnHuy.Visible = false;

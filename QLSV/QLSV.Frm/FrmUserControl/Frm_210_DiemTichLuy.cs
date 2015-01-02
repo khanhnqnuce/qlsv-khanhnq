@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -93,11 +92,12 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-                var columns = band.Columns;
-                columns["IdKhoa"].Hidden = true;
+                band.Groups.Clear();
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
                 #region Caption
+                var columns = band.Columns;
                 band.ColHeadersVisible = false;
                 var group0 = band.Groups.Add("Mã SV");
                 var group1 = band.Groups.Add("Họ và tên");
@@ -134,6 +134,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
+                    columns["IdKhoa"].Hidden = true;
                  columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                  columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                  columns["Diem"].CellAppearance.TextHAlign = HAlign.Center;

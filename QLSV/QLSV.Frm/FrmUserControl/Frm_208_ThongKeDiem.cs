@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -8,6 +9,7 @@ using PerpetuumSoft.Reporting.View;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -57,25 +59,79 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            RptLop();
+            var frm = new FrmCheckInDiem
+            {
+                Update = false
+            };
+            frm.ShowDialog();
+            if(frm.rdodanhsach.Checked && frm.Update)
+                Rptdanhsach();
+            else if(frm.rdoThongke.Checked && frm.Update)
+                Rptthongke();
         }
 
-        private void RptLop()
+        private void Rptdanhsach()
+        {
+            var tblop = LoadData.Load(4, _idkythi);
+            var tb = LoadData.Load(10, _idkythi);
+            foreach (DataRow rowl in tblop.Rows)
+            {
+                var stt = 1;
+                var malop = rowl["MaLop"].ToString();
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString().Equals(malop)))
+                {
+                    row["STT"] = stt++;
+                }
+            }
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach", tb);
+            rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
+            rptdiemthi.GetReportParameter += GetParameter;
+            rptdiemthi.Prepare();
+            var previewForm = new PreviewForm(rptdiemthi)
+            {
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
+
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idkythi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
+                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+
+        private void Rptthongke()
         {
 
             reportManager1.DataSources.Clear();
             rptthongke.FilePath = Application.StartupPath + @"\Reports\thongke.rst";
-            rptthongke.GetReportParameter += GetParameter;
+            rptthongke.GetReportParameter += GetParameter1;
             rptthongke.Prepare();
             var previewForm = new PreviewForm(rptthongke)
             {
-                WindowState = FormWindowState.Maximized
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
             };
-            previewForm.ShowInTaskbar = false;
             previewForm.Show();
         }
 
-        private void GetParameter(object sender,
+        private void GetParameter1(object sender,
            PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
         {
             try
@@ -125,18 +181,26 @@ namespace QLSV.Frm.FrmUserControl
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             var band = e.Layout.Bands[0];
-
+            band.Groups.Clear();
             band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-            band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+            band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
             #region Caption
-
-            band.Columns["MaSV"].Header.Caption = FormResource.txtMasinhvien;
-            band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-            band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-            band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-            band.Columns["DiemThi"].Header.Caption = @"Điểm thi";
-            band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;
+            var columns = band.Columns;
+            band.ColHeadersVisible = false;
+            var group0 = band.Groups.Add("STT");
+            var group1 = band.Groups.Add("Mã SV");
+            var group2 = band.Groups.Add("Họ và tên");
+            var group3 = band.Groups.Add("Ngày sinh");
+            var group4 = band.Groups.Add("Lớp");
+            var group5 = band.Groups.Add("Điểm thi");
+            columns["STT"].Group = group0;
+            columns["MaSV"].Group = group1;
+            columns["HoSV"].Group = group2;
+            columns["TenSV"].Group = group2;
+            columns["NgaySinh"].Group = group3;
+            columns["MaLop"].Group = group4;
+            columns["DiemThi"].Group = group5;
 
             #endregion
 
@@ -149,17 +213,40 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["DiemThi"].CellActivation = Activation.NoEdit;
 
             band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+            band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+            band.Columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["DiemThi"].CellAppearance.TextHAlign = HAlign.Center;
 
             band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-            band.Columns["STT"].Width = 50;
-            band.Columns["HoSV"].Width = 170;
-            band.Columns["TenSV"].Width = 150;
-            band.Columns["NgaySinh"].Width = 150;
-            band.Columns["MaLop"].Width = 150;
-            band.Columns["DiemThi"].Width = 150;
+            #region Size
+
+            band.Columns["STT"].MinWidth = 60;
+            band.Columns["STT"].MaxWidth = 80;
+            band.Columns["MaSV"].MinWidth = 100;
+            band.Columns["MaSV"].MaxWidth = 120;
+            band.Columns["HoSV"].MinWidth = 130;
+            band.Columns["HoSV"].MaxWidth = 150;
+            band.Columns["TenSV"].MinWidth = 90;
+            band.Columns["TenSV"].MaxWidth = 100;
+            band.Columns["NgaySinh"].MinWidth = 100;
+            band.Columns["NgaySinh"].MaxWidth = 100;
+            band.Columns["MaLop"].MinWidth = 100;
+            band.Columns["MaLop"].MaxWidth = 110;
+            band.Columns["DiemThi"].MinWidth = 100;
+            band.Columns["DiemThi"].MaxWidth = 120;
+
+            #endregion
+
+            dgv_DanhSach.DisplayLayout.UseFixedHeaders = true;
+            dgv_DanhSach.DisplayLayout.FixedHeaderOffImage = Properties.Resources.trang;
+            dgv_DanhSach.DisplayLayout.FixedHeaderOnImage = Properties.Resources.trang;
+            group0.Header.Fixed = true;
+            group1.Header.Fixed = true;
+            group2.Header.Fixed = true; 
+            group3.Header.Fixed = true;
+            group4.Header.Fixed = true;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
