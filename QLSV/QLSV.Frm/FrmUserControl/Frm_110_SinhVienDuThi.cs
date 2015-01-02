@@ -226,13 +226,13 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            var frm = new FrmChonindssv();
+            var frm = new FrmChonIndssv() {Update = false};
             frm.ShowDialog();
-            if (frm.rdoPhongthi.Checked)
+            if (frm.rdoPhongthi.Checked && frm.Update)
                 RptPhongthi();
-            else if (frm.rdokhoa.Checked)
+            else if (frm.rdokhoa.Checked && frm.Update)
                 RptKhoa();
-            else if (frm.rdoLop.Checked)
+            else if (frm.rdoLop.Checked && frm.Update)
                 RptLop();
         }
 

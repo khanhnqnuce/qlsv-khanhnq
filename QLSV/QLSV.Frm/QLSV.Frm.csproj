@@ -240,11 +240,11 @@
     <Compile Include="Frm\FrmCauHinh.Designer.cs">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmChonindssv.cs">
+    <Compile Include="Frm\FrmChonIndssv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm\FrmChonindssv.Designer.cs">
-      <DependentUpon>FrmChonindssv.cs</DependentUpon>
+    <Compile Include="Frm\FrmChonIndssv.Designer.cs">
+      <DependentUpon>FrmChonIndssv.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_105_InportSinhVien.cs">
       <SubType>UserControl</SubType>
@@ -263,6 +263,12 @@
     </Compile>
     <Compile Include="Frm\FrmChonSv.Designer.cs">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmDiemTichLuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmDiemTichLuy.Designer.cs">
+      <DependentUpon>FrmDiemTichLuy.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmDoiMatKhau.cs">
       <SubType>Form</SubType>
@@ -473,14 +479,17 @@
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmChonindssv.resx">
-      <DependentUpon>FrmChonindssv.cs</DependentUpon>
+    <EmbeddedResource Include="Frm\FrmChonIndssv.resx">
+      <DependentUpon>FrmChonIndssv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmCheckXepPhong.resx">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonSv.resx">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmDiemTichLuy.resx">
+      <DependentUpon>FrmDiemTichLuy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDoiMatKhau.resx">
       <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
@@ -588,6 +597,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\dsdiemkhoa.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\dsdiemlop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

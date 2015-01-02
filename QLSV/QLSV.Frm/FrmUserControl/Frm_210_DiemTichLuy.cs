@@ -7,6 +7,7 @@ using PerpetuumSoft.Reporting.View;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -19,19 +20,50 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            Rptdanhsach();
+            var frm = new FrmDiemTichLuy()
+            {
+                Update = false
+            };
+            frm.ShowDialog();
+            if (frm.rdokhoa.Checked&& frm.Update)
+            {
+                RptKhoa();
+            }
+            else if (frm.rdoLop.Checked && frm.Update)
+            {
+                RptLop();
+            }
         }
 
-        private void Rptdanhsach()
+        private void RptKhoa()
         {
             try
             {
-                var tb = (DataTable) dgv_DanhSach.DataSource;
                 reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach", tb);
+                reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
                 rptdsdiemtheokhoa.FilePath = Application.StartupPath + @"\Reports\dsdiemkhoa.rst";
                 rptdsdiemtheokhoa.Prepare();
                 var previewForm = new PreviewForm(rptdsdiemtheokhoa)
+                {
+                    WindowState = FormWindowState.Maximized,
+                    ShowInTaskbar = false
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        private void RptLop()
+        {
+            try
+            {
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+                rptdsdiemtheolop.FilePath = Application.StartupPath + @"\Reports\dsdiemlop.rst";
+                rptdsdiemtheolop.Prepare();
+                var previewForm = new PreviewForm(rptdsdiemtheolop)
                 {
                     WindowState = FormWindowState.Maximized,
                     ShowInTaskbar = false
