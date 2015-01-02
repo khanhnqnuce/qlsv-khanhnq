@@ -69,11 +69,13 @@
             // rdokhoa
             // 
             this.rdokhoa.AutoSize = true;
+            this.rdokhoa.Checked = true;
             this.rdokhoa.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.rdokhoa.Location = new System.Drawing.Point(48, 15);
             this.rdokhoa.Name = "rdokhoa";
             this.rdokhoa.Size = new System.Drawing.Size(92, 21);
             this.rdokhoa.TabIndex = 18;
+            this.rdokhoa.TabStop = true;
             this.rdokhoa.Text = "Theo Khoa";
             this.rdokhoa.UseVisualStyleBackColor = true;
             // 
