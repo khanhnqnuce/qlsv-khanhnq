@@ -59,6 +59,7 @@
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -81,26 +82,26 @@
             this.menuStrip_Luulai,
             this.menuStrip_Huy});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 92);
+            this.menu_ug.Size = new System.Drawing.Size(134, 70);
             // 
             // menuStrip_Sua
             // 
             this.menuStrip_Sua.Name = "menuStrip_Sua";
-            this.menuStrip_Sua.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Sua.Size = new System.Drawing.Size(133, 22);
             this.menuStrip_Sua.Text = "Nhập điểm";
             this.menuStrip_Sua.Click += new System.EventHandler(this.menuStrip_Sua_Click);
             // 
             // menuStrip_Luulai
             // 
             this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Luulai.Size = new System.Drawing.Size(133, 22);
             this.menuStrip_Luulai.Text = "Lưu lại";
             this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
             // 
             // menuStrip_Huy
             // 
             this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Huy.Size = new System.Drawing.Size(133, 22);
             this.menuStrip_Huy.Text = "Hủy";
             this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 

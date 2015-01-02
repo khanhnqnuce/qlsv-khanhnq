@@ -189,12 +189,16 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["STT"].Width = 50;
-                band.Columns["MaSV"].Width = 150;
-                band.Columns["MaDe"].Width = 150;
-                band.Columns["KetQua"].Width = 650;
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["MaSV"].MinWidth = 140;
+                band.Columns["MaSV"].MaxWidth = 150;
+                band.Columns["MaDe"].MinWidth = 140;
+                band.Columns["MaDe"].MaxWidth = 150;
+                band.Columns["KetQua"].MinWidth = 640;
+                band.Columns["KetQua"].MaxWidth = 650;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption

@@ -171,8 +171,6 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.TabDanhsachbailam = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_danhsachbailam = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.TabNhapthangdiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_nhapthangdiem = new System.Windows.Forms.Panel();
             this.panel66 = new System.Windows.Forms.Panel();
@@ -714,42 +712,24 @@
             // TabDanhsachbailam
             // 
             this.TabDanhsachbailam.Controls.Add(this.pnl_danhsachbailam);
-            this.TabDanhsachbailam.Controls.Add(this.panel11);
-            this.TabDanhsachbailam.Controls.Add(this.panel12);
-            this.TabDanhsachbailam.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabDanhsachbailam.Location = new System.Drawing.Point(1, 1);
             this.TabDanhsachbailam.Name = "TabDanhsachbailam";
             this.TabDanhsachbailam.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_danhsachbailam
             // 
             this.pnl_danhsachbailam.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_danhsachbailam.Location = new System.Drawing.Point(170, 0);
+            this.pnl_danhsachbailam.Location = new System.Drawing.Point(0, 0);
             this.pnl_danhsachbailam.Name = "pnl_danhsachbailam";
-            this.pnl_danhsachbailam.Size = new System.Drawing.Size(489, 502);
+            this.pnl_danhsachbailam.Size = new System.Drawing.Size(829, 502);
             this.pnl_danhsachbailam.TabIndex = 8;
-            // 
-            // panel11
-            // 
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(170, 502);
-            this.panel11.TabIndex = 7;
-            // 
-            // panel12
-            // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(659, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(170, 502);
-            this.panel12.TabIndex = 7;
             // 
             // TabNhapthangdiem
             // 
             this.TabNhapthangdiem.Controls.Add(this.pnl_nhapthangdiem);
             this.TabNhapthangdiem.Controls.Add(this.panel66);
             this.TabNhapthangdiem.Controls.Add(this.panel67);
-            this.TabNhapthangdiem.Location = new System.Drawing.Point(1, 1);
+            this.TabNhapthangdiem.Location = new System.Drawing.Point(-10000, -10000);
             this.TabNhapthangdiem.Name = "TabNhapthangdiem";
             this.TabNhapthangdiem.Size = new System.Drawing.Size(829, 502);
             // 
@@ -1991,8 +1971,6 @@
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabDapanmade;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabDanhsachbailam;
         private System.Windows.Forms.Panel pnl_danhsachbailam;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel pnl_Inportbailam;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel13;
