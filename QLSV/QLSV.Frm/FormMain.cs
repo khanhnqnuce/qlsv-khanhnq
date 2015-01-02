@@ -17,6 +17,7 @@ namespace QLSV.Frm
 {
     public partial class FormMain : Form
     {
+        #region create
         private static FrmDangNhap _frmDangNhap;
         private static Frm_QuanLyNguoiDung _frmQuanLyNguoiDung;
         private static Frm_101_Danhmuckhoa _frmDanhmuckhoa;
@@ -37,6 +38,9 @@ namespace QLSV.Frm
         private static Frm_207_ChamDiemThi _frmChamDiemThi;
         private static Frm_208_ThongKeDiem _frmThongKeDiem;
         private static Frm_209_GopKeQuaThi _frmGopKeQua;
+        private static Frm_210_DiemTichLuy _frmDiemTichLuy;
+        #endregion
+        
         private bool _dangnhap;
         private int _idkythi ;
         private string _taikhoan;
@@ -80,6 +84,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.True;
                     cboChonkythi.Enabled = true;
                     break;
                 case "nguoidung":
@@ -94,6 +99,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.True;
                     Tabquanlynguoidung.Tab.Visible = false;
                     cboChonkythi.Enabled = true;
                     break;
@@ -122,6 +128,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["207"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.False;
                     Tabquanlynguoidung.Tab.Visible = false;
                     Tabdanhmuckhoa.Tab.Visible = false;
                     Tabdanhmuclop.Tab.Visible = false;
@@ -141,8 +148,8 @@ namespace QLSV.Frm
                     TabChonPhongThi.Tab.Visible = false;
                     Tabchonsinhvien.Tab.Visible = false;
                     Tabgopketqua.Tab.Visible = false;
+                    Tabdiemtichluy.Tab.Visible = false;
                     cboChonkythi.Enabled = false;
-                    //cboChonkythi.Value = null;
                     break;
             }
 
@@ -333,13 +340,20 @@ namespace QLSV.Frm
                         TabPageControl.SelectedTab = Tabgopketqua.Tab;
                         ShowControl(_frmGopKeQua, pnl_gopketqua);
                         break;
+                    case "210":
+                        _frmDiemTichLuy = new Frm_210_DiemTichLuy();
+                        _frmDiemTichLuy.ShowDialog += ShowLoading;
+                        _frmDiemTichLuy.CloseDialog += KillLoading;
+                        _frmDiemTichLuy.UpdateDialog += UpdateLoading;
+                        Tabdiemtichluy.Tab.Visible = true;
+                        TabPageControl.SelectedTab = Tabdiemtichluy.Tab;
+                        ShowControl(_frmDiemTichLuy, pnl_diemtichluy);
+                        break;
                     case "gioithieu":
-                        //TabPageControl.Visible = false;
                         var frmGt = new FrmGioiThieu();
                         frmGt.ShowDialog();
                         break;
                     case "huongdan":
-                        //TabPageControl.Visible = false;
                         break;
                 }
             }
@@ -584,6 +598,18 @@ namespace QLSV.Frm
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }
+                else if (Tabdiemtichluy.Tab.Visible && Tabdiemtichluy.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }
                 if (!bCheck)
                 {
                     TabPageControl.Visible = false;
@@ -705,6 +731,10 @@ namespace QLSV.Frm
             else if (Tabgopketqua.Tab.Active)
             {
                 Tabgopketqua.Tab.Visible = false;
+            }
+            else if (Tabdiemtichluy.Tab.Active)
+            {
+                Tabdiemtichluy.Tab.Visible = false;
             }
         }
 
@@ -998,6 +1028,10 @@ namespace QLSV.Frm
             else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
             {
                 _frmGopKeQua.InDanhSach();
+            }
+            else if (Tabdiemtichluy.Tab.Visible && Tabdiemtichluy.Tab.Active)
+            {
+                _frmDiemTichLuy.InDanhSach();
             }
         }
 

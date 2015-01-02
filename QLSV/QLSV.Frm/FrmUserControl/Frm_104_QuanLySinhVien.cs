@@ -230,7 +230,11 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
             rptdanhsachsinhvien.Prepare();
-            var previewForm = new PreviewForm(rptdanhsachsinhvien) {WindowState = FormWindowState.Maximized};
+            var previewForm = new PreviewForm(rptdanhsachsinhvien)
+            {
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
             previewForm.Show();
         }
         

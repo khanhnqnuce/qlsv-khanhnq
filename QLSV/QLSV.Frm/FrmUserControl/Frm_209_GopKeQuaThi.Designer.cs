@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.fileReportSlot2 = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -58,7 +58,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(717, 483);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(386, 367);
             this.dgv_DanhSach.TabIndex = 33;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
@@ -81,7 +81,7 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(5);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(717, 483);
+            this.pnl_from.Size = new System.Drawing.Size(386, 367);
             this.pnl_from.TabIndex = 33;
             this.pnl_from.Visible = false;
             // 
@@ -110,7 +110,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.ExtraParameters = extraParameters5;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // reportManager1
@@ -130,7 +130,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            this.excelExportFilter1.ExtraParameters = extraParameters6;
             // 
             // Frm_209_GopKeQuaThi
             // 
@@ -138,7 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_from);
             this.Name = "Frm_209_GopKeQuaThi";
-            this.Size = new System.Drawing.Size(717, 483);
+            this.Size = new System.Drawing.Size(386, 367);
             this.Load += new System.EventHandler(this.Frm_209_GopKeQuaThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.pnl_from.ResumeLayout(false);

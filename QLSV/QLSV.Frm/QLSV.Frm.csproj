@@ -186,6 +186,12 @@
     <Compile Include="FrmUserControl\Frm_206_NhapThangDiem.Designer.cs">
       <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\Frm_210_DiemTichLuy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\Frm_210_DiemTichLuy.Designer.cs">
+      <DependentUpon>Frm_210_DiemTichLuy.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserControl\Frm_QuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -400,11 +406,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ultis.Frm\ValidateHighlight.cs" />
-    <None Include="Resources\buttom-icon.png" />
-    <None Include="Resources\Sign-Refresh-icon.png" />
-    <None Include="Resources\database-save-icon.png" />
-    <None Include="Resources\Extras-Close-icon.png" />
-    <None Include="Resources\add-icon.png" />
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_206_NhapThangDiem.resx">
       <DependentUpon>Frm_206_NhapThangDiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\Frm_210_DiemTichLuy.resx">
+      <DependentUpon>Frm_210_DiemTichLuy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_QuanLyNguoiDung.resx">
       <DependentUpon>Frm_QuanLyNguoiDung.cs</DependentUpon>
@@ -581,6 +585,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\gopdiem.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\dsdiemkhoa.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

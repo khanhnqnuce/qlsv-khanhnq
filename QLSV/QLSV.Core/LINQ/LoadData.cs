@@ -32,6 +32,8 @@ namespace QLSV.Core.LINQ
         /// 17: Sinh viên
         /// 18: kỳ thi
         /// 19: phòng thi
+        /// 20: lấy ra kỳ thi
+        /// 21: lấy ra điểm thi cao nhất
         public static DataTable Load(int chon)
         {
             var table = new DataTable();
@@ -82,6 +84,13 @@ namespace QLSV.Core.LINQ
                         break;
                     case 20:
                         str = "SELECT ID, TenKT, 'false' as [Chon] FROM KYTHI order by ID desc";
+                        break;
+                    case 21:
+                        str = "select d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID order by s.TenSV";
                         break;
                 }
                 table = Conn.GetTable(str);
