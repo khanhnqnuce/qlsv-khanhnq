@@ -322,7 +322,7 @@ namespace QLSV.Core.LINQ
                               "s.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,b.DiemThi " +
                               "FROM BAILAM b join SINHVIEN s  on b.MaSV = s.MaSV " +
                               "join LOP l on s.IdLop = l.ID " +
-                              "and b.DiemThi > 450 and b.IdKyThi = " + idkythi + "";
+                              "and b.DiemThi >= 450 and b.IdKyThi = " + idkythi + "";
                         break;
                 }
                 return Conn.GetTable(str);

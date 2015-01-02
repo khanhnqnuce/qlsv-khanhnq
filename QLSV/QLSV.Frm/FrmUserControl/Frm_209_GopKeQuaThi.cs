@@ -7,7 +7,6 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using NPOI.SS.Formula.Functions;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -21,8 +20,8 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly IList<ThongKe> _listThongke = new List<ThongKe>();
         private IList<int> _list;
+        IList<Sinhvien> _listtk = new List<Sinhvien>(); 
         private readonly BackgroundWorker _bgwInsert;
-        private bool _update;
         private string _namhoc;
         private string _hocky;
 
@@ -54,11 +53,11 @@ namespace QLSV.Frm.FrmUserControl
                 var tb2 = Statistic.GopKetQua1(_list);
                 if (tb2.Rows.Count > 0 && _list.Count > 1)
                 {
-                    IList<Sinhvien> list2 = new List<Sinhvien>();
+                    IList<Sinhvien> listthongke = new List<Sinhvien>();
                     foreach (DataRow row in tb2.Rows)
                     {
                         var a = int.Parse(row["MaSV"].ToString());
-                        foreach (var sv in list2.Where(sv => sv.MaSV == a))
+                        foreach (var sv in listthongke.Where(sv => sv.MaSV == a))
                         {
                             for (var i = 0; i < _list.Count; i++)
                             {
@@ -86,12 +85,11 @@ namespace QLSV.Frm.FrmUserControl
                             else
                                 sv1.Diemthi[i] = 0;
                         }
-                        list2.Add(sv1);
-                        b:
-                        ;
+                        listthongke.Add(sv1);
+                        b:;
                     }
 
-                    foreach (var item in list2)
+                    foreach (var item in listthongke)
                     {
                         tb1.Rows.Add(item.MaSV, item.HoSV, item.TenSV, item.NgaySinh, item.MaLop);
                         for (var i = 0; i < _list.Count; i++)
@@ -101,6 +99,7 @@ namespace QLSV.Frm.FrmUserControl
                         }
                         tb1.Rows[tb1.Rows.Count - 1]["TongDiem"] = item.Tinhtong();
                     }
+                    Invoke((Action)(() => _listtk = listthongke));
                 }
                 Invoke((Action)(()=>dgv_DanhSach.DataSource = tb1));
                 Invoke((Action)(() => pnl_from.Visible = true));
@@ -175,10 +174,22 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            RptLop();
+            var frm = new FrmCheckInDiem
+            {
+                Update = false
+            };
+            frm.ShowDialog();
+            if (frm.rdodanhsach.Checked && frm.Update)
+            {
+                RptDanhSach();
+            }
+            else if(frm.rdoThongke.Checked && frm.Update)
+            {
+                RptThongke();
+            }
         }
 
-        private void RptLop()
+        private void RptDanhSach()
         {
 
             reportManager1.DataSources.Clear();
@@ -191,6 +202,69 @@ namespace QLSV.Frm.FrmUserControl
                 ShowInTaskbar = false
             };
             previewForm.Show();
+        }
+
+        private void RptThongke()
+        {
+
+            reportManager1.DataSources.Clear();
+            rptthongketong.FilePath = Application.StartupPath + @"\Reports\thongketong.rst";
+            rptthongketong.GetReportParameter += GetParameter;
+            rptthongketong.Prepare();
+            var previewForm = new PreviewForm(rptthongketong)
+            {
+                WindowState = FormWindowState.Maximized
+            };
+            previewForm.ShowInTaskbar = false;
+            previewForm.Show();
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                double bosung = Statistic.Thongkediem(0, _list).Rows.Count;
+                double toiec1 = Statistic.Thongkediem(1, _list).Rows.Count;
+                double toiec2 = Statistic.Thongkediem(2, _list).Rows.Count;
+                double toiec3 = Statistic.Thongkediem(3, _list).Rows.Count;
+                double toiec4 = Statistic.Thongkediem(4, _list).Rows.Count;
+                double miengiam = Statistic.Thongkediem(5, _list).Rows.Count;
+                foreach (var item in _listtk)
+                {
+                    if (item.TongDiem < 200) 
+                        bosung = bosung + 1;
+                    else if (item.TongDiem < 249)
+                        toiec1 += 1;
+                    else if (item.TongDiem < 300)
+                        toiec2 += 1;
+                    else if (item.TongDiem < 374)
+                        toiec3 += 1;
+                    else if (item.TongDiem < 450)
+                        toiec4 += 1;
+                    else
+                        miengiam += 1;
+                }
+                var tong = bosung + toiec1 + toiec2 + toiec3 + toiec4 + miengiam;
+
+                e.Parameters["bosung"].Value = bosung.ToString();
+                e.Parameters["toiec1"].Value = toiec1.ToString();
+                e.Parameters["toiec2"].Value = toiec2.ToString();
+                e.Parameters["toiec3"].Value = toiec3.ToString();
+                e.Parameters["toiec4"].Value = toiec4.ToString();
+                e.Parameters["miengiam"].Value = miengiam.ToString();
+                e.Parameters["TLbosung"].Value = Math.Round(bosung / tong * 100, 1).ToString();
+                e.Parameters["TLtoiec1"].Value = Math.Round(toiec1 / tong * 100, 1).ToString();
+                e.Parameters["TLtoiec2"].Value = Math.Round(toiec2 / tong * 100, 1).ToString();
+                e.Parameters["TLtoiec3"].Value = Math.Round(toiec3 / tong * 100, 1).ToString();
+                e.Parameters["TLtoiec4"].Value = Math.Round(toiec4 / tong * 100, 1).ToString();
+                e.Parameters["TLmiengiam"].Value = Math.Round(miengiam / tong * 100, 1).ToString();
+                e.Parameters["tong"].Value = tong.ToString();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         #region BackgroundWorker

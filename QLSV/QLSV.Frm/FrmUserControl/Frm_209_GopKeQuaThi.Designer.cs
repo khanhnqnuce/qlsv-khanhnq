@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.fileReportSlot2 = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -42,6 +42,7 @@
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptgopdiem = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
+            this.rptthongketong = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.pnl_from.SuspendLayout();
             this.menu_ug.SuspendLayout();
@@ -110,14 +111,15 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters5;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // reportManager1
             // 
             this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
             this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
-            this.rptgopdiem});
+            this.rptgopdiem,
+            this.rptthongketong});
             // 
             // rptgopdiem
             // 
@@ -130,7 +132,13 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters6;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            // 
+            // rptthongketong
+            // 
+            this.rptthongketong.FilePath = "";
+            this.rptthongketong.ReportName = "";
+            this.rptthongketong.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // Frm_209_GopKeQuaThi
             // 
@@ -160,5 +168,6 @@
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptgopdiem;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptthongketong;
     }
 }
