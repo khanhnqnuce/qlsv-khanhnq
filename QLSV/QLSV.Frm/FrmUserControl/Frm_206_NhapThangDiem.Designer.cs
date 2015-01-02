@@ -36,7 +36,6 @@
             this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_from = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtmade = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,12 +47,12 @@
             this.menu_ug.SuspendLayout();
             this.pnl_from.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -63,7 +62,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(664, 468);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(664, 493);
             this.dgv_DanhSach.TabIndex = 26;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.dgv_DanhSach_AfterExitEditMode);
@@ -103,7 +102,6 @@
             // pnl_from
             // 
             this.pnl_from.Controls.Add(this.panel1);
-            this.pnl_from.Controls.Add(this.toolStrip1);
             this.pnl_from.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Name = "pnl_from";
@@ -115,19 +113,10 @@
             // 
             this.panel1.Controls.Add(this.dgv_DanhSach);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(664, 468);
+            this.panel1.Size = new System.Drawing.Size(664, 493);
             this.panel1.TabIndex = 32;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(664, 25);
-            this.toolStrip1.TabIndex = 31;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
@@ -193,10 +182,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);
-            this.pnl_from.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -208,7 +194,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.Panel pnl_from;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txtmade;
         private System.Windows.Forms.ToolStripButton btnTimkiem;

@@ -32,9 +32,6 @@
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.rptdiemthi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
@@ -44,31 +41,9 @@
             this.pnl_from = new System.Windows.Forms.Panel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.pdfExportFilter2 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
-            this.menu_ug.SuspendLayout();
             this.pnl_from.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.SuspendLayout();
-            // 
-            // menu_ug
-            // 
-            this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Sua,
-            this.menuStrip_Luulai});
-            this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(128, 48);
-            // 
-            // menuStrip_Sua
-            // 
-            this.menuStrip_Sua.Name = "menuStrip_Sua";
-            this.menuStrip_Sua.Size = new System.Drawing.Size(127, 22);
-            this.menuStrip_Sua.Text = "Chỉnh sửa";
-            // 
-            // menuStrip_Luulai
-            // 
-            this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(127, 22);
-            this.menuStrip_Luulai.Text = "Lưu lại";
             // 
             // excelExportFilter1
             // 
@@ -121,6 +96,7 @@
             // 
             // dgv_DanhSach
             // 
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -150,7 +126,6 @@
             this.Name = "Frm_207_ChamDiemThi";
             this.Size = new System.Drawing.Size(626, 451);
             this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
-            this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.ResumeLayout(false);
@@ -159,9 +134,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Sua;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdiemthi;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;

@@ -24,7 +24,6 @@ namespace QLSV.Frm.FrmUserControl
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
-        private readonly Thread[] _threads = new Thread[2];
 
         public Frm_207_ChamDiemThi(int idkythi)
         {
@@ -240,7 +239,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-
+                
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
@@ -255,13 +254,20 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["STT"].Width = 50;
-                band.Columns["MaSV"].Width = 150;
-                band.Columns["MaDe"].Width = 150;
-                band.Columns["KetQua"].Width = 650;
-                band.Columns["DiemThi"].Width = 150;
+                
+                band.Columns["STT"].MinWidth = 50;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["MaSV"].MinWidth = 140;
+                band.Columns["MaSV"].MaxWidth = 150;
+                band.Columns["MaDe"].MinWidth = 140;
+                band.Columns["MaDe"].MaxWidth = 150;
+                band.Columns["KetQua"].MinWidth = 640;
+                band.Columns["KetQua"].MaxWidth = 650;
+                band.Columns["DiemThi"].MinWidth = 140;
+                band.Columns["DiemThi"].MaxWidth = 150;
+
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
@@ -278,10 +284,6 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
-
-        #endregion
-
-        #region MenuStrip
 
         #endregion
 

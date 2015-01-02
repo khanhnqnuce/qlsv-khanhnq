@@ -179,8 +179,6 @@
             this.panel67 = new System.Windows.Forms.Panel();
             this.Tabchamdiemthi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_chamdiemthi = new System.Windows.Forms.Panel();
-            this.panel68 = new System.Windows.Forms.Panel();
-            this.panel69 = new System.Windows.Forms.Panel();
             this.Tabthongkediem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_thongkediem = new System.Windows.Forms.Panel();
             this.panel65 = new System.Windows.Forms.Panel();
@@ -751,16 +749,16 @@
             this.TabNhapthangdiem.Controls.Add(this.pnl_nhapthangdiem);
             this.TabNhapthangdiem.Controls.Add(this.panel66);
             this.TabNhapthangdiem.Controls.Add(this.panel67);
-            this.TabNhapthangdiem.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabNhapthangdiem.Location = new System.Drawing.Point(1, 1);
             this.TabNhapthangdiem.Name = "TabNhapthangdiem";
             this.TabNhapthangdiem.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_nhapthangdiem
             // 
             this.pnl_nhapthangdiem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_nhapthangdiem.Location = new System.Drawing.Point(270, 0);
+            this.pnl_nhapthangdiem.Location = new System.Drawing.Point(25, 0);
             this.pnl_nhapthangdiem.Name = "pnl_nhapthangdiem";
-            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(289, 502);
+            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(779, 502);
             this.pnl_nhapthangdiem.TabIndex = 11;
             // 
             // panel66
@@ -768,22 +766,20 @@
             this.panel66.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel66.Location = new System.Drawing.Point(0, 0);
             this.panel66.Name = "panel66";
-            this.panel66.Size = new System.Drawing.Size(270, 502);
+            this.panel66.Size = new System.Drawing.Size(25, 502);
             this.panel66.TabIndex = 10;
             // 
             // panel67
             // 
             this.panel67.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel67.Location = new System.Drawing.Point(559, 0);
+            this.panel67.Location = new System.Drawing.Point(804, 0);
             this.panel67.Name = "panel67";
-            this.panel67.Size = new System.Drawing.Size(270, 502);
+            this.panel67.Size = new System.Drawing.Size(25, 502);
             this.panel67.TabIndex = 9;
             // 
             // Tabchamdiemthi
             // 
             this.Tabchamdiemthi.Controls.Add(this.pnl_chamdiemthi);
-            this.Tabchamdiemthi.Controls.Add(this.panel68);
-            this.Tabchamdiemthi.Controls.Add(this.panel69);
             this.Tabchamdiemthi.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabchamdiemthi.Name = "Tabchamdiemthi";
             this.Tabchamdiemthi.Size = new System.Drawing.Size(829, 502);
@@ -791,33 +787,17 @@
             // pnl_chamdiemthi
             // 
             this.pnl_chamdiemthi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_chamdiemthi.Location = new System.Drawing.Point(95, 0);
+            this.pnl_chamdiemthi.Location = new System.Drawing.Point(0, 0);
             this.pnl_chamdiemthi.Name = "pnl_chamdiemthi";
-            this.pnl_chamdiemthi.Size = new System.Drawing.Size(639, 502);
+            this.pnl_chamdiemthi.Size = new System.Drawing.Size(829, 502);
             this.pnl_chamdiemthi.TabIndex = 11;
-            // 
-            // panel68
-            // 
-            this.panel68.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel68.Location = new System.Drawing.Point(0, 0);
-            this.panel68.Name = "panel68";
-            this.panel68.Size = new System.Drawing.Size(95, 502);
-            this.panel68.TabIndex = 10;
-            // 
-            // panel69
-            // 
-            this.panel69.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel69.Location = new System.Drawing.Point(734, 0);
-            this.panel69.Name = "panel69";
-            this.panel69.Size = new System.Drawing.Size(95, 502);
-            this.panel69.TabIndex = 9;
             // 
             // Tabthongkediem
             // 
             this.Tabthongkediem.Controls.Add(this.pnl_thongkediem);
             this.Tabthongkediem.Controls.Add(this.panel65);
             this.Tabthongkediem.Controls.Add(this.panel70);
-            this.Tabthongkediem.Location = new System.Drawing.Point(1, 1);
+            this.Tabthongkediem.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabthongkediem.Name = "Tabthongkediem";
             this.Tabthongkediem.Size = new System.Drawing.Size(829, 502);
             // 
@@ -2092,8 +2072,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabchamdiemthi;
         private System.Windows.Forms.Panel pnl_chamdiemthi;
-        private System.Windows.Forms.Panel panel68;
-        private System.Windows.Forms.Panel panel69;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabthongkediem;
         private System.Windows.Forms.Panel panel65;
         private System.Windows.Forms.Panel panel70;
