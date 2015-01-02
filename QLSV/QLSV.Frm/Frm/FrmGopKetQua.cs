@@ -32,17 +32,6 @@ namespace QLSV.Frm.Frm
             band.Columns["TenKT"].CellActivation = Activation.NoEdit;
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            foreach (var row in dgv_DanhSach.Rows)
-            {
-                if (bool.Parse(row.Cells["Chon"].Text)) 
-                    LstIdKyThi.Add(int.Parse(row.Cells["ID"].Text));
-            }
-            Check = true;
-            Close();
-        }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -53,6 +42,21 @@ namespace QLSV.Frm.Frm
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (var row in dgv_DanhSach.Rows)
+            {
+                if (bool.Parse(row.Cells["Chon"].Text))
+                    LstIdKyThi.Add(int.Parse(row.Cells["ID"].Text));
+            }
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

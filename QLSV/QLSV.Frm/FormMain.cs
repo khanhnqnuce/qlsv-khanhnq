@@ -142,7 +142,7 @@ namespace QLSV.Frm
                     Tabchonsinhvien.Tab.Visible = false;
                     Tabgopketqua.Tab.Visible = false;
                     cboChonkythi.Enabled = false;
-                    cboChonkythi.Value = null;
+                    //cboChonkythi.Value = null;
                     break;
             }
 
@@ -783,6 +783,7 @@ namespace QLSV.Frm
             {
                 _frmQuanLyKyThi.Save();
                 cboChonkythi.DataSource = LoadData.Load(18);
+                SelectCbo();
             }
             else if (TabChonPhongThi.Tab.Visible && TabChonPhongThi.Tab.Active)
             {
@@ -1171,15 +1172,8 @@ namespace QLSV.Frm
             cboChonkythi.Rows.Band.ColHeadersVisible = false;
         }
 
-        private void cboChonkythi_ValueChanged(object sender, EventArgs e)
+        private void CloseTab()
         {
-            lbXoa.Focus();
-            var index = cboChonkythi.Value;
-            if(index == null) return;
-            if (!IsNumber(index.ToString())) return;
-            _idkythi = (int) index;
-
-            #region TabControl
 
             TabSapxepphongthi.Tab.Visible = false;
             Tabdaxepphong.Tab.Visible = false;
@@ -1193,11 +1187,36 @@ namespace QLSV.Frm
             TabChonPhongThi.Tab.Visible = false;
             Tabchonsinhvien.Tab.Visible = false;
 
-            #endregion
+            MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["110"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["201"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["202"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["203"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["204"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["205"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["206"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["207"].Settings.Enabled = DefaultableBoolean.False;
+            MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.False;
+            
+        }
+
+        private void SelectCbo()
+        {
+            lbXoa.Focus();
+            var index = cboChonkythi.Value;
+            if (index == null)
+            {
+                CloseTab();
+                return;
+            }
+            if (!IsNumber(index.ToString())) return;
+            _idkythi = (int)index;
+            CloseTab();
 
             #region menu
-
-            MenuBar.Groups["chuongtrinh"].Items["103"].Settings.Enabled = DefaultableBoolean.True;
+            
             MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
             MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.True;
             MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.True;
@@ -1212,6 +1231,11 @@ namespace QLSV.Frm
             MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.True;
 
             #endregion
+        }
+
+        private void cboChonkythi_ValueChanged(object sender, EventArgs e)
+        {
+            SelectCbo();
         }
 
         private static bool IsNumber(string pText)

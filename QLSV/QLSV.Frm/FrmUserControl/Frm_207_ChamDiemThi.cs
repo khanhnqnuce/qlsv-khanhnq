@@ -94,7 +94,10 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void Chamthi()
+        /// <summary>
+        /// chấm tthi
+        /// </summary>
+        protected override void LoadGrid()
         {
             var dem = 0;
             var tbbailam = LoadData.Load(16, _idkythi);
@@ -161,6 +164,20 @@ namespace QLSV.Frm.FrmUserControl
                 Invoke(
                         (Action)(() => MessageBox.Show(@"Chưa Import bài làm của sinh viên", @"Thông báo",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+            }
+        }
+
+        protected override void LoadFormDetail()
+        {
+            try
+            {
+                var thread = new Thread(LoadGrid) {IsBackground = true};
+                thread.Start();
+                OnShowDialog("Loading...");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -291,10 +308,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
         {
-            _threads[0] = new Thread(Chamthi) { IsBackground = true };
-            _threads[0].Start();
-
-            OnShowDialog("Đang chấm thi...");
+            LoadFormDetail();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

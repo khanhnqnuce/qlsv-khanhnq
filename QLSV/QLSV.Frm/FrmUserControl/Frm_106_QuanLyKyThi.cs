@@ -104,9 +104,9 @@ namespace QLSV.Frm.FrmUserControl
                     };
                     _listAdd.Add(hs);
                 }
-                UpdateData.UpdateKyThi(_listUpdate);
-                DeleteData.Xoa(IdDelete,"KYTHI");
-                InsertData.ThemKythi(_listAdd);
+                if(_listUpdate.Count>0)UpdateData.UpdateKyThi(_listUpdate);
+                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
+                if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();

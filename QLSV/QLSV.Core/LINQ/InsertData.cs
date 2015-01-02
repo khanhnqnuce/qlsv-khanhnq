@@ -348,7 +348,7 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into THONGKE(MaSV,NamHoc,HocKy,Diem) values(" +
+                Conn.ExcuteQuerySql("insert into DIEMTHI(MaSV,NamHoc,HocKy,Diem) values(" +
                 item.MaSV + ",'" + item.NamHoc + "','" + item.HocKy + "'," +item.Diem + ")");
                 return true;
             }

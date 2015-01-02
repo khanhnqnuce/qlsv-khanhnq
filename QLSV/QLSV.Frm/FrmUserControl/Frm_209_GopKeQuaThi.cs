@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.SS.Formula.Functions;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -25,15 +28,12 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSV", typeof(string));
-            table.Columns.Add("HoSV", typeof(string));
-            table.Columns.Add("TenSV", typeof(string));
-            table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("Diem1", typeof(int));
-            table.Columns.Add("Diem2", typeof(int));
-            table.Columns.Add("TongDiem", typeof(int));
+            table.Columns.Add("MaSV");
+            table.Columns.Add("HoSV");
+            table.Columns.Add("TenSV");
+            table.Columns.Add("NgaySinh");
+            table.Columns.Add("MaLop");
+            table.Columns.Add("TongDiem");
             return table;
         }
 
@@ -41,14 +41,64 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var frm = new FrmGopKetQua {Check = false};
-                frm.ShowDialog();
-                _list = frm.LstIdKyThi;
-                var tb1 = Statistic.GopKetQua(frm.LstIdKyThi);
-                var tb2 = Statistic.GopKetQua1(frm.LstIdKyThi);
-                tb1.Merge(tb2);
-                dgv_DanhSach.DataSource = tb1;
-                pnl_from.Visible = true;
+                var tb1 = Statistic.GopKetQua(_list);
+                var tb2 = Statistic.GopKetQua1(_list);
+                if (tb2.Rows.Count > 0 && _list.Count > 1)
+                {
+                    IList<Sinhvien> list2 = new List<Sinhvien>();
+                    foreach (DataRow row in tb2.Rows)
+                    {
+                        var a = int.Parse(row["MaSV"].ToString());
+                        foreach (var sv in list2.Where(sv => sv.MaSV == a))
+                        {
+                            for (var i = 0; i < _list.Count; i++)
+                            {
+                                var ten = "Diem" + (i + 1);
+                                var diem = row[ten].ToString();
+                                if (!string.IsNullOrEmpty(diem))
+                                    sv.Diemthi[i] = int.Parse(row[ten].ToString());
+                            }
+                            goto b;
+                        }
+                        var sv1 = new Sinhvien(_list.Count)
+                        {
+                            MaSV = a,
+                            HoSV = row["HoSV"].ToString(),
+                            TenSV = row["TenSV"].ToString(),
+                            MaLop = row["MaLop"].ToString(),
+                            NgaySinh = row["NgaySinh"].ToString(),
+                        };
+                        for (var i = 0; i < _list.Count; i++)
+                        {
+                            var ten = "Diem" + (i + 1);
+                            var diem = row[ten].ToString();
+                            if (!string.IsNullOrEmpty(diem))
+                                sv1.Diemthi[i] = int.Parse(row[ten].ToString());
+                            else
+                                sv1.Diemthi[i] = 0;
+                        }
+                        list2.Add(sv1);
+                        b:
+                        ;
+                    }
+
+                    foreach (var item in list2)
+                    {
+                        tb1.Rows.Add(item.MaSV, item.HoSV, item.TenSV, item.NgaySinh, item.MaLop);
+                        for (var i = 0; i < _list.Count; i++)
+                        {
+                            var ten = "Diem" + (i + 1);
+                            tb1.Rows[tb1.Rows.Count - 1][ten] = item.Diemthi[i];
+                        }
+                        tb1.Rows[tb1.Rows.Count - 1]["TongDiem"] = item.Tinhtong();
+                    }
+                }
+                Invoke((Action)(()=>dgv_DanhSach.DataSource = tb1));
+                Invoke((Action)(() => pnl_from.Visible = true));
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -60,7 +110,15 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-               
+                var frm = new FrmGopKetQua { Check = false };
+                frm.ShowDialog();
+                _list = frm.LstIdKyThi;
+                if (_list.Count>0)
+                {
+                    var thread = new Thread(LoadGrid) {IsBackground = true};
+                    thread.Start();
+                    OnShowDialog("Loading...");
+                }
             }
             catch (Exception ex)
             {
@@ -166,7 +224,33 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Frm_209_GopKeQuaThi_Load(object sender, EventArgs e)
         {
-            LoadGrid();
+            LoadFormDetail();
+        }
+    }
+
+    public class Sinhvien
+    {
+        public int MaSV { get; set; }
+        public string HoSV { get; set; }
+        public string TenSV { get; set; }
+        public string NgaySinh { get; set; }
+        public string MaLop { get; set; }
+        public int[] Diemthi { get; set; }
+        public int TongDiem { get; set; }
+
+        public Sinhvien(int count)
+        {
+            Diemthi = new int[count];
+            TongDiem = 0;
+        }
+
+        public int Tinhtong()
+        {
+            foreach (var t in Diemthi)
+            {
+                TongDiem = TongDiem + t;
+            }
+            return TongDiem;
         }
     }
 }
