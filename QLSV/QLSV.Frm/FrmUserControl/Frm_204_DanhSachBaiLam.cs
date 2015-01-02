@@ -199,7 +199,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaDe"].MaxWidth = 150;
                 band.Columns["KetQua"].MinWidth = 640;
                 band.Columns["KetQua"].MaxWidth = 650;
-                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
+                //band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 

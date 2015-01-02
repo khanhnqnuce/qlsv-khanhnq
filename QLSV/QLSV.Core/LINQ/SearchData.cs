@@ -208,7 +208,7 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* FROM BAILAM b WHERE b.IdKyThi = " + idkythi + " and MaDe = N'" + made + "'";
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.IdKyThi, b.MaSV, b.MaDe, b.KetQua FROM BAILAM b WHERE b.IdKyThi = " + idkythi + " and MaDe = N'" + made + "'";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)

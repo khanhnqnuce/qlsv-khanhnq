@@ -32,10 +32,6 @@
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Sua = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
@@ -51,14 +47,12 @@
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.pnl_from = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
-            this.menu_ug.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_DanhSach
             // 
-            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
             this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
@@ -73,37 +67,6 @@
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.dgv_DanhSach_DoubleClickCell);
-            // 
-            // menu_ug
-            // 
-            this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Sua,
-            this.menuStrip_Luulai,
-            this.menuStrip_Huy});
-            this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(134, 70);
-            // 
-            // menuStrip_Sua
-            // 
-            this.menuStrip_Sua.Name = "menuStrip_Sua";
-            this.menuStrip_Sua.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Sua.Text = "Nhập điểm";
-            this.menuStrip_Sua.Click += new System.EventHandler(this.menuStrip_Sua_Click);
-            // 
-            // menuStrip_Luulai
-            // 
-            this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Luulai.Text = "Lưu lại";
-            this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Huy.Text = "Hủy";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // rptdanhsachsinhvien
             // 
@@ -230,7 +193,6 @@
             this.Size = new System.Drawing.Size(654, 498);
             this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
-            this.menu_ug.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.pnl_from.ResumeLayout(false);
@@ -242,15 +204,11 @@
         #endregion
 
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
-        private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdapandethi;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Sua;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel pnl_from;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;

@@ -41,6 +41,7 @@
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -49,7 +50,7 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(819, 309);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(311, 309);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
@@ -61,7 +62,7 @@
             this.menuStrip_Themmoi,
             this.menuStrip_Xoadong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 92);
+            this.menu_ug.Size = new System.Drawing.Size(153, 70);
             // 
             // menuStrip_Inport
             // 
@@ -91,7 +92,7 @@
             this.Controls.Add(this.dgv_DanhSach);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_203_InportBaiLam";
-            this.Size = new System.Drawing.Size(819, 309);
+            this.Size = new System.Drawing.Size(311, 309);
             this.Load += new System.EventHandler(this.FrmInportBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
