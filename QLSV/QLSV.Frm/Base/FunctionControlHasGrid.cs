@@ -127,9 +127,9 @@ namespace QLSV.Frm.Base
                             IdDelete.Add(int.Parse(idStr));
                         grid.ActiveRow.Delete(false);
                         if (index > 0)
-                            grid.Rows[index - 1].Cells[2].Activate();
+                            grid.Rows[index - 1].Cells[columnname].Activate();
                         else
-                            grid.Rows[index].Cells[2].Activate();
+                            grid.Rows[index].Cells[columnname].Activate();
                         grid.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }

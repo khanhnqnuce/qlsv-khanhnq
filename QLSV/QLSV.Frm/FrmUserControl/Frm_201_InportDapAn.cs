@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -101,7 +100,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, null, "MaMon");
+                DeleteRowGrid(dgv_DanhSach, "IdKyThi", "MaMon");
             }
             catch (Exception ex)
             {

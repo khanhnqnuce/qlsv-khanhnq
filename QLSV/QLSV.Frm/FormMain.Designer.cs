@@ -85,8 +85,8 @@
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance40 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance41 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
@@ -1003,9 +1003,9 @@
             // 
             // lbtime
             // 
-            appearance26.TextHAlignAsString = "Center";
-            appearance26.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance26;
+            appearance40.TextHAlignAsString = "Center";
+            appearance40.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance40;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -1014,9 +1014,9 @@
             // 
             // lbusername
             // 
-            appearance27.TextHAlignAsString = "Center";
-            appearance27.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance27;
+            appearance41.TextHAlignAsString = "Center";
+            appearance41.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance41;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -1205,7 +1205,7 @@
             this.btnXoadong.TabIndex = 29;
             this.btnXoadong.Text = "&Xóa";
             this.btnXoadong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip1.SetToolTip(this.btnXoadong, "(F11)");
+            this.toolTip1.SetToolTip(this.btnXoadong, "(Delete)");
             this.btnXoadong.UseVisualStyleBackColor = true;
             this.btnXoadong.Visible = false;
             this.btnXoadong.Click += new System.EventHandler(this.btnXoadong_Click);

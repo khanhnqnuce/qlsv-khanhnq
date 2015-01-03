@@ -92,7 +92,7 @@ namespace QLSV.Frm.FrmUserControl
         /// </summary>
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "MaSinhVien");
+            InsertRow(uG_DanhSach, "STT", "MaSV");
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "MaSinhVien");
+                DeleteRowGrid(uG_DanhSach, "ID", "MaSV");
             }
             catch (Exception ex)
             {
