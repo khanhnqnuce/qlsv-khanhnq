@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_In = new System.Windows.Forms.ToolStripMenuItem();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdapandethi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -47,34 +44,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.pnl_from = new System.Windows.Forms.Panel();
-            this.menu_ug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menu_ug
-            // 
-            this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Huy,
-            this.menuStrip_In});
-            this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(118, 48);
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_Huy.Text = "Quay lại";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
-            // 
-            // menuStrip_In
-            // 
-            this.menuStrip_In.Name = "menuStrip_In";
-            this.menuStrip_In.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_In.Text = "In";
-            this.menuStrip_In.Click += new System.EventHandler(this.menuStrip_In_Click);
             // 
             // reportManager1
             // 
@@ -110,7 +83,7 @@
             // 
             // dgv_DanhSach
             // 
-            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -205,7 +178,6 @@
             this.Name = "Frm_202_DanhSachDapAn";
             this.Size = new System.Drawing.Size(752, 456);
             this.Load += new System.EventHandler(this.FrmDapAnCacMaDe_Load);
-            this.menu_ug.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -217,15 +189,12 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdapandethi;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_In;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txtmade;

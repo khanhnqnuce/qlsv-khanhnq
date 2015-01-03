@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -34,8 +33,6 @@ namespace QLSV.Frm.FrmUserControl
         protected override DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaMon", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("CauHoi", typeof(string));
@@ -66,10 +63,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var stt = dgv_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNapDuLieu(GetTable(), 2, 4, 1)
+                var frmNapDuLieu = new FrmNapDuLieu(GetTable(), 1)
                 {
-                    gb_iViTriHeader = 1
+                    ViTriHeader = 1
                 };
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
@@ -95,7 +91,7 @@ namespace QLSV.Frm.FrmUserControl
         /// </summary>
         protected override void InsertRow()
         {
-            InsertRow(dgv_DanhSach, "STT", "MaMon");
+            InsertRow(dgv_DanhSach, null, "MaMon");
         }
 
         /// <summary>
@@ -105,7 +101,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, "ID", "MaMon");
+                DeleteRowGrid(dgv_DanhSach, null, "MaMon");
             }
             catch (Exception ex)
             {
@@ -136,6 +132,7 @@ namespace QLSV.Frm.FrmUserControl
                     _listAdd.Add(hs);
 
                 }
+                if (_listAdd.Count <= 0) return;
                 InsertData.ThemDapAn(_listAdd);
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -191,19 +188,19 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
 
-                band.Columns["ID"].Hidden = true;
                 band.Columns["IdKyThi"].Hidden = true;
 
                 band.Override.CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
-                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["STT"].Width = 50;
-                band.Columns["MaMon"].Width = 150;
-                band.Columns["MaDe"].Width = 150;
-                band.Columns["CauHoi"].Width = 150;
-                band.Columns["Dapan"].Width = 150;
+                band.Columns["MaMon"].MinWidth = 140;
+                band.Columns["MaDe"].MinWidth = 140;
+                band.Columns["CauHoi"].MinWidth = 140;
+                band.Columns["Dapan"].MinWidth = 140;
+                band.Columns["MaMon"].MaxWidth = 150;
+                band.Columns["MaDe"].MaxWidth = 150;
+                band.Columns["CauHoi"].MaxWidth = 150;
+                band.Columns["Dapan"].MaxWidth = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption

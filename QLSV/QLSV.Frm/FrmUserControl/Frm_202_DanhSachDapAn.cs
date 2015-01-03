@@ -192,13 +192,18 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["CauHoi"].CellActivation = Activation.NoEdit;
                 band.Columns["ThangDiem"].CellActivation = Activation.NoEdit;
                 
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["MaMon"].Width = 150;
-                band.Columns["MaDe"].Width = 150;
-                band.Columns["CauHoi"].Width = 150;
-                band.Columns["Dapan"].Width = 150;
-                band.Columns["ThangDiem"].Width = 150;
+                band.Columns["MaMon"].MinWidth = 140;
+                band.Columns["MaDe"].MinWidth = 140;
+                band.Columns["CauHoi"].MinWidth = 140;
+                band.Columns["Dapan"].MinWidth = 140;
+                band.Columns["ThangDiem"].MinWidth = 140;
+                band.Columns["MaMon"].MaxWidth = 150;
+                band.Columns["MaDe"].MaxWidth = 150;
+                band.Columns["CauHoi"].MaxWidth = 150;
+                band.Columns["Dapan"].MaxWidth = 150;
+                band.Columns["ThangDiem"].MaxWidth = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
@@ -239,25 +244,7 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         #endregion
-
-        #region MenuStrip
-        
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            Huy();
-        }
-
-        private void menuStrip_Luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        private void menuStrip_In_Click(object sender, EventArgs e)
-        {
-            RptDapAn();
-        }
-        #endregion
-
+       
         private void FrmDapAnCacMaDe_Load(object sender, EventArgs e)
         {
             Huy();

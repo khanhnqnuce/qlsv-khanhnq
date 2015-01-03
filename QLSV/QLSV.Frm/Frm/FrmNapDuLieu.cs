@@ -25,19 +25,16 @@ namespace QLSV.Frm.Frm
         private readonly DataTable _result;
         private Thread _threadLoad;
 
-        public int gb_iViTriHeader = 0;
-        private readonly int _iStartCol;
+        public int ViTriHeader;
         private readonly int _iEndCol;
         private readonly int _iSheet;
 
-        public FrmNapDuLieu(DataTable tbTable, int iStartCol, int iEndCol, int iSheet)
+        public FrmNapDuLieu(DataTable tbTable, int iSheet)
         {
             try
             {
                 InitializeComponent();
                 _result = tbTable;
-                _iStartCol = iStartCol;
-                _iEndCol = iEndCol;
                 _iSheet = iSheet;
             }
             catch (Exception ex)
@@ -90,25 +87,23 @@ namespace QLSV.Frm.Frm
                 var excel = new HSSFWorkbook(stream);
                 stream.Close();
                 var sheet = excel.GetSheetAt(_iSheet);
-                var startRows = sheet.FirstRowNum + gb_iViTriHeader;
+                var startRows = sheet.FirstRowNum + ViTriHeader;
                 var endRows = sheet.LastRowNum;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    for (var j = 0; j < _iEndCol; j++)
-                    {
-                        _result.Rows[i - startRows][j + _iStartCol] = sheet.GetRow(i).GetCell(j).ToString();
-                        //_result.Rows.Add(++_iNumberStt,
-                        //sheet.GetRow(i).GetCell(0).ToString(),
-                        //sheet.GetRow(i).GetCell(1).ToString(),
-                        //sheet.GetRow(i).GetCell(2).ToString(),
-                        //sheet.GetRow(i).GetCell(3).ToString(),
-                        //sheet.GetRow(i).GetCell(4).ToString(),
-                        //sheet.GetRow(i).GetCell(5).ToString());
-                    }
+                    _result.Rows.Add(
+                    sheet.GetRow(i).GetCell(0).ToString(),
+                    sheet.GetRow(i).GetCell(1).ToString(),
+                    sheet.GetRow(i).GetCell(2).ToString(),
+                    sheet.GetRow(i).GetCell(3).ToString());
+                    //_result.Rows.Add();
+                    //for (var j = 0; j < _iEndCol; j++)
+                    //{
+                    //    _result.Rows[i - startRows][j] = sheet.GetRow(i).GetCell(j).ToString();
+                    //}
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -144,26 +139,23 @@ namespace QLSV.Frm.Frm
                 excelPkg.Load(stream);
                 stream.Close();
                 var oSheet = excelPkg.Workbook.Worksheets[_iSheet + 1];
-                var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader + 1;
+                var startRows = oSheet.Dimension.Start.Row + ViTriHeader + 1;
                 var endRows = oSheet.Dimension.End.Row;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    for (var j = 0; j < _iEndCol; j++)
-                    {
-                        _result.Rows[i - startRows][j + _iStartCol] = oSheet.Cells[i, j + 1].GetValue<string>();
-                    }
-                    //_result.Rows.Add(++_iNumberStt,
-                    //    oSheet.Cells[i, 1].GetValue<string>(),
-                    //    oSheet.Cells[i, 2].GetValue<string>(),
-                    //    oSheet.Cells[i, 3].GetValue<string>(),
-                    //    oSheet.Cells[i, 4].GetValue<string>(),
-                    //    oSheet.Cells[i, 5].GetValue<string>(),
-                    //    oSheet.Cells[i, 6].GetValue<string>());
-
+                    _result.Rows.Add(
+                        oSheet.Cells[i, 1].GetValue<string>(),
+                        oSheet.Cells[i, 2].GetValue<string>(),
+                        oSheet.Cells[i, 3].GetValue<string>(),
+                        oSheet.Cells[i, 4].GetValue<string>());
+                    //_result.Rows.Add();
+                    //for (var j = 0; j <= _iEndCol; j++)
+                    //{
+                    //    _result.Rows[i - startRows][j] = oSheet.Cells[i, j + 1].GetValue<string>();
+                    //}
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
