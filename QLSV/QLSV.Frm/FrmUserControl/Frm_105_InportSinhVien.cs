@@ -257,10 +257,9 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Override.CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 #region Size
                 band.Columns["STT"].MinWidth = 50;
@@ -281,15 +280,29 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
-
-                band.Columns["MaSV"].Header.Caption = FormResource.txtMasinhvien;
-                band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-                band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-                band.Columns["TenKhoa"].Header.Caption = FormResource.txtKhoaquanly;
-                band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;
+                band.Groups.Clear();
+                var columns = band.Columns;
+                band.ColHeadersVisible = false;
+                var group5 = band.Groups.Add("STT");
+                var group0 = band.Groups.Add("Mã SV");
+                var group1 = band.Groups.Add("Họ và tên");
+                var group2 = band.Groups.Add("Ngày sinh");
+                var group3 = band.Groups.Add("Lớp");
+                var group4 = band.Groups.Add("Khoa");
+                columns["STT"].Group = group5;
+                columns["MaSV"].Group = group0;
+                columns["HoSV"].Group = group1;
+                columns["TenSV"].Group = group1;
+                columns["NgaySinh"].Group = group2;
+                columns["MaLop"].Group = group3;
+                columns["TenKhoa"].Group = group4;
 
                 #endregion
+
+                columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
+                columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
+                columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
             }
             catch (Exception ex)
             {

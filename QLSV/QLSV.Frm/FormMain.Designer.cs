@@ -293,7 +293,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -438,7 +438,7 @@
             // Tabquanlykythi
             // 
             this.Tabquanlykythi.Controls.Add(this.pn_quanlykythi);
-            this.Tabquanlykythi.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlykythi.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlykythi.Name = "Tabquanlykythi";
             this.Tabquanlykythi.Size = new System.Drawing.Size(829, 502);
             // 
@@ -740,7 +740,7 @@
             this.lbXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbXoa.AutoSize = true;
             this.lbXoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbXoa.Location = new System.Drawing.Point(190, 16);
+            this.lbXoa.Location = new System.Drawing.Point(212, 16);
             this.lbXoa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbXoa.Name = "lbXoa";
             this.lbXoa.Size = new System.Drawing.Size(68, 15);
@@ -1108,7 +1108,7 @@
             this.cboChonkythi.Location = new System.Drawing.Point(1, 12);
             this.cboChonkythi.Name = "cboChonkythi";
             this.cboChonkythi.NullText = "-- Chọn kỳ thi --";
-            this.cboChonkythi.Size = new System.Drawing.Size(182, 23);
+            this.cboChonkythi.Size = new System.Drawing.Size(201, 23);
             this.cboChonkythi.TabIndex = 41;
             this.cboChonkythi.Tag = "";
             this.toolTip1.SetToolTip(this.cboChonkythi, "Chọn kỳ thi");
