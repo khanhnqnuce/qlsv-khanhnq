@@ -182,7 +182,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var band = e.Layout.Bands[0];
             band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-            band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+            band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
             #region Caption
 
@@ -191,6 +191,23 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
             band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
             band.Columns["MaLop"].Header.Caption = @"Lớp";
+
+            #endregion
+            #region Caption
+            band.Groups.Clear();
+            var columns = band.Columns;
+            band.ColHeadersVisible = false;
+            var group5 = band.Groups.Add("STT");
+            var group0 = band.Groups.Add("Mã SV");
+            var group1 = band.Groups.Add("Họ và tên");
+            var group2 = band.Groups.Add("Ngày sinh");
+            var group3 = band.Groups.Add("Lớp");
+            columns["STT"].Group = group5;
+            columns["MaSV"].Group = group0;
+            columns["HoSV"].Group = group1;
+            columns["TenSV"].Group = group1;
+            columns["NgaySinh"].Group = group2;
+            columns["MaLop"].Group = group3;
 
             #endregion
 
@@ -203,15 +220,24 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["MaLop"].CellActivation = Activation.NoEdit;
 
             band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+            band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
+            band.Columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
 
             band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-            band.Columns["STT"].Width = 50;
-            band.Columns["HoSV"].Width = 170;
-            band.Columns["TenSV"].Width = 150;
-            band.Columns["NgaySinh"].Width = 150;
-            band.Columns["MaLop"].Width = 150;
+            band.Columns["STT"].MinWidth = 60;
+            band.Columns["MaSV"].MinWidth = 110;
+            band.Columns["HoSV"].MinWidth = 170;
+            band.Columns["TenSV"].MinWidth = 120;
+            band.Columns["NgaySinh"].MinWidth = 140;
+            band.Columns["MaLop"].MinWidth = 140;
+            band.Columns["STT"].MaxWidth = 70;
+            band.Columns["MaSV"].MaxWidth = 120;
+            band.Columns["HoSV"].MaxWidth = 180;
+            band.Columns["TenSV"].MaxWidth = 130;
+            band.Columns["NgaySinh"].MaxWidth = 150;
+            band.Columns["MaLop"].MaxWidth = 150;
             band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
         }
     }

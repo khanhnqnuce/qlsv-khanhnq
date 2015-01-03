@@ -39,6 +39,7 @@
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -48,7 +49,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(537, 550);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(533, 369);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
@@ -65,13 +66,13 @@
             this.menuStrip_chonphong.Size = new System.Drawing.Size(141, 22);
             this.menuStrip_chonphong.Text = "Chọn Phòng";
             // 
-            // Frm_ChonSinhVien
+            // Frm_108_ChonSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_DanhSach);
-            this.Name = "Frm_ChonSinhVien";
-            this.Size = new System.Drawing.Size(537, 550);
+            this.Name = "Frm_108_ChonSinhVien";
+            this.Size = new System.Drawing.Size(533, 369);
             this.Load += new System.EventHandler(this.Frm_ChonSinhVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);

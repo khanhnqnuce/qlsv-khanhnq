@@ -149,12 +149,16 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["SiSo"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["TenPhong"].Width = 150;
-                band.Columns["SucChua"].Width = 150;
-                band.Columns["SiSo"].Width = 150;
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["TenPhong"].MinWidth = 140;
+                band.Columns["SucChua"].MinWidth = 140;
+                band.Columns["SiSo"].MinWidth = 140;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["TenPhong"].MaxWidth = 150;
+                band.Columns["SucChua"].MaxWidth = 150;
+                band.Columns["SiSo"].MaxWidth = 150;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["SucChua"].FormatNumberic();
 

@@ -104,13 +104,13 @@ namespace QLSV.Frm.FrmUserControl
                     };
                     _listAdd.Add(hs);
                 }
-                if(_listUpdate.Count>0)UpdateData.UpdateKyThi(_listUpdate);
+                if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
+                if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
                 if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
                 if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();
-
             }
             catch (Exception ex)
             {
@@ -196,12 +196,26 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGKetThuc"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["TenKT"].Width = 400;
+
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["MaKT"].MinWidth = 100;
+                band.Columns["TenKT"].MinWidth = 270;
+                band.Columns["NgayThi"].MinWidth = 140;
+                band.Columns["TGLamBai"].MinWidth = 100;
+                band.Columns["TGBatDau"].MinWidth = 100;
+                band.Columns["TGKetThuc"].MinWidth = 100;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["MaKT"].MaxWidth = 110;
+                band.Columns["TenKT"].MaxWidth = 300;
+                band.Columns["NgayThi"].MaxWidth = 150;
+                band.Columns["TGLamBai"].MaxWidth = 110;
+                band.Columns["TGBatDau"].MaxWidth = 110;
+                band.Columns["TGKetThuc"].MaxWidth = 110;
+
                 band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 band.Columns["NgayThi"].Style = ColumnStyle.Date;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["TGLamBai"].FormatNumberic();
                 band.Columns["TGBatDau"].FormatTime();

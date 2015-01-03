@@ -192,15 +192,17 @@ namespace QLSV.Frm.FrmUserControl
                 if (_tbSv.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");
-                    return;
-                }else if (_tbPhong.Rows.Count == 0)
+                }
+                else if (_tbPhong.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Chưa chọn phòng thi");
-                    return;
                 }
-                var thread = new Thread(LoadFormDetail) { IsBackground = true };
-                thread.Start();
-                OnShowDialog("Loading...");
+                else
+                {
+                    var thread = new Thread(LoadFormDetail) {IsBackground = true};
+                    thread.Start();
+                    OnShowDialog("Loading...");
+                }
             }
             catch (Exception ex)
             {
@@ -244,16 +246,25 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
                 
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
                 #region Caption
-
-                band.Columns["IdSV"].Header.Caption = @"Mã SV";
-                band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-                band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-                band.Columns["PhongThi"].Header.Caption = @"Phòng Thi";
-                band.Columns["MaLop"].Header.Caption = FormResource.txtMalop;
+                band.Groups.Clear();
+                var columns = band.Columns;
+                band.ColHeadersVisible = false;
+                var group5 = band.Groups.Add("STT");
+                var group0 = band.Groups.Add("Mã SV");
+                var group1 = band.Groups.Add("Họ và tên");
+                var group2 = band.Groups.Add("Ngày sinh");
+                var group3 = band.Groups.Add("Lớp");
+                var group4 = band.Groups.Add("Phòng Thi");
+                columns["STT"].Group = group5;
+                columns["IdSV"].Group = group0;
+                columns["HoSV"].Group = group1;
+                columns["TenSV"].Group = group1;
+                columns["NgaySinh"].Group = group2;
+                columns["MaLop"].Group = group3;
+                columns["PhongThi"].Group = group4;
 
                 #endregion
                 
@@ -265,16 +276,26 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaLop"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["IdSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-                band.Columns["STT"].Width = 50;
-                band.Columns["HoSV"].Width = 170;
-                band.Columns["TenSV"].Width = 150;
-                band.Columns["NgaySinh"].Width = 150;
-                band.Columns["MaLop"].Width = 150;
-                band.Columns["PhongThi"].Width = 150;
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["IdSV"].MinWidth = 110;
+                band.Columns["HoSV"].MinWidth = 170;
+                band.Columns["TenSV"].MinWidth = 120;
+                band.Columns["NgaySinh"].MinWidth = 140;
+                band.Columns["MaLop"].MinWidth = 140;
+                band.Columns["PhongThi"].MinWidth = 140;
+                band.Columns["STT"].MaxWidth = 70;
+                band.Columns["IdSV"].MaxWidth = 120;
+                band.Columns["HoSV"].MaxWidth = 180;
+                band.Columns["TenSV"].MaxWidth = 130;
+                band.Columns["NgaySinh"].MaxWidth = 150;
+                band.Columns["MaLop"].MaxWidth = 150;
+                band.Columns["PhongThi"].MaxWidth = 150;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
@@ -343,16 +364,9 @@ namespace QLSV.Frm.FrmUserControl
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        private void dgv_DanhSach_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
         {
-            var obj = cbokhoa.SelectedValue;
-            if(obj == null) return;
-            cbolop.DataSource = SearchData.Timkiem(int.Parse(obj.ToString()));
-        }
-
-        private void btntimkiem_Click(object sender, EventArgs e)
-        {
-           
+            Sua();
         }
     }
 }

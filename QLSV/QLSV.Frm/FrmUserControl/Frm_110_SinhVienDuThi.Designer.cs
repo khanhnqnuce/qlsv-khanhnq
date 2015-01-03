@@ -49,6 +49,7 @@
             // dgv_DanhSach
             // 
             this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
             this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
@@ -57,7 +58,7 @@
             this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(997, 589);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(387, 174);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.dgv_DanhSach_DoubleClickCell);
@@ -67,12 +68,12 @@
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_Themdong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(153, 48);
+            this.menu_ug.Size = new System.Drawing.Size(128, 26);
             // 
             // menuStrip_Themdong
             // 
             this.menuStrip_Themdong.Name = "menuStrip_Themdong";
-            this.menuStrip_Themdong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Themdong.Size = new System.Drawing.Size(127, 22);
             this.menuStrip_Themdong.Text = "Chỉnh sửa";
             this.menuStrip_Themdong.Click += new System.EventHandler(this.menuStrip_Themdong_Click);
             // 
@@ -122,17 +123,17 @@
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
             this.pnl_form.Name = "pnl_form";
-            this.pnl_form.Size = new System.Drawing.Size(997, 589);
+            this.pnl_form.Size = new System.Drawing.Size(387, 174);
             this.pnl_form.TabIndex = 28;
             this.pnl_form.Visible = false;
             // 
-            // FrmSvDaXepPhong
+            // Frm_110_SinhVienDuThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnl_form);
-            this.Name = "FrmSvDaXepPhong";
-            this.Size = new System.Drawing.Size(997, 589);
+            this.Name = "Frm_110_SinhVienDuThi";
+            this.Size = new System.Drawing.Size(387, 174);
             this.Load += new System.EventHandler(this.FrmSinhVienPhongThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);
