@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Core", "QLSV.Core\QLSV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Data", "QLSV.Data\QLSV.Data.csproj", "{0E243190-859E-4479-97F8-0E97D2889D5F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{686338EE-83AD-4A6A-A416-E92BE9922D77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,12 @@ Global
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|x86.ActiveCfg = Release|Any CPU
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Debug|Any CPU.ActiveCfg = Debug
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Debug|x86.ActiveCfg = Debug
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Release|Any CPU.ActiveCfg = Release
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Release|Mixed Platforms.ActiveCfg = Release
+		{686338EE-83AD-4A6A-A416-E92BE9922D77}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
