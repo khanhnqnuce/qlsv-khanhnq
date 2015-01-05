@@ -39,15 +39,17 @@ namespace QLSV.Core.LINQ
                     if (passwordNode != null)
                         _pass = passwordNode.InnerText;
                 }
-                if (_user == "") // ko dung user - pass
+                if (_user == "")
                     _conString = @"Data Source = " + _sv + ";Initial Catalog = " + Database + ";Integrated Security=SSPI";
                 else
                     _conString = @"Data Source=" + _sv + ";Initial Catalog=" + Database + ";User Id=" + _user + ";Password=" +
                                  _pass + "";
-                //var conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
                 return new SqlConnection(_conString);
-                
-                // return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLKhachSan.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
+                //---Win xp
+                //const string conString = @"Data Source=.\SQLEXPRESS; AttachDbFilename=DataDirectory|\QLSV_TEST.mdf; Integrated Security=True; Connect Timeout=30; User Instance=True;";
+                //---Win 7
+                //const string conString = @"Server=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf; Database=QLSV_TEST;Trusted_Connection=Yes;";
+                //return new SqlConnection(conString);
             }
             catch (Exception ex)
             {
@@ -67,7 +69,7 @@ namespace QLSV.Core.LINQ
                 ad.Fill(dt);
 
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
                 Console.WriteLine(ex.Message);

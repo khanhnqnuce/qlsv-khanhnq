@@ -145,18 +145,16 @@ namespace QLSV.Frm.FrmUserControl
                     txttensinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["TenSV"].Text},
                     cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                 };
-                frm.masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
+                frm.CheckUpdate = true;
                 frm.cbolop.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdLop"].Text);
                 frm.cbokhoa.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKhoa"].Text);
                 frm.ShowDialog();
-                if (frm.masv == 0)
-                {
-                    dgv_DanhSach.ActiveRow.Cells["HoSV"].Value = frm.txthotendem.Text;
-                    dgv_DanhSach.ActiveRow.Cells["TenSV"].Value = frm.txttensinhvien.Text;
-                    dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
-                    dgv_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
-                    dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
-                }
+                if (frm.CheckUpdate) return;
+                dgv_DanhSach.ActiveRow.Cells["HoSV"].Value = frm.txthotendem.Text;
+                dgv_DanhSach.ActiveRow.Cells["TenSV"].Value = frm.txttensinhvien.Text;
+                dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Value = frm.cbongaysinh.Text;
+                dgv_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.cbolop.Text;
+                dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
             }
             catch (Exception ex)
             {

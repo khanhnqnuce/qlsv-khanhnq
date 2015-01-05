@@ -259,10 +259,14 @@
             this.cbokhoa.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cbokhoa.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cbokhoa.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.cbokhoa.DisplayMember = "TenKhoa";
+            this.cbokhoa.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
             this.cbokhoa.Location = new System.Drawing.Point(131, 203);
             this.cbokhoa.Name = "cbokhoa";
             this.cbokhoa.Size = new System.Drawing.Size(203, 25);
             this.cbokhoa.TabIndex = 10;
+            this.cbokhoa.ValueMember = "ID";
+            this.cbokhoa.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.cbokhoa_InitializeLayout);
             this.cbokhoa.ValueChanged += new System.EventHandler(this.cbokhoa_ValueChanged);
             // 
             // cbolop
@@ -321,10 +325,14 @@
             this.cbolop.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cbolop.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cbolop.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.cbolop.DisplayMember = "MaLop";
+            this.cbolop.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
             this.cbolop.Location = new System.Drawing.Point(131, 242);
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(203, 25);
             this.cbolop.TabIndex = 11;
+            this.cbolop.ValueMember = "ID";
+            this.cbolop.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.cbolop_InitializeLayout);
             // 
             // errormasinhvien
             // 
@@ -389,7 +397,7 @@
             // 
             // btnHuy
             // 
-            this.btnHuy.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.Image")));
+            this.btnHuy.Image = global::QLSV.Frm.Properties.Resources.Refresh_icon;
             this.btnHuy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(50, 22);
@@ -438,6 +446,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sinh Viên";
+            this.Load += new System.EventHandler(this.FrmThemsinhvien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();

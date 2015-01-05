@@ -85,8 +85,6 @@ namespace QLSV.Core.Utils.Core
             listener.WriteLine(logMessage);
             listener.Flush();
             listener.Close();
-
-            MessageBox.Show(@"EXCEPTION");
         }
 
         public static void LogToFile(LogFileType logType, string logMessage)

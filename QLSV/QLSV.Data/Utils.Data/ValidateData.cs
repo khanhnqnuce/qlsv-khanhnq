@@ -34,6 +34,7 @@ namespace QLSV.Data.Utils.Data
         ChuoiRong,
         KhongKiemTra
     }
+
     /// <summary>
     /// class validate có 2 biến Output lưu tất cả các listparam đã được check
     /// và biến Eorror lưu những kiểu inputparam có lỗi
@@ -44,6 +45,7 @@ namespace QLSV.Data.Utils.Data
         /// khai báo 2 biến kiểu inputparam
         /// </summary>
         public List<InputParam> Errors { get; private set; }
+
         public List<InputParam> Output { get; private set; }
 
         /// <summary>
@@ -59,7 +61,7 @@ namespace QLSV.Data.Utils.Data
         {
             var inputparm = new InputParam {InputType = InputType.Email};
             const string pattern = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9]+(\.[a-z]{2,6})?(\.[a-z]{2,6})$";
-            if (Regex.IsMatch(input,pattern))
+            if (Regex.IsMatch(input, pattern))
             {
                 inputparm.Result = true;
                 inputparm.MsgError = "Không lỗi";
@@ -78,7 +80,7 @@ namespace QLSV.Data.Utils.Data
             {
                 InputType = InputType.SoNguyenDuong
             };
-            const string pattern = @"^\d*$"; 
+            const string pattern = @"^\d*$";
             if (Regex.IsMatch(pattern, input))
             {
                 inputparam.Result = true;
@@ -184,6 +186,7 @@ namespace QLSV.Data.Utils.Data
             }
             return inputParam;
         }
+
         /// <summary>
         /// truyền vào 1 kiểu inputparam
         /// </summary>
@@ -199,7 +202,7 @@ namespace QLSV.Data.Utils.Data
             if (string.IsNullOrEmpty(inputparam.Input))
             {
                 inputparam.Result = false;
-                inputparam.MsgError = "Giá trị null hoặc rỗng";
+                inputparam.MsgError = "Không được để trống.";
                 inputValue = inputparam;
             }
             else
@@ -207,44 +210,45 @@ namespace QLSV.Data.Utils.Data
                 switch (inputparam.InputType)
                 {
                     case InputType.SoNguyen:
-                        {
-                            inputValue = CheckSoNguyen(inputparam.Input);
-                        }
+                    {
+                        inputValue = CheckSoNguyen(inputparam.Input);
+                    }
                         break;
                     case InputType.SoNguyenDuong:
-                        {
-                            inputValue = CheckSoNguyenDuong(inputparam.Input);
-                        }
+                    {
+                        inputValue = CheckSoNguyenDuong(inputparam.Input);
+                    }
                         break;
                     case InputType.SoThucDuong:
-                        {
-                            inputValue = CheckSoThucKhongAm(inputparam.Input);
-                            break;
-                        }
+                    {
+                        inputValue = CheckSoThucKhongAm(inputparam.Input);
+                        break;
+                    }
                     case InputType.SoThuc:
-                        {
-                            inputValue = CheckSoThuc(inputparam.Input);
-                            break;
-                        }
+                    {
+                        inputValue = CheckSoThuc(inputparam.Input);
+                        break;
+                    }
                     case InputType.NgayThang:
-                        {
-                            inputValue = CheckNgayThang(inputparam.Input);
-                            break;
-                        }
+                    {
+                        inputValue = CheckNgayThang(inputparam.Input);
+                        break;
+                    }
                     case InputType.Email:
-                        {
-                            inputValue = Checkmail(inputparam.Input);
-                            break;
-                        }
+                    {
+                        inputValue = Checkmail(inputparam.Input);
+                        break;
+                    }
                     default:
-                        {
-                            inputValue = inputparam;
-                            break;
-                        }
+                    {
+                        inputValue = inputparam;
+                        break;
+                    }
                 }
             }
             return inputValue;
         }
+
         /// <summary>
         /// Truyền vào kiểm tra 1 list các textbox
         /// </summary>

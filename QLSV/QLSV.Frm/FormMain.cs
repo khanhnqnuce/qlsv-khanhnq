@@ -762,7 +762,7 @@ namespace QLSV.Frm
             }
             else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
             {
-                
+                _frmInportSinhVien.LoadForm();
             }
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {

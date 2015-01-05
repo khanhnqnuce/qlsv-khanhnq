@@ -245,7 +245,8 @@
             this.pictureBox5.Image = global::QLSV.Frm.Properties.Resources.system;
             this.pictureBox5.Location = new System.Drawing.Point(-2, 10);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(173, 39);
+            this.pictureBox5.Size = new System.Drawing.Size(156, 39);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 31;
             this.pictureBox5.TabStop = false;
             // 
