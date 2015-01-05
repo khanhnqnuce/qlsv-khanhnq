@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -219,7 +220,7 @@ namespace QLSV.Frm.Frm
                     foreach (var row in dgv_DanhSach.Rows)
                     {
                         row.Cells["Chon"].Value = "true";
-
+                        row.Appearance.BackColor = Color.LightCyan;
                     }
                 }
                 else
@@ -227,6 +228,7 @@ namespace QLSV.Frm.Frm
                     foreach (var row in dgv_DanhSach.Rows)
                     {
                         row.Cells["Chon"].Value = "false";
+                        row.Appearance.BackColor = Color.White;
                     }
                 }
             }
@@ -339,5 +341,19 @@ namespace QLSV.Frm.Frm
         }
 
         #endregion
+
+        private void dgv_DanhSach_CellChange(object sender, CellEventArgs e)
+        {
+            try
+            {
+                if (e.Cell.Column.Key != "Chon") return;
+                var b = bool.Parse(e.Cell.Row.Cells["Chon"].Text);
+                e.Cell.Row.Appearance.BackColor = b ? Color.LightCyan : Color.White;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
     }
 }

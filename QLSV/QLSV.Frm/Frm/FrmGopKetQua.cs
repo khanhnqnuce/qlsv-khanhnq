@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.LINQ;
+using QLSV.Core.Utils.Core;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.Frm
@@ -57,6 +59,20 @@ namespace QLSV.Frm.Frm
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void dgv_DanhSach_CellChange(object sender, CellEventArgs e)
+        {
+            try
+            {
+                if (e.Cell.Column.Key != "Chon") return;
+                var b = bool.Parse(e.Cell.Row.Cells["Chon"].Text);
+                e.Cell.Row.Appearance.BackColor = b ? Color.LightCyan : Color.White;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
     }
 }

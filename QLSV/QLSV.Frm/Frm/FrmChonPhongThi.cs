@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -60,20 +61,20 @@ namespace QLSV.Frm.Frm
 
         private void dgv_DanhSach_CellChange(object sender, CellEventArgs e)
         {
-            if (e.Cell.Column.Key == "Chon")
+            if (e.Cell.Column.Key != "Chon") return;
+            var b = bool.Parse(e.Cell.Row.Cells["Chon"].Text);
+            if (b)
             {
-                var b = bool.Parse(e.Cell.Row.Cells["Chon"].Text);
-                if (b)
-                {
-                    _tongsucchua = _tongsucchua + int.Parse(e.Cell.Row.Cells["SucChua"].Text);
-                }
-                else
-                {
-                    _tongsucchua = _tongsucchua - int.Parse(e.Cell.Row.Cells["SucChua"].Text);
-                }
-
-                lbtong.Text = @"Tổng sức chứa: " + _tongsucchua + @" sinh viên.";
+                _tongsucchua = _tongsucchua + int.Parse(e.Cell.Row.Cells["SucChua"].Text);
+                e.Cell.Row.Appearance.BackColor = Color.LightCyan;
             }
+            else
+            {
+                e.Cell.Row.Appearance.BackColor = Color.White;
+                _tongsucchua = _tongsucchua - int.Parse(e.Cell.Row.Cells["SucChua"].Text);
+            }
+
+            lbtong.Text = @"Tổng sức chứa: " + _tongsucchua + @" sinh viên.";
         }
 
         private void ckbChon_CheckedChanged(object sender, EventArgs e)
@@ -84,6 +85,7 @@ namespace QLSV.Frm.Frm
                 foreach (var row in dgv_DanhSach.Rows)
                 {
                     row.Cells["Chon"].Value = "true";
+                    row.Appearance.BackColor = Color.LightCyan;
                     _tongsucchua = _tongsucchua + int.Parse(row.Cells["SucChua"].Text);
                     
                 }
@@ -94,6 +96,7 @@ namespace QLSV.Frm.Frm
                 foreach (var row in dgv_DanhSach.Rows)
                 {
                     row.Cells["Chon"].Value = "false";
+                    row.Appearance.BackColor = Color.White;
                 }
                 lbtong.Text = @"Tổng sức chứa: " + _tongsucchua + @" sinh viên.";
             }

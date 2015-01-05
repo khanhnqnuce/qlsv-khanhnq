@@ -54,6 +54,7 @@
             this.dgv_DanhSach.Size = new System.Drawing.Size(303, 293);
             this.dgv_DanhSach.TabIndex = 41;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.CellChange += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.dgv_DanhSach_CellChange);
             // 
             // button1
             // 

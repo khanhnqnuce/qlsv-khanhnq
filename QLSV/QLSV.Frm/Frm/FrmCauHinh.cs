@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -17,6 +18,9 @@ namespace QLSV.Frm.Frm
         {
             try
             {
+                var logPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+                var filename = logPath + @"\Connection.xml";
+                if(!File.Exists(filename)) return;
                 var xmlread = new XmlDocument();
                 xmlread.Load("Connection.xml");
                 var xmlelement = xmlread.DocumentElement;
@@ -70,7 +74,8 @@ namespace QLSV.Frm.Frm
             }
             catch (Exception ex)
             {
-                Log2File.LogExceptionToFile(ex);
+                MessageBox.Show(ex.Message);
+                //Log2File.LogExceptionToFile(ex);
             }
         }
 
