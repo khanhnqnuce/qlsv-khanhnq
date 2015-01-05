@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -20,6 +21,8 @@ namespace QLSV.Frm.Frm
         private readonly int _idkythi;
         private FrmLoadding _loading = new FrmLoadding();
         private readonly BackgroundWorker _bgwInsert;
+        private readonly FrmTimkiem _frmTimkiem;
+        private UltraGridRow _newRow;
 
         public FrmChonSv(int idkythi)
         {
@@ -28,6 +31,8 @@ namespace QLSV.Frm.Frm
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
         private static DataTable GetTable()
@@ -279,12 +284,34 @@ namespace QLSV.Frm.Frm
                 e.SuppressKeyPress = true;
         }
 
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
             {
                 case (Keys.F5):
                     Luu();
+                    break;
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
                     break;
                 case (Keys.Escape):
                     Close();

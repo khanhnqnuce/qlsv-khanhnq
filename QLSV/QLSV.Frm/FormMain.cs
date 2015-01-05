@@ -177,6 +177,14 @@ namespace QLSV.Frm
                         frmdmk.ShowDialog();
                         if (frmdmk.CheckUpdate) _matkhau = MaHoaMd5.Md5(frmdmk.txtMK3.Text);
                         break;
+                    case "backup":
+                        var frmsaoluu = new FrmSaoLuuDuLieu();
+                        frmsaoluu.ShowDialog();
+                        break;
+                    case "restore":
+                        var frmphuhoi = new FrmPhucHoiDuLieu();
+                        frmphuhoi.ShowDialog();
+                        break;
                     case "thoat":
                         Close();
                         break;

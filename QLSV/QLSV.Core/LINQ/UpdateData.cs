@@ -485,6 +485,45 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// xóa 1 sinh viên đã được xếp phòng
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXP_Null(XepPhong item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = null where IdSV = " + item.IdSV + " and IdKyThi = " + item.IdKyThi + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
+        /// </summary>
+        /// <returns></returns>
+        public static bool UpdateXP_Null(IList<XepPhong> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateXP_Null(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <returns>true nếu thành công</returns>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
+using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
@@ -16,6 +18,8 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_110_SinhVienDuThi : FunctionControlHasGrid
     {
+        private IList<XepPhong> _listxepphong = new List<XepPhong>();
+        private IList<KTPhong> _listktphong = new List<KTPhong>();
         private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
@@ -92,70 +96,51 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                //if (dgv_DanhSach.Selected.Rows.Count > 0)
-                //{
-                //    if (DialogResult.Yes ==
-                //        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                //            MessageBoxIcon.Question))
-                //    {
-                //        foreach (var row in dgv_DanhSach.Selected.Rows)
-                //        {
-                //            var id = row.Cells["ID"].Value.ToString();
-                //            if (!string.IsNullOrEmpty(id))
-                //            {
-                //                var hs = new XepPhong
-                //                {
-                //                    IdSV = int.Parse(id),
-                //                    IdKyThi = int.Parse(row.Cells["IdKyThi"].Text),
-                //                    IdPhong = int.Parse(row.Cells["IdPhong"].Text),
-                //                };
-                //                m_IdDelete.Add(hs);
-                //            }
-                //            foreach (var p in _lisPhong.Where(p => p.TenPhong == row.Cells["PhongThi"].Text))
-                //            {
-                //                p.SoLuong = p.SoLuong + 1;
-                //            }
-                //            var phong = new PhongThi
-                //            {
-                //                TenPhong = row.Cells["PhongThi"].Text,
-                //                SoLuong = 1
-                //            };
-                //            _lisPhong.Add(phong);
-                //        }
-                //        dgv_DanhSach.DeleteSelectedRows(false);
-                //    }
-                //}
-                //else if (dgv_DanhSach.ActiveRow != null)
-                //{
-                //    if (DialogResult.Yes ==
-                //        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                //            MessageBoxIcon.Question))
-                //    {
-                //        var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Value.ToString();
-                //        if (!string.IsNullOrEmpty(idStr))
-                //        {
-                //            var hs = new XepPhong
-                //            {
-                //                IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
-                //                IdKyThi = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKyThi"].Text),
-                //                IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
-                //            };
-                //            m_IdDelete.Add(hs);
-                //        }
-                //        foreach (
-                //            var p in _lisPhong.Where(p => p.TenPhong == dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text))
-                //        {
-                //            p.SoLuong = p.SoLuong + 1;
-                //        }
-                //        var phong = new PhongThi
-                //        {
-                //            TenPhong = dgv_DanhSach.ActiveRow.Cells["PhongThi"].Text,
-                //            SoLuong = 1
-                //        };
-                //        _lisPhong.Add(phong);
-                //        dgv_DanhSach.ActiveRow.Delete(false);
-                //    }
-                //}
+                if (dgv_DanhSach.Selected.Rows.Count > 0)
+                {
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                    {
+                        foreach (var row in dgv_DanhSach.Selected.Rows)
+                        {
+                            var xp = new XepPhong
+                            {
+                                IdKyThi = _idkythi,
+                                IdSV = int.Parse(row.Cells["MaSV"].Text)
+                            };
+                            var kt = new KTPhong
+                            {
+                                IdPhong = int.Parse(row.Cells["IdPhong"].Text),
+                                IdKyThi = _idkythi
+                            };
+                            _listxepphong.Add(xp);
+                            _listktphong.Add(kt);
+                        }
+                        dgv_DanhSach.DeleteSelectedRows(false);
+                    }
+                }
+                else if (dgv_DanhSach.ActiveRow != null)
+                {
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                    {
+                        var xp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text)
+                        };
+                        var kt = new KTPhong
+                        {
+                            IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
+                            IdKyThi = _idkythi
+                        };
+                        _listxepphong.Add(xp);
+                        _listktphong.Add(kt);
+                        dgv_DanhSach.ActiveRow.Delete(false);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -167,7 +152,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                
+                if (_listxepphong.Count <= 0 && _listktphong.Count <= 0) return;
+                if (_listktphong.Count > 0) UpdateData.UpdateGiamSiSo(_listktphong);
+                if (_listktphong.Count > 0) UpdateData.UpdateXP_Null(_listxepphong);
                 MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 LoadFormDetail();

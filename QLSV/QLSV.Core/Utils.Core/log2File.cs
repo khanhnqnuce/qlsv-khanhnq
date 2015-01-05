@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 
 namespace QLSV.Core.Utils.Core
 {
@@ -84,6 +85,8 @@ namespace QLSV.Core.Utils.Core
             listener.WriteLine(logMessage);
             listener.Flush();
             listener.Close();
+
+            MessageBox.Show(@"EXCEPTION");
         }
 
         public static void LogToFile(LogFileType logType, string logMessage)

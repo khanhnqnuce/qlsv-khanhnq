@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -9,6 +10,7 @@ using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
+using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
@@ -87,30 +89,54 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        protected override bool ValidateData()
+        {
+            var inputTypes = new List<InputType>
+            {
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                InputType.ChuoiRong,
+                
+            };
+            return ValidateHighlight.UltraGrid(uG_DanhSach, inputTypes);
+        }
+
         protected override void SaveDetail()
         {
             try
             {
-                foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                if (ValidateData())
                 {
-                    var hs = new Kythi
-                    {
-                        MaKT = row.Cells["MaKT"].Text,
-                        TenKT = row.Cells["TenKT"].Text,
-                        NgayThi = row.Cells["NgayThi"].Text,
-                        TGLamBai = int.Parse(row.Cells["TGLamBai"].Text),
-                        TGBatDau = row.Cells["TGBatDau"].Text,
-                        TGKetThuc = row.Cells["TGKetThuc"].Text,
-                    };
-                    _listAdd.Add(hs);
+                    MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin", @"Lỗi");
                 }
-                if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
-                if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
-                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
-                if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
+                else
+                {
+                    foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                    {
+                        var hs = new Kythi
+                        {
+                            MaKT = row.Cells["MaKT"].Text,
+                            TenKT = row.Cells["TenKT"].Text,
+                            NgayThi = row.Cells["NgayThi"].Text,
+                            TGLamBai = int.Parse(row.Cells["TGLamBai"].Text),
+                            TGBatDau = row.Cells["TGBatDau"].Text,
+                            TGKetThuc = row.Cells["TGKetThuc"].Text,
+                        };
+                        _listAdd.Add(hs);
+                    }
+                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
+                    if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
+                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
+                    if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    LoadFormDetail();
+                }
             }
             catch (Exception ex)
             {

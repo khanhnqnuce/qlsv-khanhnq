@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -18,11 +19,16 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<KTPhong> _listKtPhong = new List<KTPhong>();
         private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private readonly int _idkythi;
+        private readonly FrmTimkiem _frmTimkiem;
+        private UltraGridRow _newRow;
+        
 
         public Frm_108_ChonSinhVien(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
         protected override DataTable GetTable()
@@ -230,6 +236,36 @@ namespace QLSV.Frm.FrmUserControl
             band.Columns["NgaySinh"].MaxWidth = 150;
             band.Columns["MaLop"].MaxWidth = 150;
             band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
+        }
+
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

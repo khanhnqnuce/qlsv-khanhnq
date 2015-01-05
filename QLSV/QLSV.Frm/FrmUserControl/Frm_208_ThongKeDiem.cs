@@ -16,14 +16,18 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_208_ThongKeDiem : FunctionControlHasGrid
     {
         private readonly int _idkythi;
+        private readonly FrmTimkiem _frmTimkiem;
+        private UltraGridRow _newRow;
 
         public Frm_208_ThongKeDiem(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
-        #region
+        #region Exit
 
         protected override DataTable GetTable()
         {
@@ -166,6 +170,25 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         private void Frm_208_ThongKeDiem_Load(object sender, EventArgs e)
         {
             LoadGrid();
@@ -252,6 +275,17 @@ namespace QLSV.Frm.FrmUserControl
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             LoadGrid();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

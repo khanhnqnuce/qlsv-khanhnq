@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -24,8 +25,10 @@ namespace QLSV.Frm.FrmUserControl
         private readonly int _idkythi;
         private DataTable _tbSv = new DataTable();
         private DataTable _tbPhong = new DataTable();
+        private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
+
 
         #endregion
 
@@ -36,6 +39,9 @@ namespace QLSV.Frm.FrmUserControl
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
         #region Exit
@@ -353,20 +359,40 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void dgv_DanhSach_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
+        {
+            Sua();
+        }
+
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["IdSV"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
             {
                 case (Keys.Control | Keys.S):
-                    
+                    _frmTimkiem.ShowDialog();
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void dgv_DanhSach_DoubleClickRow(object sender, DoubleClickRowEventArgs e)
-        {
-            Sua();
-        }
     }
 }

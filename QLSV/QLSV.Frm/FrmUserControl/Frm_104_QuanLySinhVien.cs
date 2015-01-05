@@ -476,20 +476,6 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case (Keys.Control | Keys.S):
-                    _frmTimkiem.ShowDialog();
-                    break; 
-                case (Keys.Enter):
-                    Timkiem();
-                    break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
         private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
         {
             var obj = cbokhoa.SelectedValue;
@@ -507,6 +493,20 @@ namespace QLSV.Frm.FrmUserControl
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
             Timkiem();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
+                case (Keys.Enter):
+                    Timkiem();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
        
     }

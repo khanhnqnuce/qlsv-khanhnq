@@ -6,15 +6,15 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Core.LINQ
 {
-    class Connect
+    public class Connect
     {
-        private String _conString;
-        private static String _sv;
-        private static String _db;
-        private static String _user;
-        private static String _pass;
+        private string _conString;
+        private static string _sv;
+        public string Database;
+        private static string _user;
+        private static string _pass;
         // Phương thức kết nối sql
-        private SqlConnection GetConnect()
+        public SqlConnection GetConnect()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace QLSV.Core.LINQ
 
                     var databaseNode = xmlelement.SelectSingleNode("database");
                     if (databaseNode != null)
-                        _db = databaseNode.InnerText;
+                        Database = databaseNode.InnerText;
 
                     var usernameNode = xmlelement.SelectSingleNode("username");
                     if (usernameNode != null)
@@ -40,11 +40,11 @@ namespace QLSV.Core.LINQ
                         _pass = passwordNode.InnerText;
                 }
                 if (_user == "") // ko dung user - pass
-                    _conString = @"Data Source = " + _sv + ";Initial Catalog = " + _db + ";Integrated Security=SSPI";
+                    _conString = @"Data Source = " + _sv + ";Initial Catalog = " + Database + ";Integrated Security=SSPI";
                 else
-                    _conString = @"Data Source=" + _sv + ";Initial Catalog=" + _db + ";User Id=" + _user + ";Password=" +
+                    _conString = @"Data Source=" + _sv + ";Initial Catalog=" + Database + ";User Id=" + _user + ";Password=" +
                                  _pass + "";
-                var conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+                //var conString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
                 return new SqlConnection(_conString);
                 
                 // return new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLKhachSan.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True");
