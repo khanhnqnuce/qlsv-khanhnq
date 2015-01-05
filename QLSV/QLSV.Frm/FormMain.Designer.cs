@@ -88,8 +88,8 @@
             Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance31 = new Infragistics.Win.Appearance();
@@ -103,6 +103,8 @@
             Infragistics.Win.Appearance appearance39 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance40 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance41 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance42 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance43 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab18 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab19 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab20 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -297,7 +299,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -603,14 +605,14 @@
             this.TabInportbailam.Controls.Add(this.pnl_Inportbailam);
             this.TabInportbailam.Location = new System.Drawing.Point(-10000, -10000);
             this.TabInportbailam.Name = "TabInportbailam";
-            this.TabInportbailam.Size = new System.Drawing.Size(409, 287);
+            this.TabInportbailam.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_Inportbailam
             // 
             this.pnl_Inportbailam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Inportbailam.Location = new System.Drawing.Point(0, 0);
             this.pnl_Inportbailam.Name = "pnl_Inportbailam";
-            this.pnl_Inportbailam.Size = new System.Drawing.Size(409, 287);
+            this.pnl_Inportbailam.Size = new System.Drawing.Size(829, 502);
             this.pnl_Inportbailam.TabIndex = 10;
             // 
             // TabDanhsachbailam
@@ -635,14 +637,14 @@
             this.TabNhapthangdiem.Controls.Add(this.panel67);
             this.TabNhapthangdiem.Location = new System.Drawing.Point(-10000, -10000);
             this.TabNhapthangdiem.Name = "TabNhapthangdiem";
-            this.TabNhapthangdiem.Size = new System.Drawing.Size(229, 126);
+            this.TabNhapthangdiem.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_nhapthangdiem
             // 
             this.pnl_nhapthangdiem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_nhapthangdiem.Location = new System.Drawing.Point(25, 0);
             this.pnl_nhapthangdiem.Name = "pnl_nhapthangdiem";
-            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(179, 126);
+            this.pnl_nhapthangdiem.Size = new System.Drawing.Size(779, 502);
             this.pnl_nhapthangdiem.TabIndex = 11;
             // 
             // panel66
@@ -650,21 +652,21 @@
             this.panel66.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel66.Location = new System.Drawing.Point(0, 0);
             this.panel66.Name = "panel66";
-            this.panel66.Size = new System.Drawing.Size(25, 126);
+            this.panel66.Size = new System.Drawing.Size(25, 502);
             this.panel66.TabIndex = 10;
             // 
             // panel67
             // 
             this.panel67.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel67.Location = new System.Drawing.Point(204, 0);
+            this.panel67.Location = new System.Drawing.Point(804, 0);
             this.panel67.Name = "panel67";
-            this.panel67.Size = new System.Drawing.Size(25, 126);
+            this.panel67.Size = new System.Drawing.Size(25, 502);
             this.panel67.TabIndex = 9;
             // 
             // Tabchamdiemthi
             // 
             this.Tabchamdiemthi.Controls.Add(this.pnl_chamdiemthi);
-            this.Tabchamdiemthi.Location = new System.Drawing.Point(1, 1);
+            this.Tabchamdiemthi.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabchamdiemthi.Name = "Tabchamdiemthi";
             this.Tabchamdiemthi.Size = new System.Drawing.Size(829, 502);
             // 
@@ -683,14 +685,14 @@
             this.Tabthongkediem.Controls.Add(this.panel70);
             this.Tabthongkediem.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabthongkediem.Name = "Tabthongkediem";
-            this.Tabthongkediem.Size = new System.Drawing.Size(229, 126);
+            this.Tabthongkediem.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_thongkediem
             // 
             this.pnl_thongkediem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_thongkediem.Location = new System.Drawing.Point(10, 0);
             this.pnl_thongkediem.Name = "pnl_thongkediem";
-            this.pnl_thongkediem.Size = new System.Drawing.Size(209, 126);
+            this.pnl_thongkediem.Size = new System.Drawing.Size(809, 502);
             this.pnl_thongkediem.TabIndex = 15;
             // 
             // panel65
@@ -698,15 +700,15 @@
             this.panel65.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel65.Location = new System.Drawing.Point(0, 0);
             this.panel65.Name = "panel65";
-            this.panel65.Size = new System.Drawing.Size(10, 126);
+            this.panel65.Size = new System.Drawing.Size(10, 502);
             this.panel65.TabIndex = 14;
             // 
             // panel70
             // 
             this.panel70.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel70.Location = new System.Drawing.Point(219, 0);
+            this.panel70.Location = new System.Drawing.Point(819, 0);
             this.panel70.Name = "panel70";
-            this.panel70.Size = new System.Drawing.Size(10, 126);
+            this.panel70.Size = new System.Drawing.Size(10, 502);
             this.panel70.TabIndex = 13;
             // 
             // Tabgopketqua
@@ -843,7 +845,6 @@
             ultraExplorerBarItem5});
             ultraExplorerBarGroup1.Key = "hethong";
             ultraExplorerBarGroup1.Text = "Chức năng hệ thống";
-            ultraExplorerBarGroup2.Expanded = false;
             ultraExplorerBarItem8.Key = "101";
             appearance8.Image = ((object)(resources.GetObject("appearance8.Image")));
             ultraExplorerBarItem8.Settings.AppearancesSmall.Appearance = appearance8;
@@ -969,11 +970,14 @@
             ultraExplorerBarItem27});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
-            ultraExplorerBarGroup3.Expanded = false;
             ultraExplorerBarItem4.Key = "gioithieu";
+            appearance28.Image = global::QLSV.Frm.Properties.Resources.thongtindv1;
+            ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance28;
             ultraExplorerBarItem4.Settings.MaxLines = 2;
             ultraExplorerBarItem4.Text = "Giới thiệu";
             ultraExplorerBarItem26.Key = "huongdan";
+            appearance29.Image = global::QLSV.Frm.Properties.Resources.gioithieu1;
+            ultraExplorerBarItem26.Settings.AppearancesSmall.Appearance = appearance29;
             ultraExplorerBarItem26.Settings.MaxLines = 2;
             ultraExplorerBarItem26.Text = "Hướng dẫn";
             ultraExplorerBarItem26.ToolTipText = "(F1)";
@@ -1020,9 +1024,9 @@
             // 
             // lbtime
             // 
-            appearance28.TextHAlignAsString = "Center";
-            appearance28.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance28;
+            appearance30.TextHAlignAsString = "Center";
+            appearance30.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance30;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -1031,9 +1035,9 @@
             // 
             // lbusername
             // 
-            appearance29.TextHAlignAsString = "Center";
-            appearance29.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance29;
+            appearance31.TextHAlignAsString = "Center";
+            appearance31.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance31;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -1066,57 +1070,57 @@
             // cboChonkythi
             // 
             this.cboChonkythi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            appearance30.BackColor = System.Drawing.SystemColors.Window;
-            appearance30.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cboChonkythi.DisplayLayout.Appearance = appearance30;
+            appearance32.BackColor = System.Drawing.SystemColors.Window;
+            appearance32.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cboChonkythi.DisplayLayout.Appearance = appearance32;
             this.cboChonkythi.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.cboChonkythi.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            appearance31.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance31.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance31.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance31.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance31;
-            appearance32.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance32;
+            appearance33.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance33.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance33.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance33.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance33;
+            appearance34.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance34;
             this.cboChonkythi.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance33.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance33.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance33.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance33.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance33;
+            appearance35.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance35.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance35.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance35.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance35;
             this.cboChonkythi.DisplayLayout.MaxColScrollRegions = 1;
             this.cboChonkythi.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance34.BackColor = System.Drawing.SystemColors.Window;
-            appearance34.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance34;
-            appearance35.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance35.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance35;
+            appearance36.BackColor = System.Drawing.SystemColors.Window;
+            appearance36.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance36;
+            appearance37.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance37.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance37;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance36.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance36;
-            appearance37.BorderColor = System.Drawing.Color.Silver;
-            appearance37.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance37;
+            appearance38.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance38;
+            appearance39.BorderColor = System.Drawing.Color.Silver;
+            appearance39.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance39;
             this.cboChonkythi.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
             this.cboChonkythi.DisplayLayout.Override.CellPadding = 0;
-            appearance38.BackColor = System.Drawing.SystemColors.Control;
-            appearance38.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance38.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance38.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance38.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance38;
-            appearance39.TextHAlignAsString = "Left";
-            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance39;
+            appearance40.BackColor = System.Drawing.SystemColors.Control;
+            appearance40.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance40.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance40.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance40.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance40;
+            appearance41.TextHAlignAsString = "Left";
+            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance41;
             this.cboChonkythi.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
             this.cboChonkythi.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance40.BackColor = System.Drawing.SystemColors.Window;
-            appearance40.BorderColor = System.Drawing.Color.Silver;
-            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance40;
+            appearance42.BackColor = System.Drawing.SystemColors.Window;
+            appearance42.BorderColor = System.Drawing.Color.Silver;
+            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance42;
             this.cboChonkythi.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance41.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance41;
+            appearance43.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance43;
             this.cboChonkythi.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cboChonkythi.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cboChonkythi.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
@@ -1776,7 +1780,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::QLSV.Frm.Properties.Resources.nen;
+            this.pictureBox1.Image = global::QLSV.Frm.Properties.Resources.ABCD;
             this.pictureBox1.Location = new System.Drawing.Point(187, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(833, 528);

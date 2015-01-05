@@ -427,6 +427,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ultis.Frm\ValidateHighlight.cs" />
+    <None Include="Resources\gioithieu1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\thongtindv1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\ABCD1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <EmbeddedResource Include="Base\FunctionControlHasGrid.resx">
       <DependentUpon>FunctionControlHasGrid.cs</DependentUpon>
     </EmbeddedResource>

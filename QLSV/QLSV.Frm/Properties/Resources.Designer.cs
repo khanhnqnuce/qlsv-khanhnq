@@ -263,6 +263,16 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABCD {
+            get {
+                object obj = ResourceManager.GetObject("ABCD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_icon {
             get {
                 object obj = ResourceManager.GetObject("add-icon", resourceCulture);
@@ -416,6 +426,16 @@ namespace QLSV.Frm.Properties {
         internal static System.Drawing.Bitmap gioithieu {
             get {
                 object obj = ResourceManager.GetObject("gioithieu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gioithieu1 {
+            get {
+                object obj = ResourceManager.GetObject("gioithieu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -616,6 +636,16 @@ namespace QLSV.Frm.Properties {
         internal static System.Drawing.Bitmap thoat {
             get {
                 object obj = ResourceManager.GetObject("thoat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thongtindv1 {
+            get {
+                object obj = ResourceManager.GetObject("thongtindv1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
