@@ -185,15 +185,6 @@ namespace QLSV.Frm.FrmUserControl
             band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
 
             #region Caption
-
-            band.Columns["MaSV"].Header.Caption = @"Mã SV";
-            band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-            band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-            band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-            band.Columns["MaLop"].Header.Caption = @"Lớp";
-
-            #endregion
-            #region Caption
             band.Groups.Clear();
             var columns = band.Columns;
             band.ColHeadersVisible = false;

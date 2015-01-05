@@ -32,12 +32,12 @@ namespace QLSV.Frm.Frm
         private static DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("Chon", typeof (bool));
-            table.Columns.Add("MaSV", typeof (string));
-            table.Columns.Add("HoSV", typeof (string));
-            table.Columns.Add("TenSV", typeof (string));
-            table.Columns.Add("NgaySinh", typeof (string));
-            table.Columns.Add("MaLop", typeof (string));
+            table.Columns.Add("Chon", typeof(bool));
+            table.Columns.Add("MaSV", typeof(string));
+            table.Columns.Add("HoSV", typeof(string));
+            table.Columns.Add("TenSV", typeof(string));
+            table.Columns.Add("NgaySinh", typeof(string));
+            table.Columns.Add("MaLop", typeof(string));
             return table;
         }
 
@@ -131,7 +131,6 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                dgv_DanhSach.DataSource = GetTable();
                 cbokhoa.DataSource = LoadData.Load(3);
             }
             catch (Exception ex)
@@ -166,16 +165,21 @@ namespace QLSV.Frm.Frm
                 var band = e.Layout.Bands[0];
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
-
                 #region Caption
-
-                band.Columns["Chon"].Header.Caption = @"Chọn";
-                band.Columns["MaSV"].Header.Caption = @"Mã SV";
-                band.Columns["HoSV"].Header.Caption = FormResource.txtHosinhvien;
-                band.Columns["TenSV"].Header.Caption = FormResource.txtTensinhvien;
-                band.Columns["NgaySinh"].Header.Caption = @"Ngày Sinh";
-                band.Columns["MaLop"].Header.Caption = @"Lớp";
-
+                band.Groups.Clear();
+                var columns = band.Columns;
+                band.ColHeadersVisible = false;
+                var group0 = band.Groups.Add("Mã SV");
+                var group1 = band.Groups.Add("Họ và tên");
+                var group2 = band.Groups.Add("Ngày sinh");
+                var group3 = band.Groups.Add("Lớp");
+                var group5 = band.Groups.Add("Chọn");
+                columns["MaSV"].Group = group0;
+                columns["HoSV"].Group = group1;
+                columns["TenSV"].Group = group1;
+                columns["NgaySinh"].Group = group2;
+                columns["MaLop"].Group = group3;
+                columns["Chon"].Group = group5;
                 #endregion
 
                 band.Columns["Chon"].Style = ColumnStyle.CheckBox;
@@ -189,11 +193,16 @@ namespace QLSV.Frm.Frm
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
 
-                band.Columns["HoSV"].Width = 170;
-                band.Columns["MaSV"].Width = 150;
-                band.Columns["TenSV"].Width = 150;
-                band.Columns["NgaySinh"].Width = 150;
-                band.Columns["MaLop"].Width = 150;
+                band.Columns["HoSV"].MinWidth = 160;
+                band.Columns["MaSV"].MinWidth = 140;
+                band.Columns["TenSV"].MinWidth = 140;
+                band.Columns["NgaySinh"].MinWidth = 140;
+                band.Columns["MaLop"].MinWidth = 140;
+                band.Columns["HoSV"].MaxWidth = 170;
+                band.Columns["MaSV"].MaxWidth = 150;
+                band.Columns["TenSV"].MaxWidth = 150;
+                band.Columns["NgaySinh"].MaxWidth = 150;
+                band.Columns["MaLop"].MaxWidth = 150;
             }
             catch (Exception ex)
             {
