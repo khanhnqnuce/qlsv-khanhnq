@@ -62,6 +62,7 @@
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnTimkiem});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -75,7 +76,7 @@
             this.btnTimkiem.Image = global::QLSV.Frm.Properties.Resources.find_icon;
             this.btnTimkiem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimkiem.Name = "btnTimkiem";
-            this.btnTimkiem.Size = new System.Drawing.Size(77, 22);
+            this.btnTimkiem.Size = new System.Drawing.Size(74, 22);
             this.btnTimkiem.Text = "Tìm kiếm";
             this.btnTimkiem.ToolTipText = "Tìm kiếm";
             this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);

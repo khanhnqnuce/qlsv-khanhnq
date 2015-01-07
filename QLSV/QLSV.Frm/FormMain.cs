@@ -76,6 +76,8 @@ namespace QLSV.Frm
                     //MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["hethong"].Items["backup"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["hethong"].Items["restore"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["QLND"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["101"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["102"].Settings.Enabled = DefaultableBoolean.True;
@@ -91,6 +93,8 @@ namespace QLSV.Frm
                     //MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["hethong"].Items["backup"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["hethong"].Items["restore"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["QLND"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["101"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["102"].Settings.Enabled = DefaultableBoolean.True;
@@ -108,6 +112,8 @@ namespace QLSV.Frm
                     MenuBar.Groups["hethong"].Items["login"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["hethong"].Items["logout"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["doimatkhau"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["hethong"].Items["backup"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["hethong"].Items["restore"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["hethong"].Items["QLND"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["101"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["102"].Settings.Enabled = DefaultableBoolean.False;

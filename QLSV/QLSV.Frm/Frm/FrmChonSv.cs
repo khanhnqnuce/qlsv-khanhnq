@@ -245,7 +245,7 @@ namespace QLSV.Frm.Frm
 
         private void btnluu_Click(object sender, EventArgs e)
         {
-            Luu();
+            
         }
 
         private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
@@ -381,6 +381,11 @@ namespace QLSV.Frm.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Luu();
         }
     }
 }

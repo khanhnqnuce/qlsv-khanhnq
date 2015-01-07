@@ -201,6 +201,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
+                band.Columns["MaKhoa"].Hidden = true;
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaKhoa"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;

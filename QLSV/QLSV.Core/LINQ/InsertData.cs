@@ -344,7 +344,7 @@ namespace QLSV.Core.LINQ
         /// Thêm bảng thống kê
         /// </summary>
         /// <returns></returns>
-        public static bool ThemThongKe(ThongKe item)
+        public static bool ThemThongKe(DiemThi item)
         {
             try
             {
@@ -359,7 +359,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static bool ThemThongKe(IList<ThongKe> list)
+        public static bool ThemThongKe(IList<DiemThi> list)
         {
             try
             {

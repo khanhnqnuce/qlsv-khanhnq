@@ -127,11 +127,6 @@ namespace QLSV.Frm.Frm
             OnShowDialog("Đang lưu dữ liệu");
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            Luu();
-        }
-
         #region BackgroundWorker
 
         private void bgwInsert_DoWork(object sender, DoWorkEventArgs e)
@@ -195,9 +190,9 @@ namespace QLSV.Frm.Frm
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void btndong_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Close();
+            Luu();
         }
     }
 }

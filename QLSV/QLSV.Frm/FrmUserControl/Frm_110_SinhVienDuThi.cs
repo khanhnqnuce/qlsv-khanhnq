@@ -243,7 +243,6 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
-            rptdanhsachduthi.GetReportParameter += GetParameter;
             rptdanhsachduthi.Prepare();
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {

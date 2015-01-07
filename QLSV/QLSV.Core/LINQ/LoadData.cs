@@ -138,7 +138,7 @@ namespace QLSV.Core.LINQ
                             "join PHONGTHI p on x.IdPhong = p.ID " +
                             "join LOP l on s.IdLop = l.ID " +
                             "join KHOA k on l.IdKhoa = k.ID " +
-                            "WHERE x.IdKyThi = "+idKythi+"";
+                            "WHERE x.IdKyThi = " + idKythi + " order by p.TenPhong, s.TenSV";
                         break;
                     case 2:
                         str = "SELECT p.TenPhong " +

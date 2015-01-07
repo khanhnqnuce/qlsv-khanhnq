@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Core.Domain
 {
-    public class ThongKe
+    public class DiemThi
     {
         public virtual int MaSV { get; set; }
         public virtual string NamHoc { get; set; }

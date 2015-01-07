@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnLuu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btndong = new System.Windows.Forms.ToolStripButton();
             this.ckbChon = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbtong = new Infragistics.Win.Misc.UltraLabel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbtong = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
@@ -47,45 +44,19 @@
             this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnLuu,
-            this.toolStripSeparator1,
-            this.btndong});
+            this.lbtong});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(421, 25);
             this.toolStrip1.TabIndex = 32;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnLuu
-            // 
-            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(48, 22);
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.ToolTipText = "(F5)";
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btndong
-            // 
-            this.btndong.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Exit_32x32;
-            this.btndong.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btndong.Name = "btndong";
-            this.btndong.Size = new System.Drawing.Size(57, 22);
-            this.btndong.Text = "Đóng";
-            this.btndong.ToolTipText = "(Esc)";
-            this.btndong.Click += new System.EventHandler(this.btndong_Click);
-            // 
             // ckbChon
             // 
             this.ckbChon.AutoSize = true;
-            this.ckbChon.Location = new System.Drawing.Point(48, 6);
+            this.ckbChon.Location = new System.Drawing.Point(259, 6);
             this.ckbChon.Name = "ckbChon";
+            this.ckbChon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ckbChon.Size = new System.Drawing.Size(75, 19);
             this.ckbChon.TabIndex = 35;
             this.ckbChon.Text = "Chọn hết";
@@ -94,24 +65,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lbtong);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.ckbChon);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 428);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(421, 31);
             this.panel1.TabIndex = 36;
-            // 
-            // lbtong
-            // 
-            appearance2.TextHAlignAsString = "Center";
-            appearance2.TextVAlignAsString = "Middle";
-            this.lbtong.Appearance = appearance2;
-            this.lbtong.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbtong.Location = new System.Drawing.Point(159, 0);
-            this.lbtong.Name = "lbtong";
-            this.lbtong.Size = new System.Drawing.Size(262, 31);
-            this.lbtong.TabIndex = 36;
             // 
             // dgv_DanhSach
             // 
@@ -130,6 +90,21 @@
             this.dgv_DanhSach.TabIndex = 37;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             this.dgv_DanhSach.CellChange += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.dgv_DanhSach_CellChange);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(349, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(60, 23);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "Lưu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbtong
+            // 
+            this.lbtong.Name = "lbtong";
+            this.lbtong.Size = new System.Drawing.Size(0, 22);
             // 
             // FrmChonPhongThi
             // 
@@ -163,12 +138,10 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnLuu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btndong;
         private System.Windows.Forms.CheckBox ckbChon;
         private System.Windows.Forms.Panel panel1;
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
-        private Infragistics.Win.Misc.UltraLabel lbtong;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripLabel lbtong;
     }
 }

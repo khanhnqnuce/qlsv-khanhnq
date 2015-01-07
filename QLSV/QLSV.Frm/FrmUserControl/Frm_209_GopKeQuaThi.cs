@@ -18,7 +18,7 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_209_GopKeQuaThi : FunctionControlHasGrid
     {
-        private readonly IList<ThongKe> _listThongke = new List<ThongKe>();
+        private readonly IList<DiemThi> _listThongke = new List<DiemThi>();
         private IList<int> _list;
         IList<Sinhvien> _listtk = new List<Sinhvien>(); 
         private readonly BackgroundWorker _bgwInsert;
@@ -145,7 +145,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 foreach (var row in dgv_DanhSach.Rows)
                 {
-                    var hs = new ThongKe
+                    var hs = new DiemThi
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
                         Diem = int.Parse(row.Cells["TongDiem"].Text),

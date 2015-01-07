@@ -38,8 +38,6 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.btnTimtheokhoa = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnluu = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -52,6 +50,7 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel7 = new System.Windows.Forms.Panel();
             this.ckbChon = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -150,29 +149,12 @@
             this.toolStripSeparator2,
             this.toolStripLabel3,
             this.txtkhoa,
-            this.btnTimtheokhoa,
-            this.toolStripSeparator4,
-            this.btnluu});
+            this.btnTimtheokhoa});
             this.toolStrip3.Location = new System.Drawing.Point(619, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(327, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnluu
-            // 
-            this.btnluu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnluu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnluu.Name = "btnluu";
-            this.btnluu.Size = new System.Drawing.Size(47, 22);
-            this.btnluu.Text = "Lưu";
-            this.btnluu.ToolTipText = "(F5)";
-            this.btnluu.Click += new System.EventHandler(this.btnluu_Click);
             // 
             // panel3
             // 
@@ -281,6 +263,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.button1);
             this.panel7.Controls.Add(this.ckbChon);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(0, 580);
@@ -291,13 +274,24 @@
             // ckbChon
             // 
             this.ckbChon.AutoSize = true;
-            this.ckbChon.Location = new System.Drawing.Point(67, 6);
+            this.ckbChon.Location = new System.Drawing.Point(778, 6);
             this.ckbChon.Name = "ckbChon";
+            this.ckbChon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ckbChon.Size = new System.Drawing.Size(75, 19);
             this.ckbChon.TabIndex = 35;
             this.ckbChon.Text = "Chọn hết";
             this.ckbChon.UseVisualStyleBackColor = true;
             this.ckbChon.CheckedChanged += new System.EventHandler(this.ckbChon_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(863, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Lưu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmChonSv
             // 
@@ -362,8 +356,7 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.CheckBox ckbChon;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton btnluu;
+        private System.Windows.Forms.Button button1;
 
 
     }
