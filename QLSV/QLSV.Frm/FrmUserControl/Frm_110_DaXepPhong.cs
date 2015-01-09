@@ -276,7 +276,6 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachkhoa.FilePath = Application.StartupPath + @"\Reports\danhsachduthikhoa.rst";
-            rptdanhsachkhoa.GetReportParameter += GetParameter;
             rptdanhsachkhoa.Prepare();
             var previewForm = new PreviewForm(rptdanhsachkhoa)
             {
@@ -302,7 +301,6 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdanhsachlop.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
-            rptdanhsachlop.GetReportParameter += GetParameter;
             rptdanhsachlop.Prepare();
             var previewForm = new PreviewForm(rptdanhsachlop)
             {
@@ -310,24 +308,6 @@ namespace QLSV.Frm.FrmUserControl
                 ShowInTaskbar = false
             };
             previewForm.Show();
-        }
-
-        private void GetParameter(object sender,
-           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
-        {
-            try
-            {
-                var tb = LoadData.Load(3, _idkythi);
-                foreach (DataRow row in tb.Rows)
-                {
-                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
-                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
         }
 
         #endregion

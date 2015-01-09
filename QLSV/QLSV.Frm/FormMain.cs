@@ -488,7 +488,7 @@ namespace QLSV.Frm
                     btnInds.Visible = false;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
+                    btnLuu.Visible = false;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }
@@ -852,7 +852,7 @@ namespace QLSV.Frm
             }
             else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
             {
-                _frmSapXepPhongThi.Ghi();
+                //_frmSapXepPhongThi.Ghi();
             }
             else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
             {

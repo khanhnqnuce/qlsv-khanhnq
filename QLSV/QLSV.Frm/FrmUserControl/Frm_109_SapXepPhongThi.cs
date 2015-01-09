@@ -28,6 +28,7 @@ namespace QLSV.Frm.FrmUserControl
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
+        private bool _updateall;
 
 
         #endregion
@@ -156,11 +157,12 @@ namespace QLSV.Frm.FrmUserControl
                 if (frm.update && frm.rdoall.Checked)
                 {
                     if (_tbSv.Rows.Count > 0)
+                    {
+                        _updateall = frm.rdoall.Checked;
                         Xepphong();
+                    }
                     else
                         MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");
-                    dgv_DanhSach.DataSource = _tbSv;
-                    pnl_from.Visible = true;
                 }else if (frm.update && frm.rdoone.Checked)
                 {
                     dgv_DanhSach.DataSource = _tbSv;
@@ -209,6 +211,10 @@ namespace QLSV.Frm.FrmUserControl
                     thread.Start();
                     OnShowDialog("Loading...");
                 }
+                if (!_updateall) return;
+                Ghi();
+                dgv_DanhSach.DataSource = _tbSv;
+                pnl_from.Visible = true;
             }
             catch (Exception ex)
             {
@@ -224,8 +230,8 @@ namespace QLSV.Frm.FrmUserControl
                 if (_listXepPhong.Count > 0) UpdateData.UpdateXepPhong(_listXepPhong);
                 if (_listPhanPhong.Count > 0) UpdateData.UpdateKtPhong(_listPhanPhong);
                 MessageBox.Show(@"Sinh viên đã được xếp phòng");
-                _listPhanPhong.Clear();
-                _listXepPhong.Clear();
+                //_listPhanPhong.Clear();
+                //_listXepPhong.Clear();
             }
             catch (Exception ex)
             {
@@ -233,12 +239,11 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        public void Ghi()
+        private void Ghi()
         {
-            if (_listXepPhong.Count >0 && _listPhanPhong.Count > 0){
-                _bgwInsert.RunWorkerAsync();
-                OnShowDialog("Đang lưu dữ liệu");
-            }
+            if (_listXepPhong.Count <= 0 || _listPhanPhong.Count <= 0) return;
+            _bgwInsert.RunWorkerAsync();
+            OnShowDialog("Đang lưu dữ liệu");
         }
 
         #endregion
@@ -280,12 +285,14 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenSV"].CellActivation = Activation.NoEdit;
                 band.Columns["NgaySinh"].CellActivation = Activation.NoEdit;
                 band.Columns["MaLop"].CellActivation = Activation.NoEdit;
+                band.Columns["PhongThi"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["IdSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["PhongThi"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].MinWidth = 60;
