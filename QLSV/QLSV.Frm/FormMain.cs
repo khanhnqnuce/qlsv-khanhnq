@@ -29,7 +29,7 @@ namespace QLSV.Frm
         private static Frm_107_Chonphongthi _frmChonphongthi;
         private static Frm_108_ChonSinhVien _frmChonSinhVien;
         private static Frm_109_SapXepPhongThi _frmSapXepPhongThi;
-        private static Frm_110_SinhVienDuThi _frmSinhVienDuThi;
+        private static Frm_110_DaXepPhong _frmSinhVienDuThi;
         private static Frm_201_InportDapAn _frmInportDapAn;
         private static Frm_203_InportBaiLam _frmInportBaiLam;
         private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
@@ -273,7 +273,7 @@ namespace QLSV.Frm
                         ShowControl(_frmSapXepPhongThi, pnl_sapxepphongthi);
                         break;
                     case "110":
-                        _frmSinhVienDuThi = new Frm_110_SinhVienDuThi(_idkythi);
+                        _frmSinhVienDuThi = new Frm_110_DaXepPhong(_idkythi);
                         _frmSinhVienDuThi.ShowDialog += ShowLoading;
                         _frmSinhVienDuThi.CloseDialog += KillLoading;
                         _frmSinhVienDuThi.UpdateDialog += UpdateLoading;
@@ -501,7 +501,7 @@ namespace QLSV.Frm
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = true;
                     btnLuu.Visible = true;
-                    btnHuy.Visible = false;
+                    btnHuy.Visible = true;
                     btnDong.Visible = true;
                 }
                 else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
@@ -794,8 +794,9 @@ namespace QLSV.Frm
             {
                 _frmQuanLyKyThi.LoadForm();
             }
-            else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
+            else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
             {
+                _frmDanhsachphongthi.LoadForm();
             }
             else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
             {

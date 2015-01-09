@@ -16,7 +16,7 @@ using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_110_SinhVienDuThi : FunctionControlHasGrid
+    public partial class Frm_110_DaXepPhong : FunctionControlHasGrid
     {
         private IList<XepPhong> _listxepphong = new List<XepPhong>();
         private IList<KTPhong> _listktphong = new List<KTPhong>();
@@ -24,7 +24,7 @@ namespace QLSV.Frm.FrmUserControl
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
 
-        public Frm_110_SinhVienDuThi(int idkythi)
+        public Frm_110_DaXepPhong(int idkythi)
         {
             InitializeComponent();
             _idkythi = idkythi;
@@ -67,6 +67,8 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 Invoke((Action) LoadGrid);
+                Invoke((Action) _listktphong.Clear);
+                Invoke((Action) _listxepphong.Clear);
                 lock (LockTotal)
                 {
                     OnCloseDialog();

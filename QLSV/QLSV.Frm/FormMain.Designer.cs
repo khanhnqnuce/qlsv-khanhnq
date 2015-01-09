@@ -1170,7 +1170,7 @@
             this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHuy.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnHuy.Image = global::QLSV.Frm.Properties.Resources.Refresh_icon;
-            this.btnHuy.Location = new System.Drawing.Point(616, 7);
+            this.btnHuy.Location = new System.Drawing.Point(689, 7);
             this.btnHuy.Margin = new System.Windows.Forms.Padding(0);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(64, 31);
@@ -1189,7 +1189,7 @@
             this.btnLuu.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.save_icon;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(688, 7);
+            this.btnLuu.Location = new System.Drawing.Point(617, 7);
             this.btnLuu.Margin = new System.Windows.Forms.Padding(4);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(64, 31);
