@@ -143,6 +143,12 @@ namespace QLSV.Frm.FrmUserControl
                         dgv_DanhSach.ActiveRow.Delete(false);
                     }
                 }
+                if (_listxepphong.Count <= 0 && _listktphong.Count <= 0) return;
+                if (_listktphong.Count > 0) UpdateData.UpdateGiamSiSo(_listktphong);
+                if (_listktphong.Count > 0) UpdateData.UpdateXP_Null(_listxepphong);
+                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                LoadFormDetail();
             }
             catch (Exception ex)
             {

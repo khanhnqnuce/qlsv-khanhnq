@@ -207,11 +207,11 @@
     <Compile Include="FrmUserControl\Frm_104_QuanLySinhVien.Designer.cs">
       <DependentUpon>Frm_104_QuanLySinhVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_110_SinhVienDuThi.cs">
+    <Compile Include="FrmUserControl\Frm_110_DaXepPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_110_SinhVienDuThi.Designer.cs">
-      <DependentUpon>Frm_110_SinhVienDuThi.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_110_DaXepPhong.Designer.cs">
+      <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_203_InportBaiLam.cs">
       <SubType>UserControl</SubType>
@@ -469,8 +469,8 @@
     <EmbeddedResource Include="FrmUserControl\Frm_104_QuanLySinhVien.resx">
       <DependentUpon>Frm_104_QuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_110_SinhVienDuThi.resx">
-      <DependentUpon>Frm_110_SinhVienDuThi.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_110_DaXepPhong.resx">
+      <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_203_InportBaiLam.resx">
       <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
