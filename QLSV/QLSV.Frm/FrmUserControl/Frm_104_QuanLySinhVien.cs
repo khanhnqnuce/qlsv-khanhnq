@@ -464,9 +464,27 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 Huy();
+                //--------Khoa------------
+                var table = LoadData.Load(3);
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("TenKhoa", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các khoa -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+                }
                 cbokhoa.ValueMember = "ID";
                 cbokhoa.DisplayMember = "TenKhoa";
-                cbokhoa.DataSource = LoadData.Load(3);
+                cbokhoa.DataSource = tb;
+                //------------Lớp-----------
+                var tb1 = new DataTable();
+                tb1.Columns.Add("ID", typeof(string));
+                tb1.Columns.Add("MaLop", typeof(string));
+                tb1.Rows.Add("0", "- Chọn lớp -");
+                cbolop.ValueMember = "ID";
+                cbolop.DisplayMember = "MaLop";
+                cbolop.DataSource = tb1;
             }
             catch (Exception ex)
             {
@@ -476,11 +494,31 @@ namespace QLSV.Frm.FrmUserControl
 
         private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
         {
-            var obj = cbokhoa.SelectedValue;
-            if(obj == null) return;
-            cbolop.ValueMember = "ID";
-            cbolop.DisplayMember = "MaLop";
-            cbolop.DataSource = SearchData.Timkiem(int.Parse(obj.ToString()));
+            try
+            {
+                var obj = cbokhoa.SelectedValue;
+                if (obj == null || obj.ToString().Equals("0"))
+                {
+                    LoadGrid();
+                    return;
+                }
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
+
+                var table = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("MaLop", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các lớp -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                }
+                cbolop.DataSource = tb;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -490,7 +528,14 @@ namespace QLSV.Frm.FrmUserControl
 
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
-            Timkiem();
+            var obj = cbolop.SelectedValue;
+            if (obj == null || obj.ToString().Equals("0"))
+            {
+                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.SelectedValue.ToString()));
+                return;
+            }
+            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(obj.ToString()));
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

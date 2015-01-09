@@ -18,10 +18,10 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                               "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                               "FROM SINHVIEN s,LOP l, KHOA k " +
-                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSV";
+                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and k.ID = " + id + "ORDER BY TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -127,7 +127,7 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                               "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                               "FROM SINHVIEN s,LOP l, KHOA k " +
                               "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSV";
@@ -176,7 +176,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static DataTable Timkiem(int id)
+        public static DataTable Timkiemtheolop1(int id)
         {
             try
             {
