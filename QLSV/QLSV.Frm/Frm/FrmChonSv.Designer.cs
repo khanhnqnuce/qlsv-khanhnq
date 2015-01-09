@@ -49,8 +49,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.ckbChon = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.ckbChon = new System.Windows.Forms.CheckBox();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -72,8 +72,9 @@
             // 
             // toolStripLabel3
             // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
             this.toolStripLabel3.Text = "Chọn khóa: K";
             // 
             // txtkhoa
@@ -118,6 +119,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -129,21 +131,24 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
             this.toolStripLabel1.Text = "Chọn khoa";
             // 
             // btnTimtheokhoa
             // 
+            this.btnTimtheokhoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnTimtheokhoa.Image = global::QLSV.Frm.Properties.Resources.find_icon;
             this.btnTimtheokhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimtheokhoa.Name = "btnTimtheokhoa";
-            this.btnTimtheokhoa.Size = new System.Drawing.Size(77, 22);
+            this.btnTimtheokhoa.Size = new System.Drawing.Size(74, 22);
             this.btnTimtheokhoa.Text = "Tìm kiếm";
             this.btnTimtheokhoa.Click += new System.EventHandler(this.btnTimtheokhoa_Click);
             // 
             // toolStrip3
             // 
+            this.toolStrip3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
@@ -180,6 +185,7 @@
             // 
             // toolStrip2
             // 
+            this.toolStrip2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
@@ -197,6 +203,7 @@
             // 
             // toolStripLabel2
             // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(56, 22);
             this.toolStripLabel2.Text = "Chọn lớp";
@@ -271,6 +278,16 @@
             this.panel7.Size = new System.Drawing.Size(946, 31);
             this.panel7.TabIndex = 37;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(863, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Lưu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ckbChon
             // 
             this.ckbChon.AutoSize = true;
@@ -282,16 +299,6 @@
             this.ckbChon.Text = "Chọn hết";
             this.ckbChon.UseVisualStyleBackColor = true;
             this.ckbChon.CheckedChanged += new System.EventHandler(this.ckbChon_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(863, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 23);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Lưu";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmChonSv
             // 

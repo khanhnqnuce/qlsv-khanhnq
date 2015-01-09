@@ -41,6 +41,16 @@ namespace QLSV.Frm.Frm
         
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btndong_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             if (string.IsNullOrEmpty(cboPhongthi.Text))
             {
                 errorPhongthi.SetError(cboPhongthi, "Chọn Phòng thi");
@@ -66,7 +76,7 @@ namespace QLSV.Frm.Frm
                 var hsxp = new XepPhong
                 {
                     IdKyThi = IdKythi,
-                    IdPhong = (int) a,
+                    IdPhong = (int)a,
                     IdSV = int.Parse(txtmasinhvien.Text),
                 };
 
@@ -77,13 +87,13 @@ namespace QLSV.Frm.Frm
                     SiSo = 1
                 };
                 UpdateData.UpdateXepPhong(hsxp);
-                UpdateData.UpdateTangSiSo(hspp.IdPhong,hspp.IdKyThi);
+                UpdateData.UpdateTangSiSo(hspp.IdPhong, hspp.IdKyThi);
                 bUpdate = true;
                 Close();
             }
         }
 
-        private void btndong_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Close();
         }

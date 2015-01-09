@@ -84,13 +84,14 @@
             Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem11 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem27 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem30 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem27 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
+            Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup ultraExplorerBarGroup3 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem4 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
-            Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem26 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance31 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance32 = new Infragistics.Win.Appearance();
@@ -105,6 +106,7 @@
             Infragistics.Win.Appearance appearance41 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance42 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance43 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance44 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab18 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab19 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab20 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -942,9 +944,13 @@
             appearance26.Image = global::QLSV.Frm.Properties.Resources._209_;
             ultraExplorerBarItem11.Settings.AppearancesSmall.Appearance = appearance26;
             ultraExplorerBarItem11.Text = "Gộp kết quả thi";
-            ultraExplorerBarItem27.Key = "210";
+            ultraExplorerBarItem30.Key = "211";
             appearance27.Image = global::QLSV.Frm.Properties.Resources._210_;
-            ultraExplorerBarItem27.Settings.AppearancesSmall.Appearance = appearance27;
+            ultraExplorerBarItem30.Settings.AppearancesSmall.Appearance = appearance27;
+            ultraExplorerBarItem30.Text = "Quản lý điểm";
+            ultraExplorerBarItem27.Key = "210";
+            appearance28.Image = global::QLSV.Frm.Properties.Resources._211_;
+            ultraExplorerBarItem27.Settings.AppearancesSmall.Appearance = appearance28;
             ultraExplorerBarItem27.Settings.MaxLines = 3;
             ultraExplorerBarItem27.Text = "In điểm tích lũy của sinh viên";
             ultraExplorerBarGroup2.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
@@ -967,17 +973,19 @@
             ultraExplorerBarItem20,
             ultraExplorerBarItem21,
             ultraExplorerBarItem11,
+            ultraExplorerBarItem30,
             ultraExplorerBarItem27});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
+            ultraExplorerBarGroup3.Expanded = false;
             ultraExplorerBarItem4.Key = "gioithieu";
-            appearance28.Image = global::QLSV.Frm.Properties.Resources.thongtindv1;
-            ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance28;
+            appearance29.Image = global::QLSV.Frm.Properties.Resources.thongtindv1;
+            ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance29;
             ultraExplorerBarItem4.Settings.MaxLines = 2;
             ultraExplorerBarItem4.Text = "Giới thiệu";
             ultraExplorerBarItem26.Key = "huongdan";
-            appearance29.Image = global::QLSV.Frm.Properties.Resources.gioithieu1;
-            ultraExplorerBarItem26.Settings.AppearancesSmall.Appearance = appearance29;
+            appearance30.Image = global::QLSV.Frm.Properties.Resources.gioithieu1;
+            ultraExplorerBarItem26.Settings.AppearancesSmall.Appearance = appearance30;
             ultraExplorerBarItem26.Settings.MaxLines = 2;
             ultraExplorerBarItem26.Text = "Hướng dẫn";
             ultraExplorerBarItem26.ToolTipText = "(F1)";
@@ -1024,9 +1032,9 @@
             // 
             // lbtime
             // 
-            appearance30.TextHAlignAsString = "Center";
-            appearance30.TextVAlignAsString = "Middle";
-            this.lbtime.Appearance = appearance30;
+            appearance31.TextHAlignAsString = "Center";
+            appearance31.TextVAlignAsString = "Middle";
+            this.lbtime.Appearance = appearance31;
             this.lbtime.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbtime.Location = new System.Drawing.Point(0, 29);
             this.lbtime.Name = "lbtime";
@@ -1035,9 +1043,9 @@
             // 
             // lbusername
             // 
-            appearance31.TextHAlignAsString = "Center";
-            appearance31.TextVAlignAsString = "Middle";
-            this.lbusername.Appearance = appearance31;
+            appearance32.TextHAlignAsString = "Center";
+            appearance32.TextVAlignAsString = "Middle";
+            this.lbusername.Appearance = appearance32;
             this.lbusername.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbusername.Location = new System.Drawing.Point(0, 0);
             this.lbusername.Name = "lbusername";
@@ -1070,57 +1078,57 @@
             // cboChonkythi
             // 
             this.cboChonkythi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            appearance32.BackColor = System.Drawing.SystemColors.Window;
-            appearance32.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.cboChonkythi.DisplayLayout.Appearance = appearance32;
+            appearance33.BackColor = System.Drawing.SystemColors.Window;
+            appearance33.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cboChonkythi.DisplayLayout.Appearance = appearance33;
             this.cboChonkythi.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
             this.cboChonkythi.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            appearance33.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance33.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance33.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance33.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance33;
-            appearance34.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance34;
-            this.cboChonkythi.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance35.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance35.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance35.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance34.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance34.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance34.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance34.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.GroupByBox.Appearance = appearance34;
             appearance35.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance35;
+            this.cboChonkythi.DisplayLayout.GroupByBox.BandLabelAppearance = appearance35;
+            this.cboChonkythi.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance36.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance36.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance36.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance36.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.cboChonkythi.DisplayLayout.GroupByBox.PromptAppearance = appearance36;
             this.cboChonkythi.DisplayLayout.MaxColScrollRegions = 1;
             this.cboChonkythi.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance36.BackColor = System.Drawing.SystemColors.Window;
-            appearance36.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance36;
-            appearance37.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance37.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance37;
+            appearance37.BackColor = System.Drawing.SystemColors.Window;
+            appearance37.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveCellAppearance = appearance37;
+            appearance38.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance38.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.cboChonkythi.DisplayLayout.Override.ActiveRowAppearance = appearance38;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
             this.cboChonkythi.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance38.BackColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance38;
-            appearance39.BorderColor = System.Drawing.Color.Silver;
-            appearance39.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance39;
+            appearance39.BackColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.CardAreaAppearance = appearance39;
+            appearance40.BorderColor = System.Drawing.Color.Silver;
+            appearance40.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.cboChonkythi.DisplayLayout.Override.CellAppearance = appearance40;
             this.cboChonkythi.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
             this.cboChonkythi.DisplayLayout.Override.CellPadding = 0;
-            appearance40.BackColor = System.Drawing.SystemColors.Control;
-            appearance40.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance40.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance40.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance40.BorderColor = System.Drawing.SystemColors.Window;
-            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance40;
-            appearance41.TextHAlignAsString = "Left";
-            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance41;
+            appearance41.BackColor = System.Drawing.SystemColors.Control;
+            appearance41.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance41.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance41.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance41.BorderColor = System.Drawing.SystemColors.Window;
+            this.cboChonkythi.DisplayLayout.Override.GroupByRowAppearance = appearance41;
+            appearance42.TextHAlignAsString = "Left";
+            this.cboChonkythi.DisplayLayout.Override.HeaderAppearance = appearance42;
             this.cboChonkythi.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
             this.cboChonkythi.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance42.BackColor = System.Drawing.SystemColors.Window;
-            appearance42.BorderColor = System.Drawing.Color.Silver;
-            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance42;
+            appearance43.BackColor = System.Drawing.SystemColors.Window;
+            appearance43.BorderColor = System.Drawing.Color.Silver;
+            this.cboChonkythi.DisplayLayout.Override.RowAppearance = appearance43;
             this.cboChonkythi.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance43.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance43;
+            appearance44.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cboChonkythi.DisplayLayout.Override.TemplateAddRowAppearance = appearance44;
             this.cboChonkythi.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
             this.cboChonkythi.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
             this.cboChonkythi.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;

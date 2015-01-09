@@ -73,11 +73,9 @@
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
             this.txttensinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.txtNgaySinh = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnLuu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btndong = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorPhongthi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbolop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongthi)).BeginInit();
@@ -85,7 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaySinh)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -326,47 +323,10 @@
             this.txtNgaySinh.Size = new System.Drawing.Size(197, 26);
             this.txtNgaySinh.TabIndex = 30;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnLuu,
-            this.toolStripSeparator1,
-            this.btndong});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(358, 25);
-            this.toolStrip1.TabIndex = 31;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(48, 22);
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.ToolTipText = "(F5)";
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btndong
-            // 
-            this.btndong.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Exit_32x32;
-            this.btndong.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btndong.Name = "btndong";
-            this.btndong.Size = new System.Drawing.Size(57, 22);
-            this.btndong.Text = "Đóng";
-            this.btndong.ToolTipText = "(Esc)";
-            this.btndong.Click += new System.EventHandler(this.btndong_Click);
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.txtNgaySinh);
             this.panel1.Controls.Add(this.cbolop);
             this.panel1.Controls.Add(this.cboPhongthi);
@@ -380,18 +340,39 @@
             this.panel1.Controls.Add(this.ultraLabel2);
             this.panel1.Controls.Add(this.ultraLabel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(358, 264);
+            this.panel1.Size = new System.Drawing.Size(358, 310);
             this.panel1.TabIndex = 32;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(224, 262);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 25);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Đóng";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button2.Location = new System.Drawing.Point(133, 262);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 25);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Lưu";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FrmXepPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(358, 289);
+            this.ClientSize = new System.Drawing.Size(358, 310);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -408,12 +389,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaySinh)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -432,10 +410,8 @@
         private Infragistics.Win.Misc.UltraLabel ultraLabel1;
         public Infragistics.Win.UltraWinEditors.UltraTextEditor txtNgaySinh;
         public Infragistics.Win.UltraWinEditors.UltraTextEditor txttensinhvien;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnLuu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btndong;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

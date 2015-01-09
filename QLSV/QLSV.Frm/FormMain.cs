@@ -87,6 +87,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["211"].Settings.Enabled = DefaultableBoolean.True;
                     cboChonkythi.Enabled = true;
                     break;
                 case "nguoidung":
@@ -104,6 +105,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.True;
+                    MenuBar.Groups["chuongtrinh"].Items["211"].Settings.Enabled = DefaultableBoolean.True;
                     Tabquanlynguoidung.Tab.Visible = false;
                     cboChonkythi.Enabled = true;
                     break;
@@ -135,6 +137,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.False;
                     MenuBar.Groups["chuongtrinh"].Items["210"].Settings.Enabled = DefaultableBoolean.False;
+                    MenuBar.Groups["chuongtrinh"].Items["211"].Settings.Enabled = DefaultableBoolean.False;
                     Tabquanlynguoidung.Tab.Visible = false;
                     Tabdanhmuckhoa.Tab.Visible = false;
                     Tabdanhmuclop.Tab.Visible = false;
@@ -362,6 +365,15 @@ namespace QLSV.Frm
                         Tabdiemtichluy.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabdiemtichluy.Tab;
                         ShowControl(_frmDiemTichLuy, pnl_diemtichluy);
+                        break;
+                    case "211":
+                        //_frmDiemTichLuy = new Frm_210_DiemTichLuy();
+                        //_frmDiemTichLuy.ShowDialog += ShowLoading;
+                        //_frmDiemTichLuy.CloseDialog += KillLoading;
+                        //_frmDiemTichLuy.UpdateDialog += UpdateLoading;
+                        //Tabdiemtichluy.Tab.Visible = true;
+                        //TabPageControl.SelectedTab = Tabdiemtichluy.Tab;
+                        //ShowControl(_frmDiemTichLuy, pnl_diemtichluy);
                         break;
                     case "gioithieu":
                         var frmGt = new FrmGioiThieu();

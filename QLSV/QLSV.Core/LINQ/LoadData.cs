@@ -131,7 +131,7 @@ namespace QLSV.Core.LINQ
                 {
                     case 1:
                         str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT], " +
+                            "SELECT ROW_NUMBER() OVER(ORDER BY p.TenPhong,s.TenSV) as [STT], " +
                             "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, p.TenPhong, k.TenKhoa, l.IdKhoa, x.IdPhong " +
                             "FROM SINHVIEN s " +
                             "join XEPPHONG x on s.MaSV = x.IdSV " +
