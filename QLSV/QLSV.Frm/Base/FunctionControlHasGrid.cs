@@ -130,7 +130,7 @@ namespace QLSV.Frm.Base
                             grid.Rows[index - 1].Cells[columnname].Activate();
                         else
                             grid.Rows[index].Cells[columnname].Activate();
-                        grid.PerformAction(UltraGridAction.EnterEditMode);
+                        //grid.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }
             }

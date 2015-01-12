@@ -56,6 +56,7 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem12 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem31 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem7 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem ultraExplorerBarItem23 = new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem();
@@ -876,6 +877,8 @@
             ultraExplorerBarItem12.Settings.MaxLines = 2;
             ultraExplorerBarItem12.Text = "Import sinh viên";
             ultraExplorerBarItem12.ToolTipText = "Nạp dữ liệu từ file excel";
+            ultraExplorerBarItem31.Key = "111";
+            ultraExplorerBarItem31.Text = "Từ điểm năm học";
             ultraExplorerBarItem7.Key = "106";
             appearance13.Image = global::QLSV.Frm.Properties.Resources._106;
             ultraExplorerBarItem7.Settings.AppearancesSmall.Appearance = appearance13;
@@ -959,6 +962,7 @@
             ultraExplorerBarItem10,
             ultraExplorerBarItem6,
             ultraExplorerBarItem12,
+            ultraExplorerBarItem31,
             ultraExplorerBarItem7,
             ultraExplorerBarItem23,
             ultraExplorerBarItem25,
@@ -977,7 +981,6 @@
             ultraExplorerBarItem27});
             ultraExplorerBarGroup2.Key = "chuongtrinh";
             ultraExplorerBarGroup2.Text = "Chức năng chương trình";
-            ultraExplorerBarGroup3.Expanded = false;
             ultraExplorerBarItem4.Key = "gioithieu";
             appearance29.Image = global::QLSV.Frm.Properties.Resources.thongtindv1;
             ultraExplorerBarItem4.Settings.AppearancesSmall.Appearance = appearance29;

@@ -147,6 +147,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\Frm_111_TuDienNamHoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\Frm_111_TuDienNamHoc.Designer.cs">
+      <DependentUpon>Frm_111_TuDienNamHoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserControl\Frm_209_GopKeQuaThi.cs">
       <SubType>UserControl</SubType>
     </Compile>

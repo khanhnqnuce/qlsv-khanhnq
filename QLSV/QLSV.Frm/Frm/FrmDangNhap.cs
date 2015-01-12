@@ -58,8 +58,7 @@ namespace QLSV.Frm.Frm
                 }
                 else
                 {
-                    MessageBox.Show("Bạn đã nhập sai tên đăng nhập hoặc mật khẩu\n" +
-                                    "Xin vui lòng thử lại", @"Thông báo");
+                    MessageBox.Show(FormResource.FrmDangNhap_Dangnhap_, @"Thông báo");
                     txtMatKhau.Clear();
                 }
             }

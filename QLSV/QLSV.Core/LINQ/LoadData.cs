@@ -65,7 +65,7 @@ namespace QLSV.Core.LINQ
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY p.ID) as [STT], p.* FROM PHONGTHI p";
                         break;
                     case 10:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.* FROM KYTHI K";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.*, [TT] = case K.TrangThai when 1 then N'Hiển thị' when 0 then N'Ẩn' end  FROM KYTHI K";
                         break;
                     case 14:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY T.ID) as [STT], T.* FROM TAIKHOAN T";
@@ -80,7 +80,7 @@ namespace QLSV.Core.LINQ
                         str = "SELECT * FROM SINHVIEN";
                         break;
                     case 18:
-                        str = "SELECT ID, MaKT, TenKT  FROM KYTHI";
+                        str = "SELECT ID, MaKT, TenKT  FROM KYTHI where TrangThai = 1";
                         break;
                     case 20:
                         str = "SELECT ID, TenKT, 'false' as [Chon] FROM KYTHI order by ID desc";

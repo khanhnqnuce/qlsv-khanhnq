@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace QLSV.Frm {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -64,6 +67,16 @@ namespace QLSV.Frm {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bạn đã nhập sai tên đăng nhập hoặc mật khẩu
+        ///Xin vui lòng thử lại.
+        /// </summary>
+        internal static string FrmDangNhap_Dangnhap_ {
+            get {
+                return ResourceManager.GetString("FrmDangNhap_Dangnhap_", resourceCulture);
             }
         }
         

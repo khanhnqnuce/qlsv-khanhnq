@@ -130,7 +130,7 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(787, 286);
+            this.pnl_from.Size = new System.Drawing.Size(787, 484);
             this.pnl_from.TabIndex = 6;
             this.pnl_from.Visible = false;
             // 
@@ -140,7 +140,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(787, 260);
+            this.panel4.Size = new System.Drawing.Size(787, 458);
             this.panel4.TabIndex = 27;
             // 
             // dgv_DanhSach
@@ -156,7 +156,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(787, 260);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(787, 458);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -358,7 +358,7 @@
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_104_QuanLySinhVien";
-            this.Size = new System.Drawing.Size(787, 286);
+            this.Size = new System.Drawing.Size(787, 484);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);

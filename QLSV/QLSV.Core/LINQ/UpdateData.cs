@@ -18,7 +18,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("Update TAIKHOAN set HoTen = N'" + item.HoTen + "', Quyen = N'" + item.Quyen + "' where ID = " + item.ID + "");
+                Conn.ExcuteQuerySql("Update TAIKHOAN set HoTen = N'" + item.HoTen + "', Quyen = N'" + item.Quyen +
+                                    "' where ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -54,7 +55,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("Update TAIKHOAN set MatKhau = N'" + matkhau + "' where TaiKhoan = N'" + taikhoan + "'");
+                Conn.ExcuteQuerySql("Update TAIKHOAN set MatKhau = N'" + matkhau + "' where TaiKhoan = N'" + taikhoan +
+                                    "'");
                 return true;
             }
             catch (Exception ex)
@@ -108,7 +110,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE KHOA set MaKhoa = N'" + item.MaKhoa + "', TenKhoa = N'" + item.TenKhoa + "' where ID = " + item.ID + "");
+                Conn.ExcuteQuerySql("UPDATE KHOA set MaKhoa = N'" + item.MaKhoa + "', TenKhoa = N'" + item.TenKhoa +
+                                    "' where ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -148,7 +151,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE LOP set MaLop = N'" + item.MaLop + "', IdKhoa = " + item.IdKhoa + ", GhiChu = N'" + item.GhiChu + "' where ID = " + item.ID + "");
+                Conn.ExcuteQuerySql("UPDATE LOP set MaLop = N'" + item.MaLop + "', IdKhoa = " + item.IdKhoa +
+                                    ", GhiChu = N'" + item.GhiChu + "' where ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -188,7 +192,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update SINHVIEN set HoSV = N'" + item.HoSV + "',TenSV = N'" + item.TenSV + "',NgaySinh = '" + item.NgaySinh + "',IdLop = " + item.IdLop + " WHERE MaSV = " + item.MaSV + "");
+                Conn.ExcuteQuerySql("update SINHVIEN set HoSV = N'" + item.HoSV + "',TenSV = N'" + item.TenSV +
+                                    "',NgaySinh = '" + item.NgaySinh + "',IdLop = " + item.IdLop + " WHERE MaSV = " +
+                                    item.MaSV + "");
                 return true;
             }
             catch (Exception ex)
@@ -223,15 +229,32 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin 1 kỳ thi
         /// </summary>
         /// <returns>true</returns>
+        public static bool UpdateTrangThaiKt(Kythi item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update KYTHI set TrangThai = '"+item.TrangThai+"' WHERE ID = " + item.ID + "");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Sửa thông tin 1 kỳ thi
+        /// </summary>
+        /// <returns>true</returns>
         public static bool UpdateKyThi(Kythi item)
         {
             try
             {
-                Conn.ExcuteQuerySql("update KYTHI set MaKT = N'" +
-                    item.MaKT + "',TenKT = N'" + item.TenKT + "',NgayThi = '" +
-                    item.NgayThi + "',TGLamBai = " + item.TGLamBai + ",TGBatDau = N'" +
-                    item.TGBatDau + "' ,TGKetThuc = N'" +
-                    item.TGKetThuc + "' WHERE ID = " + item.ID + "");
+                Conn.ExcuteQuerySql("update KYTHI set TenKT = N'" + item.TenKT + "',NgayThi = '" +
+                                    item.NgayThi + "',TGLamBai = " + item.TGLamBai + ",TGBatDau = N'" +
+                                    item.TGBatDau + "' ,TGKetThuc = N'" +
+                                    item.TGKetThuc + "' WHERE ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -271,8 +294,8 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("update PHONGTHI set TenPhong = N'" +
-                    item.TenPhong + "',SucChua = " + item.SucChua + ",GhiChu = N'" +
-                    item.GhiChu + "' WHERE ID = " + item.ID + "");
+                                    item.TenPhong + "',SucChua = " + item.SucChua + ",GhiChu = N'" +
+                                    item.GhiChu + "' WHERE ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)
@@ -311,9 +334,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE DAPAN SET Dapan = '"+item.Dapan+"' " +
-                                    "WHERE MaMon = '"+item.MaMon+"' and MaDe = '"+item.MaDe+"' " +
-                                    "and CauHoi = "+item.CauHoi+" and IdKyThi= "+item.IdKyThi+"");
+                Conn.ExcuteQuerySql("UPDATE DAPAN SET Dapan = '" + item.Dapan + "' " +
+                                    "WHERE MaMon = '" + item.MaMon + "' and MaDe = '" + item.MaDe + "' " +
+                                    "and CauHoi = " + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)
@@ -322,7 +345,7 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Sửa lại đáp án đúng của câu hỏi
         /// </summary>
@@ -396,7 +419,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = " + hs.IdPhong + " where IdSV = " + hs.IdSV + " and IdKyThi =" + hs.IdKyThi + "");
+                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = " + hs.IdPhong + " where IdSV = " + hs.IdSV +
+                                    " and IdKyThi =" + hs.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)
@@ -453,7 +477,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdPhong = "+item.IdPhong+" and IdKyThi = "+item.IdKyThi+"");
+                Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdPhong = " + item.IdPhong +
+                                    " and IdKyThi = " + item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)
@@ -492,7 +517,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = null where IdSV = " + item.IdSV + " and IdKyThi = " + item.IdKyThi + "");
+                Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = null where IdSV = " + item.IdSV + " and IdKyThi = " +
+                                    item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)
@@ -531,7 +557,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong + " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong + " and IdKyThi = " + idkt + "");
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong +
+                                    " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong +
+                                    " and IdKyThi = " + idkt + "");
                 return true;
             }
             catch (Exception ex)
@@ -549,7 +577,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong + " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong + " and IdKyThi = " + idkt + "");
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong +
+                                    " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong +
+                                    " and IdKyThi = " + idkt + "");
                 return true;
             }
             catch (Exception ex)
@@ -565,7 +595,7 @@ namespace QLSV.Core.LINQ
             {
                 foreach (var item in list)
                 {
-                    UpdateGiamSiSo(item.IdPhong,item.IdKyThi);
+                    UpdateGiamSiSo(item.IdPhong, item.IdKyThi);
                 }
                 return true;
             }
@@ -604,7 +634,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = " + item.SiSo + " where IdPhong = " + item.IdPhong + " and IdKyThi =" + item.IdKyThi + "");
+                Conn.ExcuteQuerySql("update KT_PHONG set SiSo = " + item.SiSo + " where IdPhong = " + item.IdPhong +
+                                    " and IdKyThi =" + item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)
@@ -680,7 +711,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update BAILAM set DiemThi = " + item.DiemThi + " WHERE MaSV = " + item.MaSV + " and IdKyThi = "+item.IdKyThi+"");
+                Conn.ExcuteQuerySql("update BAILAM set DiemThi = " + item.DiemThi + " WHERE MaSV = " + item.MaSV +
+                                    " and IdKyThi = " + item.IdKyThi + "");
                 return true;
             }
             catch (Exception ex)

@@ -17,5 +17,7 @@ namespace QLSV.Core.Domain
         public virtual string TGBatDau { get; set; }
 
         public virtual string TGKetThuc { get; set; }
+
+        public virtual bool TrangThai { get; set; }
     }
 }

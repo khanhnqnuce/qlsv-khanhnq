@@ -21,10 +21,13 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly IList<Kythi> _listAdd = new List<Kythi>();
         private readonly IList<Kythi> _listUpdate = new List<Kythi>();
-
-        public Frm_106_QuanLyKyThi()
+        public delegate void CustomHandler3(object sender);
+        public event CustomHandler3 updatekythi = null;
+        private string _quyen;
+        public Frm_106_QuanLyKyThi(string quyen)
         {
             InitializeComponent();
+            _quyen = quyen;
         }
 
         #region Exit
@@ -74,13 +77,15 @@ namespace QLSV.Frm.FrmUserControl
         protected override void InsertRow()
         {
             InsertRow(uG_DanhSach, "STT", "MaKT");
+            uG_DanhSach.Rows[uG_DanhSach.Rows.Count - 1].Cells["TT"].Value = "Hiển thị";
+            uG_DanhSach.Rows[uG_DanhSach.Rows.Count - 1].Cells["TrangThai"].Value = true;
         }
 
         protected override void DeleteRow()
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "MaKT");
+                DeleteRowGrid(uG_DanhSach, "ID", "TenKT");
                 Stt();
             }
             catch (Exception ex)
@@ -101,6 +106,8 @@ namespace QLSV.Frm.FrmUserControl
                 InputType.ChuoiRong,
                 InputType.ChuoiRong,
                 InputType.ChuoiRong,
+                InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
                 
             };
             return ValidateHighlight.UltraGrid(uG_DanhSach, inputTypes);
@@ -133,6 +140,7 @@ namespace QLSV.Frm.FrmUserControl
                     if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
                     if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
                     if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
+                    updatekythi(null);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
@@ -183,7 +191,6 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                     {
-                        item.MaKT = uG_DanhSach.ActiveRow.Cells["MaKT"].Text;
                         item.TenKT = uG_DanhSach.ActiveRow.Cells["TenKT"].Text;
                         item.NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text;
                         item.TGLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text);
@@ -194,7 +201,6 @@ namespace QLSV.Frm.FrmUserControl
                     var hs = new Kythi
                     {
                         ID = int.Parse(id),
-                        MaKT = uG_DanhSach.ActiveRow.Cells["MaKT"].Text,
                         TenKT = uG_DanhSach.ActiveRow.Cells["TenKT"].Text,
                         NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text,
                         TGLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text),
@@ -216,13 +222,19 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
+                band.Columns["TrangThai"].Hidden = true;
+                if (!_quyen.Equals("quantri")) band.Columns["TT"].Hidden = true;
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TGLamBai"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TGBatDau"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TGKetThuc"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["TT"].CellActivation = Activation.NoEdit;
+                band.Columns["TrangThai"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-
+                band.Columns["TT"].Style = ColumnStyle.URL;
+                //band.Columns["TT"].Style = ColumnStyle.Button;
                 band.Columns["STT"].MinWidth = 60;
                 band.Columns["MaKT"].MinWidth = 100;
                 band.Columns["TenKT"].MinWidth = 270;
@@ -230,6 +242,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGLamBai"].MinWidth = 100;
                 band.Columns["TGBatDau"].MinWidth = 100;
                 band.Columns["TGKetThuc"].MinWidth = 100;
+                band.Columns["TT"].MinWidth = 100;
                 band.Columns["STT"].MaxWidth = 70;
                 band.Columns["MaKT"].MaxWidth = 110;
                 band.Columns["TenKT"].MaxWidth = 300;
@@ -237,15 +250,16 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGLamBai"].MaxWidth = 110;
                 band.Columns["TGBatDau"].MaxWidth = 110;
                 band.Columns["TGKetThuc"].MaxWidth = 110;
+                band.Columns["TT"].MaxWidth = 110;
 
                 band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 band.Columns["NgayThi"].Style = ColumnStyle.Date;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["TGLamBai"].FormatNumberic();
-                band.Columns["TGBatDau"].FormatTime();
-                band.Columns["TGKetThuc"].FormatTime();
+                //band.Columns["TGLamBai"].FormatNumberic();
+                //band.Columns["TGBatDau"].FormatTime();
+                //band.Columns["TGKetThuc"].FormatTime();
 
                 #region Caption
 
@@ -255,6 +269,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGLamBai"].Header.Caption = FormResource.txtThoigianlambai;
                 band.Columns["TGBatDau"].Header.Caption = FormResource.txtThoigianbatdau;
                 band.Columns["TGKetThuc"].Header.Caption = FormResource.txtThoigianketthuc;
+                band.Columns["TT"].Header.Caption = @"Trạng thái";
 
                 #endregion
             }
@@ -298,6 +313,42 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmQuanLyKyThi_Load(object sender, EventArgs e)
         {
             LoadForm();
+        }
+
+        private void uG_DanhSach_ClickCell(object sender, ClickCellEventArgs e)
+        {
+            try
+            {
+                if (e.Cell.Column.Key != "TT") return;
+                if (string.IsNullOrEmpty(e.Cell.Row.Cells["ID"].Text)) return;
+                if (bool.Parse(e.Cell.Row.Cells["TrangThai"].Text))
+                {
+                    e.Cell.Value = "Ẩn";
+                    e.Cell.Row.Cells["TrangThai"].Value = false;
+                    var hs = new Kythi
+                    {
+                        ID = int.Parse(e.Cell.Row.Cells["ID"].Text),
+                        TrangThai = false
+                    };
+                    UpdateData.UpdateTrangThaiKt(hs);
+                }
+                else
+                {
+                    e.Cell.Value = "Hiển thị";
+                    e.Cell.Row.Cells["TrangThai"].Value = true;
+                    var hs = new Kythi
+                    {
+                        ID = int.Parse(e.Cell.Row.Cells["ID"].Text),
+                        TrangThai = true
+                    };
+                    UpdateData.UpdateTrangThaiKt(hs);
+                }
+                updatekythi(sender);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
     }
 }

@@ -45,6 +45,7 @@ namespace QLSV.Frm
         private int _idkythi ;
         private string _taikhoan;
         private string _matkhau;
+        private string _quyen;
 
         public FormMain()
         {
@@ -240,7 +241,8 @@ namespace QLSV.Frm
                         ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
                     case "106":
-                        _frmQuanLyKyThi = new Frm_106_QuanLyKyThi();
+                        _frmQuanLyKyThi = new Frm_106_QuanLyKyThi(_quyen);
+                        _frmQuanLyKyThi.updatekythi += Updatekythi;
                         Tabquanlykythi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlykythi.Tab;
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);
@@ -662,9 +664,11 @@ namespace QLSV.Frm
             lbusername.Text = hs.HoTen;
             _taikhoan = hs.TaiKhoan;
             _matkhau = hs.MatKhau;
+            _quyen = hs.Quyen;
             _frmDangNhap.Close();
 
             cboChonkythi.DataSource = LoadData.Load(18);
+            Tabquanlykythi.Tab.Visible = false;
         }
 
         private void MenuBar_ItemClick(object sender, ItemEventArgs e)
@@ -839,7 +843,6 @@ namespace QLSV.Frm
             else if (Tabquanlykythi.Tab.Visible && Tabquanlykythi.Tab.Active)
             {
                 _frmQuanLyKyThi.Save();
-                cboChonkythi.DataSource = LoadData.Load(18);
                 SelectCbo();
             }
             else if (TabChonPhongThi.Tab.Visible && TabChonPhongThi.Tab.Active)
@@ -1231,6 +1234,18 @@ namespace QLSV.Frm
             cboChonkythi.Rows.Band.Columns["MaKT"].Width = 70;
             cboChonkythi.Rows.Band.Columns["TenKT"].Width = 250;
             cboChonkythi.Rows.Band.ColHeadersVisible = false;
+        }
+
+        private void Updatekythi(object sender)
+        {
+            try
+            {
+                cboChonkythi.DataSource = LoadData.Load(18);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void CloseTab()

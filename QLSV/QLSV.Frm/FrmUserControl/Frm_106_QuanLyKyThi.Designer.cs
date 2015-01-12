@@ -107,6 +107,7 @@
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
             this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
+            this.uG_DanhSach.ClickCell += new Infragistics.Win.UltraWinGrid.ClickCellEventHandler(this.uG_DanhSach_ClickCell);
             // 
             // Frm_106_QuanLyKyThi
             // 

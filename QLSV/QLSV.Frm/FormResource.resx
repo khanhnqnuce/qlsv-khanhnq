@@ -230,4 +230,8 @@
     <value>Tất cả sinh viên đã được xếp phòng
 Thêm mới sinh viên hoặc xóa sinh viên đã xếp phòng</value>
   </data>
+  <data name="FrmDangNhap_Dangnhap_" xml:space="preserve">
+    <value>Bạn đã nhập sai tên đăng nhập hoặc mật khẩu
+Xin vui lòng thử lại</value>
+  </data>
 </root>
