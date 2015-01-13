@@ -84,7 +84,7 @@ namespace QLSV.Core.LINQ
                         str = "SELECT ID, MaKT, TenKT  FROM KYTHI where TrangThai = 1";
                         break;
                     case 20:
-                        str = "SELECT ID, TenKT, 'false' as [Chon] FROM KYTHI order by ID desc";
+                        str = "SELECT ID, TenKT, 'false' as [Chon] FROM KYTHI where TrangThai = 1 order by ID desc";
                         break;
                     case 21:
                         str = "select d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
