@@ -633,6 +633,9 @@
     <Content Include="Reports\thongketong.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\danhsachnopbai.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="RunAsAdmin.manifest" />
   </ItemGroup>
   <ItemGroup>
