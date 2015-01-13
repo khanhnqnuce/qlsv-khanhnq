@@ -223,6 +223,8 @@ namespace QLSV.Frm.FrmUserControl
         {
             var frm = new FrmChonIndssv {Update = false};
             frm.ShowDialog();
+            if (frm.rdonopbai.Checked && frm.Update)
+                RptNopbai();
             if (frm.rdoPhongthi.Checked && frm.Update)
                 RptPhongthi();
             else if (frm.rdokhoa.Checked && frm.Update)
@@ -233,6 +235,33 @@ namespace QLSV.Frm.FrmUserControl
 
         #region Xuất báo cáo
 
+        private void RptNopbai()
+        {
+            var tbPhong = LoadData.Load(2,_idkythi);
+
+            var tb = (DataTable) dgv_DanhSach.DataSource;
+            foreach (DataRow rowp in tbPhong.Rows)
+            {
+                var stt = 1;
+                var phong = rowp["TenPhong"].ToString();
+                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["TenPhong"].ToString().Equals(phong)))
+                {
+                    row["STT"] = stt++;
+                }
+            }
+
+            reportManager1.DataSources.Clear();
+            reportManager1.DataSources.Add("danhsach", tb);
+            rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachnopbai.rst";
+            rptdanhsachduthi.Prepare();
+            var previewForm = new PreviewForm(rptdanhsachduthi)
+            {
+                WindowState = FormWindowState.Maximized,
+                ShowInTaskbar = false
+            };
+            previewForm.Show();
+        }
+        
         private void RptPhongthi()
         {
             var tbPhong = LoadData.Load(2,_idkythi);
