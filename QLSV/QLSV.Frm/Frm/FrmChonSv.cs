@@ -48,39 +48,6 @@ namespace QLSV.Frm.Frm
         }
 
         /// <summary>
-        /// Tìm theo khoa , lớp
-        /// </summary>
-        private void Timkiemtheolop()
-        {
-            try
-            {
-                var indexkhoa = cbokhoa.SelectedValue;
-                var indexlop = cbolop.SelectedValue;
-                if (indexlop == null)
-                {
-                    if (indexkhoa == null) return;
-                    if (IsNumber(indexkhoa.ToString()))
-                    {
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa((int) indexkhoa, _idkythi);
-                    }
-                }
-                else
-                {
-                    if (IsNumber(indexlop.ToString()))
-                    {
-                        dgv_DanhSach.DataSource = SearchData.Timkiemtheolop((int) indexlop, _idkythi);
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        /// <summary>
         /// Tìm theo niên khóa
         /// </summary>
         private void Timkiemtheokhoa()
@@ -137,7 +104,28 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                cbokhoa.DataSource = LoadData.Load(3);
+                //cbokhoa.DataSource = LoadData.Load(3);
+                //--------Khoa------------
+                var table = LoadData.Load(3);
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("TenKhoa", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các khoa -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+                }
+                cbokhoa.ValueMember = "ID";
+                cbokhoa.DisplayMember = "TenKhoa";
+                cbokhoa.DataSource = tb;
+                //------------Lớp-----------
+                var tb1 = new DataTable();
+                tb1.Columns.Add("ID", typeof(string));
+                tb1.Columns.Add("MaLop", typeof(string));
+                tb1.Rows.Add("0", "- Chọn lớp -");
+                cbolop.ValueMember = "ID";
+                cbolop.DisplayMember = "MaLop";
+                cbolop.DataSource = tb1;
             }
             catch (Exception ex)
             {
@@ -149,14 +137,47 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var obj = cbokhoa.SelectedValue;
-                if (obj == null) return;
-                cbolop.DataSource = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                try
+                {
+                    var obj = cbokhoa.SelectedValue;
+                    if (obj == null || obj.ToString().Equals("0"))
+                    {
+                        dgv_DanhSach.DataSource = SearchData.Tatcacackhoa(_idkythi);
+                        return;
+                    }
+                    //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()), _idkythi);
+
+                    var table = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                    var tb = new DataTable();
+                    tb.Columns.Add("ID", typeof(string));
+                    tb.Columns.Add("MaLop", typeof(string));
+                    tb.Rows.Add("0", "- Tất cả các lớp -");
+                    foreach (DataRow row in table.Rows)
+                    {
+                        tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                    }
+                    cbolop.DataSource = tb;
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                }
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var obj = cbolop.SelectedValue;
+            if (obj == null || obj.ToString().Equals("0"))
+            {
+                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.SelectedValue.ToString()), _idkythi);
+            }else
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(obj.ToString()), _idkythi);
         }
 
         private void btnTimtheokhoa_Click(object sender, EventArgs e)
@@ -171,15 +192,20 @@ namespace QLSV.Frm.Frm
                 var band = e.Layout.Bands[0];
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 #region Caption
                 band.Groups.Clear();
                 var columns = band.Columns;
                 band.ColHeadersVisible = false;
+                var group6 = band.Groups.Add("STT");
                 var group0 = band.Groups.Add("Mã SV");
                 var group1 = band.Groups.Add("Họ và tên");
                 var group2 = band.Groups.Add("Ngày sinh");
                 var group3 = band.Groups.Add("Lớp");
                 var group5 = band.Groups.Add("Chọn");
+                columns["STT"].Group = group6;
                 columns["MaSV"].Group = group0;
                 columns["HoSV"].Group = group1;
                 columns["TenSV"].Group = group1;
@@ -199,11 +225,13 @@ namespace QLSV.Frm.Frm
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
 
+                band.Columns["STT"].MinWidth = 60;
                 band.Columns["HoSV"].MinWidth = 160;
                 band.Columns["MaSV"].MinWidth = 140;
                 band.Columns["TenSV"].MinWidth = 140;
                 band.Columns["NgaySinh"].MinWidth = 140;
                 band.Columns["MaLop"].MinWidth = 140;
+                band.Columns["STT"].MaxWidth = 70;
                 band.Columns["HoSV"].MaxWidth = 170;
                 band.Columns["MaSV"].MaxWidth = 150;
                 band.Columns["TenSV"].MaxWidth = 150;
@@ -243,11 +271,6 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void btnluu_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -263,11 +286,6 @@ namespace QLSV.Frm.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
-        {
-            Timkiemtheolop();
         }
 
         private void txtkhoa_KeyPress(object sender, KeyPressEventArgs e)

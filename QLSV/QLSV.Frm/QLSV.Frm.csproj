@@ -445,6 +445,9 @@
       <LastGenOutput>FormResource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\Frm_111_TuDienNamHoc.resx">
+      <DependentUpon>Frm_111_TuDienNamHoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_209_GopKeQuaThi.resx">
       <DependentUpon>Frm_209_GopKeQuaThi.cs</DependentUpon>
     </EmbeddedResource>

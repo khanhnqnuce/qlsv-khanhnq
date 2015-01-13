@@ -114,7 +114,7 @@ namespace QLSV.Frm.Base
                         grid.ActiveRow.Delete(false);
                         if (index <= 0) return;
                         grid.Rows[index - 1].Cells[2].Activate();
-                        grid.PerformAction(UltraGridAction.EnterEditMode);
+                        //grid.PerformAction(UltraGridAction.EnterEditMode);
                         return;
                     }
                     if (DialogResult.Yes ==

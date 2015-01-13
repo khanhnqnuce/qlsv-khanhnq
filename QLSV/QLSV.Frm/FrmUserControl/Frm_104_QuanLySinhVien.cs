@@ -521,11 +521,6 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void btntimkiem_Click(object sender, EventArgs e)
-        {
-            Timkiemtheokhoa();
-        }
-
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
             var obj = cbolop.SelectedValue;
@@ -538,6 +533,12 @@ namespace QLSV.Frm.FrmUserControl
             dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(obj.ToString()));
         }
 
+        private void btntimkiem_Click(object sender, EventArgs e)
+        {
+            Timkiemtheokhoa();
+        }
+
+        
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)

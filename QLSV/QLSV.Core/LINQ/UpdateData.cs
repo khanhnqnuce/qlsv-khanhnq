@@ -742,5 +742,40 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
+        
+        /// <summary>
+        /// sửa lại năm học
+        /// </summary>
+        /// <returns>true</returns>
+        public static bool UpdateNamHoc(NamHoc item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("update NAMHOC set NamHoc = '" + item.namhoc + "' WHERE ID = "+item.ID+"");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public static bool UpdateNamHoc(IList<NamHoc> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    UpdateNamHoc(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace QLSV.Frm
         private static Frm_108_ChonSinhVien _frmChonSinhVien;
         private static Frm_109_SapXepPhongThi _frmSapXepPhongThi;
         private static Frm_110_DaXepPhong _frmSvDaXepPhong;
+        private static Frm_111_TuDienNamHoc _frmtudienNamHoc;
         private static Frm_201_InportDapAn _frmInportDapAn;
         private static Frm_203_InportBaiLam _frmInportBaiLam;
         private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
@@ -287,13 +288,13 @@ namespace QLSV.Frm
                         ShowControl(_frmSvDaXepPhong, pnl_daxepphong);
                         break;
                     case "111":
-                        //_frmSvDaXepPhong = new Frm_110_DaXepPhong(_idkythi);
-                        //_frmSvDaXepPhong.ShowDialog += ShowLoading;
-                        //_frmSvDaXepPhong.CloseDialog += KillLoading;
-                        //_frmSvDaXepPhong.UpdateDialog += UpdateLoading;
+                        _frmtudienNamHoc = new Frm_111_TuDienNamHoc();
+                        _frmtudienNamHoc.ShowDialog += ShowLoading;
+                        _frmtudienNamHoc.CloseDialog += KillLoading;
+                        _frmtudienNamHoc.UpdateDialog += UpdateLoading;
                         Tabtudiennamhoc.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabtudiennamhoc.Tab;
-                        //ShowControl(_frmSvDaXepPhong, pnl_daxepphong);
+                        ShowControl(_frmtudienNamHoc, pnl_tudiennamhoc);
                         break;
                     case "201":
                         _frmInportDapAn = new Frm_201_InportDapAn(_idkythi);
@@ -445,7 +446,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                } //--------102-----------
                 else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
                 {
                     bCheck = true;
@@ -457,7 +458,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                } //--------105-------------
                 else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
                 {
                     bCheck = true;
@@ -469,19 +470,19 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                } //----------104-----------
                 else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
                 {
                     bCheck = true;
                     lbXoa.Visible = true;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
+                    btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = true;
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                }//-----------111------------
                 else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
                 {
                     bCheck = true;
@@ -493,7 +494,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                }//------------103-------------
                 else if (Tabquanlykythi.Tab.Visible && Tabquanlykythi.Tab.Active)
                 {
                     bCheck = true;
@@ -505,115 +506,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
-                else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = false;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = true;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = true;
-                    btnLuu.Visible = false;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = true;
-                    btnInds.Visible = false;
-                    btnthemmoi.Visible = true;
-                    btnXoadong.Visible = true;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = true;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = true;
-                    btnDong.Visible = true;
-                }
-                else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = true;
-                    btnInds.Visible = false;
-                    btnthemmoi.Visible = true;
-                    btnXoadong.Visible = true;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (TabDanhsachbailam.Tab.Visible && TabDanhsachbailam.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = true;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = false;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (TabNhapthangdiem.Tab.Visible && TabNhapthangdiem.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = true;
-                    btnDong.Visible = true;
-                }
-                else if (Tabchamdiemthi.Tab.Visible && Tabchamdiemthi.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = true;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
-                else if (Tabthongkediem.Tab.Visible && Tabthongkediem.Tab.Active)
-                {
-                    bCheck = true;
-                    lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = false;
-                    btnInds.Visible = true;
-                    btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
-                    btnLuu.Visible = false;
-                    btnHuy.Visible = false;
-                    btnDong.Visible = true;
-                }
+                }//-----------106--------------
                 else if (TabChonPhongThi.Tab.Visible && TabChonPhongThi.Tab.Active)
                 {
                     bCheck = true;
@@ -625,7 +518,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
-                }
+                }//---------107----------------
                 else if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
                 {
                     bCheck = true;
@@ -637,7 +530,115 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
-                }
+                }//-----------108------------
+                else if (TabSapxepphongthi.Tab.Visible && TabSapxepphongthi.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//-----------109-------------
+                else if (Tabdaxepphong.Tab.Visible && Tabdaxepphong.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = true;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//----------110------------
+                else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = true;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//-------------201---------------
+                else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = true;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                }//----------202-------------
+                else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = true;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = true;
+                    btnXoadong.Visible = true;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//----------203---------
+                else if (TabDanhsachbailam.Tab.Visible && TabDanhsachbailam.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = true;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//------------204----------
+                else if (TabNhapthangdiem.Tab.Visible && TabNhapthangdiem.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = false;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = true;
+                    btnDong.Visible = true;
+                }//--------206-----------
+                else if (Tabchamdiemthi.Tab.Visible && Tabchamdiemthi.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = true;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//----------207------------
+                else if (Tabthongkediem.Tab.Visible && Tabthongkediem.Tab.Active)
+                {
+                    bCheck = true;
+                    lbXoa.Visible = false;
+                    btnNapDuLieu.Visible = false;
+                    btnInds.Visible = true;
+                    btnthemmoi.Visible = false;
+                    btnXoadong.Visible = false;
+                    btnLuu.Visible = false;
+                    btnHuy.Visible = false;
+                    btnDong.Visible = true;
+                }//-----------208------------
                 else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
                 {
                     bCheck = true;
@@ -649,7 +650,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = true;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
-                }
+                }//-------209------------
                 else if (Tabquanlydiem.Tab.Visible && Tabquanlydiem.Tab.Active)
                 {
                     bCheck = true;
@@ -661,7 +662,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = false;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
-                }
+                }//-----------211----------------
                 else if (Tabdiemtichluy.Tab.Visible && Tabdiemtichluy.Tab.Active)
                 {
                     bCheck = true;
@@ -673,7 +674,7 @@ namespace QLSV.Frm
                     btnLuu.Visible = false;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
-                }
+                }//----------210--------------
                 if (!bCheck)
                 {
                     TabPageControl.Visible = false;
@@ -743,6 +744,10 @@ namespace QLSV.Frm
             {
                 Tabquanlysinhvien.Tab.Visible = false;
             }
+            else if (Tabtudiennamhoc.Tab.Active)
+            {
+                Tabtudiennamhoc.Tab.Visible = false;
+            }
             else if (Tabdanhsachphongthi.Tab.Active)
             {
                 Tabdanhsachphongthi.Tab.Visible = false;
@@ -798,6 +803,10 @@ namespace QLSV.Frm
             {
                 Tabgopketqua.Tab.Visible = false;
             }
+            else if (Tabquanlydiem.Tab.Active)
+            {
+                Tabquanlydiem.Tab.Visible = false;
+            }
             else if (Tabdiemtichluy.Tab.Active)
             {
                 Tabdiemtichluy.Tab.Visible = false;
@@ -842,9 +851,9 @@ namespace QLSV.Frm
             {
                 _frmDapAnCacMaDe.Huy();
             }
-            else if (TabDanhsachbailam.Tab.Active)
+            else if (Tabtudiennamhoc.Tab.Active)
             {
-                
+                _frmtudienNamHoc.LoadForm();
             }
         }
 
@@ -923,6 +932,10 @@ namespace QLSV.Frm
             {
                 _frmGopKeQua.Ghi();
             }
+            else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
+            {
+                _frmtudienNamHoc.Save();
+            }
         }
 
         private void Xoa_F3()
@@ -970,6 +983,10 @@ namespace QLSV.Frm
             else if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
             {
                 _frmChonSinhVien.Xoa();
+            }
+            else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
+            {
+                _frmtudienNamHoc.Xoa();
             }
         }
 
@@ -1019,6 +1036,10 @@ namespace QLSV.Frm
             {
                 _frmChonSinhVien.uG_DeleteRow();
             }
+            else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
+            {
+                _frmtudienNamHoc.uG_DeleteRow();
+            }
         }
 
         private void Themmoi_Insert()
@@ -1062,6 +1083,10 @@ namespace QLSV.Frm
             else if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
             {
                _frmChonSinhVien.uG_InsertRow();
+            }
+            else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
+            {
+               _frmtudienNamHoc.uG_InsertRow();
             }
         }
 

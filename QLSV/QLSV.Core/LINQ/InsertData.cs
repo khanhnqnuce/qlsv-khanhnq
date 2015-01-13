@@ -172,6 +172,42 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
+        
+        /// <summary>
+        /// Thêm mới 1 năm học
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static bool ThemNamHoc(NamHoc item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("insert into NAMHOC(NamHoc) values('"+item.namhoc+"')");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+        public static bool ThemNamHoc(IList<NamHoc> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    ThemNamHoc(item);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
 
         /// <summary>
         /// Thêm 1 kỳ thi

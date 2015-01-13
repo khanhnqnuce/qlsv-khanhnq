@@ -148,6 +148,10 @@
             this.pn_quanlysinhvien = new System.Windows.Forms.Panel();
             this.TabInportsinhvien = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_inportsinhvien = new System.Windows.Forms.Panel();
+            this.Tabtudiennamhoc = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_tudiennamhoc = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.Tabquanlykythi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pn_quanlykythi = new System.Windows.Forms.Panel();
             this.TabChonPhongThi = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -184,6 +188,8 @@
             this.panel70 = new System.Windows.Forms.Panel();
             this.Tabgopketqua = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_gopketqua = new System.Windows.Forms.Panel();
+            this.Tabquanlydiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.pnl_quanlydiem = new System.Windows.Forms.Panel();
             this.Tabdiemtichluy = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.pnl_diemtichluy = new System.Windows.Forms.Panel();
             this.lbXoa = new System.Windows.Forms.Label();
@@ -257,18 +263,13 @@
             this.ultraTabControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Tabtudiennamhoc = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.Tabquanlydiem = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnl_namhoc = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.pnl_quanlydiem = new System.Windows.Forms.Panel();
             this.Tabquanlynguoidung.SuspendLayout();
             this.Tabdanhmuckhoa.SuspendLayout();
             this.Tabdanhmuclop.SuspendLayout();
             this.Tabdanhsachphongthi.SuspendLayout();
             this.Tabquanlysinhvien.SuspendLayout();
             this.TabInportsinhvien.SuspendLayout();
+            this.Tabtudiennamhoc.SuspendLayout();
             this.Tabquanlykythi.SuspendLayout();
             this.TabChonPhongThi.SuspendLayout();
             this.Tabchonsinhvien.SuspendLayout();
@@ -282,6 +283,7 @@
             this.Tabchamdiemthi.SuspendLayout();
             this.Tabthongkediem.SuspendLayout();
             this.Tabgopketqua.SuspendLayout();
+            this.Tabquanlydiem.SuspendLayout();
             this.Tabdiemtichluy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).BeginInit();
             this.panel1.SuspendLayout();
@@ -305,14 +307,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).BeginInit();
             this.ultraTabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Tabtudiennamhoc.SuspendLayout();
-            this.Tabquanlydiem.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -453,6 +453,39 @@
             this.pn_inportsinhvien.Name = "pn_inportsinhvien";
             this.pn_inportsinhvien.Size = new System.Drawing.Size(829, 502);
             this.pn_inportsinhvien.TabIndex = 5;
+            // 
+            // Tabtudiennamhoc
+            // 
+            this.Tabtudiennamhoc.Controls.Add(this.pnl_tudiennamhoc);
+            this.Tabtudiennamhoc.Controls.Add(this.panel4);
+            this.Tabtudiennamhoc.Controls.Add(this.panel5);
+            this.Tabtudiennamhoc.Location = new System.Drawing.Point(1, 1);
+            this.Tabtudiennamhoc.Name = "Tabtudiennamhoc";
+            this.Tabtudiennamhoc.Size = new System.Drawing.Size(829, 502);
+            // 
+            // pnl_tudiennamhoc
+            // 
+            this.pnl_tudiennamhoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_tudiennamhoc.Location = new System.Drawing.Point(200, 0);
+            this.pnl_tudiennamhoc.Name = "pnl_tudiennamhoc";
+            this.pnl_tudiennamhoc.Size = new System.Drawing.Size(429, 502);
+            this.pnl_tudiennamhoc.TabIndex = 9;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(629, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 502);
+            this.panel4.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(200, 502);
+            this.panel5.TabIndex = 7;
             // 
             // Tabquanlykythi
             // 
@@ -738,6 +771,21 @@
             this.pnl_gopketqua.Name = "pnl_gopketqua";
             this.pnl_gopketqua.Size = new System.Drawing.Size(829, 502);
             this.pnl_gopketqua.TabIndex = 19;
+            // 
+            // Tabquanlydiem
+            // 
+            this.Tabquanlydiem.Controls.Add(this.pnl_quanlydiem);
+            this.Tabquanlydiem.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlydiem.Name = "Tabquanlydiem";
+            this.Tabquanlydiem.Size = new System.Drawing.Size(829, 502);
+            // 
+            // pnl_quanlydiem
+            // 
+            this.pnl_quanlydiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_quanlydiem.Location = new System.Drawing.Point(0, 0);
+            this.pnl_quanlydiem.Name = "pnl_quanlydiem";
+            this.pnl_quanlydiem.Size = new System.Drawing.Size(829, 502);
+            this.pnl_quanlydiem.TabIndex = 21;
             // 
             // Tabdiemtichluy
             // 
@@ -1819,54 +1867,6 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Tabtudiennamhoc
-            // 
-            this.Tabtudiennamhoc.Controls.Add(this.pnl_namhoc);
-            this.Tabtudiennamhoc.Controls.Add(this.panel4);
-            this.Tabtudiennamhoc.Controls.Add(this.panel5);
-            this.Tabtudiennamhoc.Location = new System.Drawing.Point(-10000, -10000);
-            this.Tabtudiennamhoc.Name = "Tabtudiennamhoc";
-            this.Tabtudiennamhoc.Size = new System.Drawing.Size(829, 502);
-            // 
-            // Tabquanlydiem
-            // 
-            this.Tabquanlydiem.Controls.Add(this.pnl_quanlydiem);
-            this.Tabquanlydiem.Location = new System.Drawing.Point(-10000, -10000);
-            this.Tabquanlydiem.Name = "Tabquanlydiem";
-            this.Tabquanlydiem.Size = new System.Drawing.Size(829, 502);
-            // 
-            // pnl_namhoc
-            // 
-            this.pnl_namhoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_namhoc.Location = new System.Drawing.Point(200, 0);
-            this.pnl_namhoc.Name = "pnl_namhoc";
-            this.pnl_namhoc.Size = new System.Drawing.Size(429, 502);
-            this.pnl_namhoc.TabIndex = 9;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(629, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 502);
-            this.panel4.TabIndex = 8;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 502);
-            this.panel5.TabIndex = 7;
-            // 
-            // pnl_quanlydiem
-            // 
-            this.pnl_quanlydiem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_quanlydiem.Location = new System.Drawing.Point(0, 0);
-            this.pnl_quanlydiem.Name = "pnl_quanlydiem";
-            this.pnl_quanlydiem.Size = new System.Drawing.Size(829, 502);
-            this.pnl_quanlydiem.TabIndex = 21;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1890,6 +1890,7 @@
             this.Tabdanhsachphongthi.ResumeLayout(false);
             this.Tabquanlysinhvien.ResumeLayout(false);
             this.TabInportsinhvien.ResumeLayout(false);
+            this.Tabtudiennamhoc.ResumeLayout(false);
             this.Tabquanlykythi.ResumeLayout(false);
             this.TabChonPhongThi.ResumeLayout(false);
             this.Tabchonsinhvien.ResumeLayout(false);
@@ -1903,6 +1904,7 @@
             this.Tabchamdiemthi.ResumeLayout(false);
             this.Tabthongkediem.ResumeLayout(false);
             this.Tabgopketqua.ResumeLayout(false);
+            this.Tabquanlydiem.ResumeLayout(false);
             this.Tabdiemtichluy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MenuBar)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -1927,8 +1929,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControl1)).EndInit();
             this.ultraTabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Tabtudiennamhoc.ResumeLayout(false);
-            this.Tabquanlydiem.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2064,7 +2064,7 @@
         private System.Windows.Forms.Panel pnl_diemtichluy;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabtudiennamhoc;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl Tabquanlydiem;
-        private System.Windows.Forms.Panel pnl_namhoc;
+        private System.Windows.Forms.Panel pnl_tudiennamhoc;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel pnl_quanlydiem;

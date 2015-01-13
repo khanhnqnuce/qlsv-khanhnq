@@ -34,6 +34,7 @@ namespace QLSV.Core.LINQ
         /// 19: phòng thi
         /// 20: lấy ra kỳ thi
         /// 21: lấy ra điểm thi cao nhất
+        /// 22: Năm học
         public static DataTable Load(int chon)
         {
             var table = new DataTable();
@@ -91,6 +92,9 @@ namespace QLSV.Core.LINQ
                               " join SINHVIEN s on d.MaSV = s.MaSV" +
                               " join LOP l on s.IdLop = l.ID" +
                               " join KHOA k on l.IdKhoa = k.ID order by s.TenSV";
+                        break;
+                    case 22:
+                        str = "select ROW_NUMBER() OVER(ORDER BY N.ID) as [STT], N.* from NAMHOC N order by N.ID";
                         break;
                 }
                 table = Conn.GetTable(str);

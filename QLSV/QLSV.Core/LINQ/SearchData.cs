@@ -43,11 +43,35 @@ namespace QLSV.Core.LINQ
             {
                 try
                 {
-                    var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY s.MaSV) as [STT],s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop ,'false' as [Chon]" +
-                        "FROM SINHVIEN s,LOP l , KHOA k" +
-                        "WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +idkythi + " ) " +
-                        "and s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + id + " ORDER BY TenSV";
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                              "FROM SINHVIEN s,LOP l , KHOA k WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +
+                              idkythi + " ) " +
+                              "and  s.IdLop = l.ID and l.IdKhoa = k.ID and K.ID = " + id + " ORDER BY s.TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+        
+        public static DataTable Tatcacackhoa(int idkythi)
+        {
+            try
+            {
+                try
+                {
+                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                              "FROM SINHVIEN s,LOP l , KHOA k " +
+                              "WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + " ) " +
+                              "and  s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY s.TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -74,7 +98,7 @@ namespace QLSV.Core.LINQ
                 try
                 {
                     var str =
-                        "SELECT s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
+                        "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
                         "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
                         "and s.IdLop = l.ID  and s.MaSV like '%" + id + "' ORDER BY TenSV";
                     return Conn.GetTable(str);
@@ -153,9 +177,9 @@ namespace QLSV.Core.LINQ
                 try
                 {
                     var str =
-                        "SELECT s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                        "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
                         "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +idkythi + " ) " +
-                        "and  s.IdLop = l.ID and l.ID = " + id + " ORDER BY TenSV";
+                        "and  s.IdLop = l.ID and l.ID = " + id + " ORDER BY s.TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)

@@ -97,6 +97,41 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
             }
         }
+            
+         /// <summary>
+        /// Xóa năm học
+        /// </summary>
+        /// <param name="item"></param>
+        public static void XoaNamHoc(int item)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM NAMHOC WHERE ID = " + item + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// Xóa bản SINHVIEN theo mã sinh viên
+        /// </summary>
+        /// <param name="list"></param>
+        public static void XoaNamHoc(IList<int> list)
+        {
+            try
+            {
+                foreach (var item in list)
+                {
+                    XoaNamHoc(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
 
         /// <summary>
         /// xóa bảng XEPPHONG theo kỳ thi và mã sinh viên
