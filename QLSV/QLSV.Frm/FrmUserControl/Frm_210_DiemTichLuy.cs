@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -165,6 +166,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Groups.Clear();
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
 
                 #region Caption
                 var columns = band.Columns;
@@ -208,7 +211,8 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
-                    columns["IdKhoa"].Hidden = true;
+                 columns["IdKhoa"].Hidden = true;
+                 columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                  columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                  columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                  columns["Diem"].CellAppearance.TextHAlign = HAlign.Center;
