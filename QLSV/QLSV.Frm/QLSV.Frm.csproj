@@ -201,6 +201,12 @@
     <Compile Include="FrmUserControl\Frm_210_DiemTichLuy.Designer.cs">
       <DependentUpon>Frm_210_DiemTichLuy.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUserControl\Frm_211_QuanLyDiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmUserControl\Frm_211_QuanLyDiem.Designer.cs">
+      <DependentUpon>Frm_211_QuanLyDiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUserControl\Frm_QuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -471,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_210_DiemTichLuy.resx">
       <DependentUpon>Frm_210_DiemTichLuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserControl\Frm_211_QuanLyDiem.resx">
+      <DependentUpon>Frm_211_QuanLyDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_QuanLyNguoiDung.resx">
       <DependentUpon>Frm_QuanLyNguoiDung.cs</DependentUpon>

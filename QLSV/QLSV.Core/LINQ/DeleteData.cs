@@ -218,6 +218,21 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// Xóa bảng điểm thi theo học kỳ và năm học
+        /// </summary>
+        public static void XoaDiemThi(int nh, string hk)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("delete DIEMTHI where IdNamHoc = " + nh + " and HocKy = '" + hk + "'");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        
+        /// <summary>
         /// Xóa toàn bộ bảng
         /// </summary>
         /// <param name="table"></param>

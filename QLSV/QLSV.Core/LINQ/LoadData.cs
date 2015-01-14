@@ -99,6 +99,12 @@ namespace QLSV.Core.LINQ
                     case 209:
                         str = "select N.* from NAMHOC N order by N.ID DESC";
                         break;
+                    case 211:
+                        str = " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                              " DIEMTHI d"+
+                              " join NAMHOC n on d.IdNamHoc = n.ID"+
+                              " join SINHVIEN s on d.MaSV = s.MaSV ORDER BY d.MaSV";
+                        break;
                 }
                 table = Conn.GetTable(str);
             }

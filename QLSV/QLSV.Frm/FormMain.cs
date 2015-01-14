@@ -40,6 +40,7 @@ namespace QLSV.Frm
         private static Frm_208_ThongKeDiem _frmThongKeDiem;
         private static Frm_209_GopKeQuaThi _frmGopKeQua;
         private static Frm_210_DiemTichLuy _frmDiemTichLuy;
+        private static Frm_211_QuanLyDiem _frmquanLyDiem;
         #endregion
         
         private bool _dangnhap;
@@ -382,13 +383,13 @@ namespace QLSV.Frm
                         ShowControl(_frmDiemTichLuy, pnl_diemtichluy);
                         break;
                     case "211":
-                        //_frmDiemTichLuy = new Frm_210_DiemTichLuy();
-                        //_frmDiemTichLuy.ShowDialog += ShowLoading;
-                        //_frmDiemTichLuy.CloseDialog += KillLoading;
-                        //_frmDiemTichLuy.UpdateDialog += UpdateLoading;
+                        _frmquanLyDiem = new Frm_211_QuanLyDiem();
+                        _frmquanLyDiem.ShowDialog += ShowLoading;
+                        _frmquanLyDiem.CloseDialog += KillLoading;
+                        _frmquanLyDiem.UpdateDialog += UpdateLoading;
                         Tabquanlydiem.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlydiem.Tab;
-                        //ShowControl(_frmDiemTichLuy, pnl_diemtichluy);
+                        ShowControl(_frmquanLyDiem, pnl_quanlydiem);
                         break;
                     case "gioithieu":
                         var frmGt = new FrmGioiThieu();
@@ -658,7 +659,7 @@ namespace QLSV.Frm
                     btnNapDuLieu.Visible = true;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = false;
-                    btnXoadong.Visible = false;
+                    btnXoadong.Visible = true;
                     btnLuu.Visible = false;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
@@ -1039,6 +1040,10 @@ namespace QLSV.Frm
             else if (Tabtudiennamhoc.Tab.Visible && Tabtudiennamhoc.Tab.Active)
             {
                 _frmtudienNamHoc.uG_DeleteRow();
+            }
+            else if (Tabquanlydiem.Tab.Visible && Tabquanlydiem.Tab.Active)
+            {
+                _frmquanLyDiem.uG_DeleteRow();
             }
         }
 
