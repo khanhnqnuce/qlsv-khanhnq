@@ -75,8 +75,11 @@ namespace QLSV.Frm.FrmUserControl
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "NamHoc");
                 Stt();
-                if (IdDelete.Count > 0) DeleteData.XoaNamHoc(IdDelete);
-                MessageBox.Show(@"Đã xóa trong CSDL", @"Thông báo");
+                if (IdDelete.Count > 0)
+                {
+                    DeleteData.XoaNamHoc(IdDelete);
+                    MessageBox.Show(@"Đã xóa trong CSDL", @"Thông báo");
+                }
                 IdDelete.Clear();
             }
             catch (Exception ex)

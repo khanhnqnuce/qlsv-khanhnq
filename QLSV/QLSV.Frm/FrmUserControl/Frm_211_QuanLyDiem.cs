@@ -151,6 +151,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
+                columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["NamHoc"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["Diem"].CellAppearance.TextHAlign = HAlign.Center;

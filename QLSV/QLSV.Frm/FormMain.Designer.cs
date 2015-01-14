@@ -312,7 +312,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -459,24 +459,24 @@
             this.Tabtudiennamhoc.Controls.Add(this.pnl_tudiennamhoc);
             this.Tabtudiennamhoc.Controls.Add(this.panel4);
             this.Tabtudiennamhoc.Controls.Add(this.panel5);
-            this.Tabtudiennamhoc.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabtudiennamhoc.Location = new System.Drawing.Point(1, 1);
             this.Tabtudiennamhoc.Name = "Tabtudiennamhoc";
             this.Tabtudiennamhoc.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_tudiennamhoc
             // 
             this.pnl_tudiennamhoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_tudiennamhoc.Location = new System.Drawing.Point(200, 0);
+            this.pnl_tudiennamhoc.Location = new System.Drawing.Point(270, 0);
             this.pnl_tudiennamhoc.Name = "pnl_tudiennamhoc";
-            this.pnl_tudiennamhoc.Size = new System.Drawing.Size(429, 502);
+            this.pnl_tudiennamhoc.Size = new System.Drawing.Size(289, 502);
             this.pnl_tudiennamhoc.TabIndex = 9;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(629, 0);
+            this.panel4.Location = new System.Drawing.Point(559, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 502);
+            this.panel4.Size = new System.Drawing.Size(270, 502);
             this.panel4.TabIndex = 8;
             // 
             // panel5
@@ -484,7 +484,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 502);
+            this.panel5.Size = new System.Drawing.Size(270, 502);
             this.panel5.TabIndex = 7;
             // 
             // Tabquanlykythi

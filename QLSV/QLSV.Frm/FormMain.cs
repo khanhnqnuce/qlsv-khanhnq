@@ -656,7 +656,7 @@ namespace QLSV.Frm
                 {
                     bCheck = true;
                     lbXoa.Visible = false;
-                    btnNapDuLieu.Visible = true;
+                    btnNapDuLieu.Visible = false;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = true;
