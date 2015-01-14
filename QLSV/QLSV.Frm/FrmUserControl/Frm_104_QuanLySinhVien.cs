@@ -504,7 +504,7 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
 
-                var table = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
                 var tb = new DataTable();
                 tb.Columns.Add("ID", typeof(string));
                 tb.Columns.Add("MaLop", typeof(string));

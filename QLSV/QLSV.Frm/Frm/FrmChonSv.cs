@@ -147,7 +147,7 @@ namespace QLSV.Frm.Frm
                     }
                     //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()), _idkythi);
 
-                    var table = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                    var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
                     var tb = new DataTable();
                     tb.Columns.Add("ID", typeof(string));
                     tb.Columns.Add("MaLop", typeof(string));

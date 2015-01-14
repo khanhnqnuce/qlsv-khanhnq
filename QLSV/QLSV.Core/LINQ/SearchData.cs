@@ -9,9 +9,8 @@ namespace QLSV.Core.LINQ
         private static readonly Connect Conn = new Connect();
 
         /// <summary>
-        /// Tìm kiếm sinh viên theo khoa
+        /// Tìm kiếm sv theo khoa mục quản lý sinh viên
         /// </summary>
-        /// <returns>trả về bảng sinh  viên</returns>
         public static DataTable Timkiemtheokhoa(int id)
         {
             try
@@ -37,6 +36,9 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// Tìm kiếm sv theo khoa mục chọn sinh viên
+        /// </summary>
         public static DataTable Timkiemtheokhoa(int id, int idkythi)
         {
             try
@@ -61,7 +63,41 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+
+        /// <summary>
+        /// tìm kiếm sv theo khoa mục quản lý điểm
+        /// </summary>
+        public static DataTable Timkiemtheokhoa1(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                        " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                        " DIEMTHI d" +
+                        " join NAMHOC n on d.IdNamHoc = n.ID" +
+                        " join SINHVIEN s on d.MaSV = s.MaSV" +
+                        " join LOP l on s.IdLop = l.ID" +
+                        " join KHOA k on l.IdKhoa = k.ID where k.ID = " + id + " ORDER BY d.MaSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
         
+        /// <summary>
+        /// tất cả sinh viên mục chọn sinh viên
+        /// </summary>
         public static DataTable Tatcacackhoa(int idkythi)
         {
             try
@@ -142,7 +178,7 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
-        /// Tìm kiếm sinh viên theo lớp
+        /// Tìm kiếm sv theo lớp mục quản lý sv
         /// </summary>
         /// <returns>trả về bảng thông tin sinh  viên</returns>
         public static DataTable Timkiemtheolop(int id)
@@ -170,6 +206,9 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        /// <summary>
+        /// tìm kiếm sv theo lớp mục chọn sinh viên
+        /// </summary>
         public static DataTable Timkiemtheolop(int id, int idkythi)
         {
             try
@@ -194,13 +233,41 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+        
+        /// <summary>
+        /// tìm kiếm sv theo lớp mục quản lý điểm
+        /// </summary>
+        public static DataTable Timkiemtheolop1(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                        " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                        " DIEMTHI d" +
+                        " join NAMHOC n on d.IdNamHoc = n.ID" +
+                        " join SINHVIEN s on d.MaSV = s.MaSV" +
+                        " join LOP l on s.IdLop = l.ID where l.ID = " + id + " ORDER BY d.MaSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
 
         /// <summary>
         /// Lấy ra lớp quản lý theo mã khoa
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static DataTable Timkiemtheolop1(int id)
+        public static DataTable LoadCboLop(int id)
         {
             try
             {

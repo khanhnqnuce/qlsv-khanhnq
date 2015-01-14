@@ -111,7 +111,7 @@ namespace QLSV.Frm.Frm
             {
                 var obj = cbokhoa.Value;
                 if (obj == null) return;
-                cbolop.DataSource = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+                cbolop.DataSource = SearchData.LoadCboLop(int.Parse(obj.ToString()));
             }
             catch (Exception ex)
             {

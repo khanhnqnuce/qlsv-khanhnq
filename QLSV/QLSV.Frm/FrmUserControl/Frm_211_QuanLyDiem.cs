@@ -150,6 +150,67 @@ namespace QLSV.Frm.FrmUserControl
         private void Frm_211_QuanLyDiem_Load(object sender, EventArgs e)
         {
             LoadGrid();
+            var table = LoadData.Load(3);
+            var tb = new DataTable();
+            tb.Columns.Add("ID", typeof(string));
+            tb.Columns.Add("TenKhoa", typeof(string));
+            tb.Rows.Add("0", "- Tất cả các khoa -");
+            foreach (DataRow row in table.Rows)
+            {
+                tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+            }
+            cbokhoa.ValueMember = "ID";
+            cbokhoa.DisplayMember = "TenKhoa";
+            cbokhoa.DataSource = tb;
+            //------------Lớp-----------
+            var tb1 = new DataTable();
+            tb1.Columns.Add("ID", typeof(string));
+            tb1.Columns.Add("MaLop", typeof(string));
+            tb1.Rows.Add("0", "- Chọn lớp -");
+            cbolop.ValueMember = "ID";
+            cbolop.DisplayMember = "MaLop";
+            cbolop.DataSource = tb1;
+        }
+
+        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = cbokhoa.SelectedValue;
+                if (obj == null || obj.ToString().Equals("0"))
+                {
+                    LoadGrid();
+                    return;
+                }
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa1(int.Parse(obj.ToString()));
+
+                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("MaLop", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các lớp -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                }
+                cbolop.DataSource = tb;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var obj = cbolop.SelectedValue;
+            if (obj == null || obj.ToString().Equals("0"))
+            {
+                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa1(int.Parse(cbokhoa.SelectedValue.ToString()));
+                return;
+            }
+            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
         }
     }
 }
