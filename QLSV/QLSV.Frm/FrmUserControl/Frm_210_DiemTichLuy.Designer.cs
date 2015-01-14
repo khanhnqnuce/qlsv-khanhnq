@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdsdiemtheokhoa = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -116,7 +116,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.ExtraParameters = extraParameters5;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -124,7 +124,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            this.excelExportFilter1.ExtraParameters = extraParameters6;
             // 
             // panel3
             // 
@@ -170,6 +170,9 @@
             this.txtKhoa.Name = "txtKhoa";
             this.txtKhoa.Size = new System.Drawing.Size(50, 25);
             this.txtKhoa.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtKhoa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyDown);
+            this.txtKhoa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtkhoa_KeyPress);
+            this.txtKhoa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtkhoa_KeyUp);
             // 
             // btntimkiem
             // 
@@ -178,6 +181,7 @@
             this.btntimkiem.Name = "btntimkiem";
             this.btntimkiem.Size = new System.Drawing.Size(77, 22);
             this.btntimkiem.Text = "Tìm kiếm";
+            this.btntimkiem.Click += new System.EventHandler(this.btntimkiem_Click);
             // 
             // lbsiso
             // 
@@ -205,6 +209,7 @@
             this.cbolop.Size = new System.Drawing.Size(127, 23);
             this.cbolop.TabIndex = 0;
             this.cbolop.ValueMember = "ID";
+            this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
             // 
             // panel5
             // 
@@ -258,6 +263,7 @@
             this.cbokhoa.Size = new System.Drawing.Size(249, 23);
             this.cbokhoa.TabIndex = 0;
             this.cbokhoa.ValueMember = "ID";
+            this.cbokhoa.SelectedValueChanged += new System.EventHandler(this.cbokhoa_SelectedValueChanged);
             // 
             // panel1
             // 

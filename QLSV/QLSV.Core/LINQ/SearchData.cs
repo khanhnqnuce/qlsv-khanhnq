@@ -94,6 +94,36 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+
+        /// <summary>
+        /// tìm kiếm sv theo khoa mục điểm tích lũy
+        /// </summary>
+        public static DataTable Timkiemtheokhoa2(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                        "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                        " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                        " join SINHVIEN s on d.MaSV = s.MaSV" +
+                        " join LOP l on s.IdLop = l.ID" +
+                        " join KHOA k on l.IdKhoa = k.ID where k.ID= " + id + " order by s.TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
         
         /// <summary>
         /// tất cả sinh viên mục chọn sinh viên
@@ -124,10 +154,10 @@ namespace QLSV.Core.LINQ
         }
         
         /// <summary>
-        /// Tìm kiếm sinh viên theo niên khóa
+        /// Tìm kiếm sv theo niên khóa mục quản lý sinh viên
         /// </summary>
         /// <returns>trả về bảng sinh  viên</returns>
-        public static DataTable Timkiemtheokhoa(string id, int idkythi)
+        public static DataTable Timkiemnienkhoa(string id, int idkythi)
         {
             try
             {
@@ -152,7 +182,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static DataTable Timkiemtheokhoa(string id)
+        public static DataTable Timkiemnienkhoa(string id)
         {
             try
             {
@@ -162,6 +192,36 @@ namespace QLSV.Core.LINQ
                               "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                               "FROM SINHVIEN s,LOP l, KHOA k " +
                               "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Tìm kiếm sv theo niên khóa mục điểm tích lũy
+        /// </summary>
+        public static DataTable Timkiemnienkhoa2(string id)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                         "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                         " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                         " join SINHVIEN s on d.MaSV = s.MaSV" +
+                         " join LOP l on s.IdLop = l.ID" +
+                         " join KHOA k on l.IdKhoa = k.ID where s.MaSV like '%" + id + "' order by s.TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)
@@ -249,6 +309,36 @@ namespace QLSV.Core.LINQ
                         " join NAMHOC n on d.IdNamHoc = n.ID" +
                         " join SINHVIEN s on d.MaSV = s.MaSV" +
                         " join LOP l on s.IdLop = l.ID where l.ID = " + id + " ORDER BY d.MaSV";
+                    return Conn.GetTable(str);
+                }
+                catch (Exception ex)
+                {
+                    Log2File.LogExceptionToFile(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// tìm kiếm sv theo lớp mục điểm tích lũy
+        /// </summary>
+        public static DataTable Timkiemtheolop2(int id)
+        {
+            try
+            {
+                try
+                {
+                    var str =
+                        "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                        " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                        " join SINHVIEN s on d.MaSV = s.MaSV" +
+                        " join LOP l on s.IdLop = l.ID" +
+                        " join KHOA k on l.IdKhoa = k.ID where l.ID = " + id + " order by s.TenSV";
                     return Conn.GetTable(str);
                 }
                 catch (Exception ex)

@@ -219,7 +219,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Timkiemtheokhoa()
         {
-            dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtKhoa.Text);
+            dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
         }
 
         public void Rptdanhsach()
@@ -503,7 +503,7 @@ namespace QLSV.Frm.FrmUserControl
                     LoadGrid();
                     return;
                 }
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
+                //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
 
                 var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
                 var tb = new DataTable();

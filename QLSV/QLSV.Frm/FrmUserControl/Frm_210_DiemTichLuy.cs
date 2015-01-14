@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -22,6 +23,19 @@ namespace QLSV.Frm.FrmUserControl
             InitializeComponent();
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
+        }
+
+        protected override void LoadGrid()
+        {
+            try
+            {
+                dgv_DanhSach.DataSource = LoadData.Load(210);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+
+            }
         }
 
         public void InDanhSach()
@@ -148,14 +162,24 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Frm_210_DiemTichLuy_Load(object sender, EventArgs e)
         {
-            try
-            {
-                dgv_DanhSach.DataSource = LoadData.Load(210);
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
+           LoadGrid();
+           //--------Khoa------------
+           var table = LoadData.Load(3);
+           var tb = new DataTable();
+           tb.Columns.Add("ID", typeof(string));
+           tb.Columns.Add("TenKhoa", typeof(string));
+           tb.Rows.Add("0", "- Tất cả các khoa -");
+           foreach (DataRow row in table.Rows)
+           {
+               tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+           }
+           cbokhoa.DataSource = tb;
+           //------------Lớp-----------
+           var tb1 = new DataTable();
+           tb1.Columns.Add("ID", typeof(string));
+           tb1.Columns.Add("MaLop", typeof(string));
+           tb1.Rows.Add("0", "- Chọn lớp -");
+           cbolop.DataSource = tb1;
         }
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
@@ -247,6 +271,95 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = cbokhoa.SelectedValue;
+                if (obj == null || obj.ToString().Equals("0"))
+                {
+                    var tb1 = new DataTable();
+                    tb1.Columns.Add("ID", typeof(string));
+                    tb1.Columns.Add("MaLop", typeof(string));
+                    tb1.Rows.Add("0", "- Chọn lớp -");
+                    cbolop.DataSource = tb1;
+                    LoadGrid();
+                    return;
+                }
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa2(int.Parse(obj.ToString()));
+
+                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("MaLop", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các lớp -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                }
+                cbolop.DataSource = tb;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var obj = cbolop.SelectedValue;
+            if (obj == null || obj.ToString().Equals("0"))
+            {
+                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa2(int.Parse(cbokhoa.SelectedValue.ToString()));
+                return;
+            }
+            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop2(int.Parse(obj.ToString()));
+        }
+
+        private void btntimkiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa2(txtKhoa.Text);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa2(txtKhoa.Text);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void txtkhoa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtkhoa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true;
         }
 
     }

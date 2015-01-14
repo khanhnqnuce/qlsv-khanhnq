@@ -55,7 +55,7 @@ namespace QLSV.Frm.Frm
             try
             {
                 if (string.IsNullOrEmpty(txtkhoa.Text)) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(txtkhoa.Text, _idkythi);
+                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtkhoa.Text, _idkythi);
             }
             catch (Exception ex)
             {
