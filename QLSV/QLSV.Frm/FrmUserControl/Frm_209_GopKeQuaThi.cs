@@ -22,7 +22,7 @@ namespace QLSV.Frm.FrmUserControl
         private IList<int> _list;
         IList<Sinhvien> _listtk = new List<Sinhvien>(); 
         private readonly BackgroundWorker _bgwInsert;
-        private string _namhoc;
+        private int _idnamhoc;
         private string _hocky;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
@@ -149,7 +149,7 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
                         Diem = int.Parse(row.Cells["TongDiem"].Text),
-                        NamHoc = _namhoc,
+                        IdNamHoc = _idnamhoc,
                         HocKy = _hocky
                     };
                     _listThongke.Add(hs);
@@ -171,7 +171,7 @@ namespace QLSV.Frm.FrmUserControl
             var frm = new FrmGopKQ { Update = false };
             frm.ShowDialog();
             if(!frm.Update) return;
-            _namhoc = frm.txtNamHoc.Text;
+            _idnamhoc = int.Parse(frm.cboNamHoc.SelectedValue.ToString());
             _hocky = frm.cbohocky.SelectedValue.ToString();
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");

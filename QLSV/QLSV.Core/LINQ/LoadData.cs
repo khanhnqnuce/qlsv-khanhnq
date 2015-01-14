@@ -86,15 +86,18 @@ namespace QLSV.Core.LINQ
                     case 20:
                         str = "SELECT ID, TenKT, 'false' as [Chon] FROM KYTHI where TrangThai = 1 order by ID desc";
                         break;
-                    case 21:
-                        str = "select d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                    case 210:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
                               " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
                               " join SINHVIEN s on d.MaSV = s.MaSV" +
                               " join LOP l on s.IdLop = l.ID" +
                               " join KHOA k on l.IdKhoa = k.ID order by s.TenSV";
                         break;
-                    case 22:
+                    case 111:
                         str = "select ROW_NUMBER() OVER(ORDER BY N.ID) as [STT], N.* from NAMHOC N order by N.ID";
+                        break;
+                    case 209:
+                        str = "select N.* from NAMHOC N order by N.ID DESC";
                         break;
                 }
                 table = Conn.GetTable(str);

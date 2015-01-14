@@ -38,7 +38,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = LoadData.Load(22);
+                dgv_DanhSach.DataSource = LoadData.Load(111);
             }
             catch (Exception ex)
             {

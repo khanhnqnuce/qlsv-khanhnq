@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data;
+using QLSV.Core.LINQ;
 
 namespace QLSV.Frm.Frm
 {
@@ -24,13 +25,15 @@ namespace QLSV.Frm.Frm
             cbohocky.DisplayMember = "ten";
             cbohocky.ValueMember = "ma";
             cbohocky.DataSource = table;
+
+            cboNamHoc.DataSource = LoadData.Load(209);
         }
 
         private void btnluu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNamHoc.Text))
+            if (string.IsNullOrEmpty(cboNamHoc.Text))
             {
-                errorNH.SetError(txtNamHoc, "Nhập năm học");
+                errorNH.SetError(cboNamHoc, "Chọn năm học");
             }else if(string.IsNullOrEmpty(cbohocky.Text))
             {
                 errorHK.SetError(cbohocky,"Chọn học kỳ");

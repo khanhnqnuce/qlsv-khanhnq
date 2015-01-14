@@ -105,7 +105,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = LoadData.Load(21);
+                dgv_DanhSach.DataSource = LoadData.Load(210);
             }
             catch (Exception ex)
             {
@@ -125,12 +125,14 @@ namespace QLSV.Frm.FrmUserControl
                 #region Caption
                 var columns = band.Columns;
                 band.ColHeadersVisible = false;
+                var group6 = band.Groups.Add("STT");
                 var group0 = band.Groups.Add("Mã SV");
                 var group1 = band.Groups.Add("Họ và tên");
                 var group2 = band.Groups.Add("Ngày sinh");
                 var group3 = band.Groups.Add("Lớp");
                 var group4 = band.Groups.Add("Khoa");
                 var group5 = band.Groups.Add("Điểm");
+                columns["STT"].Group = group6;
                 columns["MaSV"].Group = group0;
                 columns["HoSV"].Group = group1;
                 columns["TenSV"].Group = group1;
@@ -143,6 +145,8 @@ namespace QLSV.Frm.FrmUserControl
 
                 #region Size
                 
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["STT"].MaxWidth = 70;
                 band.Columns["MaSV"].MinWidth = 100;
                 band.Columns["MaSV"].MaxWidth = 120;
                 band.Columns["HoSV"].MinWidth = 130;
@@ -176,7 +180,9 @@ namespace QLSV.Frm.FrmUserControl
                 dgv_DanhSach.DisplayLayout.FixedHeaderOnImage = Properties.Resources.trang;
                 group0.Header.Fixed = true;
                 group1.Header.Fixed = true;
-                group2.Header.Fixed = true;group3.Header.Fixed = true;
+                group2.Header.Fixed = true;
+                group3.Header.Fixed = true;
+                group6.Header.Fixed = true;
             }
             catch (Exception ex)
             {

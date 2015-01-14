@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGopKQ));
             this.cbohocky = new System.Windows.Forms.ComboBox();
-            this.txtNamHoc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnluu = new System.Windows.Forms.Button();
             this.errorNH = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorHK = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cboNamHoc = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorNH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorHK)).BeginInit();
             this.SuspendLayout();
@@ -49,13 +49,6 @@
             this.cbohocky.Name = "cbohocky";
             this.cbohocky.Size = new System.Drawing.Size(140, 23);
             this.cbohocky.TabIndex = 0;
-            // 
-            // txtNamHoc
-            // 
-            this.txtNamHoc.Location = new System.Drawing.Point(82, 25);
-            this.txtNamHoc.Name = "txtNamHoc";
-            this.txtNamHoc.Size = new System.Drawing.Size(140, 22);
-            this.txtNamHoc.TabIndex = 1;
             // 
             // label1
             // 
@@ -96,15 +89,26 @@
             this.errorHK.ContainerControl = this;
             this.errorHK.Icon = ((System.Drawing.Icon)(resources.GetObject("errorHK.Icon")));
             // 
+            // cboNamHoc
+            // 
+            this.cboNamHoc.DisplayMember = "NamHoc";
+            this.cboNamHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNamHoc.FormattingEnabled = true;
+            this.cboNamHoc.Location = new System.Drawing.Point(82, 26);
+            this.cboNamHoc.Name = "cboNamHoc";
+            this.cboNamHoc.Size = new System.Drawing.Size(140, 23);
+            this.cboNamHoc.TabIndex = 5;
+            this.cboNamHoc.ValueMember = "ID";
+            // 
             // FrmGopKQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(242, 157);
+            this.Controls.Add(this.cboNamHoc);
             this.Controls.Add(this.btnluu);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtNamHoc);
             this.Controls.Add(this.cbohocky);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -125,11 +129,11 @@
         #endregion
 
         public System.Windows.Forms.ComboBox cbohocky;
-        public System.Windows.Forms.TextBox txtNamHoc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnluu;
         private System.Windows.Forms.ErrorProvider errorNH;
         private System.Windows.Forms.ErrorProvider errorHK;
+        public System.Windows.Forms.ComboBox cboNamHoc;
     }
 }
