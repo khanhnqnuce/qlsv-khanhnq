@@ -32,6 +32,7 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.rdoLop = new System.Windows.Forms.RadioButton();
             this.rdokhoa = new System.Windows.Forms.RadioButton();
+            this.rdobangdiem = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,16 +40,17 @@
             // 
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.rdoLop);
+            this.panel1.Controls.Add(this.rdobangdiem);
             this.panel1.Controls.Add(this.rdokhoa);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 127);
+            this.panel1.Size = new System.Drawing.Size(188, 170);
             this.panel1.TabIndex = 21;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(57, 89);
+            this.btnOk.Location = new System.Drawing.Point(57, 127);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 20;
@@ -59,7 +61,7 @@
             // rdoLop
             // 
             this.rdoLop.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdoLop.Location = new System.Drawing.Point(47, 50);
+            this.rdoLop.Location = new System.Drawing.Point(47, 93);
             this.rdoLop.Name = "rdoLop";
             this.rdoLop.Size = new System.Drawing.Size(95, 19);
             this.rdoLop.TabIndex = 19;
@@ -69,21 +71,31 @@
             // rdokhoa
             // 
             this.rdokhoa.AutoSize = true;
-            this.rdokhoa.Checked = true;
             this.rdokhoa.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdokhoa.Location = new System.Drawing.Point(48, 15);
+            this.rdokhoa.Location = new System.Drawing.Point(48, 58);
             this.rdokhoa.Name = "rdokhoa";
             this.rdokhoa.Size = new System.Drawing.Size(92, 21);
             this.rdokhoa.TabIndex = 18;
-            this.rdokhoa.TabStop = true;
             this.rdokhoa.Text = "Theo Khoa";
             this.rdokhoa.UseVisualStyleBackColor = true;
+            // 
+            // rdobangdiem
+            // 
+            this.rdobangdiem.AutoSize = true;
+            this.rdobangdiem.Checked = true;
+            this.rdobangdiem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.rdobangdiem.Location = new System.Drawing.Point(47, 20);
+            this.rdobangdiem.Name = "rdobangdiem";
+            this.rdobangdiem.Size = new System.Drawing.Size(90, 21);
+            this.rdobangdiem.TabIndex = 18;
+            this.rdobangdiem.Text = "Bảng điểm";
+            this.rdobangdiem.UseVisualStyleBackColor = true;
             // 
             // FrmDiemTichLuy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(188, 127);
+            this.ClientSize = new System.Drawing.Size(188, 170);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -105,5 +117,6 @@
         private System.Windows.Forms.Button btnOk;
         public System.Windows.Forms.RadioButton rdoLop;
         public System.Windows.Forms.RadioButton rdokhoa;
+        public System.Windows.Forms.RadioButton rdobangdiem;
     }
 }

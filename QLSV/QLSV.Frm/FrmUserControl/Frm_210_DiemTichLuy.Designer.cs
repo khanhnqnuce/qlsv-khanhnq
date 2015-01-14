@@ -34,9 +34,10 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdsdiemtheokhoa = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.rptdsdiemtheolop = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
-            this.rptdsdiemtheolop = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.rptbangdiem = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,13 +63,20 @@
             this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
             this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
             this.rptdsdiemtheokhoa,
-            this.rptdsdiemtheolop});
+            this.rptdsdiemtheolop,
+            this.rptbangdiem});
             // 
             // rptdsdiemtheokhoa
             // 
             this.rptdsdiemtheokhoa.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachduthi.rst";
             this.rptdsdiemtheokhoa.ReportName = "";
             this.rptdsdiemtheokhoa.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
+            // rptdsdiemtheolop
+            // 
+            this.rptdsdiemtheolop.FilePath = "";
+            this.rptdsdiemtheolop.ReportName = "";
+            this.rptdsdiemtheolop.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // pdfExportFilter1
             // 
@@ -84,11 +92,11 @@
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
             this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
-            // rptdsdiemtheolop
+            // rptbangdiem
             // 
-            this.rptdsdiemtheolop.FilePath = "";
-            this.rptdsdiemtheolop.ReportName = "";
-            this.rptdsdiemtheolop.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            this.rptbangdiem.FilePath = "";
+            this.rptbangdiem.ReportName = "";
+            this.rptbangdiem.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // Frm_210_DiemTichLuy
             // 
@@ -112,5 +120,6 @@
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdsdiemtheolop;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptbangdiem;
     }
 }

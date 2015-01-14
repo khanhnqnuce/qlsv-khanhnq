@@ -201,7 +201,6 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
-            rptdiemthi.GetReportParameter += GetParameter;
             rptdiemthi.Prepare();
             var previewForm = new PreviewForm(rptdiemthi)
             {

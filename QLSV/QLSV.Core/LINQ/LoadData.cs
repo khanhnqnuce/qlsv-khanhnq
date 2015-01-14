@@ -259,6 +259,21 @@ namespace QLSV.Core.LINQ
             return table;
         }
 
+        public static DataTable LoadBangdiem(int masv)
+        {
+            var tb = new DataTable();
+            try
+            {
+                var str = "select ROW_NUMBER() OVER(order by n.NamHoc, d.HocKy) as [STT], n.NamHoc, d.HocKy, d.Diem from DIEMTHI d join NAMHOC n on d.IdNamHoc = n.ID where MaSV = " + masv + " order by n.NamHoc, d.HocKy";
+                tb = Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return tb;
+        }
+
         public static DataTable KiemTraTaiKhoan(string user, string pass)
         {
             var tb = new DataTable();

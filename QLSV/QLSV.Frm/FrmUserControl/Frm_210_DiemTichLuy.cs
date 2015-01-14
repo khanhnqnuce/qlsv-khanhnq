@@ -37,6 +37,49 @@ namespace QLSV.Frm.FrmUserControl
             else if (frm.rdoLop.Checked && frm.Update)
             {
                 RptLop();
+            }else if (frm.rdobangdiem.Checked && frm.Update)
+            {
+                Rptbangdiem();
+            }
+        }
+
+        private void Rptbangdiem()
+        {
+            try
+            {
+                if(dgv_DanhSach.ActiveRow == null) return;
+                var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
+                var tb = LoadData.LoadBangdiem(masv);
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", tb);
+                rptbangdiem.FilePath = Application.StartupPath + @"\Reports\bangdiem.rst";
+                rptbangdiem.Prepare();
+                rptbangdiem.GetReportParameter += GetParameter;
+                var previewForm = new PreviewForm(rptbangdiem)
+                {
+                    WindowState = FormWindowState.Maximized,
+                    ShowInTaskbar = false
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                e.Parameters["MaSV"].Value = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
+                e.Parameters["diemtichluy"].Value = dgv_DanhSach.ActiveRow.Cells["Diem"].Text;
+                e.Parameters["TenSV"].Value = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text + " " + dgv_DanhSach.ActiveRow.Cells["TenSV"].Text;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -92,6 +135,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
+                    row.Activate();
                     _newRow = row;
                 }
             }
