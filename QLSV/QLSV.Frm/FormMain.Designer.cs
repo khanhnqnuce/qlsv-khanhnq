@@ -312,7 +312,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -459,7 +459,7 @@
             this.Tabtudiennamhoc.Controls.Add(this.pnl_tudiennamhoc);
             this.Tabtudiennamhoc.Controls.Add(this.panel4);
             this.Tabtudiennamhoc.Controls.Add(this.panel5);
-            this.Tabtudiennamhoc.Location = new System.Drawing.Point(1, 1);
+            this.Tabtudiennamhoc.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabtudiennamhoc.Name = "Tabtudiennamhoc";
             this.Tabtudiennamhoc.Size = new System.Drawing.Size(829, 502);
             // 

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -237,6 +237,7 @@
             // 
             // cbolop
             // 
+            this.cbolop.DisplayMember = "MaLop";
             this.cbolop.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbolop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbolop.FormattingEnabled = true;
@@ -244,6 +245,7 @@
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(127, 23);
             this.cbolop.TabIndex = 0;
+            this.cbolop.ValueMember = "ID";
             this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
             // 
             // panel5
@@ -289,6 +291,7 @@
             // 
             // cbokhoa
             // 
+            this.cbokhoa.DisplayMember = "TenKhoa";
             this.cbokhoa.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbokhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbokhoa.FormattingEnabled = true;
@@ -296,6 +299,7 @@
             this.cbokhoa.Name = "cbokhoa";
             this.cbokhoa.Size = new System.Drawing.Size(249, 23);
             this.cbokhoa.TabIndex = 0;
+            this.cbokhoa.ValueMember = "ID";
             this.cbokhoa.SelectedValueChanged += new System.EventHandler(this.cbokhoa_SelectedValueChanged);
             // 
             // panel1
@@ -328,7 +332,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.ExtraParameters = extraParameters3;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -336,7 +340,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            this.excelExportFilter1.ExtraParameters = extraParameters4;
             // 
             // reportManager1
             // 

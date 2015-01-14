@@ -115,16 +115,12 @@ namespace QLSV.Frm.Frm
                 {
                     tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
                 }
-                cbokhoa.ValueMember = "ID";
-                cbokhoa.DisplayMember = "TenKhoa";
                 cbokhoa.DataSource = tb;
                 //------------Lớp-----------
                 var tb1 = new DataTable();
                 tb1.Columns.Add("ID", typeof(string));
                 tb1.Columns.Add("MaLop", typeof(string));
                 tb1.Rows.Add("0", "- Chọn lớp -");
-                cbolop.ValueMember = "ID";
-                cbolop.DisplayMember = "MaLop";
                 cbolop.DataSource = tb1;
             }
             catch (Exception ex)
@@ -142,6 +138,11 @@ namespace QLSV.Frm.Frm
                     var obj = cbokhoa.SelectedValue;
                     if (obj == null || obj.ToString().Equals("0"))
                     {
+                        var tb1 = new DataTable();
+                        tb1.Columns.Add("ID", typeof(string));
+                        tb1.Columns.Add("MaLop", typeof(string));
+                        tb1.Rows.Add("0", "- Chọn lớp -");
+                        cbolop.DataSource = tb1;
                         dgv_DanhSach.DataSource = SearchData.Tatcacackhoa(_idkythi);
                         return;
                     }

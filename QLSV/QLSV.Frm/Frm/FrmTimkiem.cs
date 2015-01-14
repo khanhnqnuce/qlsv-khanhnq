@@ -44,7 +44,7 @@ namespace QLSV.Frm.Frm
 
         private void btnTimkiem_Click(object sender, EventArgs e)
         {
-            Timkiemsinhvien(sender, txtmasinhvien.Text);
+            
         }
 
         private void txtmasinhvien_KeyPress(object sender, KeyPressEventArgs e)
@@ -53,6 +53,11 @@ namespace QLSV.Frm.Frm
             {
                 e.Handled = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Timkiemsinhvien(sender, txtmasinhvien.Text);
         }
     }
 }

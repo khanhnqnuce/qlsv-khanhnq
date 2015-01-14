@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -13,9 +14,14 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_211_QuanLyDiem : FunctionControlHasGrid
     {
+        private readonly FrmTimkiem _frmTimkiem;
+        //private UltraGridRow _newRow;
+
         public Frm_211_QuanLyDiem()
         {
             InitializeComponent();
+            _frmTimkiem = new FrmTimkiem();
+            _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
         protected override DataTable GetTable()
@@ -67,6 +73,30 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+         private void Timkiemsinhvien(object sender, string masinhvien)
+         {
+             try
+             {
+                 foreach (var row in dgv_DanhSach.Selected.Rows)
+                 {
+                     row.Selected = false;
+                 }
+                 foreach (
+                     var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                 {
+                     row.Selected = true;
+                     if (row.Index > 4)
+                         dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index - 3;
+                     else
+                         dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Log2File.LogExceptionToFile(ex);
+             }
+         }
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
@@ -159,9 +189,8 @@ namespace QLSV.Frm.FrmUserControl
             {
                 tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
             }
-            cbokhoa.ValueMember = "ID";
-            cbokhoa.DisplayMember = "TenKhoa";
             cbokhoa.DataSource = tb;
+
             //------------Lớp-----------
             var tb1 = new DataTable();
             tb1.Columns.Add("ID", typeof(string));
@@ -179,6 +208,13 @@ namespace QLSV.Frm.FrmUserControl
                 var obj = cbokhoa.SelectedValue;
                 if (obj == null || obj.ToString().Equals("0"))
                 {
+                    var tb1 = new DataTable();
+                    tb1.Columns.Add("ID", typeof(string));
+                    tb1.Columns.Add("MaLop", typeof(string));
+                    tb1.Rows.Add("0", "- Chọn lớp -");
+                    cbolop.ValueMember = "ID";
+                    cbolop.DisplayMember = "MaLop";
+                    cbolop.DataSource = tb1;
                     LoadGrid();
                     return;
                 }
@@ -211,6 +247,17 @@ namespace QLSV.Frm.FrmUserControl
                 return;
             }
             dgv_DanhSach.DataSource = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Control | Keys.S):
+                    _frmTimkiem.ShowDialog();
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

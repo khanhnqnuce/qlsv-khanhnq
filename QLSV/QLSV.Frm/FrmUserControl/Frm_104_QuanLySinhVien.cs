@@ -474,16 +474,12 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
                 }
-                cbokhoa.ValueMember = "ID";
-                cbokhoa.DisplayMember = "TenKhoa";
                 cbokhoa.DataSource = tb;
                 //------------Lớp-----------
                 var tb1 = new DataTable();
                 tb1.Columns.Add("ID", typeof(string));
                 tb1.Columns.Add("MaLop", typeof(string));
                 tb1.Rows.Add("0", "- Chọn lớp -");
-                cbolop.ValueMember = "ID";
-                cbolop.DisplayMember = "MaLop";
                 cbolop.DataSource = tb1;
             }
             catch (Exception ex)
@@ -499,6 +495,11 @@ namespace QLSV.Frm.FrmUserControl
                 var obj = cbokhoa.SelectedValue;
                 if (obj == null || obj.ToString().Equals("0"))
                 {
+                    var tb1 = new DataTable();
+                    tb1.Columns.Add("ID", typeof(string));
+                    tb1.Columns.Add("MaLop", typeof(string));
+                    tb1.Rows.Add("0", "- Chọn lớp -");
+                    cbolop.DataSource = tb1;
                     LoadGrid();
                     return;
                 }
@@ -537,7 +538,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             Timkiemtheokhoa();
         }
-
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

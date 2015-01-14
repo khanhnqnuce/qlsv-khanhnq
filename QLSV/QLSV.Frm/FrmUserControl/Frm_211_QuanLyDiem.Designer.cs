@@ -93,6 +93,7 @@
             // 
             // cbolop
             // 
+            this.cbolop.DisplayMember = "MaLop";
             this.cbolop.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbolop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbolop.FormattingEnabled = true;
@@ -100,6 +101,7 @@
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(111, 23);
             this.cbolop.TabIndex = 0;
+            this.cbolop.ValueMember = "ID";
             this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
             // 
             // panel5
@@ -146,6 +148,7 @@
             // 
             // cbokhoa
             // 
+            this.cbokhoa.DisplayMember = "TenKhoa";
             this.cbokhoa.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbokhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbokhoa.FormattingEnabled = true;
@@ -153,6 +156,7 @@
             this.cbokhoa.Name = "cbokhoa";
             this.cbokhoa.Size = new System.Drawing.Size(218, 23);
             this.cbokhoa.TabIndex = 0;
+            this.cbokhoa.ValueMember = "ID";
             this.cbokhoa.SelectedValueChanged += new System.EventHandler(this.cbokhoa_SelectedValueChanged);
             // 
             // panel1
