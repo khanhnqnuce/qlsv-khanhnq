@@ -246,7 +246,7 @@ namespace QLSV.Frm.FrmUserControl
                 var previewForm = new PreviewForm(rptdanhsachsinhvien)
                 {
                     WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
+                    ShowInTaskbar = false,
                 };
                 previewForm.Show();
             }
