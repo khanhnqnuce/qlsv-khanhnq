@@ -1190,15 +1190,15 @@ namespace QLSV.Frm
         {
             switch (keyData)
             {
-                case (Keys.Control | Keys.F):
-                    if (!_dangnhap) break;
-                    var frmChon = new FrmChonChucNang();
-                    frmChon.ShowDialog();
-                    if (frmChon.StrChucNang != "" && frmChon.StrChucNang != "login")
-                    {
-                        ChonChucNang(frmChon.StrChucNang);
-                    }
-                    break;
+                //case (Keys.Control | Keys.F):
+                //    if (!_dangnhap) break;
+                //    var frmChon = new FrmChonChucNang();
+                //    frmChon.ShowDialog();
+                //    if (frmChon.StrChucNang != "" && frmChon.StrChucNang != "login")
+                //    {
+                //        ChonChucNang(frmChon.StrChucNang);
+                //    }
+                //    break;
                 case (Keys.Escape):
                     Dong_Esc();
                     break;
