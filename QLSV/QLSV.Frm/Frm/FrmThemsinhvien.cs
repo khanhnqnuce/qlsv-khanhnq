@@ -30,6 +30,7 @@ namespace QLSV.Frm.Frm
 
         private void ClearAll()
         {
+            txtmasinhvien.Clear();
             txttensinhvien.Clear();
             txthotendem.Clear();
             cbongaysinh.Value = null;
@@ -119,21 +120,6 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnHuy_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btndong_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void cbokhoa_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             cbokhoa.Rows.Band.Columns["STT"].Hidden = true;
@@ -147,9 +133,10 @@ namespace QLSV.Frm.Frm
         {
             var band = e.Layout.Bands[0];
             band.Columns["ID"].Hidden = true;
-            band.Columns["STT"].Hidden = true;
             band.Columns["IdKhoa"].Hidden = true;
             band.Columns["GhiChu"].Hidden = true;
+            band.Columns["MaLop"].Width = 200;
+            band.ColHeadersVisible = false;
             band.ColHeadersVisible = false;
         }
 
