@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
@@ -82,6 +84,40 @@ namespace QLSV.Frm.Frm
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conString;
+                if (string.IsNullOrEmpty(txtusername.Text) || string.IsNullOrEmpty(txtpassword.Text))
+                    conString = @"Data Source = " + txtserver.Text + ";Initial Catalog = " + txtdatabase.Text + ";Integrated Security=SSPI";
+                else
+                    conString = @"Data Source=" + txtserver.Text + ";Initial Catalog=" + txtdatabase.Text + ";User Id=" + txtusername.Text + ";Password=" + txtpassword.Text + "";
+                var conn = new SqlConnection(conString);
+                if (CheckConn(conn))
+                    MessageBox.Show(@"Kết nối CSDL thành công.", @"Thông báo");
+                else
+                    MessageBox.Show(@"Không thể kết nối CSDL.", @"Thông báo");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private static bool CheckConn(SqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                return conn.State == ConnectionState.Open;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -125,11 +126,22 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Server";
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(17, 182);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 27);
+            this.btnTest.TabIndex = 20;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // FrmCauHinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 233);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtpassword);
             this.Controls.Add(this.txtusername);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnTest;
 
     }
 }

@@ -15,11 +15,10 @@ namespace QLSV.Core.LINQ
         /// <returns></returns>
         private static string Getstr(IList<int> list )
         {
-            var tb = new DataTable();
             try
             {
                 var str = new string[list.Count];
-                var strselect = "select a0.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,";
+                var strselect = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], a0.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,";
 
                 for (var i = 0; i < list.Count; i++)
                 {

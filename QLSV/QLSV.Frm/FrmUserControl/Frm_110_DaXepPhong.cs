@@ -237,22 +237,9 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptNopbai()
         {
-            var tbPhong = LoadData.Load(2,_idkythi);
-
-            var tb = (DataTable) dgv_DanhSach.DataSource;
-            foreach (DataRow rowp in tbPhong.Rows)
-            {
-                var stt = 1;
-                var phong = rowp["TenPhong"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["TenPhong"].ToString().Equals(phong)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
-
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", tb);
-            rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachnopbai.rst";
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+            rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
             rptdanhsachduthi.Prepare();
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
@@ -264,22 +251,9 @@ namespace QLSV.Frm.FrmUserControl
         
         private void RptPhongthi()
         {
-            var tbPhong = LoadData.Load(2,_idkythi);
-
-            var tb = (DataTable) dgv_DanhSach.DataSource;
-            foreach (DataRow rowp in tbPhong.Rows)
-            {
-                var stt = 1;
-                var phong = rowp["TenPhong"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["TenPhong"].ToString().Equals(phong)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
-
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", tb);
-            rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+            rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachnopbai.rst";
             rptdanhsachduthi.Prepare();
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
@@ -291,19 +265,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptKhoa()
         {
-            var tbkhoa = LoadData.Load(15);
-            var tb = ((DataTable) dgv_DanhSach.DataSource);
-            foreach (DataRow rowl in tbkhoa.Rows)
-            {
-                var stt = 1;
-                var id = rowl["ID"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["IdKhoa"].ToString().Equals(id)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", tb);
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachkhoa.FilePath = Application.StartupPath + @"\Reports\danhsachduthikhoa.rst";
             rptdanhsachkhoa.Prepare();
             var previewForm = new PreviewForm(rptdanhsachkhoa)
@@ -316,19 +279,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptLop()
         {
-            var tblop = LoadData.Load(4,_idkythi);
-            var tb = ((DataTable) dgv_DanhSach.DataSource);
-            foreach (DataRow rowl in tblop.Rows)
-            {
-                var stt = 1;
-                var malop = rowl["MaLop"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString().Equals(malop)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", tb);
+            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachlop.FilePath = Application.StartupPath + @"\Reports\danhsachduthilop.rst";
             rptdanhsachlop.Prepare();
             var previewForm = new PreviewForm(rptdanhsachlop)

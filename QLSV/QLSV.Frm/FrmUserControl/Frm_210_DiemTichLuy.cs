@@ -91,6 +91,7 @@ namespace QLSV.Frm.FrmUserControl
                 e.Parameters["MaSV"].Value = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
                 e.Parameters["diemtichluy"].Value = dgv_DanhSach.ActiveRow.Cells["Diem"].Text;
                 e.Parameters["TenSV"].Value = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text + " " + dgv_DanhSach.ActiveRow.Cells["TenSV"].Text;
+                e.Parameters["MaLop"].Value = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text;
             }
             catch (Exception ex)
             {

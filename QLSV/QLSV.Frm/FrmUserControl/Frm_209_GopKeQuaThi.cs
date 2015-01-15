@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -93,10 +94,10 @@ namespace QLSV.Frm.FrmUserControl
                         listthongke.Add(sv1);
                         b:;
                     }
-
+                    var t = tb1.Rows.Count;
                     foreach (var item in listthongke)
                     {
-                        tb1.Rows.Add(item.MaSV, item.HoSV, item.TenSV, item.NgaySinh, item.MaLop);
+                        tb1.Rows.Add(++t, item.MaSV, item.HoSV, item.TenSV, item.NgaySinh, item.MaLop);
                         for (var i = 0; i < _list.Count; i++)
                         {
                             var ten = "Diem" + (i + 1);
@@ -320,10 +321,13 @@ namespace QLSV.Frm.FrmUserControl
                 band.Groups.Clear();
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+                band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
 
                 #region Caption
                 var columns = band.Columns;
                 band.ColHeadersVisible = false;
+                var group5 = band.Groups.Add("STT");
+                columns["STT"].Group = group5;
                 var group0 = band.Groups.Add("Mã SV");
                 columns["MaSV"].Group = group0;
                 var group1 = band.Groups.Add("Họ và tên");
@@ -352,6 +356,8 @@ namespace QLSV.Frm.FrmUserControl
 
                 #region Size
 
+                band.Columns["STT"].MinWidth = 60;
+                band.Columns["STT"].MaxWidth = 70;
                 band.Columns["MaSV"].MinWidth = 100;
                 band.Columns["MaSV"].MaxWidth = 120;
                 band.Columns["HoSV"].MinWidth = 130;
@@ -367,6 +373,7 @@ namespace QLSV.Frm.FrmUserControl
 
                 #endregion
 
+                band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
@@ -382,7 +389,9 @@ namespace QLSV.Frm.FrmUserControl
                 dgv_DanhSach.DisplayLayout.FixedHeaderOnImage = Properties.Resources.trang;
                 group0.Header.Fixed = true;
                 group1.Header.Fixed = true;
-                group2.Header.Fixed = true; group3.Header.Fixed = true;
+                group2.Header.Fixed = true; 
+                group3.Header.Fixed = true;
+                group5.Header.Fixed = true;
             }
             catch (Exception ex)
             {

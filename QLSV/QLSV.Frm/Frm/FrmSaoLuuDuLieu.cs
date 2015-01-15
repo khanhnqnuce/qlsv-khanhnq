@@ -38,14 +38,14 @@ namespace QLSV.Frm.Frm
             {
                 var bBackUpStatus = true;
                 Cursor.Current = Cursors.WaitCursor;
-                var forder = txtPathBackup.Text + @"SQLBackup";
+                var forder = txtPathBackup.Text + @"\QLSV_SqlBackup";
                 var filename = forder + @"\" + txtNameFile.Text + @".bak";
                 if (Directory.Exists(forder))
                 {
 
                     if (File.Exists(filename))
                     {
-                        if (MessageBox.Show(@"Bạn có muốn thay thế nó?", @"Thống báo",
+                        if (MessageBox.Show(@"File đã tồn tại bạn có muốn thay thế nó?", @"Thống báo",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             File.Delete(filename);

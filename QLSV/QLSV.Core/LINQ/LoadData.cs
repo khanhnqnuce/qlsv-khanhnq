@@ -184,10 +184,10 @@ namespace QLSV.Core.LINQ
                               "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
                         break;
                     case 8:
-                        str = "select ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.MaSV" +
+                        str = "select b.MaSV" +
                               " FROM BAILAM b" +
-                              " where b.IdKyThi = 10" +
-                              " and not exists (select * from XEPPHONG x where b.MaSV = x.IdSV and x.IdKyThi = 10) ORDER BY b.MaSV";
+                              " where b.IdKyThi = "+idKythi+"" +
+                              " and not exists (select * from XEPPHONG x where b.MaSV = x.IdSV and x.IdKyThi = "+idKythi+") ORDER BY b.MaSV";
                         break;
                     case 9:
                         str =
