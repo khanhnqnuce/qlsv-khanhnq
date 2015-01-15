@@ -121,6 +121,48 @@ namespace QLSV.Frm.Frm
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btndong_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cbokhoa_InitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+            cbokhoa.Rows.Band.Columns["STT"].Hidden = true;
+            cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
+            cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
+            cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
+            cbokhoa.Rows.Band.ColHeadersVisible = false;
+        }
+
+        private void cbolop_InitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+            var band = e.Layout.Bands[0];
+            band.Columns["ID"].Hidden = true;
+            band.Columns["STT"].Hidden = true;
+            band.Columns["IdKhoa"].Hidden = true;
+            band.Columns["GhiChu"].Hidden = true;
+            band.ColHeadersVisible = false;
+        }
+
+        private void FrmThemsinhvien_Load(object sender, EventArgs e)
+        {
+            if (CheckUpdate)
+                Text = @"Chỉnh sửa thông tin";
+            else
+                Text = @"Thêm mới sinh viên";
+        }
+
+        private void btnluu_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 if (!Checkghi()) return;
@@ -151,7 +193,7 @@ namespace QLSV.Frm.Frm
                             IdLop = int.Parse(dataRow["ID"].ToString()),
                         };
                         InsertData.ThemSinhVien(hs);
-                        Themmoisinhvien(sender, hs,cbolop.Text, cbokhoa.Text);
+                        Themmoisinhvien(sender, hs, cbolop.Text, cbokhoa.Text);
                         MessageBox.Show(@"Đã Thêm mới một sinh viên");
                         ClearAll();
                         return;
@@ -203,7 +245,7 @@ namespace QLSV.Frm.Frm
                         IdLop = int.Parse(cbolop.Value.ToString())
                     };
                     UpdateData.UpdateSv(hs1);
-                    MessageBox.Show(@"Chỉnh sửa thành công",@"Thông báo");
+                    MessageBox.Show(@"Chỉnh sửa thành công", @"Thông báo");
                     CheckUpdate = false;
                     Close();
                 }
@@ -214,41 +256,9 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void btnHuy_Click_1(object sender, EventArgs e)
+        private void btnhuy_Click(object sender, EventArgs e)
         {
             ClearAll();
-        }
-
-        private void btndong_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void cbokhoa_InitializeLayout(object sender, InitializeLayoutEventArgs e)
-        {
-            cbokhoa.Rows.Band.Columns["STT"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
-            cbokhoa.Rows.Band.ColHeadersVisible = false;
-        }
-
-        private void cbolop_InitializeLayout(object sender, InitializeLayoutEventArgs e)
-        {
-            var band = e.Layout.Bands[0];
-            band.Columns["ID"].Hidden = true;
-            band.Columns["STT"].Hidden = true;
-            band.Columns["IdKhoa"].Hidden = true;
-            band.Columns["GhiChu"].Hidden = true;
-            band.ColHeadersVisible = false;
-        }
-
-        private void FrmThemsinhvien_Load(object sender, EventArgs e)
-        {
-            if (CheckUpdate)
-                Text = @"Chỉnh sửa thông tin";
-            else
-                Text = @"Thêm mới sinh viên";
         }
     }
 }

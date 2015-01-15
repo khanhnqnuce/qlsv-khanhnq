@@ -78,12 +78,8 @@
             this.errorngaysinh = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorkhoa = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorlop = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnLuu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnHuy = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btndong = new System.Windows.Forms.ToolStripButton();
+            this.btnluu = new System.Windows.Forms.Button();
+            this.btnhuy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txthotendem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttensinhvien)).BeginInit();
@@ -96,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorngaysinh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorkhoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorlop)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ultraLabel1
@@ -105,7 +100,7 @@
             appearance1.TextVAlignAsString = "Middle";
             this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel1.Location = new System.Drawing.Point(15, 44);
+            this.ultraLabel1.Location = new System.Drawing.Point(17, 20);
             this.ultraLabel1.Name = "ultraLabel1";
             this.ultraLabel1.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel1.TabIndex = 0;
@@ -116,7 +111,7 @@
             appearance2.TextVAlignAsString = "Middle";
             this.ultraLabel2.Appearance = appearance2;
             this.ultraLabel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel2.Location = new System.Drawing.Point(15, 83);
+            this.ultraLabel2.Location = new System.Drawing.Point(17, 59);
             this.ultraLabel2.Name = "ultraLabel2";
             this.ultraLabel2.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel2.TabIndex = 1;
@@ -128,7 +123,7 @@
             appearance3.TextVAlignAsString = "Middle";
             this.ultraLabel3.Appearance = appearance3;
             this.ultraLabel3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel3.Location = new System.Drawing.Point(15, 122);
+            this.ultraLabel3.Location = new System.Drawing.Point(17, 98);
             this.ultraLabel3.Name = "ultraLabel3";
             this.ultraLabel3.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel3.TabIndex = 2;
@@ -140,7 +135,7 @@
             appearance4.TextVAlignAsString = "Middle";
             this.ultraLabel4.Appearance = appearance4;
             this.ultraLabel4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel4.Location = new System.Drawing.Point(15, 161);
+            this.ultraLabel4.Location = new System.Drawing.Point(17, 137);
             this.ultraLabel4.Name = "ultraLabel4";
             this.ultraLabel4.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel4.TabIndex = 3;
@@ -152,7 +147,7 @@
             appearance5.TextVAlignAsString = "Middle";
             this.ultraLabel5.Appearance = appearance5;
             this.ultraLabel5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel5.Location = new System.Drawing.Point(15, 239);
+            this.ultraLabel5.Location = new System.Drawing.Point(17, 215);
             this.ultraLabel5.Name = "ultraLabel5";
             this.ultraLabel5.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel5.TabIndex = 4;
@@ -164,7 +159,7 @@
             appearance6.TextVAlignAsString = "Middle";
             this.ultraLabel6.Appearance = appearance6;
             this.ultraLabel6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel6.Location = new System.Drawing.Point(15, 200);
+            this.ultraLabel6.Location = new System.Drawing.Point(17, 176);
             this.ultraLabel6.Name = "ultraLabel6";
             this.ultraLabel6.Size = new System.Drawing.Size(100, 23);
             this.ultraLabel6.TabIndex = 5;
@@ -173,7 +168,7 @@
             // txtmasinhvien
             // 
             this.txtmasinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtmasinhvien.Location = new System.Drawing.Point(128, 42);
+            this.txtmasinhvien.Location = new System.Drawing.Point(130, 18);
             this.txtmasinhvien.Name = "txtmasinhvien";
             this.txtmasinhvien.Size = new System.Drawing.Size(203, 26);
             this.txtmasinhvien.TabIndex = 6;
@@ -181,7 +176,7 @@
             // txthotendem
             // 
             this.txthotendem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txthotendem.Location = new System.Drawing.Point(131, 81);
+            this.txthotendem.Location = new System.Drawing.Point(133, 57);
             this.txthotendem.Name = "txthotendem";
             this.txthotendem.Size = new System.Drawing.Size(203, 26);
             this.txthotendem.TabIndex = 7;
@@ -189,14 +184,14 @@
             // txttensinhvien
             // 
             this.txttensinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txttensinhvien.Location = new System.Drawing.Point(131, 120);
+            this.txttensinhvien.Location = new System.Drawing.Point(133, 96);
             this.txttensinhvien.Name = "txttensinhvien";
             this.txttensinhvien.Size = new System.Drawing.Size(203, 26);
             this.txttensinhvien.TabIndex = 8;
             // 
             // cbongaysinh
             // 
-            this.cbongaysinh.Location = new System.Drawing.Point(131, 159);
+            this.cbongaysinh.Location = new System.Drawing.Point(133, 135);
             this.cbongaysinh.MaskInput = "{LOC}dd/mm/yyyy";
             this.cbongaysinh.Name = "cbongaysinh";
             this.cbongaysinh.Size = new System.Drawing.Size(203, 24);
@@ -261,7 +256,7 @@
             this.cbokhoa.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.cbokhoa.DisplayMember = "TenKhoa";
             this.cbokhoa.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
-            this.cbokhoa.Location = new System.Drawing.Point(131, 203);
+            this.cbokhoa.Location = new System.Drawing.Point(133, 179);
             this.cbokhoa.Name = "cbokhoa";
             this.cbokhoa.Size = new System.Drawing.Size(203, 25);
             this.cbokhoa.TabIndex = 10;
@@ -327,7 +322,7 @@
             this.cbolop.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.cbolop.DisplayMember = "MaLop";
             this.cbolop.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
-            this.cbolop.Location = new System.Drawing.Point(131, 242);
+            this.cbolop.Location = new System.Drawing.Point(133, 218);
             this.cbolop.Name = "cbolop";
             this.cbolop.Size = new System.Drawing.Size(203, 25);
             this.cbolop.TabIndex = 11;
@@ -364,67 +359,35 @@
             this.errorlop.ContainerControl = this;
             this.errorlop.Icon = ((System.Drawing.Icon)(resources.GetObject("errorlop.Icon")));
             // 
-            // toolStrip1
+            // btnluu
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnLuu,
-            this.toolStripSeparator1,
-            this.btnHuy,
-            this.toolStripSeparator2,
-            this.btndong});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(353, 25);
-            this.toolStrip1.TabIndex = 15;
-            this.toolStrip1.Text = "toolStrip1";
+            this.btnluu.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnluu.Location = new System.Drawing.Point(133, 263);
+            this.btnluu.Name = "btnluu";
+            this.btnluu.Size = new System.Drawing.Size(75, 23);
+            this.btnluu.TabIndex = 16;
+            this.btnluu.Text = "Lưu";
+            this.btnluu.UseVisualStyleBackColor = true;
+            this.btnluu.Click += new System.EventHandler(this.btnluu_Click_1);
             // 
-            // btnLuu
+            // btnhuy
             // 
-            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(48, 22);
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.ToolTipText = "(F5)";
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Image = global::QLSV.Frm.Properties.Resources.Refresh_icon;
-            this.btnHuy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(50, 22);
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btndong
-            // 
-            this.btndong.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Exit_32x32;
-            this.btndong.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btndong.Name = "btndong";
-            this.btndong.Size = new System.Drawing.Size(57, 22);
-            this.btndong.Text = "Đóng";
-            this.btndong.ToolTipText = "(Esc)";
-            this.btndong.Click += new System.EventHandler(this.btndong_Click);
+            this.btnhuy.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnhuy.Location = new System.Drawing.Point(224, 263);
+            this.btnhuy.Name = "btnhuy";
+            this.btnhuy.Size = new System.Drawing.Size(75, 23);
+            this.btnhuy.TabIndex = 17;
+            this.btnhuy.Text = "Hủy";
+            this.btnhuy.UseVisualStyleBackColor = true;
+            this.btnhuy.Click += new System.EventHandler(this.btnhuy_Click);
             // 
             // FrmThemsinhvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 289);
-            this.Controls.Add(this.toolStrip1);
+            this.ClientSize = new System.Drawing.Size(353, 299);
+            this.Controls.Add(this.btnhuy);
+            this.Controls.Add(this.btnluu);
             this.Controls.Add(this.cbolop);
             this.Controls.Add(this.cbokhoa);
             this.Controls.Add(this.cbongaysinh);
@@ -459,8 +422,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorngaysinh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorkhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorlop)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,11 +447,7 @@
         private System.Windows.Forms.ErrorProvider errorngaysinh;
         private System.Windows.Forms.ErrorProvider errorkhoa;
         private System.Windows.Forms.ErrorProvider errorlop;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnLuu;
-        private System.Windows.Forms.ToolStripButton btndong;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnHuy;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Button btnhuy;
+        private System.Windows.Forms.Button btnluu;
     }
 }
