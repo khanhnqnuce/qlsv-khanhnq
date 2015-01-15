@@ -15,19 +15,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
-                              "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
-                              "FROM SINHVIEN s,LOP l, KHOA k " +
-                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and k.ID = " + id + "ORDER BY TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                          "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                          "FROM SINHVIEN s,LOP l, KHOA k " +
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and k.ID = " + id + "ORDER BY TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -43,19 +35,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
-                              "FROM SINHVIEN s,LOP l , KHOA k WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +
-                              idkythi + " ) " +
-                              "and  s.IdLop = l.ID and l.IdKhoa = k.ID and K.ID = " + id + " ORDER BY s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                          "FROM SINHVIEN s,LOP l , KHOA k WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +
+                          idkythi + " ) " +
+                          "and  s.IdLop = l.ID and l.IdKhoa = k.ID and K.ID = " + id + " ORDER BY s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -71,22 +55,14 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
-                        " DIEMTHI d" +
-                        " join NAMHOC n on d.IdNamHoc = n.ID" +
-                        " join SINHVIEN s on d.MaSV = s.MaSV" +
-                        " join LOP l on s.IdLop = l.ID" +
-                        " join KHOA k on l.IdKhoa = k.ID where k.ID = " + id + " ORDER BY d.MaSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                    " DIEMTHI d" +
+                    " join NAMHOC n on d.IdNamHoc = n.ID" +
+                    " join SINHVIEN s on d.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID" +
+                    " join KHOA k on l.IdKhoa = k.ID where k.ID = " + id + " ORDER BY d.MaSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -102,21 +78,38 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
-                        " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
-                        " join SINHVIEN s on d.MaSV = s.MaSV" +
-                        " join LOP l on s.IdLop = l.ID" +
-                        " join KHOA k on l.IdKhoa = k.ID where k.ID= " + id + " order by s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                    " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                    " join SINHVIEN s on d.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID" +
+                    " join KHOA k on l.IdKhoa = k.ID where k.ID= " + id + " order by s.TenSV";
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// tìm kiếm sv theo khoa mục ds phòng thi
+        /// </summary>
+        public static DataTable Timkiemtheokhoa3(int id, int idkythi)
+        {
+            try
+            {
+                var str =
+                    "SELECT ROW_NUMBER() OVER(ORDER BY p.TenPhong,s.TenSV) as [STT], " +
+                        "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, p.TenPhong, k.TenKhoa, l.IdKhoa, x.IdPhong " +
+                        "FROM SINHVIEN s " +
+                        "join XEPPHONG x on s.MaSV = x.IdSV " +
+                        "join PHONGTHI p on x.IdPhong = p.ID " +
+                        "join LOP l on s.IdLop = l.ID " +
+                        "join KHOA k on l.IdKhoa = k.ID " +
+                        "WHERE x.IdKyThi = " + idkythi + " and k.ID = " + id + " order by p.TenPhong, s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -132,19 +125,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
-                              "FROM SINHVIEN s,LOP l , KHOA k " +
-                              "WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + " ) " +
-                              "and  s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                          "FROM SINHVIEN s,LOP l , KHOA k " +
+                          "WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + " ) " +
+                          "and  s.IdLop = l.ID and l.IdKhoa = k.ID ORDER BY s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -161,19 +146,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
-                        "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
-                        "and s.IdLop = l.ID  and s.MaSV like '%" + id + "' ORDER BY TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
+                    "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
+                    "and s.IdLop = l.ID  and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -186,19 +163,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
-                              "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
-                              "FROM SINHVIEN s,LOP l, KHOA k " +
-                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                          "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                          "FROM SINHVIEN s,LOP l, KHOA k " +
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -214,21 +183,13 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                         "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
-                         " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
-                         " join SINHVIEN s on d.MaSV = s.MaSV" +
-                         " join LOP l on s.IdLop = l.ID" +
-                         " join KHOA k on l.IdKhoa = k.ID where s.MaSV like '%" + id + "' order by s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                     "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                     " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                     " join SINHVIEN s on d.MaSV = s.MaSV" +
+                     " join LOP l on s.IdLop = l.ID" +
+                     " join KHOA k on l.IdKhoa = k.ID where s.MaSV like '%" + id + "' order by s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -245,19 +206,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
-                              "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
-                              "FROM SINHVIEN s,LOP l, KHOA k " +
-                              "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                          "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                          "FROM SINHVIEN s,LOP l, KHOA k " +
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -273,19 +226,11 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
-                        "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " +idkythi + " ) " +
-                        "and  s.IdLop = l.ID and l.ID = " + id + " ORDER BY s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, 'false' as [Chon] " +
+                    "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE  x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + " ) " +
+                    "and  s.IdLop = l.ID and l.ID = " + id + " ORDER BY s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -301,21 +246,13 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
-                        " DIEMTHI d" +
-                        " join NAMHOC n on d.IdNamHoc = n.ID" +
-                        " join SINHVIEN s on d.MaSV = s.MaSV" +
-                        " join LOP l on s.IdLop = l.ID where l.ID = " + id + " ORDER BY d.MaSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                    " DIEMTHI d" +
+                    " join NAMHOC n on d.IdNamHoc = n.ID" +
+                    " join SINHVIEN s on d.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID where l.ID = " + id + " ORDER BY d.MaSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -331,21 +268,39 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
-                        " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
-                        " join SINHVIEN s on d.MaSV = s.MaSV" +
-                        " join LOP l on s.IdLop = l.ID" +
-                        " join KHOA k on l.IdKhoa = k.ID where l.ID = " + id + " order by s.TenSV";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                    " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                    " join SINHVIEN s on d.MaSV = s.MaSV" +
+                    " join LOP l on s.IdLop = l.ID" +
+                    " join KHOA k on l.IdKhoa = k.ID where l.ID = " + id + " order by s.TenSV";
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+
+        }
+
+        /// <summary>
+        /// tìm kiếm sv theo lớp mục ds phòng thi
+        /// </summary>
+        public static DataTable Timkiemtheolop3(int id, int idkythi)
+        {
+            try
+            {
+                var str =
+                    "SELECT ROW_NUMBER() OVER(ORDER BY p.TenPhong,s.TenSV) as [STT], " +
+                        "s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop, p.TenPhong, k.TenKhoa, l.IdKhoa, x.IdPhong " +
+                        "FROM SINHVIEN s " +
+                        "join XEPPHONG x on s.MaSV = x.IdSV " +
+                        "join PHONGTHI p on x.IdPhong = p.ID " +
+                        "join LOP l on s.IdLop = l.ID " +
+                        "join KHOA k on l.IdKhoa = k.ID " +
+                        "WHERE x.IdKyThi = " + idkythi + " and l.ID = " + id + " order by p.TenPhong, s.TenSV";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -361,16 +316,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT * FROM LOP WHERE IdKhoa = " + id + "";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT * FROM LOP WHERE IdKhoa = " + id + "";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -387,16 +334,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.IdKyThi, b.MaSV, b.MaDe, b.KetQua FROM BAILAM b WHERE b.IdKyThi = " + idkythi + " and MaDe = N'" + made + "'";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.IdKyThi, b.MaSV, b.MaDe, b.KetQua FROM BAILAM b WHERE b.IdKyThi = " + idkythi + " and MaDe = N'" + made + "'";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -413,17 +352,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    var str =
-                        "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and MaDe = '" + made + "'";
-                    return Conn.GetTable(str);
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                var str =
+                    "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and MaDe = '" + made + "'";
+                return Conn.GetTable(str);
             }
             catch (Exception ex)
             {
@@ -523,15 +454,7 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                try
-                {
-                    return Conn.GetTable("SELECT p.ID, p.TenPhong, p.SucChua, 'false' as [Chon] FROM PHONGTHI p WHERE not exists (SELECT p.ID  FROM KT_PHONG k WHERE k.IdPhong = p.ID and k.IdKyThi = " + id + ")");
-                }
-                catch (Exception ex)
-                {
-                    Log2File.LogExceptionToFile(ex);
-                    return null;
-                }
+                return Conn.GetTable("SELECT p.ID, p.TenPhong, p.SucChua, 'false' as [Chon] FROM PHONGTHI p WHERE not exists (SELECT p.ID  FROM KT_PHONG k WHERE k.IdPhong = p.ID and k.IdKyThi = " + id + ")");
             }
             catch (Exception ex)
             {

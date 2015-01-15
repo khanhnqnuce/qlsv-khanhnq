@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters7 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters8 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,7 +130,7 @@
             this.pnl_from.Location = new System.Drawing.Point(0, 0);
             this.pnl_from.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_from.Name = "pnl_from";
-            this.pnl_from.Size = new System.Drawing.Size(787, 484);
+            this.pnl_from.Size = new System.Drawing.Size(982, 484);
             this.pnl_from.TabIndex = 6;
             this.pnl_from.Visible = false;
             // 
@@ -138,9 +138,9 @@
             // 
             this.panel4.Controls.Add(this.dgv_DanhSach);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 26);
+            this.panel4.Location = new System.Drawing.Point(0, 24);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(787, 458);
+            this.panel4.Size = new System.Drawing.Size(982, 460);
             this.panel4.TabIndex = 27;
             // 
             // dgv_DanhSach
@@ -156,7 +156,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(787, 458);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(982, 460);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
@@ -173,11 +173,12 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(787, 26);
+            this.panel3.Size = new System.Drawing.Size(982, 24);
             this.panel3.TabIndex = 26;
             // 
             // toolStrip3
             // 
+            this.toolStrip3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
@@ -187,7 +188,7 @@
             this.lbsiso});
             this.toolStrip3.Location = new System.Drawing.Point(531, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(256, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(451, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -232,7 +233,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(404, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(127, 26);
+            this.panel6.Size = new System.Drawing.Size(127, 24);
             this.panel6.TabIndex = 3;
             // 
             // cbolop
@@ -254,11 +255,12 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(332, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(72, 26);
+            this.panel5.Size = new System.Drawing.Size(72, 24);
             this.panel5.TabIndex = 2;
             // 
             // toolStrip2
             // 
+            this.toolStrip2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
@@ -277,7 +279,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(56, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(56, 15);
             this.toolStripLabel2.Text = "Chọn lớp";
             // 
             // panel2
@@ -286,7 +288,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(83, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(249, 26);
+            this.panel2.Size = new System.Drawing.Size(249, 24);
             this.panel2.TabIndex = 1;
             // 
             // cbokhoa
@@ -308,11 +310,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(83, 26);
+            this.panel1.Size = new System.Drawing.Size(83, 24);
             this.panel1.TabIndex = 0;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -332,7 +335,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters3;
+            this.pdfExportFilter1.ExtraParameters = extraParameters7;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -340,7 +343,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters4;
+            this.excelExportFilter1.ExtraParameters = extraParameters8;
             // 
             // reportManager1
             // 
@@ -362,7 +365,7 @@
             this.Controls.Add(this.pnl_from);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_104_QuanLySinhVien";
-            this.Size = new System.Drawing.Size(787, 484);
+            this.Size = new System.Drawing.Size(982, 484);
             this.Load += new System.EventHandler(this.FrmSinhVien_Load);
             this.menu_ug.ResumeLayout(false);
             this.pnl_from.ResumeLayout(false);

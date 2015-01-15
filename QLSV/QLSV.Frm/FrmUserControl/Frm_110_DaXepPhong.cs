@@ -300,6 +300,23 @@ namespace QLSV.Frm.FrmUserControl
                 var thread = new Thread(LoadFormDetail) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
+                //--------Khoa------------
+                var table = LoadData.Load(3);
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("TenKhoa", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các khoa -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+                }
+                cbokhoa.DataSource = tb;
+                //------------Lớp-----------
+                var tb1 = new DataTable();
+                tb1.Columns.Add("ID", typeof(string));
+                tb1.Columns.Add("MaLop", typeof(string));
+                tb1.Rows.Add("0", "- Chọn lớp -");
+                cbolop.DataSource = tb1;
             }
             catch (Exception ex)
             {
@@ -396,6 +413,52 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = cbokhoa.SelectedValue;
+                if (obj == null || obj.ToString().Equals("0"))
+                {
+                    var tb1 = new DataTable();
+                    tb1.Columns.Add("ID", typeof(string));
+                    tb1.Columns.Add("MaLop", typeof(string));
+                    tb1.Rows.Add("0", "- Chọn lớp -");
+                    cbolop.DataSource = tb1;
+                    LoadGrid();
+                    return;
+                }
+                //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
+
+                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(string));
+                tb.Columns.Add("MaLop", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các lớp -");
+                foreach (DataRow row in table.Rows)
+                {
+                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                }
+                cbolop.DataSource = tb;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var obj = cbolop.SelectedValue;
+            if (obj == null || obj.ToString().Equals("0"))
+            {
+                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa3(int.Parse(cbokhoa.SelectedValue.ToString()),_idkythi);
+                return;
+            }
+            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop3(int.Parse(obj.ToString()),_idkythi);
         }
     }
 }
