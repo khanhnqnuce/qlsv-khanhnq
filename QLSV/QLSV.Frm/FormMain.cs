@@ -1099,7 +1099,7 @@ namespace QLSV.Frm
         {
             if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
-                _frmQuanlySinhVien.Rptdanhsach();
+                _frmQuanlySinhVien.InDanhSach();
             }
             else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
             {

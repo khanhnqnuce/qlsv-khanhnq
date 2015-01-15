@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.Frm
 {
-    partial class FrmChonIndssv
+    partial class FrmRptDanhSachPhongThi
     {
         /// <summary>
         /// Required designer variable.

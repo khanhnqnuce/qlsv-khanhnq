@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.Frm
 {
-    partial class FrmCheckInDiem
+    partial class FrmRptDanhSachDiemThi
     {
         /// <summary>
         /// Required designer variable.

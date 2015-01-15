@@ -163,10 +163,10 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop, s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                           "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                           "FROM SINHVIEN s,LOP l, KHOA k " +
-                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY l.MaLop, s.TenSV";
                 return Conn.GetTable(str);
             }
             catch (Exception ex)
@@ -206,10 +206,10 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                var str = "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop,s.TenSV DESC) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                           "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                           "FROM SINHVIEN s,LOP l, KHOA k " +
-                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY TenSV";
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = " + id + "ORDER BY l.MaLop,s.TenSV DESC";
                 return Conn.GetTable(str);
             }
             catch (Exception ex)

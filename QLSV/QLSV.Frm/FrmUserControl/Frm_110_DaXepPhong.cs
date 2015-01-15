@@ -221,15 +221,15 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            var frm = new FrmChonIndssv {Update = false};
+            var frm = new FrmRptDanhSachPhongThi {bUpdate = false};
             frm.ShowDialog();
-            if (frm.rdonopbai.Checked && frm.Update)
+            if (frm.rdonopbai.Checked && frm.bUpdate)
                 RptNopbai();
-            if (frm.rdoPhongthi.Checked && frm.Update)
+            if (frm.rdoPhongthi.Checked && frm.bUpdate)
                 RptPhongthi();
-            else if (frm.rdokhoa.Checked && frm.Update)
+            else if (frm.rdokhoa.Checked && frm.bUpdate)
                 RptKhoa();
-            else if (frm.rdoLop.Checked && frm.Update)
+            else if (frm.rdoLop.Checked && frm.bUpdate)
                 RptLop();
         }
 

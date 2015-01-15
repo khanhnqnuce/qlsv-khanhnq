@@ -180,7 +180,7 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            var frm = new FrmCheckInDiem
+            var frm = new FrmRptDanhSachDiemThi
             {
                 Update = false
             };

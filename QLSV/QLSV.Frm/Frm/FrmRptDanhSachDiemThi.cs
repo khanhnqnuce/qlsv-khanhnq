@@ -1,16 +1,16 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmChonIndssv : Form
+    public partial class FrmRptDanhSachDiemThi : Form
     {
         public bool Update;
-        public FrmChonIndssv()
+        public FrmRptDanhSachDiemThi()
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnOk_Click(object sender, System.EventArgs e)
         {
             Update = true;
             Close();

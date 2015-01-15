@@ -217,23 +217,65 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void Timkiemtheokhoa()
+        public void InDanhSach()
         {
-            dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
+            try
+            {
+                var frm = new FrmRptDanhSachSinhVien {bUpdate = false};
+                frm.ShowDialog();
+                if (frm.rdokhoa.Checked && frm.bUpdate)
+                    RptKhoa();
+                else if(frm.rdoLop.Checked && frm.bUpdate)
+                    RptLop();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
-        public void Rptdanhsach()
+        private void RptKhoa()
         {
-            reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
-            rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\danhsachsinhvien.rst";
-            rptdanhsachsinhvien.Prepare();
-            var previewForm = new PreviewForm(rptdanhsachsinhvien)
+
+            try
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
-            };
-            previewForm.Show();
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+                rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\dsSvKhoa.rst";
+                rptdanhsachsinhvien.Prepare();
+                var previewForm = new PreviewForm(rptdanhsachsinhvien)
+                {
+                    WindowState = FormWindowState.Maximized,
+                    ShowInTaskbar = false
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        
+        public void RptLop()
+        {
+
+            try
+            {
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+                rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\dsSvLop.rst";
+                rptdanhsachsinhvien.Prepare();
+                var previewForm = new PreviewForm(rptdanhsachsinhvien)
+                {
+                    WindowState = FormWindowState.Maximized,
+                    ShowInTaskbar = false
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
         
         #endregion
@@ -435,7 +477,8 @@ namespace QLSV.Frm.FrmUserControl
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        Timkiemtheokhoa();
+                        if (string.IsNullOrEmpty(txtKhoa.Text)) return;
+                        dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
                         break;
                 }
             }
@@ -536,7 +579,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            Timkiemtheokhoa();
+            if(string.IsNullOrEmpty(txtKhoa.Text)) return;
+            dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
         }
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

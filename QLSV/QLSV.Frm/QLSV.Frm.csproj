@@ -255,17 +255,17 @@
     <Compile Include="Frm\FrmCauHinh.Designer.cs">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmCheckInDiem.cs">
+    <Compile Include="Frm\FrmRptDanhSachDiemThi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm\FrmCheckInDiem.Designer.cs">
-      <DependentUpon>FrmCheckInDiem.cs</DependentUpon>
+    <Compile Include="Frm\FrmRptDanhSachDiemThi.Designer.cs">
+      <DependentUpon>FrmRptDanhSachDiemThi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmChonIndssv.cs">
+    <Compile Include="Frm\FrmRptDanhSachPhongThi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm\FrmChonIndssv.Designer.cs">
-      <DependentUpon>FrmChonIndssv.cs</DependentUpon>
+    <Compile Include="Frm\FrmRptDanhSachPhongThi.Designer.cs">
+      <DependentUpon>FrmRptDanhSachPhongThi.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_105_InportSinhVien.cs">
       <SubType>UserControl</SubType>
@@ -344,6 +344,12 @@
     </Compile>
     <Compile Include="Frm\FrmPhucHoiDuLieu.Designer.cs">
       <DependentUpon>FrmPhucHoiDuLieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmRptDanhSachSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmRptDanhSachSinhVien.Designer.cs">
+      <DependentUpon>FrmRptDanhSachSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmSaoLuuDuLieu.cs">
       <SubType>Form</SubType>
@@ -505,14 +511,14 @@
     <EmbeddedResource Include="Frm\FrmCauHinh.resx">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmCheckInDiem.resx">
-      <DependentUpon>FrmCheckInDiem.cs</DependentUpon>
+    <EmbeddedResource Include="Frm\FrmRptDanhSachDiemThi.resx">
+      <DependentUpon>FrmRptDanhSachDiemThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmChonChucNang.resx">
       <DependentUpon>FrmChonChucNang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmChonIndssv.resx">
-      <DependentUpon>FrmChonIndssv.cs</DependentUpon>
+    <EmbeddedResource Include="Frm\FrmRptDanhSachPhongThi.resx">
+      <DependentUpon>FrmRptDanhSachPhongThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmCheckXepPhong.resx">
       <DependentUpon>FrmCheckXepPhong.cs</DependentUpon>
@@ -571,6 +577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmPhucHoiDuLieu.resx">
       <DependentUpon>FrmPhucHoiDuLieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmRptDanhSachSinhVien.resx">
+      <DependentUpon>FrmRptDanhSachSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmSaoLuuDuLieu.resx">
       <DependentUpon>FrmSaoLuuDuLieu.cs</DependentUpon>
@@ -649,6 +658,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\bangdiem.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\dsSvKhoa.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\dsSvLop.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="RunAsAdmin.manifest" />
