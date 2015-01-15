@@ -313,7 +313,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -460,7 +460,7 @@
             this.Tabtudiennamhoc.Controls.Add(this.pnl_tudiennamhoc);
             this.Tabtudiennamhoc.Controls.Add(this.panel4);
             this.Tabtudiennamhoc.Controls.Add(this.panel5);
-            this.Tabtudiennamhoc.Location = new System.Drawing.Point(1, 1);
+            this.Tabtudiennamhoc.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabtudiennamhoc.Name = "Tabtudiennamhoc";
             this.Tabtudiennamhoc.Size = new System.Drawing.Size(829, 502);
             // 
@@ -896,7 +896,7 @@
             ultraExplorerBarItem5.Settings.AppearancesSmall.Appearance = appearance7;
             ultraExplorerBarItem5.Settings.MaxLines = 2;
             ultraExplorerBarItem5.Text = "Thoát";
-            ultraExplorerBarItem5.ToolTipText = "Thoát khỏi chương trình chính";
+            ultraExplorerBarItem5.ToolTipText = "Alt + X";
             ultraExplorerBarGroup1.Items.AddRange(new Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem[] {
             ultraExplorerBarItem24,
             ultraExplorerBarItem1,

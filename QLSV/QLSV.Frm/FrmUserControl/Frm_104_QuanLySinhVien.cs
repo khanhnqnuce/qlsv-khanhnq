@@ -255,8 +255,8 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
-        
-        public void RptLop()
+
+        private void RptLop()
         {
 
             try

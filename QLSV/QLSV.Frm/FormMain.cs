@@ -1223,6 +1223,9 @@ namespace QLSV.Frm
                 case (Keys.Insert):
                     Themmoi_Insert();
                     break;
+                case (Keys.Alt| Keys.X):
+                    Application.Exit();
+                    break;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
