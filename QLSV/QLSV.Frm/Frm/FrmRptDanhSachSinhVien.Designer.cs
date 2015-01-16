@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(57, 104);
+            this.button1.Location = new System.Drawing.Point(87, 115);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 23;
@@ -46,11 +46,11 @@
             // rdoLop
             // 
             this.rdoLop.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdoLop.Location = new System.Drawing.Point(47, 57);
+            this.rdoLop.Location = new System.Drawing.Point(14, 70);
             this.rdoLop.Name = "rdoLop";
-            this.rdoLop.Size = new System.Drawing.Size(95, 19);
+            this.rdoLop.Size = new System.Drawing.Size(221, 19);
             this.rdoLop.TabIndex = 22;
-            this.rdoLop.Text = "Theo Lớp";
+            this.rdoLop.Text = "In danh sách sinh viên theo Lớp";
             this.rdoLop.UseVisualStyleBackColor = true;
             // 
             // rdokhoa
@@ -58,19 +58,19 @@
             this.rdokhoa.AutoSize = true;
             this.rdokhoa.Checked = true;
             this.rdokhoa.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdokhoa.Location = new System.Drawing.Point(47, 22);
+            this.rdokhoa.Location = new System.Drawing.Point(14, 25);
             this.rdokhoa.Name = "rdokhoa";
-            this.rdokhoa.Size = new System.Drawing.Size(92, 21);
+            this.rdokhoa.Size = new System.Drawing.Size(221, 21);
             this.rdokhoa.TabIndex = 21;
             this.rdokhoa.TabStop = true;
-            this.rdokhoa.Text = "Theo Khoa";
+            this.rdokhoa.Text = "In danh sách sinh viên theo Khoa";
             this.rdokhoa.UseVisualStyleBackColor = true;
             // 
             // FrmRptDanhSachSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(188, 150);
+            this.ClientSize = new System.Drawing.Size(249, 162);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rdoLop);
             this.Controls.Add(this.rdokhoa);

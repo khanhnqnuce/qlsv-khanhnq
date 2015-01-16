@@ -45,12 +45,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(253, 213);
+            this.panel1.Size = new System.Drawing.Size(227, 192);
             this.panel1.TabIndex = 21;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(78, 164);
+            this.btnOk.Location = new System.Drawing.Point(71, 148);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 20;
@@ -61,7 +61,7 @@
             // rdoLop
             // 
             this.rdoLop.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdoLop.Location = new System.Drawing.Point(23, 116);
+            this.rdoLop.Location = new System.Drawing.Point(10, 96);
             this.rdoLop.Name = "rdoLop";
             this.rdoLop.Size = new System.Drawing.Size(193, 19);
             this.rdoLop.TabIndex = 19;
@@ -73,7 +73,7 @@
             this.rdobangdiem.AutoSize = true;
             this.rdobangdiem.Checked = true;
             this.rdobangdiem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdobangdiem.Location = new System.Drawing.Point(22, 26);
+            this.rdobangdiem.Location = new System.Drawing.Point(9, 22);
             this.rdobangdiem.Name = "rdobangdiem";
             this.rdobangdiem.Size = new System.Drawing.Size(208, 21);
             this.rdobangdiem.TabIndex = 18;
@@ -85,7 +85,7 @@
             // 
             this.rdokhoa.AutoSize = true;
             this.rdokhoa.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.rdokhoa.Location = new System.Drawing.Point(23, 71);
+            this.rdokhoa.Location = new System.Drawing.Point(10, 59);
             this.rdokhoa.Name = "rdokhoa";
             this.rdokhoa.Size = new System.Drawing.Size(200, 21);
             this.rdokhoa.TabIndex = 18;
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 213);
+            this.ClientSize = new System.Drawing.Size(227, 192);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

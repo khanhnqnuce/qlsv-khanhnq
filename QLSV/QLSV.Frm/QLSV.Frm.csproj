@@ -285,11 +285,11 @@
     <Compile Include="Frm\FrmChonSv.Designer.cs">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm\FrmDiemTichLuy.cs">
+    <Compile Include="Frm\FrmRptDiemTichLuy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm\FrmDiemTichLuy.Designer.cs">
-      <DependentUpon>FrmDiemTichLuy.cs</DependentUpon>
+    <Compile Include="Frm\FrmRptDiemTichLuy.Designer.cs">
+      <DependentUpon>FrmRptDiemTichLuy.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmDoiMatKhau.cs">
       <SubType>Form</SubType>
@@ -526,8 +526,8 @@
     <EmbeddedResource Include="Frm\FrmChonSv.resx">
       <DependentUpon>FrmChonSv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm\FrmDiemTichLuy.resx">
-      <DependentUpon>FrmDiemTichLuy.cs</DependentUpon>
+    <EmbeddedResource Include="Frm\FrmRptDiemTichLuy.resx">
+      <DependentUpon>FrmRptDiemTichLuy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmDoiMatKhau.resx">
       <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
