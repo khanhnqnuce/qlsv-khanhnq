@@ -40,7 +40,7 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            var frm = new FrmDiemTichLuy()
+            var frm = new FrmRptDiemTichLuy()
             {
                 Update = false
             };

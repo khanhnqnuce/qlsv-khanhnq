@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmDiemTichLuy : Form
+    public partial class FrmRptDiemTichLuy : Form
     {
         public bool Update;
-        public FrmDiemTichLuy()
+        public FrmRptDiemTichLuy()
         {
             InitializeComponent();
         }
