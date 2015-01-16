@@ -110,6 +110,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Gộp kết quả nhiều kỳ thi";
             this.Load += new System.EventHandler(this.FrmChonKyThi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel1.ResumeLayout(false);
