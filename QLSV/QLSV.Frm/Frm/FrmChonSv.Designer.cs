@@ -79,6 +79,7 @@
             // 
             // txtkhoa
             // 
+            this.txtkhoa.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtkhoa.Name = "txtkhoa";
             this.txtkhoa.Size = new System.Drawing.Size(81, 25);
             this.txtkhoa.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
