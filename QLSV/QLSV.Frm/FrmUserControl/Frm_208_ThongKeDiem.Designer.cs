@@ -156,6 +156,7 @@
             this.cbothongke.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbothongke.FormattingEnabled = true;
             this.cbothongke.Items.AddRange(new object[] {
+            "- Tất cả - ",
             "< 200",
             "200 => 249",
             "250 => 300",

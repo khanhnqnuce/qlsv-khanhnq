@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.LINQ;
@@ -31,10 +32,10 @@ namespace QLSV.Frm.Frm
                 reportManager1.DataSources.Add("danhsach",tb );
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien.rst";
                 rptkiemtralogic.Prepare();
+                rptkiemtralogic.GetReportParameter += GetParameter;
                 var previewForm = new PreviewForm(rptkiemtralogic)
                 {
                     WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
                 };
                 previewForm.Show();
             }
@@ -51,7 +52,11 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                e.Parameters["KiemTra"].Value = "Không có lỗi xảy ra";
+                var tb = LoadData.Load(3, _idkythi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
+                }
             }
             catch (Exception ex)
             {

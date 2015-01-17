@@ -90,12 +90,10 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
-            rptdiemthi.GetReportParameter += GetParameter;
             rptdiemthi.Prepare();
             var previewForm = new PreviewForm(rptdiemthi)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
 
@@ -129,8 +127,7 @@ namespace QLSV.Frm.FrmUserControl
             rptthongke.Prepare();
             var previewForm = new PreviewForm(rptthongke)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
         }
@@ -197,6 +194,11 @@ namespace QLSV.Frm.FrmUserControl
         private void cbothongke_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbthongke.Text = "";
+            if (cbothongke.SelectedIndex == 0)
+            {
+                LoadGrid();
+                return;
+            }
             dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex,_idkythi);
             lbthongke.Text = @"Có "+ dgv_DanhSach.Rows.Count+ @" Sinh viên có điểm " + cbothongke.Text;
         }
