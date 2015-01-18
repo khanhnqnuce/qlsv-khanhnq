@@ -40,7 +40,7 @@ namespace QLSV.Frm.FrmUserControl
 
         public void InDanhSach()
         {
-            var frm = new FrmRptDiemTichLuy()
+            var frm = new FrmRptDiemTichLuy
             {
                 Update = false
             };
@@ -101,7 +101,7 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         e.Parameters["MaSV"].Value = row["MaSV"].ToString();
                         e.Parameters["diemtichluy"].Value = row["Diem"].ToString();
-                        e.Parameters["TenSV"].Value = row["HoSV"].ToString() + " " + row["TenSV"].ToString();
+                        e.Parameters["TenSV"].Value = row["HoSV"] + " " + row["TenSV"];
                         e.Parameters["MaLop"].Value = row["MaLop"].ToString();
                     }
             }
