@@ -255,6 +255,12 @@
     <Compile Include="Frm\FrmCauHinh.Designer.cs">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmRptBangDiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmRptBangDiem.Designer.cs">
+      <DependentUpon>FrmRptBangDiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmRptDanhSachDiemThi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmCauHinh.resx">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmRptBangDiem.resx">
+      <DependentUpon>FrmRptBangDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmRptDanhSachDiemThi.resx">
       <DependentUpon>FrmRptDanhSachDiemThi.cs</DependentUpon>

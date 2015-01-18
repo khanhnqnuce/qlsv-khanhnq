@@ -17,7 +17,7 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
-
+        private string _masv;
         public Frm_210_DiemTichLuy()
         {
             InitializeComponent();
@@ -62,20 +62,28 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if(dgv_DanhSach.ActiveRow == null) return;
-                var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
-                var tb = LoadData.LoadBangdiem(masv);
-                reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach", tb);
-                rptbangdiem.FilePath = Application.StartupPath + @"\Reports\bangdiem.rst";
-                rptbangdiem.Prepare();
-                rptbangdiem.GetReportParameter += GetParameter;
-                var previewForm = new PreviewForm(rptbangdiem)
+                var frm = new FrmRptBangDiem {bUpdate = false};
+                frm.ShowDialog();
+                if (!frm.bUpdate) return;
+                _masv = frm.Masv;
+                var tb = LoadData.LoadBangdiem(int.Parse(frm.Masv));
+                if (tb.Rows.Count>0)
                 {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
-                };
-                previewForm.Show();
+                    reportManager1.DataSources.Clear();
+                    reportManager1.DataSources.Add("danhsach", tb);
+                    rptbangdiem.FilePath = Application.StartupPath + @"\Reports\bangdiem.rst";
+                    rptbangdiem.Prepare();
+                    rptbangdiem.GetReportParameter += GetParameter;
+                    var previewForm = new PreviewForm(rptbangdiem)
+                    {
+                        WindowState = FormWindowState.Maximized
+                    };
+                    previewForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show(@"Sai mã sinh viên", @"Thông báo");
+                }
             }
             catch (Exception ex)
             {
@@ -88,10 +96,14 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                e.Parameters["MaSV"].Value = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
-                e.Parameters["diemtichluy"].Value = dgv_DanhSach.ActiveRow.Cells["Diem"].Text;
-                e.Parameters["TenSV"].Value = dgv_DanhSach.ActiveRow.Cells["HoSV"].Text + " " + dgv_DanhSach.ActiveRow.Cells["TenSV"].Text;
-                e.Parameters["MaLop"].Value = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text;
+                var tb = (DataTable) dgv_DanhSach.DataSource;
+                    foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaSV"].ToString().Equals(_masv)))
+                    {
+                        e.Parameters["MaSV"].Value = row["MaSV"].ToString();
+                        e.Parameters["diemtichluy"].Value = row["Diem"].ToString();
+                        e.Parameters["TenSV"].Value = row["HoSV"].ToString() + " " + row["TenSV"].ToString();
+                        e.Parameters["MaLop"].Value = row["MaLop"].ToString();
+                    }
             }
             catch (Exception ex)
             {
