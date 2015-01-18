@@ -39,6 +39,12 @@
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.cbothongke = new System.Windows.Forms.ComboBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -57,8 +63,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.toolStrip4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -82,7 +93,7 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(830, 440);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(1091, 443);
             this.dgv_DanhSach.TabIndex = 34;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
@@ -128,7 +139,9 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.toolStrip3);
+            this.panel3.Controls.Add(this.panel9);
+            this.panel3.Controls.Add(this.panel8);
+            this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.panel2);
@@ -136,8 +149,74 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(830, 26);
+            this.panel3.Size = new System.Drawing.Size(1091, 23);
             this.panel3.TabIndex = 35;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.cbothongke);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(847, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(181, 23);
+            this.panel9.TabIndex = 34;
+            // 
+            // cbothongke
+            // 
+            this.cbothongke.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbothongke.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbothongke.FormattingEnabled = true;
+            this.cbothongke.Items.AddRange(new object[] {
+            "- Tất cả - ",
+            "< 200",
+            "200 => 249",
+            "250 => 300",
+            "300 => 374",
+            "375 = > 450",
+            "> 450"});
+            this.cbothongke.Location = new System.Drawing.Point(0, 0);
+            this.cbothongke.Name = "cbothongke";
+            this.cbothongke.Size = new System.Drawing.Size(181, 23);
+            this.cbothongke.TabIndex = 0;
+            this.cbothongke.SelectedIndexChanged += new System.EventHandler(this.cbothongke_SelectedIndexChanged);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.toolStrip4);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(748, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(99, 23);
+            this.panel8.TabIndex = 33;
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.toolStrip4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator3,
+            this.toolStripLabel4});
+            this.toolStrip4.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(99, 25);
+            this.toolStrip4.TabIndex = 31;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel4.Text = "Thống kê điểm";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.toolStrip3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(531, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(217, 23);
+            this.panel7.TabIndex = 4;
             // 
             // toolStrip3
             // 
@@ -148,9 +227,9 @@
             this.txtKhoa,
             this.btntimkiem,
             this.lbsiso});
-            this.toolStrip3.Location = new System.Drawing.Point(531, 0);
+            this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(299, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(217, 25);
             this.toolStrip3.TabIndex = 4;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -195,7 +274,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(404, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(127, 26);
+            this.panel6.Size = new System.Drawing.Size(127, 23);
             this.panel6.TabIndex = 3;
             // 
             // cbolop
@@ -217,7 +296,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(332, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(72, 26);
+            this.panel5.Size = new System.Drawing.Size(72, 23);
             this.panel5.TabIndex = 2;
             // 
             // toolStrip2
@@ -249,7 +328,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(83, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(249, 26);
+            this.panel2.Size = new System.Drawing.Size(249, 23);
             this.panel2.TabIndex = 1;
             // 
             // cbokhoa
@@ -271,7 +350,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(83, 26);
+            this.panel1.Size = new System.Drawing.Size(83, 23);
             this.panel1.TabIndex = 0;
             // 
             // toolStrip1
@@ -295,10 +374,15 @@
             // 
             this.panel4.Controls.Add(this.dgv_DanhSach);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 26);
+            this.panel4.Location = new System.Drawing.Point(0, 23);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(830, 440);
+            this.panel4.Size = new System.Drawing.Size(1091, 443);
             this.panel4.TabIndex = 36;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // Frm_210_DiemTichLuy
             // 
@@ -308,11 +392,17 @@
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_210_DiemTichLuy";
-            this.Size = new System.Drawing.Size(830, 466);
+            this.Size = new System.Drawing.Size(1091, 466);
             this.Load += new System.EventHandler(this.Frm_210_DiemTichLuy_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.toolStrip4.ResumeLayout(false);
+            this.toolStrip4.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -358,5 +448,12 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ToolStrip toolStrip4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ComboBox cbothongke;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

@@ -375,5 +375,15 @@ namespace QLSV.Frm.FrmUserControl
                 e.SuppressKeyPress = true;
         }
 
+        private void cbothongke_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbothongke.SelectedIndex == 0)
+            {
+                LoadGrid();
+                return;
+            }
+            dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
+        }
+
     }
 }

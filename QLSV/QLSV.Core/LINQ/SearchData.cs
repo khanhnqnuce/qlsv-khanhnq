@@ -564,6 +564,71 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static DataTable Thongkediem(int index)
+        {
+            try
+            {
+                string str = null;
+                switch (index)
+                {
+                    case 1:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem < 200 order by s.TenSV";
+                        break;
+                    case 2:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem > 200 and d.Diem < 249 order by s.TenSV";
+                        break;
+                    case 3:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem > 250 and d.Diem < 300 order by s.TenSV";
+                        break;
+                    case 4:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem > 300 and d.Diem < 374 order by s.TenSV";
+                        break;
+                    case 5:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem > 375 and d.Diem < 450 order by s.TenSV";
+                        break;
+                    case 6:
+                        str = "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                              " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                              " join SINHVIEN s on d.MaSV = s.MaSV" +
+                              " join LOP l on s.IdLop = l.ID" +
+                              " join KHOA k on l.IdKhoa = k.ID" +
+                              " where d.Diem >= 450 order by s.TenSV";
+                        break;
+                }
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
         /// <summary>
         /// lấy ra phòng thi chưa dùng tròng kỳ thi
         /// </summary>
