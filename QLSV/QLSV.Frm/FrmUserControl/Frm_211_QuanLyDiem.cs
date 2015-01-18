@@ -15,7 +15,10 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_211_QuanLyDiem : FunctionControlHasGrid
     {
         private readonly FrmTimkiem _frmTimkiem;
-        //private UltraGridRow _newRow;
+
+        private int _idkhoa, _idlop, _idnamhoc;
+        private DataTable _tb1;
+        private string _idhocky;
 
         public Frm_211_QuanLyDiem()
         {
@@ -180,57 +183,66 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Frm_211_QuanLyDiem_Load(object sender, EventArgs e)
         {
-            LoadGrid();
-            var table = LoadData.Load(3);
-            var tb = new DataTable();
-            tb.Columns.Add("ID", typeof(string));
-            tb.Columns.Add("TenKhoa", typeof(string));
-            tb.Rows.Add("0", "- Tất cả các khoa -");
-            foreach (DataRow row in table.Rows)
+            try
             {
-                tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
-            }
-            cbokhoa.DataSource = tb;
+                //LoadGrid();
 
-            //------------Lớp-----------
-            var tb1 = new DataTable();
-            tb1.Columns.Add("ID", typeof(string));
-            tb1.Columns.Add("MaLop", typeof(string));
-            tb1.Rows.Add("0", "- Chọn lớp -");
-            cbolop.ValueMember = "ID";
-            cbolop.DisplayMember = "MaLop";
-            cbolop.DataSource = tb1;
+                //---Lop--
+                _tb1 = new DataTable();
+                _tb1.Columns.Add("ID", typeof(int));
+                _tb1.Columns.Add("MaLop", typeof(string));
+                _tb1.Rows.Add("0", "- Chọn lớp -");
+
+                //-- Năm học -- 
+                
+                
+
+                //-- Học kỳ --
+                
+                //_tb3 = new DataTable();
+                //_tb3.Columns.Add("MaHK", typeof(string));
+                //_tb3.Columns.Add("TenHK", typeof(string));
+                //_tb3.Rows.Add("0", "- Tất cả học kỳ -");
+                //_tb3.Rows.Add("HK0", "Học kỳ 0");
+                //_tb3.Rows.Add("HK1", "Học kỳ 1");
+                //_tb3.Rows.Add("HK2", "Học kỳ 2");
+                //_tb3.Rows.Add("HK3", "Học kỳ 3");
+
+                //-- Khoa --
+
+                var table = LoadData.Load(3);
+                var tb = new DataTable();
+                tb.Columns.Add("ID", typeof(int));
+                tb.Columns.Add("TenKhoa", typeof(string));
+                tb.Rows.Add("0", "- Tất cả các khoa -");
+                tb.Merge(table);
+                cbokhoa.DataSource = tb;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
-                var obj = cbokhoa.SelectedValue;
-                if (obj == null || obj.ToString().Equals("0"))
+                _idkhoa = int.Parse(cbokhoa.SelectedValue.ToString());
+                if (_idkhoa == 0)
                 {
-                    var tb1 = new DataTable();
-                    tb1.Columns.Add("ID", typeof(string));
-                    tb1.Columns.Add("MaLop", typeof(string));
-                    tb1.Rows.Add("0", "- Chọn lớp -");
-                    cbolop.ValueMember = "ID";
-                    cbolop.DisplayMember = "MaLop";
-                    cbolop.DataSource = tb1;
-                    LoadGrid();
-                    return;
+                    cbolop.DataSource = _tb1;
                 }
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa1(int.Parse(obj.ToString()));
-
-                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
-                var tb = new DataTable();
-                tb.Columns.Add("ID", typeof(string));
-                tb.Columns.Add("MaLop", typeof(string));
-                tb.Rows.Add("0", "- Tất cả các lớp -");
-                foreach (DataRow row in table.Rows)
+                else
                 {
-                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                    var table = SearchData.LoadCboLop(_idkhoa);
+                    var tb = new DataTable();
+                    tb.Columns.Add("ID", typeof (int));
+                    tb.Columns.Add("MaLop", typeof (string));
+                    tb.Rows.Add("0", "- Tất cả các lớp -");
+                    tb.Merge(table);
+                    cbolop.DataSource = tb;
                 }
-                cbolop.DataSource = tb;
             }
             catch (Exception ex)
             {
@@ -240,14 +252,94 @@ namespace QLSV.Frm.FrmUserControl
 
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
-            var obj = cbolop.SelectedValue;
-            if (obj == null || obj.ToString().Equals("0"))
+            try
             {
-                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa1(int.Parse(cbokhoa.SelectedValue.ToString()));
-                return;
+                _idlop = int.Parse(cbolop.SelectedValue.ToString());
+                var table2 = LoadData.Load(209);
+                var tb2 = new DataTable();
+                tb2.Columns.Add("ID", typeof(int));
+                tb2.Columns.Add("NamHoc", typeof(string));
+                tb2.Rows.Add("0", "- Tất cả các năm -");
+                tb2.Merge(table2);
+                cboNamhoc.DataSource = tb2;
             }
-            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop1(int.Parse(obj.ToString()));
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cboNamhoc_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                _idnamhoc = int.Parse(cboNamhoc.SelectedValue.ToString());
+                var tb3 = new DataTable();
+                tb3.Columns.Add("MaHK", typeof(string));
+                tb3.Columns.Add("TenHK", typeof(string));
+                tb3.Rows.Add("0", "- Tất cả học kỳ -");
+                tb3.Rows.Add("HK0", "Học kỳ 0");
+                tb3.Rows.Add("HK1", "Học kỳ 1");
+                tb3.Rows.Add("HK2", "Học kỳ 2");
+                tb3.Rows.Add("HK3", "Học kỳ 3");
+                cboHocky.DataSource = tb3;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cboHocky_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _idhocky = cboHocky.SelectedValue.ToString();
+                if (_idhocky == "0")
+                {
+                    if (_idnamhoc == 0)
+                    {
+                        if (_idlop != 0)
+                            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop1(_idlop);
+                        else if (_idkhoa != 0)
+                            dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa1(_idkhoa);
+                        else
+                            LoadGrid();
+                    }
+                    else if (_idlop != 0)
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(1, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                    else if (_idkhoa != 0)
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(2, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                    else
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(3, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                }
+                else if (_idnamhoc != 0)
+                {
+                    if (_idlop != 0)
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(7, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                    else if (_idkhoa != 0)
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(8, _idkhoa, _idlop, _idnamhoc, _idhocky); 
+                    else
+                        dgv_DanhSach.DataSource = SearchData.Quanlydiem(9, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                }
+                else if (_idlop != 0)
+                {
+                    dgv_DanhSach.DataSource = SearchData.Quanlydiem(4, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                }
+                else if (_idkhoa != 0)
+                {
+                    dgv_DanhSach.DataSource = SearchData.Quanlydiem(5, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                }
+                else
+                {
+                    dgv_DanhSach.DataSource = SearchData.Quanlydiem(6, _idkhoa, _idlop, _idnamhoc, _idhocky);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -260,5 +352,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        
     }
 }

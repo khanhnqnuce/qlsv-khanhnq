@@ -8,6 +8,124 @@ namespace QLSV.Core.LINQ
     {
         private static readonly Connect Conn = new Connect();
 
+        #region Quản lý điểm
+
+        public static DataTable Quanlydiem(int i,int idkhoa = 0 ,int idlop = 0 ,int idnamhoc = 0, string idhocky = null)
+        {
+            var table = new DataTable();
+            try
+            {
+                string str;
+                switch (i)
+                {
+                    case 1:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID where l.ID = " + idlop + " and d.IdNamHoc = " + idnamhoc + " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 2:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID where k.ID = " + idkhoa + " and d.IdNamHoc = " + idnamhoc + " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 3:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID where d.IdNamHoc = " + idnamhoc + " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 4:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID where l.ID = " + idlop + " and d.HocKy = '"+idhocky+"' ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 5:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID " +
+                            " join KHOA k on l.IdKhoa = k.ID where k.ID = " + idkhoa + " and d.HocKy = '" + idhocky + "' ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 6:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID where d.HocKy = '" + idhocky + "' ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 7:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " where l.ID = " + idlop + "" +
+                            " and d.IdNamHoc = " + idnamhoc + "" +
+                            " and  d.HocKy = '" + idhocky + "'" +
+                            " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 8:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID" +
+                            " where k.ID = " + idlop + "" +
+                            " and d.IdNamHoc = " + idnamhoc + "" +
+                            " and  d.HocKy = '" + idhocky + "'" +
+                            " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                    case 9:
+                        str =
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " DIEMTHI d" +
+                            " join NAMHOC n on d.IdNamHoc = n.ID" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID" +
+                            " where d.IdNamHoc = " + idnamhoc +
+                            " and  d.HocKy = '" + idhocky + "'" +
+                            " ORDER BY d.MaSV";
+                        table = Conn.GetTable(str);
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return table;
+        }
+
+        #endregion
+
         /// <summary>
         /// Tìm kiếm sv theo khoa mục quản lý sinh viên
         /// </summary>

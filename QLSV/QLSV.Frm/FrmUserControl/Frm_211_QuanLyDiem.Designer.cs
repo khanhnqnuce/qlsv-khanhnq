@@ -30,6 +30,18 @@
         {
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.cboHocky = new System.Windows.Forms.ComboBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.cboNamhoc = new System.Windows.Forms.ComboBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cbolop = new System.Windows.Forms.ComboBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -44,6 +56,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.toolStrip4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.toolStrip3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.toolStrip2.SuspendLayout();
@@ -65,12 +83,16 @@
             this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.dgv_DanhSach.Name = "dgv_DanhSach";
-            this.dgv_DanhSach.Size = new System.Drawing.Size(831, 353);
+            this.dgv_DanhSach.Size = new System.Drawing.Size(934, 353);
             this.dgv_DanhSach.TabIndex = 27;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.panel10);
+            this.panel3.Controls.Add(this.panel9);
+            this.panel3.Controls.Add(this.panel8);
+            this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.panel2);
@@ -79,8 +101,118 @@
             this.panel3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(831, 24);
+            this.panel3.Size = new System.Drawing.Size(934, 24);
             this.panel3.TabIndex = 28;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.cboHocky);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(761, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(153, 24);
+            this.panel10.TabIndex = 7;
+            // 
+            // cboHocky
+            // 
+            this.cboHocky.DisplayMember = "TenHK";
+            this.cboHocky.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cboHocky.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHocky.FormattingEnabled = true;
+            this.cboHocky.Location = new System.Drawing.Point(0, 0);
+            this.cboHocky.Name = "cboHocky";
+            this.cboHocky.Size = new System.Drawing.Size(153, 23);
+            this.cboHocky.TabIndex = 0;
+            this.cboHocky.ValueMember = "MaHK";
+            this.cboHocky.SelectedValueChanged += new System.EventHandler(this.cboHocky_SelectedValueChanged);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.toolStrip4);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(708, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(53, 24);
+            this.panel9.TabIndex = 6;
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator3,
+            this.toolStripLabel4});
+            this.toolStrip4.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(53, 25);
+            this.toolStrip4.TabIndex = 0;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel4.Text = "Học kỳ";
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.cboNamhoc);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(562, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(146, 24);
+            this.panel8.TabIndex = 5;
+            // 
+            // cboNamhoc
+            // 
+            this.cboNamhoc.DisplayMember = "NamHoc";
+            this.cboNamhoc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cboNamhoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNamhoc.FormattingEnabled = true;
+            this.cboNamhoc.Location = new System.Drawing.Point(0, 0);
+            this.cboNamhoc.Name = "cboNamhoc";
+            this.cboNamhoc.Size = new System.Drawing.Size(146, 23);
+            this.cboNamhoc.TabIndex = 0;
+            this.cboNamhoc.ValueMember = "ID";
+            this.cboNamhoc.SelectedValueChanged += new System.EventHandler(this.cboNamhoc_SelectedValueChanged);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.toolStrip3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(494, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(68, 24);
+            this.panel7.TabIndex = 4;
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator2,
+            this.toolStripLabel3});
+            this.toolStrip3.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(68, 25);
+            this.toolStrip3.TabIndex = 0;
+            this.toolStrip3.Text = "toolStrip3";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(54, 22);
+            this.toolStripLabel3.Text = "Năm học";
             // 
             // panel6
             // 
@@ -88,7 +220,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(368, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(111, 24);
+            this.panel6.Size = new System.Drawing.Size(126, 24);
             this.panel6.TabIndex = 3;
             // 
             // cbolop
@@ -99,7 +231,7 @@
             this.cbolop.FormattingEnabled = true;
             this.cbolop.Location = new System.Drawing.Point(0, 0);
             this.cbolop.Name = "cbolop";
-            this.cbolop.Size = new System.Drawing.Size(111, 23);
+            this.cbolop.Size = new System.Drawing.Size(126, 23);
             this.cbolop.TabIndex = 0;
             this.cbolop.ValueMember = "ID";
             this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
@@ -192,7 +324,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 24);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(831, 353);
+            this.panel4.Size = new System.Drawing.Size(934, 353);
             this.panel4.TabIndex = 29;
             // 
             // Frm_211_QuanLyDiem
@@ -204,10 +336,20 @@
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_211_QuanLyDiem";
-            this.Size = new System.Drawing.Size(831, 377);
+            this.Size = new System.Drawing.Size(934, 377);
             this.Load += new System.EventHandler(this.Frm_211_QuanLyDiem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.toolStrip4.ResumeLayout(false);
+            this.toolStrip4.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -239,5 +381,17 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ToolStrip toolStrip3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ComboBox cboNamhoc;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.ComboBox cboHocky;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ToolStrip toolStrip4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
     }
 }
