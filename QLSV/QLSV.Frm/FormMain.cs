@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
@@ -396,6 +398,7 @@ namespace QLSV.Frm
                         frmGt.ShowDialog();
                         break;
                     case "huongdan":
+                        OpenHuongDan();
                         break;
                 }
             }
@@ -1376,6 +1379,27 @@ namespace QLSV.Frm
             MenuBar.Groups["chuongtrinh"].Items["208"].Settings.Enabled = DefaultableBoolean.True;
 
             #endregion
+        }
+
+        private static void OpenHuongDan()
+        {
+            try
+            {
+                var str = Application.StartupPath + @"\HUONG DAN SU DUNG.chm";
+                if (File.Exists(str))
+                {
+                    var mydoc = new Process
+                    {
+                        StartInfo = {FileName = str}
+                    };
+                    mydoc.Start();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         private void cboChonkythi_ValueChanged(object sender, EventArgs e)

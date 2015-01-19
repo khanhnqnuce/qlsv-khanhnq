@@ -89,9 +89,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(196, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 15);
+            this.label4.Size = new System.Drawing.Size(98, 15);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Phần mềm: CHAMTHI";
+            this.label4.Text = "Phần mềm: QLSV";
             // 
             // button1
             // 
