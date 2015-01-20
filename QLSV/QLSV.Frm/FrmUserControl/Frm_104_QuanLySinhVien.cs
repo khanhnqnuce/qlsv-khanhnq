@@ -26,6 +26,7 @@ namespace QLSV.Frm.FrmUserControl
         private readonly FrmTimkiem _frmTimkiem;
         private FrmThemsinhvien _frmThemsinhvien;
         private UltraGridRow _newRow;
+        private int _idkhoa, _idlop;
 
         #endregion
 
@@ -470,6 +471,23 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
+        private void TimKiemNienKhoa()
+        {
+            if (string.IsNullOrEmpty(txtKhoa.Text)) return;
+            if (_idlop != 0)
+            {
+                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa3(1, txtKhoa.Text, _idkhoa, _idlop);
+            }
+            else if (_idkhoa != 0)
+            {
+                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa3(2, txtKhoa.Text, _idkhoa, _idlop);
+            }
+            else
+            {
+                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa3(3, txtKhoa.Text, _idkhoa, _idlop);
+            }
+        }
+
         private void txtkhoa_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -477,8 +495,7 @@ namespace QLSV.Frm.FrmUserControl
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        if (string.IsNullOrEmpty(txtKhoa.Text)) return;
-                        dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
+                        TimKiemNienKhoa();
                         break;
                 }
             }
@@ -535,29 +552,29 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var obj = cbokhoa.SelectedValue;
-                if (obj == null || obj.ToString().Equals("0"))
+                _idkhoa = int.Parse(cbokhoa.SelectedValue.ToString());
+                if (_idkhoa==0)
                 {
                     var tb1 = new DataTable();
                     tb1.Columns.Add("ID", typeof(string));
                     tb1.Columns.Add("MaLop", typeof(string));
                     tb1.Rows.Add("0", "- Chọn lớp -");
                     cbolop.DataSource = tb1;
-                    LoadGrid();
-                    return;
                 }
-                //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()));
-
-                var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
-                var tb = new DataTable();
-                tb.Columns.Add("ID", typeof(string));
-                tb.Columns.Add("MaLop", typeof(string));
-                tb.Rows.Add("0", "- Tất cả các lớp -");
-                foreach (DataRow row in table.Rows)
+                else
                 {
-                    tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                    var table = SearchData.LoadCboLop(_idkhoa);
+                    var tb = new DataTable();
+                    tb.Columns.Add("ID", typeof(string));
+                    tb.Columns.Add("MaLop", typeof(string));
+                    tb.Rows.Add("0", "- Tất cả các lớp -");
+                    foreach (DataRow row in table.Rows)
+                    {
+                        tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                    }
+                    cbolop.DataSource = tb;
                 }
-                cbolop.DataSource = tb;
+                
             }
             catch (Exception ex)
             {
@@ -567,20 +584,21 @@ namespace QLSV.Frm.FrmUserControl
 
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
-            var obj = cbolop.SelectedValue;
-            if (obj == null || obj.ToString().Equals("0"))
+            _idlop = int.Parse(cbolop.SelectedValue.ToString());
+            if (_idlop==0)
             {
-                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.SelectedValue.ToString()));
-                return;
-            }
-            dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(obj.ToString()));
+                if (_idkhoa==0)
+                {
+                    LoadGrid();
+                }else
+                    dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(_idkhoa);
+            }else
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(_idlop);
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtKhoa.Text)) return;
-            dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtKhoa.Text);
+            TimKiemNienKhoa();
         }
         
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

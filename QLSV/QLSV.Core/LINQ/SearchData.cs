@@ -295,14 +295,32 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static DataTable Timkiemnienkhoa(string id)
+        public static DataTable Timkiemnienkhoa3(int i, string id, int idkhoa, int idlop)
         {
             try
             {
-                var str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop, s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                string str = null;
+                switch (i)
+                {
+                    case 1:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop, s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                          "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                          "FROM SINHVIEN s,LOP l, KHOA k " +
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and l.ID = "+idlop+" and s.MaSV like '%" + id + "' ORDER BY l.MaLop, s.TenSV";
+                        break;
+                    case 2:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop, s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
+                          "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
+                          "FROM SINHVIEN s,LOP l, KHOA k " +
+                          "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and k.ID = "+idkhoa+" and s.MaSV like '%" + id + "' ORDER BY l.MaLop, s.TenSV";
+                        break;
+                    case 3:
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY l.MaLop, s.TenSV) as [STT],s.MaSV,s.HoSV,s.TenSV,s.NgaySinh," +
                           "s.IdLop,l.MaLop,l.IdKhoa,k.TenKhoa " +
                           "FROM SINHVIEN s,LOP l, KHOA k " +
                           "WHERE s.IdLop = l.ID and l.IdKhoa = k.ID and s.MaSV like '%" + id + "' ORDER BY l.MaLop, s.TenSV";
+                        break;
+                }
                 return Conn.GetTable(str);
             }
             catch (Exception ex)
