@@ -297,16 +297,38 @@ namespace QLSV.Core.LINQ
         /// <summary>
         /// Tìm kiếm sv theo niên khóa mục điểm tích lũy
         /// </summary>
-        public static DataTable Timkiemnienkhoa2(string id)
+        public static DataTable Timkiemnienkhoa2(int i,string id, int idkhoa,int idlop)
         {
             try
             {
-                var str =
-                     "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
-                     " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
-                     " join SINHVIEN s on d.MaSV = s.MaSV" +
-                     " join LOP l on s.IdLop = l.ID" +
-                     " join KHOA k on l.IdKhoa = k.ID where s.MaSV like '%" + id + "' order by s.TenSV";
+                string str = null;
+                switch (i)
+                {
+                    case 1:
+                        str =
+                            "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                            " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID where l.ID = "+idlop+" and s.MaSV like '%" + id + "' order by s.TenSV";
+                        break;
+                    case 2:
+                        str =
+                            "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                            " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID where k.ID = "+idkhoa+" and s.MaSV like '%" + id + "' order by s.TenSV";
+                        break;
+                    case 3:
+                        str =
+                            "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, l.IdKhoa,k.TenKhoa ,d.Diem from" +
+                            " (select MaSV, Max(Diem) as [Diem] from DIEMTHI group by MaSV) d" +
+                            " join SINHVIEN s on d.MaSV = s.MaSV" +
+                            " join LOP l on s.IdLop = l.ID" +
+                            " join KHOA k on l.IdKhoa = k.ID where s.MaSV like '%" + id + "' order by s.TenSV";
+                        break;
+                }
                 return Conn.GetTable(str);
             }
             catch (Exception ex)
