@@ -43,7 +43,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("TenSV", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("TenKhoa", typeof(string));
+            //table.Columns.Add("TenKhoa", typeof(string));
 
             return table;
         }
@@ -70,7 +70,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var stt = uG_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable(),6);
+                var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable(),5);
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
@@ -117,16 +117,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var tbKhoa = LoadData.Load(15);
                 var tbLop = LoadData.Load(16);
                 var danhsach = (DataTable)uG_DanhSach.DataSource;
                 foreach (DataRow row in danhsach.Rows)
                 {
-                    var checkmalop = "";
-                    var checkmakhoa = "";
-                    var tenkhoa = row["TenKhoa"].ToString();
                     var malop = row["MaLop"].ToString();
-                    // Kiểm tra lớp đã tồn tại chưa
                     foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
                     {
                         var hs = new SinhVien
@@ -137,46 +132,9 @@ namespace QLSV.Frm.FrmUserControl
                             NgaySinh = row["NgaySinh"].ToString(),
                             IdLop = int.Parse(dataRow["ID"].ToString()),
                         };
-                        checkmalop = malop;
+                        
                         _listAdd.Add(hs);
                     }
-                    if (checkmalop != "") continue;
-                    //Kiểm tra khoa đã tồn tại chưa
-                    foreach (var dataRow in tbKhoa.Rows.Cast<DataRow>().Where(dataRow => dataRow["TenKhoa"].ToString().Equals(tenkhoa, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        var newLop1 = InsertData.ThemLop(malop, int.Parse(dataRow["ID"].ToString()));
-                        checkmakhoa = newLop1.MaLop;
-                        var hs = new SinhVien
-                        {
-                            MaSV = int.Parse(row["MaSV"].ToString()),
-                            HoSV = row["HoSV"].ToString(),
-                            TenSV = row["TenSV"].ToString(),
-                            NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = newLop1.ID,
-                        };
-                        _listAdd.Add(hs);
-                        var a = tbLop.Rows.Count + 1;
-                        tbLop.Rows.Add(a,newLop1.ID,newLop1.MaLop,newLop1.IdKhoa,newLop1.GhiChu);
-                    }
-                    if (checkmakhoa != "") continue;
-
-                    // Chưa có khoa lớp thì thêm mới
-                    var newkhoa = InsertData.ThemKhoa(tenkhoa);
-                    var newLop3 = InsertData.ThemLop(malop, newkhoa.ID);
-                    var hs1 = new SinhVien
-                    {
-                        MaSV = int.Parse(row["MaSV"].ToString()),
-                        HoSV = row["HoSV"].ToString(),
-                        TenSV = row["TenSV"].ToString(),
-                        NgaySinh = row["NgaySinh"].ToString(),
-                        IdLop = newLop3.ID
-                    };
-
-                    _listAdd.Add(hs1);
-                    var a1 = tbLop.Rows.Count + 1;
-                    var b = tbKhoa.Rows.Count + 1;
-                    tbLop.Rows.Add(a1, newLop3.ID, newLop3.MaLop, newLop3.IdKhoa, newLop3.GhiChu);
-                    tbKhoa.Rows.Add(b, newkhoa.ID, newkhoa.MaKhoa, newkhoa.TenKhoa);
                 }
                 InsertData.ThemSinhVien(_listAdd);
                 danhsach.Clear();
@@ -274,8 +232,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["NgaySinh"].MaxWidth = 100;
                 band.Columns["MaLop"].MinWidth = 100;
                 band.Columns["MaLop"].MaxWidth = 110;
-                band.Columns["TenKhoa"].MinWidth = 270;
-                band.Columns["TenKhoa"].MaxWidth = 290;
+                //band.Columns["TenKhoa"].MinWidth = 270;
+                //band.Columns["TenKhoa"].MaxWidth = 290;
                 #endregion                
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
@@ -288,14 +246,14 @@ namespace QLSV.Frm.FrmUserControl
                 var group1 = band.Groups.Add("Họ và tên");
                 var group2 = band.Groups.Add("Ngày sinh");
                 var group3 = band.Groups.Add("Lớp");
-                var group4 = band.Groups.Add("Khoa");
+                //var group4 = band.Groups.Add("Khoa");
                 columns["STT"].Group = group5;
                 columns["MaSV"].Group = group0;
                 columns["HoSV"].Group = group1;
                 columns["TenSV"].Group = group1;
                 columns["NgaySinh"].Group = group2;
                 columns["MaLop"].Group = group3;
-                columns["TenKhoa"].Group = group4;
+                //columns["TenKhoa"].Group = group4;
 
                 #endregion
 

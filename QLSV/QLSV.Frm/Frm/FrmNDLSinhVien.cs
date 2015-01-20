@@ -98,7 +98,8 @@ namespace QLSV.Frm.Frm
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
-                {_result.Rows.Add();
+                {
+                    _result.Rows.Add();
                     _result.Rows[i - startRows][1] = ++_iNumberStt;
                     for (var j = 0; j < _iNumberCol; j++)
                     {
