@@ -23,6 +23,7 @@ namespace QLSV.Frm.Frm
         private readonly BackgroundWorker _bgwInsert;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
+        private int _idkhoa, _idlop;
 
         public FrmChonSv(int idkythi)
         {
@@ -50,12 +51,23 @@ namespace QLSV.Frm.Frm
         /// <summary>
         /// Tìm theo niên khóa
         /// </summary>
-        private void Timkiemtheokhoa()
+        private void Timkiemnienkhoa()
         {
             try
             {
                 if (string.IsNullOrEmpty(txtkhoa.Text)) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(txtkhoa.Text, _idkythi);
+                if (_idlop != 0)
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(1, txtkhoa.Text,_idkythi, _idkhoa, _idlop);
+                }
+                else if (_idkhoa != 0)
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(2, txtkhoa.Text,_idkythi, _idkhoa, _idlop);
+                }
+                else
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa(3, txtkhoa.Text,_idkythi, _idkhoa, _idlop);
+                }
             }
             catch (Exception ex)
             {
@@ -135,29 +147,31 @@ namespace QLSV.Frm.Frm
             {
                 try
                 {
-                    var obj = cbokhoa.SelectedValue;
-                    if (obj == null || obj.ToString().Equals("0"))
+                    _idkhoa = int.Parse(cbokhoa.SelectedValue.ToString());
+                    if (_idkhoa == 0)
                     {
                         var tb1 = new DataTable();
-                        tb1.Columns.Add("ID", typeof(string));
-                        tb1.Columns.Add("MaLop", typeof(string));
+                        tb1.Columns.Add("ID", typeof (string));
+                        tb1.Columns.Add("MaLop", typeof (string));
                         tb1.Rows.Add("0", "- Chọn lớp -");
                         cbolop.DataSource = tb1;
                         dgv_DanhSach.DataSource = SearchData.Tatcacackhoa(_idkythi);
-                        return;
                     }
-                    //dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(obj.ToString()), _idkythi);
-
-                    var table = SearchData.LoadCboLop(int.Parse(obj.ToString()));
-                    var tb = new DataTable();
-                    tb.Columns.Add("ID", typeof(string));
-                    tb.Columns.Add("MaLop", typeof(string));
-                    tb.Rows.Add("0", "- Tất cả các lớp -");
-                    foreach (DataRow row in table.Rows)
+                    else
                     {
-                        tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                        var table = SearchData.LoadCboLop(_idkhoa);
+                        var tb = new DataTable();
+                        tb.Columns.Add("ID", typeof(string));
+                        tb.Columns.Add("MaLop", typeof(string));
+                        tb.Rows.Add("0", "- Tất cả các lớp -");
+                        foreach (DataRow row in table.Rows)
+                        {
+                            tb.Rows.Add(row["ID"].ToString(), row["MaLop"].ToString());
+                        }
+                        cbolop.DataSource = tb;
                     }
-                    cbolop.DataSource = tb;
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -172,18 +186,21 @@ namespace QLSV.Frm.Frm
 
         private void cbolop_SelectedValueChanged(object sender, EventArgs e)
         {
-            var obj = cbolop.SelectedValue;
-            if (obj == null || obj.ToString().Equals("0"))
+            _idlop = int.Parse(cbolop.SelectedValue.ToString());
+            if (_idlop == 0)
             {
-                if (cbokhoa.SelectedValue.ToString().Equals("0")) return;
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(int.Parse(cbokhoa.SelectedValue.ToString()), _idkythi);
+                if (_idkhoa == 0)
+                {
+                    dgv_DanhSach.DataSource = SearchData.Tatcacackhoa(_idkythi);
+                }else
+                    dgv_DanhSach.DataSource = SearchData.Timkiemtheokhoa(_idkhoa, _idkythi);
             }else
-                dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(int.Parse(obj.ToString()), _idkythi);
+                dgv_DanhSach.DataSource = SearchData.Timkiemtheolop(_idlop, _idkythi);
         }
 
         private void btnTimtheokhoa_Click(object sender, EventArgs e)
         {
-            Timkiemtheokhoa();
+            Timkiemnienkhoa();
         }
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
@@ -279,7 +296,7 @@ namespace QLSV.Frm.Frm
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
-                        Timkiemtheokhoa();
+                        Timkiemnienkhoa();
                         break;
                 }
             }

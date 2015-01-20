@@ -176,6 +176,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void TimKiemTheoNienKhoa()
         {
+            if (string.IsNullOrEmpty(txtKhoa.Text)) return;
             if (_idlop != 0)
             {
                 dgv_DanhSach.DataSource = SearchData.Timkiemnienkhoa2(1, txtKhoa.Text, _idkhoa, _idlop);

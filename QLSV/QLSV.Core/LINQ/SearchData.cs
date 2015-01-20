@@ -260,14 +260,32 @@ namespace QLSV.Core.LINQ
         /// Tìm kiếm sv theo niên khóa mục quản lý sinh viên
         /// </summary>
         /// <returns>trả về bảng sinh  viên</returns>
-        public static DataTable Timkiemnienkhoa(string id, int idkythi)
+        public static DataTable Timkiemnienkhoa(int i,string id, int idkythi,int idkhoa,int idlop)
         {
             try
             {
-                var str =
+                string str = null;
+                switch (i)
+                {
+                    case 1:
+                        str =
+                    "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
+                    "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
+                    "and s.IdLop = l.ID  and l.ID = "+idlop+" and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                        break;
+                    case 2:
+                        str =
+                     "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
+                     "FROM SINHVIEN s,LOP l, KHOA k WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
+                     "and s.IdLop = l.ID and l.IdKhoa = k.ID  and k.ID = " + idkhoa + " and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                        break;
+                    case 3:
+                        str =
                     "SELECT ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], s.MaSV, s.HoSV, s.TenSV, s.NgaySinh, l.MaLop,'false' as [Chon] " +
                     "FROM SINHVIEN s,LOP l WHERE not exists (SELECT x.IdSV FROM XEPPHONG x WHERE x.IdSV = s.MaSV and x.IdKyThi = " + idkythi + ") " +
                     "and s.IdLop = l.ID  and s.MaSV like '%" + id + "' ORDER BY TenSV";
+                        break;
+                }
                 return Conn.GetTable(str);
             }
             catch (Exception ex)
