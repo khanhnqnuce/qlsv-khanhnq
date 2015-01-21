@@ -283,9 +283,9 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ABCD {
+        internal static System.Drawing.Bitmap add_icon {
             get {
-                object obj = ResourceManager.GetObject("ABCD", resourceCulture);
+                object obj = ResourceManager.GetObject("add-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +293,9 @@ namespace QLSV.Frm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_icon {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("add-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
