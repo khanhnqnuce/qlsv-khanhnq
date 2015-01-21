@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.SS.Formula.Functions;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -159,36 +160,36 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
         {
-            try
-            {
-                if (B)
-                {
-                    B = false;
-                    return;
-                }
-                var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                if (!string.IsNullOrEmpty(id))
-                {
-                    foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                    {
-                        item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
-                        item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString());
-                        return;
-                    }
-                    var hs = new Lop
-                    {
-                        ID = int.Parse(id),
-                        MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
-                        IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString()),
+            //try
+            //{
+            //    if (B)
+            //    {
+            //        B = false;
+            //        return;
+            //    }
+            //    var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+            //    if (!string.IsNullOrEmpty(id))
+            //    {
+            //        foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
+            //        {
+            //            item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
+            //            item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString());
+            //            return;
+            //        }
+            //        var hs = new Lop
+            //        {
+            //            ID = int.Parse(id),
+            //            MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
+            //            IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString()),
                         
-                    };
-                    _listUpdate.Add(hs);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
+            //        };
+            //        _listUpdate.Add(hs);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log2File.LogExceptionToFile(ex);
+            //}
         }
 
         private void uG_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
@@ -262,7 +263,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.DisplayPromptMsg = false;
+            e.Cancel = !B;
+            B = false;
         }
     }
 }

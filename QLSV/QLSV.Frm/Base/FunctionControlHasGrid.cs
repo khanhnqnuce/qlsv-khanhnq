@@ -10,7 +10,7 @@ namespace QLSV.Frm.Base
     {
         protected IList<int> IdDelete = new List<int>();
         protected readonly object LockTotal = new object();
-        protected bool B = false;
+        protected bool B;
 
         #region event delegate
 
@@ -93,6 +93,7 @@ namespace QLSV.Frm.Base
                                 IdDelete.Add(int.Parse(id));
                             }
                         }
+                        B = true;
                         grid.DeleteSelectedRows(false);
                     }
                 }
