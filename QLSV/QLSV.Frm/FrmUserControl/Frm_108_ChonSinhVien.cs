@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -11,6 +11,7 @@ using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
+using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -47,6 +48,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                IdDelete.Clear();
+                _listKtPhong.Clear();
+                _listXepPhong.Clear();
                 dgv_DanhSach.DataSource = LoadData.Load(12,_idkythi);
             }
             catch (Exception ex)
@@ -66,46 +70,16 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                try
+                if (dgv_DanhSach.Selected.Rows.Count > 0)
                 {
-                    if (dgv_DanhSach.Selected.Rows.Count > 0)
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
                     {
-                        if (DialogResult.Yes ==
-                            MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question))
+                        foreach (var row in dgv_DanhSach.Selected.Rows)
                         {
-                            foreach (var row in dgv_DanhSach.Selected.Rows)
-                            {
-                                var masv = row.Cells["MaSV"].Text;
-                                var idPhong = row.Cells["IdPhong"].Text;
-                                if (!string.IsNullOrEmpty(idPhong))
-                                {
-                                    var ktp = new KTPhong
-                                    {
-                                        IdKyThi = _idkythi,
-                                        IdPhong = int.Parse(idPhong)
-                                    };
-                                    _listKtPhong.Add(ktp);
-                                }
-                                var xp = new XepPhong
-                                {
-                                    IdKyThi = _idkythi,
-                                    IdSV = int.Parse(masv)
-                                };
-                                _listXepPhong.Add(xp);
-                            }
-                            dgv_DanhSach.DeleteSelectedRows(false);
-                        }
-                    }
-                    else if (dgv_DanhSach.ActiveRow != null)
-                    {
-                        var index = dgv_DanhSach.ActiveRow.Index;
-                        if (DialogResult.Yes ==
-                            MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question))
-                        {
-                            var masv = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
-                            var idPhong = dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text;
+                            var masv = row.Cells["MaSV"].Text;
+                            var idPhong = row.Cells["IdPhong"].Text;
                             if (!string.IsNullOrEmpty(idPhong))
                             {
                                 var ktp = new KTPhong
@@ -121,21 +95,48 @@ namespace QLSV.Frm.FrmUserControl
                                 IdSV = int.Parse(masv)
                             };
                             _listXepPhong.Add(xp);
-                            dgv_DanhSach.ActiveRow.Delete(false);
-                            if (index > 0)
-                                dgv_DanhSach.Rows[index - 1].Cells[2].Activate();
-                            else
-                                dgv_DanhSach.Rows[index].Cells[2].Activate();
-                            
-                            dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode);
                         }
+                        dgv_DanhSach.DeleteSelectedRows(false);
                     }
-                    Stt();
                 }
-                catch (Exception ex)
+                else if (dgv_DanhSach.ActiveRow != null)
                 {
-                    Log2File.LogExceptionToFile(ex);
+                    var index = dgv_DanhSach.ActiveRow.Index;
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                    {
+                        var masv = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
+                        var idPhong = dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text;
+                        if (!string.IsNullOrEmpty(idPhong))
+                        {
+                            var ktp = new KTPhong
+                            {
+                                IdKyThi = _idkythi,
+                                IdPhong = int.Parse(idPhong)
+                            };
+                            _listKtPhong.Add(ktp);
+                        }
+                        var xp = new XepPhong
+                        {
+                            IdKyThi = _idkythi,
+                            IdSV = int.Parse(masv)
+                        };
+                        _listXepPhong.Add(xp);
+                        dgv_DanhSach.ActiveRow.Delete(false);
+                        if (index > 0)
+                            dgv_DanhSach.Rows[index - 1].Cells[2].Activate();
+                        else
+                            dgv_DanhSach.Rows[index].Cells[2].Activate();
+
+                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode);
+                    }
                 }
+                if (_listKtPhong.Count <= 0 || _listXepPhong.Count <= 0) return;
+                if (_listKtPhong.Count > 0) UpdateData.UpdateGiamSiSo(_listKtPhong);
+                if (_listXepPhong.Count > 0) DeleteData.XoaXepPhong(_listXepPhong);
+                MessageBox.Show(@"Xóa dữ liệu thành công.", @"Thông báo");
+                LoadGrid();
             }
             catch (Exception ex)
             {
@@ -154,28 +155,6 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        protected override void SaveDetail()
-        {
-            try
-            {
-                if (_listKtPhong.Count > 0) UpdateData.UpdateGiamSiSo(_listKtPhong);
-                if (_listXepPhong.Count > 0) DeleteData.XoaXepPhong(_listXepPhong);
-                LoadGrid();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void Stt()
-        {
-            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
-            {
-                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 

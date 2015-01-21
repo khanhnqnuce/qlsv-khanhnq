@@ -519,7 +519,7 @@ namespace QLSV.Frm
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = true;
-                    btnLuu.Visible = true;
+                    btnLuu.Visible = false;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }//---------107----------------
@@ -531,7 +531,7 @@ namespace QLSV.Frm
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = true;
-                    btnLuu.Visible = true;
+                    btnLuu.Visible = false;
                     btnHuy.Visible = false;
                     btnDong.Visible = true;
                 }//-----------108------------

@@ -93,14 +93,6 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        private void Stt()
-        {
-            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
-            {
-                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
-            }
-        }
-
         protected override void XoaDetail()
         {
             try
