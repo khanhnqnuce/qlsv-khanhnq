@@ -123,7 +123,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override bool ValidateData()
+        protected virtual bool ValidateData()
         {
             var inputTypes = new List<InputType>
             {

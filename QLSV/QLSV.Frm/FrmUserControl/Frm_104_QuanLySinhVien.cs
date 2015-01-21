@@ -147,8 +147,6 @@ namespace QLSV.Frm.FrmUserControl
                     cbongaysinh = {Text = dgv_DanhSach.ActiveRow.Cells["NgaySinh"].Text},
                 };
                 frm.CheckUpdate = true;
-                frm.cbolop.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdLop"].Text);
-                frm.cbokhoa.Value = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdKhoa"].Text);
                 frm.ShowDialog();
                 if (frm.CheckUpdate) return;
                 dgv_DanhSach.ActiveRow.Cells["HoSV"].Value = frm.txthotendem.Text;

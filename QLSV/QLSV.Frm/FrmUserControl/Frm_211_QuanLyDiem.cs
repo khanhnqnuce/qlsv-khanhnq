@@ -192,22 +192,7 @@ namespace QLSV.Frm.FrmUserControl
                 _tb1.Columns.Add("ID", typeof(int));
                 _tb1.Columns.Add("MaLop", typeof(string));
                 _tb1.Rows.Add("0", "- Chọn lớp -");
-
-                //-- Năm học -- 
-                
-                
-
-                //-- Học kỳ --
-                
-                //_tb3 = new DataTable();
-                //_tb3.Columns.Add("MaHK", typeof(string));
-                //_tb3.Columns.Add("TenHK", typeof(string));
-                //_tb3.Rows.Add("0", "- Tất cả học kỳ -");
-                //_tb3.Rows.Add("HK0", "Học kỳ 0");
-                //_tb3.Rows.Add("HK1", "Học kỳ 1");
-                //_tb3.Rows.Add("HK2", "Học kỳ 2");
-                //_tb3.Rows.Add("HK3", "Học kỳ 3");
-
+               
                 //-- Khoa --
 
                 var table = LoadData.Load(3);

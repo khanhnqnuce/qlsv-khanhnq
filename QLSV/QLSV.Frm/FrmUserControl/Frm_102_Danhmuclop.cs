@@ -11,8 +11,8 @@ using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 using QLSV.Frm.Ultis.Frm;
-using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -35,7 +35,7 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaLop", typeof(string));
             table.Columns.Add("IdKhoa", typeof(string));
-            table.Columns.Add("GhiChu", typeof(string));
+            table.Columns.Add("TenKhoa", typeof(string));
             return table;
         }
 
@@ -56,10 +56,6 @@ namespace QLSV.Frm.FrmUserControl
         protected override void LoadFormDetail()
         {
             LoadGrid();
-            if (uG_DanhSach.Rows.Count == 0)
-            {
-                InsertRow();
-            }
             _listUpdate.Clear();
             _listAdd.Clear();
             IdDelete.Clear();
@@ -67,7 +63,9 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(uG_DanhSach, "STT", "MaLop");
+            var frm = new FrmThemLop();
+            frm.ShowDialog();
+            LoadGrid();
         }
 
         protected override void DeleteRow()
@@ -75,6 +73,9 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "MaLop");
+                if (IdDelete.Count <= 0) return;
+                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
+                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
                 Stt();
             }
             catch (Exception ex)
@@ -93,22 +94,18 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
-                    foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
-                    {
-                        var hs = new Lop
-                        {
-                            MaLop = row.Cells["MaLop"].Text,
-                            GhiChu = row.Cells["GhiChu"].Text,
-                            IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
-                        };
-                        _listAdd.Add(hs);
-                    }
-                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
+                    //foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
+                    //{
+                    //    var hs = new Lop
+                    //    {
+                    //        MaLop = row.Cells["MaLop"].Text,
+                    //        IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
+                    //    };
+                    //    _listAdd.Add(hs);
+                    //}
+                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
-                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
-                    if (_listAdd.Count > 0) InsertData.ThemLop(_listAdd);
-                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption);
                     LoadFormDetail();
                 }
 
@@ -120,7 +117,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override bool ValidateData()
+        protected virtual bool ValidateData()
         {
             var inputTypes = new List<InputType>
             {
@@ -176,7 +173,6 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
                         item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString());
-                        item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                         return;
                     }
                     var hs = new Lop
@@ -184,7 +180,7 @@ namespace QLSV.Frm.FrmUserControl
                         ID = int.Parse(id),
                         MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
                         IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString()),
-                        GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
+                        
                     };
                     _listUpdate.Add(hs);
                 }
@@ -201,10 +197,13 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
+                band.Columns["IdKhoa"].Hidden = true;
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+                band.Columns["STT"].CellActivation = Activation.NoEdit;
+                band.Columns["TenKhoa"].CellActivation = Activation.NoEdit;
+                band.Columns["MaLop"].CellActivation = Activation.NoEdit;
                 #region MyRegion
                 band.Columns["STT"].MinWidth = 50;
                 band.Columns["STT"].MaxWidth = 70;
@@ -217,13 +216,10 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-                band.Columns["IdKhoa"].Loadcbokhoa();
-                band.Columns["IdKhoa"].Style = ColumnStyle.DropDownList;
                 #region Caption
 
                 band.Columns["MaLop"].Header.Caption = @"Mã lớp";
-                band.Columns["IdKhoa"].Header.Caption = @"Tên khoa";
-                band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
+                band.Columns["TenKhoa"].Header.Caption = @"Tên khoa";
 
                 #endregion
             }

@@ -2,7 +2,6 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -16,6 +15,8 @@ namespace QLSV.Frm.Frm
         public event CustomHandler Themmoisinhvien;
 
         public bool CheckUpdate;
+
+        private int _idkhoa, _idlop;
 
         public FrmThemsinhvien()
         {
@@ -34,8 +35,6 @@ namespace QLSV.Frm.Frm
             txttensinhvien.Clear();
             txthotendem.Clear();
             cbongaysinh.Value = null;
-            cbokhoa.Value = null;
-            cbolop.Value = null;
         }
 
         private bool Checkghi()
@@ -106,42 +105,9 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void cbokhoa_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var obj = cbokhoa.Value;
-                if (obj == null) return;
-                cbolop.DataSource = SearchData.LoadCboLop(int.Parse(obj.ToString()));
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void cbokhoa_InitializeLayout(object sender, InitializeLayoutEventArgs e)
-        {
-            cbokhoa.Rows.Band.Columns["STT"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["ID"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["MaKhoa"].Hidden = true;
-            cbokhoa.Rows.Band.Columns["TenKhoa"].Width = 250;
-            cbokhoa.Rows.Band.ColHeadersVisible = false;
-        }
-
-        private void cbolop_InitializeLayout(object sender, InitializeLayoutEventArgs e)
-        {
-            var band = e.Layout.Bands[0];
-            band.Columns["ID"].Hidden = true;
-            band.Columns["IdKhoa"].Hidden = true;
-            band.Columns["GhiChu"].Hidden = true;
-            band.Columns["MaLop"].Width = 200;
-            band.ColHeadersVisible = false;
-            band.ColHeadersVisible = false;
-        }
-
         private void FrmThemsinhvien_Load(object sender, EventArgs e)
         {
+            cbokhoa.DataSource = LoadData.Load(3);
             if (CheckUpdate)
                 Text = @"Chỉnh sửa thông tin";
             else
@@ -155,71 +121,17 @@ namespace QLSV.Frm.Frm
                 if (!Checkghi()) return;
                 if (!CheckUpdate)
                 {
-                    var tbLop = LoadData.Load(15);
-                    var tbKhoa = LoadData.Load(16);
-                    var tbSv = LoadData.Load(17);
-                    foreach (
-                        var dataRow in
-                            tbSv.Rows.Cast<DataRow>()
-                                .Where(dataRow => dataRow["MaSV"].ToString().Equals(txtmasinhvien.Text)))
-                    {
-                        MessageBox.Show(@"Sinh viên đã có trong CSDL");
-                        return;
-                    }
-
-                    foreach (
-                        var dataRow in
-                            tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["ID"].ToString().Equals(cbolop.Value.ToString())))
-                    {
-                        var hs = new SinhVien
-                        {
-                            MaSV = int.Parse(txtmasinhvien.Text),
-                            HoSV = txthotendem.Text,
-                            TenSV = txttensinhvien.Text,
-                            NgaySinh = cbongaysinh.Text,
-                            IdLop = int.Parse(dataRow["ID"].ToString()),
-                        };
-                        InsertData.ThemSinhVien(hs);
-                        Themmoisinhvien(sender, hs, cbolop.Text, cbokhoa.Text);
-                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                        ClearAll();
-                        return;
-                    }
-
-                    foreach (
-                        var dataRow in
-                            tbKhoa.Rows.Cast<DataRow>()
-                                .Where(dataRow => dataRow["ID"].ToString().Equals(cbokhoa.Value.ToString())))
-                    {
-                        var newLop1 = InsertData.ThemLop(cbolop.Text, int.Parse(dataRow["ID"].ToString()));
-                        var hs = new SinhVien
-                        {
-                            MaSV = int.Parse(txtmasinhvien.Text),
-                            HoSV = txthotendem.Text,
-                            TenSV = txttensinhvien.Text,
-                            NgaySinh = cbongaysinh.Text,
-                            IdLop = newLop1.ID
-                        };
-                        InsertData.ThemSinhVien(hs);
-                        Themmoisinhvien(sender, hs, cbolop.Text, cbokhoa.Text);
-                        MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                        ClearAll();
-                        return;
-                    }
-                    var newkhoa = InsertData.ThemKhoa(cbokhoa.Text);
-                    var newLop3 = InsertData.ThemLop(cbolop.Text, newkhoa.ID);
-                    var hs1 = new SinhVien
+                    var hs = new SinhVien
                     {
                         MaSV = int.Parse(txtmasinhvien.Text),
                         HoSV = txthotendem.Text,
                         TenSV = txttensinhvien.Text,
                         NgaySinh = cbongaysinh.Text,
-                        IdLop = newLop3.ID
+                        IdLop = _idlop,
                     };
-                    InsertData.ThemSinhVien(hs1);
-                    Themmoisinhvien(sender, hs1, cbolop.Text, cbokhoa.Text);
+                    InsertData.ThemSinhVien(hs);
+                    Themmoisinhvien(sender, hs, cbolop.Text, cbokhoa.Text);
                     MessageBox.Show(@"Đã Thêm mới một sinh viên");
-                    ClearAll();
                 }
                 else
                 {
@@ -229,11 +141,17 @@ namespace QLSV.Frm.Frm
                         HoSV = txthotendem.Text,
                         TenSV = txttensinhvien.Text,
                         NgaySinh = cbongaysinh.Text,
-                        IdLop = int.Parse(cbolop.Value.ToString())
+                        IdLop = _idlop
                     };
-                    UpdateData.UpdateSv(hs1);
-                    MessageBox.Show(@"Chỉnh sửa thành công", @"Thông báo");
-                    CheckUpdate = false;
+                    if (UpdateData.UpdateSv(hs1))
+                    {
+                        MessageBox.Show(@"Chỉnh sửa thành công", @"Thông báo");
+                        CheckUpdate = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Sai thông tin lớp", @"Thông báo");
+                    }
                     Close();
                 }
             }
@@ -246,6 +164,32 @@ namespace QLSV.Frm.Frm
         private void btnhuy_Click(object sender, EventArgs e)
         {
             ClearAll();
+        }
+
+        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cbolop.Refresh();
+                _idkhoa = int.Parse(cbokhoa.SelectedValue.ToString());
+                cbolop.DataSource = SearchData.LoadCboLop(_idkhoa);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void cbolop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _idlop = int.Parse(cbolop.SelectedValue.ToString());
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
     }
 }

@@ -59,7 +59,7 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("INSERT INTO KHOA(MaKhoa,TenKhoa) values(N'" + item.MaKhoa + "',N'" + item.TenKhoa + "')");
+                Conn.ExcuteQuerySql("INSERT INTO KHOA(TenKhoa) values(N'" + item.TenKhoa + "')");
                 return true;
             }
             catch (Exception ex)
@@ -98,8 +98,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("INSERT INTO LOP(MaLop,IdKhoa,GhiChu) values(N'" +
-                            item.MaLop + "'," + item.IdKhoa + ",N'" + item.GhiChu + "')");
+                Conn.ExcuteQuerySql("INSERT INTO LOP(MaLop,IdKhoa) values(N'" +
+                            item.MaLop + "'," + item.IdKhoa + ")");
                 return true;
             }
             catch (Exception ex)
@@ -533,62 +533,6 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
-
-        /// <summary>
-        /// lấy ra bản ghi lớp vừa được thêm khi chưa có lớp
-        /// </summary>
-        /// <param name="ma">mã lớp</param>
-        /// <param name="id">id khoa</param>
-        /// <returns></returns>
-        public static Lop ThemLop(string ma, int id)
-        {
-            try
-            {
-                var sql1 = "insert into Lop(MaLop,idKhoa) values(N'" + ma + "'," + id + ")";
-                var sql2 = "select * from Lop where MaLop = N'" + ma + "'";
-                Conn.ExcuteQuerySql(sql1);
-                var tb = Conn.GetTable(sql2);
-                var newLop = new Lop
-                {
-                    MaLop = tb.Rows[0]["MaLop"].ToString(),
-                    ID = int.Parse(tb.Rows[0]["ID"].ToString()),
-                    IdKhoa = int.Parse(tb.Rows[0]["IdKhoa"].ToString())
-                };
-                return newLop;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// lấy ra bản ghi khoa vừa được thêm vào bảng khoa
-        /// </summary>
-        /// <param name="ma">mã khoa</param>
-        /// <returns></returns>
-        public static Khoa ThemKhoa(string ma)
-        {
-            try
-            {
-                var sql1 = "insert into Khoa(TenKhoa) values(N'" + ma + "')";
-                var sql2 = "select * from Khoa where TenKhoa = N'" + ma + "'";
-                Conn.ExcuteQuerySql(sql1);
-                var tb = Conn.GetTable(sql2);
-                var newKhoa = new Khoa
-                {
-                    ID = int.Parse(tb.Rows[0]["ID"].ToString()),
-                    MaKhoa = tb.Rows[0]["MaKhoa"].ToString(),
-                    TenKhoa = tb.Rows[0]["TenKhoa"].ToString()
-                };
-                return newKhoa;
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-                return null;
-            }
-        }
+       
     }
 }

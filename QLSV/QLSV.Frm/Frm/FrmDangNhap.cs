@@ -71,6 +71,10 @@ namespace QLSV.Frm.Frm
 
         private void FrmDangNhap_Load(object sender, EventArgs e)
         {
+            var a = "  anh nho em nhiều lắm ";
+            var b = a.Trim();
+            var c = a.Replace(" ", "");
+
             lbdangnhap.ForeColor = Color.FromArgb(255,255,255);
             lbdangnhap.BackColor = Color.FromArgb(0, 171, 228);
         }

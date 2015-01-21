@@ -91,7 +91,6 @@ namespace QLSV.Frm.Ultis.Frm
             ultraCombo.DisplayLayout.ScrollBounds = ScrollBounds.ScrollToFill;
             ultraCombo.Rows.Band.Columns["STT"].Hidden = true;
             ultraCombo.Rows.Band.Columns["ID"].Hidden = true;
-            ultraCombo.Rows.Band.Columns["MaKhoa"].Hidden = true;
             ultraCombo.Rows.Band.Columns["TenKhoa"].Width = 250;
             ultraCombo.DisplayLayout.Bands[0].Columns["TenKhoa"].Header.Caption = @"Khoa";
             ultraCombo.DisplayLayout.Bands[0].Columns["TenKhoa"].SortIndicator = SortIndicator.Ascending;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Utils.Core;
@@ -64,13 +63,6 @@ namespace QLSV.Frm.Base
                 Log2File.LogExceptionToFile(ex);
             }
         }
-
-        protected virtual DataTable GetTable()
-        {
-            return null;
-        }
-
-        protected virtual void LoadGrid(){}
 
         protected virtual void LoadFormDetail(){}
 
@@ -146,11 +138,6 @@ namespace QLSV.Frm.Base
         }
 
         protected virtual void SaveDetail(){}
-
-        protected virtual bool ValidateData()
-        {
-            return false;
-        }
 
         public void Xoa()
         {

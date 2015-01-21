@@ -32,7 +32,6 @@ namespace QLSV.Frm.FrmUserControl
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaKhoa", typeof(string));
             table.Columns.Add("TenKhoa", typeof(string));
             return table;
         }
@@ -66,14 +65,14 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void InsertRow()
         {
-            InsertRow(dgv_DanhSach, "STT", "MaKhoa");
+            InsertRow(dgv_DanhSach, "STT", "TenKhoa");
         }
 
         protected override void DeleteRow()
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, "ID", "MaKhoa");
+                DeleteRowGrid(dgv_DanhSach, "ID", "TenKhoa");
                 Stt();
             }
             catch (Exception ex)
@@ -96,7 +95,6 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         var hs = new Khoa
                         {
-                            MaKhoa = row.Cells["MaKhoa"].Text,
                             TenKhoa = row.Cells["TenKhoa"].Text
                         };
                         _listAdd.Add(hs);
@@ -121,7 +119,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override bool ValidateData()
+        protected virtual bool ValidateData()
         {
             var inputTypes = new List<InputType>
             {
@@ -177,14 +175,12 @@ namespace QLSV.Frm.FrmUserControl
                 if (string.IsNullOrEmpty(id)) return;
                 foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
                 {
-                    item.MaKhoa = dgv_DanhSach.ActiveRow.Cells["MaKhoa"].Text;
                     item.TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
                     return;
                 }
                 var hs = new Khoa
                 {
                     ID = int.Parse(id),
-                    MaKhoa = dgv_DanhSach.ActiveRow.Cells["MaKhoa"].Text,
                     TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
                 };
                 _listUpdate.Add(hs);
@@ -201,20 +197,16 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["ID"].Hidden = true;
-                band.Columns["MaKhoa"].Hidden = true;
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
-                band.Columns["MaKhoa"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Columns["STT"].MaxWidth = 70;
-                band.Columns["MaKhoa"].MaxWidth = 150;
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
 
                 #region Caption
 
-                band.Columns["MaKhoa"].Header.Caption = FormResource.txtMakhoa;
                 band.Columns["TenKhoa"].Header.Caption = FormResource.txtTenkhoa;
 
                 #endregion

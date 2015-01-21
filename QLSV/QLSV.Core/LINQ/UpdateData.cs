@@ -110,7 +110,7 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE KHOA set MaKhoa = N'" + item.MaKhoa + "', TenKhoa = N'" + item.TenKhoa +
+                Conn.ExcuteQuerySql("UPDATE KHOA set TenKhoa = N'" + item.TenKhoa +
                                     "' where ID = " + item.ID + "");
                 return true;
             }
@@ -152,7 +152,7 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("UPDATE LOP set MaLop = N'" + item.MaLop + "', IdKhoa = " + item.IdKhoa +
-                                    ", GhiChu = N'" + item.GhiChu + "' where ID = " + item.ID + "");
+                                    " where ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)

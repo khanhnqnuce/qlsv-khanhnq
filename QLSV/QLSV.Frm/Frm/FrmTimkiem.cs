@@ -40,6 +40,7 @@ namespace QLSV.Frm.Frm
         private void FrmTimkiem_Load(object sender, EventArgs e)
         {
             txtmasinhvien.Clear();
+            txtmasinhvien.Focus();
         }
 
         private void txtmasinhvien_KeyPress(object sender, KeyPressEventArgs e)
