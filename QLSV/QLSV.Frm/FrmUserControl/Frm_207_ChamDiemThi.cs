@@ -40,7 +40,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #region Exit
 
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
@@ -96,7 +96,7 @@ namespace QLSV.Frm.FrmUserControl
         /// <summary>
         /// chấm tthi
         /// </summary>
-        protected override void LoadGrid()
+        protected virtual void LoadGrid()
         {
             var dem = 0;
             var tbbailam = LoadData.Load(16, _idkythi);

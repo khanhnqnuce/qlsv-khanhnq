@@ -26,7 +26,7 @@ namespace QLSV.Frm.FrmUserControl
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
         }
 
-        protected override void LoadGrid()
+        protected virtual void LoadGrid()
         {
             try
             {

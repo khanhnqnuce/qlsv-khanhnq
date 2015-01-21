@@ -29,7 +29,7 @@ namespace QLSV.Frm.FrmUserControl
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("MaMon", typeof(string));

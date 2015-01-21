@@ -32,7 +32,7 @@ namespace QLSV.Frm.FrmUserControl
             _idKythi = idkythi;
         }
 
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));

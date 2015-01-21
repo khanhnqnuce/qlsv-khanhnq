@@ -28,7 +28,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #region Exit
 
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
@@ -39,7 +39,7 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        protected override void LoadGrid()
+        protected virtual void LoadGrid()
         {
             try
             {
@@ -258,6 +258,11 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmDanhmuclop_Load(object sender, EventArgs e)
         {
             LoadForm();
+        }
+
+        private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.DisplayPromptMsg = false;
         }
     }
 }

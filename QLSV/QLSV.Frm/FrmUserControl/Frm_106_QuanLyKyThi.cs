@@ -32,7 +32,7 @@ namespace QLSV.Frm.FrmUserControl
 
         #region Exit
 
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof (int));
@@ -48,7 +48,7 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        protected override void LoadGrid()
+        protected virtual void LoadGrid()
         {
             try
             {

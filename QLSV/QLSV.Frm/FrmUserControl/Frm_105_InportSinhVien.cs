@@ -33,7 +33,7 @@ namespace QLSV.Frm.FrmUserControl
         /// khởi tạo table
         /// </summary>
         /// <returns>trả về 1 bảng sinh viên đển gán vào UltraGrid</returns>
-        protected override DataTable GetTable()
+        protected virtual DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
