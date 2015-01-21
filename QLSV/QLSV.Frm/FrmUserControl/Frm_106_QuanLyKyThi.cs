@@ -262,8 +262,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGBatDau"].MaxWidth = 110;
                 band.Columns["TGKetThuc"].MaxWidth = 110;
                 band.Columns["TT"].MaxWidth = 110;
-                band.Columns["NgayThi"].Style = ColumnStyle.Date;
-                band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
+                //band.Columns["NgayThi"].Style = ColumnStyle.Date;
+                //band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
