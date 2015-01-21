@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.Domain;
@@ -96,6 +95,7 @@ namespace QLSV.Frm.FrmUserControl
                             };
                             _listXepPhong.Add(xp);
                         }
+                        B = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
                     }
                 }
@@ -123,6 +123,7 @@ namespace QLSV.Frm.FrmUserControl
                             IdSV = int.Parse(masv)
                         };
                         _listXepPhong.Add(xp);
+                        B = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
                         if (index > 0)
                             dgv_DanhSach.Rows[index - 1].Cells[2].Activate();
@@ -245,6 +246,12 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !B;
+            B = false;
         }
     }
 }

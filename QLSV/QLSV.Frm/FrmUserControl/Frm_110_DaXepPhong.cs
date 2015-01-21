@@ -67,8 +67,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 Invoke((Action) LoadGrid);
-                Invoke((Action) _listktphong.Clear);
-                Invoke((Action) _listxepphong.Clear);
                 lock (LockTotal)
                 {
                     OnCloseDialog();
@@ -119,6 +117,7 @@ namespace QLSV.Frm.FrmUserControl
                             _listxepphong.Add(xp);
                             _listktphong.Add(kt);
                         }
+                        B = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
                     }
                 }
@@ -140,32 +139,18 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listxepphong.Add(xp);
                         _listktphong.Add(kt);
+                        B = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
                     }
                 }
                 if (_listxepphong.Count <= 0 && _listktphong.Count <= 0) return;
                 if (_listktphong.Count > 0) UpdateData.UpdateGiamSiSo(_listktphong);
                 if (_listktphong.Count > 0) UpdateData.UpdateXP_Null(_listxepphong);
-                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        protected override void SaveDetail()
-        {
-            try
-            {
-                if (_listxepphong.Count <= 0 && _listktphong.Count <= 0) return;
-                if (_listktphong.Count > 0) UpdateData.UpdateGiamSiSo(_listktphong);
-                if (_listktphong.Count > 0) UpdateData.UpdateXP_Null(_listxepphong);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                LoadFormDetail();
+                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                LoadGrid();
+                _listktphong.Clear();
+                _listxepphong.Clear();
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
