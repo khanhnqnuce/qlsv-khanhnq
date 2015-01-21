@@ -63,7 +63,29 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "TenPhong");
-                Stt();
+                if (IdDelete.Count <= 0) return;
+                foreach (var i in IdDelete)
+                {
+                    var xp = new XepPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = i
+                    };
+
+                    var ktp = new KTPhong
+                    {
+                        IdKyThi = _idkythi,
+                        IdPhong = i
+                    };
+                    _listXepPhong.Add(xp);
+                    _listKtPhong.Add(ktp);
+                }
+                DeleteData.XoaKtPhong(_listKtPhong);
+                UpdateData.UpdateXepPhongNull(_listXepPhong);
+                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                LoadGrid();
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -97,27 +119,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                foreach (var i in IdDelete)
-                {
-                    var xp = new XepPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = i
-                    };
-
-                    var ktp = new KTPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = i
-                    };
-                    _listXepPhong.Add(xp);
-                    _listKtPhong.Add(ktp);
-                }
-                DeleteData.XoaKtPhong(_listKtPhong);
-                UpdateData.UpdateXepPhongNull(_listXepPhong);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
-                LoadGrid();
+                
             }
             catch (Exception ex)
             {
@@ -174,6 +176,12 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !B;
+            B = false;
         }
     }
 }
