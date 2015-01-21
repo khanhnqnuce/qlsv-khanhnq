@@ -217,9 +217,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into KYTHI(MaKT,TenKT,NgayThi,TGLamBai,TGBatDau,TGKetThuc,TrangThai) values(N'" +
-                            item.MaKT + "',N'" + item.TenKT + "','" + item.NgayThi + "'," +
-                            item.TGLamBai + ",N'" + item.TGBatDau + "',N'" + item.TGKetThuc + "',1)");
+                Conn.ExcuteQuerySql("insert into KYTHI(MaKT,TenKT,NgayThi,TGLamBai,TGBatDau,TGKetThuc,GhiChu,TrangThai) values(N'" +
+                            item.MaKT + "',N'" + item.TenKT + "','" + item.NgayThi + "',N'" +
+                            item.TGLamBai + "',N'" + item.TGBatDau + "',N'" + item.TGKetThuc + "',N'"+item.GhiChu+"',1)");
                 return true;
             }
             catch (Exception ex)

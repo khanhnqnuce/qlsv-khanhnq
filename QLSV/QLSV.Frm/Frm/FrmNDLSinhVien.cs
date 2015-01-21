@@ -137,7 +137,7 @@ namespace QLSV.Frm.Frm
                 excelPkg.Load(stream);
                 stream.Close();
                 var oSheet = excelPkg.Workbook.Worksheets[1];
-                var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader + 1;
+                var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader;
                 var endRows = oSheet.Dimension.End.Row;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);

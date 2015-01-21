@@ -204,8 +204,7 @@ namespace QLSV.Frm.FrmUserControl
             rptgopdiem.Prepare();
             var previewForm = new PreviewForm(rptgopdiem)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
         }
@@ -221,7 +220,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 WindowState = FormWindowState.Maximized
             };
-            previewForm.ShowInTaskbar = false;
             previewForm.Show();
         }
 

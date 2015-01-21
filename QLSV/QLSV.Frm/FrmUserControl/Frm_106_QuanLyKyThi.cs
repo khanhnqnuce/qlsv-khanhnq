@@ -43,6 +43,8 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("TGLamBai", typeof(int));
             table.Columns.Add("TGBatDau", typeof(string));
             table.Columns.Add("TGKetThuc", typeof(string));
+            table.Columns.Add("GhiChu", typeof(string));
+            table.Columns.Add("TrangThai", typeof(string));
             return table;
         }
 
@@ -108,6 +110,7 @@ namespace QLSV.Frm.FrmUserControl
                 InputType.ChuoiRong,
                 InputType.KhongKiemTra,
                 InputType.KhongKiemTra,
+                InputType.KhongKiemTra,
                 
             };
             return ValidateHighlight.UltraGrid(uG_DanhSach, inputTypes);
@@ -130,9 +133,10 @@ namespace QLSV.Frm.FrmUserControl
                             MaKT = row.Cells["MaKT"].Text,
                             TenKT = row.Cells["TenKT"].Text,
                             NgayThi = row.Cells["NgayThi"].Text,
-                            TGLamBai = int.Parse(row.Cells["TGLamBai"].Text),
+                            TGLamBai = row.Cells["TGLamBai"].Text,
                             TGBatDau = row.Cells["TGBatDau"].Text,
                             TGKetThuc = row.Cells["TGKetThuc"].Text,
+                            GhiChu = row.Cells["GhiChu"].Text,
                         };
                         _listAdd.Add(hs);
                     }
@@ -193,9 +197,10 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         item.TenKT = uG_DanhSach.ActiveRow.Cells["TenKT"].Text;
                         item.NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text;
-                        item.TGLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text);
+                        item.TGLamBai = uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text;
                         item.TGBatDau = uG_DanhSach.ActiveRow.Cells["TGBatDau"].Text;
                         item.TGKetThuc = uG_DanhSach.ActiveRow.Cells["TGKetThuc"].Text;
+                        item.GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text;
                         return;
                     }
                     var hs = new Kythi
@@ -203,9 +208,10 @@ namespace QLSV.Frm.FrmUserControl
                         ID = int.Parse(id),
                         TenKT = uG_DanhSach.ActiveRow.Cells["TenKT"].Text,
                         NgayThi = uG_DanhSach.ActiveRow.Cells["NgayThi"].Text,
-                        TGLamBai = int.Parse(uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text),
+                        TGLamBai = uG_DanhSach.ActiveRow.Cells["TGLamBai"].Text,
                         TGBatDau = uG_DanhSach.ActiveRow.Cells["TGBatDau"].Text,
                         TGKetThuc = uG_DanhSach.ActiveRow.Cells["TGKetThuc"].Text,
+                        GhiChu = uG_DanhSach.ActiveRow.Cells["GhiChu"].Text,
                     };
                     _listUpdate.Add(hs);
                 }
@@ -244,6 +250,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGKetThuc"].MinWidth = 100;
                 band.Columns["TT"].MinWidth = 100;
                 band.Columns["STT"].MaxWidth = 70;
+                band.Columns["GhiChu"].MinWidth = 140;
+                band.Columns["GhiChu"].MaxWidth = 150;
                 band.Columns["MaKT"].MaxWidth = 110;
                 band.Columns["TenKT"].MaxWidth = 300;
                 band.Columns["NgayThi"].MaxWidth = 150;
@@ -255,7 +263,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["NgayThi"].MaskInput = FormResource.txtddmmyyyy;
                 
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
-                band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 //band.Columns["TGLamBai"].FormatNumberic();
                 //band.Columns["TGBatDau"].FormatTime();
@@ -270,6 +278,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TGBatDau"].Header.Caption = FormResource.txtThoigianbatdau;
                 band.Columns["TGKetThuc"].Header.Caption = FormResource.txtThoigianketthuc;
                 band.Columns["TT"].Header.Caption = @"Trạng thái";
+                band.Columns["GhiChu"].Header.Caption = @"Ghi chú";
 
                 #endregion
             }

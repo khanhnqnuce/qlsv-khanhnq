@@ -246,8 +246,7 @@ namespace QLSV.Frm.FrmUserControl
                 rptdanhsachsinhvien.Prepare();
                 var previewForm = new PreviewForm(rptdanhsachsinhvien)
                 {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false,
+                    WindowState = FormWindowState.Maximized
                 };
                 previewForm.Show();
             }
@@ -268,8 +267,7 @@ namespace QLSV.Frm.FrmUserControl
                 rptdanhsachsinhvien.Prepare();
                 var previewForm = new PreviewForm(rptdanhsachsinhvien)
                 {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
+                    WindowState = FormWindowState.Maximized
                 };
                 previewForm.Show();
             }

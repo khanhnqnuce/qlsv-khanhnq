@@ -241,10 +241,10 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
             rptdanhsachduthi.Prepare();
+            rptdanhsachduthi.GetReportParameter += GetParameter;
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
         }
@@ -257,8 +257,7 @@ namespace QLSV.Frm.FrmUserControl
             rptdanhsachduthi.Prepare();
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
         }
@@ -271,8 +270,7 @@ namespace QLSV.Frm.FrmUserControl
             rptdanhsachkhoa.Prepare();
             var previewForm = new PreviewForm(rptdanhsachkhoa)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
         }
@@ -285,10 +283,26 @@ namespace QLSV.Frm.FrmUserControl
             rptdanhsachlop.Prepare();
             var previewForm = new PreviewForm(rptdanhsachlop)
             {
-                WindowState = FormWindowState.Maximized,
-                ShowInTaskbar = false
+                WindowState = FormWindowState.Maximized
             };
             previewForm.Show();
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idkythi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["GhiChu"].Value = row["GhiChu"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         #endregion

@@ -122,8 +122,7 @@ namespace QLSV.Frm.FrmUserControl
                 rptdsdiemtheokhoa.Prepare();
                 var previewForm = new PreviewForm(rptdsdiemtheokhoa)
                 {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
+                    WindowState = FormWindowState.Maximized
                 };
                 previewForm.Show();
             }
@@ -143,8 +142,7 @@ namespace QLSV.Frm.FrmUserControl
                 rptdsdiemtheolop.Prepare();
                 var previewForm = new PreviewForm(rptdsdiemtheolop)
                 {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false
+                    WindowState = FormWindowState.Maximized
                 };
                 previewForm.Show();
             }
@@ -400,9 +398,8 @@ namespace QLSV.Frm.FrmUserControl
             if (cbothongke.SelectedIndex == 0)
             {
                 LoadGrid();
-                return;
-            }
-            dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
+            }else
+                dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
         }
 
     }

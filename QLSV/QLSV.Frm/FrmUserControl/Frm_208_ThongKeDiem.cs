@@ -274,11 +274,6 @@ namespace QLSV.Frm.FrmUserControl
             group4.Header.Fixed = true;
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            LoadGrid();
-        }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)

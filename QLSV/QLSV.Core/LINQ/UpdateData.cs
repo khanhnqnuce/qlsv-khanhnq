@@ -252,9 +252,9 @@ namespace QLSV.Core.LINQ
             try
             {
                 Conn.ExcuteQuerySql("update KYTHI set TenKT = N'" + item.TenKT + "',NgayThi = '" +
-                                    item.NgayThi + "',TGLamBai = " + item.TGLamBai + ",TGBatDau = N'" +
+                                    item.NgayThi + "',TGLamBai = N'" + item.TGLamBai + "',TGBatDau = N'" +
                                     item.TGBatDau + "' ,TGKetThuc = N'" +
-                                    item.TGKetThuc + "' WHERE ID = " + item.ID + "");
+                                    item.TGKetThuc + "', GhiChu = N'"+item.GhiChu+"' WHERE ID = " + item.ID + "");
                 return true;
             }
             catch (Exception ex)

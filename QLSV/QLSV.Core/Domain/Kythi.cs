@@ -12,11 +12,13 @@ namespace QLSV.Core.Domain
 
         public virtual string NgayThi { get; set; }
 
-        public virtual int TGLamBai { get; set; }
+        public virtual string TGLamBai { get; set; }
 
         public virtual string TGBatDau { get; set; }
 
         public virtual string TGKetThuc { get; set; }
+        
+        public virtual string GhiChu { get; set; }
 
         public virtual bool TrangThai { get; set; }
     }

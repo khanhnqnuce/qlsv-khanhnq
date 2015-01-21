@@ -159,7 +159,7 @@ namespace QLSV.Core.LINQ
                               "where x.IdKyThi = "+idKythi+" ORDER BY p.TenPhong";
                         break;
                     case 3:
-                        str = "SELECT TenKT, NgayThi FROM KYTHI WHERE ID = " + idKythi + "";
+                        str = "SELECT TenKT, NgayThi, GhiChu FROM KYTHI WHERE ID = " + idKythi + "";
                         break;
                     case 4:
                         str = "SELECT l.MaLop " +

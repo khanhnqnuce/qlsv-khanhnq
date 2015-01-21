@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters9 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters10 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdsdiemtheokhoa = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
@@ -127,7 +127,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters9;
+            this.pdfExportFilter1.ExtraParameters = extraParameters3;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -135,7 +135,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters10;
+            this.excelExportFilter1.ExtraParameters = extraParameters4;
             // 
             // panel3
             // 
@@ -168,12 +168,16 @@
             this.cbothongke.FormattingEnabled = true;
             this.cbothongke.Items.AddRange(new object[] {
             "- Tất cả - ",
-            "< 200",
+            "Điểm < 200",
             "200 => 249",
+            "< 250",
             "250 => 300",
+            "< 300",
             "300 => 374",
+            "< 375",
             "375 = > 450",
-            "> 450"});
+            "< 450",
+            ">= 450"});
             this.cbothongke.Location = new System.Drawing.Point(0, 0);
             this.cbothongke.Name = "cbothongke";
             this.cbothongke.Size = new System.Drawing.Size(181, 23);
@@ -247,7 +251,7 @@
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
             this.toolStripLabel3.Text = "Chọn khóa: K";
             // 
             // txtKhoa
@@ -328,7 +332,7 @@
             // 
             this.toolStripLabel2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(56, 15);
+            this.toolStripLabel2.Size = new System.Drawing.Size(56, 22);
             this.toolStripLabel2.Text = "Chọn lớp";
             // 
             // panel2
@@ -378,7 +382,7 @@
             // 
             this.toolStripLabel1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(65, 15);
+            this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
             this.toolStripLabel1.Text = "Chọn khoa";
             // 
             // panel4
