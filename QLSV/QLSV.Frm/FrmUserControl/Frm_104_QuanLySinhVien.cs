@@ -73,8 +73,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 Invoke((Action)(LoadGrid));
-                Invoke((Action)(()=>_listAdd.Clear()));
-                Invoke((Action)(()=>_listUpdate.Clear()));
                 Invoke((Action)(()=>IdDelete.Clear()));
                 lock (LockTotal)
                 {
@@ -94,18 +92,25 @@ namespace QLSV.Frm.FrmUserControl
 
         protected override void DeleteRow()
         {
-
-            DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
+            try
+            {
+                DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
+                if (IdDelete.Count <= 0) return;
+                DeleteData.XoaSV(IdDelete);
+                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                LoadFormDetail();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         protected override void SaveDetail()
         {
             try
             {
-                if(IdDelete.Count<=0)return;
-                DeleteData.XoaSV(IdDelete);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -349,7 +354,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.DisplayPromptMsg = false;
+            e.Cancel = !B;
+            B = false;
         }
 
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)

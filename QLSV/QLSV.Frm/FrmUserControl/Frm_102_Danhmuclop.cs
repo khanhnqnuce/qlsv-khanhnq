@@ -59,7 +59,6 @@ namespace QLSV.Frm.FrmUserControl
             LoadGrid();
             _listUpdate.Clear();
             _listAdd.Clear();
-            IdDelete.Clear();
         }
 
         protected override void InsertRow()
@@ -76,8 +75,9 @@ namespace QLSV.Frm.FrmUserControl
                 DeleteRowGrid(uG_DanhSach, "ID", "MaLop");
                 if (IdDelete.Count <= 0) return;
                 if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
-                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
                 Stt();
+                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {

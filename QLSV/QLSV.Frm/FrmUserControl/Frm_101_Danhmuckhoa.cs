@@ -73,7 +73,11 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "TenKhoa");
+                if (IdDelete.Count <= 0) return;
+                DeleteData.Xoa(IdDelete, "KHOA");
                 Stt();
+                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -99,9 +103,8 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
+                    if (_listUpdate.Count <= 0 && _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
-                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KHOA");
                     if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -219,7 +222,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.DisplayPromptMsg = false;
+            e.Cancel = !B;
+            B = false;
         }
 
         #endregion

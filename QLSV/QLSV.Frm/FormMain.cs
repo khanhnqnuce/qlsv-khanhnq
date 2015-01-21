@@ -471,7 +471,7 @@ namespace QLSV.Frm
                     btnInds.Visible = true;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = true;
-                    btnLuu.Visible = true;
+                    btnLuu.Visible = false;
                     btnHuy.Visible = true;
                     btnDong.Visible = true;
                 } //----------104-----------

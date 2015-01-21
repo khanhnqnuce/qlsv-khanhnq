@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
@@ -62,7 +63,6 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 _listUpdate.Clear();
                 _listAdd.Clear();
-                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -80,7 +80,11 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "TenPhong");
+                if (IdDelete.Count <= 0) return;
+                DeleteData.Xoa(IdDelete, "PHONGTHI");
                 Stt();
+                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -108,9 +112,8 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-                    if(_listUpdate.Count<=0&&IdDelete.Count<=0&&_listAdd.Count<=0)return;
+                    if (_listUpdate.Count <= 0 && _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdatePhongThi(_listUpdate);
-                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "PHONGTHI");
                     if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -314,6 +317,12 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmDanhsachphongthi_Load(object sender, EventArgs e)
         {
             LoadForm();
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !B;
+            B = false;
         }
 
     }

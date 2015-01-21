@@ -52,9 +52,10 @@
             this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
             this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(5);
             this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(485, 163);
+            this.uG_DanhSach.Size = new System.Drawing.Size(485, 283);
             this.uG_DanhSach.TabIndex = 28;
             this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.uG_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.uG_DanhSach_BeforeRowsDeleted);
             // 
             // menu_ug
             // 
@@ -101,7 +102,7 @@
             this.Controls.Add(this.uG_DanhSach);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "Frm_105_InportSinhVien";
-            this.Size = new System.Drawing.Size(485, 163);
+            this.Size = new System.Drawing.Size(485, 283);
             this.Load += new System.EventHandler(this.FrmInportSinhVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
             this.menu_ug.ResumeLayout(false);

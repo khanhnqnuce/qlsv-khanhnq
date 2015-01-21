@@ -267,5 +267,11 @@ namespace QLSV.Frm.FrmUserControl
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !B;
+            B = false;
+        }
     }
 }

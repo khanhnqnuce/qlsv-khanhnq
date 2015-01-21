@@ -1,8 +1,6 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
@@ -13,6 +11,7 @@ using QLSV.Core.Utils.Core;
 using QLSV.Data.Utils.Data;
 using QLSV.Frm.Base;
 using QLSV.Frm.Ultis.Frm;
+using Color = System.Drawing.Color;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
 
 namespace QLSV.Frm.FrmUserControl
@@ -88,7 +87,12 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(uG_DanhSach, "ID", "TenKT");
+                if (IdDelete.Count <= 0) return;
+                DeleteData.Xoa(IdDelete, "KYTHI");
                 Stt();
+                updatekythi(null);
+                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -140,9 +144,8 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-                    if (_listUpdate.Count <= 0 && IdDelete.Count <= 0 && _listAdd.Count <= 0) return;
+                    if (_listUpdate.Count <= 0 &&  _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
-                    if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "KYTHI");
                     if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
                     updatekythi(null);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
@@ -290,7 +293,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.DisplayPromptMsg = false;
+            e.Cancel = !B;
+            B = false;
         }
 
         #endregion
