@@ -401,10 +401,9 @@ namespace QLSV.Frm.FrmUserControl
             }
             else
             {
-                if(string.IsNullOrEmpty(txtKhoa.Text))
-                    dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
-                else
-                    dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex,txtKhoa.Text);
+                dgv_DanhSach.DataSource = string.IsNullOrEmpty(txtKhoa.Text) 
+                    ? SearchData.Thongkediem(cbothongke.SelectedIndex) 
+                    : SearchData.Thongkediem(cbothongke.SelectedIndex,txtKhoa.Text);
             }
         }
 
