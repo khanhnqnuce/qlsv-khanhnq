@@ -18,10 +18,9 @@ namespace QLSV.Frm.Frm
         private readonly bool _multiSheet;
         private Thread _threadLoad;
         private int _iNumberStt;
-        private readonly int _iNumberCol;
         private readonly DataTable _result;
         //private readonly IList<SinhVien> _listSinhVien;
-        public FrmNDLSinhVien(int stt, DataTable tbTable, int iNumberCol)
+        public FrmNDLSinhVien(int stt, DataTable tbTable)
         {
             try
             {
@@ -29,7 +28,6 @@ namespace QLSV.Frm.Frm
                 _multiSheet = false;
                 _iNumberStt = stt;
                 _result = tbTable;
-                _iNumberCol = iNumberCol;
             }
             catch (Exception ex)
             {
@@ -99,12 +97,14 @@ namespace QLSV.Frm.Frm
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    _result.Rows[i - startRows][1] = ++_iNumberStt;
-                    for (var j = 0; j < _iNumberCol; j++)
-                    {
-                        _result.Rows[i - startRows][j + 2] = sheet.GetRow(i).GetCell(j).ToString();
-                    }
+                    _result.Rows.Add(++_iNumberStt,
+                        sheet.GetRow(i).GetCell(0).ToString(),
+                        sheet.GetRow(i).GetCell(1).ToString(),
+                        sheet.GetRow(i).GetCell(2).ToString(),
+                        sheet.GetRow(i).GetCell(3).ToString(),
+                        sheet.GetRow(i).GetCell(4).ToString()
+                        );
+                    
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -144,13 +144,14 @@ namespace QLSV.Frm.Frm
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add();
-                    _result.Rows[i - startRows][1] = ++_iNumberStt;
-                    for (var j = 1; j <= _iNumberCol; j++)
-                    {
-                        _result.Rows[i - startRows][j + 1] = oSheet.Cells[i, j].GetValue<string>();
-                    }
-                    upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
+                    _result.Rows.Add(++_iNumberStt,
+                        oSheet.Cells[i, 1].GetValue<string>(),
+                        oSheet.Cells[i, 2].GetValue<string>(),
+                        oSheet.Cells[i, 3].GetValue<string>(),
+                        oSheet.Cells[i, 4].GetValue<string>(),
+                        oSheet.Cells[i, 5].GetValue<string>()
+                        );
+                   upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
                 ResultValue = _result;

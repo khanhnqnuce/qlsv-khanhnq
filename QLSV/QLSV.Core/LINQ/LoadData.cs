@@ -75,8 +75,8 @@ namespace QLSV.Core.LINQ
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY K.ID) as [STT], K.* FROM KHOA K";
                         break;
                     case 16:
-                        str = "SELECT ROW_NUMBER() OVER(ORDER BY  L.ID DESC) as [STT], L.*, k.TenKhoa FROM LOP L" +
-                              " join KHOA k on L.IdKhoa = k.id order by L.ID DESC";
+                        str = "SELECT ROW_NUMBER() OVER(ORDER BY  L.MaLop) as [STT], L.*, k.TenKhoa FROM LOP L" +
+                              " join KHOA k on L.IdKhoa = k.id order by L.MaLop";
                         break;
                     case 17:
                         str = "SELECT * FROM SINHVIEN";

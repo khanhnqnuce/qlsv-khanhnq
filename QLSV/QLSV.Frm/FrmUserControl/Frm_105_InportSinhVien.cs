@@ -18,6 +18,7 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_105_InportSinhVien : FunctionControlHasGrid
     {
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
+        private DataTable _tbError;
 
         private readonly BackgroundWorker _bgwInsert;
 
@@ -36,14 +37,12 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(string));
             table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("HoSV", typeof(string));
             table.Columns.Add("TenSV", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
             table.Columns.Add("MaLop", typeof(string));
-            //table.Columns.Add("TenKhoa", typeof(string));
 
             return table;
         }
@@ -70,7 +69,7 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var stt = uG_DanhSach.Rows.Count;
-                var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable(),5);
+                var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
@@ -102,7 +101,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "MaSV");
+                DeleteRowGrid(uG_DanhSach, "MaSV", "MaSV");
             }
             catch (Exception ex)
             {
@@ -117,10 +116,13 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                _tbError = GetTable();
+                var i = 1;
                 var tbLop = LoadData.Load(16);
                 var danhsach = (DataTable)uG_DanhSach.DataSource;
                 foreach (DataRow row in danhsach.Rows)
                 {
+                    var b = false;
                     var malop = row["MaLop"].ToString();
                     foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
                     {
@@ -132,14 +134,23 @@ namespace QLSV.Frm.FrmUserControl
                             NgaySinh = row["NgaySinh"].ToString(),
                             IdLop = int.Parse(dataRow["ID"].ToString()),
                         };
-                        
+                        b = true;
                         _listAdd.Add(hs);
                     }
+                    if(!b)
+                    {
+                        _tbError.Rows.Add(i++,
+                            row["MaSV"].ToString(),
+                            row["HoSV"].ToString(),
+                            row["TenSV"].ToString(),
+                            row["NgaySinh"].ToString(),
+                            row["MaLop"].ToString());
+                    }
                 }
+                if (_listAdd.Count <= 0) return;
                 InsertData.ThemSinhVien(_listAdd);
-                danhsach.Clear();
-                MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if(_tbError.Rows.Count>0) return;
+                MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }
             catch (Exception ex)
             {
@@ -152,6 +163,12 @@ namespace QLSV.Frm.FrmUserControl
             if (uG_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
+            if (_tbError.Rows.Count > 0)
+            {
+                var text = @"Còn " + _tbError.Rows.Count + @" sinh viên chưa được lưu vào CSDL";
+                var frm = new FrmMsgImportSv(text,_tbError);
+                frm.ShowDialog();
+            }
         }
 
         #region BackgroundWorker
@@ -214,7 +231,6 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-                band.Columns["ID"].Hidden = true;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
