@@ -147,9 +147,9 @@
             this.cbothongke.Items.AddRange(new object[] {
             "- Tất cả - ",
             "< 200",
-            "200 => 249",
+            "200 => 250",
             "250 => 300",
-            "300 => 374",
+            "300 => 375",
             "375 = > 450",
             "> 450"});
             this.cbothongke.Location = new System.Drawing.Point(0, 0);
