@@ -228,23 +228,30 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                double bosung = Statistic.Thongkediem(0, _list).Rows.Count;
-                double toiec1 = Statistic.Thongkediem(1, _list).Rows.Count;
-                double toiec2 = Statistic.Thongkediem(2, _list).Rows.Count;
-                double toiec3 = Statistic.Thongkediem(3, _list).Rows.Count;
-                double toiec4 = Statistic.Thongkediem(4, _list).Rows.Count;
-                double miengiam = Statistic.Thongkediem(5, _list).Rows.Count;
-                foreach (var item in _listtk)
+                //double bosung = Statistic.Thongkediem(0, _list).Rows.Count;
+                //double toiec1 = Statistic.Thongkediem(1, _list).Rows.Count;
+                //double toiec2 = Statistic.Thongkediem(2, _list).Rows.Count;
+                //double toiec3 = Statistic.Thongkediem(3, _list).Rows.Count;
+                //double toiec4 = Statistic.Thongkediem(4, _list).Rows.Count;
+                //double miengiam = Statistic.Thongkediem(5, _list).Rows.Count;
+                double bosung = 0;
+                double toiec1 = 0;
+                double toiec2 = 0;
+                double toiec3 = 0;
+                double toiec4 = 0;
+                double miengiam = 0;
+                foreach (var row in dgv_DanhSach.Rows)
                 {
-                    if (item.TongDiem < 200) 
+                    var d = int.Parse(row.Cells["TongDiem"].Text);
+                    if (d < 200)
                         bosung = bosung + 1;
-                    else if (item.TongDiem < 249)
+                    else if (d >= 200 && d < 250)
                         toiec1 += 1;
-                    else if (item.TongDiem < 300)
+                    else if (d >= 250 && d < 300)
                         toiec2 += 1;
-                    else if (item.TongDiem < 374)
+                    else if (d >= 300 && d < 374)
                         toiec3 += 1;
-                    else if (item.TongDiem < 450)
+                    else if (d >= 374 && d < 450)
                         toiec4 += 1;
                     else
                         miengiam += 1;
@@ -411,6 +418,12 @@ namespace QLSV.Frm.FrmUserControl
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.DisplayPromptMsg = false;
+            e.Cancel = true;
         }
     }
 

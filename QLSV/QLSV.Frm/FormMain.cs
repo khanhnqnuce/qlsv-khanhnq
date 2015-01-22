@@ -646,7 +646,7 @@ namespace QLSV.Frm
                 else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
                 {
                     bCheck = true;
-                    lbXoa.Visible = true;
+                    lbXoa.Visible = false;
                     btnNapDuLieu.Visible = false;
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
