@@ -357,6 +357,12 @@
     <Compile Include="Frm\FrmRptDanhSachSinhVien.Designer.cs">
       <DependentUpon>FrmRptDanhSachSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmRptkiemtraloilogic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmRptkiemtraloilogic.Designer.cs">
+      <DependentUpon>FrmRptkiemtraloilogic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmSaoLuuDuLieu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -596,6 +602,9 @@
     <EmbeddedResource Include="Frm\FrmRptDanhSachSinhVien.resx">
       <DependentUpon>FrmRptDanhSachSinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmRptkiemtraloilogic.resx">
+      <DependentUpon>FrmRptkiemtraloilogic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmSaoLuuDuLieu.resx">
       <DependentUpon>FrmSaoLuuDuLieu.cs</DependentUpon>
     </EmbeddedResource>
@@ -682,6 +691,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\dsSvLop.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\kiemtrasinhvien1.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="RunAsAdmin.manifest" />

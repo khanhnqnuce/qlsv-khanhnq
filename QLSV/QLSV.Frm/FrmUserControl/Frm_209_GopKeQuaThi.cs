@@ -127,7 +127,7 @@ namespace QLSV.Frm.FrmUserControl
                 var frm = new FrmGopKetQua { Check = false };
                 frm.ShowDialog();
                 _list = frm.LstIdKyThi;
-                if (_list.Count>0)
+                if (_list.Count>0 && frm.Check)
                 {
                     var thread = new Thread(LoadGrid) {IsBackground = true};
                     thread.Start();

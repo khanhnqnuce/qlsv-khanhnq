@@ -48,6 +48,7 @@ namespace QLSV.Frm.Frm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Check = true;
             foreach (var row in dgv_DanhSach.Rows)
             {
                 if (bool.Parse(row.Cells["Chon"].Text))

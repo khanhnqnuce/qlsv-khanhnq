@@ -337,7 +337,7 @@ namespace QLSV.Frm
                         break;
                     case "205":
                         var frm = new FrmKiemTraLoiLogic(_idkythi);
-                        frm.Indanhsach();
+                        frm.LoadForm();
                         break;
                     case "206":
                         _frmNhapThangDiem = new Frm_206_NhapThangDiem(_idkythi);
