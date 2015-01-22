@@ -76,17 +76,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Rptdanhsach()
         {
-            var tblop = LoadData.Load(4, _idkythi);
             var tb = LoadData.Load(10, _idkythi);
-            foreach (DataRow rowl in tblop.Rows)
-            {
-                var stt = 1;
-                var malop = rowl["MaLop"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString().Equals(malop)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
@@ -137,12 +127,35 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                double bosung = SearchData.Thongkediem(0, _idkythi).Rows.Count;
-                double toiec1 = SearchData.Thongkediem(1, _idkythi).Rows.Count;
-                double toiec2 = SearchData.Thongkediem(2, _idkythi).Rows.Count;
-                double toiec3 = SearchData.Thongkediem(3, _idkythi).Rows.Count;
-                double toiec4 = SearchData.Thongkediem(4, _idkythi).Rows.Count;
-                double miengiam = SearchData.Thongkediem(5, _idkythi).Rows.Count;
+                //double bosung = SearchData.Thongkediem(0, _idkythi).Rows.Count;
+                //double toiec1 = SearchData.Thongkediem(1, _idkythi).Rows.Count;
+                //double toiec2 = SearchData.Thongkediem(2, _idkythi).Rows.Count;
+                //double toiec3 = SearchData.Thongkediem(3, _idkythi).Rows.Count;
+                //double toiec4 = SearchData.Thongkediem(4, _idkythi).Rows.Count;
+                //double miengiam = SearchData.Thongkediem(5, _idkythi).Rows.Count;
+                //var tong = bosung + toiec1 + toiec2 + toiec3 + toiec4 + miengiam;
+                var tb = LoadData.Load(15, _idkythi);
+                double bosung = 0;
+                double toiec1 = 0;
+                double toiec2 = 0;
+                double toiec3 = 0;
+                double toiec4 = 0;
+                double miengiam = 0;
+                foreach (var d in from DataRow row in tb.Rows select int.Parse(row["DiemThi"].ToString()))
+                {
+                    if (d < 200)
+                        bosung = bosung + 1;
+                    else if (d >= 200 && d < 250)
+                        toiec1 += 1;
+                    else if (d >= 250 && d < 300)
+                        toiec2 += 1;
+                    else if (d >= 300 && d < 374)
+                        toiec3 += 1;
+                    else if (d >= 374 && d < 450)
+                        toiec4 += 1;
+                    else
+                        miengiam += 1;
+                }
                 var tong = bosung + toiec1 + toiec2 + toiec3 + toiec4 + miengiam;
 
                 e.Parameters["bosung"].Value = bosung.ToString();
