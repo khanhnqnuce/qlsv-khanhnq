@@ -22,14 +22,16 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var tb = LoadData.Load(8,_idkythi);
-                if (tb == null || tb.Rows.Count == 0)
+                var tb1 = LoadData.Load(2051,_idkythi);
+                var tb2 = LoadData.Load(2052,_idkythi);
+                if (tb1.Rows.Count == 0 && tb2.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Không có lỗi xảy ra", @"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     return;
                 }
                 reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach",tb );
+                reportManager1.DataSources.Add("danhsach",tb1);
+                reportManager1.DataSources.Add("danhsach1",tb2);
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien.rst";
                 rptkiemtralogic.Prepare();
                 rptkiemtralogic.GetReportParameter += GetParameter;

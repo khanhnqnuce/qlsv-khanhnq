@@ -184,11 +184,17 @@ namespace QLSV.Core.LINQ
                               "FROM DAPAN d, KYTHI k " +
                               "WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + "";
                         break;
-                    case 8:
+                    case 2051:
                         str = "select b.MaSV" +
                               " FROM BAILAM b" +
                               " where b.IdKyThi = "+idKythi+"" +
                               " and not exists (select * from XEPPHONG x where b.MaSV = x.IdSV and x.IdKyThi = "+idKythi+") ORDER BY b.MaSV";
+                        break;
+                    
+                    case 2052:
+                        str = "select x.IdSV from XEPPHONG x" +
+                              " where x.IdKyThi = " + idKythi + " and" +
+                              " not exists (select b.MaSV from BAILAM b where b.MaSV = x.IdSV and b.IdKyThi = " + idKythi + ")";
                         break;
                     case 9:
                         str =
