@@ -146,12 +146,12 @@
             this.cbothongke.FormattingEnabled = true;
             this.cbothongke.Items.AddRange(new object[] {
             "- Tất cả - ",
-            "< 200",
-            "200 => 250",
-            "250 => 300",
-            "300 => 375",
-            "375 = > 450",
-            "> 450"});
+            "x < 200",
+            "200 <= x < 250",
+            "250 <= x < 300",
+            "300 <= x < 375",
+            "375 <= x < 450",
+            "x >= 450"});
             this.cbothongke.Location = new System.Drawing.Point(0, 0);
             this.cbothongke.Name = "cbothongke";
             this.cbothongke.Size = new System.Drawing.Size(143, 23);
