@@ -22,6 +22,7 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
         private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
+        private DataTable _tbError;
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
 
@@ -43,12 +44,10 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaSinhVien", typeof(string));
+            table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("KetQua", typeof(string));
-            table.Columns.Add("IdKyThi", typeof(string));
             return table;
         }
 
@@ -71,6 +70,12 @@ namespace QLSV.Frm.FrmUserControl
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
+            if (_tbError.Rows.Count > 0)
+            {
+                var text = @"Còn " + _tbError.Rows.Count + @" bài thi chưa được chấm";
+                var frm = new FrmMsgImportSv(text, _tbError, 2);
+                frm.ShowDialog();
+            }
         }
 
         private void Timkiemsinhvien(object sender, string masinhvien)
@@ -98,7 +103,8 @@ namespace QLSV.Frm.FrmUserControl
         /// </summary>
         protected virtual void LoadGrid()
         {
-            var dem = 0;
+            var stt = 1;
+            _tbError = GetTable();
             var tbbailam = LoadData.Load(16, _idkythi);
             var tabledapan = LoadData.Load(7, _idkythi);
             if (tabledapan.Rows.Count==0)
@@ -121,7 +127,11 @@ namespace QLSV.Frm.FrmUserControl
                     var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
                     if (listbailam.Length != tbdapan.Rows.Count)
                     {
-                        dem = dem + 1;
+                        _tbError.Rows.Add(stt++,
+                            dataRow["MaSV"].ToString(),
+                            dataRow["MaDe"].ToString(),
+                            dataRow["KetQua"].ToString()
+                            );
                         continue;
                     }
                     for (var i = 0; i < tbdapan.Rows.Count; i++)
@@ -149,10 +159,6 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     OnCloseDialog();
                 }
-                if (dem > 0)
-                    Invoke(
-                        (Action)(() => MessageBox.Show(@"Còn " + dem + @" sinh viên chưa được chấm thi", @"Có lỗi xảy ra",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error)));
             }
             else
             {
@@ -173,6 +179,12 @@ namespace QLSV.Frm.FrmUserControl
                 var thread = new Thread(LoadGrid) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
+                if (_tbError.Rows.Count > 0)
+                {
+                    var text = @"Còn " + _tbError.Rows.Count + @" bài thi chưa được chấm";
+                    var frm = new FrmMsgImportSv(text, _tbError, 2);
+                    frm.ShowDialog();
+                }
             }
             catch (Exception ex)
             {

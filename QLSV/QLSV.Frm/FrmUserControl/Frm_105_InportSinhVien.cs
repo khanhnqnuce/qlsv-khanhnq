@@ -166,7 +166,7 @@ namespace QLSV.Frm.FrmUserControl
             if (_tbError.Rows.Count > 0)
             {
                 var text = @"Còn " + _tbError.Rows.Count + @" sinh viên chưa được lưu vào CSDL";
-                var frm = new FrmMsgImportSv(text,_tbError);
+                var frm = new FrmMsgImportSv(text,_tbError,1);
                 frm.ShowDialog();
             }
         }

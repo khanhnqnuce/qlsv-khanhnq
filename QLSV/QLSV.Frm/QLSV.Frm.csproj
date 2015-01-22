@@ -705,6 +705,9 @@
     <Content Include="Reports\kiemtrasinhvien1.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\loichamthi.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="RunAsAdmin.manifest" />
   </ItemGroup>
   <ItemGroup>
