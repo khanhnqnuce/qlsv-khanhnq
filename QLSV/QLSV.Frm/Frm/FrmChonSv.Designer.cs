@@ -98,9 +98,10 @@
             // 
             // cbolop
             // 
+            this.cbolop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbolop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbolop.DisplayMember = "MaLop";
             this.cbolop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbolop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbolop.FormattingEnabled = true;
             this.cbolop.Location = new System.Drawing.Point(0, 0);
             this.cbolop.Name = "cbolop";

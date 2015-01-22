@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters7 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters8 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters3 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters4 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_Themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Inport = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,7 +200,7 @@
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(80, 22);
             this.toolStripLabel3.Text = "Chọn khóa: K";
             // 
             // txtKhoa
@@ -217,7 +217,7 @@
             this.btntimkiem.Image = global::QLSV.Frm.Properties.Resources.find_icon;
             this.btntimkiem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btntimkiem.Name = "btntimkiem";
-            this.btntimkiem.Size = new System.Drawing.Size(77, 22);
+            this.btntimkiem.Size = new System.Drawing.Size(74, 22);
             this.btntimkiem.Text = "Tìm kiếm";
             this.btntimkiem.Click += new System.EventHandler(this.btntimkiem_Click);
             // 
@@ -238,9 +238,10 @@
             // 
             // cbolop
             // 
+            this.cbolop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbolop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbolop.DisplayMember = "MaLop";
             this.cbolop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbolop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbolop.FormattingEnabled = true;
             this.cbolop.Location = new System.Drawing.Point(0, 0);
             this.cbolop.Name = "cbolop";
@@ -279,7 +280,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(56, 15);
+            this.toolStripLabel2.Size = new System.Drawing.Size(56, 22);
             this.toolStripLabel2.Text = "Chọn lớp";
             // 
             // panel2
@@ -335,7 +336,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters7;
+            this.pdfExportFilter1.ExtraParameters = extraParameters3;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -343,7 +344,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters8;
+            this.excelExportFilter1.ExtraParameters = extraParameters4;
             // 
             // reportManager1
             // 
