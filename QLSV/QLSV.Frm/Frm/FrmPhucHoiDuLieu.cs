@@ -72,7 +72,7 @@ namespace QLSV.Frm.Frm
                 }
                 else
                     MessageBox.Show(
-                        @"Chọn sai file hoặc đường dẫn chính xác)",
+                        @"Chọn sai file hoặc đường dẫn chính xác",
                         @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
