@@ -398,8 +398,14 @@ namespace QLSV.Frm.FrmUserControl
             if (cbothongke.SelectedIndex == 0)
             {
                 LoadGrid();
-            }else
-                dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
+            }
+            else
+            {
+                if(string.IsNullOrEmpty(txtKhoa.Text))
+                    dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex);
+                else
+                    dgv_DanhSach.DataSource = SearchData.Thongkediem(cbothongke.SelectedIndex,txtKhoa.Text);
+            }
         }
 
     }
