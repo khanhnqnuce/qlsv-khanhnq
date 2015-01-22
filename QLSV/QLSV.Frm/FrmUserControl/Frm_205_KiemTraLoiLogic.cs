@@ -63,7 +63,7 @@ namespace QLSV.Frm.Frm
                 reportManager1.DataSources.Add("danhsach1",tb[0]);
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien1.rst";
                 rptkiemtralogic.Prepare();
-                rptkiemtralogic.GetReportParameter += GetParameter;
+                rptkiemtralogic.GetReportParameter += GetParameter1;
                 var previewForm = new PreviewForm(rptkiemtralogic)
                 {
                     WindowState = FormWindowState.Maximized,
@@ -77,7 +77,29 @@ namespace QLSV.Frm.Frm
 
             }
         }
-        
+
+        private void GetParameter1(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _list[0]);
+                var tb1 = LoadData.Load(3, _list[1]);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TT2"].Value = row["GhiChu"].ToString();
+                }
+                foreach (DataRow row in tb1.Rows)
+                {
+                    e.Parameters["TT1"].Value = row["GhiChu"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         private void Rptdanhsach()
         {
             try
