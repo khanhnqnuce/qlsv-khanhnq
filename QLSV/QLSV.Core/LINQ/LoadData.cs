@@ -160,7 +160,7 @@ namespace QLSV.Core.LINQ
                               "where x.IdKyThi = "+idKythi+" ORDER BY p.TenPhong";
                         break;
                     case 3:
-                        str = "SELECT TenKT, NgayThi, GhiChu FROM KYTHI WHERE ID = " + idKythi + "";
+                        str = "SELECT * FROM KYTHI WHERE ID = " + idKythi + "";
                         break;
                     case 4:
                         str = "SELECT l.MaLop " +
@@ -192,7 +192,7 @@ namespace QLSV.Core.LINQ
                         break;
                     
                     case 2052:
-                        str = "select x.IdSV from XEPPHONG x" +
+                        str = "select x.IdSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, p.TenPhong from XEPPHONG x join SINHVIEN s on x.IdSV = s.MaSV join LOP l on s.IdLop = l.ID join PHONGTHI p on x.IdPhong = p.ID " +
                               " where x.IdKyThi = " + idKythi + " and" +
                               " not exists (select b.MaSV from BAILAM b where b.MaSV = x.IdSV and b.IdKyThi = " + idKythi + ")";
                         break;

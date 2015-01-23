@@ -239,6 +239,7 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachnopbai.rst";
+            rptdanhsachduthi.GetReportParameter += GetParameter;
             rptdanhsachduthi.Prepare();
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
@@ -281,7 +282,7 @@ namespace QLSV.Frm.FrmUserControl
                 var tb = LoadData.Load(3, _idkythi);
                 foreach (DataRow row in tb.Rows)
                 {
-                    e.Parameters["GhiChu"].Value = row["GhiChu"].ToString();
+                    e.Parameters["GhiChu"].Value = "Giờ thi: "+ row["TGBatDau"] + " - " + row["TGKetThuc"];
                 }
             }
             catch (Exception ex)
