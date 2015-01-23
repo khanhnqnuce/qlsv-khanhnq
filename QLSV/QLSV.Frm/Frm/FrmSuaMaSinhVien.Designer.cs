@@ -31,49 +31,18 @@
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSuaMaSinhVien));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnLuu = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.txtmasinhvien = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.ultraLabel1 = new Infragistics.Win.Misc.UltraLabel();
             this.errorMaSinhVien = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStrip1.SuspendLayout();
+            this.btnluu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorMaSinhVien)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnLuu,
-            this.toolStripSeparator1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(331, 25);
-            this.toolStrip1.TabIndex = 32;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.Image = global::QLSV.Frm.Properties.Resources.Ribbon_Save_32x32;
-            this.btnLuu.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(48, 22);
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.ToolTipText = "(F5)";
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // txtmasinhvien
             // 
             this.txtmasinhvien.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtmasinhvien.Location = new System.Drawing.Point(112, 40);
+            this.txtmasinhvien.Location = new System.Drawing.Point(115, 19);
             this.txtmasinhvien.Name = "txtmasinhvien";
             this.txtmasinhvien.Size = new System.Drawing.Size(197, 26);
             this.txtmasinhvien.TabIndex = 34;
@@ -85,26 +54,36 @@
             appearance1.TextVAlignAsString = "Middle";
             this.ultraLabel1.Appearance = appearance1;
             this.ultraLabel1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.ultraLabel1.Location = new System.Drawing.Point(16, 42);
+            this.ultraLabel1.Location = new System.Drawing.Point(19, 21);
             this.ultraLabel1.Name = "ultraLabel1";
-            this.ultraLabel1.Size = new System.Drawing.Size(100, 23);
+            this.ultraLabel1.Size = new System.Drawing.Size(90, 23);
             this.ultraLabel1.TabIndex = 33;
-            this.ultraLabel1.Text = "Mã sinh viên:";
+            this.ultraLabel1.Text = "Nhập mã sv:";
             // 
             // errorMaSinhVien
             // 
             this.errorMaSinhVien.ContainerControl = this;
             this.errorMaSinhVien.Icon = ((System.Drawing.Icon)(resources.GetObject("errorMaSinhVien.Icon")));
             // 
+            // btnluu
+            // 
+            this.btnluu.Location = new System.Drawing.Point(129, 59);
+            this.btnluu.Name = "btnluu";
+            this.btnluu.Size = new System.Drawing.Size(75, 23);
+            this.btnluu.TabIndex = 35;
+            this.btnluu.Text = "Lưu lại";
+            this.btnluu.UseVisualStyleBackColor = true;
+            this.btnluu.Click += new System.EventHandler(this.btnluu_Click);
+            // 
             // FrmSuaMaSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(331, 80);
+            this.ClientSize = new System.Drawing.Size(331, 101);
+            this.Controls.Add(this.btnluu);
             this.Controls.Add(this.txtmasinhvien);
             this.Controls.Add(this.ultraLabel1);
-            this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -113,9 +92,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhập mã sinh viên";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Text = "Sửa mã sinh viên";
             ((System.ComponentModel.ISupportInitialize)(this.txtmasinhvien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorMaSinhVien)).EndInit();
             this.ResumeLayout(false);
@@ -125,11 +102,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnLuu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public Infragistics.Win.UltraWinEditors.UltraTextEditor txtmasinhvien;
         private Infragistics.Win.Misc.UltraLabel ultraLabel1;
         private System.Windows.Forms.ErrorProvider errorMaSinhVien;
+        private System.Windows.Forms.Button btnluu;
     }
 }

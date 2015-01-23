@@ -219,6 +219,16 @@ namespace QLSV.Frm {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mọi thông tin của sinh viên điều bị xóa.
+        ///Bạn có chắc chắn muốn xóa không?.
+        /// </summary>
+        internal static string MsgXoaSv {
+            get {
+                return ResourceManager.GetString("MsgXoaSv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dd/mm/yyyy.
         /// </summary>
         internal static string txtddmmyyyy {

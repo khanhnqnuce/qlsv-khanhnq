@@ -53,9 +53,9 @@ namespace QLSV.Frm.Frm
             try
             {
                 var tb = Statistic.GopKetQua2(_list);
-                if (tb.Length == 0)
+                if (tb[0].Rows.Count == 0 && tb[1].Rows.Count == 0)
                 {
-                    MessageBox.Show(@"Không có lỗi xảy ra", @"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show(@"Không có lỗi logic", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 reportManager1.DataSources.Clear();
@@ -108,7 +108,7 @@ namespace QLSV.Frm.Frm
                 var tb2 = LoadData.Load(2052,_idkythi);
                 if (tb1.Rows.Count == 0 && tb2.Rows.Count == 0)
                 {
-                    MessageBox.Show(@"Không có lỗi xảy ra", @"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show(@"Không có lỗi logic", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 reportManager1.DataSources.Clear();

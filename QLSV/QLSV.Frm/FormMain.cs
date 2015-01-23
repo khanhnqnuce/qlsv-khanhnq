@@ -883,7 +883,7 @@ namespace QLSV.Frm
             }
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
-                _frmQuanlySinhVien.Save();
+                //_frmQuanlySinhVien.Save();
             }
             else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
             {

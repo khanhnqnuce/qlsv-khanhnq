@@ -92,11 +92,48 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
-                if (IdDelete.Count <= 0) return;
-                DeleteData.XoaSv(IdDelete);
-                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
-                LoadFormDetail();
+                //DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
+                //if (IdDelete.Count <= 0) return;
+                //DeleteData.XoaSv(IdDelete);
+                //MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                //LoadFormDetail();
+                bool check;
+                if (dgv_DanhSach.Selected.Rows.Count > 0)
+                {
+                    foreach (var row in dgv_DanhSach.Selected.Rows)
+                    {
+                        var id = row.Cells["MaSV"].Text;
+                        IdDelete.Add(int.Parse(id));
+                    }
+                    check = true;
+                }
+                else if (dgv_DanhSach.ActiveRow != null)
+                {
+                    check = false;
+                    var id = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text;
+                    IdDelete.Add(int.Parse(id));
+                        
+                }
+                else
+                {
+                    MessageBox.Show(@"Chọn lớp để xóa");
+                    return;
+                }
+                if (IdDelete.Count > 0 && DialogResult.Yes ==
+                        MessageBox.Show(FormResource.MsgXoaSv,
+                            FormResource.MsgCaption,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                {
+                    DeleteData.XoaSv(IdDelete);
+                    Stt();
+                    if (check)
+                        dgv_DanhSach.DeleteSelectedRows(false);
+                    else
+                        dgv_DanhSach.ActiveRow.Delete(false);
+                    MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                }
+                IdDelete.Clear();
             }
             catch (Exception ex)
             {
@@ -104,11 +141,18 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void Stt()
+        {
+            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
+            {
+                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
+            }
+        }
+
         protected override void SaveDetail()
         {
             try
             {
-                
                 LoadFormDetail();
             }
             catch (Exception ex)
@@ -123,6 +167,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 DeleteData.Xoa("SINHVIEN");
                 LoadFormDetail();
+                MessageBox.Show(@"Xóa dữ liệu thành công", @"Thông báo");
             }
             catch (Exception ex)
             {
@@ -351,8 +396,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+
         }
 
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)

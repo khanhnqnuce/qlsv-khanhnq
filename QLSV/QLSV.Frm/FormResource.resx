@@ -242,4 +242,8 @@ Xin vui lòng thử lại</value>
     <value>Sinh viên thuộc lớp không thể xóa.
 Cần xóa sinh viên trước khi xóa lớp.</value>
   </data>
+  <data name="MsgXoaSv" xml:space="preserve">
+    <value>Mọi thông tin của sinh viên điều bị xóa.
+Bạn có chắc chắn muốn xóa không?</value>
+  </data>
 </root>

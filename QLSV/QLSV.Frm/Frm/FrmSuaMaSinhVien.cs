@@ -34,11 +34,6 @@ namespace QLSV.Frm.Frm
             }
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            Sua();
-        }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -57,6 +52,11 @@ namespace QLSV.Frm.Frm
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnluu_Click(object sender, EventArgs e)
+        {
+            Sua();
         }
     }
 }

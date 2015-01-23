@@ -74,11 +74,7 @@ namespace QLSV.Core.LINQ
                                                 " where l.ID = "+id+"");
                         return tb1.Rows.Count <= 0;
                     case 2:
-                        var tb2 = Conn.GetTable("select d.MaSV from DIEMTHI d" +
-                                                " join SINHVIEN s on d.MaSV = s.MaSV" +
-                                                " join LOP l on s.IdLop = l.ID" +
-                                                " join KHOA k on l.IdKhoa = k.ID" +
-                                                " where k.ID = " + id + "");
+                        var tb2 = Conn.GetTable("select * from LOP where IdKhoa = " + id + "");
                         return tb2.Rows.Count <= 0;
                 }
                 return true;
@@ -142,13 +138,12 @@ namespace QLSV.Core.LINQ
         }
         
         /// <summary>
-        /// xóa khoa và các lớp thuộc khoa
+        /// xóa khoa
         /// </summary>
         private static void XoaKhoa(int idkhoa)
         {
             try
             {
-                Conn.ExcuteQuerySql("DELETE FROM LOP WHERE IdKhoa = " + idkhoa + "");
                 Conn.ExcuteQuerySql("DELETE FROM KHOA WHERE ID = " + idkhoa + "");
             }
             catch (Exception ex)
@@ -180,6 +175,8 @@ namespace QLSV.Core.LINQ
         {
             try
             {
+                Conn.ExcuteQuerySql("DELETE FROM DIEMTHI WHERE MaSV = " + item + "");
+                Conn.ExcuteQuerySql("DELETE FROM XEPPHONG WHERE IdSV = " + item + "");
                 Conn.ExcuteQuerySql("DELETE FROM SINHVIEN WHERE MaSV = " + item + "");
             }
             catch (Exception ex)

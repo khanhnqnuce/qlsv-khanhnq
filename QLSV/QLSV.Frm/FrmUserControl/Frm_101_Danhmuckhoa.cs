@@ -72,11 +72,59 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(dgv_DanhSach, "ID", "TenKhoa");
-                if (IdDelete.Count <= 0) return;
-                DeleteData.Xoa(IdDelete, "KHOA");
-                Stt();
-                MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
+                bool check;
+                if (dgv_DanhSach.Selected.Rows.Count > 0)
+                {
+                    foreach (var row in dgv_DanhSach.Selected.Rows)
+                    {
+                        var id = row.Cells["ID"].Text;
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                            IdDelete.Add(int.Parse(id));
+                        }
+                    }
+                    check = true;
+                }
+                else if (dgv_DanhSach.ActiveRow != null)
+                {
+                    var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
+                    if (string.IsNullOrEmpty(id)) return;
+                    var index = dgv_DanhSach.ActiveRow.Index;
+                    check = false;
+                    var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
+                    if (!string.IsNullOrEmpty(idStr))
+                        IdDelete.Add(int.Parse(idStr));
+                }
+                else
+                {
+                    MessageBox.Show(@"Chọn Khoa để xóa");
+                    return;
+                }
+                var b = DeleteData.KtraXoaThongTin(2, IdDelete);
+                if (!b)
+                {
+                    MessageBox.Show(@"không thể xóa Khoa. Cần xóa lớp trước khi xóa Khoa",
+                        FormResource.MsgCaption,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    IdDelete.Clear();
+                    return;
+                }
+                if (IdDelete.Count > 0 && DialogResult.Yes ==
+                        MessageBox.Show(@"Bạn có chắc chắn muốn xóa không ?",
+                            FormResource.MsgCaption,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                {
+                    DeleteData.XoaKhoa(IdDelete);
+                    Stt();
+                    if (check)
+                        dgv_DanhSach.DeleteSelectedRows(false);
+                    else
+                        dgv_DanhSach.ActiveRow.Delete(false);
+
+                    MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                }
                 IdDelete.Clear();
             }
             catch (Exception ex)
@@ -218,12 +266,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
-        {
-            e.Cancel = !B;
-            B = false;
         }
 
         #endregion

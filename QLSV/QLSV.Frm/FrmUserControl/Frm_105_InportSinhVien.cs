@@ -78,7 +78,7 @@ namespace QLSV.Frm.FrmUserControl
                 table.Merge(resultValue);
                 uG_DanhSach.DataSource = table;
 
-                MessageBox.Show(@"Inport thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
             }
             catch (Exception ex)
             {

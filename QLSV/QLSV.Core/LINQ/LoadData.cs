@@ -244,7 +244,7 @@ namespace QLSV.Core.LINQ
                               "join LOP l on s.IdLop = l.ID " +
                               "WHERE b.IdKyThi = " + idKythi + " and b.DiemThi is not null";
                         break;
-                    case 16:
+                    case 207:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* "+
                               "FROM BAILAM b " +
                               "WHERE b.IdKyThi = " + idKythi + "";

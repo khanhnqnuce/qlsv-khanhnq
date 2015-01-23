@@ -20,7 +20,7 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly List<PhongThi> _listAdd = new List<PhongThi>();
         private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
-        
+        private UltraGridRow _newRow;
         public Frm_103_TuDienPhongThi()
         {
             InitializeComponent();
@@ -322,6 +322,40 @@ namespace QLSV.Frm.FrmUserControl
         {
             e.Cancel = !B;
             B = false;
+        }
+
+        private void Timkiemphong()
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["TenPhong"].Text.Equals(txtKhoa.Text, StringComparison.OrdinalIgnoreCase)))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void btntimkiem_Click(object sender, EventArgs e)
+        {
+            Timkiemphong();
+        }
+
+        private void txtKhoa_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case (Keys.Enter):
+                    Timkiemphong();
+                    break;
+            }
         }
 
     }

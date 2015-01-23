@@ -78,20 +78,15 @@ namespace QLSV.Frm.FrmUserControl
                     foreach (var row in uG_DanhSach.Selected.Rows)
                     {
                         var id = row.Cells["ID"].Text;
-                        if (!string.IsNullOrEmpty(id))
-                        {
-                            IdDelete.Add(int.Parse(id));
-                        }
+                        IdDelete.Add(int.Parse(id));
                     }
                     check = true;
                 }
                 else if (uG_DanhSach.ActiveRow != null)
                 {
-                    var index = uG_DanhSach.ActiveRow.Index;
                     check = false;
                     var idStr = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-                    if (!string.IsNullOrEmpty(idStr))
-                        IdDelete.Add(int.Parse(idStr));
+                    IdDelete.Add(int.Parse(idStr));
                 }
                 else
                 {

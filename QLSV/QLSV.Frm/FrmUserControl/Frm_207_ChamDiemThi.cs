@@ -105,7 +105,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var stt = 1;
             _tbError = GetTable();
-            var tbbailam = LoadData.Load(16, _idkythi);
+            var tbbailam = LoadData.Load(207, _idkythi);
             var tabledapan = LoadData.Load(7, _idkythi);
             if (tabledapan.Rows.Count==0)
             {
@@ -154,7 +154,6 @@ namespace QLSV.Frm.FrmUserControl
                     dataRow["DiemThi"] = diem.ToString();
                 }
                 Invoke((Action)(() => dgv_DanhSach.DataSource = tbbailam));
-                Invoke((Action)(() => pnl_from.Visible = true));
                 lock (LockTotal)
                 {
                     OnCloseDialog();
@@ -176,6 +175,20 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var tb = SearchData.KtraChamThi(_idkythi);
+                if (tb.Rows.Count > 0)
+                {
+                    if (DialogResult.No ==
+                        MessageBox.Show(@"Bài thi của sv đã được chấm bạn có muốn chấm lại không.",
+                            FormResource.MsgCaption,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                    {
+                        dgv_DanhSach.DataSource = tb;
+                        pnl_from.Visible = true;
+                        return;
+                    }
+                }
                 var thread = new Thread(LoadGrid) {IsBackground = true};
                 thread.Start();
                 OnShowDialog("Loading...");
@@ -185,6 +198,7 @@ namespace QLSV.Frm.FrmUserControl
                     var frm = new FrmMsgImportSv(text, _tbError, 2);
                     frm.ShowDialog();
                 }
+                pnl_from.Visible = true;
             }
             catch (Exception ex)
             {

@@ -834,5 +834,18 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
+
+        public static DataTable KtraChamThi(int idkythi)
+        {
+            try
+            {
+                return Conn.GetTable("select ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT], b.* from BAILAM b where b.IdKyThi = " + idkythi + " and b.DiemThi is not null");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
     }
 }
