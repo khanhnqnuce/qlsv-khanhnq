@@ -492,7 +492,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                var str = "SELECT * FROM LOP WHERE IdKhoa = " + id + "";
+                var str = "SELECT ROW_NUMBER() OVER(ORDER BY  L.MaLop) as [STT], L.*, k.TenKhoa FROM LOP L" +
+                          " join KHOA k on L.IdKhoa = k.id where IdKhoa = " + id + " order by L.MaLop";
+                   // "SELECT * FROM LOP WHERE IdKhoa = " + id + "";
                 return Conn.GetTable(str);
             }
             catch (Exception ex)

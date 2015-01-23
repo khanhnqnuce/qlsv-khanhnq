@@ -180,6 +180,26 @@ namespace QLSV.Frm {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toàn bộ sinh viên thuộc lớp sẽ bị xóa.
+        /// Bạn có muốn xóa không ?.
+        /// </summary>
+        internal static string MsgThongbaoxoalop {
+            get {
+                return ResourceManager.GetString("MsgThongbaoxoalop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sinh viên thuộc lớp không thể xóa.
+        ///Cần xóa sinh viên trước khi xóa lớp..
+        /// </summary>
+        internal static string Msgthongbaoxoalop2 {
+            get {
+                return ResourceManager.GetString("Msgthongbaoxoalop2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xóa Thành công.
         /// </summary>
         internal static string msgThongbaoxoathanhcong {

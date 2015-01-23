@@ -1217,7 +1217,7 @@ namespace QLSV.Frm
                 case (Keys.F10):
                     In_F10();
                     break;
-                case (Keys.Delete):
+                case (Keys.F11):
                     Xoadong_F11();
                     break;
                 case (Keys.F12):

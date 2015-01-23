@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -19,7 +20,8 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly List<Lop> _listAdd = new List<Lop>();
         private readonly List<Lop> _listUpdate = new List<Lop>();
-
+        private int _idkhoa;
+        private UltraGridRow _newRow;
         public Frm_102_Danhmuclop()
         {
             InitializeComponent();
@@ -70,11 +72,58 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                DeleteRowGrid(uG_DanhSach, "ID", "MaLop");
-                if (IdDelete.Count <= 0) return;
-                if (IdDelete.Count > 0) DeleteData.Xoa(IdDelete, "LOP");
-                Stt();
-                MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                bool check;
+                if (uG_DanhSach.Selected.Rows.Count > 0)
+                {
+                    foreach (var row in uG_DanhSach.Selected.Rows)
+                    {
+                        var id = row.Cells["ID"].Text;
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                            IdDelete.Add(int.Parse(id));
+                        }
+                    }
+                    check = true;
+                }
+                else if (uG_DanhSach.ActiveRow != null)
+                {
+                    var index = uG_DanhSach.ActiveRow.Index;
+                    check = false;
+                    var idStr = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+                    if (!string.IsNullOrEmpty(idStr))
+                        IdDelete.Add(int.Parse(idStr));
+                }
+                else
+                {
+                    MessageBox.Show(@"Chọn lớp để xóa");
+                    return;
+                }
+                var b = DeleteData.KtraXoaThongTin(1, IdDelete);
+                if (IdDelete.Count > 0 && b)
+                {
+                    if (DialogResult.Yes ==
+                        MessageBox.Show(FormResource.MsgThongbaoxoalop,
+                            FormResource.MsgCaption,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question))
+                    {
+
+                        DeleteData.XoaLop(IdDelete);
+                        Stt();
+                        if (check)
+                            uG_DanhSach.DeleteSelectedRows(false);
+                        else
+                            uG_DanhSach.ActiveRow.Delete(false);
+                        MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
+                    }
+                }
+                else if (!b)
+                {
+                    MessageBox.Show(FormResource.Msgthongbaoxoalop2,
+                        FormResource.MsgCaption,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
                 IdDelete.Clear();
             }
             catch (Exception ex)
@@ -140,6 +189,25 @@ namespace QLSV.Frm.FrmUserControl
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void Timkiemlop()
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in uG_DanhSach.Rows.Where(row => row.Cells["MaLop"].Text.Equals(txtKhoa.Text, StringComparison.OrdinalIgnoreCase)))
+                {
+                    uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -221,6 +289,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenKhoa"].Header.Caption = @"Tên khoa";
 
                 #endregion
+
+                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
             {
@@ -257,12 +327,56 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmDanhmuclop_Load(object sender, EventArgs e)
         {
             LoadForm();
+            var table = LoadData.Load(3);
+            var tb = new DataTable();
+            tb.Columns.Add("ID", typeof(string));
+            tb.Columns.Add("TenKhoa", typeof(string));
+            tb.Rows.Add("0", "- Tất cả các khoa -");
+            foreach (DataRow row in table.Rows)
+            {
+                tb.Rows.Add(row["ID"].ToString(), row["TenKhoa"].ToString());
+            }
+            cbokhoa.DataSource = tb;
         }
 
-        private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        private void uG_DanhSach_AfterSortChange(object sender, BandEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            Stt();
+        }
+
+        private void cbokhoa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _idkhoa = int.Parse(cbokhoa.SelectedValue.ToString());
+                if (_idkhoa == 0)
+                {
+                    LoadGrid();
+                }
+                else
+                {
+                    uG_DanhSach.DataSource = SearchData.LoadCboLop(_idkhoa);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void btntimkiem_Click(object sender, EventArgs e)
+        {
+            Timkiemlop();
+        }
+
+        private void txtKhoa_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case (Keys.Enter):
+                    Timkiemlop();
+                    break;
+            }
         }
     }
 }

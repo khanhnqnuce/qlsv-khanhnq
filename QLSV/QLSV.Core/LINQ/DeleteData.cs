@@ -31,7 +31,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="item"></param>
         /// <param name="table"></param>
-        public static void Xoa(int item, string table)
+        private static void Xoa(int item, string table)
         {
             try
             {
@@ -43,11 +43,6 @@ namespace QLSV.Core.LINQ
             }
         }
         
-        /// <summary>
-        /// xóa nhiều bản ghi trong bảng theo ID
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="table"></param>
         public static void Xoa(IList<int> list, string table)
         {
             try
@@ -64,10 +59,124 @@ namespace QLSV.Core.LINQ
         }
 
         /// <summary>
+        /// kiểm tra nếu sinh viên đã được chấm thi thì k được xóa
+        /// </summary>
+        private static bool KtraXoaThongTin(int i, int id)
+        {
+            try
+            {
+                switch (i)
+                {
+                    case 1:
+                        var tb1 = Conn.GetTable("select d.MaSV from DIEMTHI d" +
+                                                " join SINHVIEN s on d.MaSV = s.MaSV" +
+                                                " join LOP l on s.IdLop = l.ID" +
+                                                " where l.ID = "+id+"");
+                        return tb1.Rows.Count <= 0;
+                    case 2:
+                        var tb2 = Conn.GetTable("select d.MaSV from DIEMTHI d" +
+                                                " join SINHVIEN s on d.MaSV = s.MaSV" +
+                                                " join LOP l on s.IdLop = l.ID" +
+                                                " join KHOA k on l.IdKhoa = k.ID" +
+                                                " where k.ID = " + id + "");
+                        return tb2.Rows.Count <= 0;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+        
+        public static bool KtraXoaThongTin(int i, IList<int> list)
+        {
+            try
+            {
+                foreach (var id in list)
+                {
+                    if(!KtraXoaThongTin(i, id))
+                        return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// xóa lớp và sinh viên thuộc lớp
+        /// </summary>
+        private static void XoaLop(int idlop)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("delete from XEPPHONG where IdSV not in (select MaSV from SINHVIEN where IdLop != "+idlop+")");
+                Conn.ExcuteQuerySql("DELETE FROM SINHVIEN WHERE IdLop = " + idlop + "");
+                Conn.ExcuteQuerySql("DELETE FROM LOP WHERE ID = " + idlop + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static void XoaLop(IList<int> list)
+        {
+            try
+            {
+                foreach (var idlop in list)
+                {
+                    XoaLop(idlop);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        
+        /// <summary>
+        /// xóa khoa và các lớp thuộc khoa
+        /// </summary>
+        private static void XoaKhoa(int idkhoa)
+        {
+            try
+            {
+                Conn.ExcuteQuerySql("DELETE FROM LOP WHERE IdKhoa = " + idkhoa + "");
+                Conn.ExcuteQuerySql("DELETE FROM KHOA WHERE ID = " + idkhoa + "");
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public static void XoaKhoa(IList<int> list)
+        {
+            try
+            {
+                foreach (var idkhoa in list)
+                {
+                    XoaKhoa(idkhoa);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
         /// Xóa bản SINHVIEN theo mã sinh viên
         /// </summary>
         /// <param name="item"></param>
-        public static void XoaSV(int item)
+        private static void XoaSv(int item)
         {
             try
             {
@@ -79,17 +188,13 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// Xóa bản SINHVIEN theo mã sinh viên
-        /// </summary>
-        /// <param name="list"></param>
-        public static void XoaSV(IList<int> list)
+        public static void XoaSv(IList<int> list)
         {
             try
             {
                 foreach (var item in list)
                 {
-                    XoaSV(item);
+                    XoaSv(item);
                 }
             }
             catch (Exception ex)
@@ -98,11 +203,11 @@ namespace QLSV.Core.LINQ
             }
         }
             
-         /// <summary>
+        /// <summary>
         /// Xóa năm học
         /// </summary>
         /// <param name="item"></param>
-        public static void XoaNamHoc(int item)
+        private static void XoaNamHoc(int item)
         {
             try
             {
@@ -114,10 +219,6 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// Xóa bản SINHVIEN theo mã sinh viên
-        /// </summary>
-        /// <param name="list"></param>
         public static void XoaNamHoc(IList<int> list)
         {
             try
@@ -136,7 +237,7 @@ namespace QLSV.Core.LINQ
         /// <summary>
         /// xóa bảng XEPPHONG theo kỳ thi và mã sinh viên
         /// </summary>
-        public static void XoaXepPhong(XepPhong item)
+        private static void XoaXepPhong(XepPhong item)
         {
             try
             {
@@ -148,10 +249,6 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// xóa bảng XEPPHONG theo kỳ thi và mã phòng
-        /// </summary>
-        /// <param name="list"></param>
         public static void XoaXepPhong(IList<XepPhong> list)
         {
             try
@@ -170,7 +267,7 @@ namespace QLSV.Core.LINQ
         /// <summary>
         /// xóa bảng KT_PHONG theo kỳ thi và mã phòng
         /// </summary>
-        public static void XoaKtPhong(KTPhong item)
+        private static void XoaKtPhong(KTPhong item)
         {
             try
             {
@@ -182,10 +279,6 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        /// <summary>
-        /// xóa bảng KT_PHONG theo kỳ thi và mã phòng
-        /// </summary>
-        /// <param name="list"></param>
         public static void XoaKtPhong(IList<KTPhong> list)
         {
             try

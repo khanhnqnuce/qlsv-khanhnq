@@ -21,8 +21,6 @@ namespace QLSV.Frm.FrmUserControl
     {
         #region Create
 
-        private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
-        private readonly IList<SinhVien> _listUpdate = new List<SinhVien>();
         private readonly FrmTimkiem _frmTimkiem;
         private FrmThemsinhvien _frmThemsinhvien;
         private UltraGridRow _newRow;
@@ -96,7 +94,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
                 if (IdDelete.Count <= 0) return;
-                DeleteData.XoaSV(IdDelete);
+                DeleteData.XoaSv(IdDelete);
                 MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
                 LoadFormDetail();
             }
@@ -186,7 +184,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 if (_newRow != null) _newRow.Selected = false;
                 foreach (
-                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Text == masinhvien))
                 {
                     dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
@@ -344,7 +342,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TenKhoa"].MinWidth = 270;
                 band.Columns["TenKhoa"].MaxWidth = 290;
                 #endregion                
-                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
             }
             catch (Exception ex)
             {

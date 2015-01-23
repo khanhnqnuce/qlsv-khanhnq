@@ -313,7 +313,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -364,7 +364,7 @@
             this.Tabdanhmuclop.Controls.Add(this.pn_danhmuclop);
             this.Tabdanhmuclop.Controls.Add(this.panel27);
             this.Tabdanhmuclop.Controls.Add(this.panel28);
-            this.Tabdanhmuclop.Location = new System.Drawing.Point(1, 1);
+            this.Tabdanhmuclop.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabdanhmuclop.Name = "Tabdanhmuclop";
             this.Tabdanhmuclop.Size = new System.Drawing.Size(829, 502);
             // 
@@ -1298,7 +1298,7 @@
             this.btnXoadong.TabIndex = 29;
             this.btnXoadong.Text = "&Xóa";
             this.btnXoadong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip1.SetToolTip(this.btnXoadong, "(Delete)");
+            this.toolTip1.SetToolTip(this.btnXoadong, "(F11)");
             this.btnXoadong.UseVisualStyleBackColor = true;
             this.btnXoadong.Visible = false;
             this.btnXoadong.Click += new System.EventHandler(this.btnXoadong_Click);

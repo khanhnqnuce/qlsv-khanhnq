@@ -105,9 +105,6 @@ namespace QLSV.Frm.Base
                     {
                         B = true;
                         grid.ActiveRow.Delete(false);
-                        if (index <= 0) return;
-                        grid.Rows[index - 1].Cells[2].Activate();
-                        //grid.PerformAction(UltraGridAction.EnterEditMode);
                         return;
                     }
                     if (DialogResult.Yes ==
@@ -119,11 +116,6 @@ namespace QLSV.Frm.Base
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));
                         grid.ActiveRow.Delete(false);
-                        if (index > 0)
-                            grid.Rows[index - 1].Cells[columnname].Activate();
-                        else
-                            grid.Rows[index].Cells[columnname].Activate();
-                        //grid.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }
             }
