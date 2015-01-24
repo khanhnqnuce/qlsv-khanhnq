@@ -137,8 +137,8 @@ namespace QLSV.Frm.FrmUserControl
                 }
 
                 InsertData.ThemBaiLam(_listAdd);
-                MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                Invoke((Action) (() => MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information)));
             }
             catch (Exception ex)
             {
@@ -151,6 +151,7 @@ namespace QLSV.Frm.FrmUserControl
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
+            LoadFormDetail();
         }
 
         #region BackgroundWorker

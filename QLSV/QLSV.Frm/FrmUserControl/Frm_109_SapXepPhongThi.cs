@@ -197,6 +197,16 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _tbSv = LoadData.Load(13, _idkythi);
                 _tbPhong = LoadData.Load(14, _idkythi);
+                var tongsc = 0;
+                foreach (DataRow row in _tbPhong.Rows)
+                {
+                    tongsc = tongsc + (int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString()));
+                }
+                if (tongsc < _tbSv.Rows.Count)
+                {
+                    MessageBox.Show(@"Phòng thi không đủ xếp sinh viên. Chọn thêm phòng thi.", @"Thông báo");
+                    return;
+                }
                 if (_tbSv.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Chưa chọn sinh viên hoặc sinh viên đã được xếp phòng");

@@ -17,7 +17,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
+                
                 var str = new string[list.Count];
+                //Chuỗi lấy ra kết quả
                 var strselect =
                     "select ROW_NUMBER() OVER(ORDER BY s.TenSV) as [STT], a0.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop,";
 
@@ -36,7 +38,7 @@ namespace QLSV.Core.LINQ
 
                 }
                 strselect = strselect + strtong + ") as [TongDiem] ";
-
+                //Tạo ra chuỗi join giữa nhiều bảng
                 var strjointable = str[0];
                 for (var i = 1; i < list.Count; i++)
                 {
@@ -57,7 +59,6 @@ namespace QLSV.Core.LINQ
 
         private static string Getstr1(IList<int> list)
         {
-            var tb = new DataTable();
             try
             {
                 var str = new string[list.Count];
@@ -89,6 +90,8 @@ namespace QLSV.Core.LINQ
         /// Gộp kết quả của các kỳ thi
         /// </summary>
         /// <returns></returns>
+        
+        //lấy ra sinh viên tham gia tất cả các kỳ thi
         public static DataTable GopKetQua(IList<int> list)
         {
             var tb = new DataTable();
@@ -102,7 +105,8 @@ namespace QLSV.Core.LINQ
             }
             return tb;
         }
-
+        
+        //lấy ra sinh viên tham gia 1 kỳ thi
         public static DataTable GopKetQua1(IList<int> list)
         {
             var table = new DataTable();
@@ -143,8 +147,8 @@ namespace QLSV.Core.LINQ
             try
             {
                 var str = new string[list.Count];
+                //tạo ra chuỗi join giữa nhiều bảng
                 const string strselect = "select a0.MaSV";
-
                 for (var i = 0; i < list.Count; i++)
                 {
                     str[i] = "(select MaSV from BAILAM where IdKyThi = " + list[i] + " ) a" + i;
@@ -165,7 +169,9 @@ namespace QLSV.Core.LINQ
                 return null;
             }
         }
-        public static DataTable[] GopKetQua2(IList<int> list)
+        
+        // áp dụng nhiều kỳ thi
+        public static DataTable[] KiemTraLogic(IList<int> list)
         {
             var tb = new DataTable[list.Count];
             try
@@ -176,13 +182,32 @@ namespace QLSV.Core.LINQ
                 for (var i = 0; i < list.Count; i++)
                 {
                     str[i] =
-                        "select bl.MaSV"+
-                        " from BAILAM bl" +
+                        "select bl.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, p.TenPhong" +
+                        " from BAILAM bl join XEPPHONG x on bl.MaSV = x.IdSV join SINHVIEN s on bl.MaSV = s.MaSV join LOP l on s.IdLop = l.ID join PHONGTHI p on x.IdPhong = p.ID" +
                         " where IdKyThi = " + list[i] + "  and not exists( select c.MaSV From (" +
                         Getstr2(list) + " ) c where bl.MaSV = c.MaSV)";
                     tb[i] = Conn.GetTable(str[i]);
                 }
 
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            return tb;
+        }
+
+        public static DataTable KiemTraLogic(int idKt1, int idKt2)
+        {
+            var tb = new DataTable();
+            try
+            {
+                var str = "SELECT b1.MaSV,s.HoSV,s.TenSV,s.NgaySinh,l.MaLop, p.TenPhong" +
+                        " FROM BAILAM b1 join XEPPHONG x on b1.MaSV = x.IdSV" +
+                        " join SINHVIEN s on b1.MaSV = s.MaSV join LOP l on s.IdLop = l.ID" +
+                        " join PHONGTHI p on x.IdPhong = p.ID WHERE b1.IdKyThi = "+idKt1+" AND" +
+                        " NOT EXISTS (SELECT * FROM BAILAM b2 WHERE b1.MaSV = b2.MaSV AND b2.IdKyThi = "+idKt2+")";
+                tb = Conn.GetTable(str);
             }
             catch (Exception ex)
             {

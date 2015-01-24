@@ -52,15 +52,16 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var tb = Statistic.GopKetQua2(_list);
-                if (tb[0].Rows.Count == 0 && tb[1].Rows.Count == 0)
+                var tb1 = Statistic.KiemTraLogic(_list[1],_list[0]);
+                var tb2 = Statistic.KiemTraLogic(_list[0],_list[1]);
+                if (tb1.Rows.Count == 0 && tb2.Rows.Count == 0)
                 {
                     MessageBox.Show(@"Không có lỗi logic", @"Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach",tb[1]);
-                reportManager1.DataSources.Add("danhsach1",tb[0]);
+                reportManager1.DataSources.Add("camot",tb1);
+                reportManager1.DataSources.Add("cahai",tb2);
                 rptkiemtralogic.FilePath = Application.StartupPath + @"\Reports\kiemtrasinhvien1.rst";
                 rptkiemtralogic.Prepare();
                 rptkiemtralogic.GetReportParameter += GetParameter1;
@@ -83,15 +84,15 @@ namespace QLSV.Frm.Frm
         {
             try
             {
-                var tb = LoadData.Load(3, _list[0]);
                 var tb1 = LoadData.Load(3, _list[1]);
-                foreach (DataRow row in tb.Rows)
-                {
-                    e.Parameters["TT2"].Value = row["GhiChu"].ToString();
-                }
+                var tb2 = LoadData.Load(3, _list[0]);
                 foreach (DataRow row in tb1.Rows)
                 {
                     e.Parameters["TT1"].Value = row["GhiChu"].ToString();
+                }
+                foreach (DataRow row in tb2.Rows)
+                {
+                    e.Parameters["TT2"].Value = row["GhiChu"].ToString();
                 }
             }
             catch (Exception ex)

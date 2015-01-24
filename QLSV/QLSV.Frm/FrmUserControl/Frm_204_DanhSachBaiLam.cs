@@ -106,6 +106,8 @@ namespace QLSV.Frm.FrmUserControl
             {
                 DeleteData.Xoa("BAILAM",_idKyThi);
                 LoadFormDetail();
+                MessageBox.Show(@"Xoá dữ liệu thành công.", @"Thông báo");
+
             }
             catch (Exception ex)
             {
