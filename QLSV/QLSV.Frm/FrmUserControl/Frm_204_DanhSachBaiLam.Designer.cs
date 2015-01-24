@@ -35,7 +35,7 @@
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
-            this.rptdapandethi = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.rptdsbailam = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -88,17 +88,17 @@
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
             this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
-            // rptdapandethi
+            // rptdsbailam
             // 
-            this.rptdapandethi.FilePath = "";
-            this.rptdapandethi.ReportName = "";
-            this.rptdapandethi.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            this.rptdsbailam.FilePath = "";
+            this.rptdsbailam.ReportName = "";
+            this.rptdsbailam.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // reportManager1
             // 
             this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
             this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
-            this.rptdapandethi});
+            this.rptdsbailam});
             // 
             // toolStrip1
             // 
@@ -209,7 +209,7 @@
         private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
-        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdapandethi;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdsbailam;
         private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel pnl_from;

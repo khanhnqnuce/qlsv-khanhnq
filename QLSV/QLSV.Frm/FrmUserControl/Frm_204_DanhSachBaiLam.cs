@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -170,6 +171,50 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        public void InDanhSach()
+        {
+            Rptdsbailam();
+        }
+
+        private void Rptdsbailam()
+        {
+            try
+            {
+                if(dgv_DanhSach.Rows.Count == 0) return;
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+                rptdsbailam.FilePath = Application.StartupPath + @"\Reports\dsbailam.rst";
+                rptdsbailam.Prepare();
+                rptdsbailam.GetReportParameter += GetParameter;
+                var previewForm = new PreviewForm(rptdsbailam)
+                {
+                    WindowState = FormWindowState.Maximized
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void GetParameter(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idKyThi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["TenKT"].Value = row["TenKT"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         #endregion
 
         #region Event uG
@@ -201,7 +246,6 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaDe"].MaxWidth = 150;
                 band.Columns["KetQua"].MinWidth = 640;
                 band.Columns["KetQua"].MaxWidth = 650;
-                //band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
 

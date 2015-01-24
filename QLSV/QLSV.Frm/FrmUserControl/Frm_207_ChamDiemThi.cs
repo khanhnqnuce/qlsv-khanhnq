@@ -64,143 +64,6 @@ namespace QLSV.Frm.FrmUserControl
             return table;
         }
 
-        protected override void SaveDetail()
-        {
-            try
-            {
-                if (_listUpdate.Count > 0)
-                {
-                    UpdateData.UpdateDiemThi(_listUpdate);
-                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void SaveDetail1()
-        {
-            try
-            {
-                foreach (var row in dgv_DanhSach.Rows)
-                {
-                    var hs = new DiemThi
-                    {
-                        MaSV = int.Parse(row.Cells["MaSV"].Text),
-                        Diem = int.Parse(row.Cells["DiemThi"].Text),
-                        IdNamHoc = _idnamhoc,
-                        HocKy = _hocky
-                    };
-                    _listThongke.Add(hs);
-                }
-                if (_listThongke.Count > 0 || _listUpdate.Count > 0)
-                {
-                    UpdateData.UpdateDiemThi(_listUpdate);
-                    InsertData.ThemThongKe(_listThongke);
-                    MessageBox.Show(@"Lưu lại thành công");
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-        
-        private void SaveDetail2()
-        {
-            try
-            {
-                foreach (var row in dgv_DanhSach.Rows)
-                {
-                    var hs = new DiemThi
-                    {
-                        MaSV = int.Parse(row.Cells["MaSV"].Text),
-                        Diem = int.Parse(row.Cells["DiemThi"].Text),
-                        IdNamHoc = _idnamhoc,
-                        HocKy = _hocky
-                    };
-                    _listThongke.Add(hs);
-                }
-                if (_listThongke.Count > 0 )
-                {
-                    InsertData.ThemThongKe(_listThongke);
-                    MessageBox.Show(@"Lưu lại thành công");
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        public void Ghi()
-        {
-            if (_tbError.Rows.Count > 0)
-            {
-                if (DialogResult.No ==
-                    MessageBox.Show(@"Một số bài thi chưa được chấm. Bạn có muốn lưu lại không ?",
-                    FormResource.MsgCaption,
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question))
-                {
-                    return;
-                }
-            }
-
-            var frm = new FrmLuuDiemThi { bUpdate = false };
-            frm.ShowDialog();
-            if (frm.bUpdate && frm.rdokythi.Checked)
-            {
-                if (dgv_DanhSach.Rows.Count <= 0) return;
-                _bgwInsert.RunWorkerAsync();
-                OnShowDialog("Đang lưu dữ liệu");
-            }else if (frm.bUpdate && frm.rdonamhoc.Checked)
-            {
-                var frm1 = new FrmGopKQ { Update = false };
-                frm1.ShowDialog();
-                if (!frm1.Update) return;
-                _idnamhoc = int.Parse(frm1.cboNamHoc.SelectedValue.ToString());
-                _hocky = frm1.cbohocky.SelectedValue.ToString();
-                _bgwInsert1.RunWorkerAsync();
-                OnShowDialog("Đang lưu dữ liệu");
-            }else if (frm.bUpdate && frm.rdolucahai.Checked)
-            {
-                var frm2 = new FrmGopKQ { Update = false };
-                frm2.ShowDialog();
-                if (!frm2.Update) return;
-                _idnamhoc = int.Parse(frm2.cboNamHoc.SelectedValue.ToString());
-                _hocky = frm2.cbohocky.SelectedValue.ToString();
-                _bgwInsert2.RunWorkerAsync();
-                OnShowDialog("Đang lưu dữ liệu");
-
-            }
-
-            
-        }
-
-        private void Timkiemsinhvien(object sender, string masinhvien)
-        {
-            try
-            {
-                if (_newRow != null) _newRow.Selected = false;
-                foreach (
-                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
-                {
-                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
-                    row.Selected = true;
-                    _newRow = row;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
         /// <summary>
         /// chấm tthi
         /// </summary>
@@ -309,6 +172,145 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        protected override void SaveDetail()
+        {
+            try
+            {
+                if (_listUpdate.Count > 0)
+                {
+                    UpdateData.UpdateDiemThi(_listUpdate);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void SaveDetail1()
+        {
+            try
+            {
+                foreach (var row in dgv_DanhSach.Rows)
+                {
+                    var hs = new DiemThi
+                    {
+                        MaSV = int.Parse(row.Cells["MaSV"].Text),
+                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        IdNamHoc = _idnamhoc,
+                        HocKy = _hocky
+                    };
+                    _listThongke.Add(hs);
+                }
+                if (_listThongke.Count > 0 || _listUpdate.Count > 0)
+                {
+                    UpdateData.UpdateDiemThi(_listUpdate);
+                    InsertData.ThemThongKe(_listThongke);
+                    MessageBox.Show(@"Lưu lại thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void SaveDetail2()
+        {
+            try
+            {
+                foreach (var row in dgv_DanhSach.Rows)
+                {
+                    var hs = new DiemThi
+                    {
+                        MaSV = int.Parse(row.Cells["MaSV"].Text),
+                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        IdNamHoc = _idnamhoc,
+                        HocKy = _hocky
+                    };
+                    _listThongke.Add(hs);
+                }
+                if (_listThongke.Count > 0)
+                {
+                    InsertData.ThemThongKe(_listThongke);
+                    MessageBox.Show(@"Lưu lại thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Ghi()
+        {
+            if (_tbError.Rows.Count > 0)
+            {
+                if (DialogResult.No ==
+                    MessageBox.Show(@"Một số bài thi chưa được chấm. Bạn có muốn lưu lại không ?",
+                    FormResource.MsgCaption,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question))
+                {
+                    return;
+                }
+            }
+
+            var frm = new FrmLuuDiemThi { bUpdate = false };
+            frm.ShowDialog();
+            if (frm.bUpdate && frm.rdokythi.Checked)
+            {
+                if (dgv_DanhSach.Rows.Count <= 0) return;
+                _bgwInsert.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+            }
+            else if (frm.bUpdate && frm.rdonamhoc.Checked)
+            {
+                var frm1 = new FrmGopKQ { Update = false };
+                frm1.ShowDialog();
+                if (!frm1.Update) return;
+                _idnamhoc = int.Parse(frm1.cboNamHoc.SelectedValue.ToString());
+                _hocky = frm1.cbohocky.SelectedValue.ToString();
+                _bgwInsert1.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+            }
+            else if (frm.bUpdate && frm.rdolucahai.Checked)
+            {
+                var frm2 = new FrmGopKQ { Update = false };
+                frm2.ShowDialog();
+                if (!frm2.Update) return;
+                _idnamhoc = int.Parse(frm2.cboNamHoc.SelectedValue.ToString());
+                _hocky = frm2.cbohocky.SelectedValue.ToString();
+                _bgwInsert2.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+
+            }
+
+
+        }
+
+        private void Timkiemsinhvien(object sender, string masinhvien)
+        {
+            try
+            {
+                if (_newRow != null) _newRow.Selected = false;
+                foreach (
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
+                {
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Selected = true;
+                    _newRow = row;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }

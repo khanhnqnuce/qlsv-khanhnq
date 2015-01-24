@@ -68,17 +68,6 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        //protected override void InsertRow()
-        //{
-        //    InsertRow(dgv_DanhSach, "STT", "MaMon");
-        //}
-
-        //protected override void DeleteRow()
-        //{
-
-        //    DeleteRowGrid(dgv_DanhSach, "ID", "MaMon");
-        //}
-
         protected override void SaveDetail()
         {
             try
@@ -125,8 +114,10 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptDapAn()
         {
+            var tb = LoadData.Load(7, _idKyThi);
+            if(tb.Rows.Count == 0) return;
             reportManager1.DataSources.Clear();
-            reportManager1.DataSources.Add("danhsach", LoadData.Load(7,_idKyThi));
+            reportManager1.DataSources.Add("danhsach", tb);
             rptdapandethi.FilePath = Application.StartupPath + @"\Reports\dapandethi.rst";
             rptdapandethi.GetReportParameter += GetParameter;
             rptdapandethi.Prepare();
