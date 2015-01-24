@@ -67,15 +67,20 @@ namespace QLSV.Frm.FrmUserControl
 
         public void Ghi()
         {
+            if (_tbError.Rows.Count > 0)
+            {
+                if (DialogResult.No ==
+                    MessageBox.Show(@"Một số bài thi chưa được chấm. Bạn có muốn lưu lại không ?",
+                    FormResource.MsgCaption,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question))
+                {
+                    return;
+                }
+            }
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             OnShowDialog("Đang lưu dữ liệu");
-            if (_tbError.Rows.Count > 0)
-            {
-                var text = @"Còn " + _tbError.Rows.Count + @" bài thi chưa được chấm";
-                var frm = new FrmMsgImportSv(text, _tbError, 2);
-                frm.ShowDialog();
-            }
         }
 
         private void Timkiemsinhvien(object sender, string masinhvien)
@@ -228,6 +233,7 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
             rptdiemthi.Prepare();
+            rptdiemthi.GetReportParameter += GetParameter;
             var previewForm = new PreviewForm(rptdiemthi)
             {
                 WindowState = FormWindowState.Maximized,
@@ -246,7 +252,6 @@ namespace QLSV.Frm.FrmUserControl
                 foreach (DataRow row in tb.Rows)
                 {
                     e.Parameters["TenKT"].Value = row["TenKT"].ToString();
-                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
                 }
             }
             catch (Exception ex)

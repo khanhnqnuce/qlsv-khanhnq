@@ -81,6 +81,7 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";
             rptdiemthi.Prepare();
+            rptdiemthi.GetReportParameter += GetParameter;
             var previewForm = new PreviewForm(rptdiemthi)
             {
                 WindowState = FormWindowState.Maximized
@@ -98,7 +99,6 @@ namespace QLSV.Frm.FrmUserControl
                 foreach (DataRow row in tb.Rows)
                 {
                     e.Parameters["TenKT"].Value = row["TenKT"].ToString();
-                    e.Parameters["NgayThi"].Value = row["NgayThi"].ToString();
                 }
             }
             catch (Exception ex)
