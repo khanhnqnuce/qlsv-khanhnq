@@ -20,11 +20,16 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_207_ChamDiemThi : FunctionControlHasGrid
     {
         private readonly IList<BaiLam> _listUpdate = new List<BaiLam>();
+        private readonly IList<DiemThi> _listThongke = new List<DiemThi>();
         private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
-        private DataTable _tbError;
+        private DataTable _tbError = new DataTable();
         private UltraGridRow _newRow;
         private readonly BackgroundWorker _bgwInsert;
+        private readonly BackgroundWorker _bgwInsert1;
+        private readonly BackgroundWorker _bgwInsert2;
+        private int _idnamhoc;
+        private string _hocky;
 
         public Frm_207_ChamDiemThi(int idkythi)
         {
@@ -35,6 +40,14 @@ namespace QLSV.Frm.FrmUserControl
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
+            
+            _bgwInsert1 = new BackgroundWorker();
+            _bgwInsert1.DoWork += bgwInsert_DoWork1;
+            _bgwInsert1.RunWorkerCompleted += bgwInsert_RunWorkerCompleted1;
+            
+            _bgwInsert2 = new BackgroundWorker();
+            _bgwInsert2.DoWork += bgwInsert_DoWork2;
+            _bgwInsert2.RunWorkerCompleted += bgwInsert_RunWorkerCompleted2;
 
             _idkythi = idkythi;
         }
@@ -55,9 +68,67 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                UpdateData.UpdateDiemThi(_listUpdate);
-                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (_listUpdate.Count > 0)
+                {
+                    UpdateData.UpdateDiemThi(_listUpdate);
+                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void SaveDetail1()
+        {
+            try
+            {
+                foreach (var row in dgv_DanhSach.Rows)
+                {
+                    var hs = new DiemThi
+                    {
+                        MaSV = int.Parse(row.Cells["MaSV"].Text),
+                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        IdNamHoc = _idnamhoc,
+                        HocKy = _hocky
+                    };
+                    _listThongke.Add(hs);
+                }
+                if (_listThongke.Count > 0 || _listUpdate.Count > 0)
+                {
+                    UpdateData.UpdateDiemThi(_listUpdate);
+                    InsertData.ThemThongKe(_listThongke);
+                    MessageBox.Show(@"Lưu lại thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+        
+        private void SaveDetail2()
+        {
+            try
+            {
+                foreach (var row in dgv_DanhSach.Rows)
+                {
+                    var hs = new DiemThi
+                    {
+                        MaSV = int.Parse(row.Cells["MaSV"].Text),
+                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        IdNamHoc = _idnamhoc,
+                        HocKy = _hocky
+                    };
+                    _listThongke.Add(hs);
+                }
+                if (_listThongke.Count > 0 )
+                {
+                    InsertData.ThemThongKe(_listThongke);
+                    MessageBox.Show(@"Lưu lại thành công");
+                }
             }
             catch (Exception ex)
             {
@@ -78,9 +149,36 @@ namespace QLSV.Frm.FrmUserControl
                     return;
                 }
             }
-            if (dgv_DanhSach.Rows.Count <= 0) return;
-            _bgwInsert.RunWorkerAsync();
-            OnShowDialog("Đang lưu dữ liệu");
+
+            var frm = new FrmLuuDiemThi { bUpdate = false };
+            frm.ShowDialog();
+            if (frm.bUpdate && frm.rdokythi.Checked)
+            {
+                if (dgv_DanhSach.Rows.Count <= 0) return;
+                _bgwInsert.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+            }else if (frm.bUpdate && frm.rdonamhoc.Checked)
+            {
+                var frm1 = new FrmGopKQ { Update = false };
+                frm1.ShowDialog();
+                if (!frm1.Update) return;
+                _idnamhoc = int.Parse(frm1.cboNamHoc.SelectedValue.ToString());
+                _hocky = frm1.cbohocky.SelectedValue.ToString();
+                _bgwInsert1.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+            }else if (frm.bUpdate && frm.rdolucahai.Checked)
+            {
+                var frm2 = new FrmGopKQ { Update = false };
+                frm2.ShowDialog();
+                if (!frm2.Update) return;
+                _idnamhoc = int.Parse(frm2.cboNamHoc.SelectedValue.ToString());
+                _hocky = frm2.cbohocky.SelectedValue.ToString();
+                _bgwInsert2.RunWorkerAsync();
+                OnShowDialog("Đang lưu dữ liệu");
+
+            }
+
+            
         }
 
         private void Timkiemsinhvien(object sender, string masinhvien)
@@ -121,6 +219,10 @@ namespace QLSV.Frm.FrmUserControl
                 Invoke(
                         (Action)(() => MessageBox.Show(@"Chưa Import đáp án của mã đề", @"Thông báo",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)));
+                lock (LockTotal)
+                {
+                    OnCloseDialog();
+                }
                 return;
             }
             if (tbbailam.Rows.Count>0)
@@ -332,6 +434,40 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         private void bgwInsert_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
+
+        private void bgwInsert_DoWork1(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail1();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted1(object sender, RunWorkerCompletedEventArgs e)
+        {
+            OnCloseDialog();
+        }
+
+        private void bgwInsert_DoWork2(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                SaveDetail2();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void bgwInsert_RunWorkerCompleted2(object sender, RunWorkerCompletedEventArgs e)
         {
             OnCloseDialog();
         }

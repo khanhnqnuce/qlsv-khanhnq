@@ -79,7 +79,7 @@
             this.panel1.Size = new System.Drawing.Size(188, 141);
             this.panel1.TabIndex = 22;
             // 
-            // FrmCheckInDiem
+            // FrmRptDanhSachDiemThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +89,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmCheckInDiem";
+            this.Name = "FrmRptDanhSachDiemThi";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
