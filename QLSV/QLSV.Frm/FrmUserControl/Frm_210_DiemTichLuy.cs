@@ -280,11 +280,11 @@ namespace QLSV.Frm.FrmUserControl
                 dgv_DanhSach.DisplayLayout.UseFixedHeaders = true;
                 dgv_DanhSach.DisplayLayout.FixedHeaderOffImage = Properties.Resources.trang;
                 dgv_DanhSach.DisplayLayout.FixedHeaderOnImage = Properties.Resources.trang;
-                group0.Header.Fixed = true;
-                group1.Header.Fixed = true;
-                group2.Header.Fixed = true;
-                group3.Header.Fixed = true;
-                group6.Header.Fixed = true;
+                //group0.Header.Fixed = true;
+                //group1.Header.Fixed = true;
+                //group2.Header.Fixed = true;
+                //group3.Header.Fixed = true;
+                //group6.Header.Fixed = true;
             }
             catch (Exception ex)
             {
@@ -404,6 +404,7 @@ namespace QLSV.Frm.FrmUserControl
                 dgv_DanhSach.DataSource = string.IsNullOrEmpty(txtKhoa.Text) 
                     ? SearchData.Thongkediem(cbothongke.SelectedIndex) 
                     : SearchData.Thongkediem(cbothongke.SelectedIndex,txtKhoa.Text);
+                lbthongke.Text = @" "+dgv_DanhSach.Rows.Count + @" Sinh viên";
             }
         }
 

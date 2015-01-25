@@ -99,11 +99,6 @@ namespace QLSV.Frm.Frm
                     sheet.GetRow(i).GetCell(1).ToString(),
                     sheet.GetRow(i).GetCell(2).ToString(),
                     sheet.GetRow(i).GetCell(3).ToString());
-                    //_result.Rows.Add();
-                    //for (var j = 0; j < _iEndCol; j++)
-                    //{
-                    //    _result.Rows[i - startRows][j] = sheet.GetRow(i).GetCell(j).ToString();
-                    //}
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -139,7 +134,7 @@ namespace QLSV.Frm.Frm
                 excelPkg.Load(stream);
                 stream.Close();
                 var oSheet = excelPkg.Workbook.Worksheets[_iSheet + 1];
-                var startRows = oSheet.Dimension.Start.Row + ViTriHeader + 1;
+                var startRows = oSheet.Dimension.Start.Row + ViTriHeader;
                 var endRows = oSheet.Dimension.End.Row;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
@@ -151,11 +146,6 @@ namespace QLSV.Frm.Frm
                         oSheet.Cells[i, 2].GetValue<string>(),
                         oSheet.Cells[i, 3].GetValue<string>(),
                         oSheet.Cells[i, 4].GetValue<string>());
-                    //_result.Rows.Add();
-                    //for (var j = 0; j <= _iEndCol; j++)
-                    //{
-                    //    _result.Rows[i - startRows][j] = oSheet.Cells[i, j + 1].GetValue<string>();
-                    //}
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);

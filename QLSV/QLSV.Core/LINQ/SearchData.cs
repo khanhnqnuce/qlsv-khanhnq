@@ -95,7 +95,7 @@ namespace QLSV.Core.LINQ
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
                             " join LOP l on s.IdLop = l.ID" +
                             " join KHOA k on l.IdKhoa = k.ID" +
-                            " where k.ID = " + idlop + "" +
+                            " where k.ID = " + idkhoa + "" +
                             " and d.IdNamHoc = " + idnamhoc + "" +
                             " and  d.HocKy = '" + idhocky + "'" +
                             " ORDER BY d.MaSV";

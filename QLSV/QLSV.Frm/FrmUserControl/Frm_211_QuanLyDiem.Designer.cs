@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel4 = new System.Windows.Forms.Panel();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -53,7 +54,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -68,8 +69,16 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.dgv_DanhSach);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 24);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(934, 353);
+            this.panel4.TabIndex = 29;
             // 
             // dgv_DanhSach
             // 
@@ -109,9 +118,9 @@
             // 
             this.panel10.Controls.Add(this.cboHocky);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(761, 0);
+            this.panel10.Location = new System.Drawing.Point(713, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(153, 24);
+            this.panel10.Size = new System.Drawing.Size(106, 24);
             this.panel10.TabIndex = 7;
             // 
             // cboHocky
@@ -122,7 +131,7 @@
             this.cboHocky.FormattingEnabled = true;
             this.cboHocky.Location = new System.Drawing.Point(0, 0);
             this.cboHocky.Name = "cboHocky";
-            this.cboHocky.Size = new System.Drawing.Size(153, 23);
+            this.cboHocky.Size = new System.Drawing.Size(106, 23);
             this.cboHocky.TabIndex = 0;
             this.cboHocky.ValueMember = "MaHK";
             this.cboHocky.SelectedValueChanged += new System.EventHandler(this.cboHocky_SelectedValueChanged);
@@ -131,7 +140,7 @@
             // 
             this.panel9.Controls.Add(this.toolStrip4);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(708, 0);
+            this.panel9.Location = new System.Drawing.Point(660, 0);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(53, 24);
             this.panel9.TabIndex = 6;
@@ -164,9 +173,9 @@
             // 
             this.panel8.Controls.Add(this.cboNamhoc);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(562, 0);
+            this.panel8.Location = new System.Drawing.Point(538, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(146, 24);
+            this.panel8.Size = new System.Drawing.Size(122, 24);
             this.panel8.TabIndex = 5;
             // 
             // cboNamhoc
@@ -177,7 +186,7 @@
             this.cboNamhoc.FormattingEnabled = true;
             this.cboNamhoc.Location = new System.Drawing.Point(0, 0);
             this.cboNamhoc.Name = "cboNamhoc";
-            this.cboNamhoc.Size = new System.Drawing.Size(146, 23);
+            this.cboNamhoc.Size = new System.Drawing.Size(122, 23);
             this.cboNamhoc.TabIndex = 0;
             this.cboNamhoc.ValueMember = "ID";
             this.cboNamhoc.SelectedValueChanged += new System.EventHandler(this.cboNamhoc_SelectedValueChanged);
@@ -186,7 +195,7 @@
             // 
             this.panel7.Controls.Add(this.toolStrip3);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(494, 0);
+            this.panel7.Location = new System.Drawing.Point(470, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(68, 24);
             this.panel7.TabIndex = 4;
@@ -219,20 +228,21 @@
             // 
             this.panel6.Controls.Add(this.cbolop);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(368, 0);
+            this.panel6.Location = new System.Drawing.Point(350, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(126, 24);
+            this.panel6.Size = new System.Drawing.Size(120, 24);
             this.panel6.TabIndex = 3;
             // 
             // cbolop
             // 
+            this.cbolop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbolop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbolop.DisplayMember = "MaLop";
             this.cbolop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cbolop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbolop.FormattingEnabled = true;
             this.cbolop.Location = new System.Drawing.Point(0, 0);
             this.cbolop.Name = "cbolop";
-            this.cbolop.Size = new System.Drawing.Size(126, 23);
+            this.cbolop.Size = new System.Drawing.Size(120, 23);
             this.cbolop.TabIndex = 0;
             this.cbolop.ValueMember = "ID";
             this.cbolop.SelectedValueChanged += new System.EventHandler(this.cbolop_SelectedValueChanged);
@@ -241,7 +251,7 @@
             // 
             this.panel5.Controls.Add(this.toolStrip2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(298, 0);
+            this.panel5.Location = new System.Drawing.Point(280, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(70, 24);
             this.panel5.TabIndex = 2;
@@ -276,7 +286,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(80, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 24);
+            this.panel2.Size = new System.Drawing.Size(200, 24);
             this.panel2.TabIndex = 1;
             // 
             // cbokhoa
@@ -287,7 +297,7 @@
             this.cbokhoa.FormattingEnabled = true;
             this.cbokhoa.Location = new System.Drawing.Point(0, 0);
             this.cbokhoa.Name = "cbokhoa";
-            this.cbokhoa.Size = new System.Drawing.Size(218, 23);
+            this.cbokhoa.Size = new System.Drawing.Size(200, 23);
             this.cbokhoa.TabIndex = 0;
             this.cbokhoa.ValueMember = "ID";
             this.cbokhoa.SelectedValueChanged += new System.EventHandler(this.cbokhoa_SelectedValueChanged);
@@ -319,15 +329,6 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
             this.toolStripLabel1.Text = "Chọn khoa";
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.dgv_DanhSach);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 24);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(934, 353);
-            this.panel4.TabIndex = 29;
-            // 
             // Frm_211_QuanLyDiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -339,6 +340,7 @@
             this.Name = "Frm_211_QuanLyDiem";
             this.Size = new System.Drawing.Size(934, 377);
             this.Load += new System.EventHandler(this.Frm_211_QuanLyDiem_Load);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -361,7 +363,6 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

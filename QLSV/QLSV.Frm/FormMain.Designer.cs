@@ -313,7 +313,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -791,12 +791,13 @@
             // Tabdiemtichluy
             // 
             this.Tabdiemtichluy.Controls.Add(this.pnl_diemtichluy);
-            this.Tabdiemtichluy.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabdiemtichluy.Location = new System.Drawing.Point(1, 1);
             this.Tabdiemtichluy.Name = "Tabdiemtichluy";
             this.Tabdiemtichluy.Size = new System.Drawing.Size(829, 502);
             // 
             // pnl_diemtichluy
             // 
+            this.pnl_diemtichluy.AutoScroll = true;
             this.pnl_diemtichluy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_diemtichluy.Location = new System.Drawing.Point(0, 0);
             this.pnl_diemtichluy.Name = "pnl_diemtichluy";
