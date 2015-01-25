@@ -45,7 +45,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var a = LoadData.Load(14);
                 dgv_DanhSach.DataSource = LoadData.Load(14);
                 foreach (var row in dgv_DanhSach.Rows)
                 {
@@ -380,21 +379,6 @@ namespace QLSV.Frm.FrmUserControl
         private void menuStrip_doipass_Click(object sender, EventArgs e)
         {
             FocusCellPass();
-        }
-
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
-        private void menuStrip_dong_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
-
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
         }
         
         #endregion
