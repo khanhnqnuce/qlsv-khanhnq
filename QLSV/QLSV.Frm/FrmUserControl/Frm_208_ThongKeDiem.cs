@@ -297,5 +297,11 @@ namespace QLSV.Frm.FrmUserControl
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
+        }
     }
 }

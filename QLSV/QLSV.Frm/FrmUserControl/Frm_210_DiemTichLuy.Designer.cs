@@ -145,6 +145,7 @@
             this.dgv_DanhSach.Size = new System.Drawing.Size(1091, 443);
             this.dgv_DanhSach.TabIndex = 34;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.dgv_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.dgv_DanhSach_BeforeRowsDeleted);
             // 
             // panel3
             // 

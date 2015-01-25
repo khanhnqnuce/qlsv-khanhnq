@@ -98,7 +98,7 @@ namespace QLSV.Frm.FrmUserControl
             OnShowDialog("Đang lưu dữ liệu");
         }
 
-        public void Huy()
+        private void Huy()
         {
             try
             {
@@ -344,6 +344,12 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Log2File.LogExceptionToFile(ex);
              }
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
     }
 }

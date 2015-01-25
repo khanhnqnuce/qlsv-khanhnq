@@ -323,5 +323,11 @@ namespace QLSV.Frm.FrmUserControl
             if (e.KeyCode == Keys.Enter)
                 e.SuppressKeyPress = true;
         }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
+        }
     }
 }
