@@ -21,8 +21,8 @@ namespace QLSV.Frm.FrmUserControl
         private readonly IList<Kythi> _listAdd = new List<Kythi>();
         private readonly IList<Kythi> _listUpdate = new List<Kythi>();
         public delegate void CustomHandler3(object sender);
-        public event CustomHandler3 updatekythi = null;
-        private string _quyen;
+        public event CustomHandler3 Updatekythi = null;
+        private readonly string _quyen;
         public Frm_106_QuanLyKyThi(string quyen)
         {
             InitializeComponent();
@@ -90,7 +90,7 @@ namespace QLSV.Frm.FrmUserControl
                 if (IdDelete.Count <= 0) return;
                 DeleteData.Xoa(IdDelete, "KYTHI");
                 Stt();
-                updatekythi(null);
+                Updatekythi(null);
                 MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
                 IdDelete.Clear();
             }
@@ -147,7 +147,7 @@ namespace QLSV.Frm.FrmUserControl
                     if (_listUpdate.Count <= 0 &&  _listAdd.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateKyThi(_listUpdate);
                     if (_listAdd.Count > 0) InsertData.ThemKythi(_listAdd);
-                    updatekythi(null);
+                    Updatekythi(null);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
@@ -188,9 +188,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (B)
+                if (DeleteAndUpdate)
                 {
-                    B = false;
+                    DeleteAndUpdate = false;
                     return;
                 }
                 var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
@@ -293,13 +293,11 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
 
         #endregion
-
-        #region MenuStrip
 
         private void menuStrip_themdong_Click(object sender, EventArgs e)
         {
@@ -310,18 +308,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             DeleteRow();
         }
-
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        #endregion
 
         private void FrmQuanLyKyThi_Load(object sender, EventArgs e)
         {
@@ -356,7 +342,7 @@ namespace QLSV.Frm.FrmUserControl
                     };
                     UpdateData.UpdateTrangThaiKt(hs);
                 }
-                updatekythi(sender);
+                Updatekythi(sender);
             }
             catch (Exception ex)
             {

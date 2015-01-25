@@ -181,9 +181,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (B)
+                if (DeleteAndUpdate)
                 {
-                    B = false;
+                    DeleteAndUpdate = false;
                     return;
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
@@ -320,8 +320,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
 
         private void Timkiemphong()

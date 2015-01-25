@@ -119,10 +119,15 @@ namespace QLSV.Frm.FrmUserControl
                     DeleteData.XoaKhoa(IdDelete);
                     Stt();
                     if (check)
+                    {
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
+                    }
                     else
+                    {
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
-
+                    }
                     MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
                 }
                 IdDelete.Clear();
@@ -217,9 +222,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (B)
+                if (DeleteAndUpdate)
                 {
-                    B = false;
+                    DeleteAndUpdate = false;
                     return;
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
@@ -282,21 +287,17 @@ namespace QLSV.Frm.FrmUserControl
             DeleteRow();
         }
 
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
         #endregion
 
         private void FrmDanhmuckhoa_Load(object sender, EventArgs e)
         {
             LoadForm();
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
     }
 }

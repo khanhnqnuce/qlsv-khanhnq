@@ -74,11 +74,11 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "NamHoc");
-                Stt();
                 if (IdDelete.Count > 0)
                 {
                     DeleteData.XoaNamHoc(IdDelete);
-                    MessageBox.Show(@"Đã xóa trong CSDL", @"Thông báo");
+                    Stt();
+                    MessageBox.Show(@"Xóa dữ liệu thành công.", @"Thông báo");
                 }
                 IdDelete.Clear();
             }
@@ -177,16 +177,6 @@ namespace QLSV.Frm.FrmUserControl
             DeleteRow();
         }
 
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        private void menuStrip_Huy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
         private void Frm_111_TuDienNamHoc_Load(object sender, EventArgs e)
         {
             LoadGrid();
@@ -234,9 +224,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (B)
+                if (DeleteAndUpdate)
                 {
-                    B = false;
+                    DeleteAndUpdate = false;
                     return;
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
@@ -257,6 +247,12 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Log2File.LogExceptionToFile(ex);
             }
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
 
 

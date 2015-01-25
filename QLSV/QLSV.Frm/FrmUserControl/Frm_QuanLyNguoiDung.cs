@@ -117,7 +117,13 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 DeleteRowGrid(dgv_DanhSach, "ID", "TaiKhoan");
-                Stt();
+                if (IdDelete.Count > 0)
+                {
+                    DeleteData.XoaTaiKhoan(IdDelete);
+                    Stt();
+                    MessageBox.Show(@"Xóa dữ liệu thành công.");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -161,11 +167,9 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listAdd.Add(hs);
                     }
-                    if (_listAdd.Count <= 0 && _listUpdate.Count <= 0 && _listUpdatepass.Count <= 0 &&
-                        IdDelete.Count <= 0) return;
+                    if (_listAdd.Count <= 0 && _listUpdate.Count <= 0 && _listUpdatepass.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateTaiKhoan(_listUpdate);
                     if (_listUpdatepass.Count > 0) UpdateData.UpdateMatKhau(_listUpdatepass);
-                    if (IdDelete.Count > 0) DeleteData.XoaTaiKhoan(IdDelete);
                     if (_listAdd.Count > 0) InsertData.ThemTaiKhoan(_listAdd);
 
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
@@ -248,7 +252,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.DisplayPromptMsg = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
 
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)
@@ -293,9 +298,9 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                if (B)
+                if (DeleteAndUpdate)
                 {
-                    B = false;
+                    DeleteAndUpdate = false;
                     return;
                 }
                 var indexcell = dgv_DanhSach.ActiveCell.Column.Index;

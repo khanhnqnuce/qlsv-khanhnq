@@ -117,7 +117,7 @@ namespace QLSV.Frm.FrmUserControl
                             _listxepphong.Add(xp);
                             _listktphong.Add(kt);
                         }
-                        B = true;
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
                     }
                 }
@@ -139,7 +139,7 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         _listxepphong.Add(xp);
                         _listktphong.Add(kt);
-                        B = true;
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
                     }
                 }
@@ -459,6 +459,12 @@ namespace QLSV.Frm.FrmUserControl
                 return;
             }
             dgv_DanhSach.DataSource = SearchData.Timkiemtheolop3(int.Parse(obj.ToString()),_idkythi);
+        }
+
+        private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
     }
 }

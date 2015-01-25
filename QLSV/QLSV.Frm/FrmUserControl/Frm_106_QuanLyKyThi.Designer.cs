@@ -32,8 +32,6 @@
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_xoadong = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug.SuspendLayout();
@@ -45,39 +43,23 @@
             // 
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_themdong,
-            this.menuStrip_xoadong,
-            this.menuStrip_luulai,
-            this.menuStrip_Huy});
+            this.menuStrip_xoadong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(137, 92);
+            this.menu_ug.Size = new System.Drawing.Size(153, 70);
             // 
             // menuStrip_themdong
             // 
             this.menuStrip_themdong.Name = "menuStrip_themdong";
-            this.menuStrip_themdong.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_themdong.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_themdong.Text = "Thêm dòng";
             this.menuStrip_themdong.Click += new System.EventHandler(this.menuStrip_themdong_Click);
             // 
             // menuStrip_xoadong
             // 
             this.menuStrip_xoadong.Name = "menuStrip_xoadong";
-            this.menuStrip_xoadong.Size = new System.Drawing.Size(136, 22);
+            this.menuStrip_xoadong.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_xoadong.Text = "Xóa dòng";
             this.menuStrip_xoadong.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
-            // 
-            // menuStrip_luulai
-            // 
-            this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
-            this.menuStrip_luulai.Text = "Lưu lại";
-            this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
-            this.menuStrip_Huy.Text = "Hủy";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // panel2
             // 
@@ -133,7 +115,5 @@
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_themdong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_xoadong;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
     }
 }

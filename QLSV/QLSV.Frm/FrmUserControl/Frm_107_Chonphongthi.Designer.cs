@@ -58,13 +58,13 @@
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_chonphong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(142, 26);
+            this.menu_ug.Size = new System.Drawing.Size(153, 48);
             // 
             // menuStrip_chonphong
             // 
             this.menuStrip_chonphong.Name = "menuStrip_chonphong";
-            this.menuStrip_chonphong.Size = new System.Drawing.Size(141, 22);
-            this.menuStrip_chonphong.Text = "Chọn Phòng";
+            this.menuStrip_chonphong.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_chonphong.Text = "Thêm phòng";
             this.menuStrip_chonphong.Click += new System.EventHandler(this.menuStrip_chonphong_Click);
             // 
             // Frm_107_Chonphongthi

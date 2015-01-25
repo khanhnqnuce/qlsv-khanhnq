@@ -249,7 +249,7 @@ namespace QLSV.Frm
                         break;
                     case "106":
                         _frmQuanLyKyThi = new Frm_106_QuanLyKyThi(_quyen);
-                        _frmQuanLyKyThi.updatekythi += Updatekythi;
+                        _frmQuanLyKyThi.Updatekythi += Updatekythi;
                         Tabquanlykythi.Tab.Visible = true;
                         TabPageControl.SelectedTab = Tabquanlykythi.Tab;
                         ShowControl(_frmQuanLyKyThi, pn_quanlykythi);

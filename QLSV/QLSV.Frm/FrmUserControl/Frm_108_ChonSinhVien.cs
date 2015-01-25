@@ -95,7 +95,7 @@ namespace QLSV.Frm.FrmUserControl
                             };
                             _listXepPhong.Add(xp);
                         }
-                        B = true;
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
                     }
                 }
@@ -123,14 +123,8 @@ namespace QLSV.Frm.FrmUserControl
                             IdSV = int.Parse(masv)
                         };
                         _listXepPhong.Add(xp);
-                        B = true;
+                        DeleteAndUpdate = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
-                        if (index > 0)
-                            dgv_DanhSach.Rows[index - 1].Cells[2].Activate();
-                        else
-                            dgv_DanhSach.Rows[index].Cells[2].Activate();
-
-                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode);
                     }
                 }
                 if (_listKtPhong.Count <= 0 || _listXepPhong.Count <= 0) return;
@@ -250,8 +244,13 @@ namespace QLSV.Frm.FrmUserControl
 
         private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
+        }
+
+        private void menuStrip_chonphong_Click(object sender, EventArgs e)
+        {
+            InsertRow();
         }
     }
 }

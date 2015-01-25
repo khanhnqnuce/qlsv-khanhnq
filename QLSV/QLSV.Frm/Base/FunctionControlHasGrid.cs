@@ -10,7 +10,7 @@ namespace QLSV.Frm.Base
     {
         protected IList<int> IdDelete = new List<int>();
         protected readonly object LockTotal = new object();
-        protected bool B;
+        protected bool DeleteAndUpdate;
 
         #region event delegate
 
@@ -93,7 +93,7 @@ namespace QLSV.Frm.Base
                                 IdDelete.Add(int.Parse(id));
                             }
                         }
-                        B = true;
+                        DeleteAndUpdate = true;
                         grid.DeleteSelectedRows(false);
                     }
                 }
@@ -103,7 +103,7 @@ namespace QLSV.Frm.Base
                     if (string.IsNullOrEmpty(grid.ActiveRow.Cells[columnname].Text)
                         && string.IsNullOrEmpty(grid.ActiveRow.Cells[columnId].Text))
                     {
-                        B = true;
+                        DeleteAndUpdate = true;
                         grid.ActiveRow.Delete(false);
                         return;
                     }
@@ -111,7 +111,7 @@ namespace QLSV.Frm.Base
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                     {
-                        B = true;
+                        DeleteAndUpdate = true;
                         var idStr = grid.ActiveRow.Cells[columnId].Text;
                         if (!string.IsNullOrEmpty(idStr))
                             IdDelete.Add(int.Parse(idStr));

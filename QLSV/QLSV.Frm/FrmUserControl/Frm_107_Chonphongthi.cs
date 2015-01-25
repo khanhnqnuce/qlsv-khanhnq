@@ -172,8 +172,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void dgv_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
     }
 }

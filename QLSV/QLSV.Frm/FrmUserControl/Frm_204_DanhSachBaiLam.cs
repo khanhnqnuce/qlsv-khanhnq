@@ -268,25 +268,6 @@ namespace QLSV.Frm.FrmUserControl
 
         #endregion
 
-        #region MenuStrip
-
-        private void menuStrip_Sua_Click(object sender, EventArgs e)
-        {
-            SuaMaSinhVien();
-        }
-
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            Huy();
-        }
-
-        private void menuStrip_Luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        #endregion
-
         private void FrmDanhSachBaiLam_Load(object sender, EventArgs e)
         {
             Huy();
@@ -337,11 +318,6 @@ namespace QLSV.Frm.FrmUserControl
             LoadFormDetail();
         }
 
-        /// <summary>
-        /// tắt âm khi nhấn Enter
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void txtmade_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

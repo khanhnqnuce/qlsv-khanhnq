@@ -204,16 +204,6 @@ namespace QLSV.Frm.FrmUserControl
             DeleteRow();
         }
 
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
-        private void menuStrip_Huy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
         #endregion
 
         private void FrmInportSinhVien_Load(object sender, EventArgs e)
@@ -286,8 +276,8 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
         {
-            e.Cancel = !B;
-            B = false;
+            e.Cancel = !DeleteAndUpdate;
+            DeleteAndUpdate = false;
         }
     }
 }
