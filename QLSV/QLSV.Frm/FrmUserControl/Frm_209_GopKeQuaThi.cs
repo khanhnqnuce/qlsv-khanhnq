@@ -87,7 +87,7 @@ namespace QLSV.Frm.FrmUserControl
                             var ten = "Diem" + (i + 1);
                             var diem = row[ten].ToString();
                             if (!string.IsNullOrEmpty(diem))
-                                sv1.Diemthi[i] = int.Parse(row[ten].ToString());
+                                sv1.Diemthi[i] = double.Parse(row[ten].ToString());
                             else
                                 sv1.Diemthi[i] = 0;
                         }
@@ -242,7 +242,7 @@ namespace QLSV.Frm.FrmUserControl
                 double miengiam = 0;
                 foreach (var row in dgv_DanhSach.Rows)
                 {
-                    var d = int.Parse(row.Cells["TongDiem"].Text);
+                    var d = double.Parse(row.Cells["TongDiem"].Text);
                     if (d < 200)
                         bosung = bosung + 1;
                     else if (d >= 200 && d < 250)
@@ -434,16 +434,16 @@ namespace QLSV.Frm.FrmUserControl
         public string TenSV { get; set; }
         public string NgaySinh { get; set; }
         public string MaLop { get; set; }
-        public int[] Diemthi { get; set; }
-        public int TongDiem { get; set; }
+        public double[] Diemthi { get; set; }
+        public double TongDiem { get; set; }
 
         public Sinhvien(int count)
         {
-            Diemthi = new int[count];
+            Diemthi = new double[count];
             TongDiem = 0;
         }
 
-        public int Tinhtong()
+        public double Tinhtong()
         {
             foreach (var t in Diemthi)
             {

@@ -141,7 +141,7 @@ namespace QLSV.Frm.FrmUserControl
                 double toiec3 = 0;
                 double toiec4 = 0;
                 double miengiam = 0;
-                foreach (var d in from DataRow row in tb.Rows select int.Parse(row["DiemThi"].ToString()))
+                foreach (var d in from DataRow row in tb.Rows select double.Parse(row["DiemThi"].ToString()))
                 {
                     if (d < 200)
                         bosung = bosung + 1;
