@@ -385,8 +385,9 @@ namespace QLSV.Core.LINQ
         {
             try
             {
+                var diem = item.Diem.ToString().Replace(',', '.');
                 Conn.ExcuteQuerySql("insert into DIEMTHI(MaSV,IdNamHoc,HocKy,Diem) values(" +
-                item.MaSV + "," + item.IdNamHoc + ",'" + item.HocKy + "'," +item.Diem + ")");
+                item.MaSV + "," + item.IdNamHoc + ",'" + item.HocKy + "'," +diem + ")");
                 return true;
             }
             catch (Exception ex)

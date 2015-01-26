@@ -502,5 +502,6 @@ namespace QLSV.Frm.FrmUserControl
             e.Cancel = !DeleteAndUpdate;
             DeleteAndUpdate = false;
         }
+        
     }
 }

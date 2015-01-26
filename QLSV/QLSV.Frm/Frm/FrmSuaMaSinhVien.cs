@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
+using Infragistics.Win.UltraWinGrid;
 using QLSV.Core.LINQ;
 
 namespace QLSV.Frm.Frm
@@ -10,10 +12,12 @@ namespace QLSV.Frm.Frm
         private readonly int _idkythi;
         private readonly string _made;
         public bool Update;
+        private UltraGrid _ultra;
 
-        public FrmSuaMaSinhVien(int masv, int idkythi, string made)
+        public FrmSuaMaSinhVien(int masv, int idkythi, string made,UltraGrid ultra)
         {
             InitializeComponent();
+            _ultra = ultra;
             _masv = masv;
             _idkythi = idkythi;
             _made = made;
@@ -27,6 +31,11 @@ namespace QLSV.Frm.Frm
             }
             else
             {
+                foreach (var row in _ultra.Rows.Where(row => row.Cells["MaSV"].Text == txtmasinhvien.Text))
+                {
+                    MessageBox.Show(@"Mã sinh viên đã bị trùng", @"Thông báo");
+                    return;
+                }
                 UpdateData.UpdateMaSinhVien(int.Parse(txtmasinhvien.Text), _masv,_idkythi,_made);
                 Close();
                 MessageBox.Show(@"Lưu lại thành công");

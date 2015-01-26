@@ -781,5 +781,20 @@ namespace QLSV.Core.LINQ
                 return false;
             }
         }
+
+        public static bool UpdateDT(int masv, string made, string chuoikq, int idKt)
+        {
+            try
+            {
+                var str = "update BAILAM set MaDe = N'" + made + "', KetQua = '" + chuoikq + "' where MaSV = "+masv+" and IdKyThi ="+idKt+" ";
+                Conn.ExcuteQuerySql(str);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return false;
+            }
+        }
     }
 }

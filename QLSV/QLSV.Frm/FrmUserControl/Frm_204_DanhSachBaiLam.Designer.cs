@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuStrip_Suamasv = new System.Windows.Forms.ToolStripMenuItem();
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
@@ -46,12 +48,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.pnl_from = new System.Windows.Forms.Panel();
-            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuStrip_Suamasv = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStrip_suamade = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
+            this.menu_ug.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
-            this.menu_ug.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_DanhSach
@@ -73,6 +74,21 @@
             this.dgv_DanhSach.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.dgv_DanhSach_BeforeRowsDeleted);
             this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.dgv_DanhSach_DoubleClickCell);
             // 
+            // menu_ug
+            // 
+            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip_Suamasv,
+            this.MenuStrip_suamade});
+            this.menu_ug.Name = "contextMenuStrip1";
+            this.menu_ug.Size = new System.Drawing.Size(175, 70);
+            // 
+            // menuStrip_Suamasv
+            // 
+            this.menuStrip_Suamasv.Name = "menuStrip_Suamasv";
+            this.menuStrip_Suamasv.Size = new System.Drawing.Size(174, 22);
+            this.menuStrip_Suamasv.Text = "Sửa mã sv";
+            this.menuStrip_Suamasv.Click += new System.EventHandler(this.menuStrip_Suamasv_Click);
+            // 
             // rptdanhsachsinhvien
             // 
             this.rptdanhsachsinhvien.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachsinhvien.rst";
@@ -83,7 +99,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters5;
+            this.pdfExportFilter1.ExtraParameters = extraParameters1;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -91,7 +107,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters6;
+            this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
             // rptdsbailam
             // 
@@ -189,19 +205,12 @@
             this.pnl_from.TabIndex = 30;
             this.pnl_from.Visible = false;
             // 
-            // menu_ug
+            // MenuStrip_suamade
             // 
-            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_Suamasv});
-            this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(128, 26);
-            // 
-            // menuStrip_Suamasv
-            // 
-            this.menuStrip_Suamasv.Name = "menuStrip_Suamasv";
-            this.menuStrip_Suamasv.Size = new System.Drawing.Size(152, 22);
-            this.menuStrip_Suamasv.Text = "Sửa mã sv";
-            this.menuStrip_Suamasv.Click += new System.EventHandler(this.menuStrip_Suamasv_Click);
+            this.MenuStrip_suamade.Name = "MenuStrip_suamade";
+            this.MenuStrip_suamade.Size = new System.Drawing.Size(174, 22);
+            this.MenuStrip_suamade.Text = "Sửa mã đề, bài làm";
+            this.MenuStrip_suamade.Click += new System.EventHandler(this.MenuStrip_suamade_Click);
             // 
             // Frm_204_DanhSachBaiLam
             // 
@@ -214,10 +223,10 @@
             this.Size = new System.Drawing.Size(654, 498);
             this.Load += new System.EventHandler(this.FrmDanhSachBaiLam_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
+            this.menu_ug.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.pnl_from.ResumeLayout(false);
-            this.menu_ug.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +251,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_Suamasv;
+        private System.Windows.Forms.ToolStripMenuItem MenuStrip_suamade;
     }
 }

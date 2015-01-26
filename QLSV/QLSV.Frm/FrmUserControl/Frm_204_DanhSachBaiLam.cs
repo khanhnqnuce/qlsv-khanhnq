@@ -126,6 +126,7 @@ namespace QLSV.Frm.FrmUserControl
                     var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaSV"].Value.ToString() == masinhvien))
                 {
                     dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    row.Activate();
                     row.Selected = true;
                     _newRow = row;
                 }
@@ -154,7 +155,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
             var made = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
-            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made)
+            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made,dgv_DanhSach)
             {
                 Update = false,
                 txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text}
@@ -220,6 +221,30 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void SuaDiem()
+        {
+            try
+            {
+                var frm = new FrmSuaDiemThi(_idKyThi)
+                {
+                    update = false,
+                    txtmasv = { Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text },
+                    txtmade = { Text = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text },
+                    txtchuoi = { Text = dgv_DanhSach.ActiveRow.Cells["KetQua"].Text }
+                };
+                frm.ShowDialog();
+                if (frm.update)
+                {
+                    dgv_DanhSach.ActiveRow.Cells["MaDe"].Value = frm.txtmade.Text;
+                    dgv_DanhSach.ActiveRow.Cells["KetQua"].Value = frm.txtchuoi.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         #endregion
 
         #region Event uG
@@ -242,6 +267,9 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
+                band.Columns["MaHoiDong"].CellActivation = Activation.NoEdit;
+                band.Columns["MaLoCham"].CellActivation = Activation.NoEdit;
+                band.Columns["TenFile"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.ActivateOnly;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
@@ -281,7 +309,16 @@ namespace QLSV.Frm.FrmUserControl
 
         private void dgv_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
         {
-            SuaMaSinhVien();
+            switch (e.Cell.Column.Key)
+            {
+                case "MaSV":
+                    SuaMaSinhVien();
+                    break;
+                case "KetQua":
+                case "MaDe":
+                    SuaDiem();
+                    break;
+            }
         }
 
         #endregion
@@ -351,6 +388,11 @@ namespace QLSV.Frm.FrmUserControl
         private void menuStrip_Suamasv_Click(object sender, EventArgs e)
         {
             SuaMaSinhVien();
+        }
+
+        private void MenuStrip_suamade_Click(object sender, EventArgs e)
+        {
+            SuaDiem();
         }
     }
 }
