@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.SS.Util;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -112,6 +114,37 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void InDanhSach()
+        {
+            RptPhong();
+        }
+
+        private void RptPhong()
+        {
+            try
+            {
+                var tb = new DataTable();
+                tb.Columns.Add("stt", typeof (string));
+                for (var i = 0; i < 10; i++)
+                {
+                    tb.Rows.Add(i);
+                }
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add("danhsach", tb);
+                rptdsPhong.FilePath = Application.StartupPath + @"\Reports\dsPhong.rst";
+                rptdsPhong.Prepare();
+                var previewForm = new PreviewForm(rptdsPhong)
+                {
+                    WindowState = FormWindowState.Maximized
+                };
+                previewForm.Show();
             }
             catch (Exception ex)
             {

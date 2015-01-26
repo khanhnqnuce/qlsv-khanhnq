@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
-            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters5 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters6 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
@@ -46,13 +46,17 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnrefresh = new System.Windows.Forms.ToolStripButton();
             this.pnl_from = new System.Windows.Forms.Panel();
+            this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuStrip_Suamasv = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.pnl_from.SuspendLayout();
+            this.menu_ug.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv_DanhSach
             // 
+            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
             this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
             this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
@@ -79,7 +83,7 @@
             // 
             this.pdfExportFilter1.ChangePermissionsPassword = null;
             this.pdfExportFilter1.Compress = true;
-            this.pdfExportFilter1.ExtraParameters = extraParameters1;
+            this.pdfExportFilter1.ExtraParameters = extraParameters5;
             this.pdfExportFilter1.UserPassword = null;
             // 
             // excelExportFilter1
@@ -87,7 +91,7 @@
             this.excelExportFilter1.ExportInLargePage = true;
             this.excelExportFilter1.ExportInOnePage = true;
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
-            this.excelExportFilter1.ExtraParameters = extraParameters2;
+            this.excelExportFilter1.ExtraParameters = extraParameters6;
             // 
             // rptdsbailam
             // 
@@ -185,6 +189,20 @@
             this.pnl_from.TabIndex = 30;
             this.pnl_from.Visible = false;
             // 
+            // menu_ug
+            // 
+            this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip_Suamasv});
+            this.menu_ug.Name = "contextMenuStrip1";
+            this.menu_ug.Size = new System.Drawing.Size(128, 26);
+            // 
+            // menuStrip_Suamasv
+            // 
+            this.menuStrip_Suamasv.Name = "menuStrip_Suamasv";
+            this.menuStrip_Suamasv.Size = new System.Drawing.Size(152, 22);
+            this.menuStrip_Suamasv.Text = "Sửa mã sv";
+            this.menuStrip_Suamasv.Click += new System.EventHandler(this.menuStrip_Suamasv_Click);
+            // 
             // Frm_204_DanhSachBaiLam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -199,6 +217,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.pnl_from.ResumeLayout(false);
+            this.menu_ug.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +240,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btntimkiemsinhvien;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ContextMenuStrip menu_ug;
+        private System.Windows.Forms.ToolStripMenuItem menuStrip_Suamasv;
     }
 }

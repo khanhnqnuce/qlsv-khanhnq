@@ -720,6 +720,9 @@
     <Content Include="Reports\dsbailam.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\dsPhong.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="RunAsAdmin.manifest" />
   </ItemGroup>
   <ItemGroup>

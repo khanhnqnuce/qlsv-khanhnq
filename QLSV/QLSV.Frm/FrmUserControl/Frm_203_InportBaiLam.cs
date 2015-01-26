@@ -217,19 +217,18 @@ namespace QLSV.Frm.FrmUserControl
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Columns["STT"].MinWidth = 60;
                 band.Columns["STT"].MaxWidth = 70;
-                band.Columns["MaSV"].MinWidth = 140;
-                band.Columns["MaSV"].MaxWidth = 150;
+                band.Columns["MaSV"].MinWidth = 120;
+                band.Columns["MaSV"].MaxWidth = 130;
+                band.Columns["MaDe"].MinWidth = 100;
+                band.Columns["MaDe"].MaxWidth = 110;
+                band.Columns["KetQua"].MinWidth = 640;
+                band.Columns["KetQua"].MaxWidth = 650;
                 band.Columns["MaHoiDong"].MinWidth = 100;
                 band.Columns["MaLoCham"].MinWidth = 100;
                 band.Columns["TenFile"].MinWidth = 100;
-                
                 band.Columns["MaHoiDong"].MaxWidth = 110;
                 band.Columns["MaLoCham"].MaxWidth = 110;
                 band.Columns["TenFile"].MaxWidth = 110;
-                band.Columns["MaDe"].MinWidth = 140;
-                band.Columns["MaDe"].MaxWidth = 150;
-                band.Columns["KetQua"].MinWidth = 640;
-                band.Columns["KetQua"].MaxWidth = 650;
                 band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
                 #region Caption
