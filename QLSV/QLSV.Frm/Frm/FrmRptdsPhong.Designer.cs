@@ -61,6 +61,7 @@
             this.txttuphong.TabIndex = 1;
             this.txttuphong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txttuphong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdenphong_KeyPress);
+            this.txttuphong.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtdenphong_KeyUp);
             // 
             // txtdenphong
             // 
@@ -70,6 +71,7 @@
             this.txtdenphong.TabIndex = 1;
             this.txtdenphong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtdenphong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdenphong_KeyPress);
+            this.txtdenphong.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtdenphong_KeyUp);
             // 
             // btnOk
             // 

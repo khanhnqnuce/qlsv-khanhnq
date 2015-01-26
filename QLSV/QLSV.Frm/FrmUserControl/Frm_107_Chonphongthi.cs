@@ -131,12 +131,11 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var tb = new DataTable();
-                var frm = new FrmRptdsPhong();
-                frm.txttuphong.Focus();
+                var frm = new FrmRptdsPhong {update = false};
                 frm.ShowDialog();
                 var bd = int.Parse(frm.txttuphong.Text);
                 var kt = int.Parse(frm.txtdenphong.Text);
-                if (kt < bd) return;
+                if (!frm.update || kt < bd) return;
                 tb.Columns.Add("stt", typeof (string));
                 for (var i = bd; i < kt; i++)
                 {
