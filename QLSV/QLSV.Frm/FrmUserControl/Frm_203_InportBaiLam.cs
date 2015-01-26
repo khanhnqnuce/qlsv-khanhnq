@@ -40,6 +40,9 @@ namespace QLSV.Frm.FrmUserControl
             table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
             table.Columns.Add("KetQua", typeof(string));
+            table.Columns.Add("MaHoiDong", typeof(string));
+            table.Columns.Add("MaLoCham", typeof(string));
+            table.Columns.Add("TenFile", typeof(string));
             return table;
         }
 
@@ -80,7 +83,7 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var chuoi = str.Replace("\"", "");
                     var bailam = chuoi.Split(',');
-                    tb.Rows.Add(null, stt++, bailam[0], bailam[1],bailam[2]);
+                    tb.Rows.Add(null, stt++, bailam[0], bailam[1], bailam[2], bailam[3], bailam[4], bailam[5]);
                     str = sr.ReadLine();
                 }
                 sr.Close();
@@ -210,6 +213,13 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].MaxWidth = 70;
                 band.Columns["MaSV"].MinWidth = 140;
                 band.Columns["MaSV"].MaxWidth = 150;
+                band.Columns["MaHoiDong"].MinWidth = 100;
+                band.Columns["MaLoCham"].MinWidth = 100;
+                band.Columns["TenFile"].MinWidth = 100;
+                
+                band.Columns["MaHoiDong"].MaxWidth = 110;
+                band.Columns["MaLoCham"].MaxWidth = 110;
+                band.Columns["TenFile"].MaxWidth = 110;
                 band.Columns["MaDe"].MinWidth = 140;
                 band.Columns["MaDe"].MaxWidth = 150;
                 band.Columns["KetQua"].MinWidth = 640;
