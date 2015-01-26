@@ -338,13 +338,14 @@ namespace QLSV.Core.LINQ
         /// Thêm 1 bài làm của sinh viên
         /// </summary>
         /// <returns></returns>
-        public static bool ThemBaiLam(BaiLam item)
+        private static bool ThemBaiLam(BaiLam item)
         {
             try
             {
-                Conn.ExcuteQuerySql("insert into BAILAM(IdKyThi,MaSV,MaDe,KetQua) values(" +
-                item.IdKyThi + "," + item.MaSV + ",N'" + item.MaDe + "',N'" +
-                item.KetQua + "')");
+                var str = "insert into BAILAM(IdKyThi,MaSV,MaDe,KetQua,MaHoiDong,MaLoCham,TenFile) values(" +
+                          item.IdKyThi + "," + item.MaSV + ",N'" + item.MaDe + "',N'" +
+                          item.KetQua + "','" + item.MaHoiDong + "','" + item.MaLoCham + "','" + item.TenFile + "')";
+                Conn.ExcuteQuerySql(str);
                 return true;
             }
             catch (Exception ex)

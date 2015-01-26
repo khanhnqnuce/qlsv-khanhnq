@@ -230,10 +230,14 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Columns["IdKyThi"].Hidden = true;
+                band.Columns["DiemThi"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaHoiDong"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLoCham"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenFile"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
@@ -251,12 +255,21 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaDe"].MaxWidth = 150;
                 band.Columns["KetQua"].MinWidth = 640;
                 band.Columns["KetQua"].MaxWidth = 650;
+                band.Columns["MaHoiDong"].MinWidth = 100;
+                band.Columns["MaLoCham"].MinWidth = 100;
+                band.Columns["TenFile"].MinWidth = 100;
+                band.Columns["MaHoiDong"].MaxWidth = 110;
+                band.Columns["MaLoCham"].MaxWidth = 110;
+                band.Columns["TenFile"].MaxWidth = 110;
 
                 #region Caption
 
                 band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
                 band.Columns["KetQua"].Header.Caption = @"Đáp án bài làm";
+                band.Columns["MaHoiDong"].Header.Caption = @"Hội đồng";
+                band.Columns["MaLoCham"].Header.Caption = @"Lô chấm";
+                band.Columns["TenFile"].Header.Caption = @"Tên file";
 
                 #endregion
             }

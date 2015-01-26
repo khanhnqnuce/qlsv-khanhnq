@@ -175,7 +175,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 6:
                         str = "SELECT ROW_NUMBER() OVER(ORDER BY b.MaSV) as [STT]," +
-                              " b.IdKyThi, b.MaSV, b.MaDe, b.KetQua " +
+                              " b.* " +
                               "FROM BAILAM b " +
                               "WHERE b.IdKyThi = "+idKythi+"";
                         break;

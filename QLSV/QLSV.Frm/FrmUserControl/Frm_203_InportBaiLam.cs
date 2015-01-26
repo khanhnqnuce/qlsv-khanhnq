@@ -35,7 +35,6 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
             table.Columns.Add("STT", typeof(int));
             table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
@@ -83,7 +82,8 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var chuoi = str.Replace("\"", "");
                     var bailam = chuoi.Split(',');
-                    tb.Rows.Add(null, stt++, bailam[0], bailam[1], bailam[2], bailam[3], bailam[4], bailam[5]);
+                    if(bailam.Length != 6) return;
+                    tb.Rows.Add(stt++, bailam[0], bailam[1], bailam[2], bailam[3], bailam[4], bailam[5]);
                     str = sr.ReadLine();
                 }
                 sr.Close();
@@ -134,7 +134,10 @@ namespace QLSV.Frm.FrmUserControl
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
                         MaDe = row.Cells["MaDe"].Text,
                         KetQua = row.Cells["KetQua"].Text,
-                        IdKyThi = _idKythi
+                        IdKyThi = _idKythi,
+                        MaHoiDong = row.Cells["MaHoiDong"].Text,
+                        MaLoCham = row.Cells["MaLoCham"].Text,
+                        TenFile = row.Cells["TenFile"].Text,
                     };
                     _listAdd.Add(hs);
                 }
@@ -193,18 +196,17 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 var band = e.Layout.Bands[0];
-
-                band.Columns["ID"].Hidden = true;
-
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaHoiDong"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLoCham"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenFile"].CellAppearance.TextHAlign = HAlign.Center;
 
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
                 band.Columns["MaSV"].CellActivation = Activation.NoEdit;
                 band.Columns["MaDe"].CellActivation = Activation.NoEdit;
                 band.Columns["KetQua"].CellActivation = Activation.NoEdit;
-                band.Columns["ID"].CellActivation = Activation.NoEdit;
 
                 band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
@@ -231,6 +233,9 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
                 band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
                 band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
+                band.Columns["MaHoiDong"].Header.Caption = @"Hội đồng";
+                band.Columns["MaLoCham"].Header.Caption = @"Lô chấm";
+                band.Columns["TenFile"].Header.Caption = @"Tên file";
 
                 #endregion
             }
