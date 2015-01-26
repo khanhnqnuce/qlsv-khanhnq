@@ -16,7 +16,7 @@ namespace QLSV.Frm.FrmUserControl
     public partial class Frm_202_DanhSachDapAn : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listUpdate = new List<DapAn>();
-        private int _idKyThi;
+        private readonly int _idKyThi;
         public Frm_202_DanhSachDapAn(int idkythi)
         {
             InitializeComponent();

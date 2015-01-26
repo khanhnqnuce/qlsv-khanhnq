@@ -52,6 +52,7 @@ namespace QLSV.Frm.Frm
         {
 
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)

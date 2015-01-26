@@ -92,11 +92,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                //DeleteRowGrid(dgv_DanhSach, "MaSV", "MaSV");
-                //if (IdDelete.Count <= 0) return;
-                //DeleteData.XoaSv(IdDelete);
-                //MessageBox.Show(@"Xóa dữ liệu thành công.", FormResource.MsgCaption);
-                //LoadFormDetail();
                 bool check;
                 if (dgv_DanhSach.Selected.Rows.Count > 0)
                 {

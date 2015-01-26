@@ -20,5 +20,17 @@ namespace QLSV.Frm.Frm
         {
             Close();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

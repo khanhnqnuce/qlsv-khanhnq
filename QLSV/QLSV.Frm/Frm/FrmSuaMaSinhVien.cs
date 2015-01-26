@@ -11,7 +11,7 @@ namespace QLSV.Frm.Frm
         private readonly int _masv;
         private readonly int _idkythi;
         private readonly string _made;
-        public bool Update;
+        public bool update;
         private UltraGrid _ultra;
 
         public FrmSuaMaSinhVien(int masv, int idkythi, string made,UltraGrid ultra)
@@ -39,7 +39,7 @@ namespace QLSV.Frm.Frm
                 UpdateData.UpdateMaSinhVien(int.Parse(txtmasinhvien.Text), _masv,_idkythi,_made);
                 Close();
                 MessageBox.Show(@"Lưu lại thành công");
-                Update = true;
+                update = true;
             }
         }
 
@@ -49,6 +49,9 @@ namespace QLSV.Frm.Frm
             {
                 case (Keys.Enter):
                     Sua();
+                    break;
+                case (Keys.Escape):
+                    Close();
                     break;
             }
 

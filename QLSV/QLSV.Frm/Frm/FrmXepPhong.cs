@@ -38,16 +38,6 @@ namespace QLSV.Frm.Frm
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btndong_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {

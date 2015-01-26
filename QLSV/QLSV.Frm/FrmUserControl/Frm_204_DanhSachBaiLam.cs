@@ -157,11 +157,11 @@ namespace QLSV.Frm.FrmUserControl
             var made = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
             var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made,dgv_DanhSach)
             {
-                Update = false,
+                update = false,
                 txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text}
             };
             frm.ShowDialog();
-            if (frm.Update) 
+            if (frm.update) 
                 dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
         }
 

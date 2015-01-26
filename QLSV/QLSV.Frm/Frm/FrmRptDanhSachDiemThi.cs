@@ -4,7 +4,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmRptDanhSachDiemThi : Form
     {
-        public bool Update;
+        public bool update;
         public FrmRptDanhSachDiemThi()
         {
             InitializeComponent();
@@ -12,8 +12,19 @@ namespace QLSV.Frm.Frm
 
         private void btnOk_Click(object sender, System.EventArgs e)
         {
-            Update = true;
+            update = true;
             Close();
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

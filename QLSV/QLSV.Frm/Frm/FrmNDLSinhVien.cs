@@ -254,5 +254,17 @@ namespace QLSV.Frm.Frm
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Escape):
+                    Close();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

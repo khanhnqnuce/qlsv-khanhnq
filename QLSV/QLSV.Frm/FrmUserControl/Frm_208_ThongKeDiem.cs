@@ -65,12 +65,12 @@ namespace QLSV.Frm.FrmUserControl
         {
             var frm = new FrmRptDanhSachDiemThi
             {
-                Update = false
+                update = false
             };
             frm.ShowDialog();
-            if(frm.rdodanhsach.Checked && frm.Update)
+            if(frm.rdodanhsach.Checked && frm.update)
                 Rptdanhsach();
-            else if(frm.rdoThongke.Checked && frm.Update)
+            else if(frm.rdoThongke.Checked && frm.update)
                 Rptthongke();
         }
 

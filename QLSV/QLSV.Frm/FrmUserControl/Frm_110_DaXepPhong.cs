@@ -226,7 +226,7 @@ namespace QLSV.Frm.FrmUserControl
             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
             rptdanhsachduthi.FilePath = Application.StartupPath + @"\Reports\danhsachduthiphong.rst";
             rptdanhsachduthi.Prepare();
-            rptdanhsachduthi.GetReportParameter += GetParameter;
+            rptdanhsachduthi.GetReportParameter += GetParameter1;
             var previewForm = new PreviewForm(rptdanhsachduthi)
             {
                 WindowState = FormWindowState.Maximized
@@ -283,6 +283,23 @@ namespace QLSV.Frm.FrmUserControl
                 foreach (DataRow row in tb.Rows)
                 {
                     e.Parameters["GhiChu"].Value = row["TGBatDau"] + " - " + row["TGKetThuc"];
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void GetParameter1(object sender,
+           PerpetuumSoft.Reporting.Components.GetReportParameterEventArgs e)
+        {
+            try
+            {
+                var tb = LoadData.Load(3, _idkythi);
+                foreach (DataRow row in tb.Rows)
+                {
+                    e.Parameters["GhiChu"].Value = row["GhiChu"].ToString();
                 }
             }
             catch (Exception ex)
