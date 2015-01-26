@@ -74,7 +74,11 @@ namespace QLSV.Frm.FrmUserControl
                     Title = @"Chọn tập tin"
                 };
                 var dlr = dialog.ShowDialog();
-                if (dlr != DialogResult.OK) return;
+                if (dlr != DialogResult.OK)
+                {
+                    MessageBox.Show(@"Chọn Nhầm file hoặc file không đủ số cột", @"Thông báo");
+                    return;
+                }
                 var fs = new FileStream(dialog.FileName, FileMode.Open, FileAccess.Read, FileShare.None);
                 var sr = new StreamReader(fs);
                 var str = sr.ReadLine();
