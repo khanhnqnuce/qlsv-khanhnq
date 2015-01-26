@@ -32,8 +32,6 @@
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_nhapdiem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_from = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -73,32 +71,16 @@
             // 
             this.menu_ug.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuStrip_nhapdiem,
-            this.menuStrip_Luulai,
-            this.menuStrip_Huy});
+            this.menuStrip_nhapdiem});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(134, 70);
+            this.menu_ug.Size = new System.Drawing.Size(153, 48);
             // 
             // menuStrip_nhapdiem
             // 
             this.menuStrip_nhapdiem.Name = "menuStrip_nhapdiem";
-            this.menuStrip_nhapdiem.Size = new System.Drawing.Size(133, 22);
+            this.menuStrip_nhapdiem.Size = new System.Drawing.Size(152, 22);
             this.menuStrip_nhapdiem.Text = "Nhập điểm";
             this.menuStrip_nhapdiem.Click += new System.EventHandler(this.menuStrip_nhapdiem_Click);
-            // 
-            // menuStrip_Luulai
-            // 
-            this.menuStrip_Luulai.Name = "menuStrip_Luulai";
-            this.menuStrip_Luulai.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Luulai.Text = "Lưu lại";
-            this.menuStrip_Luulai.Click += new System.EventHandler(this.menuStrip_Luulai_Click);
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(133, 22);
-            this.menuStrip_Huy.Text = "Hủy";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
             // 
             // pnl_from
             // 
@@ -192,8 +174,6 @@
 
         private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private System.Windows.Forms.ContextMenuStrip menu_ug;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
         private System.Windows.Forms.Panel pnl_from;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txtmade;

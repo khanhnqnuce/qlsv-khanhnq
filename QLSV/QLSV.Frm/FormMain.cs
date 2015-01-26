@@ -1426,17 +1426,17 @@ namespace QLSV.Frm
             SelectTabControl();
         }
 
-        //private void timer1_Tick(object sender, EventArgs e)
-        //{
-        //    if (DateTime.Now.Hour > 12)
-        //    {
-        //        lbtime.Text = DateTime.Now.ToString();
-        //    }
-        //    else
-        //    {
-        //        lbtime.Text = DateTime.Now.ToString();
-        //    }
-        //}
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Hour > 12)
+            {
+                lbtime.Text = DateTime.Now.ToString();
+            }
+            else
+            {
+                lbtime.Text = DateTime.Now.ToString();
+            }
+        }
 
     }
 }

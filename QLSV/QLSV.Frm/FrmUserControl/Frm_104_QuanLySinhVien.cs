@@ -116,7 +116,7 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 if (IdDelete.Count > 0 && DialogResult.Yes ==
                         MessageBox.Show(FormResource.MsgXoaSv,
-                            FormResource.MsgCaption,
+                            @"Cảnh báo",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                 {

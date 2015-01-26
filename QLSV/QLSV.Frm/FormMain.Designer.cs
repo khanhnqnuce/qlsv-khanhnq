@@ -313,7 +313,7 @@
             // Tabquanlynguoidung
             // 
             this.Tabquanlynguoidung.Controls.Add(this.pn_quanlynguoidung);
-            this.Tabquanlynguoidung.Location = new System.Drawing.Point(-10000, -10000);
+            this.Tabquanlynguoidung.Location = new System.Drawing.Point(1, 1);
             this.Tabquanlynguoidung.Name = "Tabquanlynguoidung";
             this.Tabquanlynguoidung.Size = new System.Drawing.Size(829, 502);
             // 
@@ -791,7 +791,7 @@
             // Tabdiemtichluy
             // 
             this.Tabdiemtichluy.Controls.Add(this.pnl_diemtichluy);
-            this.Tabdiemtichluy.Location = new System.Drawing.Point(1, 1);
+            this.Tabdiemtichluy.Location = new System.Drawing.Point(-10000, -10000);
             this.Tabdiemtichluy.Name = "Tabdiemtichluy";
             this.Tabdiemtichluy.Size = new System.Drawing.Size(829, 502);
             // 
@@ -1437,6 +1437,7 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ultraTabSharedControlsPage3
             // 

@@ -245,7 +245,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["TT"].Style = ColumnStyle.URL;
                 //band.Columns["TT"].Style = ColumnStyle.Button;
                 band.Columns["STT"].MinWidth = 60;
-                band.Columns["MaKT"].MinWidth = 100;
+                band.Columns["MaKT"].MinWidth = 150;
                 band.Columns["TenKT"].MinWidth = 270;
                 band.Columns["NgayThi"].MinWidth = 140;
                 band.Columns["TGLamBai"].MinWidth = 100;
@@ -255,7 +255,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["STT"].MaxWidth = 70;
                 band.Columns["GhiChu"].MinWidth = 140;
                 band.Columns["GhiChu"].MaxWidth = 150;
-                band.Columns["MaKT"].MaxWidth = 110;
+                band.Columns["MaKT"].MaxWidth = 160;
                 band.Columns["TenKT"].MaxWidth = 300;
                 band.Columns["NgayThi"].MaxWidth = 150;
                 band.Columns["TGLamBai"].MaxWidth = 110;
