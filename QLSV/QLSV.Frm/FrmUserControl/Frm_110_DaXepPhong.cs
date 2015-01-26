@@ -282,7 +282,7 @@ namespace QLSV.Frm.FrmUserControl
                 var tb = LoadData.Load(3, _idkythi);
                 foreach (DataRow row in tb.Rows)
                 {
-                    e.Parameters["GhiChu"].Value = row["GhiChu"].ToString();
+                    e.Parameters["GhiChu"].Value = row["TGBatDau"] + " - " + row["TGKetThuc"];
                 }
             }
             catch (Exception ex)
