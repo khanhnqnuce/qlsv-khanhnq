@@ -372,13 +372,15 @@ namespace QLSV.Core.LINQ
         /// Sửa lại đáp án đúng của 1 câu hỏi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateThangDiem(DapAn item)
+        private static bool UpdateThangDiem(DapAn item)
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE DAPAN SET ThangDiem = " + item.ThangDiem + " " +
+                var thangdiem = item.ThangDiem.ToString().Replace(',', '.');
+                var str = "UPDATE DAPAN SET ThangDiem = " + thangdiem + " " +
                                     "WHERE MaMon = '" + item.MaMon + "' and MaDe = '" + item.MaDe + "' " +
-                                    "and CauHoi =" + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "");
+                                    "and CauHoi =" + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "";
+                Conn.ExcuteQuerySql(str);
                 return true;
             }
             catch (Exception ex)
@@ -711,8 +713,10 @@ namespace QLSV.Core.LINQ
         {
             try
             {
-                Conn.ExcuteQuerySql("update BAILAM set DiemThi = " + item.DiemThi + " WHERE MaSV = " + item.MaSV +
-                                    " and IdKyThi = " + item.IdKyThi + "");
+                var diemthi = item.DiemThi.ToString().Replace(',', '.');
+                var str = "update BAILAM set DiemThi = " + diemthi + " WHERE MaSV = " + item.MaSV +
+                          " and IdKyThi = " + item.IdKyThi + "";
+                Conn.ExcuteQuerySql(str);
                 return true;
             }
             catch (Exception ex)

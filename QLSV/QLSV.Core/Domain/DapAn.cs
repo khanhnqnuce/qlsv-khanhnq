@@ -12,6 +12,6 @@
 
         public virtual string Dapan { get; set; }
 
-        public virtual int ThangDiem { get; set; }
+        public virtual double ThangDiem { get; set; }
     }
 }

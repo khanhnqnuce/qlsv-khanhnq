@@ -12,14 +12,6 @@ namespace QLSV.Frm.Frm
             InitializeComponent();
         }
 
-        private void txtNhapdiem_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void btnnhapdiem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtNhapdiem.Text))

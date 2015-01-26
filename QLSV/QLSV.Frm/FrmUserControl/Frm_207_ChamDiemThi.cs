@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.HSSF.Record.Chart;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -92,7 +93,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 foreach (DataRow dataRow in tbbailam.Rows)
                 {
-                    var diem = 0;
+                    double diem = 0;
                     var listbailam = dataRow["KetQua"].ToString();
                     var tbdapan = SearchData.Timkiemmade2(dataRow["MaDe"].ToString(), _idkythi);
                     if (listbailam.Length != tbdapan.Rows.Count)
@@ -111,17 +112,18 @@ namespace QLSV.Frm.FrmUserControl
                         var c = tbdapan.Rows[i]["ThangDiem"].ToString();
                         if (a == s)
                         {
-                            diem = diem + int.Parse(c);
+                            diem = diem + double.Parse(c);
                         }
                     }
+                    var d = Math.Round(diem, 1);
                     var hs = new BaiLam
                     {
                         IdKyThi = _idkythi,
                         MaSV = int.Parse(dataRow["MaSV"].ToString()),
-                        DiemThi = diem
+                        DiemThi = d
                     };
                     _listUpdate.Add(hs);
-                    dataRow["DiemThi"] = diem.ToString();
+                    dataRow["DiemThi"] = d;
                 }
                 Invoke((Action)(() => dgv_DanhSach.DataSource = tbbailam));
                 lock (LockTotal)
@@ -202,7 +204,7 @@ namespace QLSV.Frm.FrmUserControl
                     var hs = new DiemThi
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
-                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        Diem = double.Parse(row.Cells["DiemThi"].Text),
                         IdNamHoc = _idnamhoc,
                         HocKy = _hocky
                     };
@@ -230,7 +232,7 @@ namespace QLSV.Frm.FrmUserControl
                     var hs = new DiemThi
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
-                        Diem = int.Parse(row.Cells["DiemThi"].Text),
+                        Diem = double.Parse(row.Cells["DiemThi"].Text),
                         IdNamHoc = _idnamhoc,
                         HocKy = _hocky
                     };
@@ -375,6 +377,9 @@ namespace QLSV.Frm.FrmUserControl
                 var band = e.Layout.Bands[0];
                 
                 band.Columns["IdKyThi"].Hidden = true;
+                band.Columns["MaHoiDong"].Hidden = true;
+                band.Columns["MaLoCham"].Hidden = true;
+                band.Columns["TenFile"].Hidden = true;
 
                 band.Columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
                 band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;

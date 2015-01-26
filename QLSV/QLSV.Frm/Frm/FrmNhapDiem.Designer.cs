@@ -44,7 +44,6 @@
             this.txtNhapdiem.Size = new System.Drawing.Size(118, 22);
             this.txtNhapdiem.TabIndex = 0;
             this.txtNhapdiem.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNhapdiem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNhapdiem_KeyPress);
             this.txtNhapdiem.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNhapdiem_KeyUp);
             // 
             // btnnhapdiem

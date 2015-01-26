@@ -143,7 +143,7 @@ namespace QLSV.Frm.FrmUserControl
                         MaMon = row.Cells["MaMon"].Text,
                         MaDe = row.Cells["MaDe"].Text,
                         CauHoi = int.Parse(row.Cells["CauHoi"].Text),
-                        ThangDiem = int.Parse(frm.txtNhapdiem.Text)
+                        ThangDiem = double.Parse(frm.txtNhapdiem.Text)
                     };
                    
                     _listUpdate.Add(hs);
@@ -212,7 +212,7 @@ namespace QLSV.Frm.FrmUserControl
                     MaMon = dgv_DanhSach.ActiveRow.Cells["MaMon"].Text,
                     MaDe = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text,
                     CauHoi = int.Parse(dgv_DanhSach.ActiveRow.Cells["CauHoi"].Text),
-                    ThangDiem = !string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) ? int.Parse(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) : 0,
+                    ThangDiem = !string.IsNullOrEmpty(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) ? double.Parse(dgv_DanhSach.ActiveRow.Cells["ThangDiem"].Text) : 0,
                 };
                 _listUpdate.Add(hs);
             }

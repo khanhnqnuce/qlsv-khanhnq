@@ -10,6 +10,6 @@
 
         public virtual string KetQua { get; set; }
 
-        public virtual int DiemThi { get; set; }
+        public virtual double DiemThi { get; set; }
     }
 }

@@ -149,7 +149,7 @@ namespace QLSV.Frm.FrmUserControl
                     var hs = new DiemThi
                     {
                         MaSV = int.Parse(row.Cells["MaSV"].Text),
-                        Diem = int.Parse(row.Cells["TongDiem"].Text),
+                        Diem = double.Parse(row.Cells["TongDiem"].Text),
                         IdNamHoc = _idnamhoc,
                         HocKy = _hocky
                     };
