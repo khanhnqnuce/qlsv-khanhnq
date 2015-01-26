@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
 using PerpetuumSoft.Reporting.View;
@@ -153,7 +154,11 @@ namespace QLSV.Frm.FrmUserControl
         {
             var masv = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text);
             var made = dgv_DanhSach.ActiveRow.Cells["MaDe"].Text;
-            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made) {Update = false};
+            var frm = new FrmSuaMaSinhVien(masv, _idKyThi, made)
+            {
+                Update = false,
+                txtmasinhvien = {Text = dgv_DanhSach.ActiveRow.Cells["MaSV"].Text}
+            };
             frm.ShowDialog();
             if (frm.Update) 
                 dgv_DanhSach.ActiveRow.Cells["MaSV"].Value = frm.txtmasinhvien.Text;
