@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Core", "QLSV.Core\QLSV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Data", "QLSV.Data\QLSV.Data.csproj", "{0E243190-859E-4479-97F8-0E97D2889D5F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToeicTestManager", "ToeicTestManager\ToeicTestManager.vdproj", "{F76F191E-B711-47D1-92CA-DC4A46052398}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToeicTestManager", "ToeicTestManager\ToeicTestManager.vdproj", "{04C1033C-9B6B-46B6-B829-DA2B039651DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,12 +49,12 @@ Global
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|x86.ActiveCfg = Release|Any CPU
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Debug|Any CPU.ActiveCfg = Debug
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Debug|x86.ActiveCfg = Debug
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Release|Any CPU.ActiveCfg = Release
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Release|Mixed Platforms.ActiveCfg = Release
-		{F76F191E-B711-47D1-92CA-DC4A46052398}.Release|x86.ActiveCfg = Release
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|Any CPU.ActiveCfg = Debug
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|x86.ActiveCfg = Debug
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|Any CPU.ActiveCfg = Release
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|Mixed Platforms.ActiveCfg = Release
+		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

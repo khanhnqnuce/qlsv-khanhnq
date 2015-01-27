@@ -73,7 +73,6 @@ namespace QLSV.Core.LINQ
                 catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                Console.WriteLine(ex.Message);
             }
             return dt;
         }
@@ -93,7 +92,6 @@ namespace QLSV.Core.LINQ
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                Console.WriteLine(ex.Message);
             }
         }
     }

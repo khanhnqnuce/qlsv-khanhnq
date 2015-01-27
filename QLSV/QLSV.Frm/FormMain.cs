@@ -1237,6 +1237,9 @@ namespace QLSV.Frm
                 case (Keys.Alt| Keys.X):
                     Application.Exit();
                     break;
+                case (Keys.F1):
+                    OpenHuongDan();
+                    break;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
