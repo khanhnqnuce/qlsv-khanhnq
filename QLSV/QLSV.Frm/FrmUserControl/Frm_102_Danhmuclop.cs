@@ -46,7 +46,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _listAdd.Clear();
                 _listUpdate.Clear();
-                uG_DanhSach.DataSource = LoadData.Load(16);
+                dgv_DanhSach.DataSource = LoadData.Load(16);
             }
             catch (Exception ex)
             {
@@ -73,19 +73,19 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 bool check;
-                if (uG_DanhSach.Selected.Rows.Count > 0)
+                if (dgv_DanhSach.Selected.Rows.Count > 0)
                 {
-                    foreach (var row in uG_DanhSach.Selected.Rows)
+                    foreach (var row in dgv_DanhSach.Selected.Rows)
                     {
                         var id = row.Cells["ID"].Text;
                         IdDelete.Add(int.Parse(id));
                     }
                     check = true;
                 }
-                else if (uG_DanhSach.ActiveRow != null)
+                else if (dgv_DanhSach.ActiveRow != null)
                 {
                     check = false;
-                    var idStr = uG_DanhSach.ActiveRow.Cells["ID"].Text;
+                    var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                     IdDelete.Add(int.Parse(idStr));
                 }
                 else
@@ -106,9 +106,9 @@ namespace QLSV.Frm.FrmUserControl
                         DeleteData.XoaLop(IdDelete);
                         Stt();
                         if (check)
-                            uG_DanhSach.DeleteSelectedRows(false);
+                            dgv_DanhSach.DeleteSelectedRows(false);
                         else
-                            uG_DanhSach.ActiveRow.Delete(false);
+                            dgv_DanhSach.ActiveRow.Delete(false);
                         MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
                     }
                 }
@@ -171,7 +171,7 @@ namespace QLSV.Frm.FrmUserControl
                 InputType.KhongKiemTra
                 
             };
-            return ValidateHighlight.UltraGrid(uG_DanhSach, inputTypes);
+            return ValidateHighlight.UltraGrid(dgv_DanhSach, inputTypes);
         }
 
         protected override void XoaDetail()
@@ -194,9 +194,9 @@ namespace QLSV.Frm.FrmUserControl
             {
                 if (_newRow != null) _newRow.Selected = false;
                 foreach (
-                    var row in uG_DanhSach.Rows.Where(row => row.Cells["MaLop"].Text.Equals(txtKhoa.Text, StringComparison.OrdinalIgnoreCase)))
+                    var row in dgv_DanhSach.Rows.Where(row => row.Cells["MaLop"].Text.Equals(txtKhoa.Text, StringComparison.OrdinalIgnoreCase)))
                 {
-                    uG_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
+                    dgv_DanhSach.ActiveRowScrollRegion.ScrollPosition = row.Index;
                     row.Selected = true;
                     _newRow = row;
                 }
@@ -209,9 +209,9 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Stt()
         {
-            for (var i = 0; i < uG_DanhSach.Rows.Count; i++)
+            for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
             {
-                uG_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
+                dgv_DanhSach.Rows[i].Cells["STT"].Value = i + 1;
             }
         }
 
@@ -293,6 +293,23 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        private void uG_DanhSach_DoubleClickCell(object sender, DoubleClickCellEventArgs e)
+        {
+            var frm = new FrmSuaLop
+            {
+                update = false,
+                Idlop = int.Parse(dgv_DanhSach.ActiveRow.Cells["ID"].Text),
+                txtlop = {Text = dgv_DanhSach.ActiveRow.Cells["MaLop"].Text}
+            };
+            frm.ShowDialog();
+            if (frm.update)
+            {
+                dgv_DanhSach.ActiveRow.Cells["MaLop"].Value = frm.txtlop.Text;
+                dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Value = frm.cbokhoa.Text;
+                MessageBox.Show(@"Sửa dữ liệu thành công", @"Thông báo");
+            }
+        }
+
         #endregion
 
         #region MenuStrip
@@ -350,7 +367,7 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
-                    uG_DanhSach.DataSource = SearchData.LoadCboLop(_idkhoa);
+                    dgv_DanhSach.DataSource = SearchData.LoadCboLop(_idkhoa);
                 }
             }
             catch (Exception ex)

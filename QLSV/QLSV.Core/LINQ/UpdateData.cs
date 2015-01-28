@@ -147,12 +147,13 @@ namespace QLSV.Core.LINQ
         /// Update Thông tin lop
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateLop(Lop item)
+        public static bool UpdateLop(int idlop, int idkhoa, string tenlop)
         {
             try
             {
-                Conn.ExcuteQuerySql("UPDATE LOP set MaLop = N'" + item.MaLop + "', IdKhoa = " + item.IdKhoa +
-                                    " where ID = " + item.ID + "");
+                var str = "UPDATE LOP set MaLop = N'" + tenlop + "', IdKhoa = " + idkhoa +
+                                    " where ID = " + idlop + "";
+                Conn.ExcuteQuerySql(str);
                 return true;
             }
             catch (Exception ex)
@@ -173,7 +174,7 @@ namespace QLSV.Core.LINQ
             {
                 foreach (var item in list)
                 {
-                    UpdateLop(item);
+                   // UpdateLop(item);
                 }
                 return true;
             }

@@ -32,9 +32,7 @@
             this.menu_ug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip_themdong = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_xoadong = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_luulai = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip_Huy = new System.Windows.Forms.ToolStripMenuItem();
-            this.uG_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,7 +47,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.menu_ug.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel3.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -62,11 +60,9 @@
             // 
             this.menu_ug.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuStrip_themdong,
-            this.menuStrip_xoadong,
-            this.menuStrip_luulai,
-            this.menuStrip_Huy});
+            this.menuStrip_xoadong});
             this.menu_ug.Name = "contextMenuStrip1";
-            this.menu_ug.Size = new System.Drawing.Size(137, 92);
+            this.menu_ug.Size = new System.Drawing.Size(137, 48);
             // 
             // menuStrip_themdong
             // 
@@ -82,38 +78,25 @@
             this.menuStrip_xoadong.Text = "Xóa dòng";
             this.menuStrip_xoadong.Click += new System.EventHandler(this.menuStrip_xoadong_Click);
             // 
-            // menuStrip_luulai
+            // dgv_DanhSach
             // 
-            this.menuStrip_luulai.Name = "menuStrip_luulai";
-            this.menuStrip_luulai.Size = new System.Drawing.Size(136, 22);
-            this.menuStrip_luulai.Text = "Lưu lại";
-            this.menuStrip_luulai.Click += new System.EventHandler(this.menuStrip_luulai_Click);
-            // 
-            // menuStrip_Huy
-            // 
-            this.menuStrip_Huy.Name = "menuStrip_Huy";
-            this.menuStrip_Huy.Size = new System.Drawing.Size(136, 22);
-            this.menuStrip_Huy.Text = "Hủy";
-            this.menuStrip_Huy.Click += new System.EventHandler(this.menuStripHuy_Click);
-            // 
-            // uG_DanhSach
-            // 
-            this.uG_DanhSach.ContextMenuStrip = this.menu_ug;
-            this.uG_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            this.uG_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.uG_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
-            this.uG_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.uG_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.uG_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uG_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.uG_DanhSach.Location = new System.Drawing.Point(0, 0);
-            this.uG_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.uG_DanhSach.Name = "uG_DanhSach";
-            this.uG_DanhSach.Size = new System.Drawing.Size(1092, 554);
-            this.uG_DanhSach.TabIndex = 25;
-            this.uG_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
-            this.uG_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
-            this.uG_DanhSach.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.uG_DanhSach_AfterSortChange);
+            this.dgv_DanhSach.ContextMenuStrip = this.menu_ug;
+            this.dgv_DanhSach.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            this.dgv_DanhSach.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            this.dgv_DanhSach.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
+            this.dgv_DanhSach.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.dgv_DanhSach.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.dgv_DanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_DanhSach.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.dgv_DanhSach.Location = new System.Drawing.Point(0, 0);
+            this.dgv_DanhSach.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.dgv_DanhSach.Name = "dgv_DanhSach";
+            this.dgv_DanhSach.Size = new System.Drawing.Size(1092, 554);
+            this.dgv_DanhSach.TabIndex = 25;
+            this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
+            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
+            this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.uG_DanhSach_DoubleClickCell);
+            this.dgv_DanhSach.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.uG_DanhSach_AfterSortChange);
             // 
             // panel3
             // 
@@ -226,7 +209,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.uG_DanhSach);
+            this.panel2.Controls.Add(this.dgv_DanhSach);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -245,7 +228,7 @@
             this.Size = new System.Drawing.Size(1092, 579);
             this.Load += new System.EventHandler(this.FrmDanhmuclop_Load);
             this.menu_ug.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uG_DanhSach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
@@ -265,9 +248,7 @@
         private System.Windows.Forms.ContextMenuStrip menu_ug;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_themdong;
         private System.Windows.Forms.ToolStripMenuItem menuStrip_xoadong;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_luulai;
-        private System.Windows.Forms.ToolStripMenuItem menuStrip_Huy;
-        private Infragistics.Win.UltraWinGrid.UltraGrid uG_DanhSach;
+        private Infragistics.Win.UltraWinGrid.UltraGrid dgv_DanhSach;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
