@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
@@ -77,6 +78,26 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+         public void InDanhSach()
+         {
+             RptLop();
+         }
+
+         private void RptLop()
+         {
+             reportManager1.DataSources.Clear();
+             reportManager1.DataSources.Add("danhsach", dgv_DanhSach.DataSource);
+             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\quanlydiem.rst";
+             rptdiemthi.Prepare();
+             var previewForm = new PreviewForm(rptdiemthi)
+             {
+                 WindowState = FormWindowState.Maximized,
+                 ShowInTaskbar = false
+             };
+             previewForm.Show();
+
+         }
+
          private void Timkiemsinhvien(object sender, string masinhvien)
          {
              try
@@ -107,6 +128,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var band = e.Layout.Bands[0];
                 band.Groups.Clear();
+                band.Columns["IdNamHoc"].Hidden = true;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Columns["STT"].CellActivation = Activation.NoEdit;
@@ -118,6 +140,7 @@ namespace QLSV.Frm.FrmUserControl
                 var group6 = band.Groups.Add("STT");
                 var group0 = band.Groups.Add("Mã SV");
                 var group1 = band.Groups.Add("Họ và tên");
+                var group7 = band.Groups.Add("Lớp");
                 var group2 = band.Groups.Add("Ngày sinh");
                 var group3 = band.Groups.Add("Năm học");
                 var group4 = band.Groups.Add("Học kỳ");
@@ -126,6 +149,7 @@ namespace QLSV.Frm.FrmUserControl
                 columns["MaSV"].Group = group0;
                 columns["HoSV"].Group = group1;
                 columns["TenSV"].Group = group1;
+                columns["MaLop"].Group = group7;
                 columns["NgaySinh"].Group = group2;
                 columns["NamHoc"].Group = group3;
                 columns["HocKy"].Group = group4;
@@ -143,6 +167,8 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["HoSV"].MaxWidth = 150;
                 band.Columns["TenSV"].MinWidth = 90;
                 band.Columns["TenSV"].MaxWidth = 100;
+                band.Columns["MaLop"].MinWidth = 90;
+                band.Columns["MaLop"].MaxWidth = 100;
                 band.Columns["NgaySinh"].MinWidth = 100;
                 band.Columns["NgaySinh"].MaxWidth = 100;
                 band.Columns["NamHoc"].MinWidth = 140;
@@ -159,6 +185,7 @@ namespace QLSV.Frm.FrmUserControl
                 columns["NamHoc"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["Diem"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["TenSV"].CellAppearance.TextHAlign = HAlign.Center;
+                columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
                 columns["HocKy"].CellAppearance.TextHAlign = HAlign.Center;
 
                 foreach (var column in band.Columns)
@@ -172,8 +199,8 @@ namespace QLSV.Frm.FrmUserControl
                 group0.Header.Fixed = true;
                 group1.Header.Fixed = true;
                 group2.Header.Fixed = true;
-                group3.Header.Fixed = true;
                 group6.Header.Fixed = true;
+                group7.Header.Fixed = true;
             }
             catch (Exception ex)
             {

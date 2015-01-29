@@ -750,6 +750,9 @@
     <Content Include="Reports\dsPhong.rst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\quanlydiem.rst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="RunAsAdmin.manifest" />
   </ItemGroup>
   <ItemGroup>

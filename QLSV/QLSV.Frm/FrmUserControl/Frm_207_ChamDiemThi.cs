@@ -324,17 +324,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private void RptLop()
         {
-            var tblop = LoadData.Load(4, _idkythi);
             var tb = LoadData.Load(10, _idkythi);
-            foreach (DataRow rowl in tblop.Rows)
-            {
-                var stt = 1;
-                var malop = rowl["MaLop"].ToString();
-                foreach (var row in tb.Rows.Cast<DataRow>().Where(row => row["MaLop"].ToString().Equals(malop)))
-                {
-                    row["STT"] = stt++;
-                }
-            }
             reportManager1.DataSources.Clear();
             reportManager1.DataSources.Add("danhsach", tb);
             rptdiemthi.FilePath = Application.StartupPath + @"\Reports\diemthi.rst";

@@ -20,7 +20,7 @@ namespace QLSV.Core.LINQ
                 {
                     case 1:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh, d.IdNamHoc,n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -29,7 +29,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 2:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -39,7 +39,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 3:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -48,7 +48,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 4:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -57,7 +57,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 5:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -67,7 +67,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 6:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -76,7 +76,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 7:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -89,7 +89,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 8:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -103,7 +103,7 @@ namespace QLSV.Core.LINQ
                         break;
                     case 9:
                         str =
-                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                            " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                             " DIEMTHI d" +
                             " join NAMHOC n on d.IdNamHoc = n.ID" +
                             " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -174,7 +174,7 @@ namespace QLSV.Core.LINQ
             try
             {
                 var str =
-                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                     " DIEMTHI d" +
                     " join NAMHOC n on d.IdNamHoc = n.ID" +
                     " join SINHVIEN s on d.MaSV = s.MaSV" +
@@ -423,7 +423,7 @@ namespace QLSV.Core.LINQ
             try
             {
                 var str =
-                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,s.NgaySinh, n.NamHoc, d.HocKy,d.Diem from" +
+                    " select ROW_NUMBER() OVER(ORDER BY d.MaSV) as [STT], d.MaSV, s.HoSV, s.TenSV,l.MaLop,s.NgaySinh,d.IdNamHoc, n.NamHoc, d.HocKy,d.Diem from" +
                     " DIEMTHI d" +
                     " join NAMHOC n on d.IdNamHoc = n.ID" +
                     " join SINHVIEN s on d.MaSV = s.MaSV" +

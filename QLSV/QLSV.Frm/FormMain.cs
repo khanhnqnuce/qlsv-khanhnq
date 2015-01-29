@@ -660,7 +660,7 @@ namespace QLSV.Frm
                     bCheck = true;
                     lbXoa.Visible = false;
                     btnNapDuLieu.Visible = false;
-                    btnInds.Visible = false;
+                    btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = true;
                     btnLuu.Visible = false;
@@ -1135,6 +1135,10 @@ namespace QLSV.Frm
             else if (Tabgopketqua.Tab.Visible && Tabgopketqua.Tab.Active)
             {
                 _frmGopKeQua.InDanhSach();
+            }
+            else if (Tabquanlydiem.Tab.Visible && Tabquanlydiem.Tab.Active)
+            {
+                _frmquanLyDiem.InDanhSach();
             }
             else if (Tabdiemtichluy.Tab.Visible && Tabdiemtichluy.Tab.Active)
             {
