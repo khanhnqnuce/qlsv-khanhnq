@@ -71,7 +71,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -108,7 +107,6 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -117,11 +115,21 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idkythi,txtmade.Text);
+                if (!string.IsNullOrEmpty(txtcauhoi.Text) && !string.IsNullOrEmpty(txtmade.Text))
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idkythi, txtmade.Text,int.Parse(txtcauhoi.Text));
+                }
+                else if (!string.IsNullOrEmpty(txtcauhoi.Text))
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemmade2(_idkythi, int.Parse(txtcauhoi.Text));
+                }
+                else if (!string.IsNullOrEmpty(txtmade.Text))
+                {
+                    dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idkythi, txtmade.Text);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.Contains(FormResource.msgLostConnect) ? FormResource.txtLoiDB : ex.Message);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -231,16 +239,6 @@ namespace QLSV.Frm.FrmUserControl
             Nhapdiem();
         }
 
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            Huy();
-        }
-
-        private void menuStrip_Luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
-        }
-
         #endregion
 
         #region BackgroundWorker
@@ -267,40 +265,6 @@ namespace QLSV.Frm.FrmUserControl
         private void FrmDapAnCacMaDe_Load(object sender, EventArgs e)
         {
             Huy();
-        }
-
-        private void txtmade_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                e.SuppressKeyPress = true;
-        }
-
-        private void txtmade_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Enter:
-                        if (string.IsNullOrEmpty(txtmade.Text)) return;
-                        Timkiemmde();
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void btnTimkiem_Click(object sender, EventArgs e)
-        {
-            Timkiemmde();
-        }
-
-        private void btnrefresh_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
         }
 
         private void btnnhapdiem_Click(object sender, EventArgs e)
@@ -350,6 +314,39 @@ namespace QLSV.Frm.FrmUserControl
         {
             e.Cancel = !DeleteAndUpdate;
             DeleteAndUpdate = false;
+        }
+
+        private void btnTimkiem_Click_1(object sender, EventArgs e)
+        {
+            Timkiemmde();
+        }
+
+        private void btnrefresh_Click(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
+        private void txtcauhoi_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Enter:
+                        Timkiemmde();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void txtcauhoi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                e.SuppressKeyPress = true;
         }
     }
 }

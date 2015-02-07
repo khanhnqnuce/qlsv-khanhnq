@@ -541,6 +541,35 @@ namespace QLSV.Core.LINQ
             }
         }
 
+        public static DataTable Timkiemmade1(int idKythi, string made, int cauhoi)
+        {
+            try
+            {
+                var str =
+                    "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and MaDe = '" + made + "' and CauHoi = "+cauhoi+"";
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+        public static DataTable Timkiemmade2(int idKythi, int cauhoi)
+        {
+            try
+            {
+                var str =
+                    "SELECT MaMon, MaDe, CauHoi, Dapan, ThangDiem FROM DAPAN d, KYTHI k WHERE d.IdKyThi = k.ID and d.IdKyThi = " + idKythi + " and CauHoi = " + cauhoi + "";
+                return Conn.GetTable(str);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Lấy đáp án theo ma đe
         /// </summary>
