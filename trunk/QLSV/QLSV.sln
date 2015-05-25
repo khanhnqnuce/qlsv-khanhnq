@@ -1,13 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Frm", "QLSV.Frm\QLSV.Frm.csproj", "{C6FC2DFA-29B4-4332-9EB4-5E8F83B4D24F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Core", "QLSV.Core\QLSV.Core.csproj", "{5A9A9CF1-649A-4787-9B02-261E78A8AC04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSV.Data", "QLSV.Data\QLSV.Data.csproj", "{0E243190-859E-4479-97F8-0E97D2889D5F}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ToeicTestManager", "ToeicTestManager\ToeicTestManager.vdproj", "{04C1033C-9B6B-46B6-B829-DA2B039651DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,12 +47,6 @@ Global
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0E243190-859E-4479-97F8-0E97D2889D5F}.Release|x86.ActiveCfg = Release|Any CPU
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|Any CPU.ActiveCfg = Debug
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Debug|x86.ActiveCfg = Debug
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|Any CPU.ActiveCfg = Release
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|Mixed Platforms.ActiveCfg = Release
-		{04C1033C-9B6B-46B6-B829-DA2B039651DD}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

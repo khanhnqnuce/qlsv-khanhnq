@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
 using System.Xml;
 using QLSV.Core.Utils.Core;
 
@@ -94,5 +93,33 @@ namespace QLSV.Core.LINQ
                 Log2File.LogExceptionToFile(ex);
             }
         }
+
+        private void Storedprocedure(string storename)
+        {
+            var connect = GetConnect();
+            var cmd = new SqlCommand
+            {
+                CommandType = CommandType.StoredProcedure,
+                CommandText = storename
+            };
+
+            cmd.Parameters.Add("@MaSV", SqlDbType.NVarChar).Value = "785255";
+            cmd.Parameters.Add("@TenSV", SqlDbType.NVarChar).Value = "Khánh";
+
+            cmd.Connection = connect;
+            try
+            {
+                connect.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+            finally
+            {
+                connect.Close();
+            }
+        } 
     }
 }

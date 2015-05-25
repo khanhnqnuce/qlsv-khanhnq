@@ -255,6 +255,12 @@
     <Compile Include="Frm\FrmCauHinh.Designer.cs">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmImportDSSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmImportDSSV.Designer.cs">
+      <DependentUpon>FrmImportDSSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm\FrmLuuDiemThi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -558,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmCauHinh.resx">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmImportDSSV.resx">
+      <DependentUpon>FrmImportDSSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmLuuDiemThi.resx">
       <DependentUpon>FrmLuuDiemThi.cs</DependentUpon>
