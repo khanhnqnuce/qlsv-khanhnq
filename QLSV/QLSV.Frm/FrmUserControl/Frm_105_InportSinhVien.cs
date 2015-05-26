@@ -73,13 +73,9 @@ namespace QLSV.Frm.FrmUserControl
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
-
-                var a = new FrmImportDSSV(resultValue);
-                a.Show();
-                //var table = (DataTable)uG_DanhSach.DataSource;
-
-                //table.Merge(resultValue);
-                //uG_DanhSach.DataSource = table;
+                var table = (DataTable)uG_DanhSach.DataSource;
+                table.Merge(resultValue);
+                uG_DanhSach.DataSource = table;
 
                 MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
             }

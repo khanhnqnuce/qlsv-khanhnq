@@ -136,6 +136,25 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
+        public void Napdulieu()
+        {
+            try
+            {
+                var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
+                frmNapDuLieu.ShowDialog();
+                var resultValue = frmNapDuLieu.ResultValue;
+                if (resultValue == null || resultValue.Rows.Count == 0) return;
+                MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                var frm = new FrmImportDSSV(resultValue);
+                frm.ShowDialog();
+                Huy();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
         private void Stt()
         {
             for (var i = 0; i < dgv_DanhSach.Rows.Count; i++)
