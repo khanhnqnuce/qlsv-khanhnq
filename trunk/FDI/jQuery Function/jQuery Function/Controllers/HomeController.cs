@@ -38,6 +38,10 @@ namespace jQuery_Function.Controllers
         {
             return View();
         }
+        public ActionResult Scroll()
+        {
+            return View();
+        }
 
     }
 }
