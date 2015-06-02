@@ -138,6 +138,7 @@
     <Content Include="Content\boostrap\bootstrap3-typeahead.js" />
     <Content Include="Content\datepicker\css\datepicker.css" />
     <Content Include="Content\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Content\img\demo_wait.gif" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
     <Content Include="Content\jquery-1.8.2.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -235,6 +236,7 @@
     <Content Include="Views\Home\Datepicker.cshtml" />
     <Content Include="Views\Home\Tooltip.cshtml" />
     <Content Include="Views\Home\Scroll.cshtml" />
+    <Content Include="Views\Home\Ajaxcomplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
