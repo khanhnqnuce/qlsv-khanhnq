@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Datepicker";
+}
+<script src="~/Content/datepicker/js/bootstrap-datepicker.js"></script>
+<link href="~/Content/datepicker/css/datepicker.css" rel="stylesheet" />
+<input type="text" id="txtFromDay" runat="server" class="col-md-6 datepicker" />
+
+<script type="text/javascript">
+    $(function () {
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>

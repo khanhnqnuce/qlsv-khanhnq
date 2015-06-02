@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "serialize";
+    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+}
+
+.serialize(): Lấy giá trị các thành phần form, mã hóa các giá trị này thành giá trị chuỗi.
+<br/>
+Giá trị sẽ được hiển thị theo các cặp cách nhau bởi ký tự "&": name1=value1&name2=value2&...
+<p/>
+<form>
+    <input type="radio" name="radio" value="Male" checked="checked" id="male" />
+    <label for="male">Male:</label>
+    <input type="radio" name="radio" value="Female" id="female" />
+    <label for="female">Female:</label>
+    <br/>
+    <br/>
+    <input type="checkbox" name="checkbox1" value="HTML" id="HTML" checked="checked"/><br/>
+    <input type="checkbox" name="checkbox2" value="CSS" id="CSS"/><br/>
+    <input type="checkbox" name="checkbox3" value="JQUERY" id="JQUERY"/>
+    
+    <br/>
+    <br/>
+    <select name="city">
+        <option value="HaNoi">Hà Nội</option>
+        <option value="HoChiMinh">Hồ Chí Minh</option>
+        <option value="NhaTrang">Nha Trang</option>
+        <option value="CanTho">Cần Thơ</option>
+    </select>
+    <br/>
+    <br/>
+     <input type="text" name="name" value="Nguyen Quang Khanh"/>
+</form>
+<p id="result"></p>
+
+<script>
+    $(function () {
+        function showValues() {
+            var str = $("form").serialize();
+            $("#result").text(str);
+        }
+        $("input[type='radio'], input[type='checkbox']").on("click", showValues);
+        $("input[type='text']").on("change", showValues);
+        $("select").on("change", showValues);
+        showValues();
+    });
+</script>

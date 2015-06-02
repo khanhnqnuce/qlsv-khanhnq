@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "attr";
+    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+}
+<style>
+    .test0 {
+        color: red;
+    }
+
+    .test1 {
+        color: blue;
+    }
+
+    .test2 {
+        color: green;
+    }
+
+    .test3 {
+        color: yellow;
+    }
+</style>
+
+<p>Thành phần p có <a href="http://hocwebchuan.com/" class="clicka" tudinhnghia="khong co noi dung">link a</a></p>
+<div>
+    Bạn đang xem nội dung tại <span class="test"></span>
+</div>
+<div>
+    <p class="p">Thành phần p 01</p>
+    <p class="p">Thành phần p 02</p>
+    <p class="p">Thành phần p 03</p>
+    <p class="p">Thành phần p 04</p>
+</div>
+<script>
+    $(function () {
+        var hrefAttr = $('a').attr('href');
+        var classAttr = $('a').attr('class');
+        var dinhnguAttr = $('a').attr('tudinhnghia');
+
+        $('.test').html(hrefAttr + "<br/> Có Class là: " + classAttr + "<br/> Tự định nghĩa: " + dinhnguAttr);
+        $('a').attr({
+            'href': 'http://www.google.com',
+            'tudinhnghia': 'Noi dung da thay doi'
+        });
+
+        $('p.p').attr('class', function (i) {
+            return 'test' + i;
+        });
+    });
+</script>

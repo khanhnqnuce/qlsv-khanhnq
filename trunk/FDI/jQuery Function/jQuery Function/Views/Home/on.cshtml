@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "on";
+    Layout = "~/Views/Shared/_LayoutNew.cshtml";
+}
+
+<style>
+    p {
+        background-color: yellow;
+    }
+
+    .active {
+        color: blue;
+        font-weight: bold;
+    }
+
+    .over {
+        background-color: #ebc90c;
+        color: red;
+    }
+</style>
+
+<p>Thành phần p</p>
+<p></p>
+
+<button>Click</button>
+
+<script>
+    $(function () {
+        $('p').on({
+            click: function () {
+                $(this).toggleClass("active");
+            },
+            mouseenter: function () {
+                $(this).addClass("over");
+            },
+            mouseleave: function () {
+                $(this).removeClass("over");
+            }
+        });
+
+        var i = 0;
+        $('body').on('click', 'button', function () {
+            $(this).after("<p>Another paragraph! " + (++i) + "</p>");
+        });
+    });
+</script>
