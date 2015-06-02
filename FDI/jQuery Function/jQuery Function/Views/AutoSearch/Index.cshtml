@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/bootstrap3-typeahead.js"></script>
+<input type="text" data-provide="typeahead" autocomplete="off" class="form-control" placeholder="Tìm kiếm..." name="value" id="value">
+
+<input type="text" data-provide="typeahead" autocomplete="off" class="form-control" placeholder="Tìm kiếm..." name="search" id="search">
+<div id="details"></div>
+<script>
+    $(document).ready(function () {
+        var items = [
+            "Pencil",
+            "Pen",
+            "Ruler",
+            "Computer",
+            "Cutter",
+            "Cleaner",
+            "Mouse",
+            "Keyboard",
+            "Book"
+        ];
+
+        var option = {
+            source: items
+        };
+
+        $('#value').typeahead(option);
+    });
+
+    $(function() {
+        $("#search").typeahead({
+            source: function(query,process) {
+                var stuffs = [];
+                map = {};
+                return $.post("AutoSearch/GetSource", { query: query }, function (respone) {
+                    $.each(respone,function(i,stuff) {
+                        var item = stuff.Name + " - " + stuff.Price;
+                        stuffs.push(item);
+                    });
+                    process(stuffs);
+                });
+            },
+            updater: function (item) {
+                $("#details").text("Selected : " + item);
+                return item;
+            }
+        });
+    });
+</script>
