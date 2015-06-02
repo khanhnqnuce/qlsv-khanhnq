@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,6 +46,11 @@ namespace jQuery_Function.Controllers
         public ActionResult Ajaxcomplete()
         {
             return View();
+        }
+        public string Share()
+        {
+            Thread.Sleep(1000);
+            return "<h1>Thành công</h1>";
         }
 
     }
