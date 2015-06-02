@@ -42,6 +42,10 @@ namespace jQuery_Function.Controllers
         {
             return View();
         }
+        public ActionResult Ajaxcomplete()
+        {
+            return View();
+        }
 
     }
 }
