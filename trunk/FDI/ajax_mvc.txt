@@ -1,0 +1,99 @@
+﻿$(document).ready(function () {
+    $("#sendmail").click(function () {
+        if (check()) {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "/Ajax/Contact/Action", hoặc (url: "/Ajax/Contact/Action") // controller/action
+                data: $("#f").serialize(),
+                dataType: "text",
+                success: function (data) {
+                    if (data == "true") {
+                        document.getElementById("notify").innerHTML = "Email của bạn đã được gửi đi.</font>";
+                        clear();
+                    } else {
+                        document.getElementById("notify").innerHTML = "Xin gửi lại";
+                    }
+                },
+            });
+        }
+    }
+    );
+});
+
+
+-----------------------------
+
+
+<form id="like-shopcomment">
+</form>
+<script>
+    $("#like-shopcomment").submit(function (e) {
+        e.preventDefault();
+        $.post("@Url.Action("LikeComment", "ShopComment")", // Action/controller
+            $(this).serialize(), function (data) {
+                if (!data.Errors) {
+                    alert(data.Message);
+                }
+
+            });
+    })
+</script>
+
+
+--------------------
+<button type="button" class="review-thank not_login btnconment"   cmid ="@item.ID">
+    <i class="fa fa-thumbs-o-up tk-i__like"></i>Cảm ơn
+</button>
+
+-----------------------
+<script>
+    $(document).ready(function () {
+        $('.btnconment').click(function (e) {
+            $.ajax(
+            {
+                url: '@Url.Action("LikeComment","ShopComment")',
+                type: 'POST',
+                data: { cmid: $(this).attr("cmid")},
+                success: function () {
+                    alert("loi");
+                    //if (!data.Errors) {
+                    //    alert(data.Message);
+                    //}
+                }
+            });
+        });
+    });
+</script>
+
+-------------------------
+
+function setlike(id) {
+        with (document) {
+            $.ajax(
+             {
+                 url: '@Url.Action("LikeComment","NewComment")',
+                type: 'post',
+                data: { CommentID:id },
+                success: function () {
+                    console.log(1);
+                }
+            });
+        }
+    };
+
+------------------------
+
+$(document).ready(function () {
+        $('.like-comment').click(function (e) {
+            $.ajax(
+            {
+                url: '@Url.Action("LikeComment","NewComment")',
+                type: 'post',
+                data: { CommentID: $(this).attr("comment-id") },
+                success: function () {
+                    console.log(1);
+                }
+            });
+        });
+    });
