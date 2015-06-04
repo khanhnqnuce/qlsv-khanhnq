@@ -281,6 +281,24 @@ namespace QLSV.Core.LINQ
             }
             return tb;
         }
+        
+        //public static bool KiemTraSinhVien(int masv)
+        //{
+        //    var tb = new DataTable();
+        //    try
+        //    {
+        //        var str = "select MaSV from SINHVIEN where MaSV = " + masv + "";
+        //        tb = Conn.GetTable(str);
+        //        //if (tb.)
+        //        //{
+                    
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log2File.LogExceptionToFile(ex);
+        //    }
+        //}
 
         public static DataTable KiemTraTaiKhoan(string user, string pass)
         {

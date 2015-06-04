@@ -22,7 +22,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private readonly BackgroundWorker _bgwInsert;
 
-        public Frm_105_InportSinhVien()
+        public Frm_105_InportSinhVien(int idkythi)
         {
             InitializeComponent();
             _bgwInsert = new BackgroundWorker();
@@ -68,16 +68,44 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var tbsvnew = GetTable();
+                var i = 1;
                 var stt = uG_DanhSach.Rows.Count;
                 var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
-                var table = (DataTable)uG_DanhSach.DataSource;
-                table.Merge(resultValue);
-                uG_DanhSach.DataSource = table;
+                //var tbsv = LoadData.Load(2);
+                //foreach (DataRow row in resultValue.Rows)
+                //{
+                //    var check = false;
+                //    foreach (DataRow row1 in tbsv.Rows)
+                //    {
+                //        if (row.ItemArray[1].ToString() == row1.ItemArray[0].ToString())
+                //        {
+                //            check = true;
+                //        }
+                //    }
+                //    if (!check)
+                //    {
+                //        tbsvnew.Rows.Add(1, row.ItemArray[1], row.ItemArray[2], row.ItemArray[3], row.ItemArray[4], row.ItemArray[5]);
+                //    }
+                //}
 
-                MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                //if (tbsvnew.Rows.Count > 0)
+                //{
+                //    const string text = @"Thao tác không hoành thành vì có sv đăng ký dự thi chưa có trong từ điển";
+                //    var frm = new FrmMsgImportSv(text, tbsvnew, 1);
+                //    frm.ShowDialog();
+                //}
+                //else
+                //{
+                    var table = (DataTable)uG_DanhSach.DataSource;
+                    table.Merge(resultValue);
+                    uG_DanhSach.DataSource = table;
+                    MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                //}
+                
             }
             catch (Exception ex)
             {
@@ -135,6 +163,12 @@ namespace QLSV.Frm.FrmUserControl
                         };
                         b = true;
                         _listAdd.Add(hs);
+                        _tbError.Rows.Add(i++,
+                            row["MaSV"].ToString(),
+                            row["HoSV"].ToString(),
+                            row["TenSV"].ToString(),
+                            row["NgaySinh"].ToString(),
+                            row["MaLop"].ToString());
                     }
                     if(!b)
                     {
@@ -147,7 +181,8 @@ namespace QLSV.Frm.FrmUserControl
                     }
                 }
                 if (_listAdd.Count <= 0) return;
-                InsertData.ThemSinhVien(_listAdd);
+                //InsertData.ThemSinhVien(_listAdd);
+                
                 if(_tbError.Rows.Count>0) return;
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }

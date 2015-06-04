@@ -88,7 +88,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["102"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["103"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["104"].Settings.Enabled = DefaultableBoolean.True;
-                    MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
+                    //MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["111"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
@@ -107,7 +107,7 @@ namespace QLSV.Frm
                     MenuBar.Groups["chuongtrinh"].Items["102"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["103"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["104"].Settings.Enabled = DefaultableBoolean.True;
-                    MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
+                    //MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["106"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["111"].Settings.Enabled = DefaultableBoolean.True;
                     MenuBar.Groups["chuongtrinh"].Items["209"].Settings.Enabled = DefaultableBoolean.True;
@@ -239,7 +239,7 @@ namespace QLSV.Frm
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
                     case "105":
-                        _frmInportSinhVien = new Frm_105_InportSinhVien();
+                        _frmInportSinhVien = new Frm_105_InportSinhVien(_idkythi);
                         _frmInportSinhVien.ShowDialog += ShowLoading;
                         _frmInportSinhVien.CloseDialog += KillLoading;
                         _frmInportSinhVien.UpdateDialog += UpdateLoading;
@@ -1341,6 +1341,7 @@ namespace QLSV.Frm
         private void CloseTab()
         {
 
+            TabInportsinhvien.Tab.Visible = false;
             TabSapxepphongthi.Tab.Visible = false;
             Tabdaxepphong.Tab.Visible = false;
             TabInportdapdan.Tab.Visible = false;
@@ -1353,6 +1354,7 @@ namespace QLSV.Frm
             TabChonPhongThi.Tab.Visible = false;
             Tabchonsinhvien.Tab.Visible = false;
 
+            MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.False;
             MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.False;
             MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.False;
             MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.False;
@@ -1383,6 +1385,7 @@ namespace QLSV.Frm
 
             #region menu
             
+            MenuBar.Groups["chuongtrinh"].Items["105"].Settings.Enabled = DefaultableBoolean.True;
             MenuBar.Groups["chuongtrinh"].Items["107"].Settings.Enabled = DefaultableBoolean.True;
             MenuBar.Groups["chuongtrinh"].Items["108"].Settings.Enabled = DefaultableBoolean.True;
             MenuBar.Groups["chuongtrinh"].Items["109"].Settings.Enabled = DefaultableBoolean.True;
