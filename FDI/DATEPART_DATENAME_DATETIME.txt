@@ -1,0 +1,16 @@
+Hàm DATEPART và DATENAME trả về một giá trị trong các giá trị của kiểu dữ liệu datetime, 
+tùy vào từng đối số truyền vào mà ta có giá trị ngày, tháng, năm, quý, giờ, phút, giây, mili giây,
+Giá trị trả về có thể là kiểu số nguyên (int) hoặc kiểu string (ASCII)
+
+DATEPART (Đối số, Ngày)
+
+DATENAME (Đối số, Ngày)
+
+year	trả về năm
+quarter	trả về quí
+month	trả về tháng
+day	trả về ngày trong tháng
+hour	trả về giờ
+minute	trả về phút
+second	trả về giây
+millisecond	trả về phần trăm giây

@@ -1,0 +1,72 @@
+create proc ThucThi
+(
+
+      @idlop int,
+
+      @malop nvarchar(20),
+
+      @tenlop nvarchar(250),
+
+      @Idctk int,
+
+      @nienkhoa nvarchar(9),
+
+      @trangthai bit,
+
+      @sql nvarchar(20)=''
+
+)
+as 
+	Begin
+
+		  --Thuc thi cau lenh INSERT
+
+		  If @sql='insert' 
+			  Begin
+
+					Insert into [EDU.LopHoc](malop,tenlop,idctk,nienkhoa,trangthai) values(@malop,@tenlop,@idctk,@nienkhoa,@trangthai)
+
+			  End
+
+		  --Thuc thi cau lenh UPDATE
+
+		  If @sql='update' 
+			  Begin
+
+					Update [EDU.LopHoc] SET
+
+					malop=@malop,
+
+					tenlop=@tenlop,
+
+					idctk=@idctk,
+
+					nienkhoa=@nienkhoa,
+
+					trangthai=@trangthai
+
+					Where idlop=@idlop
+
+			  End
+
+		  --Thuc thi cau lenh DELETE
+
+		  If @sql='delete' 
+			  Begin
+
+					Delete FROM [EDU.Lophoc] where idlop=@idlop
+
+			  End
+
+		  --Thuc thi cau lenh SELECT
+
+		  If @sql='select' 
+			  Begin
+
+					Select * From [EDU.LopHoc] where idlop=@idlop
+
+			  End
+
+	End
+
+execute ThucThi 0,'55pm','55pm',1,'2015',1,'insert'

@@ -1,0 +1,19 @@
+DECLARE contro CURSOR
+	FOR SELECT mahang,tenhang,soluong FROM mathang
+	OPEN contro
+		DECLARE @mahang NVARCHAR(10) 
+		DECLARE @tenhang NVARCHAR(10)
+		DECLARE @soluong INT
+		/*Bắt đầu duyệt qua các dòng trong kết quả truy vấn*/ 
+		FETCH NEXT FROM contro INTO @mahang,@tenhang,@soluong
+		WHILE @@FETCH_STATUS=0
+		BEGIN
+			PRINT 'Ma hang:'+@mahang
+			PRINT 'Ten hang:'+@tenhang
+			PRINT 'So luong:'+STR(@soluong)
+			FETCH NEXT FROM contro
+			INTO @mahang,@tenhang,@soluong
+		END
+		/*Đóng con trỏ và giải phóng vùng nhớ*/ 
+		CLOSE contro
+		DEALLOCATE contro

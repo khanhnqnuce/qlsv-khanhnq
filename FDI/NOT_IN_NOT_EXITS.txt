@@ -1,0 +1,11 @@
+select * FROM SinhVien where ID  not in (SELECT SinhVien.ID FROM SinhVien,XepPhong where SinhVien.ID = XepPhong.IdSV);
+select * from SinhVien s where not exists (select x.IdSV from XepPhong x where s.ID = x.IdSV)
+select ROW_NUMBER() OVER(ORDER BY s.ID) as [STT], s.*,l.IdKhoa From SinhVien s,XepPhong x,PhongThi p,Lop l where s.ID = x.IdSV and x.IdPhong = p.ID and s.IdLop = l.ID
+SELECT 'Lon hon' where  DATEDIFF(day, CONVERT(datetime,'26/09/1992',103),CONVERT(datetime,'27/09/1992',103)) > 0
+delete from XEPPHONG where IdSV not in (select MaSV from SINHVIEN where IdLop != 95)
+1 winfrom là 1 đối tượng hay object
+sql khac nhau giữa các lại join(http://hocban.com/note-ct-686-su-khac-biet-giua-left-join-right-join-inner-join.htm) + nhớ về các phép logic
+
+ALTER DATABASE Test MODIFY FILE (NAME = Test, NEWNAME = TestNew)
+
+ ALTER DATABASE Test MODIFY FILE (NAME = Test_log, NEWNAME = TestNew_log)
