@@ -1,0 +1,34 @@
+CREATE FUNCTION Thunam(@ngay DATETIME, @soluong int) 
+RETURNS NVARCHAR(10) 
+AS
+	BEGIN 
+		DECLARE @st NVARCHAR(10)          
+		SELECT @st= CASE DATEPART(DW,@ngay)                         
+						WHEN 1 THEN 'Chu nhật'                         
+						WHEN 2 THEN 'Thứ hai'                             
+						WHEN 3 THEN 'Thứ ba'                         
+						WHEN 4 THEN 'Thứ tư'                         
+						WHEN 5 THEN 'Thứ năm'                         
+						WHEN 6 THEN 'Thứ sáu'                         
+		ELSE 'Thứ bảy' 
+		END
+		RETURN (@st)  /* Trị trả về của hàm */    
+	END 
+	
+SELECT dbo.Thunam(GETDATE())
+	
+Go
+
+
+CREATE FUNCTION GetTest(@ngay DATETIME) 
+RETURNS NVARCHAR(10) 
+AS
+	BEGIN 
+		DECLARE @st NVARCHAR(10)          
+		SET @st = DATEPART(DAY,@ngay)
+		RETURN (@st)  /* Trị trả về của hàm */    
+	END
+	
+	
+Go
+

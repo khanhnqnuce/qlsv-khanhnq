@@ -1,0 +1,40 @@
+SELECT convert(varchar, getdate(), 101)
+
+SELECT convert(varchar, getdate(), 103)
+
+SELECT convert(varchar,getdate(), 108)
+
+SELECT LEFT(convert(varchar,getdate(), 108),5) 
+
+SELECT RIGHT(convert(varchar,getdate(), 108),5) 
+
+SELECT convert(datetime,'15/03/18',3)
+
+SELECT convert(date,'15/03/92',3)
+
+SELECT convert(date,'15.03.92',4)
+
+SELECT [Datetime] = CONVERT(datetime,'2010-02-28')
+
+DECLARE @DateTimeValue varchar(32)
+SELECT @DateTimeValue ='10/23/2016'
+SELECT StringDate=@DateTimeValue,
+[US-Style] = CONVERT(datetime, @DatetimeValue)
+
+SET DATEFORMAT dmy
+SELECT convert(datetime,'20/05/2014')
+
+SET DATEFORMAT mdy
+SELECT convert(datetime,'05/20/14') 
+SELECT convert(datetime,'05/20/2014')
+
+SELECT convert(VARCHAR(10),getdate(),102)
+SELECT replace(convert(VARCHAR(10),getdate(),102),'.','')
+
+SET @sDate = '2010/03/15'
+SET DATEFORMAT dmy
+SELECT DATEDIFF (DAY, '15/03/10', '2011/03/16')
+SELECT GETDATE(), DATEDIFF (MONTH, GETDATE(), @sDate)
+SELECT GETDATE(), DATEDIFF (MONTH, GETDATE(), CAST(@sDate as datetime))
+SELECT GETDATE(), DATEDIFF (MONTH, GETDATE(), CONVERT(datetime,@sDate))
+SELECT GETDATE(), DATEDIFF (MONTH, GETDATE(), CONVERT(datetime,@sDate,111))

@@ -1,0 +1,143 @@
+--xử lý cho 1 luồng dữ liệu
+	CREATE TRIGGER trg_nhatkybanhang_insert
+	ON nhatkybanhang
+	FOR INSERT 
+	AS
+	  UPDATE mathang
+	  SET mathang.soluong= mathang.soluong - inserted.soluong
+	  FROM mathang INNER JOIN inserted
+	  ON mathang.mahang=inserted.mahang
+
+go  
+
+	CREATE TRIGGER trg_nhatkybanhang_insert
+	ON NHATKYBANHANG 
+	FOR INSERT
+	AS
+	DECLARE @sl_co int  /* Số lượng hàng hiện có */
+	DECLARE @sl_ban int /* Số lượng hàng được bán */
+	DECLARE @mahang nvarchar(5) /* Mã hàng được bán */
+	SELECT @mahang=mahang,@sl_ban=soluong
+	FROM inserted
+	SELECT @sl_co = soluong
+	FROM mathang where mahang=@mahang
+	/*Nếu số lượng hàng hiện có nhỏ hơn số lượng bán thì huỷ bỏ thao tác bổ sung dữ liệu */
+	IF @sl_co<@sl_ban
+	ROLLBACK TRANSACTION
+	/* Nếu dữ liệu hợp lệ thì giảm số lượng hàng hiện có */
+	ELSE
+	UPDATE mathang
+	SET soluong=soluong-@sl_ban
+	WHERE mahang=@mahang
+
+go
+  
+	CREATE TRIGGER trg_nhatkybanhang_delete
+	ON nhatkybanhang
+	FOR DELETE 
+	AS
+	  UPDATE mathang
+	  SET mathang.soluong= mathang.soluong + deleted.soluong
+	  FROM mathang INNER JOIN deleted
+	  ON mathang.mahang=deleted.mahang  
+
+go  
+  
+	CREATE TRIGGER trg_nhatkybanhang_update_soluong
+	ON nhatkybanhang
+	FOR UPDATE 
+	AS
+	IF UPDATE(soluong) or UPDATE(nguoimua)
+		UPDATE mathang
+		SET mathang.soluong = (mathang.soluong - (inserted.soluong-deleted.soluong))
+		FROM (deleted INNER JOIN inserted 
+		ON deleted.stt = inserted.stt) INNER JOIN mathang
+		ON mathang.mahang = deleted.mahang
+		
+-- XỬ LÝ CHO NHIỀU LUỒNG DỮ LIỆU, 
+	-- Cách 1: Truy vấn con
+	CREATE TRIGGER trg_nhatkybanhang_Delete_soluong
+	ON nhatkybanhang
+	FOR DELETE 
+	AS
+		UPDATE mathang
+		SET mathang.soluong = mathang.soluong + (SELECT SUM(deleted.soluong)
+		FROM deleted WHERE deleted.mahang = mathang.mahang)
+		WHERE mathang.mahang IN (SELECT mahang FROM deleted)
+go
+
+	CREATE TRIGGER trg_nhatkybanhang_update_soluong
+	ON nhatkybanhang
+	FOR UPDATE 
+	AS
+		IF UPDATE(soluong)
+		UPDATE mathang
+		SET mathang.soluong = mathang.soluong - (SELECT SUM(inserted.soluong-deleted.soluong)
+		FROM inserted INNER JOIN deleted ON inserted.stt=deleted.stt
+		WHERE inserted.mahang = mathang.mahang)
+		WHERE mathang.mahang IN (SELECT mahang FROM inserted)
+		
+go
+
+CREATE TRIGGER trg_nhatkybanhang_update_soluong
+ON nhatkybanhang
+FOR UPDATE 
+AS
+	IF UPDATE(soluong)
+		/* Nếu số lượng dòng được cập nhật bằng 1 */
+		IF @@ROWCOUNT = 1
+			BEGIN
+				UPDATE mathang
+				SET mathang.soluong = mathang.soluong –
+				(inserted.soluong-deleted.soluong)
+				FROM (deleted INNER JOIN inserted ON
+				deleted.stt = inserted.stt) INNER JOIN mathang
+				ON mathang.mahang = deleted.mahang
+			END
+		ELSE
+			BEGIN
+				UPDATE mathang
+				SET mathang.soluong = mathang.soluong -
+			   (SELECT SUM(inserted.soluong-deleted.soluong)
+				FROM inserted INNER JOIN deleted
+							  ON inserted.stt=deleted.stt
+				WHERE inserted.mahang = mathang.mahang)
+				WHERE mathang.mahang IN (SELECT mahang
+				FROM inserted)
+			END
+
+go	
+
+	-- Cách 2: dùng con trỏ		
+			
+	CREATE TRIGGER trg_nhatkybanhang_update_soluong
+	ON nhatkybanhang
+	FOR UPDATE 
+	AS
+		IF UPDATE(soluong) 
+		BEGIN
+			DECLARE @mahang NVARCHAR(10) 
+			DECLARE @soluong INT
+			DECLARE contro CURSOR FOR
+				SELECT inserted.mahang,(inserted.soluong - deleted.soluong) as soluong
+				FROM inserted INNER JOIN deleted
+				ON inserted.stt=deleted.stt
+			OPEN contro
+			FETCH NEXT FROM contro INTO @mahang,@soluong
+			WHILE @@FETCH_STATUS=0
+				BEGIN
+				UPDATE mathang SET soluong=soluong­ - @soluong
+				WHERE mahang=@mahang
+				FETCH NEXT FROM contro INTO @mahang,@soluong
+				END
+			CLOSE contro
+			DEALLOCATE contro
+			END		
+		
+		
+		
+		
+		
+		
+	
+Print 'A updated'

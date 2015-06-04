@@ -1,0 +1,6 @@
+declare @ten varchar(20)
+	set @ten = 'khanh'
+declare @x table(MaSV int, TenSV nvarchar(20))
+	insert into @x values(1, @ten)
+	insert into @x values(2, N'Yến')
+select * from @x
