@@ -1,2 +1,3 @@
 select ROW_NUMBER() over(partition by name order by ID desc) as Num, Name from CustomerId
 	-- đếm số bản ghi có name giống nhau sắp xếp theo ID
+	Các tính năng nổi bật của MVC so với các nền tảng khác
