@@ -127,8 +127,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Uploadify\uploadify.ashx.cs">
+      <DependentUpon>uploadify.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boostrap\bootstrap.css" />
@@ -139,6 +143,7 @@
     <Content Include="Content\datepicker\css\datepicker.css" />
     <Content Include="Content\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Content\img\demo_wait.gif" />
+    <Content Include="Scripts\GridView.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
     <Content Include="Content\jquery-1.8.2.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -216,6 +221,15 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploadify\cancel.png" />
+    <Content Include="Uploadify\expressInstall.swf" />
+    <Content Include="Uploadify\jquery-1.4.2.min.js" />
+    <Content Include="Uploadify\jquery.uploadify.v2.1.4.js" />
+    <Content Include="Uploadify\jquery.uploadify.v2.1.4.min.js" />
+    <Content Include="Uploadify\swfobject.js" />
+    <Content Include="Uploadify\uploadify.allglyphs.swf" />
+    <Content Include="Uploadify\uploadify.css" />
+    <Content Include="Uploadify\uploadify.swf" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -238,9 +252,73 @@
     <Content Include="Views\Home\Scroll.cshtml" />
     <Content Include="Views\Home\Ajaxcomplete.cshtml" />
     <Content Include="Views\Home\FadeOut.cshtml" />
+    <Content Include="Views\Home\AddPicture.cshtml" />
+    <Content Include="Uploadify\check.php" />
+    <Content Include="Uploadify\com\adobe\air\logging\FileTarget.as" />
+    <Content Include="Uploadify\com\adobe\crypto\HMAC.as" />
+    <Content Include="Uploadify\com\adobe\crypto\MD5.as" />
+    <Content Include="Uploadify\com\adobe\crypto\MD5Stream.as" />
+    <Content Include="Uploadify\com\adobe\crypto\SHA1.as" />
+    <Content Include="Uploadify\com\adobe\crypto\SHA224.as" />
+    <Content Include="Uploadify\com\adobe\crypto\SHA256.as" />
+    <Content Include="Uploadify\com\adobe\crypto\WSSEUsernameToken.as" />
+    <Content Include="Uploadify\com\adobe\errors\IllegalStateError.as" />
+    <Content Include="Uploadify\com\adobe\fileformats\vcard\Address.as" />
+    <Content Include="Uploadify\com\adobe\fileformats\vcard\Email.as" />
+    <Content Include="Uploadify\com\adobe\fileformats\vcard\Phone.as" />
+    <Content Include="Uploadify\com\adobe\fileformats\vcard\VCard.as" />
+    <Content Include="Uploadify\com\adobe\fileformats\vcard\VCardParser.as" />
+    <Content Include="Uploadify\com\adobe\images\BitString.as" />
+    <Content Include="Uploadify\com\adobe\images\JPGEncoder.as" />
+    <Content Include="Uploadify\com\adobe\images\PNGEncoder.as" />
+    <Content Include="Uploadify\com\adobe\net\DynamicURLLoader.as" />
+    <Content Include="Uploadify\com\adobe\net\IURIResolver.as" />
+    <Content Include="Uploadify\com\adobe\net\MimeTypeMap.as" />
+    <Content Include="Uploadify\com\adobe\net\proxies\RFC2817Socket.as" />
+    <Content Include="Uploadify\com\adobe\net\URI.as" />
+    <Content Include="Uploadify\com\adobe\net\URIEncodingBitmap.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\Database.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\Definition.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\Dict.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\DictionaryServer.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\ConnectedEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\DatabaseEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\DefinitionEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\DefinitionHeaderEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\DictionaryServerEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\DisconnectedEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\ErrorEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\MatchEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\MatchStrategiesEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\events\NoMatchEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\MatchStrategy.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\Response.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\util\CompleteResponseEvent.as" />
+    <Content Include="Uploadify\com\adobe\protocols\dict\util\SocketHelper.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSON.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONDecoder.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONEncoder.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONParseError.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONToken.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONTokenizer.as" />
+    <Content Include="Uploadify\com\adobe\serialization\json\JSONTokenType.as" />
+    <Content Include="Uploadify\com\adobe\utils\ArrayUtil.as" />
+    <Content Include="Uploadify\com\adobe\utils\DateUtil.as" />
+    <Content Include="Uploadify\com\adobe\utils\DictionaryUtil.as" />
+    <Content Include="Uploadify\com\adobe\utils\IntUtil.as" />
+    <Content Include="Uploadify\com\adobe\utils\NumberFormatter.as" />
+    <Content Include="Uploadify\com\adobe\utils\StringUtil.as" />
+    <Content Include="Uploadify\com\adobe\utils\XMLUtil.as" />
+    <Content Include="Uploadify\com\adobe\webapis\events\ServiceEvent.as" />
+    <Content Include="Uploadify\com\adobe\webapis\ServiceBase.as" />
+    <Content Include="Uploadify\com\adobe\webapis\URLLoaderBase.as" />
+    <Content Include="Uploadify\uploadify.ashx" />
+    <Content Include="Uploadify\uploadify.fla" />
+    <Content Include="Uploadify\uploadify.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

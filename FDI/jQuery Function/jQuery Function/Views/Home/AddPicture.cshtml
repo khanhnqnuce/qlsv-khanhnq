@@ -2,8 +2,11 @@
     ViewBag.Title = "AddPicture";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
+ <script type="text/javascript" src="/Uploadify/swfobject.js"></script>
+<script src="~/Uploadify/jquery.uploadify.v2.1.4.js"></script>
+<link href="~/Uploadify/uploadify.css" rel="stylesheet" />
+<script src="~/Scripts/GridView.js"></script>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -45,9 +48,9 @@
                 }
             },
             'onComplete': function (event, id, fileObj) {
-                $("#@Html.IdFor(model => model.Name)").val(fileObj.name);
+               @* $("#@Html.IdFor(model => model.Name)").val(fileObj.name);
                 console.log(fileObj.name);
-                arrFileObj.push(fileObj);
+                arrFileObj.push(fileObj);*@
             },
             'onAllComplete': function (event, data) {
                 $('#status-message').html('<span class="message">' + data.filesUploaded + ' file đã upload thành công, ' + data.errors + ' file lỗi.</span>');
@@ -85,49 +88,24 @@
 
 <form id="SystemFileForm">
     <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
-    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>    
-    @if (ViewBag.Action.ToString().Equals("Add"))
-    {
-        <fieldset class="forms">
-            <table class="tableforms" cellspacing="1" width="100%">
-                <tr>
-                    <td>
-                        @Html.HiddenFor(model => model.Name)
-                        <p><b>Click vào nút select file và chọn file cần upload</b></p>
-                        <p></p>
-                        <input id="file_upload" name="file_upload" type="file" />
-                        <p id="status-message"></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="submit">
-                        <button id="submit" type="submit" class="primaryAction">Nhập ảnh upload vào hệ thống</button>
-                        <button id="close" type="button" class="primaryAction">Đóng lại</button>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-    }    
-    else{
-        <fieldset class="forms">
-            <table class="tableforms" cellspacing="1" width="100%">
-                <tr>
-                    <td style="width: 120px;">
-                        <label>Tên file đính kèm</label></td>
-                    <td>
-                        <input name="Name" id="Name" value="@Model.Name"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button id="submit" type="submit" class="primaryAction">@ViewBag.ActionText</button>
-                        <button id="reset" type="reset" class="primaryAction">Nhập lại</button>
-                        <button id="close" type="button" class="primaryAction">Đóng lại</button>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-    }
+    <input type="hidden" name="CategoryID" id="CategoryID" value="0">
+    <fieldset class="forms">
+        <table class="tableforms" cellspacing="1" width="100%">
+            <tr>
+                <td>
+                    <p><b>Click vào nút select file và chọn file cần upload</b></p>
+                    <p></p>
+                    <input id="file_upload" name="file_upload" type="file" />
+                    <p id="status-message"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="submit">
+                    <button id="submit" type="submit" class="primaryAction">Nhập ảnh upload vào hệ thống</button>
+                    <button id="close" type="button" class="primaryAction">Đóng lại</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 </form>
 
