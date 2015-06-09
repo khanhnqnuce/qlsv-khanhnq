@@ -1,0 +1,29 @@
+<form id="search-nav" action="/tin-tuc" method="GET">
+	<input type="search" placeholder="Search" id="seach" value="@seach" name="seach"/>
+</form>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#seach').focus();
+	});
+	$('#seach').keypress(function (e) {
+		e.preventDefault();
+		if (e.which === 13) {
+			if ($(this).val().lenght > 0) {
+				alert('aaa');
+				$('#search-nav').submit();
+			}
+			return false;
+		}
+	});
+	or
+	$('body').on('keypress', '#seach', function (e) {
+        e.preventDefault();
+        if (e.which === 13) {
+            if ($(this).val().lenght > 0) {
+                $('search-nav').submit();
+            }
+            return false;
+        }
+        return false;
+    });
+</script>

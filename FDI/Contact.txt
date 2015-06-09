@@ -1,0 +1,50 @@
+<form id="frmContact">
+    <div class="input-wrap">
+        <input id="sender_name" name="sender_name" type="text" required="required" placeholder="Họ và tên *" />
+        <i class="fa fa-user"></i>
+    </div>
+    <div class="input-wrap">
+        <input id="sender_email" name="sender_email" type="email" required="required" placeholder="Email *" />
+        <i class="fa fa-envelope"></i>
+    </div>
+    <div class="input-wrap">
+        <input id="letter_subject" name="letter_subject" type="text" required="required" placeholder="Tiêu đề *" />
+        <i class="fa fa-pencil"></i>
+    </div>
+    <div class="input-wrap">
+        <i class="fa fa-bars"></i>
+        <textarea id="letter_text" rows="5" name="letter_text" required="required" placeholder="Nội dung *"></textarea>
+
+    </div>
+    <div class="input-wrap erros">
+        <span id="erros"></span>
+    </div>
+    <a class="button sendContact" href="#" name="submit"><i class="fa fa-share"></i>Gửi liên hệ</a>
+</form>
+
+<script type="text/javascript">
+    $(".erros").hide();    
+    $("body").on("click", ".sendContact", function (e) {
+        debugger;
+        e.preventDefault();
+        $.post('/Home/SendContact', $("#frmContact").serialize(), function (msg) {            
+            if (msg.Erros == false) {                
+                alert(msg.Message);	
+                $("#sender_name").val("");
+                $("#sender_email").val("");
+                $("#letter_subject").val("");
+                $("#letter_text").val("");
+                return false;
+            }
+            else {                
+                $(".erros").show();
+                $("#erros").html(msg.Message);
+                $("#sender_name").val("");
+                $("#sender_email").val("");
+                $("#letter_subject").val("");
+                $("#letter_text").val("");
+                return false;
+            }
+        });
+    });
+</script>
