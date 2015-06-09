@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Scroll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-latest.js"></script>
+<style>
+    div.target {
+        height: 200px;
+        overflow: scroll;
+    }
+
+    span {
+        color: red;
+        display: none;
+    }
+</style>
+
+<div class="target">
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+    Thành phần div <span>scrolling</span><br />
+</div>
+<br />
+<button>Click để kích hoạt sự kiện scroll</button>
+
+<script>
+    var _scrollTop;
+
+    $(function () {
+        $('.target').scroll(function (e) {
+            _scrollTop = $(".target").scrollTop();
+            if (_scrollTop == 137) {
+                $("span").css("display", "inline").fadeOut("slow");
+            }
+        });
+
+        $('button').click(function () {
+            $('.target').scroll();
+        });
+    });
+
+    $(window).scroll(function () {
+        _scrollTop = $(window).scrollTop();
+        //console.log('scroll :', _scrollTop);
+    });
+</script>
