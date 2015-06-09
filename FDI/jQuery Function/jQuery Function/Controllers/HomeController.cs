@@ -53,8 +53,12 @@ namespace jQuery_Function.Controllers
             return "<h1>Thành công</h1>";
         }
 
-
         public ActionResult FadeOut()
+        {
+            return View();
+        }
+
+        public ActionResult AddPicture()
         {
             return View();
         }
