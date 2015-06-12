@@ -23,3 +23,5 @@ using (SqlConnection connection =
 }
 // reset
 this.dataTable.Clear();
+
+http://blogs.msdn.com/b/nikhilsi/archive/2008/06/11/bulk-insert-into-sql-from-c-app.aspx
