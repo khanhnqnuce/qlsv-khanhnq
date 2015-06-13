@@ -4,3 +4,7 @@ declare @x table(MaSV int, TenSV nvarchar(20))
 	insert into @x values(1, @ten)
 	insert into @x values(2, N'Yến')
 select * from @x
+
+delete from BulkCopyDemoMatchingColumns
+select * from BulkCopyDemoMatchingColumns
+TRUNCATE Table BulkCopyDemoMatchingColumns
