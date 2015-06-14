@@ -89,6 +89,9 @@ namespace QLSV.Frm.Frm
                 var sheet = excel.GetSheetAt(_iSheet);
                 var startRows = sheet.FirstRowNum + ViTriHeader;
                 var endRows = sheet.LastRowNum;
+                var starCol = sheet.LeftCol;
+                var endCol = 0;
+
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
@@ -136,6 +139,9 @@ namespace QLSV.Frm.Frm
                 var oSheet = excelPkg.Workbook.Worksheets[_iSheet + 1];
                 var startRows = oSheet.Dimension.Start.Row + ViTriHeader;
                 var endRows = oSheet.Dimension.End.Row;
+                var startCols = oSheet.Dimension.Start.Column;
+                var endCols = oSheet.Dimension.End.Column;
+
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);

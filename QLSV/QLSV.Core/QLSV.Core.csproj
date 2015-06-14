@@ -72,6 +72,7 @@
     <Compile Include="Domain\PhongThi.cs" />
     <Compile Include="Domain\SinhVien.cs" />
     <Compile Include="Domain\Taikhoan.cs" />
+    <Compile Include="LINQ\sqlBulkCopy.cs" />
     <Compile Include="LINQ\Statistic.cs" />
     <Compile Include="LINQ\UpdateData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
