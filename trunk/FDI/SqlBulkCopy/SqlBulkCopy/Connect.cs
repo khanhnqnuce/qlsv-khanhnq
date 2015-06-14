@@ -2,25 +2,31 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace QLSV.Core.LINQ
+namespace SqlBulkCopy
 {
-    public class Connect
+    public static class Connect
     {
+        
+        // Phương thức kết nối sql
         public static SqlConnection GetConnect()
         {
             try
             {
-                const string conString = @"Data Source = QUANGKHANH-PC\SQLEXPRESS;Initial Catalog = ToiecTestManager;Integrated Security=SSPI";
-                return new SqlConnection(conString);
+                return new SqlConnection( @"Data Source=QUANGKHANH-PC\SQLEXPRESS; Integrated Security=true;Initial Catalog=ToeicTestManager;");
+                //---Win xp
+                //const string conString = @"Data Source=.\SQLEXPRESS; AttachDbFilename=DataDirectory|\QLSV_TEST.mdf; Integrated Security=True; Connect Timeout=30; User Instance=True;";
+                //---Win 7
+                //const string conString = @"Server=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\QLSV_TEST.mdf; Database=QLSV_TEST;Trusted_Connection=Yes;";
+                //return new SqlConnection(conString);
             }
             catch (Exception ex)
             {
-                
+               
                 return null;
             }
         }
 
-        public DataTable GetTable(String sql)
+        public static DataTable GetTable(String sql)
         {
             var dt = new DataTable();
             try
@@ -31,15 +37,15 @@ namespace QLSV.Core.LINQ
                 ad.Fill(dt);
 
             }
-                catch (Exception ex)
+            catch (Exception ex)
             {
-               
+                
             }
             return dt;
         }
 
         // Phương thức thực hiện thêm sửa ...
-        public void ExcuteQuerySql(string sql)
+        public static void ExcuteQuerySql(string sql)
         {
             try
             {
@@ -56,7 +62,31 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        private void Storedprocedure(string storename)
+        // Phương thức đổ 1 bảng vào CSDL ...
+        public static bool InsertTable(string tablename, DataTable table)
+        {
+            using (var connection = GetConnect())
+            {
+                connection.Open();
+                using (var bulkCopy = new System.Data.SqlClient.SqlBulkCopy(connection))
+                {
+                    bulkCopy.DestinationTableName = "dbo." + tablename;
+
+                    try
+                    {
+                        bulkCopy.WriteToServer(table);
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        return false;
+                    }
+                }
+            }
+        }
+
+        private static void Storedprocedure(string storename)
         {
             var connect = GetConnect();
             var cmd = new SqlCommand
@@ -74,7 +104,7 @@ namespace QLSV.Core.LINQ
                 connect.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
                 
             }
@@ -82,6 +112,6 @@ namespace QLSV.Core.LINQ
             {
                 connect.Close();
             }
-        } 
+        }
     }
 }

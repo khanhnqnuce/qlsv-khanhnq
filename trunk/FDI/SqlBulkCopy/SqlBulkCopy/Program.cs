@@ -40,12 +40,11 @@ namespace SqlBulkCopy
                     try
                     {
                         // Write from the source to the destination.
-                        time = DateTime.Now;
+                        var b  = DateTime.Now.Second;
                         bulkCopy.WriteToServer(newProducts);
-                        TimeSpan a = DateTime.Now.Subtract(time);
-                        string b = a.TotalSeconds + ":"+a.Ticks;
-                        Console.WriteLine("bat dau:"+time);
-                        Console.WriteLine("Tổng thời gian Lưu:"+b);
+                        var a = DateTime.Now.Second;
+                        Console.WriteLine("bat dau:"+b);
+                        Console.WriteLine("Tổng thời gian Lưu:"+a);
                     }
                     catch (Exception ex)
                     {
@@ -68,12 +67,13 @@ namespace SqlBulkCopy
         {
             DataTable newProducts = new DataTable("NewProducts");
 
-            DataColumn productID = new DataColumn();
-            productID.DataType = System.Type.GetType("System.Int32");
-            productID.ColumnName = "ProductID";
-            productID.AutoIncrement = true;
-            newProducts.Columns.Add(productID);
+            //DataColumn productID = new DataColumn();
+            //productID.DataType = System.Type.GetType("System.Int32");
+            //productID.ColumnName = "ProductID";
+            //productID.AutoIncrement = true;
+            //newProducts.Columns.Add(productID);
 
+            newProducts.Columns.Add("ProductID", typeof(int));
             newProducts.Columns.Add("Name", typeof(string));
             newProducts.Columns.Add("ProductNumber", typeof(string));
 
@@ -88,13 +88,13 @@ namespace SqlBulkCopy
             //newProducts.Columns.Add(productNumber);
 
             // Create an array for DataColumn objects.
-            DataColumn[] keys = new DataColumn[1];
-            keys[0] = productID;
-            newProducts.PrimaryKey = keys;
+            //DataColumn[] keys = new DataColumn[1];
+            //keys[0] = productID;
+            //newProducts.PrimaryKey = keys;
 
             // Add some new rows to the collection. 
                    
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var row = newProducts.NewRow();
                 row["Name"] = "CC-101-ST"+i;
@@ -107,13 +107,29 @@ namespace SqlBulkCopy
             // Return the new DataTable.  
             return newProducts;
         }
+        private static DataTable MakeTable1()
+        {
+            var newProducts = new DataTable("NewProducts");
+
+            newProducts.Columns.Add("MaSV", typeof(int));
+            newProducts.Columns.Add("ProductID", typeof(int));
+            for (var i = 0; i < 90; i++)
+            {
+                var row = newProducts.NewRow();
+                row["MaSV"] = 3758;
+                row["ProductID"] = i+1;
+                newProducts.Rows.Add(row);
+                newProducts.AcceptChanges();
+            }
+            return newProducts;
+        }
         private static string GetConnectionString()
         // To avoid storing the connection string in your code,  
         // you can retrieve it from a configuration file. 
         {
             return @"Data Source=QUANGKHANH-PC\SQLEXPRESS; " +
                 @" Integrated Security=true;" +
-                @"Initial Catalog=ToiecTestManager;";
+                @"Initial Catalog=ToeicTestManager;";
             //string conString = @"Data Source = QUANGKHANH-PC\SQLEXPRESS;Initial Catalog = ToiecTestManager;Integrated Security=SSPI";
         }
 
