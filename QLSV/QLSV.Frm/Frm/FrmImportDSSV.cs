@@ -15,7 +15,7 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmImportDSSV : Form
     {
-        private DataTable _tbError;
+        public DataTable _tbError;
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly BackgroundWorker _bgwInsert;
         private readonly int _idkythi;
@@ -100,6 +100,8 @@ namespace QLSV.Frm.Frm
         {
             try
             {
+                var save = new SqlBulkCopy();
+                var tbsv = save.tbSinhVien();
                 _tbError = GetTable();
                 var i = 1;
                 var tbLop = LoadData.Load(16);
@@ -110,16 +112,15 @@ namespace QLSV.Frm.Frm
                     var malop = row["MaLop"].ToString();
                     foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
                     {
-                        var hs = new SinhVien
-                        {
-                            MaSV = int.Parse(row["MaSV"].ToString()),
-                            HoSV = row["HoSV"].ToString(),
-                            TenSV = row["TenSV"].ToString(),
-                            NgaySinh = row["NgaySinh"].ToString(),
-                            IdLop = int.Parse(dataRow["ID"].ToString()),
-                        };
+                        tbsv.Rows.Add(
+                            row["MaSV"].ToString(),
+                            row["HoSV"].ToString(),
+                            row["TenSV"].ToString(),
+                            row["NgaySinh"].ToString(),
+                            dataRow["ID"].ToString());
+
                         b = true;
-                        _listAdd.Add(hs);
+
                     }
                     if (!b)
                     {
@@ -131,8 +132,9 @@ namespace QLSV.Frm.Frm
                             row["MaLop"].ToString());
                     }
                 }
-                if (_listAdd.Count <= 0) return;
-                InsertData.ThemSinhVien(_listAdd);
+                if (tbsv.Rows.Count <= 0) return;
+                save.InsertTable("SINHVIEN", tbsv);
+                //InsertData.ThemSinhVien(_listAdd);
                 if (_tbError.Rows.Count > 0) return;
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }
@@ -147,12 +149,6 @@ namespace QLSV.Frm.Frm
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             ShowLoading("Đang lưu dữ liệu");
-            if (_tbError.Rows.Count > 0)
-            {
-                var text = @"Còn " + _tbError.Rows.Count + @" sinh viên chưa được lưu vào CSDL.";
-                var frm = new FrmMsgImportSv(text, _tbError, 1);
-                frm.ShowDialog();
-            }
             Close();
         }
 

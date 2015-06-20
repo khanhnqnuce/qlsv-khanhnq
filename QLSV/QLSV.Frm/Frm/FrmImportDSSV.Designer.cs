@@ -28,11 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters1 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
+            PerpetuumSoft.Reporting.Export.ExtraParameters extraParameters2 = new PerpetuumSoft.Reporting.Export.ExtraParameters();
             this.dgv_DanhSach = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.reportManager = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
+            this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.ReportView = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
+            this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DanhSach)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -98,6 +106,40 @@
             this.panel1.Size = new System.Drawing.Size(703, 44);
             this.panel1.TabIndex = 46;
             // 
+            // reportManager
+            // 
+            this.reportManager.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
+            this.reportManager.OwnerForm = this;
+            this.reportManager.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
+            this.rptdanhsachsinhvien,
+            this.ReportView});
+            // 
+            // rptdanhsachsinhvien
+            // 
+            this.rptdanhsachsinhvien.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachsinhvien.rst";
+            this.rptdanhsachsinhvien.ReportName = "";
+            this.rptdanhsachsinhvien.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
+            // ReportView
+            // 
+            this.ReportView.FilePath = "";
+            this.ReportView.ReportName = "";
+            this.ReportView.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
+            // excelExportFilter1
+            // 
+            this.excelExportFilter1.ExportInLargePage = true;
+            this.excelExportFilter1.ExportInOnePage = true;
+            this.excelExportFilter1.ExportWithoutPageDelimeters = true;
+            this.excelExportFilter1.ExtraParameters = extraParameters1;
+            // 
+            // pdfExportFilter1
+            // 
+            this.pdfExportFilter1.ChangePermissionsPassword = null;
+            this.pdfExportFilter1.Compress = true;
+            this.pdfExportFilter1.ExtraParameters = extraParameters2;
+            this.pdfExportFilter1.UserPassword = null;
+            // 
             // FrmImportDSSV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -126,5 +168,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private PerpetuumSoft.Reporting.Components.ReportManager reportManager;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot ReportView;
+        private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
+        private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
     }
 }

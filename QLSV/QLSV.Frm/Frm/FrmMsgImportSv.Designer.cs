@@ -35,8 +35,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pdfExportFilter1 = new PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter(this.components);
             this.excelExportFilter1 = new PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter(this.components);
-            this.reportManager1 = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
+            this.reportManager = new PerpetuumSoft.Reporting.Components.ReportManager(this.components);
             this.rptdanhsachsinhvien = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
+            this.ReportView = new PerpetuumSoft.Reporting.Components.FileReportSlot(this.components);
             this.SuspendLayout();
             // 
             // lbMsg
@@ -73,18 +74,25 @@
             this.excelExportFilter1.ExportWithoutPageDelimeters = true;
             this.excelExportFilter1.ExtraParameters = extraParameters2;
             // 
-            // reportManager1
+            // reportManager
             // 
-            this.reportManager1.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
-            this.reportManager1.OwnerForm = this;
-            this.reportManager1.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
-            this.rptdanhsachsinhvien});
+            this.reportManager.DataSources = new PerpetuumSoft.Reporting.Components.ObjectPointerCollection(new string[0], new object[0]);
+            this.reportManager.OwnerForm = this;
+            this.reportManager.Reports.AddRange(new PerpetuumSoft.Reporting.Components.ReportSlot[] {
+            this.rptdanhsachsinhvien,
+            this.ReportView});
             // 
             // rptdanhsachsinhvien
             // 
             this.rptdanhsachsinhvien.FilePath = "D:\\HocTap\\DoAnTN\\QLSV\\QLSV.Frm\\Reports\\danhsachsinhvien.rst";
             this.rptdanhsachsinhvien.ReportName = "";
             this.rptdanhsachsinhvien.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
+            // 
+            // ReportView
+            // 
+            this.ReportView.FilePath = "";
+            this.ReportView.ReportName = "";
+            this.ReportView.ReportScriptType = typeof(PerpetuumSoft.Reporting.Rendering.ReportScriptBase);
             // 
             // FrmMsgImportSv
             // 
@@ -113,7 +121,8 @@
         private System.Windows.Forms.Button button1;
         private PerpetuumSoft.Reporting.Export.Pdf.PdfExportFilter pdfExportFilter1;
         private PerpetuumSoft.Reporting.Export.OpenXML.ExcelExportFilter excelExportFilter1;
-        private PerpetuumSoft.Reporting.Components.ReportManager reportManager1;
-        private PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
+        public PerpetuumSoft.Reporting.Components.ReportManager reportManager;
+        public PerpetuumSoft.Reporting.Components.FileReportSlot rptdanhsachsinhvien;
+        private PerpetuumSoft.Reporting.Components.FileReportSlot ReportView;
     }
 }
