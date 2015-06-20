@@ -148,6 +148,29 @@ namespace QLSV.Frm.FrmUserControl
                 var frm = new FrmImportDSSV(resultValue);
                 frm.ShowDialog();
                 Huy();
+                if (frm._tbError.Rows.Count <= 0) return;
+                MessageBox.Show(@"Còn "+frm._tbError.Rows.Count+@" sinh viên chưa được lưu.", FormResource.MsgCaption);
+                RptView("danhsachsinhvien",frm._tbError);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void RptView(string rptname,DataTable table, string source = "danhsach")
+        {
+            try
+            {
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add(source, table);
+                rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\" + rptname + ".rst";
+                rptdanhsachsinhvien.Prepare();
+                var previewForm = new PreviewForm(rptdanhsachsinhvien)
+                {
+                    WindowState = FormWindowState.Maximized
+                };
+                previewForm.Show();
             }
             catch (Exception ex)
             {
@@ -406,11 +429,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private void uG_DanhSach_BeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
-        {
-
         }
 
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)

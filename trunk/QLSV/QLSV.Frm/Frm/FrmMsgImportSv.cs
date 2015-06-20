@@ -17,6 +17,10 @@ namespace QLSV.Frm.Frm
             _tb = tb;
             _number = i;
         }
+        public FrmMsgImportSv()
+        {
+            InitializeComponent();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -29,6 +33,29 @@ namespace QLSV.Frm.Frm
                 case 2:
                     RptChamthi();
                     break;
+                case 3:
+                    RptView("danhsachsinhvien");
+                    break;
+            }
+        }
+
+        public void RptView(string rptname,string source = "danhsach")
+        {
+            try
+            {
+                reportManager.DataSources.Clear();
+                reportManager.DataSources.Add(source,_tb);
+                ReportView.FilePath = Application.StartupPath + @"\Reports\" + rptname + ".rst";
+                ReportView.Prepare();
+                var previewForm = new PreviewForm(ReportView)
+                {
+                    WindowState = FormWindowState.Maximized
+                };
+                previewForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -37,8 +64,8 @@ namespace QLSV.Frm.Frm
 
             try
             {
-                reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach",_tb);
+                reportManager.DataSources.Clear();
+                reportManager.DataSources.Add("danhsach",_tb);
                 rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\loichamthi.rst";
                 rptdanhsachsinhvien.Prepare();
                 var previewForm = new PreviewForm(rptdanhsachsinhvien)
@@ -58,8 +85,8 @@ namespace QLSV.Frm.Frm
 
             try
             {
-                reportManager1.DataSources.Clear();
-                reportManager1.DataSources.Add("danhsach",_tb);
+                reportManager.DataSources.Clear();
+                reportManager.DataSources.Add("danhsach",_tb);
                 rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\loichamthi.rst";
                 rptdanhsachsinhvien.Prepare();
                 var previewForm = new PreviewForm(rptdanhsachsinhvien)

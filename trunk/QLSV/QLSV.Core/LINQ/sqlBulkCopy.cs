@@ -10,8 +10,6 @@ namespace QLSV.Core.LINQ
         public DataTable tbSinhVien()
         {
             var newProducts = new DataTable("SINHVIEN");
-
-
             newProducts.Columns.Add("MaSV", typeof(int));
             newProducts.Columns.Add("HoSV", typeof(string));
             newProducts.Columns.Add("TenSV", typeof(string));

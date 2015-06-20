@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Infragistics.Win;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
