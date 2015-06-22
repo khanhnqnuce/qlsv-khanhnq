@@ -18,7 +18,6 @@ namespace QLSV.Frm.Frm
         public DataTable _tbError;
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly BackgroundWorker _bgwInsert;
-        private readonly int _idkythi;
 
         public FrmImportDSSV(DataTable table)
         {

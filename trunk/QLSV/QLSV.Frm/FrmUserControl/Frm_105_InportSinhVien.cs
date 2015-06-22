@@ -19,12 +19,13 @@ namespace QLSV.Frm.FrmUserControl
     {
         private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private DataTable _tbError;
-
+        private int _idkythi;
         private readonly BackgroundWorker _bgwInsert;
 
         public Frm_105_InportSinhVien(int idkythi)
         {
             InitializeComponent();
+            _idkythi = idkythi;
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
@@ -68,43 +69,46 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var tbsvnew = GetTable();
-                var i = 1;
+                var save = new SqlBulkCopy();
+                var tbxp = save.tbXepPhong();
+
+                var tbsvError = GetTable();
                 var stt = uG_DanhSach.Rows.Count;
                 var frmNapDuLieu = new FrmNDLSinhVien(stt,GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
-                //var tbsv = LoadData.Load(2);
-                //foreach (DataRow row in resultValue.Rows)
-                //{
-                //    var check = false;
-                //    foreach (DataRow row1 in tbsv.Rows)
-                //    {
-                //        if (row.ItemArray[1].ToString() == row1.ItemArray[0].ToString())
-                //        {
-                //            check = true;
-                //        }
-                //    }
-                //    if (!check)
-                //    {
-                //        tbsvnew.Rows.Add(1, row.ItemArray[1], row.ItemArray[2], row.ItemArray[3], row.ItemArray[4], row.ItemArray[5]);
-                //    }
-                //}
+                var tbsv = LoadData.Load(2);
+                foreach (DataRow row in resultValue.Rows)
+                {
+                    var check = false;
+                    foreach (DataRow row1 in tbsv.Rows)
+                    {
+                        if (row.ItemArray[1].ToString() != row1.ItemArray[0].ToString()) continue;
+                        check = true;
+                        tbxp.Rows.Add(row.ItemArray[1].ToString(),_idkythi,null);
+                    }
+                    if (!check)
+                    {
+                        tbsvError.Rows.Add(1, row.ItemArray[1], row.ItemArray[2], row.ItemArray[3], row.ItemArray[4], row.ItemArray[5]);
+                    }
+                }
+                
 
-                //if (tbsvnew.Rows.Count > 0)
-                //{
-                //    const string text = @"Thao tác không hoành thành vì có sv đăng ký dự thi chưa có trong từ điển";
-                //    var frm = new FrmMsgImportSv(text, tbsvnew, 1);
-                //    frm.ShowDialog();
-                //}
-                //else
-                //{
-                    var table = (DataTable)uG_DanhSach.DataSource;
-                    table.Merge(resultValue);
-                    uG_DanhSach.DataSource = table;
-                    MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
-                //}
+                if (tbsvError.Rows.Count > 0)
+                {
+                    const string text = @"Thao tác không hoành thành vì có sv đăng ký dự thi chưa có trong từ điển";
+                    var frm = new FrmMsgImportSv(text, tbsvError, 1);
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    save.InsertTable("XEPPHONG", tbxp);
+                    //var table = (DataTable)uG_DanhSach.DataSource;
+                    //table.Merge(resultValue);
+                    //uG_DanhSach.DataSource = table;
+                    //MessageBox.Show(@"Import thành công " + resultValue.Rows.Count + @" Sinh viên. Nhấn F5 để lưu lại");
+                }
                 
             }
             catch (Exception ex)

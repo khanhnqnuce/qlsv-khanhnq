@@ -526,7 +526,7 @@ namespace QLSV.Frm
                 {
                     bCheck = true;
                     lbXoa.Visible = true;
-                    btnNapDuLieu.Visible = false;
+                    btnNapDuLieu.Visible = true;
                     btnInds.Visible = false;
                     btnthemmoi.Visible = true;
                     btnXoadong.Visible = true;
@@ -1161,6 +1161,10 @@ namespace QLSV.Frm
             if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
             {
                _frmInportBaiLam.Napdulieu();
+            }
+            if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
+            {
+               _frmChonSinhVien.Napdulieu();
             }
         }
 

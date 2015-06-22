@@ -53,7 +53,7 @@ namespace QLSV.Core.LINQ
         }
 
         // Phương thức đổ 1 bảng vào CSDL ...
-        public bool InsertTable(string tablename, DataTable table)
+        public void InsertTable(string tablename, DataTable table)
         {
             using (var connection = _connect.GetConnect())
             {
@@ -61,17 +61,7 @@ namespace QLSV.Core.LINQ
                 using (var bulkCopy = new System.Data.SqlClient.SqlBulkCopy(connection))
                 {
                     bulkCopy.DestinationTableName = "dbo." + tablename;
-
-                    try
-                    {
-                        bulkCopy.WriteToServer(table);
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Log2File.LogExceptionToFile(ex);
-                        return false;
-                    }
+                    bulkCopy.WriteToServer(table);
                 }
             }
         }
