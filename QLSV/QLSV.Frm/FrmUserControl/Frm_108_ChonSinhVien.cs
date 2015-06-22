@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -21,7 +22,6 @@ namespace QLSV.Frm.FrmUserControl
         private readonly int _idkythi;
         private readonly FrmTimkiem _frmTimkiem;
         private UltraGridRow _newRow;
-        
 
         public Frm_108_ChonSinhVien(int idkythi)
         {
@@ -50,7 +50,7 @@ namespace QLSV.Frm.FrmUserControl
                 IdDelete.Clear();
                 _listKtPhong.Clear();
                 _listXepPhong.Clear();
-                dgv_DanhSach.DataSource = LoadData.Load(12,_idkythi);
+                dgv_DanhSach.DataSource = LoadData.Load(12, _idkythi);
             }
             catch (Exception ex)
             {
@@ -146,6 +146,78 @@ namespace QLSV.Frm.FrmUserControl
                 DeleteData.Xoa("XEPPHONG", _idkythi);
                 UpdateData.UpdateKtPhong(_idkythi);
                 LoadGrid();
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        /// <summary>
+        /// Hàm lấy dữ liệu từ file excel
+        /// </summary>
+        public void Napdulieu()
+        {
+            try
+            {
+                var save = new SqlBulkCopy();
+                var tbxp = save.tbXepPhong();
+                var tbsvError = GetTable();
+                var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
+                frmNapDuLieu.ShowDialog();
+                var resultValue = frmNapDuLieu.ResultValue;
+                if (resultValue == null || resultValue.Rows.Count == 0) return;
+                var tbsv = LoadData.Load(2);
+                foreach (DataRow row in resultValue.Rows)
+                {
+                    var check = false;
+                    foreach (DataRow row1 in tbsv.Rows)
+                    {
+                        if (row.ItemArray[1].ToString() != row1.ItemArray[0].ToString()) continue;
+                        check = true;
+                        tbxp.Rows.Add(row.ItemArray[1].ToString(), _idkythi, null);
+                    }
+                    if (!check)
+                    {
+                        tbsvError.Rows.Add(1, row.ItemArray[1], row.ItemArray[2], row.ItemArray[3], row.ItemArray[4], row.ItemArray[5]);
+                    }
+                }
+
+
+                if (tbsvError.Rows.Count > 0)
+                {
+                    const string text = @"Thao tác không hoành thành vì có sv đăng ký dự thi chưa có trong từ điển";
+                    MessageBox.Show(text, FormResource.MsgCaption);
+                    RptView("danhsachsinhvien", tbsvError);
+                }
+                else
+                {
+                    save.InsertTable("XEPPHONG", tbxp);
+                    LoadGrid();
+                    MessageBox.Show(tbxp.Rows.Count +@" Sinh viên đã được inport thành công.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(@"Thao tác thất bại",FormResource.MsgCaption);
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        private void RptView(string rptname, DataTable table, string source = "danhsach")
+        {
+            try
+            {
+                reportManager1.DataSources.Clear();
+                reportManager1.DataSources.Add(source, table);
+                rptdanhsachsinhvien.FilePath = Application.StartupPath + @"\Reports\" + rptname + ".rst";
+                rptdanhsachsinhvien.Prepare();
+                var previewForm = new PreviewForm(rptdanhsachsinhvien)
+                {
+                    WindowState = FormWindowState.Maximized
+                };
+                previewForm.Show();
             }
             catch (Exception ex)
             {
