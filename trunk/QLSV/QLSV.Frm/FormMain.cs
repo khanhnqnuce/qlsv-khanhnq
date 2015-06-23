@@ -25,15 +25,15 @@ namespace QLSV.Frm
         private static Frm_102_Danhmuclop _frmDanhmuclop;
         private static Frm_103_TuDienPhongThi _frmDanhsachphongthi;
         private static Frm_104_QuanLySinhVien _frmQuanlySinhVien;
-        private static Frm_105_InportSinhVien _frmInportSinhVien;
+        //private static Frm_105_InportSinhVien _frmInportSinhVien;
         private static Frm_106_QuanLyKyThi _frmQuanLyKyThi;
         private static Frm_107_Chonphongthi _frmChonphongthi;
         private static Frm_108_ChonSinhVien _frmChonSinhVien;
         private static Frm_109_SapXepPhongThi _frmSapXepPhongThi;
         private static Frm_110_DaXepPhong _frmSvDaXepPhong;
         private static Frm_111_TuDienNamHoc _frmtudienNamHoc;
-        private static Frm_201_ImportDapAn _frmInportDapAn;
-        private static Frm_203_ImportBaiLam _frmInportBaiLam;
+        //private static Frm_201_ImportDapAn _frmInportDapAn;
+        //private static Frm_203_ImportBaiLam _frmInportBaiLam;
         private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
         private static Frm_204_DanhSachBaiLam _frmDanhSachBaiLam;
         private static Frm_206_NhapThangDiem _frmNhapThangDiem;
@@ -238,13 +238,13 @@ namespace QLSV.Frm
                         ShowControl(_frmQuanlySinhVien, pn_quanlysinhvien);
                         break;
                     case "105":
-                        _frmInportSinhVien = new Frm_105_InportSinhVien(_idkythi);
-                        _frmInportSinhVien.ShowDialog += ShowLoading;
-                        _frmInportSinhVien.CloseDialog += KillLoading;
-                        _frmInportSinhVien.UpdateDialog += UpdateLoading;
-                        TabInportsinhvien.Tab.Visible = true;
-                        TabPageControl.SelectedTab = TabInportsinhvien.Tab;
-                        ShowControl(_frmInportSinhVien, pn_inportsinhvien);
+                        //_frmInportSinhVien = new Frm_105_InportSinhVien(_idkythi);
+                        //_frmInportSinhVien.ShowDialog += ShowLoading;
+                        //_frmInportSinhVien.CloseDialog += KillLoading;
+                        //_frmInportSinhVien.UpdateDialog += UpdateLoading;
+                        //TabInportsinhvien.Tab.Visible = true;
+                        //TabPageControl.SelectedTab = TabInportsinhvien.Tab;
+                        //ShowControl(_frmInportSinhVien, pn_inportsinhvien);
                         break;
                     case "106":
                         _frmQuanLyKyThi = new Frm_106_QuanLyKyThi(_quyen);
@@ -298,15 +298,15 @@ namespace QLSV.Frm
                         TabPageControl.SelectedTab = Tabtudiennamhoc.Tab;
                         ShowControl(_frmtudienNamHoc, pnl_tudiennamhoc);
                         break;
-                    case "201":
-                        _frmInportDapAn = new Frm_201_ImportDapAn(_idkythi);
-                        _frmInportDapAn.ShowDialog += ShowLoading;
-                        _frmInportDapAn.CloseDialog += KillLoading;
-                        _frmInportDapAn.UpdateDialog += UpdateLoading;
-                        TabInportdapdan.Tab.Visible = true;
-                        TabPageControl.SelectedTab = TabInportdapdan.Tab;
-                        ShowControl(_frmInportDapAn, pnl_Inportdapan);
-                        break;
+                    //case "201":
+                        //_frmInportDapAn = new Frm_201_ImportDapAn(_idkythi);
+                        //_frmInportDapAn.ShowDialog += ShowLoading;
+                        //_frmInportDapAn.CloseDialog += KillLoading;
+                        //_frmInportDapAn.UpdateDialog += UpdateLoading;
+                        //TabInportdapdan.Tab.Visible = true;
+                        //TabPageControl.SelectedTab = TabInportdapdan.Tab;
+                        //ShowControl(_frmInportDapAn, pnl_Inportdapan);
+                        //break;
                     case "202":
                         _frmDapAnCacMaDe = new Frm_202_DanhSachDapAn(_idkythi);
                         _frmDapAnCacMaDe.ShowDialog += ShowLoading;
@@ -316,15 +316,15 @@ namespace QLSV.Frm
                         TabPageControl.SelectedTab = TabDapanmade.Tab;
                         ShowControl(_frmDapAnCacMaDe, pnl_Dapanmade);
                         break;
-                    case "203":
-                        _frmInportBaiLam = new Frm_203_ImportBaiLam(_idkythi);
-                        _frmInportBaiLam.ShowDialog += ShowLoading;
-                        _frmInportBaiLam.CloseDialog += KillLoading;
-                        _frmInportBaiLam.UpdateDialog += UpdateLoading;
-                        TabInportbailam.Tab.Visible = true;
-                        TabPageControl.SelectedTab = TabInportbailam.Tab;
-                        ShowControl(_frmInportBaiLam, pnl_Inportbailam);
-                        break;
+                    //case "203":
+                    //    _frmInportBaiLam = new Frm_203_ImportBaiLam(_idkythi);
+                    //    _frmInportBaiLam.ShowDialog += ShowLoading;
+                    //    _frmInportBaiLam.CloseDialog += KillLoading;
+                    //    _frmInportBaiLam.UpdateDialog += UpdateLoading;
+                    //    TabInportbailam.Tab.Visible = true;
+                    //    TabPageControl.SelectedTab = TabInportbailam.Tab;
+                    //    ShowControl(_frmInportBaiLam, pnl_Inportbailam);
+                    //    break;
                     case "204":
                         _frmDanhSachBaiLam = new Frm_204_DanhSachBaiLam(_idkythi);
                         _frmDanhSachBaiLam.ShowDialog += ShowLoading;
@@ -830,10 +830,10 @@ namespace QLSV.Frm
             {
                 _frmDanhmuclop.LoadForm();
             }
-            else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
-            {
-                _frmInportSinhVien.LoadForm();
-            }
+            //else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
+            //{
+            //    _frmInportSinhVien.LoadForm();
+            //}
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
                 _frmQuanlySinhVien.Huy();
@@ -875,15 +875,15 @@ namespace QLSV.Frm
             {
                 _frmDanhmuclop.Save();
             }
-            else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
-            {
-                _frmInportSinhVien.Ghi();
-                ChonChucNang("104");
-            }
-            else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
-            {
+            //else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
+            //{
+            //    _frmInportSinhVien.Ghi();
+            //    ChonChucNang("104");
+            //}
+            //else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
+            //{
                 //_frmQuanlySinhVien.Save();
-            }
+            //}
             else if (Tabdanhsachphongthi.Tab.Visible && Tabdanhsachphongthi.Tab.Active)
             {
                 _frmDanhsachphongthi.Save();
@@ -909,20 +909,20 @@ namespace QLSV.Frm
             {
                 _frmSvDaXepPhong.Save();
             }
-            else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
-            {
-                _frmInportDapAn.Ghi();
-                ChonChucNang("202");
-            }
+            //else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
+            //{
+            //    _frmInportDapAn.Ghi();
+            //    ChonChucNang("202");
+            //}
             else if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
             {
                 _frmDapAnCacMaDe.Save();
             }
-            else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
-            {
-                _frmInportBaiLam.Ghi();
-                ChonChucNang("204");
-            }
+            //else if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
+            //{
+            //    _frmInportBaiLam.Ghi();
+            //    ChonChucNang("204");
+            //}
             else if (TabNhapthangdiem.Tab.Visible  && TabNhapthangdiem.Tab.Active)
             {
                 _frmNhapThangDiem.Ghi();
@@ -1007,10 +1007,10 @@ namespace QLSV.Frm
             {
                 _frmDanhmuclop.uG_DeleteRow();
             }
-            else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
-            {
-                _frmInportSinhVien.uG_DeleteRow();
-            }
+            //else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
+            //{
+            //    _frmInportSinhVien.uG_DeleteRow();
+            //}
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
                 _frmQuanlySinhVien.uG_DeleteRow();
@@ -1027,10 +1027,10 @@ namespace QLSV.Frm
             {
                 _frmSvDaXepPhong.uG_DeleteRow();
             }
-            else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
-            {
-                _frmInportDapAn.uG_DeleteRow();
-            }
+            //else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
+            //{
+            //    _frmInportDapAn.uG_DeleteRow();
+            //}
             else if (TabChonPhongThi.Tab.Visible && TabChonPhongThi.Tab.Active)
             {
                 _frmChonphongthi.uG_DeleteRow();
@@ -1063,10 +1063,10 @@ namespace QLSV.Frm
             {
                 _frmDanhmuclop.uG_InsertRow();
             }
-            else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
-            {
-                _frmInportSinhVien.uG_InsertRow();
-            }
+            //else if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
+            //{
+            //    _frmInportSinhVien.uG_InsertRow();
+            //}
             else if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
                 _frmQuanlySinhVien.Themmoi();
@@ -1079,10 +1079,10 @@ namespace QLSV.Frm
             {
                 _frmQuanLyKyThi.uG_InsertRow();
             }
-            else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
-            {
-                _frmInportDapAn.uG_InsertRow();
-            }
+            //else if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
+            //{
+            //    _frmInportDapAn.uG_InsertRow();
+            //}
             else if (TabChonPhongThi.Tab.Visible && TabChonPhongThi.Tab.Active)
             {
                 _frmChonphongthi.uG_InsertRow();
@@ -1147,21 +1147,22 @@ namespace QLSV.Frm
 
         private void NapDuLieu_F8()
         {
-            if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
-            {
-                _frmInportSinhVien.Napdulieu();
-            } if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
+            //if (TabInportsinhvien.Tab.Visible && TabInportsinhvien.Tab.Active)
+            //{
+            //    _frmInportSinhVien.Napdulieu();
+            //} 
+            if (Tabquanlysinhvien.Tab.Visible && Tabquanlysinhvien.Tab.Active)
             {
                 _frmQuanlySinhVien.Napdulieu();
             }
-            if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
-            {
-                _frmInportDapAn.Napdulieu();
-            }
-            if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
-            {
-               _frmInportBaiLam.Napdulieu();
-            }
+            //if (TabInportdapdan.Tab.Visible && TabInportdapdan.Tab.Active)
+            //{
+            //    _frmInportDapAn.Napdulieu();
+            //}
+            //if (TabInportbailam.Tab.Visible && TabInportbailam.Tab.Active)
+            //{
+            //   _frmInportBaiLam.Napdulieu();
+            //}
             if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
             {
                _frmChonSinhVien.Napdulieu();
