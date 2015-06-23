@@ -15,13 +15,13 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmImportBaiLam : Form
     {
-        public DataTable _tbError;
-        private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
+        private readonly DataTable _tableBaiLam;
         private readonly BackgroundWorker _bgwInsert;
 
         public FrmImportBaiLam(DataTable table)
         {
             InitializeComponent();
+            _tableBaiLam = table;
             dgv_DanhSach.DataSource = table;
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
@@ -30,66 +30,54 @@ namespace QLSV.Frm.Frm
 
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            var band = e.Layout.Bands[0];
-            band.Columns["STT"].CellActivation = Activation.NoEdit;
-            band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
-            band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
-            band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
-            #region Size
-            band.Columns["STT"].MinWidth = 50;
-            band.Columns["STT"].MaxWidth = 50;
-            band.Columns["MaSV"].MinWidth = 100;
-            band.Columns["MaSV"].MaxWidth = 120;
-            band.Columns["HoSV"].MinWidth = 130;
-            band.Columns["HoSV"].MaxWidth = 150;
-            band.Columns["TenSV"].MinWidth = 90;
-            band.Columns["TenSV"].MaxWidth = 100;
-            band.Columns["NgaySinh"].MinWidth = 100;
-            band.Columns["NgaySinh"].MaxWidth = 100;
-            band.Columns["MaLop"].MinWidth = 100;
-            band.Columns["MaLop"].MaxWidth = 110;
-            //band.Columns["TenKhoa"].MinWidth = 270;
-            //band.Columns["TenKhoa"].MaxWidth = 290;
-            #endregion
-            band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
+            try
+            {
+                var band = e.Layout.Bands[0];
+                band.Columns["IdKyThi"].Hidden = true;
+                band.Columns["DiemThi"].Hidden = true;
+                band.Columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaDe"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaHoiDong"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["MaLoCham"].CellAppearance.TextHAlign = HAlign.Center;
+                band.Columns["TenFile"].CellAppearance.TextHAlign = HAlign.Center;
 
-            #region Caption
-            band.Groups.Clear();
-            var columns = band.Columns;
-            band.ColHeadersVisible = false;
-            var group5 = band.Groups.Add("STT");
-            var group0 = band.Groups.Add("Mã SV");
-            var group1 = band.Groups.Add("Họ và tên");
-            var group2 = band.Groups.Add("Ngày sinh");
-            var group3 = band.Groups.Add("Lớp");
-            //var group4 = band.Groups.Add("Khoa");
-            columns["STT"].Group = group5;
-            columns["MaSV"].Group = group0;
-            columns["HoSV"].Group = group1;
-            columns["TenSV"].Group = group1;
-            columns["NgaySinh"].Group = group2;
-            columns["MaLop"].Group = group3;
-            //columns["TenKhoa"].Group = group4;
+               
+                band.Columns["MaSV"].CellActivation = Activation.NoEdit;
+                band.Columns["MaDe"].CellActivation = Activation.NoEdit;
+                band.Columns["KetQua"].CellActivation = Activation.NoEdit;
 
-            #endregion
+                
+                band.Override.HeaderAppearance.FontData.SizeInPoints = 11;
+                band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
+                band.Columns["MaSV"].MinWidth = 120;
+                band.Columns["MaSV"].MaxWidth = 130;
+                band.Columns["MaDe"].MinWidth = 100;
+                band.Columns["MaDe"].MaxWidth = 110;
+                band.Columns["KetQua"].MinWidth = 640;
+                band.Columns["KetQua"].MaxWidth = 650;
+                band.Columns["MaHoiDong"].MinWidth = 100;
+                band.Columns["MaLoCham"].MinWidth = 100;
+                band.Columns["TenFile"].MinWidth = 100;
+                band.Columns["MaHoiDong"].MaxWidth = 110;
+                band.Columns["MaLoCham"].MaxWidth = 110;
+                band.Columns["TenFile"].MaxWidth = 110;
+                band.Override.HeaderClickAction = HeaderClickAction.SortSingle;
 
-            columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
-            columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
-            columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
-            columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
-        }
+                #region Caption
 
-        private static DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("STT", typeof(string));
-            table.Columns.Add("MaSV", typeof(string));
-            table.Columns.Add("HoSV", typeof(string));
-            table.Columns.Add("TenSV", typeof(string));
-            table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
+                band.Columns["MaSV"].Header.Caption = @"Mã sinh viên";
+                band.Columns["MaDe"].Header.Caption = @"Mã đề thi";
+                band.Columns["KetQua"].Header.Caption = @"Bài làm sinh viên";
+                band.Columns["MaHoiDong"].Header.Caption = @"Hội đồng";
+                band.Columns["MaLoCham"].Header.Caption = @"Lô chấm";
+                band.Columns["TenFile"].Header.Caption = @"Tên file";
 
-            return table;
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
         }
 
         /// <summary>
@@ -100,45 +88,13 @@ namespace QLSV.Frm.Frm
             try
             {
                 var save = new SqlBulkCopy();
-                var tbsv = save.tbSinhVien();
-                _tbError = GetTable();
-                var i = 1;
-                var tbLop = LoadData.Load(16);
-                var danhsach = (DataTable)dgv_DanhSach.DataSource;
-                foreach (DataRow row in danhsach.Rows)
-                {
-                    var b = false;
-                    var malop = row["MaLop"].ToString();
-                    foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
-                    {
-                        tbsv.Rows.Add(
-                            row["MaSV"].ToString(),
-                            row["HoSV"].ToString(),
-                            row["TenSV"].ToString(),
-                            row["NgaySinh"].ToString(),
-                            dataRow["ID"].ToString());
-
-                        b = true;
-
-                    }
-                    if (!b)
-                    {
-                        _tbError.Rows.Add(i++,
-                            row["MaSV"].ToString(),
-                            row["HoSV"].ToString(),
-                            row["TenSV"].ToString(),
-                            row["NgaySinh"].ToString(),
-                            row["MaLop"].ToString());
-                    }
-                }
-                if (tbsv.Rows.Count <= 0) return;
-                save.InsertTable("SINHVIEN", tbsv);
-                //InsertData.ThemSinhVien(_listAdd);
-                if (_tbError.Rows.Count > 0) return;
+                if (_tableBaiLam.Rows.Count <= 0) return;
+                save.InsertTable("BAILAM", _tableBaiLam);
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }
             catch (Exception ex)
             {
+                MessageBox.Show(@"Thao tác thất bại", FormResource.MsgCaption);
                 Log2File.LogExceptionToFile(ex);
             }
         }
@@ -148,7 +104,6 @@ namespace QLSV.Frm.Frm
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             ShowLoading("Đang lưu dữ liệu");
-            Close();
         }
 
         private FrmLoadding _loading;
@@ -167,8 +122,8 @@ namespace QLSV.Frm.Frm
                     _loading.Invoke((Action)(() =>
                     {
                         _loading.Close();
-                        //_loading.Dispose();
                         _loading = null;
+                        Close();
                     }));
                 }
             }
