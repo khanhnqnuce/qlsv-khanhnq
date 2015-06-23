@@ -149,7 +149,11 @@ namespace QLSV.Frm.FrmUserControl
                         tbKhoa.Rows.Add(null, row.Cells["TenKhoa"].Text);
                     }
                     if (tbKhoa.Rows.Count > 0) _save.Bulk_Insert("KHOA",tbKhoa);
-                    if (_dt.Rows.Count > 0) _save.Bulk_Update("sp_UpdateKhoas", "@tbl", _dt);
+                    if (_dt.Rows.Count > 0)
+                    {
+                        _save.Bulk_Update("sp_UpdateKhoas", "@tbl", _dt);
+                        _dt.Rows.Clear();
+                    }
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
