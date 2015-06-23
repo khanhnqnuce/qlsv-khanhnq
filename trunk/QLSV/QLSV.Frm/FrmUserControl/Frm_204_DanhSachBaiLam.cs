@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -238,6 +239,51 @@ namespace QLSV.Frm.FrmUserControl
                     dgv_DanhSach.ActiveRow.Cells["MaDe"].Value = frm.txtmade.Text;
                     dgv_DanhSach.ActiveRow.Cells["KetQua"].Value = frm.txtchuoi.Text;
                 }
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+
+        /// <summary>
+        /// Hàm lấy dữ liệu từ file excel
+        /// </summary>
+        public void Napdulieu()
+        {
+            try
+            {
+                var tableBaiLam = new SqlBulkCopy().tbBAILAM();
+                var dialog = new OpenFileDialog
+                {
+                    Filter = @"Tập tin (.txt)|*.txt",
+                    Multiselect = false,
+                    Title = @"Chọn tập tin"
+                };
+                var dlr = dialog.ShowDialog();
+                if (dlr != DialogResult.OK)
+                {
+                    MessageBox.Show(@"Chọn Nhầm file hoặc file không đủ số cột", @"Thông báo");
+                    return;
+                }
+                var fs = new FileStream(dialog.FileName, FileMode.Open, FileAccess.Read, FileShare.None);
+                var sr = new StreamReader(fs);
+                var str = sr.ReadLine();
+                while (str != null)
+                {
+                    var chuoi = str.Replace("\"", "");
+                    var bailam = chuoi.Split(',');
+                    if (bailam.Length != 6) return;
+                    tableBaiLam.Rows.Add(_idKyThi, bailam[0], bailam[1], bailam[2], null, bailam[3], bailam[4], bailam[5]);
+                    str = sr.ReadLine();
+                }
+                sr.Close();
+                fs.Close();
+                if (tableBaiLam == null || tableBaiLam.Rows.Count == 0) return;
+                var frm = new FrmImportBaiLam(tableBaiLam);
+                frm.ShowDialog();
+                Huy();
             }
             catch (Exception ex)
             {
