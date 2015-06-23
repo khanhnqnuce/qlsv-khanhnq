@@ -192,7 +192,7 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
-                    save.InsertTable("XEPPHONG", tbxp);
+                    save.Bulk_Insert("XEPPHONG", tbxp);
                     LoadGrid();
                     MessageBox.Show(tbxp.Rows.Count +@" Sinh viên đã được inport thành công.");
                 }
