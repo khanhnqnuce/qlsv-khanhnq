@@ -17,7 +17,6 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_101_Danhmuckhoa : FunctionControlHasGrid
     {
-        private readonly List<Khoa> _listAdd = new List<Khoa>();
         private readonly List<Khoa> _listUpdate = new List<Khoa>();
 
         public Frm_101_Danhmuckhoa()
@@ -40,7 +39,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                _listAdd.Clear();
                 _listUpdate.Clear();
                 dgv_DanhSach.DataSource = LoadData.Load(15);
             }
@@ -59,7 +57,6 @@ namespace QLSV.Frm.FrmUserControl
                 InsertRow();
             }
             _listUpdate.Clear();
-            _listAdd.Clear();
             IdDelete.Clear();
         }
 
@@ -89,7 +86,6 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                     if (string.IsNullOrEmpty(id)) return;
-                    var index = dgv_DanhSach.ActiveRow.Index;
                     check = false;
                     var idStr = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                     if (!string.IsNullOrEmpty(idStr))
@@ -142,6 +138,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var tbKhoa = _save.tbKhoa();
                 if (ValidateData())
                 {
                     MessageBox.Show(@"Vui lòng nhập đầy đủ thông tin", @"Lỗi");
@@ -150,15 +147,10 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                     {
-                        var hs = new Khoa
-                        {
-                            TenKhoa = row.Cells["TenKhoa"].Text
-                        };
-                        _listAdd.Add(hs);
+                        tbKhoa.Rows.Add(null, row.Cells["TenKhoa"].Text);
                     }
-                    if (_listUpdate.Count <= 0 && _listAdd.Count <= 0) return;
+                    if (_listUpdate.Count <= 0 && tbKhoa.Rows.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
-                    if (_listAdd.Count > 0) InsertData.ThemKhoa(_listAdd);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
@@ -171,7 +163,7 @@ namespace QLSV.Frm.FrmUserControl
                     MessageBox.Show(FormResource.txtLoiDB);
                 }
                 else
-                Log2File.LogExceptionToFile(ex);
+                    Log2File.LogExceptionToFile(ex);
             }
         }
 
@@ -202,7 +194,7 @@ namespace QLSV.Frm.FrmUserControl
                     MessageBox.Show(FormResource.txtLoiDB);
                 }
                 else
-                Log2File.LogExceptionToFile(ex);
+                    Log2File.LogExceptionToFile(ex);
             }
         }
 
