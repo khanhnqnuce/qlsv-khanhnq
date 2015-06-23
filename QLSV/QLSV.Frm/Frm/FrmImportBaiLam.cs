@@ -89,7 +89,7 @@ namespace QLSV.Frm.Frm
             {
                 var save = new SqlBulkCopy();
                 if (_tableBaiLam.Rows.Count <= 0) return;
-                save.InsertTable("BAILAM", _tableBaiLam);
+                save.Bulk_Insert("BAILAM", _tableBaiLam);
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }
             catch (Exception ex)
