@@ -132,12 +132,12 @@ namespace QLSV.Frm.Frm
                 }
                 if (tbsv.Rows.Count <= 0) return;
                 save.InsertTable("SINHVIEN", tbsv);
-                //InsertData.ThemSinhVien(_listAdd);
                 if (_tbError.Rows.Count > 0) return;
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }
             catch (Exception ex)
             {
+                MessageBox.Show(@"Thao tác thất bại", FormResource.MsgCaption);
                 Log2File.LogExceptionToFile(ex);
             }
         }

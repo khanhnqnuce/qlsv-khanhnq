@@ -225,18 +225,6 @@
     <Compile Include="FrmUserControl\Frm_110_DaXepPhong.Designer.cs">
       <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_203_ImportBaiLam.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmUserControl\Frm_203_ImportBaiLam.Designer.cs">
-      <DependentUpon>Frm_203_ImportBaiLam.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmUserControl\Frm_201_ImportDapAn.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmUserControl\Frm_201_ImportDapAn.Designer.cs">
-      <DependentUpon>Frm_201_ImportDapAn.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -302,12 +290,6 @@
     </Compile>
     <Compile Include="Frm\FrmRptDanhSachPhongThi.Designer.cs">
       <DependentUpon>FrmRptDanhSachPhongThi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmUserControl\Frm_105_InportSinhVien.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmUserControl\Frm_105_InportSinhVien.Designer.cs">
-      <DependentUpon>Frm_105_InportSinhVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmCheckXepPhong.cs">
       <SubType>Form</SubType>
@@ -562,12 +544,6 @@
     <EmbeddedResource Include="FrmUserControl\Frm_110_DaXepPhong.resx">
       <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_203_ImportBaiLam.resx">
-      <DependentUpon>Frm_203_ImportBaiLam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_201_ImportDapAn.resx">
-      <DependentUpon>Frm_201_ImportDapAn.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_208_ThongKeDiem.resx">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </EmbeddedResource>
@@ -637,9 +613,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_103_TuDienPhongThi.resx">
       <DependentUpon>Frm_103_TuDienPhongThi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_105_InportSinhVien.resx">
-      <DependentUpon>Frm_105_InportSinhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_205_KiemTraLoiLogic.resx">
       <DependentUpon>Frm_205_KiemTraLoiLogic.cs</DependentUpon>
