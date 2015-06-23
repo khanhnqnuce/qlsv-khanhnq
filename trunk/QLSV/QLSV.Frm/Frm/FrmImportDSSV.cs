@@ -131,7 +131,7 @@ namespace QLSV.Frm.Frm
                     }
                 }
                 if (tbsv.Rows.Count <= 0) return;
-                save.InsertTable("SINHVIEN", tbsv);
+                save.Bulk_Insert("SINHVIEN", tbsv);
                 if (_tbError.Rows.Count > 0) return;
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
             }

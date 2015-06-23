@@ -87,7 +87,7 @@ namespace QLSV.Frm.Frm
                 var save = new SqlBulkCopy();
 
                 if (_tableDapDan.Rows.Count <= 0) return;
-                save.InsertTable("DAPAN", _tableDapDan);
+                save.Bulk_Insert("DAPAN", _tableDapDan);
                 MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
