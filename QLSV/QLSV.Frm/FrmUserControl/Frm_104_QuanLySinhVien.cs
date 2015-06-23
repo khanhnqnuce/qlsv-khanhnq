@@ -40,7 +40,6 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("STT", typeof (string));
             table.Columns.Add("MaSV", typeof (string));
             table.Columns.Add("HoSV", typeof (string));
             table.Columns.Add("TenSV", typeof (string));

@@ -34,12 +34,11 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("STT", typeof(string));
-            table.Columns.Add("MaSV", typeof(string));
+            table.Columns.Add("MaSV", typeof(int));
             table.Columns.Add("HoSV", typeof(string));
             table.Columns.Add("TenSV", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("Lop", typeof(string));
             return table;
         }
 
@@ -160,39 +159,22 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var save = new SqlBulkCopy();
-                var tbxp = save.tbXepPhong();
-                var tbsvError = GetTable();
+                var tbxp = _save.tbXepPhong();
+               
                 var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
+                var tbsvError = _save.Bulk_checkData("sp_CheckSV", "@tbl", resultValue);
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
-                var tbsv = LoadData.Load(2);
-                foreach (DataRow row in resultValue.Rows)
-                {
-                    var check = false;
-                    foreach (DataRow row1 in tbsv.Rows)
-                    {
-                        if (row.ItemArray[1].ToString() != row1.ItemArray[0].ToString()) continue;
-                        check = true;
-                        tbxp.Rows.Add(row.ItemArray[1].ToString(), _idkythi, null);
-                    }
-                    if (!check)
-                    {
-                        tbsvError.Rows.Add(1, row.ItemArray[1], row.ItemArray[2], row.ItemArray[3], row.ItemArray[4], row.ItemArray[5]);
-                    }
-                }
-
-
                 if (tbsvError.Rows.Count > 0)
                 {
-                    const string text = @"Thao tác không hoành thành vì có sv đăng ký dự thi chưa có trong từ điển";
+                    var text = @"Thao tác không hoành thành vì có "+ tbsvError.Rows.Count +@" sv đăng ký dự thi chưa có trong từ điển";
                     MessageBox.Show(text, FormResource.MsgCaption);
                     RptView("danhsachsinhvien", tbsvError);
                 }
                 else
                 {
-                    save.Bulk_Insert("XEPPHONG", tbxp);
+                    _save.Bulk_Insert("XEPPHONG", tbxp);
                     LoadGrid();
                     MessageBox.Show(tbxp.Rows.Count +@" Sinh viên đã được inport thành công.");
                 }

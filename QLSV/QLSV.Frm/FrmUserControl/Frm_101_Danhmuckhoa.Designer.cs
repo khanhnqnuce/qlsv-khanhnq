@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_101_Danhmuckhoa
+    sealed partial class Frm_101_Danhmuckhoa
     {
         /// <summary>
         /// Required designer variable.
