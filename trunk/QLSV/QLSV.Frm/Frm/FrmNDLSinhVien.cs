@@ -97,7 +97,7 @@ namespace QLSV.Frm.Frm
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add(++_iNumberStt,
+                    _result.Rows.Add(
                         sheet.GetRow(i).GetCell(0).ToString(),
                         sheet.GetRow(i).GetCell(1).ToString(),
                         sheet.GetRow(i).GetCell(2).ToString(),
@@ -144,7 +144,7 @@ namespace QLSV.Frm.Frm
                 var donvi = (endRows - startRows + 1) == 0 ? maximum : maximum / (endRows - startRows + 1);
                 for (var i = startRows; i <= endRows; i++)
                 {
-                    _result.Rows.Add(++_iNumberStt,
+                    _result.Rows.Add(
                         oSheet.Cells[i, 1].GetValue<string>(),
                         oSheet.Cells[i, 2].GetValue<string>(),
                         oSheet.Cells[i, 3].GetValue<string>(),

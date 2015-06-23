@@ -30,13 +30,13 @@ namespace QLSV.Frm.Frm
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             var band = e.Layout.Bands[0];
-            band.Columns["STT"].CellActivation = Activation.NoEdit;
-            band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
+            //band.Columns["STT"].CellActivation = Activation.NoEdit;
+            //band.Columns["STT"].CellAppearance.BackColor = Color.LightCyan;
             band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
             band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
             #region Size
-            band.Columns["STT"].MinWidth = 50;
-            band.Columns["STT"].MaxWidth = 50;
+            //band.Columns["STT"].MinWidth = 50;
+            //band.Columns["STT"].MaxWidth = 50;
             band.Columns["MaSV"].MinWidth = 100;
             band.Columns["MaSV"].MaxWidth = 120;
             band.Columns["HoSV"].MinWidth = 130;
@@ -56,13 +56,13 @@ namespace QLSV.Frm.Frm
             band.Groups.Clear();
             var columns = band.Columns;
             band.ColHeadersVisible = false;
-            var group5 = band.Groups.Add("STT");
+            //var group5 = band.Groups.Add("STT");
             var group0 = band.Groups.Add("Mã SV");
             var group1 = band.Groups.Add("Họ và tên");
             var group2 = band.Groups.Add("Ngày sinh");
             var group3 = band.Groups.Add("Lớp");
             //var group4 = band.Groups.Add("Khoa");
-            columns["STT"].Group = group5;
+            //columns["STT"].Group = group5;
             columns["MaSV"].Group = group0;
             columns["HoSV"].Group = group1;
             columns["TenSV"].Group = group1;
@@ -72,7 +72,7 @@ namespace QLSV.Frm.Frm
 
             #endregion
 
-            columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
+            //columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
             columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
             columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
             columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
@@ -81,7 +81,7 @@ namespace QLSV.Frm.Frm
         private static DataTable GetTable()
         {
             var table = new DataTable();
-            table.Columns.Add("STT", typeof(string));
+            //table.Columns.Add("STT", typeof(string));
             table.Columns.Add("MaSV", typeof(string));
             table.Columns.Add("HoSV", typeof(string));
             table.Columns.Add("TenSV", typeof(string));

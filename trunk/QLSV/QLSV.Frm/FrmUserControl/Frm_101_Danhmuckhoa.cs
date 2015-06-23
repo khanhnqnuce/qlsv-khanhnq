@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
+using NPOI.SS.Formula.Functions;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
@@ -15,31 +16,30 @@ using QLSV.Frm.Ultis.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_101_Danhmuckhoa : FunctionControlHasGrid
+    public sealed partial class Frm_101_Danhmuckhoa : FunctionControlHasGrid
     {
-        private readonly List<Khoa> _listUpdate = new List<Khoa>();
+        private readonly DataTable _dt;
 
         public Frm_101_Danhmuckhoa()
         {
             InitializeComponent();
+            _dt = GetTable();
         }
 
         #region Exit
 
-        protected virtual DataTable GetTable()
+        private static DataTable GetTable()
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
             table.Columns.Add("TenKhoa", typeof(string));
             return table;
         }
 
-        protected virtual void LoadGrid()
+        private void LoadGrid()
         {
             try
             {
-                _listUpdate.Clear();
                 dgv_DanhSach.DataSource = LoadData.Load(15);
             }
             catch (Exception ex)
@@ -56,7 +56,6 @@ namespace QLSV.Frm.FrmUserControl
             {
                 InsertRow();
             }
-            _listUpdate.Clear();
             IdDelete.Clear();
         }
 
@@ -149,8 +148,8 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         tbKhoa.Rows.Add(null, row.Cells["TenKhoa"].Text);
                     }
-                    if (_listUpdate.Count <= 0 && tbKhoa.Rows.Count <= 0) return;
-                    if (_listUpdate.Count > 0) UpdateData.UpdateKhoa(_listUpdate);
+                    if (tbKhoa.Rows.Count > 0) _save.Bulk_Insert("KHOA",tbKhoa);
+                    if (_dt.Rows.Count > 0) _save.Bulk_Update("sp_UpdateKhoas", "@tbl", _dt);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
@@ -167,7 +166,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected virtual bool ValidateData()
+        private bool ValidateData()
         {
             var inputTypes = new List<InputType>
             {
@@ -221,17 +220,18 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
-                    return;
-                }
-                var hs = new Khoa
-                {
-                    ID = int.Parse(id),
-                    TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
-                };
-                _listUpdate.Add(hs);
+                _dt.Rows.Add(id, dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text);
+                //foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
+                //{
+                //    item.TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text;
+                //    return;
+                //}
+                //var hs = new Khoa
+                //{
+                //    ID = int.Parse(id),
+                //    TenKhoa = dgv_DanhSach.ActiveRow.Cells["TenKhoa"].Text,
+                //};
+                //_listUpdate.Add(hs);
             }
             catch (Exception ex)
             {

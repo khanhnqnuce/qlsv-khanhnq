@@ -9,7 +9,7 @@ namespace QLSV.Frm.Base
 {
     public partial class FunctionControlHasGrid : UserControl
     {
-        protected SqlBulkCopy _save = new SqlBulkCopy();
+        protected readonly SqlBulkCopy _save = new SqlBulkCopy();
 
         protected IList<int> IdDelete = new List<int>();
         protected readonly object LockTotal = new object();

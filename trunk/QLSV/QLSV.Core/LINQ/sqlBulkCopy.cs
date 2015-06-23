@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace QLSV.Core.LINQ
 {
@@ -69,8 +70,43 @@ namespace QLSV.Core.LINQ
                     bulkCopy.DestinationTableName = "dbo." + tablename;
                     bulkCopy.WriteToServer(table);
                 }
+                connection.Close();
             }
         }
-
+        //update nhiều bản ghi
+        public void Bulk_Update(string storename, string tbType, DataTable table)
+        {
+            using (var con = _connect.GetConnect())
+            {
+                using (var cmd = new SqlCommand(storename))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue(tbType, table);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+        //Truyền vào 1 datatable gồm nhiều dữ liệu kiểm tra xem đã toàn tại chưa
+        public DataTable Bulk_checkData(string storename, string tbType, DataTable table)
+        {
+            var dt = new DataTable();
+            using (var con = _connect.GetConnect())
+            {
+                using (var cmd = new SqlCommand(storename))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue(tbType, table);
+                    con.Open();
+                    var adt = new SqlDataAdapter {SelectCommand = cmd};
+                    adt.Fill(dt);
+                    con.Close();
+                }
+            }
+            return dt;
+        }
     }
 }
