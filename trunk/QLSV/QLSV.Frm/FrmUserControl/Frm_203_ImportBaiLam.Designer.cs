@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_203_InportBaiLam
+    partial class Frm_203_ImportBaiLam
     {
         /// <summary> 
         /// Required designer variable.

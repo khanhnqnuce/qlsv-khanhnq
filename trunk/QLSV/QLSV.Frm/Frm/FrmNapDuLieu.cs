@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using NPOI.HSSF.UserModel;
 using OfficeOpenXml;
 using QLSV.Core.Utils.Core;
@@ -28,14 +29,16 @@ namespace QLSV.Frm.Frm
         public int ViTriHeader;
         private readonly int _iEndCol;
         private readonly int _iSheet;
+        private readonly int _idkythi;
 
-        public FrmNapDuLieu(DataTable tbTable, int iSheet)
+        public FrmNapDuLieu(DataTable tbTable, int idkythi)
         {
             try
             {
                 InitializeComponent();
+                _idkythi = idkythi;
                 _result = tbTable;
-                _iSheet = iSheet;
+                _iSheet = 1;
             }
             catch (Exception ex)
             {
@@ -98,10 +101,12 @@ namespace QLSV.Frm.Frm
                 for (var i = startRows; i <= endRows; i++)
                 {
                     _result.Rows.Add(
+                    _idkythi,
                     sheet.GetRow(i).GetCell(0).ToString(),
                     sheet.GetRow(i).GetCell(1).ToString(),
                     sheet.GetRow(i).GetCell(2).ToString(),
-                    sheet.GetRow(i).GetCell(3).ToString());
+                    sheet.GetRow(i).GetCell(3).ToString(),
+                    0);
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);
@@ -148,10 +153,12 @@ namespace QLSV.Frm.Frm
                 for (var i = startRows; i <= endRows; i++)
                 {
                     _result.Rows.Add(
+                        _idkythi,
                         oSheet.Cells[i, 1].GetValue<string>(),
                         oSheet.Cells[i, 2].GetValue<string>(),
                         oSheet.Cells[i, 3].GetValue<string>(),
-                        oSheet.Cells[i, 4].GetValue<string>());
+                        oSheet.Cells[i, 4].GetValue<string>(),
+                        0);
                     upsbLoading.SetPropertyThreadSafe(c => c.Value, (i - startRows + 1) * donvi);
                 }
                 upsbLoading.SetPropertyThreadSafe(c => c.Value, maximum);

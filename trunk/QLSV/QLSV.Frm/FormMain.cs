@@ -32,8 +32,8 @@ namespace QLSV.Frm
         private static Frm_109_SapXepPhongThi _frmSapXepPhongThi;
         private static Frm_110_DaXepPhong _frmSvDaXepPhong;
         private static Frm_111_TuDienNamHoc _frmtudienNamHoc;
-        private static Frm_201_InportDapAn _frmInportDapAn;
-        private static Frm_203_InportBaiLam _frmInportBaiLam;
+        private static Frm_201_ImportDapAn _frmInportDapAn;
+        private static Frm_203_ImportBaiLam _frmInportBaiLam;
         private static Frm_202_DanhSachDapAn _frmDapAnCacMaDe;
         private static Frm_204_DanhSachBaiLam _frmDanhSachBaiLam;
         private static Frm_206_NhapThangDiem _frmNhapThangDiem;
@@ -299,7 +299,7 @@ namespace QLSV.Frm
                         ShowControl(_frmtudienNamHoc, pnl_tudiennamhoc);
                         break;
                     case "201":
-                        _frmInportDapAn = new Frm_201_InportDapAn(_idkythi);
+                        _frmInportDapAn = new Frm_201_ImportDapAn(_idkythi);
                         _frmInportDapAn.ShowDialog += ShowLoading;
                         _frmInportDapAn.CloseDialog += KillLoading;
                         _frmInportDapAn.UpdateDialog += UpdateLoading;
@@ -317,7 +317,7 @@ namespace QLSV.Frm
                         ShowControl(_frmDapAnCacMaDe, pnl_Dapanmade);
                         break;
                     case "203":
-                        _frmInportBaiLam = new Frm_203_InportBaiLam(_idkythi);
+                        _frmInportBaiLam = new Frm_203_ImportBaiLam(_idkythi);
                         _frmInportBaiLam.ShowDialog += ShowLoading;
                         _frmInportBaiLam.CloseDialog += KillLoading;
                         _frmInportBaiLam.UpdateDialog += UpdateLoading;
@@ -574,7 +574,7 @@ namespace QLSV.Frm
                 {
                     bCheck = true;
                     lbXoa.Visible = true;
-                    btnNapDuLieu.Visible = false;
+                    btnNapDuLieu.Visible = true;
                     btnInds.Visible = true;
                     btnthemmoi.Visible = false;
                     btnXoadong.Visible = false;
@@ -1165,6 +1165,10 @@ namespace QLSV.Frm
             if (Tabchonsinhvien.Tab.Visible && Tabchonsinhvien.Tab.Active)
             {
                _frmChonSinhVien.Napdulieu();
+            }
+            if (TabDapanmade.Tab.Visible && TabDapanmade.Tab.Active)
+            {
+               _frmDapAnCacMaDe.Napdulieu();
             }
         }
 

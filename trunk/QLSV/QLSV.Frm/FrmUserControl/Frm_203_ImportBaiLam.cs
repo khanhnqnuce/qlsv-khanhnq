@@ -14,7 +14,7 @@ using QLSV.Frm.Base;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_203_InportBaiLam : FunctionControlHasGrid
+    public partial class Frm_203_ImportBaiLam : FunctionControlHasGrid
     {
 
         private readonly IList<BaiLam> _listAdd = new List<BaiLam>();
@@ -22,7 +22,7 @@ namespace QLSV.Frm.FrmUserControl
 
         private readonly BackgroundWorker _bgwInsert;
 
-        public Frm_203_InportBaiLam(int idkythi)
+        public Frm_203_ImportBaiLam(int idkythi)
         {
             InitializeComponent();
             _bgwInsert = new BackgroundWorker();

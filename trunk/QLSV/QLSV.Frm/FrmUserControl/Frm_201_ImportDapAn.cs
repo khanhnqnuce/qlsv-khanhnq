@@ -13,14 +13,14 @@ using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
-    public partial class Frm_201_InportDapAn : FunctionControlHasGrid
+    public partial class Frm_201_ImportDapAn : FunctionControlHasGrid
     {
         private readonly IList<DapAn> _listAdd = new List<DapAn>(); 
         private readonly BackgroundWorker _bgwInsert;
 
         private int _idKythi;
 
-        public Frm_201_InportDapAn(int idkythi)
+        public Frm_201_ImportDapAn(int idkythi)
         {
             InitializeComponent();
             _idKythi = idkythi;
