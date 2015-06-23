@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
+using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 
 namespace QLSV.Frm.Base
 {
     public partial class FunctionControlHasGrid : UserControl
     {
+        protected SqlBulkCopy _save = new SqlBulkCopy();
+
         protected IList<int> IdDelete = new List<int>();
         protected readonly object LockTotal = new object();
         protected bool DeleteAndUpdate;

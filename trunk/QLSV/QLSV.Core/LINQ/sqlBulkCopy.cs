@@ -1,12 +1,18 @@
-﻿using System;
-using System.Data;
-using QLSV.Core.Utils.Core;
+﻿using System.Data;
 
 namespace QLSV.Core.LINQ
 {
     public class SqlBulkCopy
     {
         readonly Connect _connect = new Connect();
+        public DataTable tbKhoa()
+        {
+            var newProducts = new DataTable("KHOA");
+            newProducts.Columns.Add("ID", typeof(int));
+            newProducts.Columns.Add("TenKhoa", typeof(string));
+            return newProducts;
+        }
+
         public DataTable tbSinhVien()
         {
             var newProducts = new DataTable("SINHVIEN");
@@ -53,7 +59,7 @@ namespace QLSV.Core.LINQ
         }
 
         // Phương thức đổ 1 bảng vào CSDL ...
-        public void InsertTable(string tablename, DataTable table)
+        public void Bulk_Insert(string tablename, DataTable table)
         {
             using (var connection = _connect.GetConnect())
             {
