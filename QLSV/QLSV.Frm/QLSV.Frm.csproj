@@ -225,17 +225,17 @@
     <Compile Include="FrmUserControl\Frm_110_DaXepPhong.Designer.cs">
       <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_203_InportBaiLam.cs">
+    <Compile Include="FrmUserControl\Frm_203_ImportBaiLam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_203_InportBaiLam.Designer.cs">
-      <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_203_ImportBaiLam.Designer.cs">
+      <DependentUpon>Frm_203_ImportBaiLam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_201_InportDapAn.cs">
+    <Compile Include="FrmUserControl\Frm_201_ImportDapAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmUserControl\Frm_201_InportDapAn.Designer.cs">
-      <DependentUpon>Frm_201_InportDapAn.cs</DependentUpon>
+    <Compile Include="FrmUserControl\Frm_201_ImportDapAn.Designer.cs">
+      <DependentUpon>Frm_201_ImportDapAn.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserControl\Frm_208_ThongKeDiem.cs">
       <SubType>UserControl</SubType>
@@ -248,6 +248,18 @@
     </Compile>
     <Compile Include="FrmUserControl\Frm_108_ChonSinhVien.Designer.cs">
       <DependentUpon>Frm_108_ChonSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmImportDapAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmImportDapAn.Designer.cs">
+      <DependentUpon>FrmImportDapAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmImportBaiLam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmImportBaiLam.Designer.cs">
+      <DependentUpon>FrmImportBaiLam.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmCauHinh.cs">
       <SubType>Form</SubType>
@@ -550,17 +562,23 @@
     <EmbeddedResource Include="FrmUserControl\Frm_110_DaXepPhong.resx">
       <DependentUpon>Frm_110_DaXepPhong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_203_InportBaiLam.resx">
-      <DependentUpon>Frm_203_InportBaiLam.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_203_ImportBaiLam.resx">
+      <DependentUpon>Frm_203_ImportBaiLam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserControl\Frm_201_InportDapAn.resx">
-      <DependentUpon>Frm_201_InportDapAn.cs</DependentUpon>
+    <EmbeddedResource Include="FrmUserControl\Frm_201_ImportDapAn.resx">
+      <DependentUpon>Frm_201_ImportDapAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_208_ThongKeDiem.resx">
       <DependentUpon>Frm_208_ThongKeDiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserControl\Frm_108_ChonSinhVien.resx">
       <DependentUpon>Frm_108_ChonSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmImportDapAn.resx">
+      <DependentUpon>FrmImportDapAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmImportBaiLam.resx">
+      <DependentUpon>FrmImportBaiLam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmCauHinh.resx">
       <DependentUpon>FrmCauHinh.cs</DependentUpon>

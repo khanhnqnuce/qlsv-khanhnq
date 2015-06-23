@@ -1,6 +1,6 @@
 ﻿namespace QLSV.Frm.FrmUserControl
 {
-    partial class Frm_201_InportDapAn
+    partial class Frm_201_ImportDapAn
     {
         /// <summary> 
         /// Required designer variable.

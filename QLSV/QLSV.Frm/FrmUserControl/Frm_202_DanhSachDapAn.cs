@@ -10,6 +10,7 @@ using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
+using QLSV.Frm.Frm;
 
 namespace QLSV.Frm.FrmUserControl
 {
@@ -28,11 +29,12 @@ namespace QLSV.Frm.FrmUserControl
         protected virtual DataTable GetTable()
         {
             var table = new DataTable();
+            table.Columns.Add("IdKyThi", typeof(int));
             table.Columns.Add("MaMon", typeof(string));
             table.Columns.Add("MaDe", typeof(string));
-            table.Columns.Add("CauHoi", typeof(string));
-            table.Columns.Add("Dapan", typeof(string));
-            table.Columns.Add("IdKyThi", typeof(string));
+            table.Columns.Add("CauHoi", typeof(int));
+            table.Columns.Add("DapAn", typeof(string));
+            table.Columns.Add("ThangDiem", typeof(double));
             return table;
         }
 
@@ -157,6 +159,27 @@ namespace QLSV.Frm.FrmUserControl
             try
             {
                 dgv_DanhSach.DataSource = SearchData.Timkiemmade1(_idKyThi, txtmade.Text);
+            }
+            catch (Exception ex)
+            {
+                Log2File.LogExceptionToFile(ex);
+            }
+        }
+
+        public void Napdulieu()
+        {
+            try
+            {
+                var frmNapDuLieu = new FrmNapDuLieu(GetTable(), _idKyThi)
+                {
+                    ViTriHeader = 1
+                };
+                frmNapDuLieu.ShowDialog();
+                var resultValue = frmNapDuLieu.ResultValue;
+                if (resultValue == null || resultValue.Rows.Count == 0) return;
+                var frm = new FrmImportDapAn(resultValue);
+                frm.ShowDialog();
+                Huy();
             }
             catch (Exception ex)
             {

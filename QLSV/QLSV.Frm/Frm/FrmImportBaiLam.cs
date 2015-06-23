@@ -13,12 +13,13 @@ using QLSV.Core.Utils.Core;
 
 namespace QLSV.Frm.Frm
 {
-    public partial class FrmImportDSSV : Form
+    public partial class FrmImportBaiLam : Form
     {
         public DataTable _tbError;
+        private readonly IList<SinhVien> _listAdd = new List<SinhVien>();
         private readonly BackgroundWorker _bgwInsert;
 
-        public FrmImportDSSV(DataTable table)
+        public FrmImportBaiLam(DataTable table)
         {
             InitializeComponent();
             dgv_DanhSach.DataSource = table;
@@ -147,6 +148,7 @@ namespace QLSV.Frm.Frm
             if (dgv_DanhSach.Rows.Count <= 0) return;
             _bgwInsert.RunWorkerAsync();
             ShowLoading("Đang lưu dữ liệu");
+            Close();
         }
 
         private FrmLoadding _loading;
@@ -165,8 +167,8 @@ namespace QLSV.Frm.Frm
                     _loading.Invoke((Action)(() =>
                     {
                         _loading.Close();
+                        //_loading.Dispose();
                         _loading = null;
-                        Close();
                     }));
                 }
             }
