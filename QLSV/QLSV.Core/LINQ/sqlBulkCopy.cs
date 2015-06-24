@@ -74,7 +74,7 @@ namespace QLSV.Core.LINQ
             }
         }
         //update nhiều bản ghi
-        public void Bulk_Update(string storename, string tbType, DataTable table)
+        public void sp_InsertUpdate(string storename, string tbType, DataTable table)
         {
             using (var con = _connect.GetConnect())
             {
@@ -90,7 +90,7 @@ namespace QLSV.Core.LINQ
             }
         }
         //Truyền vào 1 datatable gồm nhiều dữ liệu kiểm tra xem đã toàn tại chưa
-        public DataTable Bulk_checkData(string storename, string tbType, DataTable table)
+        public DataTable sp_checkData(string storename, string tbType, DataTable table)
         {
             var dt = new DataTable();
             using (var con = _connect.GetConnect())

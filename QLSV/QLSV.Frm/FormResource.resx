@@ -139,7 +139,7 @@
     <value>Mật khẩu</value>
   </data>
   <data name="MsgThongbaothanhcong" xml:space="preserve">
-    <value>Lưu lại thành công</value>
+    <value>Lưu dữ liệu thành công.</value>
   </data>
   <data name="msgThongbaoxoathanhcong" xml:space="preserve">
     <value>Xóa Thành công</value>

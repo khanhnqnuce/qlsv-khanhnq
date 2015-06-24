@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 
@@ -15,12 +11,13 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmImportDSSV : Form
     {
-        public DataTable _tbError;
+        private readonly DataTable _tbSinhVien;
         private readonly BackgroundWorker _bgwInsert;
 
         public FrmImportDSSV(DataTable table)
         {
             InitializeComponent();
+            _tbSinhVien = table;
             dgv_DanhSach.DataSource = table;
             _bgwInsert = new BackgroundWorker();
             _bgwInsert.DoWork += bgwInsert_DoWork;
@@ -45,8 +42,8 @@ namespace QLSV.Frm.Frm
             band.Columns["TenSV"].MaxWidth = 100;
             band.Columns["NgaySinh"].MinWidth = 100;
             band.Columns["NgaySinh"].MaxWidth = 100;
-            band.Columns["MaLop"].MinWidth = 100;
-            band.Columns["MaLop"].MaxWidth = 110;
+            band.Columns["Lop"].MinWidth = 100;
+            band.Columns["Lop"].MaxWidth = 110;
             //band.Columns["TenKhoa"].MinWidth = 270;
             //band.Columns["TenKhoa"].MaxWidth = 290;
             #endregion
@@ -67,7 +64,7 @@ namespace QLSV.Frm.Frm
             columns["HoSV"].Group = group1;
             columns["TenSV"].Group = group1;
             columns["NgaySinh"].Group = group2;
-            columns["MaLop"].Group = group3;
+            columns["Lop"].Group = group3;
             //columns["TenKhoa"].Group = group4;
 
             #endregion
@@ -75,7 +72,7 @@ namespace QLSV.Frm.Frm
             //columns["STT"].CellAppearance.TextHAlign = HAlign.Center;
             columns["MaSV"].CellAppearance.TextHAlign = HAlign.Center;
             columns["NgaySinh"].CellAppearance.TextHAlign = HAlign.Center;
-            columns["MaLop"].CellAppearance.TextHAlign = HAlign.Center;
+            columns["Lop"].CellAppearance.TextHAlign = HAlign.Center;
         }
 
         private static DataTable GetTable()
@@ -86,7 +83,7 @@ namespace QLSV.Frm.Frm
             table.Columns.Add("HoSV", typeof(string));
             table.Columns.Add("TenSV", typeof(string));
             table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("Lop", typeof(string));
 
             return table;
         }
@@ -96,50 +93,9 @@ namespace QLSV.Frm.Frm
         /// </summary>
         private void SaveDetail()
         {
-            try
-            {
-                var save = new SqlBulkCopy();
-                var tbsv = save.tbSinhVien();
-                _tbError = GetTable();
-                var i = 1;
-                var tbLop = LoadData.Load(16);
-                var danhsach = (DataTable)dgv_DanhSach.DataSource;
-                foreach (DataRow row in danhsach.Rows)
-                {
-                    var b = false;
-                    var malop = row["MaLop"].ToString();
-                    foreach (var dataRow in tbLop.Rows.Cast<DataRow>().Where(dataRow => dataRow["MaLop"].ToString().Equals(malop)))
-                    {
-                        tbsv.Rows.Add(
-                            row["MaSV"].ToString(),
-                            row["HoSV"].ToString(),
-                            row["TenSV"].ToString(),
-                            row["NgaySinh"].ToString(),
-                            dataRow["ID"].ToString());
-
-                        b = true;
-
-                    }
-                    if (!b)
-                    {
-                        _tbError.Rows.Add(i++,
-                            row["MaSV"].ToString(),
-                            row["HoSV"].ToString(),
-                            row["TenSV"].ToString(),
-                            row["NgaySinh"].ToString(),
-                            row["MaLop"].ToString());
-                    }
-                }
-                if (tbsv.Rows.Count <= 0) return;
-                save.Bulk_Insert("SINHVIEN", tbsv);
-                if (_tbError.Rows.Count > 0) return;
-                MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(@"Thao tác thất bại", FormResource.MsgCaption);
-                Log2File.LogExceptionToFile(ex);
-            }
+            var save = new SqlBulkCopy();
+            save.sp_InsertUpdate("sp_InsertSV", "@tbl", _tbSinhVien);
+            MessageBox.Show(@"Đã lưu vào CSDL", FormResource.MsgCaption);
         }
 
         private void button1_Click(object sender, EventArgs e)
