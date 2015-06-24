@@ -137,7 +137,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
+                var frmNapDuLieu = new FrmNDLSinhVien(GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
