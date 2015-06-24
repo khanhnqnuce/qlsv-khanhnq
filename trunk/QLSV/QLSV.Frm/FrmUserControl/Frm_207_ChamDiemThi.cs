@@ -480,7 +480,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             switch (keyData)
             {
-                case (Keys.Control | Keys.S):
+                case (Keys.Control | Keys.F):
                     _frmTimkiem.ShowDialog();
                     break;
             }

@@ -94,7 +94,6 @@
             this.dgv_DanhSach.Size = new System.Drawing.Size(1092, 554);
             this.dgv_DanhSach.TabIndex = 25;
             this.dgv_DanhSach.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.uG_DanhSach_InitializeLayout);
-            this.dgv_DanhSach.AfterExitEditMode += new System.EventHandler(this.uG_DanhSach_AfterExitEditMode);
             this.dgv_DanhSach.DoubleClickCell += new Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler(this.uG_DanhSach_DoubleClickCell);
             this.dgv_DanhSach.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.uG_DanhSach_AfterSortChange);
             // 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -8,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using ColumnStyle = Infragistics.Win.UltraWinGrid.ColumnStyle;
@@ -17,7 +15,6 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmChonSv : Form
     {
-        private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
         private readonly int _idkythi;
         private FrmLoadding _loading = new FrmLoadding();
         private readonly BackgroundWorker _bgwInsert;
@@ -34,18 +31,6 @@ namespace QLSV.Frm.Frm
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
             _frmTimkiem = new FrmTimkiem();
             _frmTimkiem.Timkiemsinhvien += Timkiemsinhvien;
-        }
-
-        private static DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("Chon", typeof(bool));
-            table.Columns.Add("MaSV", typeof(string));
-            table.Columns.Add("HoSV", typeof(string));
-            table.Columns.Add("TenSV", typeof(string));
-            table.Columns.Add("NgaySinh", typeof(string));
-            table.Columns.Add("MaLop", typeof(string));
-            return table;
         }
 
         /// <summary>
@@ -85,18 +70,14 @@ namespace QLSV.Frm.Frm
         {
             try
             {
+                var save = new SqlBulkCopy();
+                var tbxp = save.tbXepPhong();
                 foreach (var row in dgv_DanhSach.Rows)
                 {
                     if (!bool.Parse(row.Cells["Chon"].Text)) continue;
-                    var masv = int.Parse(row.Cells["MaSV"].Text);
-                    var hspp = new XepPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdSV = masv
-                    };
-                    _listXepPhong.Add(hspp);
+                    tbxp.Rows.Add(row.Cells["MaSV"].Text, _idkythi);
                 }
-                InsertData.Chonsinhvien(_listXepPhong);
+                save.Bulk_Insert("XEPPHONG",tbxp);
                 Invoke((Action)(()=>MessageBox.Show(@"Lưu lại thành công", @"Thông báo")));
                 Invoke((Action)(Close));
             }
@@ -346,7 +327,7 @@ namespace QLSV.Frm.Frm
                 case (Keys.F5):
                     Luu();
                     break;
-                case (Keys.Control | Keys.S):
+                case (Keys.Control | Keys.F):
                     _frmTimkiem.ShowDialog();
                     break;
                 case (Keys.Escape):

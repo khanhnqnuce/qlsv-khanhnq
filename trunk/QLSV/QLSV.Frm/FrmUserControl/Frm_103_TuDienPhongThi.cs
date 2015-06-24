@@ -18,8 +18,7 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_103_TuDienPhongThi : FunctionControlHasGrid
     {
-        private readonly List<PhongThi> _listAdd = new List<PhongThi>();
-        private readonly List<PhongThi> _listUpdate = new List<PhongThi>();
+        private DataTable _tbUpdate;
         private UltraGridRow _newRow;
         public Frm_103_TuDienPhongThi()
         {
@@ -32,7 +31,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             var table = new DataTable();
             table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
             table.Columns.Add("TenPhong", typeof(string));
             table.Columns.Add("SucChua", typeof(int));
             table.Columns.Add("GhiChu", typeof(string));
@@ -43,6 +41,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                _tbUpdate = GetTable();
                 dgv_DanhSach.DataSource = LoadData.Load(9);
             }
             catch (Exception ex)
@@ -60,8 +59,6 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     InsertRow();
                 }
-                _listUpdate.Clear();
-                _listAdd.Clear();
             }
             catch (Exception ex)
             {
@@ -101,19 +98,18 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
+                    var tbPhong = GetTable();
                     foreach (var row in dgv_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
                     {
-                        var hs = new PhongThi
-                        {
-                            TenPhong = row.Cells["TenPhong"].Text,
-                            SucChua = int.Parse(row.Cells["SucChua"].Text),
-                            GhiChu = row.Cells["GhiChu"].Text
-                        };
-                        _listAdd.Add(hs);
+                        tbPhong.Rows.Add(null,
+                            row.Cells["TenPhong"].Text,
+                            row.Cells["SucChua"].Text,
+                            row.Cells["GhiChu"].Text
+                            );
                     }
-                    if (_listUpdate.Count <= 0 && _listAdd.Count <= 0) return;
-                    if (_listUpdate.Count > 0) UpdateData.UpdatePhongThi(_listUpdate);
-                    if (_listAdd.Count > 0) InsertData.ThemPhongThi(_listAdd);
+                    if (tbPhong.Rows.Count > 0) _save.sp_InsertUpdate("sp_InsertPhong", "@tbl", tbPhong);
+                    if (_tbUpdate.Rows.Count > 0) _save.sp_InsertUpdate("sp_UpdatePhong", "@tbl", _tbUpdate);
+                    _tbUpdate.Clear();
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     LoadFormDetail();
@@ -188,21 +184,13 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 var id = dgv_DanhSach.ActiveRow.Cells["ID"].Text;
                 if (string.IsNullOrEmpty(id)) return;
-                foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-                {
-                    item.TenPhong = dgv_DanhSach.ActiveRow.Cells["TenPhong"].Text;
-                    item.SucChua = int.Parse(dgv_DanhSach.ActiveRow.Cells["SucChua"].Text);
-                    item.GhiChu = dgv_DanhSach.ActiveRow.Cells["GhiChu"].Text;
-                    return;
-                }
-                var hs = new PhongThi
-                {
-                    ID = int.Parse(id),
-                    TenPhong = dgv_DanhSach.ActiveRow.Cells["TenPhong"].Text,
-                    SucChua = int.Parse(dgv_DanhSach.ActiveRow.Cells["SucChua"].Text),
-                    GhiChu = dgv_DanhSach.ActiveRow.Cells["GhiChu"].Text,
-                };
-                _listUpdate.Add(hs);
+                
+
+                _tbUpdate.Rows.Add(id,
+                    dgv_DanhSach.ActiveRow.Cells["TenPhong"].Text,
+                    dgv_DanhSach.ActiveRow.Cells["SucChua"].Text,
+                    dgv_DanhSach.ActiveRow.Cells["GhiChu"].Text
+                    );
             }
             catch (Exception ex)
             {
@@ -229,7 +217,7 @@ namespace QLSV.Frm.FrmUserControl
                 band.Columns["SucChua"].MaxWidth = 120;
 
                 #endregion
-                
+
                 band.Override.HeaderAppearance.TextHAlign = HAlign.Center;
                 band.Override.HeaderAppearance.FontData.SizeInPoints = 10;
                 band.Override.HeaderAppearance.FontData.Bold = DefaultableBoolean.True;
@@ -251,40 +239,40 @@ namespace QLSV.Frm.FrmUserControl
 
         private void uG_DanhSach_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Up:
-                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        dgv_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
-                        e.Handled = true;
-                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
-                        break;
-                    case Keys.Down:
-                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        dgv_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
-                        e.Handled = true;
-                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
-                        break;
-                    case Keys.Right:
-                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        dgv_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
-                        e.Handled = true;
-                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
-                        break;
-                    case Keys.Left:
-                        dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
-                        dgv_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
-                        e.Handled = true;
-                        dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
+            //try
+            //{
+            //    switch (e.KeyCode)
+            //    {
+            //        case Keys.Up:
+            //            dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+            //            dgv_DanhSach.PerformAction(UltraGridAction.AboveCell, false, false);
+            //            e.Handled = true;
+            //            dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+            //            break;
+            //        case Keys.Down:
+            //            dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+            //            dgv_DanhSach.PerformAction(UltraGridAction.BelowCell, false, false);
+            //            e.Handled = true;
+            //            dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+            //            break;
+            //        case Keys.Right:
+            //            dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+            //            dgv_DanhSach.PerformAction(UltraGridAction.NextCellByTab, false, false);
+            //            e.Handled = true;
+            //            dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+            //            break;
+            //        case Keys.Left:
+            //            dgv_DanhSach.PerformAction(UltraGridAction.ExitEditMode, false, false);
+            //            dgv_DanhSach.PerformAction(UltraGridAction.PrevCellByTab, false, false);
+            //            e.Handled = true;
+            //            dgv_DanhSach.PerformAction(UltraGridAction.EnterEditMode, false, false);
+            //            break;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log2File.LogExceptionToFile(ex);
+            //}
         }
 
         #endregion

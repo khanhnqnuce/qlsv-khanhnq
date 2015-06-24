@@ -125,15 +125,6 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
-                    //foreach (var row in uG_DanhSach.Rows.Where(row => string.IsNullOrEmpty(row.Cells["ID"].Text)))
-                    //{
-                    //    var hs = new Lop
-                    //    {
-                    //        MaLop = row.Cells["MaLop"].Text,
-                    //        IdKhoa = int.Parse(row.Cells["IdKhoa"].Value.ToString())
-                    //    };
-                    //    _listAdd.Add(hs);
-                    //}
                     if (_listUpdate.Count <= 0 && IdDelete.Count <= 0) return;
                     if (_listUpdate.Count > 0) UpdateData.UpdateLop(_listUpdate);
                     MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption);
@@ -207,40 +198,6 @@ namespace QLSV.Frm.FrmUserControl
 
         #region Event_uG
 
-        private void uG_DanhSach_AfterExitEditMode(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (B)
-            //    {
-            //        B = false;
-            //        return;
-            //    }
-            //    var id = uG_DanhSach.ActiveRow.Cells["ID"].Text;
-            //    if (!string.IsNullOrEmpty(id))
-            //    {
-            //        foreach (var item in _listUpdate.Where(item => item.ID == int.Parse(id)))
-            //        {
-            //            item.MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text;
-            //            item.IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString());
-            //            return;
-            //        }
-            //        var hs = new Lop
-            //        {
-            //            ID = int.Parse(id),
-            //            MaLop = uG_DanhSach.ActiveRow.Cells["MaLop"].Text,
-            //            IdKhoa = int.Parse(uG_DanhSach.ActiveRow.Cells["IdKhoa"].Value.ToString()),
-                        
-            //        };
-            //        _listUpdate.Add(hs);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log2File.LogExceptionToFile(ex);
-            //}
-        }
-
         private void uG_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             try
@@ -310,16 +267,6 @@ namespace QLSV.Frm.FrmUserControl
         private void menuStrip_xoadong_Click(object sender, EventArgs e)
         {
             DeleteRow();
-        }
-
-        private void menuStripHuy_Click(object sender, EventArgs e)
-        {
-            LoadFormDetail();
-        }
-
-        private void menuStrip_luulai_Click(object sender, EventArgs e)
-        {
-            SaveDetail();
         }
 
         #endregion
