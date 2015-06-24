@@ -138,6 +138,27 @@ BEGIN
       FROM @tbl c
       WHERE Not Exists (select IdKyThi,IdSV from XEPPHONG c2 where c1.IdSV = c2.IdSV and c1.IdKyThi = c2.IdKyThi)
 END
+
+Go
+
+-- KT phong
+CREATE TYPE [dbo].[ChonPhongType] AS TABLE(
+      [IdPhong] [int] NULL,	  
+      [IdKyThi] [int] NULL,
+	  [SiSo] [int] NULL
+)
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_InsertKTPhong]
+      @tbl ChonPhongType READONLY
+AS
+BEGIN
+      INSERT INTO KT_PHONG(IdPhong,IdKyThi,SiSo)
+      SELECT c.IdPhong,c.IdKyThi, c.SiSo
+      FROM @tbl c      
+END
+
 	--INSERT INTO SINHVIEN(MaSV,HoSV,TenSV,NgaySinh,IdLop) SELECT '123', '123', '123','2015/02/06', 93
 	declare @tbl XepPhongType
 	insert into @tbl(IdSV,IdKyThi)  SELECT '2',3
