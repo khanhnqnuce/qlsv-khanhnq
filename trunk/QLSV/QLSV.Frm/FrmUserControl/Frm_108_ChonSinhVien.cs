@@ -164,7 +164,7 @@ namespace QLSV.Frm.FrmUserControl
                 var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
-                var tbsvError = _save.Bulk_checkData("sp_CheckSV", "@tbl", resultValue);
+                var tbsvError = _save.sp_checkData("sp_CheckSV", "@tbl", resultValue);
                 if (resultValue == null || resultValue.Rows.Count == 0) return;
                 if (tbsvError.Rows.Count > 0)
                 {
