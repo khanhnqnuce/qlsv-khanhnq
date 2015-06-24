@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 
@@ -10,7 +9,6 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmThemLop : Form
     {
-        private readonly List<Lop> _listAdd = new List<Lop>();
         private int _idkhoa;
         public FrmThemLop()
         {
@@ -36,39 +34,37 @@ namespace QLSV.Frm.Frm
             return true;
         }
 
+        private DataTable GetTable()
+        {
+            var table = new DataTable();
+            table.Columns.Add("MaLop", typeof(string));
+            table.Columns.Add("IdKhoa", typeof(int));
+            return table;
+        }
+
         private void btnluu_Click(object sender, EventArgs e)
         {
             try
             {
+                var save = new SqlBulkCopy();
+                var tbLop = GetTable();
                 const string enter = "\n";
                 if(!Checknull()) return;
                 var strchuoi = txtLop.Text;
                 var list = strchuoi.Split(char.Parse(enter));
-                foreach (var str in list)
+                foreach (var dslop in list.Select(str => str.Trim().Split(',')).SelectMany(listlop => listlop.Select(s => s.Trim().ToUpper()).Where(dslop => !string.IsNullOrEmpty(dslop))))
                 {
-                    var listlop = str.Trim().Split(',');
-                    foreach (var s in listlop)
-                    {
-                        var dslop = s.Trim().ToUpper();
-                        if(string.IsNullOrEmpty(dslop)) continue;
-                        var hs = new Lop
-                        {
-                            MaLop = dslop,
-                            IdKhoa = _idkhoa
-                        };
-                        _listAdd.Add(hs);
-                    }
+                    tbLop.Rows.Add(dslop, _idkhoa);
                 }
-                if (_listAdd.Count > 0)
-                {
-                    InsertData.ThemLop(_listAdd);
-                    MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption);
-                    txtLop.Clear();
-                    cbokhoa.SelectedValue = 0;
-                }
+                if (tbLop.Rows.Count <= 0) return;
+                save.sp_InsertUpdate("sp_InsertLop", "@tbl",tbLop);
+                MessageBox.Show(FormResource.MsgThongbaothanhcong, FormResource.MsgCaption);
+                txtLop.Clear();
+                cbokhoa.SelectedValue = 0;
             }
             catch (Exception ex)
             {
+                MessageBox.Show(@"Thao tác thất bại", FormResource.MsgCaption);
                 Log2File.LogExceptionToFile(ex);
             }
         }

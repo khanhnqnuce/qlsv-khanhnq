@@ -161,12 +161,7 @@ namespace QLSV.Frm.FrmUserControl
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains(FormResource.msgLostConnect))
-                {
-                    MessageBox.Show(FormResource.txtLoiDB);
-                }
-                else
-                    Log2File.LogExceptionToFile(ex);
+                Log2File.LogExceptionToFile(ex);
             }
         }
 
