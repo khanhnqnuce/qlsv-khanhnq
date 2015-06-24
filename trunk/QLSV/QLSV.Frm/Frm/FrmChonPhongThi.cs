@@ -30,24 +30,12 @@ namespace QLSV.Frm.Frm
             _bgwInsert.RunWorkerCompleted += bgwInsert_RunWorkerCompleted;
         }
 
-        private static DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("Chon", typeof(bool));
-            table.Columns.Add("TenPhong", typeof(string));
-            table.Columns.Add("SucChua", typeof(int));
-            return table;
-        }
-
         private void dgv_DanhSach_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             var band = e.Layout.Bands[0];
             band.ColHeadersVisible = false;
             band.Columns["ID"].Hidden = true;
             band.Columns["Chon"].Style = ColumnStyle.CheckBox;
-            //band.Columns["Chon"].MaxWidth = 70;
-
 
             band.Override.CellAppearance.TextHAlign = HAlign.Center;
             band.Columns["TenPhong"].CellActivation = Activation.NoEdit;
@@ -104,19 +92,14 @@ namespace QLSV.Frm.Frm
 
         private void Xepphong()
         {
+            var save = new SqlBulkCopy();
+            var tb = save.tbKTPhong();
             foreach (var row in dgv_DanhSach.Rows)
             {
                 if (!bool.Parse(row.Cells["Chon"].Text)) continue;
-                var idphong = int.Parse(row.Cells["ID"].Text);
-                var hspp = new KTPhong
-                {
-                    IdKyThi = _idKythi,
-                    IdPhong = idphong,
-                    SiSo = 0
-                };
-                _listPhanPhong.Add(hspp);
+                tb.Rows.Add(row.Cells["ID"].Text, _idKythi, 0);
             }
-            InsertData.KtPhong(_listPhanPhong);
+            save.sp_InsertUpdate("sp_InsertKTPhong", "@tbl", tb);
             Invoke((Action)(() => MessageBox.Show(@"Lưu lại thành công", @"Thông báo")));
             Invoke((Action)(Close));
         }

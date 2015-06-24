@@ -14,22 +14,21 @@ namespace QLSV.Core.LINQ
             return newProducts;
         }
 
-        public DataTable tbSinhVien()
-        {
-            var newProducts = new DataTable("SINHVIEN");
-            newProducts.Columns.Add("MaSV", typeof(int));
-            newProducts.Columns.Add("HoSV", typeof(string));
-            newProducts.Columns.Add("TenSV", typeof(string));
-            newProducts.Columns.Add("NgaySinh", typeof(string));
-            newProducts.Columns.Add("IdLop", typeof(int));
-            return newProducts;
-        }
         public DataTable tbXepPhong()
         {
             var newProducts = new DataTable("XEPPHONG");
             newProducts.Columns.Add("IdSV", typeof(int));
             newProducts.Columns.Add("IdKyThi", typeof(int));
             newProducts.Columns.Add("IdPhong", typeof(int));
+            return newProducts;
+        }
+        
+        public DataTable tbKTPhong()
+        {
+            var newProducts = new DataTable("KT_PHONG");
+            newProducts.Columns.Add("IdPhong", typeof(int));
+            newProducts.Columns.Add("IdKyThi", typeof(int));
+            newProducts.Columns.Add("SiSo", typeof(int));
             return newProducts;
         }
         public DataTable tbBAILAM()
