@@ -27,11 +27,9 @@ namespace QLSV.Core.LINQ
         public DataTable tbXepPhong()
         {
             var newProducts = new DataTable("XEPPHONG");
-
-
             newProducts.Columns.Add("IdSV", typeof(int));
-            newProducts.Columns.Add("IdPhong", typeof(int));
             newProducts.Columns.Add("IdKyThi", typeof(int));
+            newProducts.Columns.Add("IdPhong", typeof(int));
             return newProducts;
         }
         public DataTable tbBAILAM()
@@ -59,7 +57,11 @@ namespace QLSV.Core.LINQ
             return newProducts;
         }
 
-        // Phương thức đổ 1 bảng vào CSDL ...
+        /// <summary>
+        /// Insert một dữ liệu lớn đổ 1 table vào csdl
+        /// </summary>
+        /// <param name="tablename">Tên bảng cần insert</param>
+        /// <param name="table">Bảng dữ liệu cần insert</param>
         public void Bulk_Insert(string tablename, DataTable table)
         {
             using (var connection = _connect.GetConnect())
@@ -73,7 +75,12 @@ namespace QLSV.Core.LINQ
                 connection.Close();
             }
         }
-        //update nhiều bản ghi
+        /// <summary>
+        /// Insert or Update số lượng bản ghi lớn
+        /// </summary>
+        /// <param name="storename">Tên store</param>
+        /// <param name="tbType">Kiểu parameter</param>
+        /// <param name="table">Bảng dữ liệu cần insert</param>
         public void sp_InsertUpdate(string storename, string tbType, DataTable table)
         {
             using (var con = _connect.GetConnect())
@@ -89,7 +96,14 @@ namespace QLSV.Core.LINQ
                 }
             }
         }
-        //Truyền vào 1 datatable gồm nhiều dữ liệu kiểm tra xem đã toàn tại chưa
+        
+        /// <summary>
+        /// //Truyền vào 1 datatable gồm nhiều dữ liệu kiểm tra xem đã tồn tại chưa
+        /// </summary>
+        /// <param name="storename">Tên store</param>
+        /// <param name="tbType">Tên biến Parameter</param>
+        /// <param name="table">Bảng dữ liệu cần kiểm tra</param>
+        /// <returns>Trả về dữ liệu chưa tồn tịa</returns>
         public DataTable sp_checkData(string storename, string tbType, DataTable table)
         {
             var dt = new DataTable();

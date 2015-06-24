@@ -77,7 +77,8 @@ END
 -- Phong thi
 
 CREATE TYPE [dbo].[PhongThiType] AS TABLE(
-      [TenPhong] [varchar] (10) NULL,
+      [ID] [int] NULL,
+	  [TenPhong] [varchar] (10) NULL,
       [SucChua] [int] NULL,
 	  [GhiChu] [nvarchar] (255) NULL   
 )
@@ -85,16 +86,60 @@ CREATE TYPE [dbo].[PhongThiType] AS TABLE(
 GO
 
 CREATE PROCEDURE [dbo].[sp_InsertPhong]
-      @tbl SinhVienType READONLY
+	@tbl PhongThiType READONLY
 AS
-BEGIN
-      INSERT INTO SINHVIEN(MaSV,HoSV,TenSV,NgaySinh,IdLop)
-      SELECT MasV, HoSV, TenSV,NgaySinh, IdLop
-      FROM (Select c1.MaSV,c1.HoSV,c1.TenSV,c1.NgaySinh,c2.ID as [IdLop] from @tbl c1 join LOP c2 on c1.Lop = c2.MaLop) c3
-      WHERE c3.MaSV not in (SELECT MaSV FROM SINHVIEN)
+BEGIN	
+	
+		  INSERT INTO PHONGTHI(TenPhong,SucChua,GhiChu)
+		  SELECT c.TenPhong, c.SucChua, c.GhiChu
+		  FROM @tbl c
+		  WHERE c.TenPhong not in (SELECT TenPhong FROM PHONGTHI)		
 END
 
+GO
+
+CREATE PROCEDURE [dbo].[sp_UpdatePhong]
+	@tbl PhongThiType READONLY
+AS
+BEGIN
+		  UPDATE PHONGTHI
+			SET TenPhong = c2.TenPhong,SucChua = c2.SucChua, GhiChu = c2.GhiChu
+			FROM PHONGTHI c1
+			INNER JOIN @tbl c2
+			ON c1.ID = c2.ID		
+END
+
+-- Xep Phong
+
+CREATE TYPE [dbo].[XepPhongType] AS TABLE(
+      [IdSV] [int] NULL,	  
+      [IdKyThi] [int] NULL,
+	  [IdPhong] [int] NULL
+)
+
+CREATE PROCEDURE [dbo].[sp_UpdateXepPhong]
+      @tbl XepPhongType READONLY
+AS
+BEGIN
+      INSERT INTO XEPPHONG(IdSV,IdKyThi)
+      SELECT c.IdSV,c.IdKyThi
+      FROM @tbl c
+      WHERE Not Exists (select IdKyThi,IdSV from XEPPHONG c2 where c1.IdSV = c2.IdSV and c1.IdKyThi = c2.IdKyThi)
+END
+
+GO
+
+CREATE PROCEDURE [dbo].[sp_InsertXepPhong]
+      @tbl XepPhongType READONLY
+AS
+BEGIN
+      INSERT INTO XEPPHONG(IdSV,IdKyThi)
+      SELECT c.IdSV,c.IdKyThi
+      FROM @tbl c
+      WHERE Not Exists (select IdKyThi,IdSV from XEPPHONG c2 where c1.IdSV = c2.IdSV and c1.IdKyThi = c2.IdKyThi)
+END
 	--INSERT INTO SINHVIEN(MaSV,HoSV,TenSV,NgaySinh,IdLop) SELECT '123', '123', '123','2015/02/06', 93
-	declare @tbl LopType
-	insert into @tbl(MaLop,IdKhoa)  SELECT '59XD10',1
-	exec sp_InsertLop @tbl
+	declare @tbl XepPhongType
+	insert into @tbl(IdSV,IdKyThi)  SELECT '2',3
+	insert into @tbl(IdSV,IdKyThi)  SELECT '3',3
+	exec sp_InsertXepPhong @tbl

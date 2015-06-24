@@ -126,7 +126,6 @@ namespace QLSV.Frm.FrmUserControl
                         dgv_DanhSach.ActiveRow.Delete(false);
                     }
                 }
-                if (_listKtPhong.Count <= 0 || _listXepPhong.Count <= 0) return;
                 if (_listKtPhong.Count > 0) UpdateData.UpdateGiamSiSo(_listKtPhong);
                 if (_listXepPhong.Count > 0) DeleteData.XoaXepPhong(_listXepPhong);
                 MessageBox.Show(@"Xóa dữ liệu thành công.", @"Thông báo");
@@ -159,8 +158,6 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
-                var tbxp = _save.tbXepPhong();
-               
                 var frmNapDuLieu = new FrmNDLSinhVien(GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
@@ -174,7 +171,12 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else
                 {
-                    _save.Bulk_Insert("XEPPHONG", tbxp);
+                    var tbxp = _save.tbXepPhong();
+                    foreach (DataRow row in resultValue.Rows)
+                    {
+                        tbxp.Rows.Add(row["MaSV"],_idkythi);
+                    }
+                    _save.sp_InsertUpdate("sp_InsertXepPhong","@tbl", tbxp);
                     LoadGrid();
                     MessageBox.Show(tbxp.Rows.Count +@" Sinh viên đã được inport thành công.");
                 }
@@ -289,7 +291,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             switch (keyData)
             {
-                case (Keys.Control | Keys.S):
+                case (Keys.Control | Keys.F):
                     _frmTimkiem.ShowDialog();
                     break;
             }

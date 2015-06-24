@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using NPOI.SS.Util;
 using PerpetuumSoft.Reporting.View;
 using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
@@ -18,9 +17,9 @@ namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_107_Chonphongthi : FunctionControlHasGrid
     {
-        private IList<XepPhong> _listXepPhong = new List<XepPhong>();
-        private IList<KTPhong> _listKtPhong = new List<KTPhong>();
-        private int _idkythi;
+        private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
+        private readonly IList<KTPhong> _listKtPhong = new List<KTPhong>();
+        private readonly int _idkythi;
 
         public Frm_107_Chonphongthi(int idkythi)
         {
@@ -102,18 +101,6 @@ namespace QLSV.Frm.FrmUserControl
                 DeleteData.Xoa("KT_PHONG",_idkythi);
                 UpdateData.UpdateXepPhongNull(_idkythi);
                 LoadGrid();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        protected override void SaveDetail()
-        {
-            try
-            {
-                
             }
             catch (Exception ex)
             {
