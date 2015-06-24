@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using NPOI.HSSF.UserModel;
@@ -13,20 +12,17 @@ namespace QLSV.Frm.Frm
 {
     public partial class FrmNDLSinhVien : Form
     {
-        public int gb_iViTriHeader = 0;
+        private const int ViTriHeader = 0;
         public DataTable ResultValue = new DataTable();
         private readonly bool _multiSheet;
         private Thread _threadLoad;
-        private int _iNumberStt;
         private readonly DataTable _result;
-        //private readonly IList<SinhVien> _listSinhVien;
-        public FrmNDLSinhVien(int stt, DataTable tbTable)
+        public FrmNDLSinhVien(DataTable tbTable)
         {
             try
             {
                 InitializeComponent();
                 _multiSheet = false;
-                _iNumberStt = stt;
                 _result = tbTable;
             }
             catch (Exception ex)
@@ -34,19 +30,7 @@ namespace QLSV.Frm.Frm
                 Log2File.LogExceptionToFile(ex);
             }
         }
-        //private static DataTable GetTable()
-        //{
-        //    var table = new DataTable();
-        //    table.Columns.Add("STT", typeof(string));
-        //    table.Columns.Add("MaSinhVien", typeof(string));
-        //    table.Columns.Add("HoSinhVien", typeof(string));
-        //    table.Columns.Add("TenSinhVien", typeof(string));
-        //    table.Columns.Add("NgaySinh", typeof(string));
-        //    table.Columns.Add("MaLop", typeof(string));
-        //    table.Columns.Add("TenKhoa", typeof(string));
-        //    return table;
-        //}
-
+       
         private void LoadData(object obj)
         {
             try
@@ -90,7 +74,7 @@ namespace QLSV.Frm.Frm
                 var excel = new HSSFWorkbook(stream);
                 stream.Close();
                 var sheet = excel.GetSheetAt(0);
-                var startRows = sheet.FirstRowNum + gb_iViTriHeader;
+                var startRows = sheet.FirstRowNum + ViTriHeader;
                 var endRows = sheet.LastRowNum;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
@@ -137,7 +121,7 @@ namespace QLSV.Frm.Frm
                 excelPkg.Load(stream);
                 stream.Close();
                 var oSheet = excelPkg.Workbook.Worksheets[1];
-                var startRows = oSheet.Dimension.Start.Row + gb_iViTriHeader;
+                var startRows = oSheet.Dimension.Start.Row + ViTriHeader;
                 var endRows = oSheet.Dimension.End.Row;
                 var maximum = (endRows - startRows + 1) > 100 ? (endRows - startRows + 1) : 200;
                 upsbLoading.SetPropertyThreadSafe(p => p.Maximum, maximum);
@@ -182,23 +166,23 @@ namespace QLSV.Frm.Frm
                             IsBackground = true
                         };
                     }
-                    if (_threadLoad.ThreadState == (ThreadState.Background | ThreadState.Unstarted)
-                        || _threadLoad.ThreadState == ThreadState.Unstarted)
+                    switch (_threadLoad.ThreadState)
                     {
-                        _threadLoad.Start();
-                    }
-                    else if (_threadLoad.ThreadState == ThreadState.Aborted
-                             || _threadLoad.ThreadState == ThreadState.Stopped)
-                    {
-                        _threadLoad = new Thread(LoadData)
-                        {
-                            IsBackground = true
-                        };
-                        _threadLoad.Start();
-                    }
-                    else
-                    {
-                        MessageBox.Show(FormResource.txtRunning);
+                        case ThreadState.Unstarted:
+                        case (ThreadState.Background | ThreadState.Unstarted):
+                            _threadLoad.Start();
+                            break;
+                        case ThreadState.Stopped:
+                        case ThreadState.Aborted:
+                            _threadLoad = new Thread(LoadData)
+                            {
+                                IsBackground = true
+                            };
+                            _threadLoad.Start();
+                            break;
+                        default:
+                            MessageBox.Show(FormResource.txtRunning);
+                            break;
                     }
                 }
             }
@@ -221,18 +205,16 @@ namespace QLSV.Frm.Frm
                     CheckFileExists = true,
                     CheckPathExists = true
                 };
-                if (openfiledialog.ShowDialog() == DialogResult.OK)
+                if (openfiledialog.ShowDialog() != DialogResult.OK) return;
+                var length = new FileInfo(openfiledialog.FileName).Length;
+                if (length <= Convert.ToInt64(FormResource.txtFileSize))
                 {
-                    var length = new FileInfo(openfiledialog.FileName).Length;
-                    if (length <= Convert.ToInt64(FormResource.txtFileSize))
-                    {
-                        txtTenFile.Text = openfiledialog.FileName;
-                    }
-                    else
-                    {
-                        MessageBox.Show(FormResource.msgFileQuaLon);
-                        ResultValue = null;
-                    }
+                    txtTenFile.Text = openfiledialog.FileName;
+                }
+                else
+                {
+                    MessageBox.Show(FormResource.msgFileQuaLon);
+                    ResultValue = null;
                 }
             }
             catch (Exception ex)

@@ -161,7 +161,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 var tbxp = _save.tbXepPhong();
                
-                var frmNapDuLieu = new FrmNDLSinhVien(0, GetTable());
+                var frmNapDuLieu = new FrmNDLSinhVien(GetTable());
                 frmNapDuLieu.ShowDialog();
                 var resultValue = frmNapDuLieu.ResultValue;
                 var tbsvError = _save.sp_checkData("sp_CheckSV", "@tbl", resultValue);
