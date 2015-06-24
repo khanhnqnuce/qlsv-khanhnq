@@ -28,18 +28,6 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         #region Exit
-
-        protected virtual DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("ID", typeof(int));
-            table.Columns.Add("STT", typeof(int));
-            table.Columns.Add("MaLop", typeof(string));
-            table.Columns.Add("IdKhoa", typeof(string));
-            table.Columns.Add("TenKhoa", typeof(string));
-            return table;
-        }
-
         protected virtual void LoadGrid()
         {
             try
