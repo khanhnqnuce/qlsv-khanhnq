@@ -100,7 +100,6 @@ namespace QLSV.Frm.FrmUserControl
                 }
                 else if (dgv_DanhSach.ActiveRow != null)
                 {
-                    var index = dgv_DanhSach.ActiveRow.Index;
                     if (DialogResult.Yes ==
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
