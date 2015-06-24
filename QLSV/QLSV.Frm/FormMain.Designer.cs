@@ -858,6 +858,7 @@
             this.MenuBar.AutoScrollStyle = Infragistics.Win.UltraWinExplorerBar.AutoScrollStyle.BringActiveControlIntoView;
             this.MenuBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuBar.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            ultraExplorerBarGroup1.Expanded = false;
             ultraExplorerBarItem24.Key = "QLND";
             appearance1.Image = global::QLSV.Frm.Properties.Resources.nd;
             ultraExplorerBarItem24.Settings.AppearancesSmall.Appearance = appearance1;
