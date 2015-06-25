@@ -763,7 +763,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static bool UpdateNamHoc(IList<NamHoc> list)
+        public static bool UpdateNamHoc(IEnumerable<NamHoc> list)
         {
             try
             {
@@ -780,7 +780,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static bool UpdateDT(int masv, string made, string chuoikq, int idKt)
+        public static bool UpdateDt(int masv, string made, string chuoikq, int idKt)
         {
             try
             {

@@ -29,7 +29,7 @@ namespace QLSV.Frm.Frm
             {
                 errordiem.Dispose();
                 
-                if (UpdateData.UpdateDT(int.Parse(txtmasv.Text), txtmade.Text, txtchuoi.Text,_idKt))
+                if (UpdateData.UpdateDt(int.Parse(txtmasv.Text), txtmade.Text, txtchuoi.Text,_idKt))
                 {
                     update = true;
                     MessageBox.Show(@"Sửa thành công.", @"Thông báo");
