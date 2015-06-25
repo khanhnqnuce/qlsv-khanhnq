@@ -1,4 +1,4 @@
--- Update khoa
+﻿-- Update khoa
 CREATE TYPE [dbo].[KhoaType] AS TABLE(
       [ID] [int] NULL,
       [TenKhoa] [nvarchar](MAX) NULL   
@@ -121,10 +121,12 @@ CREATE PROCEDURE [dbo].[sp_UpdateXepPhong]
       @tbl XepPhongType READONLY
 AS
 BEGIN
-      INSERT INTO XEPPHONG(IdSV,IdKyThi)
-      SELECT c.IdSV,c.IdKyThi
-      FROM @tbl c
-      WHERE Not Exists (select IdKyThi,IdSV from XEPPHONG c2 where c1.IdSV = c2.IdSV and c1.IdKyThi = c2.IdKyThi)
+      UPDATE XEPPHONG
+      SET IdPhong = c2.IdPhong      
+      FROM XEPPHONG c1
+      INNER JOIN @tbl c2
+      ON (c1.IdKyThi = c2.IdKyThi and c1.IdSV = c2.IdSV)
+
 END
 
 GO
@@ -140,6 +142,15 @@ BEGIN
 END
 
 Go
+
+CREATE PROCEDURE [dbo].[sp_Ud_XepPhong_KTPhong]
+      @tbl XepPhongType READONLY
+AS
+BEGIN
+      Update XEPPHONG set IdPhong = NULL from XEPPHONG c1 inner join @tbl c2 on (c1.IdKyThi = c2.IdKyThi and c1.IdSV = c2.IdSV)
+	  Update KT_PHONG set KT_PHONG.SiSo = (c3.SiSo - c4.Tong) from KT_PHONG c3 inner join (select IdKyThi,IdPhong,COUNT(*) as[Tong] from @tbl group by Idkythi,Idphong) c4
+		on (c3.IdKyThi = c4.IdKyThi and c3.IdPhong = c4.IdPhong)
+END
 
 -- KT phong
 CREATE TYPE [dbo].[ChonPhongType] AS TABLE(
@@ -159,8 +170,34 @@ BEGIN
       FROM @tbl c      
 END
 
+GO
+
+CREATE PROCEDURE [dbo].[sp_UpdateKTPhong]
+      @tbl ChonPhongType READONLY
+AS
+BEGIN
+      UPDATE KT_PHONG
+      SET SiSo = c2.SiSo      
+      FROM KT_PHONG c1
+      INNER JOIN @tbl c2
+      ON (c1.IdKyThi = c2.IdKyThi and c1.IdPhong = c2.IdPhong)
+
+END
+
+-- Khi update IdPhong bảng XEPPHONG thì update siso bang KT_PHONG
+CREATE TRIGGER trg_XepPhong_update_IdPhong
+	ON XEPPHONG
+	FOR UPDATE 
+	AS
+		IF UPDATE(IdPhong)
+		UPDATE KT_PHONG
+		SET KT_PHONG.SiSo = c1.SiSo + c2.Tong
+		FROM KT_PHONG c1 inner join (select IdKyThi,IdPhong,count(*) as [Tong] from inserted group by IdKyThi,IdPhong) c2
+		on (c1.IdKyThi = c2.IdKyThi and c1.IdPhong = c2.IdPhong)
+		
+
 	--INSERT INTO SINHVIEN(MaSV,HoSV,TenSV,NgaySinh,IdLop) SELECT '123', '123', '123','2015/02/06', 93
-	declare @tbl XepPhongType
-	insert into @tbl(IdSV,IdKyThi)  SELECT '2',3
-	insert into @tbl(IdSV,IdKyThi)  SELECT '3',3
-	exec sp_InsertXepPhong @tbl
+	--declare @tbl XepPhongType
+	--insert into @tbl(IdSV,IdKyThi)  SELECT '2',3
+	--insert into @tbl(IdSV,IdKyThi)  SELECT '3',3
+	--exec sp_InsertXepPhong @tbl
