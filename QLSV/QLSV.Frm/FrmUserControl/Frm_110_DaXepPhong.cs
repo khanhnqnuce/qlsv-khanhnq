@@ -96,6 +96,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                var tb = _save.tbXepPhong();
                 if (dgv_DanhSach.Selected.Rows.Count > 0)
                 {
                     if (DialogResult.Yes ==
@@ -104,18 +105,7 @@ namespace QLSV.Frm.FrmUserControl
                     {
                         foreach (var row in dgv_DanhSach.Selected.Rows)
                         {
-                            var xp = new XepPhong
-                            {
-                                IdKyThi = _idkythi,
-                                IdSV = int.Parse(row.Cells["MaSV"].Text)
-                            };
-                            var kt = new KTPhong
-                            {
-                                IdPhong = int.Parse(row.Cells["IdPhong"].Text),
-                                IdKyThi = _idkythi
-                            };
-                            _listxepphong.Add(xp);
-                            _listktphong.Add(kt);
+                            tb.Rows.Add(row.Cells["MaSV"].Text, _idkythi, row.Cells["IdPhong"].Text);
                         }
                         DeleteAndUpdate = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
@@ -127,25 +117,15 @@ namespace QLSV.Frm.FrmUserControl
                         MessageBox.Show(FormResource.msgHoixoa, FormResource.MsgCaption, MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question))
                     {
-                        var xp = new XepPhong
-                        {
-                            IdKyThi = _idkythi,
-                            IdSV = int.Parse(dgv_DanhSach.ActiveRow.Cells["MaSV"].Text)
-                        };
-                        var kt = new KTPhong
-                        {
-                            IdPhong = int.Parse(dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text),
-                            IdKyThi = _idkythi
-                        };
-                        _listxepphong.Add(xp);
-                        _listktphong.Add(kt);
+                        tb.Rows.Add(
+                            dgv_DanhSach.ActiveRow.Cells["MaSV"].Text,
+                            _idkythi, 
+                            dgv_DanhSach.ActiveRow.Cells["IdPhong"].Text);
                         DeleteAndUpdate = true;
-                        dgv_DanhSach.ActiveRow.Delete(false);
                     }
                 }
-                if (_listxepphong.Count <= 0 && _listktphong.Count <= 0) return;
-                if (_listktphong.Count > 0) UpdateData.UpdateGiamSiSo(_listktphong);
-                if (_listktphong.Count > 0) UpdateData.UpdateXP_Null(_listxepphong);
+                if (tb.Rows.Count == 0) return;
+                _save.sp_InsertUpdate("sp_Ud_XepPhong_KTPhong", "@tbl", tb);
                 MessageBox.Show(@"Xóa dữ liệu thành công", FormResource.MsgCaption);
                 LoadGrid();
                 _listktphong.Clear();

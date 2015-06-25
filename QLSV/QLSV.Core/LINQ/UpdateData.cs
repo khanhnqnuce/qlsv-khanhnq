@@ -13,19 +13,16 @@ namespace QLSV.Core.LINQ
         /// Update thông tin 1 tài khoản
         /// </summary>
         /// <returns>true</returns>
-
-        public static bool UpdateTaiKhoan(Taikhoan item)
+        private static void UpdateTaiKhoan(Taikhoan item)
         {
             try
             {
                 Conn.ExcuteQuerySql("Update TAIKHOAN set HoTen = N'" + item.HoTen + "', Quyen = N'" + item.Quyen +
                                     "' where ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
