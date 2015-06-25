@@ -133,7 +133,7 @@ namespace QLSV.Core.LINQ
         /// 10: In điểm thi
         /// 11. Phòng thi đã được chọn
         /// 12. Sinh viên đã được chọn để thi
-        /// 13: Sinh viên chưa được xếp phòng trong bảng KT_PHONG với IdPhong là null
+        /// 13: Sinh viên chưa được xếp phòng trong bảng XEPPHONG với IdPhong là null
         /// 14: Phong thi có SiSo nhỏ hơn SucChua
         /// 15: Bảng BAILAM với sinh viên đã được chấm thì DiemThi not null
         public static DataTable Load(int chon, int idKythi)
@@ -227,10 +227,16 @@ namespace QLSV.Core.LINQ
                         break;
                     case 13:
                         str =
-                            "SELECT ROW_NUMBER() OVER(ORDER BY x.IdSV) as [STT],x.IdSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, '' as [PhongThi] " +
-                            "FROM XEPPHONG x join SINHVIEN s on x.IdSV = s.MaSV " +
-                            "join LOP l on s.IdLop = l.ID " +
-                            "where x.IdPhong is null and x.IdKyThi = "+idKythi+"";
+                             "SELECT ROW_NUMBER() OVER(ORDER BY x.IdSV) as [STT],x.IdSV, s.HoSV, s.TenSV,s.NgaySinh, l.MaLop, '' as [PhongThi] " +
+                             "FROM XEPPHONG x join SINHVIEN s on x.IdSV = s.MaSV " +
+                             "join LOP l on s.IdLop = l.ID " +
+                             "where x.IdPhong is null and x.IdKyThi = " + idKythi + "";
+                        break;
+                    case 131:
+                        str =
+                            "SELECT ROW_NUMBER() OVER(ORDER BY x.IdSV) as [STT],x.IdSV, x.IdKyThi, x.IdPhong " +
+                            "FROM XEPPHONG x " +
+                            "where x.IdPhong is null and x.IdKyThi = " + idKythi + "";
                         break;
                     case 14:
                         str =

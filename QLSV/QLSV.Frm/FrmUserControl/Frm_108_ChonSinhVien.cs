@@ -68,6 +68,7 @@ namespace QLSV.Frm.FrmUserControl
         {
             try
             {
+                bool xoa = false;
                 if (dgv_DanhSach.Selected.Rows.Count > 0)
                 {
                     if (DialogResult.Yes ==
@@ -96,6 +97,7 @@ namespace QLSV.Frm.FrmUserControl
                         }
                         DeleteAndUpdate = true;
                         dgv_DanhSach.DeleteSelectedRows(false);
+                        xoa = true;
                     }
                 }
                 else if (dgv_DanhSach.ActiveRow != null)
@@ -123,11 +125,15 @@ namespace QLSV.Frm.FrmUserControl
                         _listXepPhong.Add(xp);
                         DeleteAndUpdate = true;
                         dgv_DanhSach.ActiveRow.Delete(false);
+                        xoa = true;
                     }
                 }
-                if (_listKtPhong.Count > 0) UpdateData.UpdateGiamSiSo(_listKtPhong);
-                if (_listXepPhong.Count > 0) DeleteData.XoaXepPhong(_listXepPhong);
-                MessageBox.Show(@"Xóa dữ liệu thành công.", @"Thông báo");
+                UpdateData.UpdateGiamSiSo(_listKtPhong);
+                DeleteData.XoaXepPhong(_listXepPhong);
+                if (xoa)
+                {
+                    MessageBox.Show(@"Xóa dữ liệu thành công.", @"Thông báo");
+                }
                 LoadGrid();
             }
             catch (Exception ex)

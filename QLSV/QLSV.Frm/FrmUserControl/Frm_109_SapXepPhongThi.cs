@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 using QLSV.Frm.Base;
 using QLSV.Frm.Frm;
+using Color = System.Drawing.Color;
 
 namespace QLSV.Frm.FrmUserControl
 {
     public partial class Frm_109_SapXepPhongThi : FunctionControlHasGrid
     {
         #region Create
-
-        private readonly IList<XepPhong> _listXepPhong = new List<XepPhong>();
-        private readonly IList<KTPhong> _listPhanPhong = new List<KTPhong>();
         private readonly int _idkythi;
         private DataTable _tbSv = new DataTable();
         private DataTable _tbPhong = new DataTable();
@@ -46,19 +41,6 @@ namespace QLSV.Frm.FrmUserControl
         }
 
         #region Exit
-
-        protected virtual DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("STT", typeof (string));
-            table.Columns.Add("IdSV", typeof(string));
-            table.Columns.Add("HoSV", typeof (string));
-            table.Columns.Add("TenSV", typeof (string));
-            table.Columns.Add("NgaySinh", typeof (string));
-            table.Columns.Add("MaLop", typeof (string));
-            table.Columns.Add("PhongThi", typeof(string));
-            return table;
-        }
 
         private void Sua()
         {
@@ -93,9 +75,10 @@ namespace QLSV.Frm.FrmUserControl
 
         private void Xepphong()
         {
+            var tbxp = _save.tbXepPhong();
+            var tbktp = _save.tbKTPhong();
             var kt = 0;
             var tong = _tbSv.Rows.Count;
-
             foreach (DataRow row in _tbPhong.Rows)
             {
                 var sc = int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString());
@@ -106,46 +89,25 @@ namespace QLSV.Frm.FrmUserControl
                 {
                     for (var i = bd; i < kt; i++)
                     {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idkythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                        tbxp.Rows.Add(_tbSv.Rows[i]["IdSV"], _idkythi, idphong);
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"];
                     }
-                    var hspp = new KTPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = idphong,
-                        SiSo = int.Parse(row["SucChua"].ToString())
-                    };
-                    _listPhanPhong.Add(hspp);
+                    tbktp.Rows.Add(idphong, _idkythi, row["SucChua"]);
                 }
                 else
                 {
                     for (var i = bd; i < tong; i++)
                     {
-                        var hsxp = new XepPhong
-                        {
-                            IdKyThi = _idkythi,
-                            IdPhong = idphong,
-                            IdSV = int.Parse(_tbSv.Rows[i]["IdSV"].ToString())
-                        };
-                        _listXepPhong.Add(hsxp);
-                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"].ToString();
+                        tbxp.Rows.Add(_tbSv.Rows[i]["IdSV"], _idkythi, idphong);
+                        _tbSv.Rows[i]["PhongThi"] = row["TenPhong"];
                     }
-                    var hspp = new KTPhong
-                    {
-                        IdKyThi = _idkythi,
-                        IdPhong = idphong,
-                        SiSo = int.Parse(row["SiSo"].ToString()) + (tong - bd)
-                    };
-                    _listPhanPhong.Add(hspp);
+                    var ss = int.Parse(row["SiSo"].ToString()) + (tong - bd);
+                    tbktp.Rows.Add(idphong, _idkythi, ss);
                     break;
                 }
             }
+            _save.sp_InsertUpdate("sp_UpdateXepPhong","@tbl",tbxp);
+            //_save.sp_InsertUpdate("sp_UpdateKTPhong","@tbl",tbktp);
         }
 
         protected virtual void LoadGrid()
@@ -197,11 +159,7 @@ namespace QLSV.Frm.FrmUserControl
             {
                 _tbSv = LoadData.Load(13, _idkythi);
                 _tbPhong = LoadData.Load(14, _idkythi);
-                var tongsc = 0;
-                foreach (DataRow row in _tbPhong.Rows)
-                {
-                    tongsc = tongsc + (int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString()));
-                }
+                var tongsc = _tbPhong.Rows.Cast<DataRow>().Aggregate(0, (current, row) => current + (int.Parse(row["SucChua"].ToString()) - int.Parse(row["SiSo"].ToString())));
                 if (tongsc < _tbSv.Rows.Count)
                 {
                     MessageBox.Show(@"Phòng thi không đủ xếp sinh viên. Chọn thêm phòng thi.", @"Thông báo");
@@ -222,7 +180,6 @@ namespace QLSV.Frm.FrmUserControl
                     OnShowDialog("Loading...");
                 }
                 if (!_updateall) return;
-                Ghi();
                 dgv_DanhSach.DataSource = _tbSv;
                 pnl_from.Visible = true;
             }
@@ -233,28 +190,7 @@ namespace QLSV.Frm.FrmUserControl
             }
         }
 
-        protected override void SaveDetail()
-        {
-            try
-            {
-                if (_listXepPhong.Count > 0) UpdateData.UpdateXepPhong(_listXepPhong);
-                if (_listPhanPhong.Count > 0) UpdateData.UpdateKtPhong(_listPhanPhong);
-                MessageBox.Show(@"Sinh viên đã được xếp phòng");
-                //_listPhanPhong.Clear();
-                //_listXepPhong.Clear();
-            }
-            catch (Exception ex)
-            {
-                Log2File.LogExceptionToFile(ex);
-            }
-        }
-
-        private void Ghi()
-        {
-            if (_listXepPhong.Count <= 0 || _listPhanPhong.Count <= 0) return;
-            _bgwInsert.RunWorkerAsync();
-            OnShowDialog("Đang lưu dữ liệu");
-        }
+        
 
         #endregion
 
