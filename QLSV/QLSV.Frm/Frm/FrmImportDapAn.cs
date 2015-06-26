@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
-using QLSV.Core.Domain;
 using QLSV.Core.LINQ;
 using QLSV.Core.Utils.Core;
 
@@ -16,7 +12,7 @@ namespace QLSV.Frm.Frm
     public partial class FrmImportDapAn : Form
     {
         private readonly BackgroundWorker _bgwInsert;
-        private DataTable _tableDapDan;
+        private readonly DataTable _tableDapDan;
 
         public FrmImportDapAn(DataTable table)
         {
@@ -63,18 +59,6 @@ namespace QLSV.Frm.Frm
             {
                 Log2File.LogExceptionToFile(ex);
             }
-        }
-
-        private static DataTable GetTable()
-        {
-            var table = new DataTable();
-            table.Columns.Add("IdKyThi", typeof(int));
-            table.Columns.Add("MaMon", typeof(string));
-            table.Columns.Add("MaDe", typeof(string));
-            table.Columns.Add("CauHoi", typeof(int));
-            table.Columns.Add("DapAn", typeof(string));
-            table.Columns.Add("ThangDiem", typeof(double));
-            return table;
         }
 
         /// <summary>

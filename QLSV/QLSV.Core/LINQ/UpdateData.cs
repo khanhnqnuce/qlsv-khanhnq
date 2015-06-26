@@ -26,7 +26,7 @@ namespace QLSV.Core.LINQ
             }
         }
 
-        public static bool UpdateTaiKhoan(IList<Taikhoan> list)
+        public static void UpdateTaiKhoan(IEnumerable<Taikhoan> list)
         {
             try
             {
@@ -34,12 +34,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateTaiKhoan(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -48,32 +46,28 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <returns>true</returns>
 
-        public static bool UpdateMatKhau(string taikhoan, string matkhau)
+        public static void UpdateMatKhau(string taikhoan, string matkhau)
         {
             try
             {
                 Conn.ExcuteQuerySql("Update TAIKHOAN set MatKhau = N'" + matkhau + "' where TaiKhoan = N'" + taikhoan +
                                     "'");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
-        public static bool UpdateMatKhau(Taikhoan item)
+        private static void UpdateMatKhau(Taikhoan item)
         {
             try
             {
                 Conn.ExcuteQuerySql("Update TAIKHOAN set MatKhau = N'" + item.MatKhau + "' where ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -82,7 +76,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="list"></param>
         /// <returns>true</returns>
-        public static bool UpdateMatKhau(IList<Taikhoan> list)
+        public static void UpdateMatKhau(IEnumerable<Taikhoan> list)
         {
             try
             {
@@ -90,12 +84,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateMatKhau(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -103,18 +95,16 @@ namespace QLSV.Core.LINQ
         /// Update Thông tin khoa
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateKhoa(Khoa item)
+        private static void UpdateKhoa(Khoa item)
         {
             try
             {
                 Conn.ExcuteQuerySql("UPDATE KHOA set TenKhoa = N'" + item.TenKhoa +
                                     "' where ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -123,7 +113,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="list"></param>
         /// <returns>true</returns>
-        public static bool UpdateKhoa(IList<Khoa> list)
+        public static bool UpdateKhoa(IEnumerable<Khoa> list)
         {
             try
             {
@@ -144,19 +134,17 @@ namespace QLSV.Core.LINQ
         /// Update Thông tin lop
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateLop(int idlop, int idkhoa, string tenlop)
+        public static void UpdateLop(int idlop, int idkhoa, string tenlop)
         {
             try
             {
                 var str = "UPDATE LOP set MaLop = N'" + tenlop + "', IdKhoa = " + idkhoa +
                                     " where ID = " + idlop + "";
                 Conn.ExcuteQuerySql(str);
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -165,20 +153,14 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="list"></param>
         /// <returns>true</returns>
-        public static bool UpdateLop(IList<Lop> list)
+        public static void UpdateLop(IEnumerable<Lop> list)
         {
             try
             {
-                foreach (var item in list)
-                {
-                   // UpdateLop(item);
-                }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -206,7 +188,7 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin của nhiều sinh viên
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateSv(IList<SinhVien> list)
+        public static bool UpdateSv(IEnumerable<SinhVien> list)
         {
             try
             {
@@ -227,17 +209,15 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin 1 kỳ thi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateTrangThaiKt(Kythi item)
+        public static void UpdateTrangThaiKt(Kythi item)
         {
             try
             {
                 Conn.ExcuteQuerySql("update KYTHI set TrangThai = '"+item.TrangThai+"' WHERE ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -245,7 +225,7 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin 1 kỳ thi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateKyThi(Kythi item)
+        private static void UpdateKyThi(Kythi item)
         {
             try
             {
@@ -253,12 +233,10 @@ namespace QLSV.Core.LINQ
                                     item.NgayThi + "',TGLamBai = N'" + item.TGLamBai + "',TGBatDau = N'" +
                                     item.TGBatDau + "' ,TGKetThuc = N'" +
                                     item.TGKetThuc + "', GhiChu = N'"+item.GhiChu+"' WHERE ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -266,7 +244,7 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin của nhiều kỳ thi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateKyThi(IList<Kythi> list)
+        public static void UpdateKyThi(IEnumerable<Kythi> list)
         {
             try
             {
@@ -274,12 +252,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateKyThi(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -287,19 +263,17 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin 1 phòng thi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdatePhongThi(PhongThi item)
+        private static void UpdatePhongThi(PhongThi item)
         {
             try
             {
                 Conn.ExcuteQuerySql("update PHONGTHI set TenPhong = N'" +
                                     item.TenPhong + "',SucChua = " + item.SucChua + ",GhiChu = N'" +
                                     item.GhiChu + "' WHERE ID = " + item.ID + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -307,7 +281,7 @@ namespace QLSV.Core.LINQ
         /// Sửa thông tin của nhiều Phòng thi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdatePhongThi(IList<PhongThi> list)
+        public static bool UpdatePhongThi(IEnumerable<PhongThi> list)
         {
             try
             {
@@ -328,19 +302,17 @@ namespace QLSV.Core.LINQ
         /// Sửa lại đáp án đúng của câu hỏi
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateDapAn(DapAn item)
+        private static void UpdateDapAn(DapAn item)
         {
             try
             {
                 Conn.ExcuteQuerySql("UPDATE DAPAN SET Dapan = '" + item.Dapan + "' " +
                                     "WHERE MaMon = '" + item.MaMon + "' and MaDe = '" + item.MaDe + "' " +
                                     "and CauHoi = " + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -349,7 +321,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="list">danh sách đối tượng đáp án được sửa</param>
         /// <returns>true</returns>
-        public static bool UpdateDapAn(IList<DapAn> list)
+        public static void UpdateDapAn(IEnumerable<DapAn> list)
         {
             try
             {
@@ -357,12 +329,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateDapAn(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -370,7 +340,7 @@ namespace QLSV.Core.LINQ
         /// Sửa lại đáp án đúng của 1 câu hỏi
         /// </summary>
         /// <returns>true</returns>
-        private static bool UpdateThangDiem(DapAn item)
+        private static void UpdateThangDiem(DapAn item)
         {
             try
             {
@@ -379,12 +349,10 @@ namespace QLSV.Core.LINQ
                                     "WHERE MaMon = '" + item.MaMon + "' and MaDe = '" + item.MaDe + "' " +
                                     "and CauHoi =" + item.CauHoi + " and IdKyThi= " + item.IdKyThi + "";
                 Conn.ExcuteQuerySql(str);
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -393,7 +361,7 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="list">danh sách đối tượng đáp án được sửa</param>
         /// <returns>true</returns>
-        public static bool UpdateThangDiem(IList<DapAn> list)
+        public static void UpdateThangDiem(IEnumerable<DapAn> list)
         {
             try
             {
@@ -401,12 +369,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateThangDiem(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -415,18 +381,16 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="hs"></param>
         /// <returns></returns>
-        public static bool UpdateXepPhong(XepPhong hs)
+        public static void UpdateXepPhong(XepPhong hs)
         {
             try
             {
                 Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = " + hs.IdPhong + " where IdSV = " + hs.IdSV +
                                     " and IdKyThi =" + hs.IdKyThi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -434,7 +398,7 @@ namespace QLSV.Core.LINQ
         /// sửa phòng thi cho sinh viên
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXepPhong(IList<XepPhong> list)
+        public static bool UpdateXepPhong(IEnumerable<XepPhong> list)
         {
             try
             {
@@ -455,17 +419,15 @@ namespace QLSV.Core.LINQ
         /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXepPhongNull(int idkythi)
+        public static void UpdateXepPhongNull(int idkythi)
         {
             try
             {
                 Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdKyThi = " + idkythi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -473,18 +435,16 @@ namespace QLSV.Core.LINQ
         /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXepPhongNull(XepPhong item)
+        private static void UpdateXepPhongNull(XepPhong item)
         {
             try
             {
                 Conn.ExcuteQuerySql(" update XEPPHONG set IdPhong = null where IdPhong = " + item.IdPhong +
                                     " and IdKyThi = " + item.IdKyThi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -492,7 +452,7 @@ namespace QLSV.Core.LINQ
         /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXepPhongNull(IList<XepPhong> list)
+        public static void UpdateXepPhongNull(IEnumerable<XepPhong> list)
         {
             try
             {
@@ -500,12 +460,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateXepPhongNull(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -513,18 +471,16 @@ namespace QLSV.Core.LINQ
         /// xóa 1 sinh viên đã được xếp phòng
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXP_Null(XepPhong item)
+        private static void UpdateXP_Null(XepPhong item)
         {
             try
             {
                 Conn.ExcuteQuerySql("update XEPPHONG set IdPhong = null where IdSV = " + item.IdSV + " and IdKyThi = " +
                                     item.IdKyThi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -532,7 +488,7 @@ namespace QLSV.Core.LINQ
         /// khi xóa bảng KT_PHONG thi Update idphong bảng XEPPHONG thành NULL
         /// </summary>
         /// <returns></returns>
-        public static bool UpdateXP_Null(IList<XepPhong> list)
+        public static bool UpdateXP_Null(IEnumerable<XepPhong> list)
         {
             try
             {
@@ -553,19 +509,17 @@ namespace QLSV.Core.LINQ
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateTangSiSo(int idphong, int idkt)
+        public static void UpdateTangSiSo(int idphong, int idkt)
         {
             try
             {
                 Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong +
                                     " and IdKyThi = " + idkt + ") + " + 1 + ") where IdPhong = " + idphong +
                                     " and IdKyThi = " + idkt + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -573,23 +527,21 @@ namespace QLSV.Core.LINQ
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateGiamSiSo(int idphong, int idkt)
+        private static void UpdateGiamSiSo(int idphong, int idkt)
         {
             try
             {
                 Conn.ExcuteQuerySql("update KT_PHONG set SiSo = ((select SiSo from KT_PHONG where IdPhong = " + idphong +
                                     " and IdKyThi = " + idkt + ") - " + 1 + ") where IdPhong = " + idphong +
                                     " and IdKyThi = " + idkt + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
-        public static bool UpdateGiamSiSo(IList<KTPhong> list)
+        public static void UpdateGiamSiSo(IEnumerable<KTPhong> list)
         {
             try
             {
@@ -597,12 +549,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateGiamSiSo(item.IdPhong, item.IdKyThi);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -610,18 +560,16 @@ namespace QLSV.Core.LINQ
         /// giảm số lượng sinh viên lên 1 khi xếp 1 sinh viên vào phòng
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateKtPhong(int idphong1, int idphong2, int idkt)
+        public static void UpdateKtPhong(int idphong1, int idphong2, int idkt)
         {
             try
             {
                 UpdateTangSiSo(idphong1, idkt);
                 UpdateGiamSiSo(idphong2, idkt);
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -630,22 +578,20 @@ namespace QLSV.Core.LINQ
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static bool UpdateKtPhong(KTPhong item)
+        private static void UpdateKtPhong(KTPhong item)
         {
             try
             {
                 Conn.ExcuteQuerySql("update KT_PHONG set SiSo = " + item.SiSo + " where IdPhong = " + item.IdPhong +
                                     " and IdKyThi =" + item.IdKyThi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
-        public static bool UpdateKtPhong(IList<KTPhong> list)
+        public static bool UpdateKtPhong(IEnumerable<KTPhong> list)
         {
             try
             {
@@ -666,17 +612,15 @@ namespace QLSV.Core.LINQ
         /// khi xóa bảng XEPPHONG thì cho sĩ số phòng về 0
         /// </summary>
         /// <returns>true nếu thành công</returns>
-        public static bool UpdateKtPhong(int idkythi)
+        public static void UpdateKtPhong(int idkythi)
         {
             try
             {
                 Conn.ExcuteQuerySql(" update KT_PHONG set SiSo = 0 where IdKyThi = " + idkythi + "");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -688,18 +632,16 @@ namespace QLSV.Core.LINQ
         /// <param name="idkythi"></param>
         /// <param name="made"></param>
         /// <returns>true</returns>
-        public static bool UpdateMaSinhVien(int masv1, int masv2, int idkythi, string made)
+        public static void UpdateMaSinhVien(int masv1, int masv2, int idkythi, string made)
         {
             try
             {
                 Conn.ExcuteQuerySql("update BAILAM set MaSV = " + masv1 + " WHERE MaSV = " + masv2 + " and IdKyThi = " +
                                     idkythi + " and MaDe = N'" + made + "'");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -707,7 +649,7 @@ namespace QLSV.Core.LINQ
         /// sửa lại điểm thi trong bản BAILAM
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateDiemThi(BaiLam item)
+        private static void UpdateDiemThi(BaiLam item)
         {
             try
             {
@@ -715,12 +657,10 @@ namespace QLSV.Core.LINQ
                 var str = "update BAILAM set DiemThi = " + diemthi + " WHERE MaSV = " + item.MaSV +
                           " and IdKyThi = " + item.IdKyThi + "";
                 Conn.ExcuteQuerySql(str);
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
@@ -728,7 +668,7 @@ namespace QLSV.Core.LINQ
         /// sửa lại điểm thi trong bản BAILAM
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateDiemThi(IList<BaiLam> list)
+        public static void UpdateDiemThi(IEnumerable<BaiLam> list)
         {
             try
             {
@@ -736,12 +676,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateDiemThi(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
         
@@ -749,21 +687,19 @@ namespace QLSV.Core.LINQ
         /// sửa lại năm học
         /// </summary>
         /// <returns>true</returns>
-        public static bool UpdateNamHoc(NamHoc item)
+        private static void UpdateNamHoc(NamHoc item)
         {
             try
             {
                 Conn.ExcuteQuerySql("update NAMHOC set NamHoc = '" + item.namhoc + "' WHERE ID = "+item.ID+"");
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
-        public static bool UpdateNamHoc(IEnumerable<NamHoc> list)
+        public static void UpdateNamHoc(IEnumerable<NamHoc> list)
         {
             try
             {
@@ -771,12 +707,10 @@ namespace QLSV.Core.LINQ
                 {
                     UpdateNamHoc(item);
                 }
-                return true;
             }
             catch (Exception ex)
             {
                 Log2File.LogExceptionToFile(ex);
-                return false;
             }
         }
 
