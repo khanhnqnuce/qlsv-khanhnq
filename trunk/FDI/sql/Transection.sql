@@ -22,6 +22,6 @@ BEGIN CATCH
    SELECT @ErrorMessage = 'Loi: ' + ERROR_MESSAGE()
    RAISERROR(@ErrorMessage, 16, 1)
 END CATCH
- 
+ ----------
 SELECT * FROM #t2
 delete from #t2
