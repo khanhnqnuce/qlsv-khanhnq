@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Car data:</h2>
+ @model IEnumerable<Caching.Models.Vehicle>
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <th>Id </th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+ 
+    @foreach (var vehicle in Model) {
+ 
+        <tr>
+            <td>@vehicle.id.ToString()</td>
+            <td>@vehicle.Name</td>
+            <td>@string.Format("{0:c0}", vehicle.Price)></td>
+        </tr>
+ 
+    }
+ 
+</table>
+ 
+@using (Html.BeginForm()) {
+    <input type="submit" value="Invalidate Cache" id="InvalidateButton" name="InvalidateButton" />
+} 
