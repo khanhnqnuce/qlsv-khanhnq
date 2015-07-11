@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FDI.Simple.NewsItem>
+<h5 class="font-semibold">BÀI NỔI BẬT</h5>
+<div class="line line-dashed"></div>
+<div>
+	@{
+		if (Model != null)
+		{
+			foreach (var item in Model)
+			{
+				<article class="media m-t-none">
+					<a class="pull-left thumb thumb-wrapper m-t-xs" href="/@item.TitleAscii" title="@item.Title">
+						<img src="@FDI.Utility.GetUrlPicture(@item.PictureUrl)" title="@item.Title" alt=""/>
+					</a>
+					<div class="media-body">
+						<a href="/@item.TitleAscii" class="font-semibold" title="@item.Title">@item.Title</a>
+						<div class="text-xs block m-t-xs">
+							<a href="/tin-tuc/@item.CateAscii">@item.CateName</a> @item.DateCreated
+						</div>
+					</div>
+				</article>
+				<div class="line"></div>
+			}
+		}
+	}
+</div>

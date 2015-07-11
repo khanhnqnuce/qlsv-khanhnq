@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FDI.Simple.ProductCompatibleAccessoriesItem>
+
+<input type="hidden" class="main-product-accessory" value="@ViewBag.ProductID"/>
+
+<div class="searchbox searchbox-popup">
+    <fieldset class="bulk-actions">
+        <input type="text" class="autocomplete-accessory" placeholder="Tên sản phẩm" />
+        <select class="brand-accessory">
+            <option value="">Chọn thương hiệu</option>
+            @foreach (var item in ViewBag.BrandID)
+            { 
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+        <select class="productType-accessory">
+            <option value="">Chọn loại sản phẩm</option>
+            @foreach (var item in ViewBag.ProductTypeID)
+            { 
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+        <div class="result-autocomplte">
+            <ul></ul>
+        </div>
+    </fieldset>
+</div>
+
+<div class="grid-container" id="gridItems">
+    <table class="gridView list-product-accessory" cellspacing="1">
+        <tr>
+            <th><a href="#Field=ID">ID<span /></a></th>
+            <th><a href="#Field=Name">Tên sản phẩm<span /></a></th>
+            <th class="act_delete">
+                @if (ViewBag.Delete == true)
+                {
+                    <a href="#deleteAll" class="deleteAll" title="Xóa danh sách đã chọn">
+                        <img src="/Content/Admin/images/gridview/delete.gif" style="border: none" alt="Xóa danh sách đã chọn" />
+                    </a>
+                }
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.CompatibleAccessoriesID" title="@item.CompatibleAccessoriesName">
+                <td>@item.ID</td>
+                <td>@item.CompatibleAccessoriesName</td>
+                <td class="act_delete">
+                    <a href="#33" class="delete-accessory-product" data-id="@item.ID" title="Xóa: @item.CompatibleAccessoriesName">
+                        <img src="/Content/Admin/images/gridview/delete.gif" border="0"></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,9 @@
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\FDI.Simple.dll
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\FDI.Simple.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\FDI.Base.dll
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\EntityFramework.dll
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\FDI.Base.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\bin\Release\EntityFramework.xml
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\obj\Release\FDI.Simple.csprojResolveAssemblyReference.cache
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\obj\Release\FDI.Simple.dll
+D:\PROJECTS\FDIsoft\Code\FDI.Simple\obj\Release\FDI.Simple.pdb

@@ -1,0 +1,155 @@
+﻿@using FDI
+@using FDI.Utils
+@model IEnumerable<FDI.Simple.MenuItem>
+@{
+    var url = Request.Url != null ? Request.Url.AbsolutePath : "";
+    string[] moduleArr = url.Split('/');
+    var controller = "trang-chu";
+    var seach = Request.QueryString["seach"] ?? "";
+    if (moduleArr[1].Length > 0)
+    {
+        controller = moduleArr[1];
+    }
+}
+<header id="header" class="navbar navbar-fixed-top" data-spy="affix" data-offset-top="1">
+    <div class="header-mobile hidden-lg hidden-md">
+        <div id="st-trigger-effects"><button class="button-black" data-effect="sidebar-effect"><i class="fa fa-bars fa-lg trans-hover"></i></button></div>
+        <a href="http://fdisoft.com/" class="logo-mobile"><img src="/Content/Publishing/Images/logoFDI-white.png" alt="logo" title="FDISoft" /></a>
+        <form id="search-mobile"><input type="search" placeholder="Từ khóa tìm kiếm..."/></form>
+                
+                @*<div class="menu-search">
+                    <i class="fa fa-search search-btn"></i>
+                </div>
+                <div class="search-box2" style="display: none;">
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="text" placeholder="Nhập từ khóa" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">Tìm kiếm</button></span>
+                        </div>
+                    </form>
+                </div>*@
+    </div>
+
+    <div class="container header-desktop hidden-xs hidden-sm">
+        <div class="row">
+            <div class="logo col-md-3">
+                <a href="http://fdisoft.com/" class="navbar-brand">
+                    <img src="/Content/Publishing/Images/logoFDI.png" class="logo-big-dk" alt="logo" title="FDISoft" /></a>
+            </div>
+            <nav class="topmenu col-md-9">
+                <section class="navbar" id="main_nav">
+                    <div class="navbar-inner">
+                        <nav class="nav-collapse">
+                            <ul class="nav">
+                                @foreach (var item in Model.Where(m => m.MenuParentID == 1).OrderBy(m=>m.MenuOrder).ToList())
+                                {
+                                    var className = controller.ToLower().Equals(item.MenuLink.ToLower()) ? "active" : "";
+                                    var cssdrop = "";
+                                    if (item.MenuLink.ToLower().Equals("home"))
+                                    {
+                                    <li class="@className FDI-active-nav">
+                                        <a href="/"><i class="fa fa-home"></i></a>
+                                    </li>
+                                    }
+                                    else
+                                    {
+                                        if (Model.Any(m => m.MenuParentID == item.MenuID))
+                                        {
+                                            //neu la dịch vụ lay menu 3 cap
+                                            if (item.MenuLink == WebConfig.DichVu)
+                                            {
+                                    <li class="dropdown"><a href="/@item.MenuLink" class="dropdown-toggle disabled" data-toggle="dropdown">@item.MenuTitle</a>
+                                        <div class="dropdown-menu mega-menu menu-fdi-sub container">
+                                            <!-- Mega 1 -->
+                                            @foreach (var itemc in Model.Where(m => m.MenuParentID == item.MenuID).OrderBy(m=>m.MenuOrder).ToList())
+                                            {
+                                                <div class="mega-col col-md-3 mega-col-inner">
+                                                    <div class="mega-col-inner">
+                                                        <div class="widget-dropdown">
+                                                            @*<div class="menu-title"><a href="/@itemc.MenuLink">sdffffff @itemc.MenuTitle</a></div>*@
+                                                            <div class="menu-title"><a href="/@itemc.MenuLink">@itemc.MenuTitle</a></div>
+                                                            <div class="widget-html">
+                                                                <div class="widget-inner">
+                                                                    <ul>
+                                                                        @foreach (var itemc2 in Model.Where(m => m.MenuParentID == itemc.MenuID).OrderBy(m=>m.MenuOrder).ToList())
+                                                                        {
+                                                                            <li><a href="/@itemc2.MenuLink"><i class="fa fa-star"></i><span>@itemc2.MenuTitle</span></a>
+                                                                            </li>
+                                                                        }
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </li>
+                                            }
+                                            else
+                                            {
+                                    <li class="@className dropdown">
+                                        <a href="/@item.MenuLink">@item.MenuTitle</a>
+                                        <div class="dropdown-menu mega-menu" style="width: 310px;">
+                                            <!-- Mega 1 -->
+                                            <div class="mega-col mega-col-1 col-md-4 mega-col-inner">
+                                                <div class="mega-col-inner">
+                                                    <div class="widget-dropdown">
+                                                        <div class="widget-html">
+                                                            <div class="widget-inner">
+                                                                <ul>
+                                                                    @foreach (var itemc in Model.Where(m => m.MenuParentID == item.MenuID).OrderBy(m=>m.MenuOrder).ToList())
+                                                                    {
+                                                                        <li><a href="/@itemc.MenuLink"><i class="fa fa-star"></i><span>@itemc.MenuTitle</span></a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                    <li class="@className">
+                                        <a href="/@item.MenuLink">@item.MenuTitle</a>
+                                    </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                            <!-- /.nav -->
+                        </nav>
+                    </div>
+                    <!-- /.nav-inner -->
+                </section>
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form id="search-nav" method="GET">
+                            <input class="sb-search-input" placeholder="Nhập từ khóa tìm kiếm..." type="search" name="search" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"></span>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- jQuery nav -->
+@*<script defer src="/Content/Publishing/js/jquery-1.11.0.min.js?v=2105"></script>
+<script defer src="/Content/Publishing/js/modernizr.min.js?v=2105"></script>
+<script defer src="/Content/Publishing/js/classie.js?v=2105"></script>
+<script defer src="/Content/Publishing/js/sidebarEffects.js?v=2105"></script>
+<!----search-scripts---->
+<script defer src="/Content/Publishing/js/uisearch.js?v=2105"></script>*@

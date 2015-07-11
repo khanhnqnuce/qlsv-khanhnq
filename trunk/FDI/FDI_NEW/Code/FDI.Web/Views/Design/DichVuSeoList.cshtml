@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FDI.Simple.NewsItem>
+@{
+    ViewBag.Title = ViewBag.CatTitle ??"";
+    ViewBag.Description = ViewBag.CatDescription??"";
+    ViewBag.Keywords = ViewBag.CatKeyword ??"";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="/Content/Publishing/css/news.css?v=2105" rel="stylesheet" />
+<section id="content">
+    @Html.Action("ModulHTML", "Home", new { key = "News_Top" })
+        <div class="div-news-two">
+            <div class="container">
+                <div class="row" style="position: relative;">
+                    
+
+                    <div class="col-sm-9 module-news-right">                        
+                        @{
+                            if (Model.Any() && Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+								<div class="news-box-right">
+									<div class="col-xs-3 col-sm-1 news-date">
+										<div class="date-box"><span class="day">@Convert.ToDateTime(item.DateCreated).ToString("dd")</span><span class="year">@Convert.ToDateTime(item.DateCreated).ToString("MM yyyy")</span></div>
+									</div>
+									<div class="col-xs-9 col-sm-11 news-right-main">
+										<h3 class="title"><a href="/@item.TitleAscii">@item.Title</a>
+										</h3>
+										<div class="post_data">
+											<span class="fa fa-user"><a href="/@item.TitleAscii" title="Posts by admin" rel="author">@item.UserNameCreate</a></span>
+											<span class="fa fa-tag"><a href="/@item.TitleAscii" rel="category tag">Tag</a></span>
+										</div>
+										<a href="/@item.TitleAscii">
+											<img src="@FDI.Utility.GetUrlOriginalPicture(item.PictureUrl)" style="width: 100%; margin: 20px 0;" alt="" title=""/></a>
+										<p>@item.Description</p>
+									</div>
+								</div>
+									}
+								<div class="col-xs-11 col-xs-offset-1 div-phantrang">
+									<div class="dot-fillin">
+										<ul>
+											@Html.Raw(ViewBag.HtmlPage)
+										</ul>
+									</div>
+								</div>
+                            }
+                            else
+                            {
+                            <center>
+                                <h1><strong>Không tìm thấy tin tức nào.</strong>
+                                </h1></center>
+                            }
+                        }
+                    </div>
+                    <div class="col-sm-3" style="position: sticky;">
+                        <!--Chủ đề bạn quan tâm-->
+                        @Html.Action("DichVuSeoLeftMenu", "Design")
+                        <!--/Chủ đề bạn quan tâm-->
+                        <!--TinNoiBat-->
+                        @Html.Action("TinNoiBat", "News")
+                        <!--/TinNoiBat-->
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

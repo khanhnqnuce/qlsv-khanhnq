@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = ViewBag.CatTitle != null ? ViewBag.CatTitle : "Kiến thức chia sẻ Website 1";
+    ViewBag.Description = ViewBag.CatDescription != null ? ViewBag.CatDescription : "Kiến thức chia sẻ Website 1";
+    ViewBag.Keywords = ViewBag.CatKeyword != null ? ViewBag.CatKeyword : "Kiến thức chia sẻ Website 1";
+}
+@using FDI
+@model List<FDI.Simple.NewsItem>
+<link href="/Content/Publishing/css/DVTKW.css?v=2105" rel="stylesheet" />
+<section id="content">
+    @Html.Action("ModulHTML","Home",new{key="designweb_dv_module_two"})
+    <div class="pmmore-module-one">
+        <div class="container">
+            <div class="row">
+                <a class="text-ktcs">Kiến thức chia sẻ</a>
+                <div class="title-crumbs">
+                    <a href="/">Trang chủ</a>/<a href="/@ViewBag.CatNameAscii">@ViewBag.CatName</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pmlist-module-two">
+        <div class="container">
+            <div class="row">
+                <div class="pmlist-mdtwo-main">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="pmlist-box-news col-sm-6">
+                            <div class="dvpm-list-img col-sm-4">
+                                <a href="/@item.TitleAscii">
+                                    <img src="@FDI.Utility.GetUrlOriginalPicture(item.PictureUrl)" alt="" title="" />
+                                </a>
+                            </div>
+                            <div class="dvpm-list-main col-sm-8">
+                                <a href="/@item.TitleAscii" class="dv-post-title">@item.Title</a>
+                                <p class="dv-post-date">@item.DateCreated.Value.ToString("dd/MM/yyyy") | @item.UserNameCreate</p>
+                                <p>@FDI.Utils.MyString.Truncate(item.Description,120)</p>
+                            </div>
+                        </div>
+                        
+                    }
+
+                </div>
+                <div class="div-phantrang">
+                    <div class="dot-fillin">
+                        @Html.Raw(ViewBag.HtmlPage)
+                    </div>
+                    <script src="/Content/Publishing/js/dots.js?v=2105"></script>
+                    <script>
+                        [].slice.call(document.querySelectorAll('.dot-fillin > ul')).forEach(function (nav) {
+                            new DotNav(nav, { callback: function (idx) { } });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Action("ModulHTML", "Home", new { key = "ChuyenVienTuVan" })
+</section>

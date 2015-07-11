@@ -1,0 +1,675 @@
+﻿@model FDI.Base.Shop_Product_Variant
+@{
+    ViewBag.Title = ViewBag.ActionText + " biến thể sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AjaxShare.cshtml";
+}
+<link href="/Content/Admin/css/datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Content/Admin/js/jquery-ui-timepicker-addon.js")" type="text/javascript"></script>
+<style type="text/css">
+    .tableforms input[type=datetime] {
+        width: 250px;
+    }
+
+    .ui-datepicker-trigger {
+        position: relative;
+        top: 3px;
+        left: 5px;
+    }
+
+    #preOrderShortDes {
+        visibility: visible;
+    }
+
+    #preOrderDes {
+        visibility: visible;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        //if(document.getElementById("AvailableForPreOrder").checked == true) {
+        //    document.getElementById("preOrderShortDes").style.visibility = "visible";
+        //    document.getElementById("preOrderDes").style.visibility = "visible";
+        //}
+        //LoadCKEDITOR('PreOrderShortDescription', false);
+        //LoadCKEDITOR('PreOrderDescription', false);
+        LoadCKEDITOR('MetaDescription', false);
+
+        $("#@Html.IdFor(model => model.AvailableStartDateTimeUtc), #@Html.IdFor(model => model.AvailableStartDateTimeUtc)").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/Admin/images/calendar.png",
+            buttonImageOnly: true
+        });
+
+        $("#@Html.IdFor(model => model.AvailableEndDateTimeUtc), #@Html.IdFor(model => model.AvailableEndDateTimeUtc)").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/Admin/images/calendar.png",
+            buttonImageOnly: true
+        });
+
+        var urlSelectImages = "/Admin/GalleryPictureSelect/?MutilFile=true&Container=Images";
+        $("#Button_Images").click(function() {
+            selectPicture(urlSelectImages + "&ValuesSelected=" + $("#Value_Images").val());
+        });
+
+        createCKFider('ImagesUrl', 162);
+        var idProduct = $('#ProductID').val();
+        var actionDo = $('#do').val();
+        var idVariant = $('#ItemID').val();
+        
+        var lblColor = $('#lblColor').text();
+        var colorId = $('#ColorID').val();
+
+        var lblSku = $('#lblSku').text();
+        var sku = $('#Sku').val();
+        
+        var lblPrice = $('#lblPrice').text();
+        var price = $('#Price').val();
+
+        var lblPriceAfterTax = $('#lblPriceAfterTax').text();
+        var priceAfterTax = $('#PriceAfterTax').val();
+        
+        var lblPriceBeforeTax = $('#lblPriceBeforeTax').text();
+        var priceBeforeTax = $('#PriceBeforeTax').val();
+        
+        var lblPriceOnlineBeforeTax = $('#lblPriceOnlineBeforeTax').text();
+        var priceOnlineBeforeTax = $('#PriceOnlineBeforeTax').val();
+        
+        var lblPriceOnline = $('#lblPriceOnline').text();
+        var priceOnline = $('#PriceOnline').val();
+        
+        var lblPriceMarket = $('#lblPriceMarket').text();
+        var priceMarket = $('#PriceMarket').val();
+        
+        var lblDayDisplayProduct = $('#lblDayDisplayProduct').text();
+        var availableStartDateTimeUtc = $('#AvailableStartDateTimeUtc').val();
+        
+        var lblIsPublished = $('#lblIsPublished').text();
+        var isPublished;
+        if ($('#IsPublished').is(':checked')) {
+            isPublished = true;
+        } else {
+            isPublished = false;
+        }
+
+        var lblIsHomePage = $('#lblIsHomePage').text();
+        var isHomePage;
+        if ($('#IsHomePage').is(':checked')) {
+            isHomePage = true;
+        }else {
+            isHomePage = false;
+        }
+
+        var urlLog = '@Url.Action("Action","LogProduct")';
+
+        var lblIsAllowOrderOutStock = $('#lblIsAllowOrderOutStock').text();
+        var isAllowOrderOutStock;
+        
+        if ($('#IsAllowOrderOutStock').is(':checked')) {
+            isAllowOrderOutStock = true;
+        } else {
+            isAllowOrderOutStock = false;
+        }
+        
+        $(".fieldSearchDate").datepicker({
+            showOn: "button",
+            buttonImageOnly: true
+        }).mask('00/00/0000');
+        
+        $("#ProductBrandForm").validate({
+            rules: {
+                Sku:
+                {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 255
+                    @*remote: "@Url.Action("CheckBySku", "ProductVariant", new {productId = Model.ID })"*@
+                },
+                ProductID:
+                {
+                    //required: {
+                    //    depends: function(element) {
+                    //        return $("#ProductID").val() == "0";
+                    //    }
+                    //}
+                    required: true,
+                    NumberNotZero: true
+                },
+                MinDeposit: {
+                    required: {
+                        depends: function(element) {
+                            return $("#AvailableForPreOrder").is(':checked') && $('#MinDeposit').val().length > 0;
+                        }
+                    }
+                },
+                ColorID:
+                {
+                    //required: {
+                    //    depends: function(element) {
+                    //        return $("#ColorID").val() == "0";
+                    //    }
+                    //}
+                    required: true,
+                    NumberNotZero: true
+                }
+            },
+            messages: {
+                Sku: "Mã sku đã tồn tại",
+                ProductID:"Bạn cần chọn sản phẩm",
+                ColorID:"Bạn cần chọn màu cho sản phẩm",
+                //RecurringTitle: "Bạn cần nhập tiêu đề cho chuyên mục trả góp", 
+                MustRepaidPercent: "Bạn cần nhấp số % giá trị thanh toán trước", 
+                //RecurringLength: "Bạn cần nhấp thời gian trả góp", 
+                InterestRate: "Bạn cần nhập lãi xuất", 
+                MetaKeywordRecurring: "Bạn cần nhập meta keyword",
+                MetaDescriptionRecurring: "Bạn cần nhập meta description",
+                MinDeposit: 'Bạn cập nhật số tiền nhỏ nhất để đặt cọc'
+            },
+            submitHandler: function() { //onSubmit
+                updateEditor();
+
+                $('.maskPrice').each(function (i) {
+                    $(this).val($(this).val().replace(/\./g,''));
+                });
+                
+                $.post('@Url.Action("Actions", "ProductVariant")', $("#ProductBrandForm").serialize(), function(data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        if (actionDo == 'Edit') {
+                            $.post(urlLog, {
+                                lblColor : lblColor,
+                                colorId : colorId, 
+                                lblSku :lblSku,
+                                sku : sku,
+                                lblPrice :lblPrice,
+                                price :price,
+                                lblPriceAfterTax : lblPriceAfterTax,
+                                priceAfterTax : priceAfterTax,
+                                lblPriceBeforeTax : lblPriceBeforeTax,
+                                priceBeforeTax : priceBeforeTax,
+                                lblPriceOnlineBeforeTax : lblPriceOnlineBeforeTax,
+                                priceOnlineBeforeTax : priceOnlineBeforeTax,
+                                lblPriceOnline : lblPriceOnline,
+                                priceOnline : priceOnline,
+                                lblPriceMarket : lblPriceMarket,
+                                priceMarket : priceMarket,
+                                lblDayDisplayProduct: lblDayDisplayProduct,
+                                availableStartDateTimeUtc : availableStartDateTimeUtc,
+                                lblIsPublished : lblIsPublished,
+                                isPublished : isPublished,
+                                lblIsHomePage : lblIsHomePage,
+                                isHomePage : isHomePage,
+                                idProduct: idProduct,
+                                idVariant : idVariant,
+                                actionTable : 2 ,
+                                lblIsAllowOrderOutStock : lblIsAllowOrderOutStock,
+                                isAllowOrderOutStock : isAllowOrderOutStock
+                            });
+                        }
+
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $('#addSubmit').click(function() {
+            updateEditor();
+            
+            $('.maskPrice').each(function (i) {
+                $(this).val($(this).val().replace(/\./g,''));
+            });
+            
+            $.post("/Admin/ProductVariant/AddVariant", $("#ProductBrandForm").serialize(), function(data) {
+                if (data.Erros)
+                    createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                else {
+                    $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                    createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                }
+            });
+            return false;
+        });
+
+        $("#close").click(function() {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+    
+    $(".maskPrice").mask('000.000.000.000.000', { reverse: true });
+    
+    $.validator.addMethod('NumberNotZero', function (value) {
+        return Number(value) > 0;
+    }, 'Cần chọn một giá trị.');
+</script>
+
+<form id="ProductBrandForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <fieldset class="forms">
+        <table class="tableforms" cellspacing="1" width="100%">
+            <tr>
+                <td>
+                    <label id="lblProduct">Sản phẩm</label></td>
+                <td>
+                    <select name="ProductID" id="ProductID">
+                        <option value="0">Chọn sản phẩm</option>
+                        @foreach (var item in ViewBag.ProductID)
+                        { 
+                            <option value="@item.ID"@((item.ID == Model.ProductID) ? " selected" : string.Empty)>@item.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblColor">Màu</label></td>
+                <td>
+                    <select name="ColorID" id="ColorID">
+                        <option value="0">Chọn màu</option>
+                        @foreach (var item in ViewBag.ColorID)
+                        { 
+                            <option value="@item.ID"@((item.ID == Model.ColorID) ? " selected" : string.Empty)>@item.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 160px;">
+                    <label>Chọn các hình ảnh khác</label></td>
+                <td>
+                    <button type="button" id="Button_Images">Chọn ảnh</button>
+                    <input type="hidden" name="Value_Images" id="Value_Images" value="@(string.Join(",", Model.Shop_Product_Variant_Picture_Mapping.Select(c => c.PictureID)))"/>
+                    <div id="Text_Images">
+                        <table class="gridView" cellspacing="1">
+                            @foreach (var item in Model.Shop_Product_Variant_Picture_Mapping)
+                            {
+                                <tr title="@item.Gallery_Picture.Name" id="@item.PictureID">
+                                    <td>@item.PictureID</td>
+                                    <td>
+                                        @Gallery.DisplayImage(item.Gallery_Picture.Folder + item.Gallery_Picture.Url, 120)
+                                    </td>
+                                    <td>
+                                        <p>Tên ảnh: <b>@item.Gallery_Picture.Name</b></p>
+                                        <p>Ngày tạo: <i>@item.Gallery_Picture.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                        <p>Chuyên mục: <b>@((item.Gallery_Picture.CategoryID.HasValue) ? item.Gallery_Picture.Gallery_Category.Name : "")</b></p>
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('Images'); return false;">Xóa</button>
+                                    </td>
+                                    <td class="hidden">
+                                        <input type="checkbox" value="@item.PictureID" class="check" /></td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblSku">Mã Sku</label></td>
+                <td>
+                    <input type="text" id="Sku" name="Sku" value="@Model.Sku" />
+                    @*    @Html.EditorFor(model => model.Sku)*@
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblPrice">Gía tiền</label></td>
+                <td>
+                    <input type="text" name="Price" id="Price" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.Price)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td id="lblPriceAfterTax">
+                    <label>Gía tiền sau thuế</label></td>
+                <td>
+                    <input type="text" name="PriceAfterTax" id="PriceAfterTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceAfterTax)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblPriceBeforeTax">Giá tiền trước thuế</label></td>
+                <td>
+                    <input type="text" name="PriceBeforeTax" id="PriceBeforeTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceBeforeTax)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblPriceOnlineBeforeTax">Giá online trước thuế</label></td>
+                <td>
+                    <input type="text" name="PriceOnlineBeforeTax" id="PriceOnlineBeforeTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOnlineBeforeTax)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblPriceOnline">Giá online</label></td>
+                <td>
+                    <input type="text" name="PriceOnline" id="PriceOnline" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOnline)"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblPriceMarket">Giá thị trường</label></td>
+                <td>
+                    <input type="text" name="PriceMarket" id="PriceMarket" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceMarket)"/>
+                </td>
+            </tr>
+
+          @*  <tr>
+                <td>
+                    <label>Trả góp</label></td>
+                <td>
+                    <input type="checkbox" name="IsRecurring" id="IsRecurring" value="True" @((Model.IsRecurring.HasValue && Model.IsRecurring.Value == true) ? " checked" : string.Empty)/>
+                    <div class="form-recurring">
+                        @if (Model.IsRecurring.HasValue && Model.IsRecurring.Value)
+                        {
+                            @Html.Action("ProductRecurring", "ProductVariant", new { productId = Model.ID })
+                        }
+                    </div>
+                </td>
+            </tr>*@
+
+            <tr>
+                <td>
+                    <label id="lblStockQuantity">Số lượng trong kho</label></td>
+                <td>
+                    <input type="text" name="StockQuantity" id="StockQuantity" value="@Model.StockQuantity"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hiển thị kho</label></td>
+                <td>
+                    <input type="checkbox" name="DisplayStockAvailability" id="DisplayStockAvailability" value="True" @((Model.DisplayStockAvailability.HasValue && Model.DisplayStockAvailability.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hiển thị số lượng trong kho</label></td>
+                <td>
+                    <input type="checkbox" name="DisplayStockQuantity" id="DisplayStockQuantity" value="True" @((Model.DisplayStockQuantity.HasValue && Model.DisplayStockQuantity.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Số lượng trong kho ít nhất</label></td>
+                <td>
+                    <input type="text" name="MinStockQuantity" id="MinStockQuantity" value="@Model.MinStockQuantity"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Cảnh báo về số lượng sản phẩm</label></td>
+                <td>
+                    <input type="checkbox" name="NotifyAdminForQuantityBelow" id="NotifyAdminForQuantityBelow" value="True" @((Model.NotifyAdminForQuantityBelow.HasValue && Model.NotifyAdminForQuantityBelow.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Số lượng đặt hàng ít nhất</label></td>
+                <td>
+                    <input type="text" name="OrderMinimumQuantity" id="OrderMinimumQuantity" value="@Model.OrderMinimumQuantity"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Số lượng đặt hàng nhiều nhất</label></td>
+                <td>
+                    <input type="text" name="OrderMaximumQuantity" id="OrderMaximumQuantity" value="@Model.OrderMaximumQuantity"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Ẩn nút mua</label></td>
+                <td>
+                    <input type="checkbox" name="DisableBuyButton" id="DisableBuyButton" value="True" @((Model.DisableBuyButton.HasValue && Model.DisableBuyButton.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hiển thị trong wishlist</label></td>
+                <td>
+                    <input type="checkbox" name="DisableWishlistButton" id="DisableWishlistButton" value="True" @((Model.DisableWishlistButton.HasValue && Model.DisableWishlistButton.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Cho phép đặt hàng trước</label></td>
+                <td>
+                    @Html.CheckBox("AvailableForPreOrder")
+                    <fieldset class="forms @(Model.AvailableForPreOrder.HasValue && Model.AvailableForPreOrder.Value ? string.Empty : "hidden" )">
+                        <legend>Thông tin cấu hình đăt cọc</legend>
+                        <table class="tableforms" cellspacing="1" width="100%">
+                            <tr>
+                                <td style="width: 150px;">Số tiền đặt cọc nhỏ nhất</td>
+                                <td><input class="maskPrice" type="text" name="MinDeposit" id="MinDeposit" value="@FDI.Utility.FormatPrice(Model.MinDeposit)"/></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+            
+           @* <tr> 
+                <td>
+                    <label>Mô tả đặt hàng trước</label></td>
+                <td id="preOrderShortDes">
+                    <textarea rows="1" id="PreOrderShortDescription" name="PreOrderShortDescription">@(Model.PreOrderID.HasValue == false ? string.Empty : Model.Shop_Product_PreOrder.PreOrderShortDescription)</textarea>
+                </td>
+            </tr>*@
+
+           @* <tr>
+                <td>
+                    <label>Mô tả chi tiết đặt hàng trước</label></td>
+                <td id="preOrderDes">
+                    <textarea rows="1" id="PreOrderDescription" name="PreOrderDescription">@(Model.PreOrderID.HasValue == false ? string.Empty : Model.Shop_Product_PreOrder.PreOrderDescription)</textarea>
+                </td>
+            </tr>*@
+
+            <tr>
+                <td>
+                    <label>Gọi điện để hỏi giá</label></td>
+                <td>
+                    <input type="checkbox" name="CallForPrice" id="CallForPrice" value="True" @((Model.CallForPrice.HasValue && Model.CallForPrice == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblDayDisplayProduct">Ngày hiển thị sản phẩm</label></td>
+                
+                @*<td><input type="text" name="AvailableStartDateTimeUtc" class="fieldSearchDate" placeholder="Từ ngày" /><br />
+                <input type="text" name="AvailableEndDateTimeUtc" class="fieldSearchDate" placeholder="Tới ngày" />
+                    </td>*@
+                <td>Từ ngày @Html.EditorFor(model => model.AvailableStartDateTimeUtc)
+                    <br />
+                    Đến ngày @Html.EditorFor(model => model.AvailableEndDateTimeUtc)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblIsPublished">Publish</label></td>
+                <td>
+                    <input type="checkbox" name="IsPublished" id="IsPublished" value="True" @((Model.IsPublished.HasValue && Model.IsPublished.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Vị trí</label>
+                </td>
+                <td>
+                    <input type="text" name="Position" id="Position" value="@Model.Position"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblIsHomePage">Hiển thị trang chủ</label></td>
+                <td>
+                    <input type="checkbox" name="IsHomePage" id="IsHomePage" value="True" @((Model.IsHomePage.HasValue && Model.IsHomePage.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hiển thị slide</label></td>
+                <td>
+                    <input type="checkbox" name="IsSlider" id="IsSlider" value="True" @((Model.IsSlider.HasValue && Model.IsSlider.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Sản phẩm bán chạy</label></td>
+                <td>
+                    <input type="checkbox" name="IsBestSeller" id="IsBestSeller" value="True" @((Model.IsBestSeller.HasValue && Model.IsBestSeller.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="lblIsAllowOrderOutStock">Cho phép đặt hàng (hết hàng trong kho)</label></td>
+                <td>
+                    <input type="checkbox" name="IsAllowOrderOutStock" id="IsAllowOrderOutStock" value="True" @((Model.IsAllowOrderOutStock.HasValue && Model.IsAllowOrderOutStock.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Giảm giá</label></td>
+                <td>
+                    <input type="checkbox" name="IsApplyDiscount" id="IsApplyDiscount" value="True" @((Model.IsApplyDiscount.HasValue && Model.IsApplyDiscount.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Giảm giá online</label></td>
+                <td>
+                    <input type="checkbox" name="IsApplyDiscountShoppingCart" id="IsApplyDiscountShoppingCart" value="True" @((Model.IsApplyDiscountShoppingCart.HasValue && Model.IsApplyDiscountShoppingCart.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Giảm giá tặng kèm</label></td>
+                <td>
+                    <input type="checkbox" name="IsApplyDiscountCrossell" id="IsApplyDiscountCrossell" value="True" @((Model.IsApplyDiscountCrossell.HasValue && Model.IsApplyDiscountCrossell.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Giảm giá đặc biệt</label></td>
+                <td>
+                    <input type="checkbox" name="IsApplyDiscountSpecial" id="IsApplyDiscountSpecial" value="True" @((Model.IsApplyDiscountSpecial.HasValue && Model.IsApplyDiscountSpecial.Value == true) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+           @* <tr>
+                <td>
+                    <label>Là Voucher</label></td>
+                <td>
+                    @Html.CheckBox("IsVoucher")
+                </td>
+            </tr>*@
+            <tr>
+                <td>
+                    <label>Thẻ meta keywords</label></td>
+                <td>
+                    @* <textarea rows="8" id="MetaKeyWords" name="MetaKeyWords">@Model.MetaKeyWords</textarea>*@
+                    <input type="text" name="MetaKeyWords" id="MetaKeyWords" value="@Model.MetaKeyWords"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Thẻ meta description</label></td>
+                <td>
+                    <textarea rows="8" id="MetaDescription" name="MetaDescription" style="display: block;">@Model.MetaDescription</textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button id="submit" type="submit" class="primaryAction">@ViewBag.ActionText</button>
+                    @if (ViewBag.Action.ToString() == "Edit")
+                    {
+                        <button id="addSubmit" type="submit" class="primaryAction">Thêm mới</button>
+                    }
+                    <button id="reset" type="reset" class="primaryAction">Nhập lại</button>
+                    <button id="close" type="button" class="primaryAction">Đóng lại</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+
+@*<script type="text/javascript">
+    function checkAvailableForPreOrder(chk) {
+        if (chk.checked == true) {
+            document.getElementById("preOrderShortDes").style.visibility = "visible";
+            document.getElementById("preOrderDes").style.visibility = "visible";
+        }
+    }
+</script>*@
+<script type="text/javascript">
+    $(function() {
+        $('#IsRecurring').change(function () {
+            var _self = $(this);
+            if ($(this).is(":checked")) {
+                $.post("@(Url.Action("ProductRecurring", "ProductVariant"))", { "productId": @Model.ID }, function(data) {
+                    $('.form-recurring').html(data);
+                });
+            } else {
+                $('.form-recurring').html("");
+            }
+        });
+        
+        //$('#Sku').change(function () {
+        //    var sku = $('#Sku').val();
+        //    var link = "/Admin/ProductVariant/GetPriceBySku";
+            
+        //    $.post(link, { 'sku': sku }, function (data) {
+        //        var price = data.result;
+        //        if (price === 0) {
+        //            $('#Price').val('0');
+        //            $('#PriceAfterTax').val('0');
+        //            $('#PriceBeforeTax').val('0');
+        //            $('#PriceOnlineBeforeTax').val('0');
+        //            $('#PriceOnline').val('0');
+        //        } else {
+        //            var priceOnline = price * 1.1;
+        //            $('#Price').val(priceOnline);
+        //            $('#PriceAfterTax').val(priceOnline);
+        //            $('#PriceBeforeTax').val(price);
+        //            $('#PriceOnlineBeforeTax').val(price);
+        //            $('#PriceOnline').val(priceOnline);
+        //        }
+        //    });
+        
+        //    // return
+        //    return false;
+        //});
+    });
+</script>

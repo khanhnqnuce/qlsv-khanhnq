@@ -1,0 +1,108 @@
+﻿@model FDI.Simple.ModelAspnetRolesItem
+@{
+    ViewBag.Title = "Quản lý quyền";
+}
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });       
+    });
+</script>
+
+<form id="RoleForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.Roles.RoleId"/>
+    <input type="hidden" name="moduleid" id="moduleid" value=""/>
+   @* <input type="hidden" name="CountList" id="CountList" value="@ViewBag.listmodule.Count"/>*@
+    <div class="grid-container" id="gridItems">
+        @if(Model!=null)
+        {
+            <table class="gridView" cellspacing="1">
+                <tr><th>Tên Module</th>
+                    @foreach (var item1 in Model.ListActiveRoleItem)
+                    {
+                        <th>@item1.NameActive</th>
+                    }
+                    
+                    <th class="act_delete"></th>
+                    @* <th class="act_show"></th>*@
+                    <th class="act_edit"></th>
+                </tr>
+     
+                @{
+                    int i = 0;
+                    foreach (var item2 in Model.Roles.Modules)
+                    {
+                        <tr id ="line-@item2.ID">
+                            <td>@item2.NameModule</td>
+                        
+                       
+                            @foreach (var item in Model.Roles.Role_ModuleActive.Where(m => m.ModuleId == item2.ID))
+                            {
+                                var firstOrDefault = Model.Roles.ActiveRoles.FirstOrDefault(n => n.Id == item.ActiveRoleId);
+                                if (firstOrDefault != null)
+                                {
+                                    <td><input type="checkbox" name="@item.ID" id="@firstOrDefault.NameActive" value="@item.ActiveRoleId" @((item.Active == true) ? " checked" : string.Empty)/></td>
+                                }
+                                else
+                                {
+                                    <td><input type="checkbox" name="@item.ID" id="Active" value="@item.ActiveRoleId" @((item.Active == true) ? " checked" : string.Empty) DISABLED/></td>
+                                }
+
+                            }
+                            
+                            <td>  <a href='javascript:editRole(@item2.ID);' title="Lưu Module @item2.NameModule">
+                                      <img src="/Content/Admin/images/gridview/point-icon.png" border="0" /></a></td>
+                            <td>  <a href='javascript:deleteRole(@item2.ID);' title="Xóa Module: @item2.NameModule">
+                                      <img src="/Content/Admin/images/gridview/delete.gif" border="0" /></a></td>
+                        </tr>
+                        i++;
+                    }
+                }
+                
+            </table>
+        }
+        <button id="btnEditAll" name="btnEditAll" type="submit" class="primaryAction" style ="margin:20px 20px 0 50px">Lưu</button>
+        <button id="close" type="button" class="primaryAction" style ="margin-top:20px">Đóng lại</button>                        
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    $('#btnEditAll').click(function () {
+        $("#moduleid").val(0);
+            var link = '/Admin/Roles/EditRoleAction';
+            //alert(nameViewId + "-" + nameAddId + " " + nameEditId + "-" + nameDeleteId + " " + nameShowId + "-" + nameHideId + " " + nameOrderId + "-" + nameActiveId + " " + namePublicId + "-" + nameCompleteId + " " + moduleid);
+        $.post(link, $("#RoleForm").serialize(),
+            function(data) {
+                createMessage("Thông báo", data.Message);
+            });
+        return false;
+            });
+    function editRole(ItemId) {
+        $("#moduleid").val(ItemId);
+        var link = '/Admin/Roles/EditRoleAction';
+        $.post(link, $("#RoleForm").serialize(), function (data) {
+            createMessage("Thông báo", data.Message);
+        });
+
+        return false;
+    }
+    function deleteRole(ItemId) {
+        $("#moduleid").val(ItemId);
+        
+        var link = '/Admin/Roles/DeleteRoleAction';
+
+        $.post(link, 
+             $("#RoleForm").serialize()
+        , function (data) {
+            createMessage("Thông báo", data.Message);
+            var s = "#line-" + ItemId + "";
+            $(s).remove();
+        });
+        return false;
+    }
+
+</script>

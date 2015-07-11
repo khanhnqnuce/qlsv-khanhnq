@@ -1,0 +1,152 @@
+﻿@model FDI.Base.FAQ_Question
+@{
+    ViewBag.Title = ViewBag.ActionText + " câu hỏi";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        LoadCKEDITOR('Content', true);
+        $("#FAQQuestionForm").validate({
+            rules: {
+                Title:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                Fullname:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                Email:
+                {
+                    email: true,
+                    minlength: 3,
+                    maxlength: 150
+                },
+                Phone:
+                {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 20,
+                    number: true
+                },
+              
+                CategoryID:
+                {
+                    required: true
+                }
+
+            },
+            messages: {
+                Title: {
+                    required: "Bạn phải nhập Tên câu hỏi ",
+                    minlength: jQuery.format("Tên câu hỏi phải có độ dài tối thiểu {0} ký tự"),
+                    maxlength: jQuery.format("Tên câu hỏi phải có độ dài không quá {0} ký tự")
+                },
+                Phone:
+                {
+                    required: "Bạn phải nhập số điện thoại",
+                    minlength: jQuery.format("Số điện thoại phải có độ dài tối thiểu {0} ký tự"),
+                    maxlength: jQuery.format("Số điện thoại phải có độ dài không quá {0} ký tự"),
+                    number: "Số điện thoại phải là kiểu số"
+                },
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                $.post(urlPostAction, $("#FAQQuestionForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+
+<form id="FAQQuestionForm">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về câu hỏi</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên câu hỏi</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Title" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Title"  value="@Model.Title"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Chuyên mục câu hỏi</label>
+                        <div class="col-lg-10">
+                            <select name="CategoryID" id="CategoryID" class="form-control">
+                                @foreach (var item in ViewBag.CategoryID)
+                                { 
+                                    <option value="@item.ID"@((item.ID == Model.CategoryID) ? " selected" : string.Empty)>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Họ tên người gửi</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Fullname" id="Fullname"  placeholder="..." value="@Model.Fullname" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Số điện thoại</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Phone" id="Phone" value="@Model.Phone"  placeholder="..." class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Email" id="Email" value="@Model.Email"  placeholder="..." class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Nội dung chi tiết</label>
+                        <div class="col-lg-10">
+                            <textarea rows="10" class="form-control" placeholder="..." name="Content" id="Content">@Model.Content</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    @Html.CheckBox("Show") Hiện thị
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+    </div>
+</form>

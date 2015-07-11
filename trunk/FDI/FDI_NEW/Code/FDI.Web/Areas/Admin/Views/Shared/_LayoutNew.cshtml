@@ -1,0 +1,282 @@
+﻿@model dynamic
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+    <meta charset="utf-8" />
+    <title>FDIsoft | Web Application</title>
+    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    @*<script src="~/Content/Admin/js/jquery-1.9.0.min.js" type="text/javascript"></script>*@
+    <script src="/Skin/js/jquery.min.js"></script>
+
+    <script src="@Url.Content("~/Content/Admin/js/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Admin/js/jquery.address-1.6.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Content/Admin/js/jquery-ui-1.8.19.custom.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Content/Admin/js/jquery-ui-1.11.4.custom/jquery-ui.min.js")" type="text/javascript"></script>
+
+    <script type="text/javascript" src="/Scripts/dialogextend/build/jquery.dialogextend.js"></script>
+    <script src="@Url.Content("~/Content/Admin/js/jquery.mask.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/js/jquery.multiselect.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Admin/js/jquery.treeview.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Content/Admin/js/fileuploader.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Content/Admin/js/jquery.autocomplete.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Admin/js/GridView.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/ckeditor/ckeditor.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/ckfinder/ckfinder.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/Admin/js/CarMarket.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Content/Admin/js/colorpicker.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Content/Admin/js/admin.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/js/Load.js")"></script>
+
+    <link href="/Scripts/AlertsNotify/notify.css" rel="stylesheet" />
+    <script src="/Content/Admin/jquery-timepicker/jquery.timepicker.min.js"></script>
+    <link href="/Content/Admin/jquery-timepicker/jquery.timepicker.css" rel="stylesheet" />
+    @*<link href="/Content/Admin/site.css" rel="stylesheet" type="text/css" />*@
+    <link href="/Content/Admin/css/jquery.multiSelect.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Admin/css/jquery.treeview.css" rel="stylesheet" type="text/css" />
+    @*<link href="/Content/Admin/css/fileuploader.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="/Content/Admin/css/jquery-ui-1.8.6.gray-green.css" rel="stylesheet" type="text/css" />*@
+    <link href="/Content/Admin/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+    <link href="/Content/Admin/css/gridview.css" rel="stylesheet" type="text/css" />
+    @*    <link href="/Content/Admin/css/colorpicker.css" rel="stylesheet" type="text/css" />*@
+    <link href="/Content/Admin/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Admin/css/styles.css" rel="stylesheet" type="text/css" />
+    @*    <link href="~/Content/Publishing/css/colorpicker.css" rel="stylesheet" />
+    <script src="~/Content/Publishing/js/ColorPicker/colorpicker.js"></script>
+    <script src="~/Content/Publishing/js/ColorPicker/eye.js"></script>
+    <script src="~/Content/Publishing/js/ColorPicker/utils.js"></script>
+    *@
+
+    @*Uncaught Error: Syntax error, unrecognized expression: a[rel=Keyword=&CategoryID=0&SearchIn=&RowPerPage=10&Field=ID&FieldOption=1&Page=2]
+        <script src="~/Content/Publishing/js/ColorPicker/layout.js"></script>*@
+
+    <link rel="stylesheet" href="/Skin/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="/Skin/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="/Skin/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Skin/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="/Skin/js/datepicker/datepicker.css" type="text/css" />
+    <link rel="stylesheet" href="/Skin/css/app.css" type="text/css" />
+    <!--[if lt IE 9]>
+        <script src="/Skin/js/ie/html5shiv.js"></script>
+        <script src="/Skin/js/ie/respond.min.js"></script>
+        <script src="/Skin/js/ie/excanvas.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/Content/Admin/Common.css" type="text/css" />
+
+</head>
+<body>
+    <div style="display: none;">
+        <div id="dialog-confirm">
+        </div>
+        <div id="dialog-message">
+        </div> 
+        <div id="dialog-form">
+        </div>
+        <div id="dialog-form-2">
+        </div>
+        <div id="dialog-form-3">
+        </div>
+    </div>
+    <div id="dialog-alert" style="position: absolute;right: 0; top: 0; background-color: red;">
+    </div>
+
+    <section class="vbox">
+        <header class="bg-blue dk header navbar navbar-fixed-top-xs">
+            <div class="navbar-header aside-md">
+                <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="http://fdisoft.com/" target="_blank" class="navbar-brand" data-toggle="fullscreen">
+                    <img src="/Skin/images/logo.png" class="m-r-sm"></a>
+                <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+                    <i class="fa fa-cog"></i>
+                </a>
+            </div>
+            <ul class="nav navbar-nav hidden-xs">
+                <li>
+                    <a href="#nav" data-toggle="class:nav-xs" class="btn btn-info">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle dker" data-toggle="dropdown">
+                        <i class="fa fa-building-o"></i>
+                        <span class="font-bold">Activity</span>
+                    </a>
+                    <section class="dropdown-menu aside-xl on animated fadeInLeft no-borders lt">
+                        <div class="wrapper lter m-t-n-xs">
+                            <a href="#" class="thumb pull-left m-r">
+                                <img src="/Skin/images/avatar.jpg" class="img-circle">
+                            </a>
+                            <div class="clear">
+                                <a href="#"><span class="text-white font-bold">Mike Mcalidek</span></a>
+                                <small class="block">Art Director</small>
+                                <a href="#" class="btn btn-xs btn-success m-t-xs">Upgrade</a>
+                            </div>
+                        </div>
+                        <div class="row m-l-none m-r-none m-b-n-xs text-center">
+                            <div class="col-xs-4">
+                                <div class="padder-v">
+                                    <span class="m-b-xs h4 block text-white">245</span>
+                                    <small class="text-muted">Followers</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 dk">
+                                <div class="padder-v">
+                                    <span class="m-b-xs h4 block text-white">55</span>
+                                    <small class="text-muted">Likes</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="padder-v">
+                                    <span class="m-b-xs h4 block text-white">2,035</span>
+                                    <small class="text-muted">Photos</small>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+                <li>
+                    <div class="m-t m-l">
+                        <a href="price.html" class="dropdown-toggle btn btn-xs btn-primary" title="Upgrade"><i class="fa fa-long-arrow-up"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+                <li class="hidden-xs">
+                    <a href="#" class="dropdown-toggle dk" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-sm up bg-danger m-l-n-sm count">2</span>
+                    </a>
+                    <section class="dropdown-menu aside-xl">
+                        <section class="panel bg-white">
+                            <header class="panel-heading b-light bg-light">
+                                <strong>You have <span class="count">2</span> notifications</strong>
+                            </header>
+                            <div class="list-group list-group-alt">
+                                <a href="#" class="media list-group-item">
+                                    <span class="pull-left thumb-sm">
+                                        <img src="/Skin/images/avatar.jpg" alt="John said" class="img-circle">
+                                    </span>
+                                    <span class="media-body block m-b-none">Use awesome animate.css<br>
+                                        <small class="text-muted">10 minutes ago</small>
+                                    </span>
+                                </a>
+                                <a href="#" class="media list-group-item">
+                                    <span class="media-body block m-b-none">1.0 initial released<br>
+                                        <small class="text-muted">1 hour ago</small>
+                                    </span>
+                                </a>
+                            </div>
+                            <footer class="panel-footer text-sm">
+                                <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+                                <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+                            </footer>
+                        </section>
+                    </section>
+                </li>
+                <li class="dropdown hidden-xs">
+                    <a href="#" class="dropdown-toggle dker" data-toggle="dropdown"><i class="fa fa-fw fa-search"></i></a>
+                    <section class="dropdown-menu aside-xl animated fadeInUp">
+                        <section class="panel bg-white">
+                            <form role="search">
+                                <div class="form-group wrapper m-b-none">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-info btn-icon"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+                </li>
+                <li class="dropdown">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="thumb-sm avatar pull-left">
+                                <img src="/Skin/images/avatar.jpg">
+                            </span>
+                            @User.Identity.Name <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInUp">
+                            <span class="arrow top"></span>
+                            <li>
+                                <a href="profile.html">Thông tin tài khoản</a>
+                            </li>
+                            <li>
+                                <a class="username" onclick="FdiDialog('/Admin/AccountAdmin/ChangePassword','Đổi mật khẩu tài khoản',335,500);" href="#" >Đổi mật khẩu</a>
+                                @*@Html.ActionLink("Đổi mật khẩu", "ChangePassword", "AccountAdmin", null, new { @class = "username" })*@
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                @Html.ActionLink("Đăng xuất", "LogOff", "AccountAdmin")
+                            </li>
+                        </ul>
+                    }
+                </li>
+            </ul>
+        </header>
+        <section>
+            <section class="hbox stretch">
+                <!-- .aside -->
+                @Html.Action("Menu", "Admin")
+                <!-- /.aside -->
+
+                @RenderBody()
+
+            </section>
+        </section>
+    </section>
+
+    @*<script src="/Skin/js/jquery.min.js"></script>*@
+
+    <!-- Bootstrap -->
+    <script src="/Skin/js/bootstrap.js"></script>
+    <script src="/Scripts/AlertsNotify/notify.js"></script>
+    <!-- App -->
+    <script src="/Skin/js/app.js"></script>
+    <script src="/Skin/js/app.plugin.js"></script>
+    <script src="/Skin/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- datepicker -->
+    <script src="/Skin/js/datepicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/Scripts/showLoading/js/jquery.showLoading.js"></script>
+    <script src="/Content/Admin/js/Common.js"></script>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function () {
+            $(".menu-admin.menu h3").expandoControl();
+            $('.sidebar-collapse').click(function () {
+                $('#menu').toggleClass('menu-min');
+                $('#layout-content').toggleClass('layout-min');
+                if ($(this).hasClass('show-sidebar')) {
+                    $(this).removeClass('show-sidebar');
+                    $('.showing').css({ 'display': 'block' });
+                } else {
+                    $(this).addClass('show-sidebar');
+                    $('.showing').removeAttr('style');
+                }
+            });
+
+            $('.more-search').click(function () {
+                $('.advance-search').slideToggle();
+            });
+
+            $(".dialog-form").on("dialogcreate", function (event, ui) {
+                $("body").css({ overflow: 'hidden' });
+            });
+
+            $(".dialog-form").on("dialogbeforeclose", function (event, ui) {
+                $("body").css({ overflow: 'inherit' });
+            });
+            
+        })
+        //]]>
+    </script>
+
+</body>
+</html>

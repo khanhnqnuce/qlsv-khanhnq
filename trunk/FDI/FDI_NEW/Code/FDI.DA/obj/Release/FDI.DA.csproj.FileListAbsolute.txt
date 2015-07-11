@@ -1,0 +1,14 @@
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.DA.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.DA.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\EntityFramework.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Base.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Simple.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Utils.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\log4net.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Base.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Simple.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\FDI.Utils.pdb
+D:\PROJECTS\FDIsoft\Code\FDI.DA\bin\Release\EntityFramework.xml
+D:\PROJECTS\FDIsoft\Code\FDI.DA\obj\Release\FDI.DA.csprojResolveAssemblyReference.cache
+D:\PROJECTS\FDIsoft\Code\FDI.DA\obj\Release\FDI.DA.dll
+D:\PROJECTS\FDIsoft\Code\FDI.DA\obj\Release\FDI.DA.pdb

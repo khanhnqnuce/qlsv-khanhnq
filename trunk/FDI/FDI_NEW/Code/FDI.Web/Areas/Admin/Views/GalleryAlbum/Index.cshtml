@@ -1,0 +1,80 @@
+﻿@model FDI.Simple.SystemActionItem
+@{
+    ViewBag.Title = "Quản lý thư viện ảnh";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutNew.cshtml";
+}
+<script type="text/javascript">
+    urlLists = '@Url.Action("ListItems", "GalleryAlbum")';
+    urlForm = '@Url.Action("AjaxForm", "GalleryAlbum")';
+    urlPostAction = '@Url.Action("Actions", "GalleryAlbum")';
+    urlView = '@Url.Action("AjaxView", "GalleryAlbum")';
+    formWidth = 960;
+    formHeight = $(window).height() - 24;
+    viewWidth = 960;
+    viewHeight = $(window).height() - 24;
+    $("select.mutil").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+    $(document).ready(function () {
+        initAjaxLoad(urlLists, "#GalleryAlbumGriditems");
+
+        $("#gridSearch").submit(function () {
+            var form = $("#gridSearch");
+            window.location.href = '#' + getValueFormMutilSelect(form);
+            return false;
+        });
+        $("select.mutil").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+    });
+</script>
+
+
+
+<section id="content">
+    <section class="hbox stretch">
+        <aside>
+            <section class="vbox">
+                <header class="header bg-white b-b clearfix">
+                    <ul class="breadcrumb no-border no-radius b-b b-light m-l-15x m-r-15x">
+                        <li><a href="/Admin/Admin"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">Quản lý thư viện ảnh </li>
+                    </ul>
+                    <div class="row m-t-sm">
+                        <div class="col-sm-11 m-b-xs">
+                            <form id="gridSearch" class="form-inline" role="form">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-default" title="Filter" data-toggle="dropdown"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#showAll" data-event="showAll" data-grid="#mygird"><i class="fa fa-check icon-muted fa-fw"></i>Hiển thị</a></li>
+                                        <li><a href="#hideAll" data-event="hideAll" data-grid="#mygird"><i class="fa fa-times icon-muted fa-fw"></i>Ẩn</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#deleteAll" data-event="deleteAll" data-grid="#mygird"><i class="fa fa-trash-o icon-muted fa-fw"></i><span class="text">Xóa</span></a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="Keyword">Từ khóa tìm kiếm</label>
+                                    <input type="text" class="form-control input-sm" id="Keyword" name="Keyword" placeholder="Từ khóa tìm kiếm">
+                                </div>
+                                <div class="form-group">
+                                    <select name="SearchIn" id="SearchIn" class="form-control input-sm mutil">
+                                        <option value="Name">Tên thư viện ảnh</option>
+                                        <option value="Description">Mô tả</option>
+                                        <option value="Album">Nội dung thư viện ảnh</option>
+                                    </select>
+                                </div>
+                                <button name="submit.Search" type="submit" class="btn btn-sm btn-success">Tìm kiếm</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-1 m-b-xs">
+                            @if (Model.Add)
+                            {
+                                @Html.ActionLink("Thêm mới", "Actions", new { }, new { @class = "btn btn-sm btn-success", @id = "btn_add" })
+                            }
+                        </div>
+                    </div>
+                </header>
+                <section id="GalleryAlbumGriditems" class="m-t-lg">
+                </section>
+            </section>
+        </aside>
+    </section>
+    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>

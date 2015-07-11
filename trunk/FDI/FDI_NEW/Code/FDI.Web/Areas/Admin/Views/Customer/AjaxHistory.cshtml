@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FDI.Simple.CustomerHistoryItem>
+
+@{
+    ViewBag.Title = "AjaxHistory";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>
+
+<div class="GridHistoryAccess">
+    <div class="grid-container" id="gridItems">
+    <table class="gridView" cellspacing="1">
+        <tr>
+            <th><a href="#Field=ID">ID<span /></a></th>
+            <th><a href="#Field=CustomerActionID">Hành động<span /></a></th>
+            <th><a href="#Field=CustomerLink">Link<span /></a></th>
+            <th><a href="#Field=CreatedOnUtc">Thời gian<span /></a></th>
+            <th><a href="#Field=Phone">Điểm cộng<span /></a></th>
+        </tr>
+    @foreach (var item in Model)
+    {
+        <tr title="@item.Customer.Fullname">
+            <td>@item.ID</td>
+            <td>@item.CustomerAction.Name</td>
+            <td>@item.CustomerLink</td>
+            <td>@if (item.CreatedOnUtc != null)
+                {
+                    @item.CreatedOnUtc.Value.ToString("dd/MM/yyyy HH:mm:ss")
+                }
+            </td>
+            <td>@item.CustomerAction.Point</td>
+        </tr>
+    }
+    </table>
+    @Html.Raw(ViewBag.PageHtml)
+</div>
+</div>

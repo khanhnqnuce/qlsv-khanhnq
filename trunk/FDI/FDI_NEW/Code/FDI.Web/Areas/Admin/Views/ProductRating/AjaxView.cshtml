@@ -1,0 +1,51 @@
+﻿@model FDI.Base.Shop_Product_Rating
+@{
+    ViewBag.Title = "Xem chi tiết đánh giá sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<fieldset class="forms">
+    <table class="tableforms tabledetails" cellspacing="1" width="100%">
+        <tr>
+            <td class="label"><label>Tên sản phẩm</label></td>
+            <td>@(Model.Shop_Product.Name)</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Khách hàng</label></td>
+            <td>@(Model.Customer.UserName)</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Đánh giá</label></td>
+            <td>@Html.Raw(Model.RateNote)</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Điểm trung bình</label></td>
+            <td>@Model.RateAvg</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Điểm chi tiết</label></td>
+            <td>
+                <table cellspacing="1" width="100%">
+                    <tr>
+                        <th>Tiêu chí</th>
+                        <th>Điểm</th>
+                    </tr>
+                    @if (Model.Shop_Product_RateNumber != null)
+                    {
+                        foreach (var item in Model.Shop_Product_RateNumber)
+                        {
+                            <tr>
+                                <td>@item.Shop_Product_RateType.RateName</td>
+                                <td>@item.RateNumber</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </td>
+        </tr>
+    </table>
+</fieldset>

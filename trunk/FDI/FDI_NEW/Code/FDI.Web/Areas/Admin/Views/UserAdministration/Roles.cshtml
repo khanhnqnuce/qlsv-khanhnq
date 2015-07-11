@@ -1,0 +1,55 @@
+﻿@*@using PagedList.Mvc*@
+@model FDI.Areas.Admin.Models.UserAdministration.IndexViewModel
+@{
+    ViewBag.Title = "Quản lý tài khoản quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="zone zone-content">
+    @if (!Model.IsRolesEnabled)
+    {<p class="FDI.MvcMembership-warning">Cơ chế membership chưa được bật.</p>}
+    <h1 class="FDI.MvcMembership">Danh sách vai trò hệ thống</h1>
+    <div class="headear">
+        <div class="searchbox">
+            @using (Html.BeginForm("CreateRole", "UserAdministration"))
+            {
+		        <fieldset class="bulk-actions">
+			        <label for="id">Tên vai trò:</label>
+			        @Html.TextBox("id")
+			        <button type="submit">Tạo Vai trò</button>
+		        </fieldset>
+            }
+        </div>
+    </div>
+
+    <div id="NewsGriditems">
+        <div class="grid-container" id="gridItems">
+            @if (Model.Roles.Any())
+            {
+            <table class="gridView" cellspacing="1">
+                <tr>
+                    <th>Tên vai trò</th>
+                    <th colspan="2">Quản lý</th>
+                </tr>
+                @foreach (var role in Model.Roles)
+                {
+                <tr>
+                    <td>@role</td>
+                    <td style="width:100px;">@Html.ActionLink("Phân quyền", "Role", new { id = role }, new { @class = "add button primaryAction" })</td>
+                    <td style="width:60px;">
+                        @using (Html.BeginForm("DeleteRole", "UserAdministration", new { id = role }))
+                        {
+				            <button type="submit">Xóa</button>
+                        }
+                    </td>
+                </tr>    
+                }
+            </table>
+            }
+            else
+            {
+	            <p>Chưa có vai trò nào.</p>
+            }
+        </div>
+    </div>
+</div>

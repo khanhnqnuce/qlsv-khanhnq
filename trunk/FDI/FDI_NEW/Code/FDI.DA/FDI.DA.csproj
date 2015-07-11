@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C328BA20-98BA-4769-8A45-7F53B2B5A6D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FDI.DA</RootNamespace>
+    <AssemblyName>FDI.DA</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FDI">
+      <HintPath>..\..\..\adminfdi\Code\FDI.Web\bin\FDI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\ActiveRoleDA.cs" />
+    <Compile Include="Admin\AdminDA.cs" />
+    <Compile Include="Admin\AdvertisingDA.cs" />
+    <Compile Include="Admin\Advertising_PositionDA.cs" />
+    <Compile Include="Admin\Advertising_TypeDA.cs" />
+    <Compile Include="Admin\Advertising_ZoneDA.cs" />
+    <Compile Include="Admin\CustomerContactDA.cs" />
+    <Compile Include="Admin\HtmlSettingDA.cs" />
+    <Compile Include="Admin\CustomerDA.cs" />
+    <Compile Include="Admin\CustomerTypeDA.cs" />
+    <Compile Include="Admin\Customer_CustomerDeviceDA.cs" />
+    <Compile Include="Admin\Customer_CustomerHistoryDA.cs" />
+    <Compile Include="Admin\Customer_CustomerPointDA.cs" />
+    <Compile Include="Admin\FAQQuestionDA.cs" />
+    <Compile Include="Admin\FAQ_AnswerDA.cs" />
+    <Compile Include="Admin\FAQ_CategoryDA.cs" />
+    <Compile Include="Admin\Gallery_AlbumDA.cs" />
+    <Compile Include="Admin\Gallery_CategoryDA.cs" />
+    <Compile Include="Admin\Gallery_PictureDA.cs" />
+    <Compile Include="Admin\Gallery_VideoDA.cs" />
+    <Compile Include="Admin\LogProductDa.cs" />
+    <Compile Include="Admin\ModuleDA.cs" />
+    <Compile Include="Admin\NewsDA.cs" />
+    <Compile Include="Admin\News_CategoryDA.cs" />
+    <Compile Include="Admin\News_CommentDA.cs" />
+    <Compile Include="Admin\News_LikeDA.cs" />
+    <Compile Include="Admin\QueryExtensions.cs" />
+    <Compile Include="Admin\RoleDA.cs" />
+    <Compile Include="Admin\RoleModuleActiveDA.cs" />
+    <Compile Include="Admin\Shop_BrandDA.cs" />
+    <Compile Include="Admin\Shop_CategoryDA.cs" />
+    <Compile Include="Admin\Shop_CommentDA.cs" />
+    <Compile Include="Admin\Shop_CommentLikeDA.cs" />
+    <Compile Include="Admin\Shop_LabelDA.cs" />
+    <Compile Include="Admin\Shop_ProductAttributeDA.cs" />
+    <Compile Include="Admin\Shop_ProductDA.cs" />
+    <Compile Include="Admin\Shop_ProductGroupAttributeDA.cs" />
+    <Compile Include="Admin\Shop_ProductRatingDA.cs" />
+    <Compile Include="Admin\Shop_ProductTypeDA.cs" />
+    <Compile Include="Admin\Shop_ProductVariantRecurringDA.cs" />
+    <Compile Include="Admin\Shop_Product_Attribute_SpecificationDA.cs" />
+    <Compile Include="Admin\Shop_Product_Compatible_AccessoriesDA.cs" />
+    <Compile Include="Admin\Shop_Product_RateTypeDA.cs" />
+    <Compile Include="Admin\Shop_Product_RefDA.cs" />
+    <Compile Include="Admin\Shop_Product_Search_MappingDA.cs" />
+    <Compile Include="Admin\Shop_Product_VariantDA.cs" />
+    <Compile Include="Admin\SystemConfigDA.cs" />
+    <Compile Include="Admin\System_CityDA.cs" />
+    <Compile Include="Admin\System_ColorDA.cs" />
+    <Compile Include="Admin\System_CountryDA.cs" />
+    <Compile Include="Admin\System_DistrictDA.cs" />
+    <Compile Include="Admin\System_FileDA.cs" />
+    <Compile Include="Admin\System_MenuDA.cs" />
+    <Compile Include="Admin\System_TagDA.cs" />
+    <Compile Include="Admin\UserDA.cs" />
+    <Compile Include="BaseDA.cs" />
+    <Compile Include="EndUser\Implementation\AdvertisingImplement.cs" />
+    <Compile Include="EndUser\Implementation\TagImplementation.cs" />
+    <Compile Include="EndUser\Implementation\HtmlSettingImplement.cs" />
+    <Compile Include="EndUser\Implementation\GalleryPictureImpement.cs" />
+    <Compile Include="EndUser\Implementation\NewsImplement.cs" />
+    <Compile Include="EndUser\Implementation\ShopProductImplement.cs" />
+    <Compile Include="EndUser\Implementation\CustomerImplement.cs" />
+    <Compile Include="EndUser\Implementation\NewsCategoryImplementation.cs" />
+    <Compile Include="EndUser\Implementation\ShopCategoryImplementation.cs" />
+    <Compile Include="EndUser\Implementation\SystemConfigImplement.cs" />
+    <Compile Include="EndUser\Implementation\SystemMenuImplementation.cs" />
+    <Compile Include="EndUser\InitDB.cs" />
+    <Compile Include="EndUser\Reposity\IReposityTag.cs" />
+    <Compile Include="EndUser\Reposity\IReposityHtmlSetting.cs" />
+    <Compile Include="EndUser\Reposity\IReposityAdvertising.cs" />
+    <Compile Include="EndUser\Reposity\IReposityCustomer.cs" />
+    <Compile Include="EndUser\Reposity\IReposityGalleryPicture.cs" />
+    <Compile Include="EndUser\Reposity\IReposityNews.cs" />
+    <Compile Include="EndUser\Reposity\IReposityNewsCategory.cs" />
+    <Compile Include="EndUser\Reposity\IReposityShopCategory.cs" />
+    <Compile Include="EndUser\Reposity\IReposityShopProduct.cs" />
+    <Compile Include="EndUser\Reposity\IRepositySystemConfig.cs" />
+    <Compile Include="EndUser\Reposity\IRepositySystemMenu.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System_LogDA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FDI.Base\FDI.Base.csproj">
+      <Project>{689f0818-80d1-4e5c-a498-806c59e25a3a}</Project>
+      <Name>FDI.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FDI.Simple\FDI.Simple.csproj">
+      <Project>{187fd03c-2a93-4881-9b02-9e7a80f54f7f}</Project>
+      <Name>FDI.Simple</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

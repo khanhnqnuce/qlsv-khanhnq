@@ -1,0 +1,25 @@
+﻿<div class="bg-dark lt">
+	<div class="container-fluid">
+		<div class="m-b-lg m-t-lg bn-head-news">
+			<h3 class="m-b-none">Tin tức</h3>
+		</div>
+	</div>
+</div>
+<div class="bg-white b-b b-light">
+	<div class="container-fluid">
+		<ul class="breadcrumb no-border bg-empty m-b-none m-l-n-sm p-breadcrumb">
+			<li><a href="/trang-chu">Trang chủ</a></li>
+			@{
+				if (ViewBag.title != null)
+				{
+					<li><a href="/tin-tuc">Tin tức</a></li>
+					<li class="active">@ViewBag.title</li>
+				}
+				else
+				{
+					<li class="active">Tin tức</li>
+				}
+			}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,120 @@
+﻿@model FDI.Base.System_Config
+
+@{
+    ViewBag.Title = "Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<div class="col-sm-12">
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">Thông tin về cấu hình</header>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <label>Tên Công ty</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Email</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Email đính kèm</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Email1)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Số điện thoại</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Phone)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Số điện thoại tư vấn 1</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.PhoneAdvice)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Số điện thoại tư vấn 2</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.PhoneAdvice1)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Số điện thoại tư vấn 3</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.PhoneAdvice2)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Fax</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Fax)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Giấy phép kinh doanh</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.BusinessLicence)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hiển thị</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Name, Model.IsShow.HasValue && Model.IsShow.Value)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Địa chỉ</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Address)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email gửi</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.EmailSend)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email nhận</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.EmailReceive)
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>
+
+

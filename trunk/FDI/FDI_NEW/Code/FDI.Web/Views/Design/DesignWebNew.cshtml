@@ -1,0 +1,64 @@
+﻿@using System.Diagnostics
+@using FDI.Utils
+@model FDI.Simple.ModelNewsINewsRelated
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Item.SeoTitle != null ? Model.Item.SeoTitle : "Kiến thức chia sẻ Website";
+    ViewBag.Description = Model.Item.SeoDescription != null ? Model.Item.SeoDescription : "Kiến thức chia sẻ Website";
+    ViewBag.Keywords = Model.Item.SeoKeyword != null ? Model.Item.SeoKeyword : "Kiến thức chia sẻ Website";
+}
+
+<link href="/Content/Publishing/css/DVTKW.css?v=2105" rel="stylesheet" />
+<section id="content">
+    @Html.Action("ModulHTML", "Home", new { key = "designweb_dv_module_two" })
+
+    <div class="pmmore-module-one" id="kienthucchiase">
+        <div class="container">
+            <div class="row">
+                <a class="text-ktcs">Kiến thức chia sẻ</a>
+                <div class="title-crumbs">
+                    <a href="/">Trang chủ</a>/<a href="/@Model.Item.CateAscii">@Model.Item.CateName</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pmmore-module-two">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="dv-post-detail">
+                        <h1 class="dv-post-title">@Model.Item.Title</h1>
+                        <p class="dv-post-date">Đăng ngày 
+                            @Model.Item.DateCreated.Value.ToString("dd/MM/yyyy") | @Model.Item.UserNameCreate</p>
+                        <p class="dv-post-content"></p>
+                        @Html.Raw(Model.Item.Details)
+                    </div>
+                    <div class="share_social">
+                        <b>Hãy chia sẻ bài viết để mọi người cùng xem nhé!</b>
+                        <div class="body-share-social">
+                            <div class="add_this">
+                                <div class="addthis_native_toolbox"></div>
+ 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newtag">
+                        @Html.Action("ListByNewAssi", "Tag")
+                    </div>
+                    @Html.Action("ListNewByNewAssi","Tag", new{nameassi=Model.Item.TitleAscii})
+                     
+                </div>
+                <div class="col-sm-3">
+                    @Html.Action("NewHostByCateAcsii", "News", new { cateAcsii = @Model.Item.CateAscii })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+@*    @Html.Action("ModulHTML", "Home", new { key = "ChuyenVienTuVan" })*@
+
+</section>

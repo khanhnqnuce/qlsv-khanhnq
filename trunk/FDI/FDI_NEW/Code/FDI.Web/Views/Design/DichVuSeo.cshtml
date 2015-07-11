@@ -1,0 +1,41 @@
+﻿@model FDI.Simple.NewsCategoryItem
+@{
+    ViewBag.Title = Model.SEOTitle ??"";
+    ViewBag.Description = Model.SEODescription??"";
+    ViewBag.Keywords = Model.SEOKeyword ?? "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="/Content/Publishing/css/news.css?v=2105" rel="stylesheet" />
+<section id="content">
+    @Html.Action("ModulHTML", "Home", new { key = "News_Top" })
+        <div class="div-news-two">
+            <div class="container">
+                <div class="row" style="position: relative;">
+                    
+
+                    <div class="col-sm-9 module-news-right">                        
+                       
+                        <a href="/">Trang chủ</a> &raquo; <a href="/@Model.NameAscii">@Model.Name</a>
+                        @Html.Raw(Model.Description) 
+                         <div class="share_social">
+                        <b>Hãy chia sẻ bài viết để mọi người cùng xem nhé!</b>
+                        <div class="body-share-social">
+								<div class="add_this">
+									<div class="addthis_native_toolbox"></div>
+ 
+								</div>
+							</div>
+                    </div>
+                    </div>
+                    <div class="col-sm-3" style="position: sticky;">
+                        <!--Chủ đề bạn quan tâm-->
+                        @Html.Action("DichVuSeoLeftMenu", "Design")
+                        <!--/Chủ đề bạn quan tâm-->
+                        <!--TinNoiBat-->
+                        @Html.Action("TinNoiBat", "News",new {name=Model.NameAscii})
+                        <!--/TinNoiBat-->
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

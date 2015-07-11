@@ -1,0 +1,134 @@
+﻿@model FDI.Base.Shop_Category
+
+@{
+    ViewBag.Title = ViewBag.ActionText + " danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        LoadCKEDITOR('Description', true);
+        $("#NewsCategoryForm").validate({
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 255
+                }
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                $.post(urlPostAction, $("#NewsCategoryForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+
+</script>
+<style>
+    #Description {
+        display: block !important;
+    }
+</style>
+<div id="Order">
+    <form id="NewsCategoryForm">
+        <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+        <input type="hidden" name="itemID" id="itemID" value="@Model.ID"/>
+        <div class="col-sm-12">
+            <section class="panel panel-default">
+                <header class="panel-heading font-bold">Thông tin danh mục</header>
+                <div class="panel-body">
+                    <div class="bs-example form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Tên chuyên mục</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" placeholder="..." name="Name" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Name"  value="@Model.Name"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Thứ tự hiển thị</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="Order" id="OrderID" value="@Model.Order"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Chuyên mục cha</label>
+                            <div class="col-lg-10">
+                                <select name="ParentID" id="ParentID" class="form-control">
+                                    @foreach (var item in ViewBag.CategoryParentID)
+                                    { 
+                                        <option value="@item.ID"@((item.ID == Model.ParentID) ? " selected" : string.Empty)>@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">SEO Title</label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.SEOTitle)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">SEO Description</label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.MetaDescription)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">SEO Keywords</label>
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(model => model.MetaKeyword)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Nội dung</label>
+                            <div class="col-lg-10">
+                                <textarea rows="8" id="Description" name="Description">@Model.Description</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <div class="checkbox col-md-6">
+                                    <label>
+                                        @Html.CheckBox("IsPublish") Hiện thị
+                                    </label>
+                                </div>
+                                <div class="checkbox col-md-6">
+                                    <label>
+                                        @Html.CheckBox("IsShowInTab") Hiện thị trên tab
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <div style="display: none;">
+            <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+            <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+            <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+        </div>
+    </form>
+</div>

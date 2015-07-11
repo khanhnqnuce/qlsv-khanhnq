@@ -1,0 +1,68 @@
+﻿@model FDI.Simple.ModelColorItem
+@{
+    ViewBag.Title = "ListColor";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<section id="gridItems" class="vbox">
+    <section class="scrollable wrapper w-f">
+        <section class="panel panel-default">
+            <table class="gridView" cellspacing="1">
+                <thead>
+                    <tr>
+                        <th class="act_roles">
+                            <input value="" type="checkbox" />
+                        </th>
+                        <th><a href="#Field=ID">ID<span /></a></th>
+                        <th><a href="#Field=Name">Tên màu sắc<span /></a></th>
+                        <th>Màu</th>
+                        <th></th>
+                        <th colspan="2" style="width: 130px;">Thao tác</th>
+                    </tr>
+                </thead>
+                @if (ViewBag.ViewFull)
+                {
+                    foreach (var item in Model.ListItem)
+                    {
+                    <tr title="@item.Name">
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td style="background: @(item.Value) !important">&nbsp;</td>
+                        <td>@item.Description</td>
+                        <td>
+                            @if (Model.SystemActionItem.Show)
+                            {
+                                @Grid.ActionShow(item.ID, item.Name, item.IsShow)
+                            }
+                        </td>
+                        <td></td>
+                        <td class="btn-group">
+                            @if (Model.SystemActionItem.View)
+                            {
+                                @Grid.ActionView(item.ID, item.Name)
+                            }
+                            @if (Model.SystemActionItem.Edit)
+                            { 
+                                @Grid.ActionEdit(item.ID, item.Name)
+                            }
+                            @if (Model.SystemActionItem.Delete)
+                            {
+                                @Grid.ActionDelete(item.ID, item.Name)
+                            }
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+        </section>
+    </section>
+    <footer class="footer bg-white b-t portlet">
+        <div class="row m-t-xs">
+            @Html.Raw(ViewBag.PageHtml)
+        </div>
+    </footer>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>

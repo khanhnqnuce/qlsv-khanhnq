@@ -1,0 +1,100 @@
+﻿@model FDI.Simple.ModelRolesItem
+
+@{
+    ViewBag.Title = "ListItems";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>
+<section id="gridItems" class="vbox">
+    <section class="scrollable wrapper w-f">
+        <section class="panel panel-default">
+            <table class="gridView" cellspacing="1">
+                <tr>
+                    <th><a href="#Field=RoleName">Tên Quyền<span /></a></th>
+                    <th><a href="#Field=Description">Mô tả<span /></a></th>
+                    <th class="act_point"></th>
+                    <th class="act_point"></th>
+
+                    <th class="act_view"></th>
+
+
+                    <th class="act_edit"></th>
+
+
+                    <th class="act_delete">
+                        @*<a href="#" class="deleteAll" title="Xóa danh sách đã chọn">
+                    <img src="/Content/Admin/images/gridview/delete.gif" style="border: none" alt="Xóa danh sách đã chọn" />
+                </a>*@
+                        @if (Model.SystemActionItem.Delete)
+                        {
+                            <a href="#" class="deleteAll" title="Xóa danh sách đã chọn">
+                                <img src="/Content/Admin/images/gridview/delete.gif" style="border: none" alt="Xóa danh sách đã chọn" />
+                            </a>
+                        }
+                    </th>
+                    <th class="act_roles">
+                        <input value="" type="checkbox" class="checkAll" />
+                    </th>
+                </tr>
+                @if (Model.SystemActionItem.ViewFull)
+                {
+                    foreach (var item in Model.ListItem)
+                    {
+            
+                    <tr title="@item.RoleId @item.RoleName">
+                        <td>@item.RoleName</td>
+                        @*<td>@item.Ord</td>*@
+                        <td>@item.Description</td>
+                        <td class="act_point">
+                            @if (Model.SystemActionItem.Edit)
+                            {
+                                @Grid.ActionRoleA(item.RoleId, item.RoleName)
+                            }
+                        </td>
+                        <td class="act_point">
+                            @if (Model.SystemActionItem.Edit)
+                            {
+                                @Grid.RoleModule(item.RoleId, item.RoleName)
+                            }
+                        </td>
+                        <td class="act_view">
+                            @*@Grid.ActionView(item.RoleId, item.RoleName)*@
+                            @if (Model.SystemActionItem.Show)
+                            {
+                                @Grid.ActionView(item.RoleId, item.RoleName)
+                            }
+                        </td>
+                        <td class="act_edit">
+                            @*@Grid.ActionEdit(item.RoleId, item.RoleName)*@
+                            @if (Model.SystemActionItem.Edit)
+                            {
+                                @Grid.ActionEdit(item.RoleId, item.RoleName)
+                            }
+                        </td>
+                        <td class="act_delete">
+                            @*@Grid.ActionDelete(item.RoleId, item.RoleName)*@
+                            @if (Model.SystemActionItem.Delete)
+                            {
+                                @Grid.ActionDelete(item.RoleId, item.RoleName)
+                            }
+                        </td>
+                        <td class="act_roles">
+                            <input type="checkbox" value="@item.RoleId" class="check" /></td>
+                    </tr>
+            
+                    }
+                }
+            </table>
+        </section>
+    </section>
+    <footer class="footer bg-white b-t portlet">
+        <div class="row m-t-xs">
+            @Html.Raw(Model.PageHtml)
+        </div>
+    </footer>
+</section>

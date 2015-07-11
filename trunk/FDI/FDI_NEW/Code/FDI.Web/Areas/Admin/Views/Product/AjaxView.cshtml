@@ -1,0 +1,357 @@
+﻿@model FDI.Base.Shop_Product
+@{
+    ViewBag.Title = "Xem chi tiết sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<fieldset class="forms">
+    <table class="tableforms tabledetails" cellspacing="1" width="100%">
+        <tr>
+            <td style="width: 80px;" class="label">
+                <label>Tên sản phẩm</label></td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td style="width: 80px;" class="label">
+                <label>Nhãn sản phẩm</label></td>
+            <td>@if (Model.Shop_Label != null)
+                {
+                @Model.Shop_Label.Name
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 80px;" class="label">
+                <label>Danh mục sản phẩm</label></td>
+            <td>@foreach (var item in Model.Shop_Category)
+                {
+                <table class="gridView" cellspacing="1">
+                    <tr>
+                        <td>@item.Name</td>
+                    </tr>
+                </table>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 80px;" class="label">
+                <label>Tên thương hiệu</label></td>
+            <td>@Model.Shop_Brand.Name</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Loại sản phẩm</label></td>
+            <td>@Model.Shop_Product_Type.Name</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Mã sản phẩm</label></td>
+            <td>@Model.Code</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thông tin khuyến mại</label></td>
+            <td>@Html.Raw(Model.PromotionInfo)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Mô tả ngắn gọn</label></td>
+            <td>@Html.Raw(Model.ShortDescription)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Mô tả</label></td>
+            <td>@Html.Raw(Model.Description)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Đặc tính nổi bật</label></td>
+            <td>@Html.Raw(Model.HightlightsDes)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thứ tự sắp xếp tìm kiếm</label></td>
+            <td>@Html.Raw(Model.DisplayOrderSearch)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thứ tự sắp xếp</label></td>
+            <td>@Html.Raw(Model.DisplayOrder)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hướng dẫn sử dụng</label></td>
+            <td>@Html.Raw(Model.Guide)</td>
+        </tr>
+        <tr>
+            <td style="width: 160px;">
+                <label>Slide ảnh</label></td>
+            <td>
+                <div id="Text_Images">
+                    <table class="gridView" cellspacing="1">
+                        @foreach (var item in Model.Gallery_Picture3)
+                        {
+                            <tr title="@item.Name" id="@item.ID">
+                                <td>@item.ID</td>
+                                <td>
+                                    @Gallery.DisplayImage(item.Url, 120)
+                                </td>
+                                <td>
+                                    <p>Tên ảnh: <b>@item.Name</b></p>
+                                    <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                    <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Giới thiệu sản phẩm</label></td>
+            <td>@Html.Raw(Model.HightlightsShortDes)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Bộ sản phẩm đính kèm</label></td>
+            <td>@Html.Raw(Model.AttachedAccessories)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thông tin đính kèm</label></td>
+            <td>@Html.Raw(Model.IncludeInfo)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Tổng quan</label></td>
+            <td>@Html.Raw(Model.Overview)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Video chi tiết sản phẩm</label></td>
+            <td>@Html.Raw(Model.VideoDetail)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Video đánh giá sản phẩm</label></td>
+            <td>@Html.Raw(Model.VideoRating)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Video sản phẩm</label></td>
+            <td>@Html.Raw(Model.OverviewVideo)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>360 sản phẩm</label></td>
+            <td>@Html.Raw(Model.Overview360)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thông tin chi tiết</label></td>
+            <td>@Html.Raw(Model.Details)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Thông tin driver</label></td>
+            <td>@Html.Raw(Model.InfoDriver)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Chiều Dài</label></td>
+            <td>@Model.SizeLength</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Chiều rộng</label></td>
+            <td>@Model.SizeWidth</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Chiều cao</label></td>
+            <td>@Model.SizeHeight</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Trọng lượng</label></td>
+            <td>@Model.Weight</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hiển thị</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsShow == true)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hiển thị slide</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsSlide == true)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Sản phẩm hot</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsHot == true)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hiển thị trang chủ</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsShowOnHomePage.HasValue && Model.IsShowOnHomePage.Value)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hiện thị form đóng góp</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsShowFormIdea.HasValue && Model.IsShowFormIdea.Value)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Áp dụng giao diện mới</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsApplyNewTemplate.HasValue && Model.IsApplyNewTemplate.Value)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Cho phép đánh giá</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsAllowRating.HasValue && Model.IsAllowRating.Value)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Cho phép bình luận</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsAllowComment.HasValue && Model.IsAllowComment.Value)</td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Cho phép đặt trước</label></td>
+            <td>
+                @Grid.DisplayShow(Model.Name, Model.IsPreOrder.HasValue && Model.IsPreOrder.Value)
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label>Hàng sắp về</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsComingSoon.HasValue && Model.IsComingSoon.Value)</td>
+        </tr>
+        <tr>
+            <td>
+                <label>Hình ảnh đại diện</label></td>
+            <td>
+                @if (Model.PictureID.HasValue == true)
+                {
+                    <table class="gridView" cellspacing="1">
+                        <tr title="@Model.Gallery_Picture.Name" id="@Model.Gallery_Picture.ID">
+                            <td>@Model.Gallery_Picture.ID</td>
+                            <td>
+                                @Gallery.DisplayImage(Model.Gallery_Picture.Url, 120)
+                            </td>
+                            <td>
+                                <p>Tên ảnh: <b>@Model.Gallery_Picture.Name</b></p>
+                                <p>Ngày tạo: <i>@Model.Gallery_Picture.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                <p>Album: <b>@((Model.Gallery_Picture.AlbumID.HasValue) ? Model.Gallery_Picture.Gallery_Album.Name : "")</b></p>
+                                <p>Chuyên mục: <b>@((Model.Gallery_Picture.CategoryID.HasValue) ? Model.Gallery_Picture.Gallery_Category.Name : "")</b></p>
+                            </td>
+
+                        </tr>
+                    </table>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Hình ảnh hot</label></td>
+            <td>
+                @if (Model.PictureHotID > 0)
+                {
+                    var pictureDa = new FDI.DA.Admin.Gallery_PictureDA();
+                    FDI.Base.Gallery_Picture picItem = pictureDa.GetById(Model.PictureHotID.Value);
+                    <table class="gridView" cellspacing="1">
+                        <tr title="@picItem.Name" id="@picItem.ID">
+                            <td>@picItem.ID</td>
+                            <td>
+                                @Gallery.DisplayImage(picItem.Url, 120)
+                            </td>
+                            <td>
+                                <p>Tên ảnh: <b>@picItem.Name</b></p>
+                                <p>Ngày tạo: <i>@picItem.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                <p>Chuyên mục: <b>@((picItem.CategoryID.HasValue) ? picItem.Gallery_Category.Name : "")</b></p>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 160px;">
+                <label>Hình ảnh 360</label></td>
+            <td>
+                <div id="Text_Images">
+                    <table class="gridView" cellspacing="1">
+                        @foreach (var item in Model.Gallery_Picture2)
+                        {
+                            <tr title="@item.Name" id="@item.ID">
+                                <td>@item.ID</td>
+                                <td>
+                                    @Gallery.DisplayImage(item.Url, 120)
+                                </td>
+                                <td>
+                                    <p>Tên ảnh: <b>@item.Name</b></p>
+                                    <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                    <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 160px;">
+                <label>Hình ảnh Slide</label></td>
+            <td>
+                <div id="Text_Images">
+                    <table class="gridView" cellspacing="1">
+                        @foreach (var item in Model.Gallery_Picture3)
+                        {
+                            <tr title="@item.Name" id="@item.ID">
+                                <td>@item.ID</td>
+                                <td>
+                                    @Gallery.DisplayImage(item.Url, 120)
+                                </td>
+                                <td>
+                                    <p>Tên ảnh: <b>@item.Name</b></p>
+                                    <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                    <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 160px;">
+                <label>Hình ảnh Gallery</label></td>
+            <td>
+                <div id="Text_Images">
+                    <table class="gridView" cellspacing="1">
+                        @foreach (var item in Model.Gallery_Picture3)
+                        {
+                            <tr title="@item.Name" id="@item.ID">
+                                <td>@item.ID</td>
+                                <td>
+                                    @Gallery.DisplayImage(item.Url, 120)
+                                </td>
+                                <td>
+                                    <p>Tên ảnh: <b>@item.Name</b></p>
+                                    <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                    <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</fieldset>

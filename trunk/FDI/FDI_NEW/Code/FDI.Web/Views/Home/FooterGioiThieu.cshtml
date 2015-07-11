@@ -1,0 +1,74 @@
+﻿@model FDI.Simple.ModelNewsGioiThieuItem
+<div></div>
+@{
+    if (Model != null)
+    {
+    <div class="div-module-five">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 FDI-video-gt  wow fadeInLeft" data-wow-duration="600ms" data-wow-delay="300ms">
+                    <h3 class="title"><a href="#">Video</a></h3>
+                    <div class="FDI-video-ct">
+                         <a target="_blank" href="https://www.youtube.com/watch?v=yDHEEF5ibAs?rel=0&autoplay=1" class="a-img-video">
+                            <img src="/Content/Publishing/Images/images-video.jpg" class="img-responsive" />
+                             <span class="icon-circle-play"></span>
+                        </a>
+                    </div>
+                </div>
+                @*    <div class="col-sm-6 col-md-3 FDI-about  wow fadeInUp" data-wow-duration="600ms" data-wow-delay="300ms">
+                    <h3 class="title"><a href="#">Giới thiệu FDI</a></h3>
+                    <div class="FDI-about-text">
+                        <h4 class="title"><a href="#">Công ty tin học FDI</a></h4>
+                        <p>Công ty Tin học FDI, tiền thân là Công ty TNHH Phát triển Kỹ thuật và Thương mại , thành lập năm 1996. Năm 2002, công ty chính thức chuyển đổi thành Công ty Cổ phần Tin học Tân Dân với đăng ký Kinh doanh số 0103001206 ngày ...</p>
+                    </div>
+                </div>*@
+
+                <div class="col-sm-6 col-md-3 FDI-about  wow fadeInUp" data-wow-duration="600ms" data-wow-delay="300ms">
+                    @{if (Model.NewsItem != null)
+                      {
+                          
+                        <h3 class="title">@Model.NewsItem.Title
+                        </h3>
+                        <div class="FDI-about-text">
+                            <p>@Html.Raw(FDI.Utils.MyString.Truncate(Model.NewsItem.Details, 500))</p>
+                        </div>
+                          
+                      }
+                    }
+                </div>
+                <div class="col-sm-6 col-md-3 FDI-ttcb wow bounceInUp" data-wow-duration="2s">
+                    @{
+                      if (Model != null && Model.ListNewsGioiThieu != null && Model.ListNewsGioiThieu.Any())
+                      {
+                        <h3 class="title"><a href="/@Model.TenDanhMucGioiThieu">Thông tin cần biết</a>
+                        </h3>
+                        <ul>
+                            @foreach (var item in Model.ListNewsGioiThieu)
+                            {
+                                <li><a href="/@item.TitleAscii"><i class="fa fa-check"></i>@item.Title</a></li>
+                            }
+                        </ul>
+                      }
+                    }
+                </div>
+                <div class="col-sm-6 col-md-3 FDI-dvcct wow bounceInRight" data-wow-duration="2s">
+                    @{
+                      if (Model != null && Model.ListNewsDichVu != null && Model.ListNewsDichVu.Any())
+                      {
+                        <h3 class="title"><a href="/@Model.TenDanhMucDichVu">Dịch vụ của chúng tôi</a>
+                        </h3>
+                        <ul>
+                            @foreach (var item in Model.ListNewsDichVu)
+                            {
+                                <li><a href="/@item.TitleAscii"><i class="fa fa-check"></i>@item.Title</a></li>
+
+                            }
+                        </ul>
+                      }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}

@@ -1,0 +1,296 @@
+﻿@using FDI.Utils
+@model FDI.Base.News_News
+@{
+    ViewBag.Title = ViewBag.ActionText + " bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        registerGallery();
+        var urlSelectCategory = '@Url.Action("AjaxTreeSelect", "NewsCategory", new { @Container = "CategoryValues", @SelectMutil = "True" })';
+        
+        LoadCKEDITOR('Details', true);
+        createCKFider('ImagesUrl', 162);
+        createAutoTag('NewsTag', '@Url.Action("AutoComplete", "SystemTag")');
+        createAutoTag('NewsProduct', '@Url.Action("AutoComplete", "Product")');
+
+        $("#selectCategory").click(function () {
+            var valuesSelected = $("#Value_CategoryValues").val();
+            $("#dialog-form-2").dialog(
+                {
+                    title: "Chọn chuyên mục bài viết", 
+                    resizable: true,
+                    modal: true,
+                    width: 600,
+                    height: 500,
+                    buttons: {
+                        "Cập nhật": function () {
+                            $("#CategoryTreeSelectForm #btnSave").click();
+                        },
+                        "Chọn lại": function () {
+                            $("#CategoryTreeSelectForm #btnReset").click();
+                        },
+                        "Đóng": function () {
+                            $(this).dialog("close");
+                        }
+                    },
+                    show: {
+                        effect: "fade",
+                        duration: 500
+                    }
+                }
+            ).load(encodeURI(urlSelectCategory + "&ValuesSelected=" + valuesSelected)).dialog("open");
+            return false;
+        });
+
+        // datepicker
+        $(".datepicker-input").each(function () { $(this).datepicker(); });
+
+        $("#NewsContentForm").validate({
+            rules: {
+                Title:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                TitleAscii:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255,
+                    remote: "@Url.Action("CheckTitleAsciiExits", "NewsContent", new { id = Model.ID })"
+                },
+                link: {
+                    url: true,
+                },
+                Description:
+                {
+                    required: true,
+                    maxlength: 2000
+                },
+                SEODescription:
+                {
+                    maxlength: 4000
+                },
+            
+                Value_CategoryValues: {
+                    required: true
+                },
+                Value_DefaultImages: {
+                    required: true
+                },
+                
+            },
+            messages: {
+                TitleAscii: "Link này đã tồn tại"
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                getValueFromAutoTag('listProductValues', 'ProductValues');
+                getValueFromAutoTag('listTagValues', 'TagValues');
+
+                $.post(urlPostAction, $("#NewsContentForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+    });
+
+</script>
+
+<form id="NewsContentForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <input type="hidden" id="listValueFileAttach" name="listValueFileAttach" />
+    <input type="hidden" id="listValueFileAttachRemove" name="listValueFileAttachRemove" />
+    <input type="hidden" name="TagValues" id="TagValues" />
+    <input type="hidden" name="ProductValues" id="ProductValues" />
+
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về bài viết</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên bài viết</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Title" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Title"  value="@Model.Title"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Hình ảnh đại diện</label>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-sm btn-success" id="Button_DefaultImages" data-type="gallery" data-multi="false" data-container="DefaultImages" data-value="Value_DefaultImages">Chọn hỉnh ảnh đại diện</button>
+                            <input type="hidden" name="Value_DefaultImages" id="Value_DefaultImages" value="@((Model.PictureID.HasValue) ? Model.PictureID.Value.ToString() : "")" />
+                            <span class="help-block m-b-none">
+                                <div id="Text_DefaultImages">
+                                    @if (Model.PictureID.HasValue)
+                                    {
+                                        <table class="gridView" cellspacing="1">
+                                            <tr title="@Model.Gallery_Picture.Name" id="@Model.Gallery_Picture.ID">
+                                                <td>
+                                                    @Gallery.DisplayImage(Model.Gallery_Picture.Folder + Model.Gallery_Picture.Url, 120)
+                                                </td>
+                                                <td>ID: <b>@Model.Gallery_Picture.ID</b><br />
+                                                    Tên ảnh: <b>@Model.Gallery_Picture.Name</b><br />
+                                                    Ngày tạo: <i>@Model.Gallery_Picture.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i><br />
+                                                    Album: <b>@((Model.Gallery_Picture.AlbumID.HasValue) ? Model.Gallery_Picture.Gallery_Album.Name : "")</b><br />
+                                                    Chuyên mục: <b>@((Model.Gallery_Picture.CategoryID.HasValue) ? Model.Gallery_Picture.Gallery_Category.Name : "")</b>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-success" onclick="$(this).parent().parent().remove(); getValue('NewsDefaultImages'); return false;">Xóa</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Chuyên mục tin</label>
+                        <div class="col-lg-10">
+                            <button id="selectCategory" type="button" class="btn btn-sm btn-success">Chọn chuyên mục tin tức</button>
+                            <input type="hidden" name="Value_CategoryValues" id="Value_CategoryValues" value="@string.Join(", ", Model.News_Category.Select(c => c.ID))" />
+                            <span class="help-block m-b-none">
+                                <div id="Text_CategoryValues" class="checkBoxValues">@string.Join(", ", Model.News_Category.Select(c => c.Name))</div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mô tả (Excerpt)</label>
+                        <div class="col-lg-10">
+                            <textarea rows="5" class="form-control" placeholder="..." name="Description" id="Description">@Model.Description</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Nội dung chi tiết</label>
+                        <div class="col-lg-10">
+                            <textarea rows="10" class="form-control" placeholder="..." name="Details" id="Details">@Model.Details</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Sản phẩm liên quan</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="NewsProduct" id="NewsProduct" />
+                            <span class="help-block m-b-none">
+                                <ul id="Product_Value" class="listValues listProductValues">
+                                    @foreach (var data in Model.Shop_Product)
+                                    {
+                                        <li id="Product_Value@(data.ID)" name="@data.ID" key=""><span>@data.Name</span><a href="javascript:deletevalues('Product_Value@(data.ID)');"><img border="0" src="/Content/Admin/Images/gridview/act_filedelete.png" /></a></li>
+                                    }
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Ngày kích hoạt</label>
+                        <div class="col-lg-10">
+                            <input type="text" id="StartDateDisplay_" name="StartDateDisplay_"  class="input-sm input-s datepicker-input form-control" value="@(Model.StartDateDisplay.HasValue ? Model.StartDateDisplay.Value.ToString("dd/MM/yyyy") : Model.DateCreated.Value.ToString("dd/MM/yyyy"))" data-date-format="dd/mm/yyyy" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    @Html.CheckBox("IsHot")Là tin tiêu điểm
+                                </label>
+                            </div>
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    @Html.CheckBox("IsAllowComment")Cho phép bình luận
+                                </label>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    @Html.CheckBox("IsShow")Kích hoạt
+                                </label>
+                            </div>
+                            <div class="checkbox col-md-6">
+                                <label>
+                                    @Html.CheckBox("NoIndex")No Index
+                                </label>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">
+                            @((ViewBag.Action.ToString().Equals("Add")) ? "Người tạo" : "Người sửa")
+                        </label>
+                        <div class="col-lg-10">
+                            <p class="form-control-static">@ViewBag.User</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Hỗ trợ SEO</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">SEO permalink</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="TitleAscii" id="TitleAscii" value="@Model.TitleAscii"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">SEO Description</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="SEODescription" id="SEODescription" value="@Model.SEODescription"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">SEO Title</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="SEOTitle" id="SEOTitle" value="@Model.SEOTitle"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">SEO Keyword</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="SEOKeyword" id="SEOKeyword" value="@Model.SEOKeyword"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tags</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="NewsTag" id="NewsTag" />
+                            <span class="help-block m-b-none">
+                                <ul id="NewsTag_Value" class="listTagValues">
+                                    @foreach (var data in Model.System_Tag)
+                                    {
+                                        <li id="NewsTag_Value@(data.ID)" name="@data.ID" key=""><span>@data.Name</span><a title="Xóa tag" href="javascript:deletevalues('NewsTag_Value@(data.ID)');"><img border="0" src="/Content/Admin/Images/gridview/act_filedelete.png" /></a></li>
+                                    }
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        @*<button id="reset" type="reset" >Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>*@
+    </div>
+</form>

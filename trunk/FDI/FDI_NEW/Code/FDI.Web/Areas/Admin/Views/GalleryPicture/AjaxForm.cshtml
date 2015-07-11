@@ -1,0 +1,182 @@
+﻿@model FDI.Base.Gallery_Picture
+@{
+    ViewBag.Title = ViewBag.ActionText + " danh sách hình ảnh";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        var urlSelectCategory = '@Url.Action("AjaxTreeSelect", "GalleryCategory", new { @Container = "CategoryValues", @SelectMutil = "True" })';
+        
+        //var urlSelectDefaultImage = "/Admin/GalleryPictureSelect/?MutilFile=false&Container=DefaultImages";
+        //$(document).on("click", "#Button_DefaultImages", function () {
+        //    selectPicture(urlSelectDefaultImage + "&ValuesSelected=" + $("#Value_DefaultImages").val());
+        //});
+
+        LoadCKEDITOR('Description', false);
+        createCKFider('ImagesUrl', 162);
+
+        $("#selectCategory").click(function () {
+            var valuesSelected = $("#Value_CategoryValues").val();
+            $("#dialog-form-2").dialog(
+				{
+				    title: "Chọn chuyên mục hình ảnh",
+				    width: 600,
+				    height: 500
+				}
+			).load(encodeURI(urlSelectCategory + "&ValuesSelected=" + valuesSelected)).dialog("open");
+            return false;
+        });
+
+        $("#GalleryPictureForm").validate({
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                Description:
+                {
+                    minlength: 15,
+                    maxlength: 2000
+                },
+                CategoryID: {
+                    required: {
+                        depends: function (element) {
+                            return $("#CategoryID").val() == "0";
+                        }
+                    }
+                },
+                AlbumID: {
+                    required: {
+                        depends: function (element) {
+                            return $("#AlbumID").val() == "";
+                        }
+                    }
+                }
+
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                getValueFromAutoTag('listProductValues', 'ProductValues');
+                getValueFromAutoTag('listTagValues', 'TagValues');
+
+                $.post(urlPostAction, $("#GalleryPictureForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+
+<form id="GalleryPictureForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <input type="hidden" name="ProductValues" id="ProductValues" />
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về hình ảnh</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên hình ảnh</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Title" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Title"  value="@Model.Name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Hình ảnh</label>
+                        <div class="col-lg-10">
+                            <input type="hidden" name="PictureImages" value="@Model.Url" />
+                            @Gallery.DisplayImage(Model.Folder + Model.Url, 200)
+                        </div>
+                    </div>
+
+              @*      <div class="form-group">
+                        <label class="col-lg-2 control-label">Hình ảnh</label>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-sm btn-success" id="Button_DefaultImages">Chọn hỉnh ảnh đại diện</button>
+                            <input type="hidden" name="Value_DefaultImages" id="Value_DefaultImages" value="@Model.ID" />
+                            <span class="help-block m-b-none">
+                                <div id="Text_DefaultImages">
+                                    @if (Model.ID > 0)
+                                    {
+                                        <table class="gridView" cellspacing="1">
+                                            <tr title="@Model.Name" id="@Model.ID">
+                                                <td>
+                                                    @Gallery.DisplayImage(Model.Folder + Model.Url, 120)
+                                                </td>
+                                                <td>ID: <b>@Model.ID</b><br />
+                                                    Tên ảnh: <b>@Model.Name</b><br />
+                                                    Ngày tạo: <i>@Model.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i><br />
+                                                    Album: <b>@((Model.AlbumID.HasValue) ? Model.Gallery_Album.Name : "")</b><br />
+                                                    Chuyên mục: <b>@((Model.CategoryID.HasValue) ? Model.Gallery_Category.Name : "")</b>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-success" onclick="$(this).parent().parent().remove(); getValue('NewsDefaultImages'); return false;">Xóa</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    }
+                                </div>
+                            </span>
+                        </div>
+                    </div>*@
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Chuyên mục ảnh</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.PictureCategoryID, "ID", "Name"), "Chọn Category", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Album ảnh</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(model => model.AlbumID, new SelectList(ViewBag.PictureAlbumID, "ID", "Name"), "Chọn Album", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mô tả (Excerpt)</label>
+                        <div class="col-lg-10">
+                            <textarea rows="5" class="form-control" placeholder="..." name="Description" id="Description">@Model.Description</textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <div class="checkbox col-md-12">
+                                <label>
+                                    @Html.CheckBox("IsShow") Hiện thị
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+    </div>
+</form>

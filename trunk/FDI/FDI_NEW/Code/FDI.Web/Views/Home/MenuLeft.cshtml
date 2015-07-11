@@ -1,0 +1,63 @@
+﻿@using FDI
+@using FDI.Utils
+@model IEnumerable<FDI.Simple.MenuItem>
+@{
+    var menuc1 = Model.Where(c => c.MenuParentID == 1);
+    var menuc2 = Model.Where(c => c.MenuParentID != 1);
+}
+<nav id="cssmenu" class="sidebar-menu sidebar-effect">
+    <ul>
+        @foreach (var item1 in menuc1)
+        {
+            if (item1.MenuLink.ToLower() == "home")
+            {
+            <li><a href="/" title=""><span>@item1.MenuTitle</span></a></li>
+            }
+            else
+            {
+                if (item1.MenuLink == WebConfig.DichVu)
+                {
+            <li class='has-sub'>
+                <a class="a-open-down"></a>
+                <a href="/dich-vu" title="@item1.MenuTitle"><span>@item1.MenuTitle</span></a>
+                <ul>
+                    @foreach (var item2 in menuc2.Where(o => o.MenuParentID == item1.MenuID))
+                    {
+                        <li class='has-sub'>
+                            <a class="a-open-down"></a>
+                            <a href="/@item2.MenuLink" title="@item2.MenuTitle"><span>@item2.MenuTitle</span></a>
+                            <ul>
+                                @foreach (var item3 in menuc2.Where(c => c.MenuParentID == item2.MenuID))
+                                {
+                                    <li><a href="/@item3.MenuLink" title="@item3.MenuTitle"><span>@item3.MenuTitle</span></a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </li>
+                }
+                else
+                {
+                    if (item1.MenuLink == WebConfig.GioiThieu)
+                    {
+            <li class='has-sub'>
+                <a class="a-open-down"></a>
+                <a href="/gioi-thieu" title=""><span>@item1.MenuTitle</span></a>
+                <ul>
+                    @foreach (var item2 in menuc2.Where(o => o.MenuParentID == item1.MenuID))
+                    {
+                        <li><a href="/@item2.MenuLink" title="@item2.MenuTitle"><span>@item2.MenuTitle</span></a></li>
+                    }
+                </ul>
+            </li>
+                    }
+                    else
+                    {
+                        <li><a href="/@item1.MenuLink" title=""><span>@item1.MenuTitle</span></a></li>
+                    }
+                }
+            }
+        }
+    </ul>
+</nav>

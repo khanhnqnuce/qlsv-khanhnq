@@ -1,0 +1,174 @@
+﻿@model FDI.Base.News_News
+
+@{
+    ViewBag.Title = "Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<div class="col-sm-12">
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">Thông tin về bài viết</header>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <label>Tên bài viết</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Title)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Mô tả</label></td>
+                <td>
+                    @Html.Raw(Model.Description)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>SEO Description</label></td>
+                <td>
+                    @Html.Raw(Model.SEODescription)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>SEO Title</label></td>
+                <td>
+                    @Html.Raw(Model.SEOTitle)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>SEO Keyword</label></td>
+                <td>
+                    @Html.Raw(Model.SEOKeyword)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hình ảnh đại diện</label></td>
+                <td>
+                    <img src="@((!Model.PictureID.HasValue) ? "/Content/Admin/images/no_image.gif" : "/Uploads/Thumbs/" + Model.Gallery_Picture.Folder + Model.Gallery_Picture.Url)" style="border:1px solid #ccc; width:250px; margin-top:2px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Hình ảnh săn KM</label></td>
+                <td>
+                    <img src="@((!Model.PromotionPictureID.HasValue) ? "/Content/Admin/images/no_image.gif" : "/Uploads/Thumbs/" + Model.Gallery_Picture.Folder + Model.Gallery_Picture.Url)" style="border:1px solid #ccc; width:250px; margin-top:2px;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Chuyên mục tin</label></td>
+                <td>
+                    @string.Join(", ", Model.News_Category.Select(c => c.Name))
+                </td>
+            </tr>
+            @if (Model.News_Category.Any(c => c.ID == 2))
+            {
+                <tr>
+                    <td>
+                        <label>Ngày bắt đầu khuyến mãi</label></td>
+                    <td>@Model.StartPromotionDate</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <label>Ngày kết thúc khuyến mãi</label></td>
+                    <td>@Model.EndPromotionDate</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Link</label></td>
+                    <td>
+                        @Html.DisplayFor(model => model.link)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Phần trăm giảm giá (%)</label></td>
+                    <td>
+                        @Html.DisplayFor(model => model.SalePercent)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Giá trước khi giảm</label></td>
+                    <td>@Model.PriceBeforeDown</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Giá sau khi giảm</label></td>
+                    <td>@Model.PriceAfterDown</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tiêu đề khuyến mãi</label></td>
+                    <td>
+                        @Html.DisplayFor(model => model.PromotionCaption)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Mô tả khuyến mãi</label></td>
+                    <td>
+                        @Html.DisplayFor(model => model.PromotionDescription)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Thông tin khuyến mãi</label></td>
+                    <td>
+                        @Html.Raw(Model.PromotionInfo)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <label>Hiển thị</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Title, Model.IsShow == true)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Là tin tiêu điểm</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Title, Model.IsHot == true)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Cho phép bình luận</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Title, Model.IsAllowComment == true)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Từ khóa</label></td>
+                <td>@string.Join(", ", Model.System_Tag.Select(tag => tag.Name))</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Sản phẩm liên quan</label></td>
+                <td>@string.Join(", ", Model.Shop_Product.Select(p => p.Name))</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Nội dung chi tiết</label></td>
+                <td>
+                    @Html.Raw(Model.Details)
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>

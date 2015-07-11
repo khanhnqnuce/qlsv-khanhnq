@@ -1,0 +1,155 @@
+﻿@model FDI.Base.Shop_Comment
+@{
+    ViewBag.Title = ViewBag.ActionText + " reply";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+
+        LoadCKEDITOR('Content', true);
+        $("#ShopCommentReplyForm").validate({
+            ignore: [],
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                Email:
+               {
+                   required: true,
+                   email: true,
+                   minlength: 3,
+                   maxlength: 150
+               },
+               
+            },
+            errorElement: "span",
+           
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                var editorcontent = CKEDITOR.instances['Content'].getData().replace(/<[^>]*>/gi, '');
+                if (editorcontent.length >3) {
+                    $("#Name").removeAttr('disabled');
+                    $("#Email").removeAttr('disabled');
+                    $.post(urlPostAnswer, $("#ShopCommentReplyForm").serialize(), function (data) {
+                        if (data.Erros) {
+
+                            createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                        } else {
+                            // alert("fdfdfdf");
+                            $("#dialog-form-2").dialog('close'); //Đóng form thêm mới - sửa
+
+                            $("#dialog-form").dialog(
+                                {
+                                    title: "Xem nội dung bình luận",
+                                    width: formWidth,
+                                    height: formHeight
+                                }
+                            ).load(encodeURI(urlView + "?itemId=@ViewBag.ShopComment.ID")).dialog("open");
+                        var RowPerPage = $(".bottom-pager select").val();
+                        var Page = $("input[name=page]").val();
+                        createCloseMessage("Thông báo", data.Message, '#itemId=' + data.ID + '&RowPerPage=' + RowPerPage + '&Page=' + Page + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+                }
+                else {
+                    alert('Nội dung phải lớn hơn 3 ký tự');
+                    return false;
+                }
+                
+            }
+        });
+        function getParameter(paramName) {
+            var searchString = window.location.search.substring(1),
+                i, val, params = searchString.split("&");
+
+            for (i = 0; i < params.length; i++) {
+                val = params[i].split("=");
+                if (val[0] == paramName) {
+                    return unescape(val[1]);
+                }
+            }
+            return null;
+        }
+        $("#close").click(function () {
+            $("#dialog-form-2").html("").dialog('close');
+        });
+    });
+</script>
+
+<form id="ShopCommentReplyForm">
+    
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <input type="hidden" name="ShopCommentID" id="ShopCommentID" value="@ViewBag.ShopComment.ID"/>
+    <input type="hidden" name="ProductID" id="ProductID" value="@ViewBag.ShopComment.ProductID"/>
+    <input type="hidden" name="CustomerID" id="CustomerID" value="@ViewBag.Customer.ID"/>
+    
+    <fieldset class="forms">
+        <table class="tableforms" cellspacing="1" width="100%">
+            @*<tr>
+                <td style="width:120px;" class="label"><label>Tiêu đề bài viết</label></td>
+                <td>
+                    <input name="Title" id="Title" value="@ViewBag.ShopComment.Title" readonly=""/>
+                   
+                    
+                </td>
+            </tr>*@
+            <tr>
+                <td style="width:120px;" class="label"><label>ID bình luận</label></td>
+                <td>
+                   
+                    <div>#binh-luan-@ViewBag.ShopComment.ID</div>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="width:120px;" class="label"><label>Nội dung bình luận</label></td>
+                <td>
+                   
+                    <div>@Html.Raw(ViewBag.ShopComment.Content)</div>
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Họ và tên<span class="star">*</span></label></td>
+                <td>
+                    <input disabled="disabled" type="text" name="Name" id="Name" value="@ViewBag.Customer.UserName"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Email<span class="star">*</span></label></td>
+                <td>
+                    <input disabled="disabled" type="text" name="Email" id="Email" value="@ViewBag.Customer.Email"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Hiển thị</label></td>
+                <td>
+                    <input type="checkbox" name="IsActive" id="IsActive" value="True" @((Model.IsActive.HasValue && Model.IsActive.Value) ? " checked" : string.Empty)/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td><label>Nội dung trả lời<span class="star">*</span></label></td>
+                <td>
+                    
+                     <textarea rows="8" id="Content" name="Content">@Model.Content </textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="submit" colspan="2">
+                    <button id="submit" type="submit" class="primaryAction">@ViewBag.ActionText</button>
+                    <button id="reset" type="reset" class="primaryAction">Nhập lại</button>
+                    <button id="close" type="button" class="primaryAction">Đóng lại</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>

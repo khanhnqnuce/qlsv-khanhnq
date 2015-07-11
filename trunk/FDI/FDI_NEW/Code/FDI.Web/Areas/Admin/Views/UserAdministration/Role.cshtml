@@ -1,0 +1,64 @@
+﻿@model FDI.Areas.Admin.Models.UserAdministration.RoleViewModel
+@{
+    ViewBag.Title = "Quản lý vai trò " + Model.Role;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="zone zone-content">
+    <h1 class="FDI.MvcMembership">Quản lý quản vai trò: @Model.Role</h1>
+    <div class="headear">
+        <div class="searchbox">
+            @Html.ActionLink("Quay lại danh sách", "Roles", "UserAdministration", new {}, new { @class = "button primaryAction", @id = "btn_back" })
+        </div>
+    </div>
+
+    <fieldset class="forms">
+        <table class="tableforms tabledetails" cellspacing="1" width="100%">
+            <tr>
+                <td class="label" style="width:120px;"><label>Tên vai trò</label></td>
+                <td>@Model.Role</td>
+            </tr>
+            <tr>
+                <td class="label"><label>Tài khoản sử dụng</label></td>
+                <td>
+                    <table class="gridView" cellspacing="1" width="100%">
+                        <tr>
+                            <th>Tên tài khoản</th>
+                            <th>Quản lý</th>
+                        </tr>
+                        @if(Model.Users.Any()){
+			                foreach(var key in Model.Users.Keys)
+                            { 
+                                var user = Model.Users[key];
+		                    <tr>
+                                <td>
+                                    @if(user == null)
+                                    {
+					                    <span>@key <em>(Deleted)</em></span>
+				                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(user.UserName, "Details", new{id=user.ProviderUserKey})
+                                    }
+                                </td>
+			                    <td>
+				                    @if(user == null){
+					                    <span>@key <em>(Deleted)</em></span>
+				                    }else{
+					                    using(Html.BeginForm("RemoveFromRole", "UserAdministration", new{id = user.ProviderUserKey, role = Model.Role})){
+						                    <button type="submit">Xóa vai trò của @user.UserName</button>
+					                    }
+				                    }
+			                    </td>
+		                    </tr>
+                            }
+	                    }else{
+	                    <tr>
+                            <td colspan="2">Không có tài khoản nào được sử dụng</td>
+                        </tr>
+	                    }
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>

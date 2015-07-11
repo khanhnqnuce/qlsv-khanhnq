@@ -1,0 +1,50 @@
+﻿@model FDI.Base.Shop_Product_Variant_Recurring
+
+<fieldset class="forms">
+    <legend>Thông tin cấu hình trả góp</legend>
+    <input type="hidden" name="productRecurring" value="@Model.ID" />
+    <table class="tableforms" cellspacing="1" width="100%">
+        <tr>
+            <td style="width: 120px;">
+                <label>Tiêu đề</label></td>
+            <td>
+                @Html.EditorFor(model => model.RecurringTitle)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>% thánh toán trước</label></td>
+            <td>
+                @Html.EditorFor(model => model.MustRepaidPercent)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Thời gian trả</label></td>
+            <td>
+                @Html.TextBoxFor(model => model.RecurringLength)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>% lãi xuất</label></td>
+            <td>
+                @Html.TextBoxFor(model => model.InterestRate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Từ khóa (SEO)</label></td>
+            <td>
+                @Html.TextBoxFor(model => model.MetaKeywordRecurring)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Từ khoá mô tả (SEO)</label></td>
+            <td>
+                @Html.TextBoxFor(model => model.MetaDescriptionRecurring)
+            </td>
+        </tr>
+    </table>
+</fieldset>

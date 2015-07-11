@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+  
+}
+
+@model IEnumerable<FDI.Simple.MenuItem> 
+<div class="product-box-list">
+    <h4 class="title">Danh mục</h4>
+    <ul class="list-quantam"> 
+
+        @{
+            if (Model != null)
+            {
+                int i = 1;
+                foreach (var item in Model)
+                { 
+                    <li><a href="/@item.MenuLink"><i class="fa fa-chevron-circle-right"></i>@item.MenuTitle</a></li>
+                }
+            }
+        } 
+    </ul>
+</div> 

@@ -1,0 +1,15 @@
+﻿@model FDI.Base.HtmlSetting
+@if (Model != null)
+{
+    if (ViewBag.Ishow)
+    {
+    <div style="border: 1px solid red; overflow: hidden">
+        <a class="add button SuaNoiHung btn btn-primary" style="position: absolute; z-index: 1000;" id="btnSuaNoiHung" href="@Url.Action("Index", "HtmlSettings", new { key = Model.Key,url = Model.url })" target="_black" >Sửa nội dung</a>
+        @Html.Raw(Model.Value)
+    </div>
+    }
+    else
+    {
+    @Html.Raw(Model.Value)
+    }
+}

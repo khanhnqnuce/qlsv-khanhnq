@@ -1,0 +1,83 @@
+﻿@model FDI.Base.Gallery_Album
+@{
+    ViewBag.Title = "Thông tin thư viện ảnh " + Model.Name;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    var urlInfoDetails = '@Url.Action("AjaxView", "GalleryAlbum")?ItemID=@Model.ID';
+    var urlFormEdit = '@Url.Action("AjaxForm", "GalleryAlbum")?ItemID=@Model.ID';
+    urlLists = '@Url.Action("ListItems", "GalleryPicture")?AlbumID=@Model.ID';
+    urlForm = '@Url.Action("AjaxForm", "GalleryPicture")';
+    urlPostAction = '@Url.Action("Actions", "GalleryPicture")';
+        @*urlSort = '@Url.Action("AjaxSort", "GalleryPicture")';*@
+    urlView = '@Url.Action("AjaxView", "GalleryPicture")';
+
+    var urlFormPicture = '@Url.Action("AjaxFormPicture", "GalleryPicture")?AlbumID=@Model.ID';
+    var urlFormPictureUpdate = '@Url.Action("AjaxFormPictureUpdate", "GalleryPicture")';
+    var urlFormPictureSubmit = '@Url.Action("AjaxFormPictureSubmit", "GalleryPicture")';
+
+    formWidth = 800;
+    formHeight = 500;
+    viewWidth = 800;
+    viewHeight = 500;
+
+    $(document).ready(function () {
+        initAjaxLoad(urlInfoDetails, "#albumDetails");
+        initAjaxLoad(urlLists, "#albumDetailsGriditems");
+
+        $("#btn_update").click(function () {
+            $("#dialog-form-3").dialog(
+                {
+                    title: "Cập nhật thông tin album",
+                    width: formWidth,
+                    height: formHeight
+                }
+            ).load(encodeURI(urlFormEdit) + "&do=Edit").dialog("open");
+            return false;
+        });
+
+        $("#btnAddPicture").click(function () {
+            $("#dialog-form-3").dialog(
+                {
+                    title: "Thêm mới hình ảnh",
+                    width: formWidth,
+                    height: formHeight
+                }
+            ).load(encodeURI(urlFormPicture + "&do=Add")).dialog("open");
+            return false;
+        });
+
+    });
+</script>
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+       
+                    <h1>@Model.Name</h1>
+                    <div class="headear">
+                        <div class="searchbox">
+                            @Html.ActionLink("Quay lại danh sách", "Index", "GalleryAlbum", new { }, new { @class = "button primaryAction", @id = "btn_back" })
+                        </div>
+                        <div class="manage">
+                            <a href="javascript:;" id="btn_update" class="button primaryAction">Chỉnh sửa album</a>
+                        </div>
+                    </div>
+
+                    <fieldset class="forms">
+                        <legend>Danh sách hình ảnh</legend>
+                        <div class="headear">
+                            <div class="manage">
+                                <button id="btnAddPicture" class="primaryAction">Thêm hình ảnh</button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="bs-example form-horizontal">
+                                <div id="albumDetailsGriditems"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+              
+        </section>
+    </div>
+

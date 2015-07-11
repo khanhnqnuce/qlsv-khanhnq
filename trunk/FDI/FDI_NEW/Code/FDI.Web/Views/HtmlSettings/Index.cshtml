@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+@model FDI.Base.HtmlSetting
+<script src="~/Scripts/jquery-1.7.1.js?v=2105"></script>
+
+<script src="@Url.Content("~/ckeditor/ckeditor.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/ckfinder/ckfinder.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/Admin/js/CarMarket.js")" type="text/javascript"></script>
+<br />
+<br />
+<br />
+<br />
+
+<form id="NewsContentForm" method="POST" action="@Url.Action("Save", "HtmlSettings")">
+    <input type="hidden" id="Key" name="Key" value="@Model.Key"/>
+    <input type="hidden" id="Url" name="Url" value="@Model.url"/>
+    <textarea rows="10" id="Value" name="Value">@Model.Value</textarea>
+    <button type="submit" class="add button SuaNoiHung" id="btnSave">Lưu</button>
+</form>
+<script>
+    LoadCKEDITOR('Value', true);
+</script>
