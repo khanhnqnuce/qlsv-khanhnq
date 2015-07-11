@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "AjaxFormPicture";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript" src="/Uploadify/swfobject.js"></script>
+<script type="text/javascript" src="/Uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<link href="/Uploadify/uploadify.css" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var arrFileObj = new Array();
+
+        function getJsonData() {
+            var jsonData = '[';
+            for (i = 0; i < arrFileObj.length; i++) {
+                jsonData += '{';
+                jsonData += '   "Name" : "' + arrFileObj[i].name + '",';
+                jsonData += '   "FilePath" : "' + arrFileObj[i].filePath + '",';
+                jsonData += '   "Size" : ' + arrFileObj[i].size + ',';
+                jsonData += '   "Type" : "' + arrFileObj[i].type + '"';
+                jsonData += '}';
+                if (i < arrFileObj.length - 1)
+                    jsonData += ',';
+            }
+            jsonData += ']';
+            return jsonData;
+        }
+
+        $('#file_upload').uploadify({
+            'uploader': '/Uploadify/uploadify.swf',
+            'script': '/Uploadify/uploadify.ashx',
+            'cancelImg': '/Uploadify/cancel.png',
+            'folder': '/Temp',
+            'multi': true,
+            'auto': true,
+            'fileExt': '*.jpg;*.gif;*.png;*.jpeg',
+            'fileDesc': 'Image Files (.JPG, .GIF, .PNG, .JPEG)',
+            'removeCompleted': false,
+            'sizeLimit': (2048 * 1024), //600 KB
+            'onCancel': function (event, ID) {
+                var fileNameCancel = $("#file_upload" + ID + " .fileName").text();
+                fileNameCancel = fileNameCancel.substring(0, fileNameCancel.indexOf('(') - 1);
+                for (i = 0; i < arrFileObj.length; i++) {
+                    if (arrFileObj[i].name == fileNameCancel) {
+                        arrFileObj.splice(i, 1);
+                        $("#file_upload" + ID).remove();
+                        break;
+                    }
+                }
+            },
+            'onComplete': function (event, ID, fileObj) {
+                arrFileObj.push(fileObj);
+            },
+            'onAllComplete': function (event, data) {
+                $("#submitPicture").show();
+                $("#fileData").html(getJsonData());
+                $('#status-message').html('<span class="message">' + data.filesUploaded + ' file đã upload thành công, ' + data.errors + ' file lỗi.</span>');
+            }
+        });
+
+
+        $("#closePicture").click(function () {
+            $("#dialog-form-3").html("").dialog('close');
+        });
+
+        $("#GalleryPictureForm").submit(function () {
+            $.post(urlFormPictureUpdate, $("#GalleryPictureForm").serialize(), function (data) {
+                $("#dialog-form-3").html(data).dialog(
+				{
+				    title: "Cập nhật thông tin ảnh",
+				    width: formWidth,
+				    height: formHeight
+				}).dialog("open");
+            });
+            return false;
+        });
+    });
+</script>
+
+<form id="GalleryPictureForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="AlbumID" id="AlbumID" value="@ViewBag.AlbumID"/>
+    <input type="hidden" name="CategoryID" id="CategoryID" value="@ViewBag.CategoryID"/>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                <p><b>Click vào nút select file và chọn file cần upload</b></p>
+                <p></p>
+                <input id="file_upload" name="file_upload" type="file" />
+                <textarea id="fileData" name="fileData" style="display: none;"></textarea>
+                <p id="status-message"></p>
+            </td>
+        </tr>
+        <tr class="pull-right">
+            <td class="submit" colspan="2">
+                <button id="submitPicture" type="submit" class="btn btn-sm btn-success" style="display: none;">Nhập ảnh upload vào hệ thống</button>
+                <button id="closePicture" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+            </td>
+        </tr>
+    </table>
+</form>

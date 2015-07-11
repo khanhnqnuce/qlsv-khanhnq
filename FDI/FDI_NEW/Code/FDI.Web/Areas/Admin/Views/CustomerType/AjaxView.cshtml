@@ -1,0 +1,26 @@
+﻿@model FDI.Base.Customer_Type
+@{
+    ViewBag.Title = "Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<div class="col-sm-12">
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">Thông tin về loại khách hàng</header>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Tên loại khách</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td><label>Trạng thái xóa</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Name, Model.IsDelete.HasValue && Model.IsDelete.Value)
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>
+

@@ -1,0 +1,64 @@
+﻿@model FDI.Simple.SystemActionItem
+@{
+    ViewBag.Title = "Quản lý menu trang chủ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutNew.cshtml";
+}
+<script type="text/javascript">
+
+    urlLists = '@Url.Action("ListItems", "SystemMenu")';
+    urlForm = '@Url.Action("AjaxForm", "SystemMenu")';
+    urlSort = '@Url.Action("AjaxSort", "SystemMenu")';
+    urlPostAction = '@Url.Action("Actions", "SystemMenu")';
+    urlView = '@Url.Action("AjaxView", "SystemMenu")';
+    formWidth = 960;
+    formHeight = $(window).height() - 24;
+    viewWidth = 960;
+    viewHeight = $(window).height() - 24;
+
+    $(document).ready(function () {
+        initAjaxLoad(urlLists, "#NewsGriditems");
+
+        $("#gridSearch").submit(function () {
+            var form = $("#gridSearch");
+            window.location.href = '#' + getValueFormMutilSelect(form);
+            return false;
+        });
+
+        $("#btn_add").click(function () {
+            $("#dialog-form").dialog(
+				{
+				    title: "Thêm mới menu",
+				    width: formWidth,
+				    height: formHeight
+				}
+			).load(encodeURI(urlForm + "?do=Add")).dialog("open");
+            return false;
+        });
+        $("select.mutil").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+    });
+</script>
+<section id="content">
+    <section class="hbox stretch">
+        <aside>
+            <section class="vbox">
+                <header class="header bg-white b-b clearfix">
+                    <ul class="breadcrumb no-border no-radius b-b b-light m-l-15x m-r-15x">
+                        <li><a href="/Admin/Admin"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">Quản lý menu trang chủ</li>
+                    </ul>
+                    <div class="row m-t-sm">
+                        <div class="col-sm-1 m-b-xs">
+                            @if (Model.Add)
+                            {
+                                @Html.ActionLink("Thêm mới", "Actions", new { }, new { @class = "btn btn-sm btn-success", @id = "btn_add" })
+                            }
+                        </div>
+                    </div>
+                </header>
+                <section  id="NewsGriditems" class="m-t-lg">
+                </section>
+            </section>
+        </aside>
+    </section>
+    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>

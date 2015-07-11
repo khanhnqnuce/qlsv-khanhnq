@@ -1,0 +1,370 @@
+﻿@model FDI.Base.Advertising
+@{
+    ViewBag.Title = ViewBag.ActionText + " banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<link href="/Content/Admin/css/datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Content/Admin/js/jquery-ui-timepicker-addon.js")" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+        LoadCKEDITOR('Content', true);
+        if ($('#TypeID').find('option:selected').val() != 0) {
+            var selectedText = $('#TypeID').find('option:selected').text();
+            switch (selectedText) {
+                case 'Picture':
+                    $('#PicturePanel').show();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').hide();
+                    break;
+                case 'Video':
+                    $('#PicturePanel').hide();
+                    $('#VideoPanel').show();
+                    $('#FlashPanel').hide();
+                    break;
+                case 'Flash':
+                    $('#PicturePanel').hide();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').show();
+                    break;
+                default:
+                    $('#PicturePanel').show();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').hide();
+                    break;
+            }
+        }
+        $('#TypeID').change(function () {
+            var selectedText = $(this).find('option:selected').text();
+            switch (selectedText) {
+                case 'Picture':
+                    $('#PicturePanel').show();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').hide();
+                    break;
+                case 'Video':
+                    $('#PicturePanel').hide();
+                    $('#VideoPanel').show();
+                    $('#FlashPanel').hide();
+                    break;
+                case 'Flash':
+                    $('#PicturePanel').hide();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').show();
+                    break;
+                default:
+                    $('#PicturePanel').show();
+                    $('#VideoPanel').hide();
+                    $('#FlashPanel').hide();
+                    break;
+            }
+        });
+
+        var urlSelectZone = '@Url.Action("AjaxTreeSelect", "AdvertisingZone", new { @ZoneContainer = "CategoryValues1", @SelectMutil = "True" })';
+        var urlSelectCategory = '@Url.Action("AjaxTreeSelect", "ProductCategory", new { @Container = "CategoryValues", @SelectMutil = "True" })';
+        var urlSelectDefaultImage = "/Admin/GalleryPictureSelect/?MutilFile=false&Container=DefaultImages";
+
+        $("#Button_DefaultImages").click(function () {
+            selectPicture(urlSelectDefaultImage + "&ValuesSelected=" + $("#Value_DefaultImages").val());
+        });
+
+        //CKEDITOR.remove(Content);
+        $("#selectCategory1").click(function () {
+            var zonevaluesSelected = $("#Value_CategoryValues1").val();
+            $("#dialog-form-2").dialog(
+                {
+                    title: "Chọn vùng banner",
+                    width: 600,
+                    height: 500
+                }
+            ).load(encodeURI(urlSelectZone + "&ValuesSelected=" + zonevaluesSelected)).dialog("open");
+            return false;
+        });
+
+
+        //select productcategory
+        $("#selectCategory").click(function () {
+            var valuesSelected = $("#Value_CategoryValues").val();
+            $("#dialog-form-2").dialog(
+                {
+                    title: "Chọn chuyên mục sản phẩm",
+                    width: 600,
+                    height: 500
+                }
+            ).load(encodeURI(urlSelectCategory + "&ValuesSelected=" + valuesSelected)).dialog("open");
+            return false;
+        });
+        // datetime
+        var maxdate = $('#EndDate').val();
+        var mindate = $('#StartDate').val();
+        $('#StartDate').datetimepicker(
+            {
+                showOn: "button",
+                hour: 0,
+                minute: 0,
+                buttonImageOnly: true,
+                dateFormat: "dd/mm/yy",
+                timeFormat: "H:mm tt",
+                //maxDate: maxdate,
+                onSelect: function () {
+                    $('#EndDate').datetimepicker('option', 'minDate', $('#StartDate').datetimepicker('getDate'));
+                    $('#PublicDate').datetimepicker('option', 'minDate', $('#StartDate').datetimepicker('getDate'));
+                }
+            });
+        $('#EndDate').datetimepicker(
+            {
+                showOn: "button",
+                hour: 23,
+                minute: 59,
+                buttonImageOnly: true,
+                dateFormat: "dd/mm/yy",
+                timeFormat: "H:mm tt",
+                //minDate: mindate,
+                onSelect: function () {
+                    $('#StartDate').datetimepicker('option', 'maxDate', $('#EndDate').datetimepicker('getDate'));
+                    $('#PublicDate').datetimepicker('option', 'maxDate', $('#EndDate').datetimepicker('getDate'));
+                }
+            });
+
+        $("#AdvertisingForm").validate({
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                Link: {
+
+                    url: true
+                },
+
+                TypeID: {
+                    required: {
+                        depends: function (element) {
+                            return $("#TypeID").val() == "0";
+                        }
+                    }
+                },
+                //Content:
+                //{
+                //    minlength: 15,
+                //    maxlength: 1000
+                //},
+                //Value_DefaultImages: {
+                //    required: true
+                //}
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                $.post(urlPostAction, $("#AdvertisingForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#selectclose").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+
+    $(document).ready(function () {
+        $('#IsMobile').click(function () {
+            if (this.checked)
+                $('.mobileLink').show();
+            else
+                $('.mobileLink').hide();
+        });
+        if ($('#IsMobile').attr('checked')) {
+            $('.mobileLink').show();
+        } else {
+            $('.mobileLink').hide();
+        }
+    });
+
+</script>
+
+<form id="AdvertisingForm">
+
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về thư viện banner</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên banner</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Name" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Name"  value="@Model.Name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Width</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Width" id="Width" value="@Model.Width" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Height</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Height" id="Height" value="@Model.Height" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Loại Banner</label>
+                        <div class="col-lg-10">
+                            <select name="TypeID" id="TypeID" class="form-control">
+                                <option value="0">Loại Banner</option>
+                                @foreach (var item in ViewBag.AdvertisingTypeID)
+                                { 
+                                    <option value="@item.ID"@((Model.TypeID == item.ID) ? " selected" : string.Empty)>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="PicturePanel" style="display: none;">
+                        <label class="col-lg-2 control-label">Hình ảnh</label>
+                        <div class="col-lg-10">
+                            <button type="button" id="Button_DefaultImages" class="btn btn-sm btn-success">Chọn hỉnh ảnh</button>
+
+                            <input type="hidden" name="Value_DefaultImages" id="Value_DefaultImages" value="@((Model.PictureID.HasValue) ? Model.PictureID.Value.ToString() : "")" />
+
+                            <div id="Text_DefaultImages">
+                                @if (Model.PictureID.HasValue)
+                                {
+                                    <table class="gridView" cellspacing="1">
+                                        <tr title="@Model.Gallery_Picture.Name" id="@Model.Gallery_Picture.ID">
+                                            <td>@Model.Gallery_Picture.ID</td>
+                                            <td style="width: 120px !important">
+                                                <img src="@FDI.Utility.GetUrlPicture(Model.Gallery_Picture.Folder + Model.Gallery_Picture.Url)" width="120"/>
+                                                @*@Gallery.DisplayImage(Model.Gallery_Picture.Url, 120)*@
+                                            </td>
+                                            <td>
+                                                <p>Tên ảnh: <b>@Model.Gallery_Picture.Name</b></p>
+                                                <p>Ngày tạo: <i>@Model.Gallery_Picture.DateCreated.ToString("MM/dd/yyyy hh:mm:ss tt")</i></p>
+                                                <p>Album: <b>@((Model.Gallery_Picture.AlbumID.HasValue) ? Model.Gallery_Picture.Gallery_Album.Name : "")</b></p>
+                                                <p>Chuyên mục: <b>@((Model.Gallery_Picture.CategoryID.HasValue) ? Model.Gallery_Picture.Gallery_Category.Name : "")</b></p>
+                                            </td>
+                                            <td>
+                                                <button type="button" onclick="$(this).parent().parent().remove(); getValue('NewsDefaultImages'); return false;">Xóa</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" id="VideoPanel" style="display: none;">
+                        <label class="col-lg-2 control-label">Đường dẫn Video</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="UrlVideo" id="UrlVideo" value="@Model.Url"/>
+                            <p>
+                                Nếu link youtube là: <b>http://www.youtube.com/watch?v=OW3aE5vw8Vg</b>, nhập link
+                                vào ô Link youtube là: <b>OW3aE5vw8Vg</b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="FlashPanel" style="display: none;">
+                        <label class="col-lg-2 control-label">Đường dẫn Flash</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="UrlFlash" id="UrlFlash" value="@Model.Url" class="form-control"/>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mobile Link</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="MobileLink" id="MobileLink" value="@Model.MobileLink" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Link</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Link" id="Link" value="@Model.Link" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Vị trí quảng cáo</label>
+                        <div class="col-lg-10">
+                            <select name="PositionID" id="PositionID" class="form-control">
+                                <option value="0">vị trí vùng</option>
+                                @foreach (var item in ViewBag.AdvertisingPositionID)
+                                { 
+                                    <option value="@item.ID"@((Model.PositionID == item.ID) ? " selected" : string.Empty)>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    @*  <div class="form-group">
+                        <label class="col-lg-2 control-label">Chọn chuyên mục sản phẩm hiển thị</label>
+                        <div class="col-lg-10">
+                            <input type="hidden" name="Value_CategoryValues" id="Value_CategoryValues" class="form-control" value="@string.Join(", ", Model.Shop_Category.Select(c => c.ID))" />
+                            <button id="selectCategory" type="button" class="btn btn-sm btn-success">Chọn trang chuyên mục</button>
+                            <div id="Text_CategoryValues" class="checkBoxValues">@string.Join(", ", Model.Shop_Category.Select(c => c.Name))</div>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Thứ tự hiển thị</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="Order" id="Order" value="@Model.Order" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Nội dung</label>
+                        <div class="col-lg-10">
+                            <textarea rows="8" id="Content" name="Content" class="form-control">@Model.Content</textarea>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <div class="checkbox col-md-6">
+                                <label>
+                                   @Html.CheckBox("Show") Hiện thị
+                                </label>
+                            </div>
+                            <div class="checkbox col-md-6">
+                                <label>
+                                   @Html.CheckBox("IsMobile") Hiện thị Mobile
+                                </label>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+    </div>
+
+</form>
+<style>
+    #PicturePanel img {
+        width: 120px;
+    }
+</style>

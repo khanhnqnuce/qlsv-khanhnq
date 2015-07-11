@@ -1,0 +1,30 @@
+﻿@using Resources
+@model FDI.Simple.ModelAdvertisingItem
+@{
+
+	if (Model.ListItem != null)
+	{
+		<div class="FDI-product">
+			@foreach (var item in Model.ListItem)
+			{
+				<div class="col-sm-6 col-md-3">
+                    <div class="giaodien-img">
+					    <div class="view">
+					        @* <img data-src="@FDI.Utility.GetUrlPictureAvatar(item.Folder + item.Url)" src="/Content/Publishing/Images/loading.gif" class="img-responsive product-img" alt="" title=""/>*@
+                             <img  src="@FDI.Utility.GetUrlPictureAvatar(item.PictureUrl)" class="img-responsive product-img" alt="" title=""/>
+						    <div class="mask">
+							    <h2 style="  text-transform: lowercase;">@item.Name</h2>
+						        <a href="@item.Name" class="info product-more" target="_blank" rel="nofollow">Chi tiết</a><a href="@FDI.Utility.GetUrlOriginalPicture(item.PictureUrl)"  class="info product-zoom fancybox-effects-c">Xem ảnh</a>
+						    </div>
+					    </div>
+                    </div>
+				</div>
+			}
+			<div class="div-button-more">
+				<a href="/@ViewBag.pageLink" title="Xem tất cả">
+					<button class="btn-1e">Xem tất cả</button></a>
+			</div>
+		</div>
+	}
+
+}

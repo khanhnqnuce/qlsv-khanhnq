@@ -1,0 +1,131 @@
+﻿@model FDI.Base.Gallery_Video
+@{
+    ViewBag.Title = ViewBag.ActionText + " video";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#GalleryVideoForm").validate({
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                Url:
+                {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 11
+                },
+                AlbumID: {
+                    required: {
+                        depends: function (element) {
+                            return $("#AlbumID").val() == "";
+                        }
+                    }
+                },
+                CategoryID: {
+                    required: {
+                        depends: function (element) {
+                            return $("#CategoryID").val() == "0";
+                        }
+                    }
+                },
+                Description:
+                {
+                    required: true,
+
+                }
+            },
+            submitHandler: function () { //onSubmit
+                $.post(urlPostAction, $("#GalleryVideoForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#GalleryVideoForm #close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+
+
+<form id="GalleryVideoForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <input type="hidden" name="ProductValues" id="ProductValues" />
+    <div class="col-md-12 hideOverflow">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về video</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên video</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Title" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Title"  value="@Model.Name"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Link youtube</label>
+                        <div class="col-lg-10">
+                            <input type="text" id="Url" class="form-control" name="Url" value="@Model.Url" />
+                            <p>
+                                Nếu link youtube là: <b>http://www.youtube.com/watch?v=OW3aE5vw8Vg</b>, nhập link
+                                     vào ô Link youtube là: <b>OW3aE5vw8Vg</b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Chuyên mục thư viện</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(model => model.CategoryID, new SelectList(ViewBag.VideoCategoryID, "ID", "Name"), "Chọn chuyên mục", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Album video</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(model => model.AlbumID, new SelectList(ViewBag.VideoAlbumID, "ID", "Name"), "Chọn Album", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Mô tả (Excerpt)</label>
+                        <div class="col-lg-10">
+                            <textarea rows="5" class="form-control" placeholder="..." name="Description" id="Description">@Model.Description</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-12">
+                            <label>
+                                @Html.CheckBox("IsShow") Hiện thị
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+    </div>
+</form>

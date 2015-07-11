@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "   ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    @*urlLists = '@Url.Action("ListItems", "CustomerPaymentMethod")';
+    urlForm = '@Url.Action("AjaxForm", "CustomerPaymentMethod")';
+    urlPostAction = '@Url.Action("Actions", "CustomerPaymentMethod")';
+    urlView = '@Url.Action("AjaxView", "CustomerPaymentMethod")';*@
+    formWidth = 960;
+    formHeight = 650;
+    viewWidth = 960;
+    viewHeight = 650;
+
+    $(document).ready(function () {
+        initAjaxLoad(urlLists, "#PaymentGriditems");
+
+        $("#gridSearch").submit(function () {
+            var form = $("#gridSearch");
+            window.location.href = '#' + getValueFormMutilSelect(form);
+            return false;
+        });
+
+        $("#btn_add").click(function () {
+            $("#dialog-form").dialog(
+				{
+				    title: "Thêm mới khách hàng",
+				    width: formWidth,
+				    height: formHeight
+				}
+			).load(encodeURI(urlForm + "?do=Add")).dialog("open");
+            return false;
+        });
+        
+        $("select.mutil").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+    });
+</script>
+<div class="zone zone-content">
+    <h1>Quản lý khách hàng</h1>
+    <div class="headear">
+        <div class="searchbox">
+            <form id="gridSearch">
+                <fieldset class="bulk-actions">
+                    <label for="Keyword">Từ khóa:</label>
+                    <input type="text" name="Keyword" id="Keyword" placeholder="Từ khóa" />
+                    <label for="SearchIn">Tìm trong:</label>
+                    <select name="SearchIn" id="SearchIn" class="mutil">
+                        <option value="ID">ID</option> 
+                        <option value="Name">Tên phương thức</option>
+                    </select>
+                    <button name="submit.Search" type="submit">Tìm kiếm</button>
+                </fieldset>
+            </form>
+        </div>
+        
+        <div class="manage">
+            @*@if (ViewBag.Add)
+            {
+                @Html.ActionLink("Thêm mới", "Create", new {}, new {@class = "add button primaryAction", @id = "btn_add"})
+            }*@
+        </div>
+    </div>
+    <div id="PaymentGriditems">
+    
+    </div>
+</div>

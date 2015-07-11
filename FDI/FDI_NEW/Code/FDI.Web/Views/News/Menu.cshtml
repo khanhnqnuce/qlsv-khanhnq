@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FDI.Simple.NewsCategoryItem>
+
+<div class="product-box-list">
+    <h4 class="title">Danh mục</h4>
+    <ul class="list-quantam">
+        @{
+            if (Model != null)
+            {
+                int i = 1;
+                foreach (var item in Model)
+                { 
+            <li><a href="/@(item.NameAscii)"><i class="fa fa-chevron-circle-right"></i>@item.Name</a></li>
+                }
+            <li><a href="/kien-thuc-chia-se-website"><i class="fa fa-chevron-circle-right"></i>Kiến thức chia sẻ Website</a></li>
+            <li><a href="/kien-thuc-chia-se-phan-mem"><i class="fa fa-chevron-circle-right"></i>Kiến thức chia sẻ Phần mềm</a></li>
+            <li><a href="/kinh-nghiem-seo"><i class="fa fa-chevron-circle-right"></i>Kinh nghiệm seo</a></li>
+            <li><a href="/kien-thuc-chia-se-hosting"><i class="fa fa-chevron-circle-right"></i>Kiến thức chia sẻ Hosting</a></li>
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,152 @@
+﻿@model IEnumerable<FDI.Simple.ShopProductToExcelItem>
+@{
+    ViewBag.Title = "Báo cáo thời gian xử lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@*   <script src="@Url.Content("~/Content/Admin/js/jquery.tablesorter.js")"></script>*@
+<script src="@Url.Content("~/Content/Admin/js/jquery.tablesorter.pager.js")"></script>
+<script src="@Url.Content("~/Content/Admin/js/jquery.tablesorter.min.js")"></script>
+<h2>Báo cáo sản phẩm theo danh mục</h2>
+<table class="tab" id="formFilter">
+    <tr>
+        <td style="width: 300px;">
+            <div class="arow">
+                <label>Danh mục sản phẩm</label>
+                <select name="Category" id="Category">
+                    <option value="0">Chọn loại sản phẩm</option>
+                    @foreach (var item in ViewBag.Category)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="arow">
+                <label>&nbsp;</label>
+                <button name="getreport" id="getreport" type="button">Xem báo cáo</button>
+            </div>
+        </td>
+    </tr>
+</table>
+<br />
+<div class="grid-container" id="gridOrderItems">
+    <table id="insured_list" class="gridView" cellspacing="1" width="100%">
+        <thead>
+            <tr>
+                <th><a href="#">Tên sản phẩm<span /></a></th>
+                <th><a href="#">Name Ascii<span /></a></th>
+                <th><a href="#">Sku<span /></a></th>
+                <th><a href="#">Tên hãng<span /></a></th>
+                <th><a href="#">Giá</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name </td>
+                    <td>@item.NameAscii</td>
+                    <td>@item.Sku</td>
+                    <td>@item.Brand</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <div class="bottom-pager" style="margin-top: 5px; float: left">
+                <a href="#" class="first" style="float: left; width: 10px; margin-top: 5px"></a>
+                <a href="#" class="pre" style="float: left; width: 10px; margin-top: 5px"></a>
+                <span style="float: left; margin: 4px 0px 0px 0px">Trang</span><input type="text" class="pagedisplay" style="float: left; margin-top: 5px" /><span style="float: left; margin: 4px 0px 0px 0px" class="totalpage"></span>
+                <a href="#" class="next" style="float: left; width: 10px; margin-top: 5px"></a>
+                <a href="#" class="last" style="float: left; width: 10px; margin-top: 5px"></a>
+                <div style="float: right; margin-top: 5px;">
+                    <span style="float: left">Kết quả trên 1 trang: </span>
+                    <select class="pagesize" style="float: left;">
+                        <option value="5">5</option>
+                        <option value="10" selected="">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="60">60</option>
+                        <option value="65">65</option>
+                        <option value="70">70</option>
+                        <option value="75">75</option>
+                        <option value="80">80</option>
+                        <option value="85">85</option>
+                        <option value="90">90</option>
+                        <option value="95">95</option>
+                        <option value="100">100</option>
+                    </select>
+                    <span style="float:left"> / Tổng số: @ViewBag.CountTotal </span>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    @*@Html.Raw(ViewBag.PageHtml)*@
+</div>
+<script type="text/javascript">
+    var QueryString = function () {
+        // This function is anonymous, is executed immediately and 
+        // the return value is assigned to QueryString!
+        var query_string = {};
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            // If first entry with this name
+            if (typeof query_string[pair[0]] === "undefined") {
+                query_string[pair[0]] = pair[1];
+                // If second entry with this name
+            } else if (typeof query_string[pair[0]] === "string") {
+                var arr = [query_string[pair[0]], pair[1]];
+                query_string[pair[0]] = arr;
+                // If third or later entry with this name
+            } else {
+                query_string[pair[0]].push(pair[1]);
+            }
+        }
+        return query_string;
+    }();
+    
+    $(document).ready(function () {
+        
+        $("#Category").change(function () {
+            var cateId = $('#Category').val();
+            var request = "/Admin/Product/ShopProductToExcel?cateId=" + cateId;
+            window.location.href = request;
+        });
+
+        $("#getreport").click(function () {
+            var cateId = $('#Category').val();
+            var request = "/Admin/Product/ShopProductExportExcel?cateId=" + cateId;
+            window.location.href = request;
+        });
+
+        var cateIdcheck = getParam('cateId', window.location.search);
+        if (cateIdcheck != "") {
+            $('#Category').val(cateIdcheck);
+            $("#insured_list").tablesorter({ widthFixed: true, widgets: ['zebra'] }).tablesorterPager({ container: $("#pager") });
+        }
+    });
+    
+    function getParam(name, url) {
+
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+
+        if (results != null) {
+            return results[1];
+        } else {
+            return "";
+        }
+    }
+</script>

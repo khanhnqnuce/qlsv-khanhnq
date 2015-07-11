@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="/Content/Publishing/css/Contact.css?v=2105" rel="stylesheet" />
+<section id="content">
+    <div class="div-module-zero text-center">
+        <div class="container">
+            <h2 style="text-align:left !important;"><a href="">Đối tác</a></h2>
+        </div>
+    </div>
+    <!--form contact-->
+    <div class="FDI-contact">
+        <div style="margin-left: 93px; padding: 10px 0; ">
+            <a href="/">Trang chủ</a> &raquo; <a href="/doi-tac">Đối tác</a>
+        </div>
+        <div class="container">
+            @Html.Action("ModulHTML","Home", new {key = @ViewBag.Key})
+        </div>
+    </div>
+</section>  

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FDI.Simple.MenuItem>
+@{
+    ViewBag.Title = "AjaxSort";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+    var Index = 0;
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SystemMenuForm").validate({
+
+            submitHandler: function () { //onSubmit
+                getValueOrder('SystemMenuForm', 'OrderValues');
+                $.post(urlPostAction, $("#SystemMenuForm").find("input,textarea,select,hidden").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+<form id="SystemMenuForm">
+<input type="hidden" id="do" name="do" value="Order" />
+<input type="hidden" id="OrderValues" name="OrderValues" />
+<table border="0" cellpadding="0" cellspacing="1" width="100%" class="gridView">
+    <tr>
+        <th>Tiêu đề</th>
+        <th>Xắp xếp</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+    <tr>
+        <td>@item.MenuTitle</td>
+        <td>
+            <select name="ViewOrder@(Index)" id="@item.MenuID" onchange="Reorder(this, @Index, @Model.Count())">
+                @for (var number = 1; number < Model.Count() + 1; number++)
+                { 
+                <option value="@number"@((number == Index+1) ? " selected" : string.Empty)>@number</option>
+                }
+            </select>
+        </td>
+    </tr>
+                Index++;
+    }
+</table>
+<div style="text-align:center; padding:10px;">
+    <button id="submit" type="submit" class="primaryAction">Cập nhật thứ tự</button>
+    <button id="reset" type="reset" class="primaryAction">Nhập lại</button>
+    <button id="close" type="button" class="primaryAction">Đóng lại</button>
+</div>
+</form>

@@ -1,0 +1,150 @@
+﻿@model FDI.Simple.NewsCategoryItem
+@{
+    ViewBag.Title = Model.SEOTitle ?? "";
+    ViewBag.Description = Model.SEODescription ?? "";
+    ViewBag.Keywords = Model.SEOKeyword ?? "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="/Content/Publishing/css/Contact.css?v=2105" rel="stylesheet" />
+
+<section id="content">
+    <div class="div-module-zero text-center">
+        <div class="container">
+            <h2 style="text-align:left !important;">Liên hệ</h2>
+        </div>
+    </div>
+    <!--form contact-->
+    <div class="FDI-contact">
+        <div class="container">
+            <div class="row">
+                @Html.Action("ModulHTML","Home",new {key = "ContactLeft"})
+                <div class="col-sm-8">
+                    <div class="FDI-contact-right">
+                        @Html.Action("ModulHTML","Home", new {key = "TuVanHoTro"})
+                        <div class="module-contact-form">
+                            <h3 class="widget-title ">Liên hệ với chúng tôi</h3>
+                            <h4 class="widget-sub-title ">Mọi thắc mắc xin vui lòng gửi thông tin theo mẫu dưới đây.</h4>
+                            <div class="column twelve">
+                                <form id="frmContact">
+                                    <div class="input-wrap">
+                                        <input id="sender_name" name="sender_name" type="text"  placeholder="Họ và tên *" />
+                                     @*   <i class="fa fa-user"></i>*@
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input id="sender_email" name="sender_email" type="text"  placeholder="Email *" />
+                                        @*<i class="fa fa-envelope"></i>*@
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input id="sender_phone" name="sender_phone" type="text"  placeholder="Số điện thoại *" />
+                                       @* <i class="fa fa-phone"></i>*@
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input id="letter_subject" name="letter_subject" type="text" placeholder="Tiêu đề *" />
+                                       @* <i class="fa fa-pencil"></i>*@
+                                    </div>
+                                    <div class="input-wrap">
+                                     @*   <i class="fa fa-bars"></i>*@
+                                        <textarea id="letter_text" rows="5" name="letter_text"  placeholder="Nội dung *"></textarea>
+                                        
+                                    </div>
+                                    <div class="input-wrap erros">
+                                        <span id="erros"></span>
+                                    </div>
+                                    <button class="button" type="submit" id="sendContact" atda-loading-text="Loading..."><i class="fa fa-share"></i>Gửi liên hệ</button>
+                                </form>                                                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="/Scripts/sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/Scripts/sweetalert-master/dist/sweetalert.css">
+<script>
+    $("#frmContact").validate({
+        rules: {
+            sender_name:
+            {
+                required: true,
+            },
+            sender_email:
+            {
+                required: true,
+                email: true
+            },
+            sender_phone: {
+                required: true,
+                minlength: 10,
+                maxlength: 11,
+                number: true
+            },
+            letter_subject:
+            {
+                required: true
+               
+            },
+            letter_text:
+            {
+                required: true,
+            }
+        },
+        messages: {
+            sender_name: {
+                required: "Bạn cần nhập họ tên !",
+            },
+            
+            sender_email: {
+                required: "Bạn chưa nhập email !",
+                email: "Email không đúng định dạng"
+            },
+
+            sender_phone: {
+                required: "Bạn chưa nhập số điện thoại !",
+                minlength: "Số điện thoại tối thiểu 10 số !",
+                maxlength: "Số điện thoại tối đa 12 số !",
+                number: "Bạn cần nhập chữ số !"
+            },
+
+            letter_subject: {
+                required: "Bạn chưa nhập tiêu đề !",
+            },
+
+            letter_text: {
+                required: "Bạn chưa nhập nội dung !",
+            },
+        },
+        submitHandler: function () { //onSubmit
+            $.post("/Home/SendContact", $("#frmContact").serialize(), function (msg) {
+                if (msg.Message == "0") {
+                    swal({ title: "Thành công !", text: "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi", type: "success", confirmButtonText: "Ok" });
+                    ResetText();
+                }
+                else {
+                    swal({ title: "Có lỗi xảy ra !", text: "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi", type: "error", confirmButtonText: "Ok" });
+                }
+            });
+            return false;
+        }
+    });
+
+    function ResetText() {
+        $("#sender_name").val("");
+        $("#sender_email").val("");
+        $("#sender_phone").val("");
+        $("#letter_subject").val("");
+        $("#letter_text").val("");
+    }
+
+    $("#sendContact").click(function () {
+        var $btn = $(this);
+        $btn.button('sending');
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 5000);
+    });
+</script>
+

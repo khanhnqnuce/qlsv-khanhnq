@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FDI.Simple.CustomerPaymentMethodItem>
+
+@{
+    ViewBag.Title = "ListItems";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>
+
+<div class="grid-container" id="gridItems">
+    <table class="gridView" cellspacing="1">
+        <tr>
+            <th><a href="#Field=ID">ID<span /></a></th>
+            <th><a href="#Field=Name">Tên phương thức<span /></a></th>
+            <th class="act_view"></th>
+            <th class="act_edit"></th>
+            <th class="act_delete">
+                @if (ViewBag.Delete)
+                {
+                    <a href="#deleteAll" class="deleteAll" title="Xóa danh sách đã chọn">
+                        <img src="/Content/Admin/images/gridview/delete.gif" style="border: none" alt="Xóa danh sách đã chọn" />
+                    </a>
+                }
+            </th>
+            <th class="act_roles">
+                <input value="" type="checkbox" class="checkAll" />
+            </th>
+        </tr>
+        @if (ViewBag.ViewFull)
+        {
+            foreach (var item in Model)
+            {
+                <tr title="@item.Name">
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td class="act_view">
+                        @if (ViewBag.View)
+                        {
+                            @Grid.ActionView(item.ID, item.Name)
+                        }
+                    </td>
+                    <td class="act_edit">
+                        @if (ViewBag.Edit)
+                        {
+                            @Grid.ActionEdit(item.ID, item.Name)
+                        }
+                    </td>
+                    <td class="act_delete">
+                        @if (ViewBag.Delete)
+                        {
+                            @Grid.ActionDelete(item.ID, item.Name)
+                        }
+                    </td>
+                    <td class="act_roles"><input type="checkbox" value="@item.ID" class="check" /></td>
+                </tr>
+            }
+        }
+    </table>
+    @Html.Raw(ViewBag.PageHtml)
+</div>

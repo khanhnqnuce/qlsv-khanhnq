@@ -1,0 +1,66 @@
+﻿
+@model FDI.Simple.NewsCategoryItem
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.SEOTitle??"";
+    ViewBag.Description = Model.SEODescription ?? "";
+    ViewBag.Keywords = Model.SEOKeyword ??"";
+    string url = "thiet-ke-phan-mem/" + ViewBag.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="/Content/Publishing/css/DVTKPM.css?v=2105" rel="stylesheet" />
+<section id="content">
+    <div class="slider-container">
+
+        <script src="/Scripts/Slider-01/js/slider.home.js?v=2105"></script>
+      
+        @Html.Action("ModulHTML", "Home", new { key = "Home_Slide" })
+    </div>
+    <div class="dv-module-one wow fadeInUp" data-wow-duration="600ms" data-wow-delay="300ms">
+        <div class="container">
+            <div id="tabs" class="tabs">
+                <nav>
+                    <ul>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model.CategoryItem)
+                            {
+                                <li class="@(item.NameAscii == ViewBag.Name ? "tab-current" : "")">
+                                    <a href="/@Model.NameAscii/@item.NameAscii">
+                                        <i class="@item.Class"></i>
+                                        <span>@Html.Raw(item.Description)</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+                 @Html.Action("ModulHTMLSlide", "Home", new { key = "tabs-content",url = url })
+                
+                <!-- /content -->
+            </div>
+            <script src="/Content/Publishing/js/cbpFWTabs.js?v=2105"></script>
+            <script>new CBPFWTabs(document.getElementById('tabs'));</script>
+        </div>
+    </div>
+    @Html.Action("ModulHTMLSlide", "Home", new { key = "designsoft_dv_module_two",url = url })
+    @Html.Action("ModulHTMLSlide", "Home", new { key = "designsoft_dv_module_three",url = url })
+    @Html.Action("ModulHTMLSlide", "Home", new { key = "designsoft_dv_module_four",url = url })
+    <div class="dv-ktcs wow fadeInUp" data-wow-duration="600ms" data-wow-delay="300ms">
+        <div class="container">
+            <div class="row">
+                <h3 class="text-center">Kiến thức chia sẻ</h3>
+                @Html.Action("ListNewSoft")
+            </div>
+        </div>
+    </div>
+    @Html.Action("ModulHTML", "Home", new { key = "ChuyenVienTuVan" })
+</section>
+<script>
+    $(document).ready(function () {
+        var link = window.location.pathname.substring(1, window.location.pathname.length);
+        if (link.indexOf("/") < 0) {
+            $("#tabs").find("nav").find("ul").find("li")[0].className = "tab-current";
+        }
+    });
+</script>

@@ -1,0 +1,571 @@
+﻿@model FDI.Base.Shop_Product
+@{
+    ViewBag.Title = ViewBag.ActionText + " sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AjaxShare.cshtml";
+}
+<script type="text/javascript">
+
+
+    $(function () {
+        $("#tabs").tabs();
+        createUploader();
+        var urlSelectCategory = '@Url.Action("AjaxTreeSelect", "ProductCategory", new { @Container = "CategoryValues", @SelectMutil = "True" })';
+        $(".maskPrice").mask('000.000.000.000.000', { reverse: true });
+        $("#selectCategory").click(function () {
+            var valuesSelected = $("#Value_CategoryValues").val();
+            $("#dialog-form-2").dialog(
+                {
+                    title: "Chọn danh mục sản phẩm",
+                    width: 600,
+                    height: 500
+                }
+            ).load(encodeURI(urlSelectCategory + "&ValuesSelected=" + valuesSelected)).dialog("open");
+            return false;
+        });
+
+        var urlSelectBrand = '@Url.Action("AjaxTreeSelect", "ProductBrand", new { @Container = "BrandValues", @SelectMutil = "True" })';
+
+        var urlSelectDefaultImage = "/Admin/GalleryPictureSelect/?MutilFile=false&Container=DefaultImages";
+        $("#Button_DefaultImages").click(function () {
+            selectPicture(urlSelectDefaultImage + "&ValuesSelected=" + $("#Value_DefaultImages").val());
+        });
+
+        var urlSelectDefaultImageHot = "/Admin/GalleryPictureSelect/?MutilFile=false&Container=DefaultImagesHot";
+        $("#Button_DefaultImagesHot").click(function () {
+            selectPicture(urlSelectDefaultImageHot + "&ValuesSelected=" + $("#Value_DefaultImagesHot").val());
+        });
+
+        LoadCKEDITOR('ShortDescription', false);
+        LoadCKEDITOR('HightlightsDes', false);
+        //LoadCKEDITOR('Description', false);
+        LoadCKEDITOR('IncludeInfo', false);
+        //LoadCKEDITOR('Overview', true);
+        LoadCKEDITOR('Policy', true);
+        //LoadCKEDITOR('HightlightsShortDes', true);
+        //LoadCKEDITOR('AttachedAccessories', true);
+        //LoadCKEDITOR('Guide', true);
+        LoadCKEDITOR('PromotionInfo', true);
+        //LoadCKEDITOR('VideoDetail', false);
+        //LoadCKEDITOR('Overview360', true);
+        LoadCKEDITOR('Details', true);
+        LoadCKEDITOR('InfoDriver', true);
+        createCKFider('ImagesUrl', 162);
+        createAutoTag('NewsTag', '@Url.Action("AutoComplete", "SystemTag")');
+
+        $("#selectBrand").one("click", function () {
+            var valuesSelected = $("#Value_BrandValues").val();
+            $("#dialog-form-2").dialog(
+                {
+                    title: "Chọn thương hiệu",
+                    width: 600,
+                    height: 500
+                }
+            ).load(encodeURI(urlSelectBrand + "&ValuesSelected=" + valuesSelected)).dialog("open");
+            return false;
+        });
+
+
+        $("#ProductBrandForm").validate({
+            rules: {
+                Name:
+                    {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 255,
+                        remote: "@Url.Action("CheckByName", "Product", new { productId = Model.ID })"
+                    },
+                NameAscii:
+                    {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 255,
+                        remote: "@Url.Action("CheckByNameAscii", "Product", new { productId = Model.ID })"
+                    },
+                Code: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                LabelID:
+                    {
+                        required: true,
+                        NumberNotZero: true
+                    },
+                BrandID:
+                    {
+                        required: true,
+                        NumberNotZero: true
+                    },
+                ProductTypeID:
+                    {
+                        required: true,
+                        NumberNotZero: true
+                    },
+                DisplayOrderHotByCate:
+                    {
+                        number: true
+                    },
+                Value_DefaultImages:
+                    {
+                        required: true,
+                        NumberNotZero: true
+                    }
+            },
+            messages: {
+                Name: "Tên sản phẩm đã tồn tại"
+            },
+
+            submitHandler: function () { //onSubmit
+                $('.maskPrice').each(function (i) {
+                    $(this).val($(this).val().replace(/\./g, ''));
+                });
+                $.post(urlPostAction, $("#ProductBrandForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#seo-form").validate({
+            rules: {
+                NameAscii:
+                    {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 255,
+                        remote: "@Url.Action("CheckByNameAscii", "Product", new { productId = Model.ID })"
+                    }
+            },
+            messages: {
+                NameAscii: "Link sản phẩm đã tồn tại"
+            },
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                getValueFromAutoTag('listTagValues', 'TagValues');
+
+                $.post('/Admin/Product/SaveSEOInfo', $("#seo-form").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+
+        $.validator.addMethod('NumberNotZero', function (value) {
+            return Number(value) > 0;
+        }, 'Cần chọn một giá trị.');
+</script>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Thông tin sản phẩm</a></li>
+        <li><a href="#tabs-2">SEO</a></li>
+    </ul>
+    <div id="tabs-1">
+        <form id="ProductBrandForm">
+            <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+            <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+            <input type="hidden" id="listValueFileAttach" name="listValueFileAttach" />
+            <input type="hidden" id="listValueFileAttachRemove" name="listValueFileAttachRemove" />
+            @*<input type="hidden" name="TagValues" id="TagValues" />*@
+            <fieldset class="forms">
+                <table class="tableforms" cellspacing="1" width="100%">
+                    <tr>
+                        <td style="width: 150px;">
+                            <label id="lblNameProduct">Tên sản phẩm<span class="star">*</span></label></td>
+                        <td>
+                            <input type="text" name="Name" id="Name" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoNameAscii" : "") value="@Model.Name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="lblLabelProduct">Nhãn sản phẩm</label></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.LabelID, new SelectList(ViewBag.LabelType, "ID", "Name"), "Chọn Nhãn sản phẩm")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblCategory">Danh mục</label></td>
+                        <td>
+                            <input type="hidden" name="Value_CategoryValues" id="Value_CategoryValues" value="@string.Join(", ", Model.Shop_Category.Select(c => c.ID))" />
+                            <button id="selectCategory" type="button" class="primaryAction">Chọn danh mục sản phẩm</button>
+                            <div id="Text_CategoryValues" class="checkBoxValues">@string.Join(", ", Model.Shop_Category.Select(c => c.Name))</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Thương hiệu</label></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.BrandID, new SelectList(ViewBag.BrandType, "ID", "Name"), "Chọn Thương hiệu")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblProductType">Loại sản phẩm</label></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.ProductTypeID, new SelectList(ViewBag.ProductType, "ID", "Name"), "Chọn loại sản phẩm", new { @class = "typeProductClass" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Hình ảnh đại diện (1 ô)</label></td>
+                        <td>
+                            <button type="button" id="Button_DefaultImages">Chọn hỉnh ảnh đại diện</button>
+                            <input type="hidden" name="Value_DefaultImages" id="Value_DefaultImages" value="@Model.PictureID" />
+                            <div id="Text_DefaultImages">
+                                @if (Model.PictureID > 0)
+                                {
+                                    <table class="gridView" cellspacing="1">
+                                        <tr title="@Model.Gallery_Picture.Name" id="@Model.Gallery_Picture.ID">
+                                            <td>@Model.Gallery_Picture.ID</td>
+                                            <td>
+                                                @Gallery.DisplayImage(Model.Gallery_Picture.Folder + Model.Gallery_Picture.Url, 120)
+                                            </td>
+                                            <td>
+                                                <p>Tên ảnh: <b>@Model.Gallery_Picture.Name</b></p>
+                                                <p>Ngày tạo: <i>@Model.Gallery_Picture.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                                <p>Chuyên mục: <b>@((Model.Gallery_Picture.CategoryID.HasValue) ? Model.Gallery_Picture.Gallery_Category != null ? Model.Gallery_Picture.Gallery_Category.Name : "" : "")</b></p>
+                                            </td>
+                                            <td>
+                                                <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('DefaultImages'); return false;">Xóa</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Hình ảnh hot (2 ô)</label></td>
+                        <td>
+                            <button type="button" id="Button_DefaultImagesHot">Chọn hỉnh ảnh đại diện</button>
+                            <input type="hidden" name="Value_DefaultImagesHot" id="Value_DefaultImagesHot" value="@Model.PictureHotID" />
+                            <div id="Text_DefaultImagesHot">
+                                @if (Model.PictureHotID > 0)
+                                {
+                                    var pictureDa = new FDI.DA.Admin.Gallery_PictureDA();
+                                    var picItem = pictureDa.GetById(Model.PictureHotID.Value);
+                                    <table class="gridView" cellspacing="1">
+                                        <tr title="@picItem.Name" id="@picItem.ID">
+                                            <td>@picItem.ID</td>
+                                            <td>
+                                                @Gallery.DisplayImage(picItem.Folder + picItem.Url, 120)
+                                            </td>
+                                            <td>
+                                                <p>Tên ảnh: <b>@picItem.Name</b></p>
+                                                <p>Ngày tạo: <i>@picItem.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                                                <p>Chuyên mục: <b>@((picItem.CategoryID.HasValue) ? picItem.Gallery_Category.Name : "")</b></p>
+                                            </td>
+                                            <td>
+                                                <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('DefaultImages'); return false;">Xóa</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="lblCodeProduct">Mã sản phẩm</label></td>
+                        <td>
+                            <input type="text" name="Code" id="Code" value="@Model.Code"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="lblPriceOld">Giá cũ</label></td>
+                        <td>
+                            @*@Html.EditorFor(model => FDI.Utility.FormatPrice(model.PriceOld), new {@class = "maskPrice"})*@
+                            <input type="text" name="PriceOld" id="PriceOld" class = "maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOld)"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="lblPriceNew">Giá mới</label></td>
+                        <td>
+                            @*@Html.EditorFor(model => FDI.Utility.FormatPrice(model.PriceNew), new {@class = "maskPrice"})*@
+                            <input type="text" name="PriceNew" id="PriceNew" class = "maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceNew)"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="lblPromotionInfo">Thông tin khuyến mãi ngắn (Hiện thị khi hover)</label></td>
+                        <td>
+                            <textarea rows="8" id="PromotionInfo" name="PromotionInfo">@Model.PromotionInfo</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblIncludeInfo">Thông tin khuyến mãi đính kèm (Hiện thị trong chi tiết sản phẩm)</label></td>
+                        <td>
+                            <textarea rows="8" id="IncludeInfo" name="IncludeInfo">@Model.IncludeInfo</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Mô tả ngắn</label></td>
+                        <td>
+                            <textarea rows="8" id="ShortDescription" name="ShortDescription">@Model.ShortDescription</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Đặc tính nổi bật</label></td>
+                        <td>
+                            <textarea rows="8" id="HightlightsDes" name="HightlightsDes">@Model.HightlightsDes</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Thứ tự sắp xếp</label></td>
+                        <td>
+                            <input type="text" name="DisplayOrder" id="DisplayOrder" value="@Model.DisplayOrder"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Thứ tự sản phẩm hot Mobile </label>
+                        </td>
+                        <td>
+                            <input type="text" name="DisplayOrderHotByCate" id="DisplayOrderHotByCate" value="@Model.DisplayOrderHotByCate"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Thứ tự sắp xếp tìm kiếm</label></td>
+                        <td>
+                            <input type="text" name="DisplayOrderSearch" id="DisplayOrderSearch" value="@Model.DisplayOrderSearch"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblPolicy">Chính sách sản phẩm</label></td>
+                        <td>
+                            <textarea rows="8" id="Policy" name="Policy">@Model.Policy</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Video đánh giá sản phẩm</label></td>
+                        <td>
+                            <input type="text" id="VideoRating" name="VideoRating" value="@Model.VideoRating" placeholder="Định dạng: http://www.youtube.com/embed/of_mAs6HO1k" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblIsShow">Hiển thị</label></td>
+                        <td>
+                            @Html.CheckBox("IsShow")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Hiển thị slide</label></td>
+                        <td>
+                            @Html.CheckBox("IsSlide")
+                            
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Sản phẩm hot</label></td>
+                        <td>
+                            @Html.CheckBox("IsHot")
+                            
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label id="lblIsShowOnHomePage">Hiển thị trang chủ</label></td>
+                        <td>
+                            @Html.CheckBox("IsShowOnHomePage")
+                            
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Hiện thị form đóng góp</label></td>
+                        <td>
+                            @Html.CheckBox("IsShowFormIdea")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Áp dụng giao diện mới</label></td>
+                        <td>
+                            <input type="checkbox" name="IsApplyNewTemplate" id="IsApplyNewTemplate" value="True" @((Model.IsApplyNewTemplate.HasValue && Model.IsApplyNewTemplate.Value == true) ? " checked" : string.Empty)/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Cho phép comment</label></td>
+                        <td>
+                            <input type="checkbox" name="IsAllowComment" id="IsAllowComment" value="True" @((Model.IsAllowComment.HasValue && Model.IsAllowComment.Value == true) ? " checked" : string.Empty)/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Cho phép đặt trước</label></td>
+                        <td>
+                            @Html.CheckBox("IsPreOrder")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Hàng sắp về</label></td>
+                        <td>
+                            @Html.CheckBox("IsComingSoon")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>File đính kèm</label></td>
+                        <td class="data">
+                            <div id="btnChosse" class="primaryAction">Chọn file đính kèm</div>
+                            <ul id="listFileAttach"></ul>
+                            <ul id="listFileAttachRemove">
+                                @foreach (var file in Model.System_File)
+                                {
+                                    <li><span title="@file.Name" id="@file.ID">@file.Name</span><a  title="Xóa file đính kèm @file.Name" href="javascript:DeleteFileUpdate('@file.ID');"><img border="0" src="/Content/Admin/Images/gridview/act_filedelete.png"></a></li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="primaryAction">@ViewBag.ActionText</button>
+                            <button type="reset" class="primaryAction">Nhập lại</button>
+                            <button type="button" class="primaryAction">Đóng lại</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+    <div id="tabs-2">
+        <form id="seo-form">
+            <input type="hidden" name="ID" value="@Model.ID"/>
+            <input type="hidden" name="TagValues" id="TagValues" />
+            <fieldset class="forms">
+                <table class="tableforms" cellspacing="1" width="100%">
+                    <tr>
+                        <td style="width: 150px;">
+                            <label>SEO URl</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.NameAscii)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>SEO Title</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SEOTitle)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>SEO Description</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SEODescription)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>SEO Keywords</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SEOKeyword)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Từ khóa</label></td>
+                        <td>
+                            <input type="text" name="NewsTag" id="NewsTag" />
+                            <ul id="NewsTag_Value" class="listValues listTagValues">
+                                @foreach (var data in Model.System_Tag)
+                                {
+                                    <li id="NewsTag_Value@(data.ID)" name="@data.ID" key=""><span>@data.Name</span><a href="javascript:deletevalues('NewsTag_Value@(data.ID)');"><img border="0" src="/Content/Admin/Images/gridview/act_filedelete.png" /></a></li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Video sản phẩm</label></td>
+                        <td>
+                            <input type="text" name="OverviewVideo" id="OverviewVideo" value="@Model.OverviewVideo" placeholder="Định dạng: http://www.youtube.com/embed/of_mAs6HO1k"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Chi tiết sản phẩm</label></td>
+                        <td>
+
+                            <textarea rows="8" id="Details" name="Details">@Model.Details</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Thông tin driver</label></td>
+                        <td>
+                            <textarea rows="8" id="InfoDriver" name="InfoDriver">@Model.InfoDriver</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="submit" type="submit" class="primaryAction">@ViewBag.ActionText</button>
+                            <button id="reset" type="reset" class="primaryAction">Nhập lại</button>
+                            <button id="close" type="button" class="primaryAction">Đóng lại</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+</div>

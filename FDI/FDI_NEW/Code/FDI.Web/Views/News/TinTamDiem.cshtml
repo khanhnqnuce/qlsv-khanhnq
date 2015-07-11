@@ -1,0 +1,30 @@
+﻿@using FDI.Business.Reposity
+@model IEnumerable<FDI.Simple.NewsItem>
+
+
+<div class="col-sm-5">
+    <div class="FDI-tamdiem wow bounceInRight" data-wow-duration="2s">
+        <h3 class="title text-center"><a href="">Tâm điểm FDI</a></h3>
+        <ul class="FDI-ul-tieudiem">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                { 
+                <li>
+                    <div class="col-xs-3 col-sm-4 img-tamdiem">
+                        <a class="images-list-box" href="/@item.TitleAscii" style="background-image: url('@FDI.Utility.GetUrlPicture(item.PictureUrl)')" title="@item.Title"></a>
+                    </div>
+                    <div class="col-xs-9 col-sm-8 text-tamdiem">
+                        <h4 class="title"><a href="/@item.TitleAscii">@item.Title</a></h4>
+                        @*<ul class="blog-info">
+                            <li><a href="/@item.TitleAscii">@item.UserNameCreate</a></li>
+                            <li><a>@Convert.ToDateTime(item.DateCreated).ToString("dd/MM/yyyy")</a></li>
+                        </ul>*@
+                        <p>@FDI.Utils.MyString.Truncate(item.Description, 100) </p>
+                    </div>
+                </li> 
+                }
+            }
+        </ul>
+    </div>
+</div>

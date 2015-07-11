@@ -1,0 +1,81 @@
+﻿@model FDI.Simple.ModelVideoItem
+
+@{
+    ViewBag.Title = "ListVideo";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+
+        $("#VideoGriditems .submit #close").click(function () {
+            $("#dialog-form-2").html("").dialog('close');
+        });
+
+        $("#VideoSelect").submit(function () {
+            var htmlValue = '<table class="gridView" cellspacing="1">';
+            htmlValue += $(textContainer + " table").html();
+            $("#VideoSelect .hidden").removeClass("hidden");
+            $("#VideoSelect input.check[type='checkbox']:checked").not("#checkAll").not(".checkAll").each(function () {
+                var row = $(this).parent().parent();
+                htmlValue += "<tr class='" + $(row).attr("class") + "' id='" + $(row).attr("id") + "'>" + $(row).html() + "</tr>";
+            });
+            htmlValue += "</table>";
+            $(textContainer).html(htmlValue).find(".delete").remove();
+            getValueVideo('@Model.Container');
+            $("#dialog-form-2").html("").dialog('close');
+            return false;
+        });
+
+    });
+</script>
+<style type="text/css">
+    .act {
+        display: none !important;
+    }
+</style>
+<div class="grid-container" id="gridItems">
+    <table class="gridView" cellspacing="1">
+        <tr>
+            <th style="width: 55px;"><a href="#Field=VideoID">ID<span /></a></th>
+            <th style="width: 120px;">Video đại diện</th>
+            <th><a href="#Field=VideoAlbumName">Thông tin video<span /></a></th>
+            <th class="delete"></th>
+            <th class="act_roles">
+                <input value="" type="checkbox" class="checkAll" />
+            </th>
+        </tr>
+        @foreach (var item in Model.ListItem)
+        {
+            <tr title="@item.Name" id="@item.ID">
+                <td>@item.ID</td>
+                <td>
+                    @Gallery.DisplayImage(item.GalleryPicture.Url, 120)
+                </td>
+                <td>
+                    <p>Tên video: <b>@item.Name</b></p>
+                    <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss")</i></p>
+                    <p>Album: <b>@item.GalleryAlbum.Name</b></p>
+                    <p>Chuyên mục: <b>@item.GalleryCategory.Name</b></p>
+                </td>
+               
+                <td class="hidden">
+                    <button type="button" onclick="$(this).parent().parent().remove(); getValueVideo('@Model.Container'); return false;">Xóa</button>
+                </td>
+                <td class="act_roles delete">
+                    <input type="checkbox" value="@item.ID" class="check" /></td>
+            </tr>
+        }
+    </table>
+    @Html.Raw(Model.PageHtml)
+</div>
+<div>
+    <table class="gridView" cellspacing="1">
+        <td class="submit">
+            <button id="submit" type="submit" class="primaryAction">Chọn video</button>
+            <button id="reset" type="reset" class="primaryAction">Chọn lại</button>
+            <button id="close" type="button" class="primaryAction">Đóng lại</button>
+        </td>
+    </table>
+</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FDI.Simple.ModuleadminItem>
+@{
+    ViewBag.Title = "Menu";
+    //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var mc in Model.Where(m => m.PrarentID == 1))
+{
+
+    string Tag = mc.Url;
+    string classcss = mc.ClassCss;
+    string classs = "class = section-" + classcss + "";
+    string Namemodule = mc.NameModule;
+
+    if (mc.Active == 1)
+    {
+    <li @classs>
+        <h3>
+            @Html.ActionLink(Namemodule, "Index", Tag, new { }, new { @class = "" + classcss + "" })
+        </h3>
+        <ul class="menuItems">
+            @foreach (var module in Model)
+            {
+                if (module.PrarentID == mc.ID)
+                {
+                    string tag1 = HttpUtility.HtmlEncode(@module.Url);
+                    string classcss1 = module.ClassCss;
+                    var classs1 = "class = 'section-" + classcss1 + "'";
+                    string namemodule1 = @module.NameModule;
+                <li>
+                    <a href="/Admin/@tag1" class="@classs1">@namemodule1</a>
+                    @*@Html.ActionLink(Namemodule1, "Index", Tag1, new { }, new { @class = ""+classcss+"-"+classcss1+"" })*@
+                </li>
+                }
+            }
+        </ul>
+    </li>
+    }
+    if (mc.Active == 2)
+    {
+    <li @classs>
+        <h3>
+            @Html.ActionLink(Namemodule, "Index", Tag, new { }, new { @class = "" + classcss + "" })
+        </h3>
+        <ul class="menuItems">
+            @foreach (var module in Model)
+            {
+                if (module.PrarentID == mc.ID && module.Active == 1)
+                {
+                    string Tag1 = HttpUtility.HtmlEncode(@module.Url);
+                    string classcss1 = module.ClassCss;
+                    string classs1 = "class = 'section-" + classcss1 + "'";
+                    string Namemodule1 = @module.NameModule;
+            
+                <li>
+                    <a href="/Admin/@Tag1" class="@classs1">@Namemodule1</a>
+                </li>
+                }
+            }
+        </ul>
+    </li>
+    }
+}
+

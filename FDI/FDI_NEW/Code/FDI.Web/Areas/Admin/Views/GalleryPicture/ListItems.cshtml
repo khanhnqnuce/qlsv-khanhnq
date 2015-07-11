@@ -1,0 +1,85 @@
+﻿@model FDI.Simple.ModelPictureItem
+
+@{
+    ViewBag.Name = "ListPicture";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<section id="mygird" class="vbox">
+    <section class="scrollable wrapper w-f">
+        <section class="panel panel-default">
+            <table class="gridView" cellspacing="1">
+                <thead>
+                    <tr>
+                        <th class="act_roles">
+                            <input value="" type="checkbox" />
+                        </th>
+                        <th><a href="#Field=PictureID">ID<span /></a></th>
+                        <th>Hình Ảnh đại diện</th>
+                        <th><a href="#Field=PictureName">Tên hình ảnh<span /></a></th>
+                        <th><a href="#Field=PictureCreated">Ngày upload<span /></a></th>
+                        <th><a href="#Field=PictureAlbumName">Album ảnh<span /></a></th>
+                        <th><a href="#Field=PictureCategoryName">Chuyên mục<span /></a></th>
+                        <th><a href="#Field=PictureShow">H.Thị<span /></a></th>
+                        <th></th>
+                        <th colspan="2" style="width: 12%;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.SystemActionItem.ViewFull)
+                    {
+                        foreach (var item in Model.ListItem)
+                        {
+                        <tr title="@item.Name">
+                            <td class="act_roles">
+                                <input type="checkbox" value="@item.ID" class="check" >
+                            </td>
+                            <td>@item.ID</td>
+                        <td>
+                            <img src="@FDI.Utility.GetUrlPicture(item.Url)" style="max-width: 195px"/></td>
+                        <td>@Grid.DisplayShowStrike(item.Name, item.IsShow)</td>
+                        <td>@item.DateCreated.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Gallery_Album.Name</td>
+                        <td>@item.Gallery_Category.Name</td>
+                            <td>
+                                @if (Model.SystemActionItem.Show)
+                                {
+                                    @Grid.ActionShow(item.ID, item.Name, item.IsShow)
+                                }
+                            </td>
+                            <td></td>
+                            <td class="btn-group">
+                                @if (Model.SystemActionItem.View)
+                                {
+                                    @Grid.ActionView(item.ID, item.Name)
+                                }
+                                @if (Model.SystemActionItem.Edit)
+                                { 
+                                    @Grid.ActionEdit(item.ID, item.Name)
+                                }
+                                @if (Model.SystemActionItem.Delete)
+                                {
+                                    @Grid.ActionDelete(item.ID, item.Name)
+                                }
+
+                            </td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </section>
+    </section>
+    <footer class="footer bg-white b-t portlet">
+        <div class="row m-t-xs">
+            @Html.Raw(Model.PageHtml)
+        </div>
+    </footer>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#mygird');
+    });
+</script>
+
+

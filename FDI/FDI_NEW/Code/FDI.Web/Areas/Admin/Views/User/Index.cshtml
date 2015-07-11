@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Quản lý chức năng User với Module";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutNew.cshtml";
+}
+<script type="text/javascript">
+    urlLists = '@Url.Action("ListItems", "User")';
+    urlForm = '@Url.Action("AjaxForm", "User")';
+    @*urlFormRole = '@Url.Action("ViewRole", "User")';*@
+    urlEditPoint = '@Url.Action("AjaxForm", "User")';
+    formWidth = 960;
+    formHeight = $(window).height() - 24;
+    viewWidth = 960;
+    viewHeight = $(window).height() - 24;
+
+    $(document).ready(function () {
+        initAjaxLoad(urlLists, "#NewsGriditems");
+
+        $("#gridSearch").submit(function () {
+            var form = $("#gridSearch");
+            window.location.href = '#' + getValueFormMutilSelect(form);
+            return false;
+        });
+
+        $("select.mutil").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+    });
+</script>
+<section id="content">
+    <section class="hbox stretch">
+        <aside>
+            <section class="vbox">
+                <header class="header bg-white b-b clearfix">
+                    <ul class="breadcrumb no-border no-radius b-b b-light m-l-15x m-r-15x">
+                        <li><a href="/Admin/Admin"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">Quản lý chức năng User với Module</li>
+                    </ul>
+                </header>
+                <section  id="NewsGriditems" class="m-t-lg" style="top: 15px;">
+                </section>
+            </section>
+        </aside>
+    </section>
+    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>

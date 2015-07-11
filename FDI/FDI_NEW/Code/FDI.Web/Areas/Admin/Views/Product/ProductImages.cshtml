@@ -1,0 +1,141 @@
+﻿@model FDI.Simple.ProductItem
+@{
+    ViewBag.Title = "ProductImages";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<div id="tabs" class="tabs-images">
+    <ul>
+        <li><a href="#tabs-1">Ảnh 360</a></li>
+        <li><a href="#tabs-2">Ảnh slide mặc định</a></li>
+        <li><a href="#tabs-3">Hình ảnh gallery</a></li>
+        <li><a href="#tabs-4">Ảnh slide trải nghiệm</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="add-images">
+            <a href="#" data-container="images360">
+                <img src="/Content/Admin/images/upload-file.png" alt="Upload"/>
+                <p>Click để thêm ảnh</p>
+            </a>
+        </div>
+        <table class="gridView grid-images" cellspacing="1">
+            @foreach (var item in Model.ListPicture360)
+            {
+                <tr title="@item.Name" id="@item.ID" data-id="@item.ID">
+                    <td>@item.ID</td>
+                    <td>
+                        @Gallery.DisplayImage(item.Url, 120)
+                    </td>
+                    <td>
+                        <p>Tên ảnh: <b>@item.Name</b></p>
+                        <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                        <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                    </td>
+                    <td>
+                        <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('Images360'); return false;">Xóa</button>
+                    </td>
+                    <td class="hidden">
+                        <input type="checkbox" value="@item.ID" class="check" /></td>
+                </tr>
+            }
+        </table>
+        <div class="f-action">
+            <a class="button primaryAction save-image360" data-productId="@ViewBag.ProductID">Lưu ảnh 360</a>
+        </div>
+    </div>
+    <div id="tabs-2">
+        <div class="add-images">
+            <a href="#">
+                <img src="/Content/Admin/images/upload-file.png" alt="Upload"/>
+                <p>Click để thêm ảnh</p>
+            </a>
+        </div>
+        <table class="gridView" cellspacing="1">
+            @foreach (var item in Model.ListPictureSlide)
+            {
+                <tr title="@item.Name" id="@item.ID" data-id="@item.ID">
+                    <td>@item.ID</td>
+                    <td>
+                        @Gallery.DisplayImage(item.Url, 120)
+                    </td>
+                    <td>
+                        <p>Tên ảnh: <b>@item.Name</b></p>
+                        <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                        <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                    </td>
+                    <td>
+                        <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('ImagesGalleryPicture'); return false;">Xóa</button>
+                    </td>
+                    <td class="hidden">
+                        <input type="checkbox" value="@item.ID" class="check" /></td>
+                </tr>
+            }
+        </table>
+        <div class="f-action">
+            <a class="button primaryAction save-imageDefault" data-productId="@ViewBag.ProductID">Lưu ảnh slide mặc định</a>
+        </div>
+    </div>
+    <div id="tabs-3">
+        <div class="add-images">
+            <a href="#">
+                <img src="/Content/Admin/images/upload-file.png" alt="Upload"/>
+                <p>Click để thêm ảnh</p>
+            </a>
+        </div>
+        <table class="gridView" cellspacing="1">
+            @foreach (var item in Model.ListPictureGallery)
+            {
+                <tr title="@item.Name" id="@item.ID" data-id="@item.ID">
+                    <td>@item.ID</td>
+                    <td>
+                        @Gallery.DisplayImage(item.Url, 120)
+                    </td>
+                    <td>
+                        <p>Tên ảnh: <b>@item.Name</b></p>
+                        <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                        <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                    </td>
+                    <td>
+                        <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('ImagesGalleryPictureDetail'); return false;">Xóa</button>
+                    </td>
+                    <td class="hidden">
+                        <input type="checkbox" value="@item.ID" class="check" /></td>
+                </tr>
+            }
+        </table>
+        <div class="f-action">
+            <a class="button primaryAction save-imageGallery" data-productId="@ViewBag.ProductID">Lưu Gallery</a>
+        </div>
+    </div>
+    <div id="tabs-4">
+        <div class="add-images">
+            <a href="#">
+                <img src="/Content/Admin/images/upload-file.png" alt="Upload"/>
+                <p>Click để thêm ảnh</p>
+            </a>
+        </div>
+        <table class="gridView" cellspacing="1">
+            @foreach (var item in Model.ListPictureGalleryGuideSlide)
+            {
+                <tr title="@item.Name" id="@item.ID" data-id="@item.ID">
+                    <td>@item.ID</td>
+                    <td>
+                        @Gallery.DisplayImage(item.Url, 120)
+                    </td>
+                    <td>
+                        <p>Tên ảnh: <b>@item.Name</b></p>
+                        <p>Ngày tạo: <i>@item.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                        <p>Chuyên mục: <b>@((item.CategoryID.HasValue) ? item.Gallery_Category.Name : "")</b></p>
+                    </td>
+                    <td>
+                        <button type="button" onclick="$(this).parent().parent().remove(); getValuePicture('ImagesGalleryPicture'); return false;">Xóa</button>
+                    </td>
+                    <td class="hidden">
+                        <input type="checkbox" value="@item.ID" class="check" /></td>
+                </tr>
+            }
+        </table>
+        <div class="f-action">
+            <a class="button primaryAction save-imageEnjoy" data-productId="@ViewBag.ProductID">Lưu ảnh trải nghiệm</a>
+        </div>
+    </div>
+</div>

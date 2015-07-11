@@ -1,0 +1,34 @@
+﻿@model FDI.Base.System_City
+
+@{
+    ViewBag.Title = "Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<div class="col-sm-12">
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">Thông tin về thành phố</header>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Tên thành phố</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Hiển thị</label></td>
+                <td>
+                    @Grid.DisplayShow(Model.Name, Model.Show)
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Mô tả</label></td>
+                <td>
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>
+

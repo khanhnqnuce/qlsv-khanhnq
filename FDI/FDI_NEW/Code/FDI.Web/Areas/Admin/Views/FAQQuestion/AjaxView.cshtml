@@ -1,0 +1,185 @@
+﻿@model FDI.Base.FAQ_Question
+
+@{
+    ViewBag.Title = "Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    var fromAnswerUrl = '@Url.Action("AjaxFormAnswer", "FAQQuestion", new { @QuestionID = Model.ID })';
+    var urlPostAnswer = '@Url.Action("AnswerActions", "FAQQuestion")';
+
+    $(".primaryAction").click(function () {
+        var item = $(this);
+
+    });
+
+    //function HideAnswer(id, title) {
+    //    rowHide(urlPostAnswer, 'Ẩn câu trả lời ' + title + '', '' + id + '', '#page=1&answer=' + id + '');
+    //}
+
+    function EditAnswer(id) {
+        $("#dialog-form-2").dialog(
+		    {
+		        title: "Sửa câu trả lời cho câu hỏi: @Model.Title",
+		        width: formWidth,
+		        height: formHeight
+		    }
+	    ).load(encodeURI(fromAnswerUrl + "&do=Edit&ItemID=" + id)).dialog("open");
+        return false;
+    }
+
+    @* function ShowAnswer(id) {
+        $("#dialog-form-2").dialog(
+		    {
+		        title: "Sửa câu trả lời cho câu hỏi: @Model.Title",
+		        width: formWidth,
+		        height: formHeight
+		    }
+	    ).load(encodeURI(fromAnswerUrl + "&do=Edit&ItemID=" + id)).dialog("open");
+        return false;
+    }*@
+
+    @*function DeleteAnswer(id) {
+        $("#dialog-form-2").dialog(
+		    {
+		        title: "Sửa câu trả lời cho câu hỏi: @Model.Title",
+		        width: formWidth,
+		        height: formHeight
+		    }
+	    ).load(encodeURI(fromAnswerUrl + "&do=Edit&ItemID=" + id)).dialog("open");
+        return false;
+    }*@
+
+    $(document).ready(function () {
+        $("#btnAddAnswer").click(function () {
+            $("#dialog-form-2").dialog(
+			    {
+			        title: "Gửi câu trả lời cho câu hỏi: @Model.Title",
+			        width: formWidth,
+			        height: formHeight
+			    }
+		    ).load(encodeURI(fromAnswerUrl + "&do=Add")).dialog("open");
+            return false;
+        });
+    });
+
+</script>
+<fieldset class="forms">
+    <legend>Nội dung câu hỏi</legend>
+    <table class="tableforms tabledetails" cellspacing="1" width="100%">
+        <tr>
+            <td style="width:120px;" class="label"><label>Tên câu hỏi</label></td>
+            <td>@Model.Title</td>
+        </tr>
+        
+        <tr>
+            <td class="label"><label>Chuyên mục câu hỏi</label></td>
+            <td>@Model.FAQ_Category.Name</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Người gửi</label></td>
+            <td>@Model.Fullname</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Điện thoại</label></td>
+            <td>@Model.Phone</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Email</label></td>
+            <td>@Model.Email</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Ngày gửi</label></td>
+            <td>@Model.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt") </td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Hiển thị</label></td>
+            <td>@Grid.DisplayShow(Model.Title, Model.IsShow)</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Nội dung chi tiết</label></td>
+            <td>
+                @Html.Raw(Model.Content)
+            </td>
+        </tr>
+
+    </table>
+</fieldset>
+
+<div class="headear">
+    <div class="manage">
+        <button id="btnAddAnswer" class="primaryAction">Gửi câu trả lời</button>
+    </div>
+</div>
+
+@if (Model.FAQ_Answer.Any())
+{
+    foreach (var answer in Model.FAQ_Answer)
+    {
+    <fieldset class="forms">
+        <legend>@answer.Title</legend>
+         <table class="tableforms tabledetails" cellspacing="1" width="100%" key="@answer.ID">
+            
+            <tr>
+                <td style="width:120px;" class="label"><label>Quản lý</label></td>
+                <td>
+                    <button class="primaryAction" onclick="EditAnswer(@answer.ID);">Sửa câu trả lời</button>
+                    @if (answer.IsShow)
+                    {
+                    <button class="primaryAction" status="Hide" key="@answer.ID">Ẩn câu trả lời</button>
+                    }
+                    else
+                    {
+                    <button class="primaryAction" status="Show" key="@answer.ID">Hiển thị câu trả lời</button>
+                    }
+                    <button class="primaryAction" status="Delete" key="@answer.ID">Xóa câu trả lời</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label"><label>Tiêu đề câu trả lời</label></td>
+                <td>@answer.Title</td>
+            </tr>
+
+            <tr>
+                <td class="label"><label>Hiển thị</label></td>
+                <td class="showhide">@Grid.DisplayShow(answer.Title, answer.IsShow)</td>
+            </tr>
+
+            <tr>
+                <td class="label"><label>Nội dung trả lời</label></td>
+                <td>@Html.Raw(answer.Content)</td>
+            </tr>
+
+            <tr>
+                <td class="label"><label>Ngày trả lời</label></td>
+                <td>@answer.DateCreated.ToString("dd/MM/yyyy")</td>
+            </tr>
+
+            <tr>
+                <td class="label"><label>File đính kèm</label></td>
+                <td>
+                    <ul id="listFileAttach">
+                        @foreach (var file in answer.System_File)
+                        {
+                        <li><a  title="Xóa file đính kèm @file.Name" href="/Admin/SystemFile/Download/@file.ID">@file.Name</a></li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+         </table>
+    </fieldset>
+    }
+}
+else
+{ 
+    <fieldset class="forms">
+        <legend>Chưa có câu trả lời nào được gửi</legend>
+    </fieldset>
+}

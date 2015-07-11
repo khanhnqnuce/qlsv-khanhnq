@@ -1,0 +1,79 @@
+﻿@model FDI.Simple.ModelAspnetRolesItem
+@{
+    ViewBag.Title = ViewBag.ActionText + " Module";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#ModuleForm").validate({
+            rules: {
+                NameModule:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
+                Content:
+                {
+                    minlength: 3,
+                    maxlength: 500
+                }
+            },
+            submitHandler: function () { //onSubmit
+                $.post(urlPostAction1, $("#ModuleForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+
+<div id="Order">
+    <form id="ModuleForm">
+        <input type="hidden" name="ItemID" id="ItemID" value="@Model.Roles.RoleId"/>
+        <input type="hidden" name="ItemNameRole" id="ItemNameRole" value="@Model.Roles.RoleName"/>
+        <fieldset class="forms">
+            <table class="tableforms" cellspacing="1" width="100%">
+                <tr>
+                    <td style="width: 100px;">
+                        <label>Tên chuyên mục </label>
+                    </td>
+                    <td>
+                        <label>@Model.Roles.RoleName</label>
+                    </td>
+                </tr>
+
+                @foreach (var item in Model.ListActiveRoleItem)
+                {
+                    <tr>
+                        <td>
+                            <label>@item.NameActive</label></td>
+                        <td>
+                            <input type="checkbox" name="@item.NameActive" id="@item.NameActive" value="@item.ID" @(Model.Roles.ActiveRoles.Any(m => m.Id == item.ID) ? "checked" : "")/>
+
+                        </td>
+                    </tr>            
+                }
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="Update" type="submit" class="primaryAction">Xong</button>
+                        <button id="close" type="button" class="primaryAction">Đóng lại</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>

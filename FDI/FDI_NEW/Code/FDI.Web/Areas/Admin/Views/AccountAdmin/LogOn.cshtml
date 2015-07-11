@@ -1,0 +1,104 @@
+﻿@model FDI.Areas.Admin.Models.LogOnModel
+@{
+    ViewBag.Title = "LogOn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAnonymous.cshtml";
+}
+<header class="bg-blue dk header navbar navbar-fixed-top-xs">
+    <div class="navbar-header aside-md">
+        <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="#" class="navbar-brand" data-toggle="fullscreen">
+            <img src="/Skin/images/logo.png" class="m-r-sm"></a>
+        <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+            <i class="fa fa-cog"></i>
+        </a>
+    </div> 
+    <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+        <li class="hidden-xs">
+            <a href="#" class="dropdown-toggle dk" data-toggle="dropdown">
+                <i class="fa fa-bell"></i>
+                <span class="badge badge-sm up bg-danger m-l-n-sm count">2</span>
+            </a>
+            <section class="dropdown-menu aside-xl">
+                <section class="panel bg-white">
+                    <header class="panel-heading b-light bg-light">
+                        <strong>You have <span class="count">2</span> notifications</strong>
+                    </header>
+                    <div class="list-group list-group-alt">
+                        <a href="#" class="media list-group-item">
+                            <span class="pull-left thumb-sm">
+                                <img src="/Skin/images/avatar.jpg" alt="John said" class="img-circle">
+                            </span>
+                            <span class="media-body block m-b-none">Use awesome animate.css<br>
+                                <small class="text-muted">10 minutes ago</small>
+                            </span>
+                        </a>
+                        <a href="#" class="media list-group-item">
+                            <span class="media-body block m-b-none">1.0 initial released<br>
+                                <small class="text-muted">1 hour ago</small>
+                            </span>
+                        </a>
+                    </div>
+                    <footer class="panel-footer text-sm">
+                        <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+                        <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+                    </footer>
+                </section>
+            </section>
+        </li>
+        <li class="dropdown hidden-xs">
+            <a href="/" class="dropdown-toggle"><i class="fa fa-home"></i></a> 
+        </li>
+        
+    </ul>
+</header>
+
+<section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+    <div class="container aside-xxl">
+        <section class="panel panel-default bg-white m-t-lg">
+            <header class="panel-heading text-center">
+                <strong>ĐĂNG NHẬP</strong>
+            </header>
+            @using (Html.BeginForm((string)ViewBag.FormAction, "AccountAdmin", FormMethod.Post, new { @class = "panel-body wrapper-lg" }))
+            {
+                <input type="hidden" id="itemUrl" name="itemUrl" value="@ViewBag.url"/> 
+                <div class="form-group">
+                    <div class="col-lg-10">
+                    </div>
+                </div>
+                <div class="input-group m-b">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-lg", @placeholder = "Username" })
+                </div>
+                <div class="input-group m-b">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg", @placeholder = "Password" })
+                </div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-8">
+                        <label>
+                            @Html.CheckBoxFor(m => m.RememberMe)Nhớ lần đăng nhập sau
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        @* <a href="#" class="pull-right m-t-xs"><small>Forgot password?</small></a>*@
+                        <button type="submit" class="btn btn-primary m-r-n">Đăng nhập</button>
+                    </div>
+                </div>
+                <div class="form-group text-left" style="color: red;float: left;">
+                    @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+                </div>
+            }
+        </section>
+    </div>
+</section>
+
+<!-- footer -->
+<footer id="footer">
+    <div class="text-center padder">
+        <p>
+            <small>Hệ quản trị fdisoft &copy; 2012</small>
+        </p>
+    </div>
+</footer>

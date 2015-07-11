@@ -1,0 +1,33 @@
+﻿@model FDI.Simple.NewsCategoryItem
+@{
+    ViewBag.Title = Model.SEOTitle ?? "";
+    ViewBag.Description = Model.SEODescription ?? "";
+    ViewBag.Keywords = Model.SEOKeyword ?? "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="/Content/Publishing/css/doitac.css?v=2105" rel="stylesheet" />
+
+<section id="content">
+    @Html.Action("ModulHTML","Home",new {key = "donghanh_FDISoft"})
+    @Html.Action("ModulHTML","Home",new {key = "doitac"})
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js?v=2105"></script>
+    <script src="/Content/Publishing/js/mosaic.1.0.1.js?v=2105"></script>
+    
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.cover').mosaic({
+                animation: 'slide',	//fade or slide
+                hover_x: '100%'		//Horizontal position on hover
+            });
+        });
+        $(".mosaic-backdrop").click(function () {            
+            var key = this.name;
+            $.get('/Adv/Details', { key: key }, function () {
+                window.location = "/doi-tac/" + key;
+            });
+            return false;
+        })
+    </script>
+    <!--form contact-->
+</section>

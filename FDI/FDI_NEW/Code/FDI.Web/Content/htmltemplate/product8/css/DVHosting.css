@@ -1,0 +1,84 @@
+﻿/* HEADER and FOTTER */
+.navbar .nav .active i{color:#26ade3;}
+.navbar .nav > li:hover {background:#26ade3}
+.nav > li > a:hover,.nav > li > a:focus {background-color: #26ade3;color: white;}
+.widget-dropdown .widget-html .widget-inner ul li:hover{background:#26ade3}
+.navbar .nav li.dropdown > .dropdown-toggle:hover,.navbar .nav li.dropdown.open > .dropdown-toggle:hover {background-color: #26ade3;}
+.navbar.affix-top {border-bottom: 5px solid #26ade3;}
+header#header .topmenu-responsive {background: #26ade3;}
+.sidebar-menu {background: #26ade3; display: none}
+#cssmenu > ul > li > a,.div-search-mobile {border-bottom: 1px solid #843B19;}
+#cssmenu > ul > li > a:hover,#cssmenu > ul > li.active > a,#cssmenu > ul > li.open > a{color:#fff;background:#AB491B;}
+#cssmenu ul ul li ul li > a:hover{background:#26ade3;}
+.FDI-dknt > p {color: #26ade3;}
+.FDI-dknt .input-group-btn button {background:#26ade3;}
+.FDI-copyright {background:#26ade3;}
+.div-module-six {background: transparent;}
+.FT-muitencong {  position: absolute;left: -10px;top: 65px;}
+.mega-menu {border-bottom: 5px solid #26ade3;}
+/*module one*/
+.fdi-box-mf-title {width: 100%;float: left;min-height: 51px;}
+.fdi-box-mf ul {padding:30px 0;float:left;}
+.fdi-box-mf ul li {position:relative;float:left;padding-top:20px;}
+.fdi-box-mf ul li.last-child {padding-right:0;}
+.fdi-box-mf ul li h4 {padding-left:65px;padding-top: 8px;font-family: 'Open Sans', sans-serif;font-weight: 800;text-transform: uppercase;  min-height: 51px;}
+.fdi-box-mf ul li .circle {position:absolute;top:20px;left:10px;display:block;width:51px;height:51px;-webkit-transition:top .4s linear;-moz-transition:top .4s linear;-o-transition:top .4s linear;-ms-transition:top .4s linear;transition:top .4s linear;}
+.fdi-box-mf ul li:hover .circle {top:10px;}
+.fdi-box-mf li .circle_link {visibility:hidden;position:absolute;top:5px;left:10px;display:block;width:51px;height:51px;color:#fff;text-indent:-999em;z-index:10;}
+.fdi-box-mf li:hover .circle_link {visibility:visible;}
+.fdi-box-mf li:after {content:'';visibility:hidden;position:absolute;top:60px;left:0;display:block;width:73px;height:14px;background:url(../images/shadow2.png) 0 0 no-repeat;-webkit-transition:all .4s linear;-moz-transition:all .4s linear;-o-transition:all .4s linear;-ms-transition:all .4s linear;transition:all .4s linear;}
+.fdi-box-mf li:hover:after {visibility:visible;}
+.fdi-box-mf .baomat .circle {background: url(../Images/ico/dvmdt-ico-baomatat.png) center top no-repeat;}
+.fdi-box-mf .baocao .circle {background: url(../Images/ico/dvmdt-ico-bccx.png) center top no-repeat;}
+.fdi-box-mf .dongbo .circle {background: url(../Images/ico/dvmdt-ico-dongbo.png) center top no-repeat;}
+.fdi-box-mf ul li p {float: left; margin-top: 10px;}
+
+/*modul support*/
+.div-product-three {background:#f7f7f7;border-top: 1px dashed #d9d9d9;padding: 40px 0 20px;margin-top: 20px;}
+.div-product-three .title {margin-top: 0;margin-bottom: 40px;font-size: 28px;}
+.chuyenvien {text-align:center;margin-bottom: 20px;}
+.chuyenvien .avatar {}
+.chuyenvien .avatar img {width: 89px;height: 89px;}
+.chuyenvien .name {color: #ed1d24;font-size: 13px;text-transform: uppercase;padding: 8px 0 0;font-weight: bold;}
+.chuyenvien .position {color: #515151;font-size: 13px;padding: 4px 0 8px;}
+.chuyenvien .position span {color: #2194d2;}
+.chuyenvien .position span i {color: #04AEDA;}
+.chuyenvien .nick .skype {margin-right: 5px;}
+.chuyenvien .nick .yahoo {margin-left: 5px;}
+@media (max-width:500px)
+{
+
+}
+@media (max-width:992px)
+{
+
+    .fdi-box-mf ul li:last-child h4 {padding-top:0;}
+    .fdi-box-mf ul li h4 {min-height: 75px;}
+    .fdi-box-mf ul li p {margin-top: 5px;}
+    .fdi-box-mf ul li .circle {top: 30px;}
+}
+@media (max-width:439px)
+{
+    .fdi-box-mf ul li:last-child h4 {padding-top: 0;}
+    .fdi-box-mf ul li .circle {top: 23px;}
+    .fdi-box-mf ul li h4 {padding-top: 12px;}
+}
+@media (min-width:440px) and (max-width:764px)
+{
+    .fdi-box-mf ul li .circle {top: 15px;}
+    .fdi-box-mf ul li:last-child h4 {padding-top:6px;min-height: 65px;
+}
+}
+@media (min-width:992px) and (max-width:1199px)
+{
+
+    .fdi-box-mf ul li:last-child h4 {padding-top:0;}
+}
+@media (min-width:1200px) and (max-width:1700px)
+{
+    .fdi-box-mf ul li:last-child h4 {padding-top:0;}
+}
+@media (min-width:1700px)
+{
+
+}

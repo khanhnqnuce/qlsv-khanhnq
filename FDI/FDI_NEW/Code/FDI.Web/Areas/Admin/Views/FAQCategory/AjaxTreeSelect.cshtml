@@ -1,0 +1,94 @@
+﻿@model FDI.Simple.ModelFAQCategoryItem
+@{
+    ViewBag.Title = ViewBag.ActionText + " hỏi & đáp";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var textContainer = "#Text_@Model.Container";
+        var hiddenContainer = "#Value_@Model.Container";
+        var m = '@Model.SelectMutil';
+        if(m.toLowerCase == 'true')
+        {
+            $("#SelectTreeCategory input[type=checkbox]").click(function(){
+                var lastCheck = $(this).is(':checked');
+                $("#SelectTreeCategory input[type=checkbox]").attr('checked', false);
+                $(this).attr('checked', lastCheck);
+            });
+        }
+
+        $("#SelectTreeCategory").treeview({
+            collapsed: true,
+            animated: "medium",
+            control: "#SelectTreeControl",
+            persist: "location"
+        });
+
+
+        $("#CategoryTreeSelectForm").validate({
+            rules: {
+                FAQTitle:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                FAQDescription:
+                {
+                    minlength: 15,
+                    maxlength: 2000
+                }
+            },
+            submitHandler: function () { //onSubmit
+                var values = '';
+                var text = '';
+                $("#SelectTreeCategory input[type=checkbox]:checked").each(function(){
+                    values += "," + $(this).val();
+                    text += ", " + $(this).attr("title");
+                });
+
+                if(values != '')
+                {
+                    $(textContainer).html(text.substring(1));
+                    $(hiddenContainer).val(values.substring(1));
+                    $("#dialog-form-2").dialog('close');
+                }
+                else
+                {
+                    createMessage("Thông báo", "Chưa có chuyên mục nào được chọn"); // Tạo thông báo lỗi
+                }
+                return false;
+            }
+        });
+
+        $("#TreeSelectclose").click(function () {
+            $("#dialog-form-2").html("").dialog('close');
+        });
+    });
+</script>
+
+<form id="CategoryTreeSelectForm">
+    <fieldset class="forms">
+        <table class="tableforms" cellspacing="1" width="100%">
+            <tr>
+                <td>
+                    <div id="SelectTreeControl" class="treeTool">
+		                <a title="Đóng tất cả các nhánh" href="#" class="collapse">Đóng tất cả</a>
+		                <a title="Mở tất cả các nhánh" href="#" class="expand">Mở tất cả</a>
+	                </div>
+                    <ul id="SelectTreeCategory" class="filetree" style="border:0px;">
+                        @Html.Raw(Model.StbHtml)
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="submit">
+                    <button id="TreeSelectsubmit" type="submit" class="primaryAction">Chọn</button>
+                    <button id="TreeSelectreset" type="reset" class="primaryAction">Chọn lại</button>
+                    <button id="TreeSelectclose" type="button" class="primaryAction">Đóng lại</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>

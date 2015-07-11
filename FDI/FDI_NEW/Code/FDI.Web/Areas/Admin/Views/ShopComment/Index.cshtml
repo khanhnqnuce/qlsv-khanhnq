@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Quản lý bình luận";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutNew.cshtml";
+}
+<script type="text/javascript">
+
+    urlLists = '@Url.Action("ListItems", "ShopComment")';
+    urlForm = '@Url.Action("AjaxForm", "ShopComment")';
+    urlPostAction = '@Url.Action("Actions", "ShopComment")';
+    @*var urlXuatExcel = '@Url.Action("XuatExcel", "ShopComment")';*@
+    urlView = '@Url.Action("AjaxView", "ShopComment")';
+
+    formWidth = 960;
+    formHeight = 650;
+    viewWidth = 960;
+    viewHeight = 650;
+
+    $(document).ready(function () {
+        $("#FromDate").datepicker({
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                $("#ToDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $('#FromTime').timepicker({
+            'timeFormat': 'H:i',
+            'maxTime': '11:30pm',
+            'step': 60
+        });
+        $("#ToDate").datepicker({
+            dateFormat: 'dd/mm/yy',
+            onClose: function (selectedDate) {
+                $("#FromDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+        $('#ToTime').timepicker({
+            'timeFormat': 'H:i',
+            'maxTime': '11:30pm',
+            'step': 60
+        });
+
+        initAjaxLoad(urlLists, "#NewsGriditems");
+
+        $("#Admin").multiSelect({ oneOrMoreSelected: '*', selectAllText: '<b>Tất cả</b>', optGroupSelectable: true });
+        $("#gridSearch").submit(function () {
+            var form = $("#gridSearch");
+            window.location.href = '#' + getValueFormMutilSelect(form);
+            return false;
+        });
+
+        $("#btn_add").click(function () {
+            $("#dialog-form").dialog(
+                {
+                    title: "Thêm mới bình luận",
+                    width: formWidth,
+                    height: formHeight
+                }
+            ).load(encodeURI(urlForm + "?do=Add")).dialog("open");
+            return false;
+        });
+        $("#btn_XuatExcel").click(function () {
+            window.location.href = urlXuatExcel;
+            return false;
+        });
+        createAutoTag('ProductName', '@Url.Action("AutoComplete", "Product")');
+        createAutoTag('EmailCustomer', '@Url.Action("AutoCustomer", "ShopComment")');
+
+
+    });
+</script>
+<section id="content">
+    <section class="hbox stretch">
+        <aside>
+            <section class="vbox">
+                <header class="header bg-white b-b clearfix">
+                    <ul class="breadcrumb no-border no-radius b-b b-light m-l-15x m-r-15x">
+                        <li><a href="/Admin/Admin"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">Quản lý bình luận</li>
+                    </ul>
+                    <div class="row m-t-sm">
+                        <div class="col-sm-11 m-b-xs">
+                            <form id="gridSearch" class="form-inline" role="form">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label>Từ Ngày:</label></td>
+
+                                        <td>
+                                            <input class="date" type="text" name="FromDate" id="FromDate" />
+
+                                        </td>
+                                        <td>
+                                            <label>Đến Ngày:</label></td>
+                                        <td>
+                                            <input class="date" type="text" name="ToDate" id="ToDate" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Từ giờ:</label></td>
+                                        <td>
+                                            <input class="time" type="text" name="FromTime" id="FromTime" />
+                                        </td>
+                                        <td>
+                                            <label>Đến giờ:</label></td>
+                                        <td>
+
+                                            <input class="time" type="text" name="ToTime" id="ToTime" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="Keyword">Email:</label>
+                                        </td>
+                                        <td>
+                                            <input id="EmailCustomer" name="EmailCustomer" type="text" class="text keyword" />
+                                        </td>
+                                        <td>
+
+                                            <label>Quản trị viên</label>
+                                        </td>
+                                        <td>
+                                            <select name="Admin" id="Admin" multiple="multiple" class="lstSelected" style="width: 126px">
+                                                @foreach (var item in ViewBag.ltsAdmin)
+                                                {
+                                                    <option value="@item.ID">@item.Email</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <label>Tên sản phẩm:</label></td>
+                                        <td>
+                                            <input type="text" name="ProductName" id="ProductName" />
+                                            <button name="submit.Search" type="submit" class="btn btn-sm btn-success">Tìm kiếm</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-sm-1 m-b-xs">
+                            @if (ViewBag.Add)
+                            {
+                                @Html.ActionLink("Thêm mới", "Actions", new { }, new { @class = "btn btn-sm btn-success", @id = "btn_add" })
+                            }
+                        </div>
+                    </div>
+                </header>
+                <section id="NewsGriditems" class="m-t-lg" style="top: 100px">
+                </section>
+
+            </section>
+        </aside>
+    </section>
+    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+</section>

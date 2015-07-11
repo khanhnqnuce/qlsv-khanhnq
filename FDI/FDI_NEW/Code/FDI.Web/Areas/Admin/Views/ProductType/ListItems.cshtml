@@ -1,0 +1,114 @@
+﻿@model FDI.Simple.ModelProductTypeItem
+
+@{
+    ViewBag.Title = "Danh sách loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>
+<section id="gridItems" class="vbox">
+    <section class="scrollable wrapper w-f">
+        <section class="panel panel-default">
+            <table class="gridView" cellspacing="1">
+                <thead>
+                    <tr>
+                        <th><a href="#Field=ID">ID<span /></a></th>
+                        <th><a href="#Field=Name">Tên danh mục<span /></a></th>
+                        <th><a href="#Field=IsActived">Kích hoạt<span /></a></th>
+                        <th><a href="#Field=IsHasSize">Có kích thước<span /></a></th>
+                        <th><a href="#Field=IsHasWeight">Có trọng lượng<span /></a></th>
+                        <th><a href="#Field=IsHasColor">Có màu<span /></a></th>
+                        <th><a href="#Field=IsHasBrand">Có thương hiệu<span /></a></th>
+                        <th><a href="#Field=Description">Mô tả<span /></a></th>
+                        <th class="act_view"></th>
+                        <th class="act_edit"></th>
+                        <th class="act_show">
+                            @if (Model.SystemActionItem.Show)
+                            {
+                                <a href="#showAll" class="showAll" title="Hiển thị danh sách đã chọn">
+                                    <img src="/Content/Admin/images/gridview/show.gif" style="border: none" alt="Hiển thị danh sách đã chọn" />
+                                </a>
+                            }
+                        </th>
+                        <th class="act_hide">
+                            @if (Model.SystemActionItem.Hide)
+                            {
+                                <a href="#hideAll" class="hideAll" title="Ẩn danh sách đã chọn">
+                                    <img src="/Content/Admin/images/gridview/hide.gif" style="border: none" alt="Ẩn danh sách đã chọn" />
+                                </a>
+                            }
+                        </th>
+                        <th class="act_delete">
+                            @if (Model.SystemActionItem.Delete)
+                            {
+                                <a href="#deleteAll" class="deleteAll" title="Xóa danh sách đã chọn">
+                                    <img src="/Content/Admin/images/gridview/delete.gif" style="border: none" alt="Xóa danh sách đã chọn" />
+                                </a>
+                            }
+                        </th>
+                        <th class="act_roles">
+                            <input value="" type="checkbox" class="checkAll" />
+                        </th>
+                </thead>
+                </tr>
+                @if (Model.SystemActionItem.ViewFull == true)
+                {
+                    foreach (var item in Model.ListItem)
+                    {
+                    <tr title="@item.Name">
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@Grid.DisplayShow(item.Name, item.IsActived)</td>
+                        <td>@Grid.DisplayShow(item.Name, item.IsHasSize)</td>
+                        <td>@Grid.DisplayShow(item.Name, item.IsHasWeight)</td>
+                        <td>@Grid.DisplayShow(item.Name, item.IsHasColor)</td>
+                        <td>@Grid.DisplayShow(item.Name, item.IsHasBrand)</td>
+                        <td>@Html.Raw(item.Description)</td>
+                        <td class="act_view">
+                            @if (Model.SystemActionItem.View == true)
+                            {
+                                @Grid.ActionView(item.ID, item.Name)
+                            }
+                        </td>
+                        <td class="act_edit">
+                            @if (Model.SystemActionItem.Edit == true)
+                            {
+                                @Grid.ActionEdit(item.ID, item.Name)
+                            }
+                        </td>
+                        <td class="act_show">
+                            @if (Model.SystemActionItem.Show == true)
+                            {
+                                @Grid.ActionShow(item.ID, item.Name, item.IsActived)
+                            }
+                        </td>
+                        <td class="act_hide">
+                            @if (Model.SystemActionItem.Hide == true)
+                            {
+                                @Grid.ActionHide(item.ID, item.Name, !item.IsActived)
+                            }
+                        </td>
+                        <td class="act_delete">
+                            @if (Model.SystemActionItem.Delete == true)
+                            {
+                                @Grid.ActionDelete(item.ID, item.Name)
+                            }
+                        </td>
+                        <td class="act_roles">
+                            <input type="checkbox" value="@item.ID" class="check" /></td>
+                    </tr>
+                    }
+                }
+            </table>
+        </section>
+    </section>
+    <footer class="footer bg-white b-t portlet">
+        <div class="row m-t-xs">
+            @Html.Raw(Model.PageHtml)
+        </div>
+    </footer>
+</section>

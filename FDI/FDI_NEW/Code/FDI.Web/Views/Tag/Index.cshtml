@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+@model List<FDI.Simple.TagItem>
+
+
+
+<div class="div-module-tag">
+    <div class="container">
+        <div class="row">
+            <ul class="clearfix">
+                @foreach (var item in Model)
+                {
+                    <li>
+
+                        @if (item.Link == null || item.Link == "")
+                        {
+                            <a href="/Tag/@item.NameAscii">@item.Name</a>
+                        }
+                        else
+                        {
+                            <a target="_blank" href="/@item.Link">@item.Name</a>     
+                        }
+
+
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+

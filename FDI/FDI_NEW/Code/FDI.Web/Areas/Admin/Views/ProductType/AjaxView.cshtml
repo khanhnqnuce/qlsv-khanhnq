@@ -1,0 +1,68 @@
+﻿@model FDI.Base.Shop_Product_Type
+@{
+    ViewBag.Title = "Xem chi tiết loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<fieldset class="forms">
+    <table class="tableforms tabledetails" cellspacing="1" width="100%">
+        <tr>
+            <td style="width:80px;" class="label"><label>Tên loại sản phẩm</label></td>
+            <td>@(Model.Name)</td>
+        </tr>
+      
+        <tr>
+            <td class="label"><label>Mô tả</label></td>
+            <td>@Html.Raw(Model.Description)</td>
+        </tr>
+
+        <tr>
+            <td class="label"><label>Kích hoạt</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsActived)</td>
+        </tr>
+        
+        <tr>
+            <td class="label"><label>Có kích thước</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsHasSize)</td>
+        </tr>
+        
+        <tr>
+            <td class="label"><label>Có trọng lượng</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsHasWeight)</td>
+        </tr>
+        
+        <tr>
+            <td class="label"><label>Có màu</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsHasColor)</td>
+        </tr>
+        
+        <tr>
+            <td class="label"><label>Có thương hiệu</label></td>
+            <td>@Grid.DisplayShow(Model.Name, Model.IsHasBrand)</td>
+        </tr>
+        
+         <tr>
+            <td class="label">
+                <label>Hình ảnh</label></td>
+            <td>
+                @if (Model.PictureID.HasValue)
+                {
+                <table class="gridView" cellspacing="1">
+                    <tr title="@Model.Gallery_Picture.Name" id="@Model.Gallery_Picture.ID">
+                        <td>@Model.Gallery_Picture.ID</td>
+                        <td>
+                            @Gallery.DisplayImage(Model.Gallery_Picture.Url, 120)
+                        </td>
+                        <td>
+                            <p>Tên ảnh: <b>@Model.Gallery_Picture.Name</b></p>
+                            <p>Ngày tạo: <i>@Model.Gallery_Picture.DateCreated.ToString("dd/MM/yyyy hh:mm:ss tt")</i></p>
+                            <p>Album: <b>@((Model.Gallery_Picture.AlbumID.HasValue) ? Model.Gallery_Picture.Gallery_Album.Name : "")</b></p>
+                            <p>Chuyên mục: <b>@((Model.Gallery_Picture.CategoryID.HasValue) ? Model.Gallery_Picture.Gallery_Category.Name : "")</b></p>
+                        </td>
+                    </tr>
+                </table>
+                }
+            </td>
+        </tr>
+    </table>
+</fieldset>

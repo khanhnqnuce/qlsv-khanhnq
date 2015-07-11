@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8213f9fe20d48ff82f643e96ac5693d" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="FDIModel.ActiveRole" Width="1.5" PointX="9.87438988400362" PointY="14.726128152909748" />
+        <EntityTypeShape EntityType="FDIModel.Advertising" Width="1.5" PointX="7.7484150881638811" PointY="9.48460412467113" />
+        <EntityTypeShape EntityType="FDIModel.Advertising_Position" Width="1.5" PointX="9.093151379885688" PointY="21.540699670808717" />
+        <EntityTypeShape EntityType="FDIModel.Advertising_Type" Width="1.5" PointX="6.52739969944926" PointY="0.0664152503322881" />
+        <EntityTypeShape EntityType="FDIModel.Advertising_Zone" Width="1.5" PointX="9.7422877148456344" PointY="11.230398049219696" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Applications" Width="1.5" PointX="2.2835655390674088" PointY="11.370245283176306" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Membership" Width="1.5" PointX="1.0120168966297138" PointY="21.834172691141337" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Paths" Width="1.5" PointX="10.852166477056297" PointY="7.1534903380803252" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="8.02014786192223" PointY="29.307607276974064" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="1.0460354318125338" PointY="26.226236295991686" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Profile" Width="1.5" PointX="8.3869851903929309" PointY="10.39762171096989" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Roles" Width="1.5" PointX="4.0624318216286746" PointY="6.9097165348519178" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_SchemaVersions" Width="1.5" PointX="2.5086696848779306" PointY="18.141632371648043" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_Users" Width="1.5" PointX="1.6046019334367485" PointY="21.545294697184719" />
+        <EntityTypeShape EntityType="FDIModel.aspnet_WebEvent_Events" Width="1.5" PointX="8.8161955013946613" PointY="21.176160106983112" />
+        <EntityTypeShape EntityType="FDIModel.Comment_Like" Width="1.5" PointX="8.6827659405222" PointY="17.811694406816592" />
+        <EntityTypeShape EntityType="FDIModel.Customer" Width="1.5" PointX="6.921911060308064" PointY="12.855353510405568" />
+        <EntityTypeShape EntityType="FDIModel.Customer_Action" Width="1.5" PointX="6.8275979919487595" PointY="6.7544147850733323" />
+        <EntityTypeShape EntityType="FDIModel.Customer_Device" Width="1.5" PointX="3.5437293665221561" PointY="31.789735972783404" />
+        <EntityTypeShape EntityType="FDIModel.Customer_History" Width="1.5" PointX="9.2688963475026647" PointY="2.0946648279645781" />
+        <EntityTypeShape EntityType="FDIModel.Customer_Point" Width="1.5" PointX="7.6128505839094753" PointY="31.50760678924043" />
+        <EntityTypeShape EntityType="FDIModel.Customer_Type" Width="1.5" PointX="2.1524696285615068" PointY="21.909172828266943" />
+        <EntityTypeShape EntityType="FDIModel.CustomerContact" Width="1.5" PointX="3.3057682753101778" PointY="20.348049054084367" />
+        <EntityTypeShape EntityType="FDIModel.FAQ_Answer" Width="1.5" PointX="1.2611040646494851" PointY="24.647381108555656" />
+        <EntityTypeShape EntityType="FDIModel.FAQ_Category" Width="1.5" PointX="9.4841369993445177" PointY="31.708303585512706" />
+        <EntityTypeShape EntityType="FDIModel.FAQ_Question" Width="1.5" PointX="5.7733005014123862" PointY="22.430751453354372" />
+        <EntityTypeShape EntityType="FDIModel.Gallery_Album" Width="1.5" PointX="9.60887435898598" PointY="8.4247028121839751" />
+        <EntityTypeShape EntityType="FDIModel.Gallery_Category" Width="1.5" PointX="9.8260077842632345" PointY="15.934084646373096" />
+        <EntityTypeShape EntityType="FDIModel.Gallery_Picture" Width="1.5" PointX="1.459866235712481" PointY="13.752723700251767" />
+        <EntityTypeShape EntityType="FDIModel.Gallery_Video" Width="1.5" PointX="1.0480568618737425" PointY="6.1067713080471249" />
+        <EntityTypeShape EntityType="FDIModel.Guide_Category" Width="1.5" PointX="6.47316044311652" PointY="27.861104501346642" />
+        <EntityTypeShape EntityType="FDIModel.Guide_Guide" Width="1.5" PointX="3.2087102174799469" PointY="4.8032737992719161" />
+        <EntityTypeShape EntityType="FDIModel.HtmlSetting" Width="1.5" PointX="7.5286333279351858" PointY="20.277813697363165" />
+        <EntityTypeShape EntityType="FDIModel.Module" Width="1.5" PointX="9.3419309208830512" PointY="21.843358213940338" />
+        <EntityTypeShape EntityType="FDIModel.News_Category" Width="1.5" PointX="1.3602167672292409" PointY="22.184695820410127" />
+        <EntityTypeShape EntityType="FDIModel.News_Comment" Width="1.5" PointX="11.138829510257965" PointY="21.597324992342539" />
+        <EntityTypeShape EntityType="FDIModel.News_CommentReport" Width="1.5" PointX="1.7214563813626096" PointY="0.69476299020217869" />
+        <EntityTypeShape EntityType="FDIModel.News_Job" Width="1.5" PointX="2.2219880270874071" PointY="22.857687051807385" />
+        <EntityTypeShape EntityType="FDIModel.News_News" Width="1.5" PointX="1.7466385130522022" PointY="20.92397869607619" />
+        <EntityTypeShape EntityType="FDIModel.Payment_Method" Width="1.5" PointX="11.285375425259293" PointY="18.34173677225678" />
+        <EntityTypeShape EntityType="FDIModel.Role_ModuleActive" Width="1.5" PointX="5.542008074718531" PointY="11.631557380609008" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Brand" Width="1.5" PointX="10.595348512099752" PointY="23.801551084873058" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Category" Width="1.5" PointX="2.1677595387062802" PointY="0.7232910547048278" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Category_Tag_Mapping" Width="1.5" PointX="9.0705110435702423" PointY="10.033726681970864" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Comment" Width="1.5" PointX="6.9947497821388529" PointY="2.2728433321569317" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Comment_BadKey" Width="1.5" PointX="1.0730393086900185" PointY="27.697221277140649" />
+        <EntityTypeShape EntityType="FDIModel.Shop_CommentLike" Width="1.5" PointX="10.873094127920034" PointY="18.610285618626644" />
+        <EntityTypeShape EntityType="FDIModel.Shop_CommentReport" Width="1.5" PointX="6.3123388673701966" PointY="24.439830389078626" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Content" Width="1.5" PointX="8.6066423284852149" PointY="0.93664521022543556" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Label" Width="1.5" PointX="0.68730648266491778" PointY="20.537568370130643" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Log_System" Width="1.5" PointX="10.288587474398589" PointY="13.51958595845829" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Order_ProductVariant" Width="1.5" PointX="7.8825511484791289" PointY="3.106336177841917" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product" Width="1.5" PointX="0.7517843343092987" PointY="25.798143011423825" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Attribute" Width="1.5" PointX="6.69007541364528" PointY="24.928901967093768" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Attribute_Specification" Width="1.5" PointX="0.9372755274815836" PointY="3.3450003728945741" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Compatible_Accessories" Width="1.5" PointX="4.2286432293377088" PointY="14.968997932490426" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Group_Attribute" Width="1.5" PointX="5.8718959623351212" PointY="16.4530815260732" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_PreOrder" Width="1.5" PointX="8.74803116579914" PointY="5.6302038010350444" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_RateNumber" Width="1.5" PointX="11.852565675905238" PointY="16.75500949507347" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_RateType" Width="1.5" PointX="11.633468136020689" PointY="19.353064486455668" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Rating" Width="1.5" PointX="10.533669092940944" PointY="14.878089107050602" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Ref" Width="1.5" PointX="1.1965095480887729" PointY="1.3544013804543771" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Review" Width="1.5" PointX="7.24622162396378" PointY="2.0063240835472587" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_ReviewMapping" Width="1.5" PointX="9.2259027442084172" PointY="17.980264731673646" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Search_Mapping" Width="1.5" PointX="5.94819725395562" PointY="13.485471016487791" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Type" Width="1.5" PointX="11.964990315942554" PointY="3.7210574912471035" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Variant" Width="1.5" PointX="7.1591855283636541" PointY="9.5567660972274684" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Variant_Picture_Mapping" Width="1.5" PointX="8.5895638151977032" PointY="1.2591022407911263" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Product_Variant_Recurring" Width="1.5" PointX="8.4792828692492481" PointY="25.147926521090756" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Promote_File" Width="1.5" PointX="8.173797322518098" PointY="11.982549091792921" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Promotion_Product" Width="1.5" PointX="5.5811587318690306" PointY="31.259127482426877" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Promotion_Product_Variant" Width="1.5" PointX="2.82537197825749" PointY="15.307665712809035" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Survey_Answer" Width="1.5" PointX="8.62367302022114" PointY="19.892440224016291" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Survey_Product" Width="1.5" PointX="4.514562016592623" PointY="12.541836148380225" />
+        <EntityTypeShape EntityType="FDIModel.Shop_Survey_Question" Width="1.5" PointX="10.230825941185852" PointY="11.202699845285482" />
+        <EntityTypeShape EntityType="FDIModel.sysdiagram" Width="1.5" PointX="9.3123707199992474" PointY="6.1960367142204369" />
+        <EntityTypeShape EntityType="FDIModel.System_City" Width="1.5" PointX="0.71777381781385" PointY="14.479752800650779" />
+        <EntityTypeShape EntityType="FDIModel.System_Color" Width="1.5" PointX="9.1679190458580475" PointY="12.5581441580123" />
+        <EntityTypeShape EntityType="FDIModel.System_Config" Width="1.5" PointX="3.8733351863330863" PointY="19.665735015489968" />
+        <EntityTypeShape EntityType="FDIModel.System_Country" Width="1.5" PointX="5.9186544427269387" PointY="31.998434141277539" />
+        <EntityTypeShape EntityType="FDIModel.System_District" Width="1.5" PointX="0.44840088507551745" PointY="31.859936371380435" />
+        <EntityTypeShape EntityType="FDIModel.System_File" Width="1.5" PointX="3.4001409837045431" PointY="21.013930390129765" />
+        <EntityTypeShape EntityType="FDIModel.System_FileType" Width="1.5" PointX="1.2893848238929104" PointY="7.5553244536534532" />
+        <EntityTypeShape EntityType="FDIModel.System_Menu" Width="1.5" PointX="10.454188696320257" PointY="6.1016231356661876" />
+        <EntityTypeShape EntityType="FDIModel.System_MessageTemplate" Width="1.5" PointX="9.5803417570797453" PointY="22.06898086800658" />
+        <EntityTypeShape EntityType="FDIModel.System_Tag" Width="1.5" PointX="5.6320435561388935" PointY="6.4589152813232111" />
+        <EntityTypeShape EntityType="FDIModel.User_ModuleActive" Width="1.5" PointX="10.109331238134452" PointY="19.040032604262247" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_Applications" Width="1.5" PointX="1.6762404505518453" PointY="28.83065676541564" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_MembershipUsers" Width="1.5" PointX="2.7539114368864852" PointY="19.883026415427693" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_Profiles" Width="1.5" PointX="3.8842274974492508" PointY="31.430817439887122" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_Roles" Width="1.5" PointX="8.2378095147375987" PointY="12.060571169508886" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_Users" Width="1.5" PointX="8.5117733331917655" PointY="4.6591594985961722" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_UsersInRoles" Width="1.5" PointX="7.7446809111836741" PointY="25.710604128293042" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="0.67762274140381384" PointY="4.6114086083189623" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="6.4158682406022525" PointY="10.347359349181577" />
+        <EntityTypeShape EntityType="FDIModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="8.598828153963586" PointY="2.9456859691746935" />
+        <AssociationConnector Association="FDIModel.FK_Role_ModuleActive_ActiveRole" />
+        <AssociationConnector Association="FDIModel.FK_User_ModuleActive_ActiveRole" />
+        <AssociationConnector Association="FDIModel.FK_Advertising_Advertising_Position" />
+        <AssociationConnector Association="FDIModel.FK_Advertising_Advertising_Type" />
+        <AssociationConnector Association="FDIModel.FK_Advertising_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Me__Appli__276EDEB3" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Pa__Appli__59063A47" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Ro__Appli__45F365D3" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Us__Appli__173876EA" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Me__UserI__286302EC" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Pe__PathI__5EBF139D" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Pe__PathI__628FA481" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Pe__UserI__6383C8BA" />
+        <AssociationConnector Association="FDIModel.FK__aspnet_Pr__UserI__3C69FB99" />
+        <AssociationConnector Association="FDIModel.FK_Role_ModuleActive_aspnet_Roles" />
+        <AssociationConnector Association="FDIModel.FK_News_News_aspnet_Users" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Log_System_aspnet_Users" />
+        <AssociationConnector Association="FDIModel.FK_User_ModuleActive_aspnet_Users" />
+        <AssociationConnector Association="FDIModel.FK_Comment_Like_News_Comment" />
+        <AssociationConnector Association="FDIModel.FK_Customer_Customer_Device" />
+        <AssociationConnector Association="FDIModel.FK_Customer_Customer_Type" />
+        <AssociationConnector Association="FDIModel.FK_Customer_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Customer_History_Customer" />
+        <AssociationConnector Association="FDIModel.FK_Customer_Payment_Method" />
+        <AssociationConnector Association="FDIModel.FK_Customer_Point_Customer" />
+        <AssociationConnector Association="FDIModel.FK_News_Comment_Customer" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Comment_Customer" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Rating_Customer" />
+        <AssociationConnector Association="FDIModel.FK_Customer_History_Customer_Action" />
+        <AssociationConnector Association="FDIModel.FK_FAQ_Answer_FAQ_Question" />
+        <AssociationConnector Association="FDIModel.FK_FAQ_Category_FAQ_Category" />
+        <AssociationConnector Association="FDIModel.FK_FAQ_Question_FAQ_Category1" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Picture_Gallery_Album" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Video_Gallery_Album" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Category_Gallery_Category" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Picture_Gallery_Category" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Video_Gallery_Category" />
+        <AssociationConnector Association="FDIModel.FK_Gallery_Video_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Guide_Guide_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_News_News_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Brand_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Label_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Variant_Picture_Mapping_Gallery_Picture1" />
+        <AssociationConnector Association="FDIModel.FK_Shop_ProductType_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_System_FileType_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.FK_Role_ModuleActive_Module" />
+        <AssociationConnector Association="FDIModel.FK_User_ModuleActive_Module" />
+        <AssociationConnector Association="FDIModel.FK_News_Category_News_Category" />
+        <AssociationConnector Association="FDIModel.FK_News_Comment_News_Comment" />
+        <AssociationConnector Association="FDIModel.FK_News_Comment_News_News" />
+        <AssociationConnector Association="FDIModel.FK_News_CommentReport_News_Comment" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Shop_Brand" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Category_Shop_Category" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Category_Tag_Mapping_Shop_Category" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Category_Tag_Mapping_System_Tag" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Comment_Shop_Comment" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Comment_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_CommentLike_Shop_Comment" />
+        <AssociationConnector Association="FDIModel.FK_Shop_CommentReport_Shop_Comment" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Shop_Label" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Order_ProductVariant_Shop_Product_Variant" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_CompatibleAccessories_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_CompatibleAccessories_Shop_Product1" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Rating_Shop_Product1" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_ReviewMapping_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Search_Mapping_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Shop_ProductType" />
+        <AssociationConnector Association="FDIModel.FK_Shop_ProductColor_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_ProductRef_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_ProductRef_Shop_Product1" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Survey_Product_Shop_Product" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Attribute_Shop_Product_GroupAttribute" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_AttributeSpecification_Shop_Product_Attribute" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Group_Attribute_Shop_Product_Type" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Variant_Shop_Product_PreOrder" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_RateNumber_Shop_Product_RateType" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_ReviewMapping_Shop_Product_Review" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Variant_Picture_Mapping_Shop_Product_Variant" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Product_Variant_Recurring_Shop_Product_Variant" />
+        <AssociationConnector Association="FDIModel.FK_Shop_ProductColor_System_Color" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Promotion_Product_Variant_Shop_Product_Variant" />
+        <AssociationConnector Association="FDIModel.FK_Shop_PromoteFile_System_File" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Survey_Answer_Shop_Survey_Question" />
+        <AssociationConnector Association="FDIModel.FK_Shop_Survey_Question_Shop_Survey_Product" />
+        <AssociationConnector Association="FDIModel.FK_District_City" />
+        <AssociationConnector Association="FDIModel.FK_System_File_System_FileType" />
+        <AssociationConnector Association="FDIModel.Advertising_Advertising_Zone_Mapping" />
+        <AssociationConnector Association="FDIModel.Advertising_Category_Zone" />
+        <AssociationConnector Association="FDIModel.Advertising_Shop_Category" />
+        <AssociationConnector Association="FDIModel.aspnet_UsersInRoles" />
+        <AssociationConnector Association="FDIModel.FAQ_Answer_File" />
+        <AssociationConnector Association="FDIModel.FAQ_Question_Product_Mapping" />
+        <AssociationConnector Association="FDIModel.Gallery_Album_Category" />
+        <AssociationConnector Association="FDIModel.Gallery_Album_Product" />
+        <AssociationConnector Association="FDIModel.Gallery_Album_Tag" />
+        <AssociationConnector Association="FDIModel.Guide_Guide_File_Mapping" />
+        <AssociationConnector Association="FDIModel.News_JobFile" />
+        <AssociationConnector Association="FDIModel.News_JobTag" />
+        <AssociationConnector Association="FDIModel.News_News_Category" />
+        <AssociationConnector Association="FDIModel.News_News_File" />
+        <AssociationConnector Association="FDIModel.News_News_Product" />
+        <AssociationConnector Association="FDIModel.News_News_Tag" />
+        <AssociationConnector Association="FDIModel.Roles_ActiveRole" />
+        <AssociationConnector Association="FDIModel.Roles_Module" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Attribute_Specification_Mapping" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Category" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Detail" />
+        <AssociationConnector Association="FDIModel.Shop_Product_File" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Gallery_Detail" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Gallery_GuideSlide" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Gallery_Picture" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Promote" />
+        <AssociationConnector Association="FDIModel.Shop_Product_RateMapping" />
+        <AssociationConnector Association="FDIModel.Shop_Product_Tag" />
+        <AssociationConnector Association="FDIModel.User_Module" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿@model FDI.Base.Advertising_Position
+@{
+    ViewBag.Title = ViewBag.ActionText + " vùng hiển thị";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#ContactForm").validate({
+            rules: {
+                Name:
+                {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                }
+
+            },
+
+            submitHandler: function () { //onSubmit
+                updateEditor();
+                $.post(urlPostAction, $("#ContactForm").serialize(), function (data) {
+                    if (data.Erros)
+                        createMessage("Đã có lỗi xảy ra", data.Message); // Tạo thông báo lỗi
+                    else {
+                        $("#dialog-form").dialog('close'); //Đóng form thêm mới - sửa
+                        createCloseMessage("Thông báo", data.Message, '#Page=1&itemId=' + data.ID + '&message=' + data.Message + '&temp=' + Math.floor(Math.random() * 11) + ''); // Tạo thông báo khi click đóng thì chuyển đến url đích
+                    }
+                });
+                return false;
+            }
+        });
+
+        $("#close").click(function () {
+            $("#dialog-form").html("").dialog('close');
+        });
+    });
+</script>
+
+<form id="ContactForm">
+    <input type="hidden" name="do" id="do" value="@ViewBag.Action"/>
+    <input type="hidden" name="ItemID" id="ItemID" value="@Model.ID"/>
+    <div class="col-sm-12">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">Thông tin về vị trí quảng cáo</header>
+            <div class="panel-body">
+                <div class="bs-example form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Tên vị trí hiển thị</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" placeholder="..." name="Name" @(ViewBag.Action.ToString().Equals("Add") ? "class=autoPermalink" : "") id="Name"  value="@Model.Name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+     <div style="display: none;">
+        <button id="btnSave" type="submit" class="btn btn-sm btn-success">@ViewBag.ActionText</button>
+        <button id="btnReset" type="reset" name="reset" class="btn btn-sm btn-success">Nhập lại</button>
+        <button id="close" type="button" class="btn btn-sm btn-success">Đóng lại</button>
+    </div>
+</form>

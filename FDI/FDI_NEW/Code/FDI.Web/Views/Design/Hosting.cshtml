@@ -1,0 +1,19 @@
+﻿@model FDI.Simple.NewsCategoryItem
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.SEOTitle ?? "";
+    ViewBag.Description = Model.SEODescription ?? "";
+    ViewBag.Keywords = Model.SEOKeyword ?? ""; 
+}
+<link href="/Content/Publishing/css/DVHosting.css?v=2105" rel="stylesheet" />
+<section id="content">
+    <div class="slider-container">
+        <script src="/Scripts/Slider-01/js/slider.home.js?v=2105"></script>
+        @Html.Action("ModulHTML", "Home", new { key = "Home_Slide" })
+    </div>
+    @Html.Action("ModulHTML", "Home", new { key = "hosting_dv_module_one" })
+    @Html.Action("ModulHTML", "Home", new { key = "hosting_dv_module_two" })
+    @Html.Action("ModulHTML", "Home", new { key = "hosting_dv_module_three" })
+    @Html.Action("ModulHTML", "Home", new { key = "ChuyenVienTuVan" })
+
+</section>

@@ -1,0 +1,73 @@
+﻿@model FDI.Areas.Admin.Models.UserAdministration.CreateUserViewModel
+@{
+	ViewBag.Title = "Thêm mới quản trị viên";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+ <div class="col-sm-12">
+     <section class="panel panel-default">
+         <header class="panel-heading font-bold">Thông tin về cấu hình</header>
+         <div class="panel-body">
+             <div class="searchbox">
+                 @Html.ActionLink("Quay lại danh sách", "Index", "UserAdministration", new {}, new { @class = "btn btn-sm btn-success", @id = "btn_back" })
+             </div>
+             <div class="manage">
+             </div>
+         </div>
+         @using (Html.BeginForm("CreateUser", "UserAdministration"))
+         { 
+             @Html.ValidationSummary(true)
+             <fieldset class="forms">
+                 <table class="gridView" cellspacing="1" width="100%">
+                     <tr>
+                         <td style="width:120px;" class="label"><label>Tài khoản</label></td>
+                         <td><input type="text" name="Username" id="Username" class="form-control" value="@Model.Username" /></td>
+                     </tr>
+
+                     <tr>
+                         <td class="label"><label>Mật khẩu</label></td>
+                         <td><input type="password" name="Password" id="Password" class="form-control" value="@Model.Password" /></td>
+                     </tr>
+
+                     <tr>
+                         <td class="label"><label>Nhập lại mật khẩu</label></td>
+                         <td><input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control" value="@Model.ConfirmPassword" /></td>
+                     </tr>
+
+                     <tr>
+                         <td class="label"><label>EMail</label></td>
+                         <td><input type="text" name="Email" id="Email" value="@Model.Email" class="form-control"/></td>
+                     </tr>
+
+                     <tr>
+                         <td class="label"><label>Câu hỏi bí mật</label></td>
+                         <td><input type="text" name="PasswordQuestion" id="PasswordQuestion" value="@Model.PasswordQuestion" class="form-control"/></td>
+                     </tr>
+
+                     <tr>
+                         <td class="label"><label>Câu trả lời</label></td>
+                         <td><input type="text" name="PasswordAnswer" id="PasswordAnswer" value="@Model.PasswordAnswer" class="form-control"/></td>
+                     </tr>
+                     <tr>
+                         <td class="label"><label>Gán quyền cho quản trị</label></td>
+                         <td>
+                             @for (var i = 0; i < Model.InitialRoles.Count; i++)
+                             {
+                                 var role = Model.InitialRoles.ElementAt(i);
+                                 <div>
+                                     <input name="InitialRoles[@i].Key" type="hidden" value="@role.Key" />
+                                     <span>@Html.CheckBox("InitialRoles[" + i + "].Value", role.Value) @role.Key</span>
+                                 </div>
+                             }
+                         </td>
+                     </tr>
+                     <tr>
+                         <td colspan="2" class="submit">
+                             <button type="submit" class="btn btn-sm btn-success">Thêm mới tài khoản</button>
+                         </td>
+                     </tr>
+                 </table>
+             </fieldset>
+         }
+     </section>
+
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FDI.Base.aspnet_Users>
+
+@{
+    ViewBag.Title = "ListItems";
+    Layout = "~/Areas/Admin/Views/Shared/_Ajax.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        registerGridView('#gridItems');
+    });
+</script>
+<section id="gridItems" class="vbox">
+    <section class="scrollable wrapper w-f">
+        <section class="panel panel-default">
+            <table class="gridView" cellspacing="1">
+                <tr>
+                    <th><a href="#Field=Fullname">Tên User</a></th>
+
+                    <th><a href="#Field=Link">Quyền</a></th>
+
+                    <th class="act_show">
+                        <a href="#showAll" class="showAll" title="Hiển thị danh sách">
+                            <img src="/Content/Admin/images/gridview/show.gif" style="border: none" alt="Hiển thị danh sách" />
+                        </a>
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+            
+                    <tr title="@item.UserId @item.UserName">
+
+                        <td>@item.UserName</td>
+                        <td>@foreach (var role in item.aspnet_Roles)
+                            {
+                            <span>@role.RoleName, </span>
+                            }
+                        </td>
+                        <td class="act_hide">@Grid.ActionViewModule(item.UserId, item.UserName)</td>
+                    </tr>
+                }
+
+            </table>
+        </section>
+    </section>
+    <footer class="footer bg-white b-t portlet">
+        <div class="row m-t-xs">
+            @Html.Raw(ViewBag.PageHtml)
+        </div>
+    </footer>
+</section>
