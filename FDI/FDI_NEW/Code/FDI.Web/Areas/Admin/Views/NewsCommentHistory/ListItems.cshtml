@@ -59,7 +59,7 @@ input, int length)
                             <td>Khách</td>
                         }
                         <td>@item.Title</td>
-                        <td>@HttpUtility.HtmlDecode(FDI.Utils.MyString.Truncate(FDIUtils.RemoveHTMLTag(item.Content), 50))</td>
+                        <td>@HttpUtility.HtmlDecode(FDI.Utils.MyString.Truncate(MyString.RemoveHTMLTag(item.Content), 50))</td>
                         <td>@Grid.DisplayShow(item.Title, item.IsShow.ToString() == "0" || item.IsShow)</td>
                         <td>@item.DateCreated</td>
                         <td>@item.NgayTraLoi</td>

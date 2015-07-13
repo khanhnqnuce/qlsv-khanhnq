@@ -100,7 +100,7 @@
             isHomePage = false;
         }
 
-        var urlLog = '@Url.Action("Action","LogProduct")';
+        @*var urlLog = '@Url.Action("Action","LogProduct")';*@
 
         var lblIsAllowOrderOutStock = $('#lblIsAllowOrderOutStock').text();
         var isAllowOrderOutStock;
@@ -324,7 +324,7 @@
                 <td>
                     <label id="lblPrice">Gía tiền</label></td>
                 <td>
-                    <input type="text" name="Price" id="Price" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.Price)"/>
+                    <input type="text" name="Price" id="Price" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.Price)"/>
                 </td>
             </tr>
 
@@ -332,7 +332,7 @@
                 <td id="lblPriceAfterTax">
                     <label>Gía tiền sau thuế</label></td>
                 <td>
-                    <input type="text" name="PriceAfterTax" id="PriceAfterTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceAfterTax)"/>
+                    <input type="text" name="PriceAfterTax" id="PriceAfterTax" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceAfterTax)"/>
                 </td>
             </tr>
 
@@ -340,7 +340,7 @@
                 <td>
                     <label id="lblPriceBeforeTax">Giá tiền trước thuế</label></td>
                 <td>
-                    <input type="text" name="PriceBeforeTax" id="PriceBeforeTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceBeforeTax)"/>
+                    <input type="text" name="PriceBeforeTax" id="PriceBeforeTax" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceBeforeTax)"/>
                 </td>
             </tr>
 
@@ -348,7 +348,7 @@
                 <td>
                     <label id="lblPriceOnlineBeforeTax">Giá online trước thuế</label></td>
                 <td>
-                    <input type="text" name="PriceOnlineBeforeTax" id="PriceOnlineBeforeTax" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOnlineBeforeTax)"/>
+                    <input type="text" name="PriceOnlineBeforeTax" id="PriceOnlineBeforeTax" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceOnlineBeforeTax)"/>
                 </td>
             </tr>
 
@@ -356,7 +356,7 @@
                 <td>
                     <label id="lblPriceOnline">Giá online</label></td>
                 <td>
-                    <input type="text" name="PriceOnline" id="PriceOnline" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOnline)"/>
+                    <input type="text" name="PriceOnline" id="PriceOnline" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceOnline)"/>
                 </td>
             </tr>
 
@@ -364,7 +364,7 @@
                 <td>
                     <label id="lblPriceMarket">Giá thị trường</label></td>
                 <td>
-                    <input type="text" name="PriceMarket" id="PriceMarket" class="maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceMarket)"/>
+                    <input type="text" name="PriceMarket" id="PriceMarket" class="maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceMarket)"/>
                 </td>
             </tr>
 
@@ -464,7 +464,7 @@
                         <table class="tableforms" cellspacing="1" width="100%">
                             <tr>
                                 <td style="width: 150px;">Số tiền đặt cọc nhỏ nhất</td>
-                                <td><input class="maskPrice" type="text" name="MinDeposit" id="MinDeposit" value="@FDI.Utility.FormatPrice(Model.MinDeposit)"/></td>
+                                <td><input class="maskPrice" type="text" name="MinDeposit" id="MinDeposit" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.MinDeposit)"/></td>
                             </tr>
                         </table>
                     </fieldset>

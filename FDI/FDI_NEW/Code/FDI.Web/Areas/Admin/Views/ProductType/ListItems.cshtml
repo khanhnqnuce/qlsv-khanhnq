@@ -53,8 +53,9 @@
                         <th class="act_roles">
                             <input value="" type="checkbox" class="checkAll" />
                         </th>
+
+                    </tr>
                 </thead>
-                </tr>
                 @if (Model.SystemActionItem.ViewFull == true)
                 {
                     foreach (var item in Model.ListItem)
@@ -87,10 +88,10 @@
                             }
                         </td>
                         <td class="act_hide">
-                            @if (Model.SystemActionItem.Hide == true)
+                            @*@if (Model.SystemActionItem.Hide == true)
                             {
                                 @Grid.ActionHide(item.ID, item.Name, !item.IsActived)
-                            }
+                            }*@
                         </td>
                         <td class="act_delete">
                             @if (Model.SystemActionItem.Delete == true)

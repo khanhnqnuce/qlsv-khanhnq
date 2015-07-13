@@ -299,16 +299,16 @@
                         <td>
                             <label id="lblPriceOld">Giá cũ</label></td>
                         <td>
-                            @*@Html.EditorFor(model => FDI.Utility.FormatPrice(model.PriceOld), new {@class = "maskPrice"})*@
-                            <input type="text" name="PriceOld" id="PriceOld" class = "maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceOld)"/>
+                            @*@Html.EditorFor(model => FDI.Utils.FormatCurrency.FormatPriceVND(model.PriceOld), new {@class = "maskPrice"})*@
+                            <input type="text" name="PriceOld" id="PriceOld" class = "maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceOld)"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label id="lblPriceNew">Giá mới</label></td>
                         <td>
-                            @*@Html.EditorFor(model => FDI.Utility.FormatPrice(model.PriceNew), new {@class = "maskPrice"})*@
-                            <input type="text" name="PriceNew" id="PriceNew" class = "maskPrice" value="@FDI.Utility.FormatPrice(Model.PriceNew)"/>
+                            @*@Html.EditorFor(model => FDI.Utils.FormatCurrency.FormatPriceVND(model.PriceNew), new {@class = "maskPrice"})*@
+                            <input type="text" name="PriceNew" id="PriceNew" class = "maskPrice" value="@FDI.Utils.FormatCurrency.FormatPriceVND(Model.PriceNew)"/>
                         </td>
                     </tr>
                     <tr>

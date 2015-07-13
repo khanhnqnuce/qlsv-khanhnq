@@ -91,16 +91,16 @@ input, int length)
                         {
                             if (item.DateCreated != null && FDI.Utility.CheckChamTraLoiComment(item.DateCreated.Value, item.NgayTraLoi.Value))
                             {
-                            <td style="color: red">@HttpUtility.HtmlDecode(FDI.Utils.MyString.Truncate(FDIUtils.RemoveHTMLTag(item.Content), 50))</td>
+                            <td style="color: red">@HttpUtility.HtmlDecode(MyString.Truncate(MyString.RemoveHTMLTag(item.Content), 50))</td>
                             }
                             else
                             {
-                            <td>@HttpUtility.HtmlDecode(FDI.Utils.MyString.Truncate(FDIUtils.RemoveHTMLTag(item.Content), 50))</td>
+                                <td>@HttpUtility.HtmlDecode(MyString.Truncate(MyString.RemoveHTMLTag(item.Content), 50))</td>
                             }
                         }
                         else
                         {
-                            <td>@HttpUtility.HtmlDecode(FDI.Utils.MyString.Truncate(FDIUtils.RemoveHTMLTag(item.Content), 50))</td>
+                            <td>@HttpUtility.HtmlDecode(MyString.Truncate(MyString.RemoveHTMLTag(item.Content), 50))</td>
                         }
 
                         <td>@Grid.DisplayShow(item.Title, !item.IsActive.HasValue || item.IsActive.Value)</td>
@@ -119,9 +119,9 @@ input, int length)
                         <td class="act_show">@if (ViewBag.Show == true)
                                              {@Grid.ActionShow(item.ID, item.Title, !item.IsActive.HasValue || item.IsActive.Value)
                                              }</td>
-                        <td class="act_hide">@if (ViewBag.Hide == true)
+                        <td class="act_hide">@*@if (ViewBag.Hide == true)
                                              {@Grid.ActionHide(item.ID, item.Title, item.IsActive.HasValue || item.IsActive.Value)
-                                             }</td>
+                                             }*@</td>
                         <td class="act_delete">@if (ViewBag.Delete == true)
                                                {@Grid.ActionDelete(item.ID, item.Title)}</td>
                         <td class="act_roles">
