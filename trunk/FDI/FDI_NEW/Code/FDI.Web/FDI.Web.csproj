@@ -221,10 +221,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\ActionOutputCache.cs" />
+    <Compile Include="Common\ConvertUtil.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Common\WebConfig.cs" />
     <Compile Include="Common\WhiteSpaceFilter.cs" />
-    <Compile Include="Controllers\ccsmsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Customer\CustomerContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\Customer\CustomerController.cs">
       <SubType>Code</SubType>
@@ -359,28 +359,7 @@
     <Compile Include="Areas\Admin\Models\UserAdministration\RoleViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\AccountController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\AdvController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\DesignController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controllers\HomeController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\HtmlSettingsController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\KhoGiaoDienController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\NewsController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Controllers\TagController.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -422,13 +401,6 @@
     <Content Include="Areas\Admin\Views\CustomerDevice\AjaxView.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerDevice\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerDevice\ListItems.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPaymentMethod\AjaxForm.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPaymentMethod\AjaxView.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPaymentMethod\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPaymentMethod\ListItems.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPoint\AjaxForm.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPoint\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomerPoint\ListItems.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerType\AjaxForm.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerType\AjaxView.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerType\Index.cshtml" />
@@ -1625,155 +1597,7 @@
     <Content Include="Content\Admin\js\jquery.validate.js" />
     <Content Include="Content\Admin\js\Load.js" />
     <Content Include="Content\Admin\site.css" />
-    <Content Include="Content\Publishing\about.html" />
-    <Content Include="Content\Publishing\assets\arrowleft.png" />
-    <Content Include="Content\Publishing\assets\arrowright.png" />
-    <Content Include="Content\Publishing\assets\arrow_large_left.png" />
-    <Content Include="Content\Publishing\assets\arrow_large_right.png" />
-    <Content Include="Content\Publishing\assets\arrow_left.png" />
-    <Content Include="Content\Publishing\assets\arrow_left2.png" />
-    <Content Include="Content\Publishing\assets\arrow_right.png" />
-    <Content Include="Content\Publishing\assets\arrow_right2.png" />
-    <Content Include="Content\Publishing\assets\black50.png" />
-    <Content Include="Content\Publishing\assets\boxed_bgtile.png" />
-    <Content Include="Content\Publishing\assets\bullet.png" />
-    <Content Include="Content\Publishing\assets\bullets.png" />
-    <Content Include="Content\Publishing\assets\bullets2.png" />
-    <Content Include="Content\Publishing\assets\bullet_boxed.png" />
-    <Content Include="Content\Publishing\assets\coloredbg.png" />
-    <Content Include="Content\Publishing\assets\grain.png" />
-    <Content Include="Content\Publishing\assets\gridtile.png" />
-    <Content Include="Content\Publishing\assets\gridtile_3x3.png" />
-    <Content Include="Content\Publishing\assets\gridtile_3x3_white.png" />
-    <Content Include="Content\Publishing\assets\gridtile_white.png" />
-    <Content Include="Content\Publishing\assets\large_left.png" />
-    <Content Include="Content\Publishing\assets\large_right.png" />
-    <Content Include="Content\Publishing\assets\loader.gif" />
-    <Content Include="Content\Publishing\assets\loader2.gif" />
-    <Content Include="Content\Publishing\assets\navigdots.png" />
-    <Content Include="Content\Publishing\assets\navigdots_bgtile.png" />
-    <Content Include="Content\Publishing\assets\shadow1.png" />
-    <Content Include="Content\Publishing\assets\shadow2.png" />
-    <Content Include="Content\Publishing\assets\shadow3.png" />
-    <Content Include="Content\Publishing\assets\small_left.png" />
-    <Content Include="Content\Publishing\assets\small_left_boxed.png" />
-    <Content Include="Content\Publishing\assets\small_right.png" />
-    <Content Include="Content\Publishing\assets\small_right_boxed.png" />
-    <Content Include="Content\Publishing\assets\timer.png" />
-    <Content Include="Content\Publishing\assets\timerdot.png" />
-    <Content Include="Content\Publishing\assets\transparent.jpg" />
-    <Content Include="Content\Publishing\assets\white50.png" />
-    <Content Include="Content\Publishing\Contact.html" />
-    <Content Include="Content\Publishing\css\about.css" />
-    <Content Include="Content\Publishing\css\Contact.css" />
-    <Content Include="Content\Publishing\css\doitac.css" />
-    <Content Include="Content\Publishing\css\DVHosting.css" />
-    <Content Include="Content\Publishing\css\DVTKPM.css" />
-    <Content Include="Content\Publishing\css\DVTKW.css" />
-    <Content Include="Content\Publishing\css\font-FPT.css" />
-    <Content Include="Content\Publishing\css\menubar.css" />
-    <Content Include="Content\Publishing\css\PopupAdv.css" />
-    <Content Include="Content\Publishing\css\product.css" />
-    <Content Include="Content\Publishing\doitac.html" />
-    <Content Include="Content\Publishing\DVHosting.html" />
-    <Content Include="Content\Publishing\DVTKPM.html" />
-    <Content Include="Content\Publishing\DVTKW.html" />
-    <Content Include="Content\Publishing\Images\arrow-down-green.png" />
-    <Content Include="Content\Publishing\Images\arrows.png" />
-    <Content Include="Content\Publishing\Images\bannerQC.jpg" />
-    <Content Include="Content\Publishing\Images\bg-doitac.jpg" />
-    <Content Include="Content\Publishing\Images\bg-slider.jpg" />
-    <Content Include="Content\Publishing\Images\bg.png" />
-    <Content Include="Content\Publishing\Images\bg4.jpg" />
-    <Content Include="Content\Publishing\Images\bg9.jpg" />
-    <Content Include="Content\Publishing\Images\boder-date.jpg" />
-    <Content Include="Content\Publishing\Images\boder-product-right.jpg" />
-    <Content Include="Content\Publishing\Images\computer-banner.png" />
-    <Content Include="Content\Publishing\Images\doitac-1.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-cpanel.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-global.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-icann.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-nts.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-ods.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-onepay.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-parallels.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-plesk.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\dv-vnni.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-acb.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-bidv.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-donga.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-eximbank.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-techcombank.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-vietcombank.jpg" />
-    <Content Include="Content\Publishing\Images\doitac\tt-viettinbank.jpg" />
-    <Content Include="Content\Publishing\Images\favicon.ico" />
-    <Content Include="Content\Publishing\Images\icon-seo-hover.png" />
-    <Content Include="Content\Publishing\Images\icon-seo.png" />
-    <Content Include="Content\Publishing\Images\icon-tkpm-hover.png" />
-    <Content Include="Content\Publishing\Images\icon-tkpm.png" />
-    <Content Include="Content\Publishing\Images\icon-tkw-hover.png" />
-    <Content Include="Content\Publishing\Images\icon-tkw.png" />
-    <Content Include="Content\Publishing\Images\icon-tkwht-hover.png" />
-    <Content Include="Content\Publishing\Images\icon-tkwht.png" />
-    <Content Include="Content\Publishing\Images\ico\ico-number.png" />
-    <Content Include="Content\Publishing\Images\ico\ico-tinhnang-hover.png" />
-    <Content Include="Content\Publishing\Images\ico\ico-tinhnang.png" />
-    <Content Include="Content\Publishing\Images\ico\icon-GTC-hover.png" />
-    <Content Include="Content\Publishing\Images\ico\icon-GTC.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\canon.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\cocacola.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\dgm.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\ebay.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\fanta.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\hp.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\huawei.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\pepsi.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\redbull.png" />
-    <Content Include="Content\Publishing\Images\images-doitac\vietmoz.png" />
-    <Content Include="Content\Publishing\Images\img-about.jpg" />
-    <Content Include="Content\Publishing\Images\img-news-more.jpg" />
-    <Content Include="Content\Publishing\Images\img-news.jpg" />
-    <Content Include="Content\Publishing\Images\img-test\bg-modul1.jpg" />
-    <Content Include="Content\Publishing\Images\img-test\bg-modul2.jpg" />
-    <Content Include="Content\Publishing\Images\img-test\bg-modul3.jpg" />
-    <Content Include="Content\Publishing\Images\img-test\company1.jpg" />
-    <Content Include="Content\Publishing\Images\khachhang.jpg" />
-    <Content Include="Content\Publishing\Images\kn-facebook.png" />
-    <Content Include="Content\Publishing\Images\kn-google.png" />
-    <Content Include="Content\Publishing\Images\kn-in.png" />
-    <Content Include="Content\Publishing\Images\kn-twitter.png" />
-    <Content Include="Content\Publishing\Images\kn-youtube.png" />
-    <Content Include="Content\Publishing\Images\loading.gif" />
-    <Content Include="Content\Publishing\Images\loading52.gif" />
-    <Content Include="Content\Publishing\Images\logoFDI.png" />
-    <Content Include="Content\Publishing\Images\muitenhong.png" />
-    <Content Include="Content\Publishing\Images\nav-search.png" />
-    <Content Include="Content\Publishing\Images\product.jpg" />
-    <Content Include="Content\Publishing\Images\product\product1.jpg" />
-    <Content Include="Content\Publishing\Images\product\product2.jpg" />
-    <Content Include="Content\Publishing\Images\product\product3.jpg" />
-    <Content Include="Content\Publishing\Images\product\product4.jpg" />
-    <Content Include="Content\Publishing\Images\product\product5.jpg" />
-    <Content Include="Content\Publishing\Images\product\product6.jpg" />
-    <Content Include="Content\Publishing\Images\product\product7.jpg" />
-    <Content Include="Content\Publishing\Images\product\product8.jpg" />
-    <Content Include="Content\Publishing\Images\search-icon.png" />
-    <Content Include="Content\Publishing\Images\seo-master-bg-line.png" />
-    <Content Include="Content\Publishing\Images\skype-icon.png" />
-    <Content Include="Content\Publishing\Images\slider-product.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\bg-home.jpg" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\bg-home.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\box-1.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\box-2.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\img-slider1.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\Hosting\slider1.jpg" />
-    <Content Include="Content\Publishing\Images\SliderImages\Soft\Banner Phan Mem copy.JPG" />
-    <Content Include="Content\Publishing\Images\SliderImages\Soft\bg-soft.JPG" />
-    <Content Include="Content\Publishing\Images\SliderImages\Soft\text-slider-soft.PNG" />
-    <Content Include="Content\Publishing\Images\SliderImages\tkweb\bg-slider-tkw.jpg" />
-    <Content Include="Content\Publishing\Images\SliderImages\tkweb\images.png" />
-    <Content Include="Content\Publishing\Images\SliderImages\tkweb\slider-tkw.JPG" />
-    <Content Include="Content\Publishing\Images\top-move.png" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\Publishing\js\bootbox.js" />
     <Content Include="Content\Publishing\js\cbpFWTabs.js" />
     <Content Include="Content\Publishing\js\classie.js" />
@@ -1785,8 +1609,6 @@
     <Content Include="Content\Publishing\js\jQuery.browser.js" />
     <Content Include="Content\Publishing\js\jquery.lazy.min.js" />
     <Content Include="Content\Publishing\js\jquery.lazyload.min.js" />
-    <Content Include="Content\Publishing\js\jquery.themepunch.plugins.min.js" />
-    <Content Include="Content\Publishing\js\jquery.themepunch.revolution.min.js" />
     <Content Include="Content\Publishing\js\modernizr.custom.js" />
     <Content Include="Content\Publishing\js\modernizr.min.js" />
     <Content Include="Content\Publishing\js\mosaic.1.0.1.js" />
@@ -1795,47 +1617,10 @@
     <Content Include="Content\Publishing\js\sidebarEffects.js" />
     <Content Include="Content\Publishing\js\uisearch.js" />
     <Content Include="Content\Publishing\js\wow.min.js" />
-    <Content Include="Content\Publishing\KhoGiaoDien.html" />
-    <Content Include="Content\Publishing\css\Home2.css" />
-    <Content Include="Content\Publishing\home1.html" />
-    <Content Include="Content\Publishing\home2.html" />
-    <Content Include="Content\Publishing\NewsDetail.html" />
-    <Content Include="Content\Publishing\css\colorpicker.css" />
-    <Content Include="Content\Publishing\css\Common.css" />
-    <Content Include="Content\Publishing\css\Home.css" />
-    <Content Include="Content\Publishing\css\News.css" />
-    <Content Include="Content\Publishing\css\owl.carousel.css" />
-    <Content Include="Content\Publishing\css\owl.theme.css" />
-    <Content Include="Content\Publishing\home.html" />
-    <Content Include="Content\Publishing\img-sp\qc_tempfull_01.jpg" />
-    <Content Include="Content\Publishing\img-sp\qc_tempfull_02.jpg" />
-    <Content Include="Content\Publishing\img-sp\qc_temp_01.jpg" />
-    <Content Include="Content\Publishing\img-sp\qc_temp_02.jpg" />
-    <Content Include="Content\Publishing\imgs\agt.png" />
-    <Content Include="Content\Publishing\imgs\bglight.png" />
-    <Content Include="Content\Publishing\imgs\blank.gif" />
-    <Content Include="Content\Publishing\imgs\circle-1.png" />
-    <Content Include="Content\Publishing\imgs\circle-2.png" />
-    <Content Include="Content\Publishing\imgs\circle-3.png" />
-    <Content Include="Content\Publishing\imgs\circle-4.png" />
-    <Content Include="Content\Publishing\imgs\compt.png" />
-    <Content Include="Content\Publishing\imgs\fancybox_loading.gif" />
-    <Content Include="Content\Publishing\imgs\fancybox_overlay.png" />
-    <Content Include="Content\Publishing\imgs\fancybox_sprite.png" />
-    <Content Include="Content\Publishing\imgs\social-normal.png" />
-    <Content Include="Content\Publishing\imgs\tab-gd.png" />
-    <Content Include="Content\Publishing\imgs\temnext.png" />
-    <Content Include="Content\Publishing\imgs\tempre.png" />
-    <Content Include="Content\Publishing\imgs\view.png" />
     <Content Include="Content\Publishing\js\ColorPicker\colorpicker.js" />
     <Content Include="Content\Publishing\js\ColorPicker\eye.js" />
     <Content Include="Content\Publishing\js\ColorPicker\layout.js" />
     <Content Include="Content\Publishing\js\ColorPicker\utils.js" />
-    <Content Include="Content\Publishing\landing.html" />
-    <Content Include="Content\Publishing\News.html" />
-    <Content Include="Content\Publishing\product.html" />
-    <Content Include="Content\Publishing\TKPM-list.html" />
-    <Content Include="Content\Publishing\TKPM-more.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="App_Code\Gallery.cshtml" />
@@ -1844,15 +1629,6 @@
     <Content Include="ckeditor\plugins\syntaxhighlight\images\Thumbs.db" />
     <Content Include="ckeditor\skins\moono\readme.md" />
     <Content Include="ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Images\alert-close_.png" />
-    <Content Include="Images\alert-close.png" />
-    <Content Include="Images\arrow_carrot-2down-16.png" />
-    <Content Include="Images\fullscreen-16.png" />
-    <Content Include="Images\loading52.gif" />
-    <Content Include="Images\minus-16.png" />
-    <Content Include="Images\resize-full-16.png" />
-    <Content Include="Images\resize-small-24.png" />
-    <Content Include="Images\status.gif" />
     <Content Include="Scripts\dialogextend\build\jquery.dialogextend.js" />
     <Content Include="Scripts\dialogextend\build\jquery.dialogextend.min.js" />
     <Content Include="Scripts\dialogextend\exampleVS.html" />
@@ -1890,15 +1666,6 @@
     <Content Include="Scripts\fancybox\.gitattributes" />
     <Content Include="Scripts\fancybox\CHANGELOG.md" />
     <Content Include="Scripts\fancybox\README.md" />
-    <Content Include="Content\Publishing\assets\arrows.psd" />
-    <Content Include="Content\Publishing\assets\bullets.psd" />
-    <Content Include="Content\Publishing\assets\small_arrows.psd" />
-    <Content Include="Content\Publishing\font\FPTShop VN35 Thin_0.ttf" />
-    <Content Include="Content\Publishing\font\FPTShop VN45 Light_0.ttf" />
-    <Content Include="Content\Publishing\font\FPTShop VN55 Roman_0.ttf" />
-    <Content Include="Content\Publishing\font\FPTShop VN65 Medium_0.ttf" />
-    <Content Include="Content\Publishing\font\FPTShop VN75 Bold_0.ttf" />
-    <Content Include="Content\Publishing\font\FPTShop VN95 Black_0.ttf" />
     <Content Include="Areas\Admin\Views\CustomerContact\AjaxView.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerContact\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CustomerContact\ListItems.cshtml" />
@@ -1919,36 +1686,6 @@
     <Content Include="Scripts\showLoading\js\jquery-1.3.2.min.js" />
     <Content Include="Scripts\showLoading\js\jquery.showLoading.js" />
     <Content Include="Scripts\showLoading\js\jquery.showLoading.min.js" />
-    <Content Include="Scripts\sweetalert-master\dev\gulpfile-wrap-template.js" />
-    <Content Include="Scripts\sweetalert-master\dev\ie9.css" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\default-params.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\handle-click.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\handle-dom.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\handle-key.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\handle-swal-dom.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\injected-html.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\set-params.js" />
-    <Content Include="Scripts\sweetalert-master\dev\modules\utils.js" />
-    <Content Include="Scripts\sweetalert-master\dev\sweetalert.es6.js" />
-    <Content Include="Scripts\sweetalert-master\dist\sweetalert-dev.js" />
-    <Content Include="Scripts\sweetalert-master\dist\sweetalert.css" />
-    <Content Include="Scripts\sweetalert-master\dist\sweetalert.min.js" />
-    <Content Include="Scripts\sweetalert-master\example\example.css" />
-    <Content Include="Scripts\sweetalert-master\example\images\logo_big%402x.png" />
-    <Content Include="Scripts\sweetalert-master\example\images\logo_big.png" />
-    <Content Include="Scripts\sweetalert-master\example\images\logo_small%402x.png" />
-    <Content Include="Scripts\sweetalert-master\example\images\logo_small.png" />
-    <Content Include="Scripts\sweetalert-master\example\images\thumbs-up.jpg" />
-    <Content Include="Scripts\sweetalert-master\example\images\vs_icon%402x.png" />
-    <Content Include="Scripts\sweetalert-master\example\images\vs_icon.png" />
-    <Content Include="Scripts\sweetalert-master\gulpfile.js" />
-    <Content Include="Scripts\sweetalert-master\index.html" />
-    <Content Include="Scripts\sweetalert-master\sweetalert.gif" />
-    <Content Include="Scripts\sweetalert-master\themes\facebook\facebook.css" />
-    <Content Include="Scripts\sweetalert-master\themes\google\google.css" />
-    <Content Include="Scripts\sweetalert-master\themes\twitter\twitter.css" />
-    <Content Include="Views\ccsms\json.cshtml" />
-    <Content Include="Views\ccsms\Jsonpost.cshtml" />
     <Content Include="Scripts\dialogextend\.gitattributes" />
     <Content Include="Scripts\dialogextend\.gitignore" />
     <Content Include="Scripts\dialogextend\.travis.yml" />
@@ -2388,62 +2125,13 @@
     <Content Include="Uploads\Thumbs\2014\9\20\201409201449551838_LOGO.png" />
     <Content Include="Uploads\Thumbs\2014\9\20\201409201636370890_louis-xvi-classic-style-tables-68243-1652349%283%29.jpg" />
     <Content Include="Uploads\Thumbs\2014\9\22\201409222244323407_sofa-giuong-ma-g24_878.gif" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Adv\Details.cshtml" />
-    <Content Include="Views\Adv\Index.cshtml" />
-    <Content Include="Views\DesignSoft\Index.cshtml" />
-    <Content Include="Views\Design\DesignSoft.cshtml" />
-    <Content Include="Views\Design\DesignWeb.cshtml" />
-    <Content Include="Views\Design\Hosting.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Customer.cshtml" />
-    <Content Include="Views\Home\DangKyNhanTin.cshtml" />
-    <Content Include="Views\Home\FacebookFDI.cshtml" />
-    <Content Include="Views\Home\FooterGioiThieu.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\KhoGiaoDien.cshtml" />
-    <Content Include="Views\Home\Menu.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\Home\MenuLeft.cshtml" />
-    <Content Include="Views\Home\Product.cshtml" />
-    <Content Include="Views\HtmlSettings\Index.cshtml" />
-    <Content Include="Views\KhoGiaoDien\Index.cshtml" />
-    <Content Include="Views\News\Detail.cshtml" />
-    <Content Include="Views\News\DichVu.cshtml" />
-    <Content Include="Views\News\Header.cshtml" />
-    <Content Include="Views\News\Index.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\News\Menu.cshtml" />
-    <Content Include="Views\News\NewsHot.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\News\NewsHotCategory.cshtml" />
-    <Content Include="Views\News\Share.cshtml" />
-    <Content Include="Views\News\Tags.cshtml" />
-    <Content Include="Views\News\TinNoiBat.cshtml" />
-    <Content Include="Views\News\TinTamDiem.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Tag\Index.cshtml" />
-    <Content Include="Views\Tag\List.cshtml" />
-    <Content Include="Views\Tag\ListByNewAssi.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ModuleHTML\modulehtml.cshtml" />
-    <Content Include="Views\_news\newhost.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -2455,19 +2143,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Uploadify\check.php" />
     <Content Include="Uploadify\com\adobe\air\logging\FileTarget.as" />
     <Content Include="Uploadify\com\adobe\crypto\HMAC.as" />
@@ -2581,40 +2256,14 @@
     <Content Include="Scripts\OWLCarouselv1.3.3\demos\json\data.json" />
     <Content Include="Scripts\OWLCarouselv1.3.3\LICENSE" />
     <Content Include="Scripts\OWLCarouselv1.3.3\README.md" />
-    <Content Include="Views\Design\DesignSoftListNew.cshtml" />
-    <Content Include="Views\Design\DesignSoftNewDetail.cshtml" />
-    <Content Include="Views\Design\DesignWebList.cshtml" />
-    <Content Include="Views\Design\DesignWebNew.cshtml" />
-    <Content Include="Views\Design\DichVuSeo.cshtml" />
-    <Content Include="Views\Design\ListHosting.cshtml" />
-    <Content Include="Views\Design\ListNewSoft.cshtml" />
-    <Content Include="Views\Design\DesignHostingNew.cshtml" />
-    <Content Include="Views\Home\PopupAdv.cshtml" />
-    <Content Include="Views\Home\Share.cshtml" />
-    <Content Include="Views\Home\Youtube.cshtml" />
-    <Content Include="Views\Home\GiaoDienTieuBieu.cshtml" />
-    <Content Include="Scripts\sweetalert-master\.editorconfig" />
-    <Content Include="Scripts\sweetalert-master\.gitignore" />
-    <Content Include="Scripts\sweetalert-master\.jshintrc" />
-    <Content Include="Scripts\sweetalert-master\bower.json" />
-    <Content Include="Scripts\sweetalert-master\dev\sweetalert.scss" />
-    <Content Include="Scripts\sweetalert-master\example\example.scss" />
-    <Content Include="Scripts\sweetalert-master\example\images\te-logo-small.svg" />
-    <Content Include="Scripts\sweetalert-master\LICENSE" />
-    <Content Include="Scripts\sweetalert-master\package.json" />
-    <Content Include="Scripts\sweetalert-master\README.md" />
-    <Content Include="Scripts\sweetalert-master\sweetalert-master.zip" />
-    <Content Include="Scripts\sweetalert-master\themes\facebook\facebook.scss" />
-    <Content Include="Scripts\sweetalert-master\themes\google\google.scss" />
-    <Content Include="Scripts\sweetalert-master\themes\twitter\twitter.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ckeditor\skins\black\images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Scripts\sweetalert-master\" />
     <Folder Include="Uploads\images\" />
     <Folder Include="Uploads\_thumbs\Images\" />
-    <Folder Include="Views\DesignWeb\" />
-    <Folder Include="Views\_product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2665,7 +2314,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2159</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1329/</IISUrl>
+          <IISUrl>http://localhost:1111/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://fdi.local/</CustomServerUrl>

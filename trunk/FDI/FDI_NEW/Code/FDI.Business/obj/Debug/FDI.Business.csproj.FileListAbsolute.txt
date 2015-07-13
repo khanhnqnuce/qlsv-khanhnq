@@ -94,3 +94,16 @@ D:\FdiSoft\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.MvcMembership.pdb
 D:\FdiSoft\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.MvcMembership.xml
 D:\FdiSoft\FDI_NEW\Code\FDI.Business\bin\Debug\EntityFramework.xml
 D:\FdiSoft\FDI_NEW\Code\FDI.Business\obj\Debug\FDI.Business.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Business.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Business.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Base.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.DA.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Simple.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\EntityFramework.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Base.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.DA.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\FDI.Simple.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\bin\Debug\EntityFramework.xml
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\obj\Debug\FDI.Business.csprojResolveAssemblyReference.cache
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\obj\Debug\FDI.Business.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.Business\obj\Debug\FDI.Business.pdb

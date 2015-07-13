@@ -5,38 +5,4 @@
     ViewBag.Keywords = ViewBag.Keywords;
     
 }
-<script>
-    loadjscssfile("/Content/Publishing/css/Home2.css?v=2105");
-
-</script>
-<noscript>
-    <link href="/Content/Publishing/css/Home2.css?v=2105" rel="stylesheet" />
-</noscript>
-
-<section id="content">
-    <div class="slider-container">
-        <script defer src="/Scripts/Slider-01/js/Slider.js?v=2105"></script>
-     
-        @Html.Action("ModulHTML", "Home", new { key = "Home_Slide" })
-    </div>
-    @Html.Action("ModulHTML", "Home", new { key = "Home_DongHanh" })
-    <div class="div-module-one bounceInLeft" data-wow-duration="2s">
-        <div class="container">
-            <div class="row">
-                <h2 class="text-center FDI-title-center">Giao diện tiêu biểu</h2>
-                @Html.Action("KhoGiaoDien", "Home")
-            </div>
-        </div>
-    </div>
-    <div class="div-module-two">
-        <div class="container">
-            <div class="row">
-                @Html.Action("NewsHot", "News")
-                @Html.Action("TinTamDiem", "News")
-            </div>
-        </div>
-    </div>
-    @Html.Action("ModulHTML", "Home", new { key = "YKienKhachHang" })
-    @Html.Action("ModulHTML", "Home", new { key = "ThanhToan_DichVu" })
-</section>
-@Html.Action("FooterGioiThieu", "Home")
+Home

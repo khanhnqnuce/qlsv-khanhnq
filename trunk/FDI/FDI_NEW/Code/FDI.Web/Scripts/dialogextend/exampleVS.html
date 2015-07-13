@@ -106,7 +106,7 @@
     </header>
     <section>
         <form id="my-form">
-            
+
             <h2>Configuration</h2>
             <div style="float: left;">
                 <fieldset id="config-button">
@@ -290,8 +290,9 @@
                         <label for="is-draggable">Draggable</label>
                     </div>
                 </fieldset>
-				
-			<div class="aaaa">VS dialog</div>
+
+                <div class="aaaa">VS dialog</div>
+            </div>
         </form>
     </section>
     <br clear="both" />
@@ -313,21 +314,21 @@
               })
               .trigger("change");
 
-			  
-				$(".aaaa").dialog(
-					{
-						title: "Chọn ảnh",
-						width: 950,
-						height: 580
-					}
-				).dialogExtend({
-							closable: true,
-							maximizable: true,
-							minimizable: true,
-							minimizeLocation: "right",
-							collapsable: true,
-							dblclick: "maximize"
-						}).load(encodeURI('https://www.google.com.vn/')).dialog("open");
+
+            $(".aaaa").dialog(
+                {
+                    title: "Chọn ảnh",
+                    width: 950,
+                    height: 580
+                }
+            ).dialogExtend({
+                closable: true,
+                maximizable: true,
+                minimizable: true,
+                minimizeLocation: "right",
+                collapsable: true,
+                dblclick: "maximize"
+            }).load(encodeURI('https://www.google.com.vn/')).dialog("open");
 
 
 
@@ -395,6 +396,6 @@
             });
 
         });
-</script>
+    </script>
 </body>
 </html>

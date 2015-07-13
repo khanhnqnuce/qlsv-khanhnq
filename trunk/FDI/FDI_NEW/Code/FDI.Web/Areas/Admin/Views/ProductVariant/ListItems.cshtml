@@ -46,7 +46,7 @@
                         <td>@item.ProductName</td>
                         <td>@item.ColorName</td>
                         <td>@item.Sku</td>
-                        <td>@FDI.Utility.FormatPrice(item.Price) đ</td>
+                        <td>@FDI.Utils.FormatCurrency.FormatPriceVND(item.Price) đ</td>
                         <td>@item.Position</td>
                         <td class="act_view">
                             @if (Model.SystemActionItem.View)

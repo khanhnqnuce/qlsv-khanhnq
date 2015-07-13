@@ -59,3 +59,12 @@ D:\FdiSoft\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Base.pdb
 D:\FdiSoft\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Simple.pdb
 D:\FdiSoft\FDI_NEW\Code\FDI.DA\bin\Debug\EntityFramework.xml
 D:\FdiSoft\FDI_NEW\Code\FDI.DA\obj\Debug\FDI.DA.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.DA.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.DA.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Base.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Simple.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Base.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\bin\Debug\FDI.Simple.pdb
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\obj\Debug\FDI.DA.csprojResolveAssemblyReference.cache
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\obj\Debug\FDI.DA.dll
+D:\New\QLSV\FDI\FDI_NEW\Code\FDI.DA\obj\Debug\FDI.DA.pdb

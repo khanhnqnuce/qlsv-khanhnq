@@ -179,7 +179,7 @@
             <td class="label">
                 <label>Nội dung chi tiết</label></td>
             <td>
-                @HttpUtility.HtmlDecode(FDIUtils.RemoveHTMLTag(Model.Content))
+                @HttpUtility.HtmlDecode(MyString.RemoveHTMLTag(Model.Content))
                 
             </td>
         </tr>
@@ -261,7 +261,7 @@
                 <tr>
                     <td class="label">
                         <label>Nội dung trả lời</label></td>
-                    <td>@HttpUtility.HtmlDecode(FDIUtils.RemoveHTMLTag(reply.Content))</td>
+                    <td>@HttpUtility.HtmlDecode(MyString.RemoveHTMLTag(reply.Content))</td>
                 </tr>
 
                 <tr>
