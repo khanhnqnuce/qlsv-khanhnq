@@ -1,0 +1,16 @@
+SELECT ROW_NUMBER() OVER (ORDER BY (SELECT 1)) AS [STT], * FROM dbo.[ZIP Codes]
+
+SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS [STT], * FROM dbo.[ZIP Codes]) a where a.STT = 7
+
+SELECT ROW_NUMBER() OVER (PARTITION BY [State Code] ORDER BY [ZIP Code]) AS [STT],*
+		FROM dbo.[ZIP Codes]
+		
+SELECT RANK() OVER (ORDER BY [State Code]) AS [Rank],*
+		FROM dbo.[ZIP Codes] -- Nhóm
+
+
+SELECT DENSE_RANK() OVER (ORDER BY [State Code]) AS [Rank],*
+		FROM dbo.[ZIP Codes] -- Nhóm
+  
+SELECT NTILE(50) OVER (ORDER BY [ZIP Code]) AS [Groups],*
+		FROM dbo.[ZIP Codes] - Nhóm thành 50 nhóm
