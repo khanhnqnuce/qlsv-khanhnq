@@ -1,0 +1,70 @@
+﻿@model Validate.Common.CustomerModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#BookingDate").datepicker();
+    });
+</script>
+<h2>Index</h2>
+@using (Html.BeginForm())
+{  
+    @Html.AntiForgeryToken()  
+    @Html.ValidationSummary(true)  
+  
+    <fieldset>
+        <legend>CustomerModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(x => x.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(x => x.FirstName, new { @maxlength = "50" })
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(x => x.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(x => x.LastName, new { @maxlength = "50" })
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(x => x.Address)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(x => x.Address, new { @maxlength = "50" })
+            @Html.ValidationMessageFor(x => x.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(x => x.ContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(x => x.ContactNo, new { @maxlength = "50" })
+            @Html.ValidationMessageFor(x => x.ContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(x => x.BookingDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(x => x.BookingDate, new { @maxlength = "50" })
+            @Html.ValidationMessageFor(x => x.BookingDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>  
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
