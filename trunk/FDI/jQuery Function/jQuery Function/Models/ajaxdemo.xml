@@ -1,7 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <note>
-  <to> Tove</to>
-  <from>Jani</from>
-  <heading>Reminder</heading>
-  <body>Don't forget me this weekend!</body>
+  <book id ="1">
+    <to> Tove1</to>
+    <from>Jani1</from>
+    <heading>Reminder1</heading>
+    <body>Don't forget me this weekend 1!</body>
+  </book>
+  
+  <book id ="2">
+    <to> Tove2</to>
+    <from>Jani2</from>
+    <heading>Reminder2</heading>
+    <body>Don't forget me this weekend 2!</body>
+  </book>
 </note>
