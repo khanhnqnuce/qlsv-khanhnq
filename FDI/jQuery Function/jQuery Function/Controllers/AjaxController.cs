@@ -16,9 +16,13 @@ namespace jQuery_Function.Controllers
 
         public ActionResult File001()
         {
-            return View();
+            var t = Request["t"];
+            var id = Request["id"];
+            var name = Request["name"];
+            ViewBag.value = "id=" + id + " name =" + name + " t=" + t;
+            return PartialView();
         }
-        
+
         public ActionResult File001A(string title, string value, string mode)
         {
             var t = Request["t"];
@@ -27,13 +31,6 @@ namespace jQuery_Function.Controllers
             var valuenew = Request["value"];
             ViewBag.mode = t;
             return View();
-        }
-
-        public XDocument ExportXml()
-        {
-            Response.AddHeader("Content-Type", "text/xml");
-
-            return File("text/xml","Models\ajaxdemo.xml");
         }
     }
 }
