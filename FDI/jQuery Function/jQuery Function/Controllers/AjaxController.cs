@@ -1,6 +1,10 @@
 ﻿using System.Net;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Xml.Linq;
+using jQuery_Function.Models;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 
 namespace jQuery_Function.Controllers
 {
@@ -23,14 +27,27 @@ namespace jQuery_Function.Controllers
             return PartialView();
         }
 
-        public ActionResult File001A(string title, string value, string mode)
+        [HttpPost]
+        public ActionResult File001A()
         {
             var t = Request["t"];
-            var modenew = Request["mode"];
-            var titlenew = Request["title"];
-            var valuenew = Request["value"];
-            ViewBag.mode = t;
-            return View();
+            var username = Request["UserName"];
+            var password = Request["Password"];
+            ViewBag.value = "username: " + username + ", password: " + password + ", t:" + t;
+            return PartialView();
+        }
+        public string FileJson()
+        {
+            var obj = new Student();
+            for (var i = 0; i < 3; i++)
+            {
+                obj.ID = i;
+                obj.FirtName = "FirtName" + i;
+                obj.LastName = "LastName" + i;
+            }
+            var js = new JavaScriptSerializer();
+            var json = js.Serialize(obj);
+            return json;
         }
     }
 }
