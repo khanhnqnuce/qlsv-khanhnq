@@ -148,6 +148,7 @@
     <Content Include="Content\Post.js" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\Test.js" />
+    <Content Include="Content\themes\Post.js" />
     <Content Include="Models\ajaxdemo.xml" />
     <Content Include="Scripts\GridView.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
