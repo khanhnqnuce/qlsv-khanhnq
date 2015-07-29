@@ -145,6 +145,7 @@
     <Content Include="Content\datepicker\css\datepicker.css" />
     <Content Include="Content\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Content\img\demo_wait.gif" />
+    <Content Include="Content\Post.js" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\Test.js" />
     <Content Include="Models\ajaxdemo.xml" />
