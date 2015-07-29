@@ -3,6 +3,14 @@
 .process {
     
 }
+.send {
+    
+}
 .info {
     border: #00bfff solid 1px;
+}
+.boxA {
+    width: 500px;
+    height: 200px;
+    border: red solid 2px
 }
