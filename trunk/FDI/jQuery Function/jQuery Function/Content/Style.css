@@ -1,10 +1,20 @@
 ﻿body {
 }
 .process {
-    
+    margin-top: 10px;
 }
 .send {
     
+}
+.txtError {
+    color: red;
+    font-style: italic;
+}
+.bg01 {
+    background: yellow;
+}
+.bg02 {
+    background:red;
 }
 .info {
     border: #00bfff solid 1px;

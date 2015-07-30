@@ -1,5 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/IgnoredPaths/=CONTENT_005CBOOTSTRAP3_002DTYPEAHEAD_002EJS/@EntryIndexedValue">Content\bootstrap3-typeahead.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=SKIN_005CJS_005CSELECT2_005CSELECT2_002DSPINNER_002EGIF/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=VIEWS_005CHOME_005CCSS_005CBOOTSTRAP_002EMIN_002ECSS/@EntryIndexedValue"></s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=CONTENT_005CBOOTSTRAP3_002DTYPEAHEAD_002EJS/@EntryIndexedValue">Content\bootstrap3-typeahead.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=SKIN_005CJS_005CSELECT2_005CSELECT2_002DSPINNER_002EGIF/@EntryIndexedValue">Skin\js\select2\select2-spinner.gif</s:String>
 	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=VIEWS_005CHOME_005CCSS_005CBOOTSTRAP_002EMIN_002ECSS/@EntryIndexedValue">Views\Home\css\bootstrap.min.css</s:String></wpf:ResourceDictionary>

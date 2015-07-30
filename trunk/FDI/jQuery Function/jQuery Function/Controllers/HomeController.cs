@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
+﻿using System.Threading;
 using System.Web.Mvc;
 
 namespace jQuery_Function.Controllers
@@ -30,6 +26,7 @@ namespace jQuery_Function.Controllers
         {
             return View();
         }
+
         public ActionResult Datepicker()
         {
             return View();
