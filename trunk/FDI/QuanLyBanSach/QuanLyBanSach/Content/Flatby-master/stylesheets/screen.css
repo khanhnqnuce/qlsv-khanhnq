@@ -512,7 +512,7 @@ hr {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 4px;
-  width: 33%;
+  width: 300px;
   background: #fff; }
   /* line 618, ../sass/screen.scss */
   .item .item-info {
