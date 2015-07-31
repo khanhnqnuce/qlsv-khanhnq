@@ -6,104 +6,147 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Flatby-master/stylesheets/fonts.css" rel="stylesheet" />
     <link href="~/Content/Flatby-master/stylesheets/screen.css" rel="stylesheet" />
-    
+    @* css font ký tự *@
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
     <link href="~/Content/NguoiDung.css" rel="stylesheet" />
+    @* nivo slide *@
+    <link href="~/Content/Nivo-Slider/nivo-slider.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Content/Nivo-Slider/jquery.nivo.slider.js"></script>
+    <script src="~/Content/Nivo-Slider/jquery.nivo.slider.pack.js"></script>
 </head>
 <body>
-    @RenderBody()
-    <section class="blank">
-        <div class="flash">
-            
-        </div>
-        <div class="flash error">
-            <a href="#" class="close"><i class="icon icon-remove"></i></a>
-            <span><i class="icon-2x icon-warning-sign"></i></span>
-            <p>This is an error message</p>
-        </div>
+    <div id="toantrang">
+        <section class="blank">
+            <div class="flash">
+                <div class="icdienthoai">
+                    <i class="fa fa-phone"></i>
+                    (+84) 0169.999.3928
+                </div>
+                <div class="dangkydangnhap">
+                    <i class="fa fa-sign-in"></i>
+                    @Html.ActionLink("Đăng ký", "DangKy", "", null, new { @class = "DangKy" })
+                    <i class="fa fa-unlock"></i>
+                    @Html.ActionLink("Đăng nhập", "DangNhap", "", null, new { @class = "DangNhap" })
+                </div>
 
-        <div class="flash success">
-            <a href="#" class="close"><i class="icon icon-remove"></i></a>
-            <span><i class="icon-2x icon-smile"></i></span>
-            <p>The thing you just did totally just worked!</p>
+            </div>
+            <div class="flash success" id="divDanhMuc">
+                <div id="TimKiem">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.TextBox("txtTimKiem", "", new { @class = "textboxTimKiem", @placeholder = "Nhập vào từ khóa cần tìm" })
+                        <button type="submit"><i class="fa fa-search" style="font-size: 18px;"></i></button>
+                    }
+                </div>
+                <ul class="navMenu">
+                    <li><a href="#"><i class="fa fa-home icon-large" style="font-size: 19px"></i></a></li>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Hướng dẫn</a></li>
+                    <li><a href="#">Sách</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div id="divMenuleft">
+                <div class="activity">
+                    <h1 class="item-header">Recent Activity</h1>
+
+                    <div class="activity-list-update">
+                        <img src="http://lorempixel.com/50/50/" alt="Image">
+                        <p><strong>Sách công nghệ phần mềm</strong> uploaded a new file <a href="#">new-design.png</a></p>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="activity-list-update">
+                        <img src="http://lorempixel.com/50/50/" alt="Image">
+                        <p><strong>Sách công nghệ phần mềm</strong> uploaded a new file <a href="#">new-design.png</a></p>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="activity-list-update">
+                        <img src="http://lorempixel.com/50/50/" alt="Image">
+                        <p><strong>Sách công nghệ phần mềm</strong> uploaded a new file <a href="#">new-design.png</a></p>
+                        <div class="clear"></div>
+                    </div>
+
+                    <a href="#" class="item-footer green">Sách mới nhất</a>
+                </div>
+            </div>
+            <div id="slider" class="nivoSlider">
+                <img src="~/Content/Nivo-Slider/demo/images/nemo.jpg" />
+                <img src="~/Content/Nivo-Slider/demo/images/toystory.jpg" />
+                <img src="~/Content/Nivo-Slider/demo/images/up.jpg" />
+            </div>
+            <div style="clear: both"></div>
+        </section>
+        <div id="NoiDung">
+            @RenderBody()
         </div>
-    </section>
+        <section>
+            <div>
+                <a href="#" class="button">This is a button</a>
 
-    <section>
-        <div class="activity">
-            <h1 class="item-header">Recent Activity</h1>
+                <a href="#" class="button button-submit">This is a save button</a>
 
-            <div class="activity-list-update">
-                <img src="http://lorempixel.com/50/50/" alt="Image">
-                <p><strong>Dennis The Dude</strong> updated his <a href="#">user profile</a>.</p>
-                <div class="clear"></div>
+                <a href="#" class="button">Button with a counter <span class="notification">22</span></a>
+
+                <a href="#" class="button button-and-icon">
+                    <div><i class="icon-large icon-cog"></i></div>
+                    Button with an icon
+                </a>
             </div>
 
-            <div class="activity-list-update">
-                <img src="http://lorempixel.com/50/50/" alt="Image">
-                <p><strong>Abe Kobo</strong> uploaded a new file <a href="#">new-design.png</a></p>
-                <div class="clear"></div>
+            <hr>
+
+            <div>
+                <a href="#" class="button button-submit">Submit</a>
+                <a href="#" class="button button-cancel">Cancel</a>
+                <a href="#" class="button button-delete">Delete</a>
             </div>
 
-            <div class="activity-list-update">
-                <img src="http://lorempixel.com/50/50/" alt="Image">
-                <p><strong>Abe Kobo</strong> uploaded a new file <a href="#">new-design.png</a></p>
-                <div class="clear"></div>
+            <hr>
+
+            <div>
+                <a href="#" class="button button-small">Smaller button</a>
             </div>
 
-            <a href="#" class="item-footer green">See all activity
-			</a>
-        </div>
-    </section>
+            <hr>
 
-    <section>
-        <div>
-            <a href="#" class="button">This is a button</a>
-
-            <a href="#" class="button button-submit">This is a save button</a>
-
-            <a href="#" class="button">Button with a counter <span class="notification">22</span></a>
-
-            <a href="#" class="button button-and-icon">
-                <div><i class="icon-large icon-cog"></i></div>
-                Button with an icon
-			</a>
-        </div>
-
-        <hr>
-
-        <div>
-            <a href="#" class="button button-submit">Submit</a>
-            <a href="#" class="button button-cancel">Cancel</a>
-            <a href="#" class="button button-delete">Delete</a>
-        </div>
-
-        <hr>
-
-        <div>
-            <a href="#" class="button button-small">Smaller button</a>
-        </div>
-
-        <hr>
-
-        <div>
-            <a href="#" class="button button-buy">Buy button (full width for columns)</a>
-        </div>
-    </section>
-
-    <section class="blank items">
-        <div class="item">
-            <img src="http://lorempixel.com/400/300/" alt="Image">
-
-            <div class="item-info">
-                <h1>Item title</h1>
-                <p>What the hell is this? Get out of town, I didn't know you did anything creative. Ah, let me read some.</p>
-                <span class="price">£49.99</span>
-                <a href="#" class="button button-buy">Get it now</a>
+            <div>
+                <a href="#" class="button button-buy">Buy button (full width for columns)</a>
             </div>
-        </div>
-        <div>
-            <a href="#" class="button button-buy">Buy button (full width for columns)</a>
-        </div>
-    </section>
+        </section>
+
+        <section class="blank items">
+            <div class="item">
+                <img src="http://lorempixel.com/400/300/" alt="Image">
+
+                <div class="item-info">
+                    <h1>Item title</h1>
+                    <p>What the hell is this? Get out of town, I didn't know you did anything creative. Ah, let me read some.</p>
+                    <span class="price">£49.99</span>
+                    <a href="#" class="button button-buy">Get it now</a>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="button button-buy">Buy button (full width for columns)</a>
+            </div>
+        </section>
+    </div>
+    @* scrip chay slide *@
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                prevText: '',
+                nextText: '',
+            });
+        });
+    </script>
 </body>
 </html>

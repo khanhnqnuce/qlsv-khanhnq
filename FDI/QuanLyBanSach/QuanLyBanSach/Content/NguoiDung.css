@@ -1,1 +1,84 @@
 ﻿/**/
+div#toantrang {
+    position: relative;
+    font-family: 'Segoe UI'
+}
+
+.dangkydangnhap {
+    float: right;
+    margin-top: -1%;
+}
+
+    .dangkydangnhap a:hover {
+        text-decoration: none;
+        color: green;
+    }
+
+.icdienthoai {
+    margin-top: -1%;
+    float: left;
+}
+/*Menu*/
+#divDanhMuc {
+    height: 28px;
+}
+
+ul.navMenu {
+    float: right;
+    margin-right: 10%;
+}
+
+.navMenu li {
+    margin-right: -1%;
+    display: inline;
+    border-right: solid 1px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-top: 19px;
+    padding-bottom: 20px;
+    -webkit-transition: all .1s ease-out;
+    -moz-transition: all .1s ease-out;
+    -webkit-transition: all .1s ease-out;
+}
+
+    .navMenu li:hover {
+        background-color: rgba(0,0,0,.5);
+        -webkit-transition: all .5s ease-out;
+        -moz-transition: all .5s ease-out;
+        -webkit-transition: all .5s ease-out;
+    }
+
+.navMenu a:hover {
+    text-decoration: none;
+}
+
+#TimKiem {
+    float: left;
+    margin-left: 5%;
+}
+
+    #TimKiem input {
+        height: 0;
+    }
+
+    #TimKiem button {
+        padding: 7px;
+        margin-left: -4px;
+        background-color: #14a19a;
+    }
+
+        #TimKiem button:hover {
+           background-color: rgba(0,0,0,.5);
+        }
+/**/
+#slider {
+    float: right;
+    width: 900px;
+    height: 360px;
+}
+#slider img {
+    width: 900px;
+    height: 360px;
+}
+#divMenuleft {
+    float: left;
+}
