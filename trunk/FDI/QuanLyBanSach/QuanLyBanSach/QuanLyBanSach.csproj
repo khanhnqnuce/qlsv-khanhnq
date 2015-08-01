@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,6 +127,54 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChiTietDonHang.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChuDe.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonHang.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KhanhHang.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhaXuatBan.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLBSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLBSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QLBSModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLBSModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sach.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TacGia.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThamGia.cs">
+      <DependentUpon>QLBSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -269,6 +319,23 @@
     <Content Include="Content\Nivo-Slider\.gitignore" />
     <Content Include="Content\Nivo-Slider\nivoslider.jquery.json" />
     <Content Include="Content\Nivo-Slider\README.md" />
+    <EntityDeploy Include="Models\QLBSModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLBSModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QLBSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLBSModel.edmx</DependentUpon>
+      <LastGenOutput>QLBSModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QLBSModel.edmx.diagram">
+      <DependentUpon>QLBSModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\QLBSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLBSModel.edmx</DependentUpon>
+      <LastGenOutput>QLBSModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -300,10 +367,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
