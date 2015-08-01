@@ -13,6 +13,8 @@ namespace QuanLyBanSach.Controllers
 
         public ActionResult Index()
         {
+            //Response.StatusCode = 404;
+            //return null;
             return View();
         }
 
