@@ -1,0 +1,17 @@
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\Youtube API Custom Video.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\Youtube API Custom Video.pdb
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Helpers.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Mvc.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Razor.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.Deployment.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.Razor.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Razor.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.Deployment.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Webpages.Razor.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Helpers.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\bin\System.Web.Mvc.xml
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\obj\Debug\Youtube API Custom Video.csprojResolveAssemblyReference.cache
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\obj\Debug\Youtube API Custom Video.dll
+D:\New\QLSV\FDI\youtubeapicustomvideo_asp.net\Youtube API Custom Video\obj\Debug\Youtube API Custom Video.pdb

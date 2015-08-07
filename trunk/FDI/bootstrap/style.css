@@ -1,0 +1,46 @@
+.container{
+	width: 900px;
+	margin-left: 200px
+}
+.title{
+	margin-left: 200px;
+}
+.title a{
+	text-decoration: none;
+}
+.nav{
+	background: gray;
+	border-radius: 10px;
+	height: 50px
+}
+ul{
+
+}
+
+ul li{
+	list-style: none;
+	float: left;
+	/*display: inline;*/
+	padding: 10px 60px;
+	text-align: center;
+	height: 28px;
+	border: solid 1px gray;
+
+}
+.active{
+	background: white;
+}
+.info{
+	background: gainsboro;
+	margin-top: 50px;
+	padding: 20px;
+	border-radius:10px;
+}
+.btn{
+	text-decoration: none;
+	background: green;
+	padding: 10px;
+	cursor: pointer;
+	border: 3px solid white;
+	border-radius: 3px;
+}

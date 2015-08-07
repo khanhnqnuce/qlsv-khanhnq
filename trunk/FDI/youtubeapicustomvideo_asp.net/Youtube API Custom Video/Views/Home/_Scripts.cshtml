@@ -1,0 +1,12 @@
+﻿@model Youtube_API_Custom_Video.Models.Video
+
+<script>
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			height: '@Model.Height',
+			width: '@Model.Width',
+			videoId: '@Model.Id'
+		});
+	}
+</script>
