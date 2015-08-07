@@ -1,0 +1,49 @@
+﻿@model List<YoutubeAPIGallery.Models.Video>
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Youtube API Video Gallery</title>
+
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-md-4">
+				<a href="#" data-toggle="modal" data-target="#youtube-modal" data-video-title="@item.Title" data-video-id="@item.Id" data-video-width="@item.Width" data-video-height="@item.Height">
+					<img src="http://img.youtube.com/vi/@item.Id/mqdefault.jpg" alt="@item.Id" />
+				</a>
+			</div>
+		}
+	</div>
+
+	<div class="modal fade" id="youtube-modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<div id="player"></div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<script src="~/Scripts/youtube/general.js"></script>
+	<script src="~/Scripts/youtube/gallery.js"></script>
+</body>
+</html>
+

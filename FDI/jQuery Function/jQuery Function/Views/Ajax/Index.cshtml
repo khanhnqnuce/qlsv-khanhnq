@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
-                        <input type="text" name="username" class="form-control" placeholder="Tài khoản">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Tài khoản">
                         <span class="help-block m-b-none">Example block-level help text here.</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-10">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -54,4 +54,22 @@
         </div>
     </section>
 </div>
+<script>
+    $(function () {
+        $('#username').keypress(function (e) {
+            if (e.which === 13) {
+                name($('#username').val());
+            }
+                
+        });
+        $('.send').click(function() {
+            name($('#password').val());
+        });
+    });
+    
 
+    function name(nameid) {
+        alert(nameid);
+        
+    }
+</script>
