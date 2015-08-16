@@ -1,5 +1,15 @@
 ﻿$(document).ready(function () {
-    $('#sortableCompleted, #sortableTodo').sortable();
+
+    var url = "Home/Sortable";
+    $('#sortableCompleted, #sortableTodo').sortable({
+        update: function (event, ui) {
+            var a = $("#sortableTodo").sortable("toArray");
+            var array = { array1: $("#sortableTodo").sortable("toArray").join(","), array2: $("#sortableCompleted").sortable("toArray").join(",") }
+            $.post(url,array,  function(dt, status) {
+                alert(dt);
+            });
+        }
+    });
 
     $('body').on('click', '#addTaskButton', function () {
 

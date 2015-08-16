@@ -14,8 +14,9 @@ namespace TaskList.Controllers
 
         public string Sortable()
         {
-            var request = Request["usename"];
-            return request;
+            var request1 = Request["array1"];
+            var request2 = Request["array2"];
+            return request1 + "\n" + request2;
         }
 
     }
