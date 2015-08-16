@@ -3,16 +3,17 @@
     var url = "Home/Sortable";
     $('#sortableCompleted, #sortableTodo').sortable({
         update: function (event, ui) {
-            var a = $("#sortableTodo").sortable("toArray");
+            
             var array = { array1: $("#sortableTodo").sortable("toArray").join(","), array2: $("#sortableCompleted").sortable("toArray").join(",") }
-            $.post(url,array,  function(dt, status) {
+            $('#sortableCompleted, #sortableTodo').sortable('disable');
+            $.post(url, array, function (dt, status) {
                 alert(dt);
+                //$('#sortableCompleted, #sortableTodo').sortable('enable');
             });
         }
     });
 
     $('body').on('click', '#addTaskButton', function () {
-
         var id = new Date().getTime();
         $("#sortableTodo").append(myFunction3(id, $("#addTaskTextField").val()));
         $("#addTaskTextField").val("");
