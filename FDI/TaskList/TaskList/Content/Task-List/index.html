@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Task List</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
+
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery-ui-touch-punch-0.2.3.js"></script>
+    <script src="js/task-list-base.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id='saveMethodButtonBar'>
+            <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">Local Storage</label>
+            <input type="radio" id="radio2" name="radio" disabled="true"><label for="radio2">Log in not yet available</label>
+        </div>
+        <h1>Task List</h1>
+    </header>
+    <div id='taskListContainer' class="container narrow">
+        <div id="addTask">
+            <input id="addTaskTextField" type="text" autofocus="autofocus" />
+            <select id="complexityComboBox">
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+            </select>
+            <input id='addTaskButton' type='submit' value='Add Task' />
+        </div>
+        <ul id="sortableTodo" class="sortable"></ul>
+        <div id="completedTasksHeader">
+            <span id="completedLabel">Completed Tasks</span>
+            <span id="lastDateLabel">Completion Date</span>
+        </div>
+        <ul id="sortableCompleted" class="sortable">
+        </ul>
+    </div>
+    <div class="container narrow improvement-list">
+        <h2>Improvements TODO list</h2>
+        <ul id="features">
+            <li>Add stats such as number of tasks, completed tasks</li>
+            <li>Set up mysql database to store and retrieve Task lists</li>
+            <li>Set up Azure PHP service to store and retrieve Task lists</li>
+            <li>Upload website to Apache on Azure</li>
+            <li>Create login system</li>
+            <li>Move Dates from list to onHover</li>
+            <li>Add modular content onto sides</li>
+            <li>Make it work for mobile (stretch elements further)</li>
+            <li>Export to PDP button</li>
+            <li>Share list with others</li>
+            <li>Add grouping (this week's tasks as a sidebar extension (==|, monday's tasks as a dropdown)</li>
+            <li>Organize completed tasks by week through tabs</li>
+            <li>Change Create/start/completion date display on right click</li>
+            <li>On right click, add option to copy text</li>
+            <li>update list items to use scalable images instead of rectangles</li>
+            <li>Add dropdown to control where a new task should go into the list (top/bottom)</li>
+        </ul>
+    </div>
+</body>
+</html>
