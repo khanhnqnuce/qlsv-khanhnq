@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <script src="~/Content/CarMarKet.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        ul {
+            margin: 0;
+        }
+
+        #contentWrap {
+            width: 700px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+        }
+
+        #contentTop {
+            width: 600px;
+            padding: 10px;
+            margin-left: 30px;
+        }
+
+        #contentLeft {
+            float: left;
+            width: 400px;
+        }
+
+            #contentLeft li {
+                list-style: none;
+                margin: 0 0 4px 0;
+                padding: 10px;
+                background-color: #00CCCC;
+                border: #CCCCCC solid 1px;
+                color: #fff;
+            }
+
+        #contentRight {
+            float: right;
+            width: 260px;
+            padding: 10px;
+            background-color: #336600;
+            color: #FFFFFF;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                var url = "Sortable/demo";
+                $("#contentLeft ul").sortable({
+                    //opacity: 0.6,
+                    //cursor: 'move',
+                    update: function (event, ui) {
+                        var order = { positions: $(this).sortable('toArray').join(',') }
+                        //var order = $(this).sortable("toArray");
+                        //debugger;
+                        //console.log(order);
+                        $.post(url, order, function (data) {
+                            $("#contentRight").html(data);
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="contentWrap">
+
+        <div id="contentLeft">
+            <ul>
+                <li id="1">1. Dragging changes the opacity of the item</li>
+                <li id="2">2. Once dropped, an Ajax query is activated</li>
+                <li id="3">3. Returned array can be found at the right</li>
+                <li id="4">4. It is very very easy</li>
+            </ul>
+        </div>
+
+        <div id="contentRight">
+            <p>Array will be displayed here.</p>
+            <p>&nbsp; </p>
+        </div>
+    </div>
+    <div id="dialog-message">
+        
+    </div>
+    <script type="text/javascript">
+        createMessage("kiem tra", "thong bao");
+    </script>
+</body>
+</html>
