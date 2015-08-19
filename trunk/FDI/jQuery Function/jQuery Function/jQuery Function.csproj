@@ -125,6 +125,7 @@
     <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\AutoSearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SortableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,6 +138,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AlertsNotify\index.html" />
+    <Content Include="Content\AlertsNotify\notify.css" />
+    <Content Include="Content\AlertsNotify\notify.js" />
     <Content Include="Content\boostrap\bootstrap.css" />
     <Content Include="Content\boostrap\bootstrap.js" />
     <Content Include="Content\boostrap\bootstrap.min.css" />
@@ -149,6 +153,7 @@
     <Content Include="Content\boostrap\CSS\font-awesome.min.css" />
     <Content Include="Content\boostrap\CSS\font.css" />
     <Content Include="Content\boostrap\CSS\landing.css" />
+    <Content Include="Content\CarMarKet.js" />
     <Content Include="Content\datepicker\css\datepicker.css" />
     <Content Include="Content\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Content\img\demo_wait.gif" />
@@ -216,6 +221,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\AlertsNotify\jQuery-Plugin-To-Create-Animated-Bootstrap-Alerts-notify.zip" />
+    <Content Include="Content\AlertsNotify\README.md" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -553,6 +560,7 @@
     <Content Include="Skin\less\app.widgets.less" />
     <Content Include="Skin\less\less.php" />
     <Content Include="Skin\less\lessc.inc.php" />
+    <Content Include="Views\Sortable\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
