@@ -1,0 +1,66 @@
+
+SELECT CHARINDEX('SQL', '123SQL',5)
+select substring('1,2,3',0,charindex(',','1,2,3',0))
+select charindex('','1, 2,3',0)
+select len('1,2, 3')
+select substring('1,2,3',charindex(',','1,2,3',0)+ len(','),len('1,2,3'))
+
+CREATE FUNCTION [dbo].[SplitString] 
+(
+    -- Add the parameters for the function here
+    @myString varchar(MAX),
+    @deliminator varchar(10)
+)
+RETURNS 
+@ReturnTable TABLE 
+(
+    -- Add the column definitions for the TABLE variable here
+    [id] [int] IDENTITY(1,1) NOT NULL,
+    [SplitItem] [varchar](50) NULL
+)
+AS
+BEGIN
+	Declare @iSpaces INT
+	Declare @part varchar(50)
+	
+	--initialize spaces
+	Select @iSpaces = charindex(@deliminator,@myString,0)
+	While @iSpaces > 0
+	
+	BEGIN
+		Select @part = substring(@myString,0,charindex(@deliminator,@myString,0))
+			Insert Into @ReturnTable(SplitItem)
+			Select @part
+			Select @myString = substring(@mystring,charindex(@deliminator,@myString,0)+ len(@deliminator),len(@myString) - 0)
+			Select @iSpaces = charindex(@deliminator,@myString,0)
+	END
+	
+    If len(@myString) > 0
+    Insert Into @ReturnTable
+    Select @myString
+    
+    RETURN 
+END
+
+SELECT * FROM SplitString('1gfgf,2afdfdd,3 fd', ',')
+
+CREATE PROCEDURE [dbo].[sp_InsertToSlipString]
+      @myString VARCHAR(MAX),
+      @ch VARCHAR(10)
+AS
+BEGIN
+	DECLARE @tbl TABLE	( id int,Sort int)	
+	INSERT INTO @tbl(id,Sort) SELECT s.id,s.SplitItem FROM (SELECT * FROM SplitString(@myString, @ch)) s	
+	UPDATE WM_Works
+	SET Sort = c2.id      
+	FROM WM_Works c1
+	INNER JOIN @tbl c2
+	ON (c1.ID = c2.Sort)      
+END
+
+
+DECLARE @tbl TABLE	( id int,Sort int)	
+INSERT INTO @tbl(id,Sort) SELECT s.id,s.SplitItem FROM (SELECT * FROM SplitString('1,2,3,5,9', ',')) s
+select * from @tbl
+
+exec sp_InsertToSlipString '9,6,5,3,2,1',','
