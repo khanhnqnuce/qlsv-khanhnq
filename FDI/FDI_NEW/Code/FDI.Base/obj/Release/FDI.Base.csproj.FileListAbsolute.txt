@@ -1,7 +1,0 @@
-D:\PROJECTS\FDIsoft\Code\FDI.Base\bin\Release\FDI.Base.dll.config
-D:\PROJECTS\FDIsoft\Code\FDI.Base\bin\Release\FDI.Base.dll
-D:\PROJECTS\FDIsoft\Code\FDI.Base\bin\Release\FDI.Base.pdb
-D:\PROJECTS\FDIsoft\Code\FDI.Base\bin\Release\EntityFramework.dll
-D:\PROJECTS\FDIsoft\Code\FDI.Base\bin\Release\EntityFramework.xml
-D:\PROJECTS\FDIsoft\Code\FDI.Base\obj\Release\FDI.Base.dll
-D:\PROJECTS\FDIsoft\Code\FDI.Base\obj\Release\FDI.Base.pdb

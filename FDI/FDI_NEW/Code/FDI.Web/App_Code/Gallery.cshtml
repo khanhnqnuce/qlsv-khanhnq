@@ -1,5 +1,0 @@
-﻿@helper DisplayImage(string url, int width)
-{
-    <img src="@(string.IsNullOrEmpty(url) ? "/Content/Admin/images/no_image.gif" : @FDI.Utility.GetUrlPicture(url))" style="border:1px solid #ccc; width:@(width)px; margin-top:2px;" />
-    
-}

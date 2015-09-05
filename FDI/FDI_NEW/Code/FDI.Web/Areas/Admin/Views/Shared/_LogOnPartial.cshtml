@@ -1,7 +1,0 @@
-﻿@if (User.Identity.IsAuthenticated) {
-    <span>
-        Hello, @Html.ActionLink(User.Identity.Name, "ChangePassword", "AccountAdmin", null, new { @class = "username" })!
-        | @Html.ActionLink("Log Off", "LogOff", "AccountAdmin")
-    </span>  
-}
-
